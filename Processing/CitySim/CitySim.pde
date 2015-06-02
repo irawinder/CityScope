@@ -22,12 +22,14 @@
  *                       - Added Coefficients that adjust weight of Live and Work Nodes (tentatively set to NYC values
  * v1.06: April 12, 2015 - Added "handshake" to Legotizer when CitySim first opens (sends "reciept" string via UDP)
  * v1.07: April 13, 2015 - Added summary variables and additional score information to export (including total populations, avg scores, etc)
+ * v1.08: April 15, 2015 - Fixed bug that occasionally crashes sim when JSON object not found
+ *                       - Reformated labels for export; turned off parks' score in parks access heatmap
  *                      
  * TO DO: 
  * 1. Add scores for walkability, jobs rating, worker rating, parks, etc using networks and sampling method
  */
  
-float version = 1.07;
+float version = 1.08;
 
 void setup() {
   size(1080,1080, P3D);

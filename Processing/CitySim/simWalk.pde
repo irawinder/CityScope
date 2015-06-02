@@ -1,13 +1,13 @@
 // This set of variables and scripts are used to estimate walkabily of a given configuration of urban space 
    
   String[] walkScoreNames = {
-    "jobChance",
-    "parkChance"
+    "Walkable Employment Access",
+    "Walkable Park Access"
   }; 
   
   String[] walkWebNames = {
-    "Employees",
     "Employers",
+    "Employees",
     "Parks",
     "Live",
     "Work"
@@ -189,7 +189,7 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
   parkArea=0;
   
   // The following for-loop iterates through each Node of an input array and determines partial access values for jobs, homes, and parks
-  for (int i = 0; i < numNodes; i++) {
+  for (int i = 0; i < points.size(); i++) {
     // Each input object copied into a temporary object
     JSONObject pt = points.getJSONObject(i); 
     
@@ -213,7 +213,7 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
       j--;
       
       // Random objects from entire field copied into a temporary object
-      JSONObject pt2 = points.getJSONObject(int(random( points.size() )));
+      JSONObject pt2 = points.getJSONObject(int(random( points.size() - 1 )));
       
       // Orthogonal horizontal distance
       uDist = abs(pt2.getInt("u") - u);
@@ -260,9 +260,9 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
         }   
         
         // Normalizes Sample values to entire population
-        liveAccess[i][j][k][0] *= float(numNodes)/(sampleSize*numSamples);
-        workAccess[i][j][k][0] *= float(numNodes)/(sampleSize*numSamples);
-        parkAccess[i][j][k][0] *= float(numNodes)/(sampleSize*numSamples);
+        liveAccess[i][j][k][0] *= float(points.size())/(sampleSize*numSamples);
+        workAccess[i][j][k][0] *= float(points.size())/(sampleSize*numSamples);
+        parkAccess[i][j][k][0] *= float(points.size())/(sampleSize*numSamples);
         
         // Weights Node Access Values according to live/work densities per area;
         liveAccess[i][j][k][0] *= (nodeArea/liveDensity);
@@ -289,7 +289,7 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
   println("maxParkAccess = " + maxParkAccess);
   
   // The following for-loop iterates through each Node of an input array and determines JobChance Values
-  for (int i = 0; i < numNodes; i++) {
+  for (int i = 0; i < points.size(); i++) {
     // Each input object copied into a temporary object
     JSONObject pt = points.getJSONObject(i); 
     
@@ -309,7 +309,7 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
         j--;
         
         // Random objects from entire field copied into a temporary object
-        JSONObject pt2 = points.getJSONObject(int(random( points.size() )));
+        JSONObject pt2 = points.getJSONObject(int(random( points.size() - 1 )));
         
         // If live or work node
         if (pt2.getInt("use") == 3 || pt2.getInt("use") == 4) {
@@ -369,7 +369,7 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
   int parkCounter = 0;
   
   // Aggregates multiple samples of Chance values into a single, normalized array
-  for (int i = 0; i < numNodes; i++) {
+  for (int i = 0; i < points.size(); i++) {
     // Each input object copied into a temporary object
     JSONObject pt = points.getJSONObject(i); 
     
@@ -447,6 +447,7 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
       u = pt.getInt("u");
       v = pt.getInt("v");
       z = pt.getInt("z");
+      use = pt.getInt("use");
       
       JSONObject solution = new JSONObject();
       solution.setInt("u", u);
@@ -458,8 +459,12 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
       //solution.setFloat("workAccess", workAccess[u][v][z][0]);
       //solution.setFloat("parkAccess", parkAccess[u][v][z][0]);
       
-      solution.setFloat("jobChance", jobChance[u][v][z][0]);
-      solution.setFloat("parkChance", float(parkAccess[u][v][z][0])/parkMin);
+      solution.setFloat(walkScoreNames[0], jobChance[u][v][z][0]);
+      if (pt.getInt("use") == 2) {
+        solution.setFloat(walkScoreNames[1], -1);
+      } else {
+        solution.setFloat(walkScoreNames[1], float(parkAccess[u][v][z][0])/parkMin);
+      }
       
       // Placeholder for "score" read by Legotizer
 //      if (pt.getInt("use") == 3) {

@@ -44,7 +44,7 @@ void loadInput(String filename, int viz) {
 
   // Calculate maxU, maxV, maxZ
   maxZ = 0;
-  for (int i=0; i<numNodes; i++) {
+  for (int i=0; i<nodesJSON.size(); i++) {
     JSONObject node = nodesJSON.getJSONObject(i); 
     if (node.getInt("z") > maxZ) {
       maxZ = node.getInt("z");
