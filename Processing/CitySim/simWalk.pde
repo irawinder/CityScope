@@ -6,7 +6,7 @@
   }; 
   
   String[] walkWebNames = {
-    "Employers",
+    "Jobs",
     "Employees",
     "Parks",
     "Live",
@@ -89,7 +89,7 @@ void initWalk(int maxU, int maxV, int maxZ, JSONArray points, float wlk_dst, flo
   walkDistance = 250.0;
   
   //Minimum Park Area Needed
-  parkMin = 40*40;
+  parkMin = 80*160;
   
   // Live/Work density [m^2/person]
   // NYC Values - Src: http://oldurbanist.blogspot.com/2011/12/living-space-working-space-and.html
@@ -191,7 +191,14 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
   // The following for-loop iterates through each Node of an input array and determines partial access values for jobs, homes, and parks
   for (int i = 0; i < points.size(); i++) {
     // Each input object copied into a temporary object
-    JSONObject pt = points.getJSONObject(i); 
+    JSONObject pt;
+   
+    try {
+      pt = points.getJSONObject(i); 
+    } catch(RuntimeException e){
+      println("derp derp crash 10");
+      pt = points.getJSONObject(0);  
+    }
     
     u = pt.getInt("u");
     v = pt.getInt("v");
@@ -212,8 +219,14 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
     while (j > 0) {
       j--;
       
+      JSONObject pt2;
       // Random objects from entire field copied into a temporary object
-      JSONObject pt2 = points.getJSONObject(int(random( points.size() - 1 )));
+      try{
+        pt2 = points.getJSONObject(int(random( points.size() - 1 )));
+      } catch(RuntimeException e){
+        println("derp derp crash");
+        pt2 = points.getJSONObject(0);  
+      }
       
       // Orthogonal horizontal distance
       uDist = abs(pt2.getInt("u") - u);
@@ -290,8 +303,15 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
   
   // The following for-loop iterates through each Node of an input array and determines JobChance Values
   for (int i = 0; i < points.size(); i++) {
+    
     // Each input object copied into a temporary object
-    JSONObject pt = points.getJSONObject(i); 
+    JSONObject pt;
+    try {
+      pt = points.getJSONObject(i); 
+    } catch(RuntimeException e){
+      println("derp derp crash 2");
+      pt = points.getJSONObject(0);  
+    }
     
     u = pt.getInt("u");
     v = pt.getInt("v");
@@ -308,8 +328,15 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
       while (j > 0) {
         j--;
         
+        JSONObject pt2;
+        
         // Random objects from entire field copied into a temporary object
-        JSONObject pt2 = points.getJSONObject(int(random( points.size() - 1 )));
+        try {
+          pt2 = points.getJSONObject(int(random( points.size() - 1 )));
+        } catch(RuntimeException e){
+          println("derp derp crash 3");
+          pt2 = points.getJSONObject(0);  
+        }
         
         // If live or work node
         if (pt2.getInt("use") == 3 || pt2.getInt("use") == 4) {
@@ -371,7 +398,14 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
   // Aggregates multiple samples of Chance values into a single, normalized array
   for (int i = 0; i < points.size(); i++) {
     // Each input object copied into a temporary object
-    JSONObject pt = points.getJSONObject(i); 
+    JSONObject pt;
+    
+    try {
+      pt = points.getJSONObject(i); 
+    } catch(RuntimeException e){
+      println("derp derp crash 4");
+      pt = points.getJSONObject(0);  
+    }
     
     u = pt.getInt("u");
     v = pt.getInt("v");
@@ -442,7 +476,14 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
     // Each solution object populated with fields and appendend to solution array
     for (int i = 0; i < points.size(); i++) {
       // Each input object copied into a temporary object
-      JSONObject pt = points.getJSONObject(i); 
+      JSONObject pt;
+     
+      try {
+        pt = points.getJSONObject(i); 
+      } catch(RuntimeException e){
+        println("derp derp crash 5");
+        pt = points.getJSONObject(0);  
+      }
       
       u = pt.getInt("u");
       v = pt.getInt("v");

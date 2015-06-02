@@ -6,7 +6,14 @@ void solveTest(JSONArray points) {
   for (int i = 0; i < points.size(); i++) {
     
     // Each input object copied into a temporary object
-    JSONObject pt = points.getJSONObject(i); 
+    JSONObject pt;
+   
+    try {
+      pt = points.getJSONObject(i);
+    } catch(RuntimeException e){
+      println("derp derp crash 9");
+      pt = points.getJSONObject(0);  
+    }
     
     // Each solution object pupolated with fields and appendend to solution array
     JSONObject solution = new JSONObject();

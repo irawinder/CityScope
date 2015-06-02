@@ -24,12 +24,14 @@
  * v1.07: April 13, 2015 - Added summary variables and additional score information to export (including total populations, avg scores, etc)
  * v1.08: April 15, 2015 - Fixed bug that occasionally crashes sim when JSON object not found
  *                       - Reformated labels for export; turned off parks' score in parks access heatmap
+ * v1.09: April 29, 2015 - This time JSONObject not found error ACTUALLY fixed
+ *                       - Doubled minimum Park requirement for walkSim
  *                      
  * TO DO: 
  * 1. Add scores for walkability, jobs rating, worker rating, parks, etc using networks and sampling method
  */
  
-float version = 1.08;
+float version = 1.09;
 
 void setup() {
   size(1080,1080, P3D);

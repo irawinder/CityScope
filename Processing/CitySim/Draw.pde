@@ -10,7 +10,15 @@ void drawScore() {
   noStroke();
       
   for (int i = 0; i < solutionJSON.size(); i++) {
-    JSONObject node = solutionJSON.getJSONObject(i); 
+    JSONObject node;
+   
+    try {
+      node = solutionJSON.getJSONObject(i); 
+    } catch(RuntimeException e){
+      println("derp derp crash 6");
+      node = solutionJSON.getJSONObject(0);  
+    }
+    
     if (node.getInt("z") == zee) {
       // draws a layer of the node data set, color-coded to use
       heatFill(node.getFloat(walkScoreNames[0]));
@@ -24,7 +32,15 @@ void drawUses() {
   noStroke();
       
   for (int i = 0; i < nodesJSON.size(); i++) {
-    JSONObject node = nodesJSON.getJSONObject(i); 
+   
+   JSONObject node;
+   try {
+     node = nodesJSON.getJSONObject(i); 
+   } catch(RuntimeException e){
+     println("derp derp crash 7");
+     node = nodesJSON.getJSONObject(0);  
+   }
+   
     if (node.getInt("z") == zee) {
       // draws a layer of the node data set, color-coded to use
       useFill(node.getInt("use"));
