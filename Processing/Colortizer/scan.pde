@@ -191,6 +191,7 @@ void updateScan(Capture cam, int vizW, int vizH) {
       }
     }
   }
+  
   //Decodes colors and send to local UDP
   updateDecoders();
   sendData();

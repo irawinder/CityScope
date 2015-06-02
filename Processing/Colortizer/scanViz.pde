@@ -1,7 +1,7 @@
 // Code that visualizes "ScanGrid" Analysis for debugging, etc
 // by Ira Winder, MIT Medai Lab, July 2014
 
-String version = "Colortizer, V3.5";
+String version = "Colortizer, V3.8";
 
 // Display Paramters
   boolean freq = false; // Toggle HSBRGB frequency GUI

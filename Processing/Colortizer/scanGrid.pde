@@ -26,10 +26,16 @@
 //
 //
 // REPORT ALL CHANGES WITH DATE AND USER IN THIS AREA:
+// - March 22, 2015.  Added feature that lets you send data stream only if an update to the color grid has occurred, 
+// but doesn't appear to improve performance that much, and may result in bug where Legotizer doesn't update on startup.  Keep false unless experiencing servere performance issues and/or network is limited
 // -
 // -
 // -
-// -
+
+// Set 'sendOnUpdateOnly' to false if you want every frame of data to send via UDP, no matter what. 
+// Set 'sendOnUpdateOnly' to true if you only want to send data when pattern appears to change
+boolean sendOnUpdateOnly = false;
+boolean updateReceived;
 
 // Buffer reduces detection noise, but may also reduce performance
 boolean hasBuffer = true;
@@ -367,6 +373,12 @@ public class ScanGrid {
     resized.resize(gridWidth, gridHeight);
     resized.loadPixels();
     
+    if (hasBuffer && sendOnUpdateOnly) {
+      updateReceived = false;
+    } else { //assumes updates every frame, since there is no buffer to check
+      updateReceived = true; 
+    }
+    
     for(int i=0; i<u; i++) {
       for( int j=0; j<v; j++) {
         
@@ -430,7 +442,9 @@ public class ScanGrid {
               if (quadCode[i][j][k][l] == tempCode[i][j][k][l]) { // checks to see if current and last frames are the same color value
                 if (bufferTime[i][j][k][l] == buffer) { //checks to see if color value has been constant for set amount of frames "buffer"
                   passCode[i][j][k][l] = quadCode[i][j][k][l];
-                } else { // adds 1 frame to bufferTime counter for that pixel
+                  updateReceived = true;
+                  bufferTime[i][j][k][l] ++; // increments bufferTime to buffer+1
+                } else if (bufferTime[i][j][k][l] < buffer) { // adds 1 frame to bufferTime counter for that pixel
                   bufferTime[i][j][k][l] ++;
                   //println(bufferTime[i][j][k][l]);
                 }

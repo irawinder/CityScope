@@ -56,5 +56,6 @@ void draw() {
   //runViz();
   System.gc();
   
+  //println(frameRate);
   
 }

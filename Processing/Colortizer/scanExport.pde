@@ -32,7 +32,7 @@ void startUDP(){
 
 void sendData() {
   
-  if (viaUDP) {
+  if (viaUDP && updateReceived) {
     String dataToSend = "";
     
     for (int u=0; u<tagDecoder[0].U; u++) {
@@ -58,11 +58,18 @@ void sendData() {
         
         ////// END Added March 3, 2015 by Ira Winder ///////
         
-        if (u != tagDecoder[0].U-1 || v != tagDecoder[0].V-1) {
+        //if (u != tagDecoder[0].U-1 || v != tagDecoder[0].V-1) {
           dataToSend += "\n" ;
-        }
+        //}
+        
       }
-    }
+    } 
+    
+    // UMax and VMax Values
+    dataToSend += tagDecoder[0].U;
+    dataToSend += "\t" ;
+    dataToSend += tagDecoder[0].V;
+    dataToSend += "\n" ;
     
     /*
     // Slider and Toggle Values
@@ -99,6 +106,11 @@ void sendData() {
     saveStrings("data.txt", split(dataToSend, "\n"));
     //udp.send( dataToSend, "18.85.55.241", 6152 );
     udp.send( dataToSend, "localhost", 6152 );
+    
+    //println("update received");
+    
+  } else {
+    //println("no update received");
   }
 }
 
