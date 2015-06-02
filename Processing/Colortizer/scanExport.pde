@@ -1,10 +1,15 @@
-//
-// REPORT ALL CHANGES WITH DATE AND USER IN THIS AREA:
-// - Updated to include location array "locArray" that passes x, y, width, and height values for scanGrids
-// -
-// -
-// -
+/*
+ * Incoming Port: 6669
+ * Ougoing Port:  6152
+ *
+ * REPORT ALL CHANGES WITH DATE AND USER IN THIS AREA:
+ * - Updated to include location array "locArray" that passes x, y, width, and height values for scanGrids
+ * -
+ * -
+ * -
+ */
 
+boolean busyImporting = false;
 boolean viaUDP = true;
 
 // import UDP library
@@ -20,7 +25,7 @@ void startUDP(){
   if (viaUDP) {
     udp = new UDP( this, 6669 );
     //udp.log( true );     // <-- printout the connection activity
-    udp.listen( false );
+    udp.listen( true );
   }
   
 }
@@ -97,4 +102,54 @@ void sendData() {
   }
 }
 
+void ImportData(String inputStr[]) {
+  
+  for (int i=0 ; i<inputStr.length;i++) {
+
+    String tempS = inputStr[i];
+    String[] split = split(tempS, "\t");
+    
+    // Sends commands to Rhino Server to run UMI functions
+    if (split.length == 1) { 
+      
+      switch(int(split[0])) {
+        case 1:
+          if (writer != null) { writer.println("resimulate"); }
+          break;
+        case 2:
+          if (writer != null) { writer.println("save"); }
+          break;
+        case 3:
+          if (writer != null) { writer.println("displaymode energy"); }
+          break;
+        case 4:
+          if (writer != null) { writer.println("displaymode walkability"); }
+          break;
+        case 5:
+          if (writer != null) { writer.println("displaymode daylighting"); }
+          break;
+        case 6:
+          initServer();
+          break;
+      }
+      println(split[0]);
+    } 
+  }
+  
+  busyImporting = false;
+}
+
+void receive( byte[] data, String ip, int port ) {  // <-- extended handler
+  
+  // get the "real" message =
+  String message = new String( data ); 
+  //println(message);
+  saveStrings("data.txt", split(message, "\n"));
+  String[] split = split(message, "\n");
+
+  if (!busyImporting) {
+    busyImporting = true;
+    ImportData(split);
+  }
+}
 

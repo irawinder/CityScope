@@ -1,10 +1,10 @@
-// Colortizer v1.0
+// Colortizer v3.8
 // This software distorts webcam feeds into rectilinear matrices of color data.
 // Run software to see key definitions
 //
 // By Ira Winder [jiw@mit.edu], CityScope Project, Changing Places Group, MIT Media Lab
 // Produced for MIT-KACST Center for Complex Engineering Systems: CitySchema
-// November 21, 2014
+// March, 2015
 
 // REPORT ALL CHANGES WITH DATE AND USER IN THIS AREA:
 // - March 3, 2015: Edited "scanExport" Tab to include addional column of information for rotation
@@ -12,6 +12,7 @@
 // - March 5, 2015: Added "gameClient" Tab to allow TCP connection to Rhino server. Also added method calls in "Colortizer" tabl and "scan" tab
 // - March 6, 2015: Coded Keys '1,' '2,' '3,' '4,' and '5' to correspond with Rhino/SDL functions in "gameClient" tab
 // - March 6, 2015: Coded '6' key to restart server connection to Rhino
+// - March 14, 2015: Allowed functionalities in keys 1-6 to also be received via UDP (i.e. from Legotizer)
 /*
 
 SETUP:
@@ -38,7 +39,7 @@ int[] numGridAreas = {1}; // 1 grid for 1 distortion area
 
 // Dimensions of surface being scanned
 float vizRatio = float(16)/(16); //Must match measurements in reality, i.e. a table surface
-int vizWidth = 500; //Resolution (in pixels)
+int vizWidth = 400; //Resolution (in pixels)
 int vizHeight = int(vizWidth/vizRatio);
 
 void setup() {
