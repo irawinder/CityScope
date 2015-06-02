@@ -1,0 +1,397 @@
+// This set of variables and scripts are used to estimate walkabily of a given configuration of urban space 
+  // Simulation Options
+  
+    // Sample sizes for various confidence intervals:
+    int sampleSize;
+    int sampleSize90 = 68;
+    int sampleSize95 = 385;
+    int sampleSize99 = 16589;
+    
+    // Number of samples to aggregate
+    int numSamples = 10;
+  
+  // Independent Variables
+    
+    //Employment Rate [% of population]
+    float employmentRate;
+
+    //Household Size [ppl/HH]
+    float householdSize;
+    
+    //Max Walking Distance [m]
+    float walkDistance;
+    
+    //Containment Rate (fraction of people willing to work in site)
+    float containmentRate;
+    
+    float workDensity, liveDensity;
+
+  // Dependent Variables
+    
+    //Area of a single Node [m^2]
+    //Built Area, Open Area, etc...
+    float nodeArea;
+    
+    //Walk distance in unitless nodes
+    int walkDistanceNodes;
+    
+    // Arrays that store amounts of access and Chance to various uses per node
+    int[][][][] workAccess, liveAccess, parkAccess;
+    int maxWorkAccess, maxLiveAccess, maxParkAccess;
+    float[][][][] jobChance;
+    float maxJobChance;
+    float avgJobChance;
+    float avgEmployeeChance;
+    float avgEmployerChance;
+
+  // Temp Values Changed multiple times in each iteration
+  int uDist, vDist, zDist;
+  int u, v, z, use;
+  JSONObject pt, pt2, solution;
+
+void initWalk(int maxU, int maxV, int maxZ, JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float cnt_rt) {
+  //Employment Rate [% of population]
+  employmentRate = 0.48545;
+
+  //Household Size [ppl/HH]
+  householdSize = 2.5;
+  
+  //Max Walking Distance [m]
+  walkDistance = 250.0;
+  
+  // Live/Work density [m^2/person]
+  // NYC Values - Src: http://oldurbanist.blogspot.com/2011/12/living-space-working-space-and.html
+  workDensity = 21.0;
+  liveDensity = 66.0*employmentRate;
+  
+  //Containment Rate (fraction of people willing to work in site)
+  containmentRate = 1.0;
+  
+  //Sample size used to run simulations
+  sampleSize = sampleSize95/2;
+  
+  workAccess = new int[maxU][maxV][maxZ][numSamples+1];
+  liveAccess = new int[maxU][maxV][maxZ][numSamples+1];
+  parkAccess = new int[maxU][maxV][maxZ][numSamples+1];
+  jobChance = new float[maxU][maxV][maxZ][numSamples+1];
+ 
+  // Resets Node and Access Matrices to 0
+  for (int i=0; i<maxLU_W*maxPieces; i++) {
+    for (int j=0; j<maxLU_W*maxPieces; j++) {
+      for (int k=0; k<maxLU_H; k++) {
+        for (int l=0; l<numSamples+1; l++) {
+          liveAccess[i][j][k][l] = 0;
+          workAccess[i][j][k][l] = 0;
+          parkAccess[i][j][k][l] = 0;
+          jobChance[i][j][k][l] = 0;
+        } // end l loop
+      } // end k loop
+    } //end j loop
+  } //end i loop
+  
+  for (int i=0; i<numSamples; i++) {
+    solveWalk(nodesJSON, walkDistance, employmentRate, householdSize, containmentRate);   
+  }
+}
+
+void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float cnt_rt) {
+  //Each Node in 'JSONArray points' has the following fields:
+    // 'use'  
+    //   0 = Ground: Open
+    //   1 = Ground: Street
+    //   2 = Ground: Park
+    //   3 = Building: Live
+    //   4 = Building: Work
+    //   -2 = Water
+    // 'u'    
+    // 'v'
+    // 'z'
+    
+  // Calculates area of a node
+  nodeArea = sq(nodeW);
+  
+  // Translates walk distance in meters to equivalent integer node distance
+  walkDistanceNodes = int(wlk_dst/avgNodeW);
+  
+  // Shifts past iterations of Access and Chance down the array and resets matrices [0] and [1]
+  for (int i=0; i<nodesU; i++) {
+    for (int j=0; j<nodesV; j++) {
+      for (int k=0; k<maxZ+1; k++) {
+        for (int l=numSamples; l>1; l--) {
+          liveAccess[i][j][k][l] = liveAccess[i][j][k][l-1];
+          workAccess[i][j][k][l] = workAccess[i][j][k][l-1];
+          parkAccess[i][j][k][l] = parkAccess[i][j][k][l-1];
+          jobChance[i][j][k][l] = jobChance[i][j][k][l-1];
+        }
+        for (int l=0; l<2; l++) {
+          liveAccess[i][j][k][l] = 0;
+          workAccess[i][j][k][l] = 0;
+          parkAccess[i][j][k][l] = 0;
+          jobChance[i][j][k][l] = 0;
+        } // end l loop
+      } // end k loop
+    } //end j loop
+  } //end i loop
+  
+  // Resets Access and Chance Maximums
+  maxLiveAccess = 0;
+  maxWorkAccess = 0;
+  maxParkAccess = 0;
+  maxJobChance = 0;
+  avgJobChance = 0;
+  avgEmployerChance = 0;
+  avgEmployeeChance = 0;
+  
+  // The following for-loop iterates through each Node of an input array and determines partial access values for jobs, homes, and parks
+  for (int i = 0; i < numNodes; i++) {
+    // Each input object copied into a temporary object
+    JSONObject pt = points.getJSONObject(i); 
+    
+    u = pt.getInt("u");
+    v = pt.getInt("v");
+    z = pt.getInt("z");
+      
+    // loop that runs only for limited amount of sample runs
+    int j = sampleSize;
+    while (j > 0) {
+      j--;
+      
+      // Random objects from entire field copied into a temporary object
+      JSONObject pt2 = points.getJSONObject(int(random( points.size() )));
+      
+      // Orthogonal horizontal distance
+      uDist = abs(pt2.getInt("u") - u);
+      vDist = abs(pt2.getInt("v") - v);
+      // Acounts for verticle walking distance at both origin and destination
+      zDist = int((nodeH/nodeW)*(pt2.getInt("z") + z));
+      
+      // Checks if other node is within walking distance
+      if (uDist + vDist + zDist <= walkDistanceNodes) { 
+        switch(pt2.getInt("use")) {
+          case 2: //is park
+            parkAccess[u][v][z][1]++;
+            break;
+          case 3: //is live
+            liveAccess[u][v][z][1]++;
+            break;
+          case 4: //is work
+            workAccess[u][v][z][1]++;
+            break;
+        } //end switch
+      } // end if
+    } // end j loop
+  } // end i loop
+  
+  
+  // Aggregates multiple samples of nodes Access into a single, normalized array
+  for (int i=0; i<nodesU; i++) {
+    for (int j=0; j<nodesV; j++) {
+      for (int k=0; k<maxZ+1; k++) {
+        
+        // Combines Samples into average Access Sample
+        for (int l=1; l<numSamples+1; l++) {
+          liveAccess[i][j][k][0] += liveAccess[i][j][k][l];
+          workAccess[i][j][k][0] += workAccess[i][j][k][l];
+          parkAccess[i][j][k][0] += parkAccess[i][j][k][l];
+        }   
+        
+        // Normalizes Sample values to entire population
+        liveAccess[i][j][k][0] *= float(numNodes)/(sampleSize*numSamples);
+        workAccess[i][j][k][0] *= float(numNodes)/(sampleSize*numSamples);
+        parkAccess[i][j][k][0] *= float(numNodes)/(sampleSize*numSamples);
+        
+        // Weights Node Access Values according to live/work densities per area;
+        liveAccess[i][j][k][0] *= (nodeArea/liveDensity);
+        workAccess[i][j][k][0] *= (nodeArea/workDensity);
+        parkAccess[i][j][k][0] *= nodeArea;
+        
+        // Sets Max Access Values
+        if (maxLiveAccess < liveAccess[i][j][k][0]) {
+          maxLiveAccess = liveAccess[i][j][k][0];
+        }
+        if (maxWorkAccess < workAccess[i][j][k][0]) {
+          maxWorkAccess = workAccess[i][j][k][0];
+        }
+        if (maxParkAccess < parkAccess[i][j][k][0]) {
+          maxParkAccess = parkAccess[i][j][k][0];
+        }
+        
+      } // end k loop
+    } //end j loop
+  } //end i loop
+  
+  println("maxLiveAccess = " + maxLiveAccess);
+  println("maxWorkAccess = " + maxWorkAccess);
+  println("maxParkAccess = " + maxParkAccess);
+  
+  // The following for-loop iterates through each Node of an input array and determines JobChance Values
+  for (int i = 0; i < numNodes; i++) {
+    // Each input object copied into a temporary object
+    JSONObject pt = points.getJSONObject(i); 
+    
+    u = pt.getInt("u");
+    v = pt.getInt("v");
+    z = pt.getInt("z");
+    use = pt.getInt("use");
+    
+    // If live or work node
+    if (use == 3 || use == 4) {  
+      
+      int count = 0;
+      
+      // loop that runs only for limited amount of sample runs
+      int j = sampleSize;
+      while (j > 0) {
+        j--;
+        
+        // Random objects from entire field copied into a temporary object
+        JSONObject pt2 = points.getJSONObject(int(random( points.size() )));
+        
+        // If live or work node
+        if (pt2.getInt("use") == 3 || pt2.getInt("use") == 4) {
+
+          if ((use == 3 && pt2.getInt("use") == 4) || (use == 4 && pt2.getInt("use") == 3)) {
+            // Orthogonal horizontal distance
+            uDist = abs(pt2.getInt("u") - u);
+            vDist = abs(pt2.getInt("v") - v);
+            // Acounts for verticle walking distance at both origin and destination
+            zDist = int((nodeH/nodeW)*(pt2.getInt("z") + z));
+            
+            // Checks if other node is within walking distance
+            if (uDist + vDist + zDist <= walkDistanceNodes) { 
+              
+              // If complementary nodes
+              if (use == 3 && pt2.getInt("use") == 4) { // Prevents divide by 0 error
+                  if (liveAccess[pt2.getInt("u")][pt2.getInt("v")][pt2.getInt("z")][0] > 0) {
+                  // Adds to probabilty of having access to job
+                  jobChance[u][v][z][1] += 1.0/liveAccess[pt2.getInt("u")][pt2.getInt("v")][pt2.getInt("z")][0];
+                  count++;
+                }
+              } else if (use == 4 && pt2.getInt("use") == 3) {
+                if (workAccess[pt2.getInt("u")][pt2.getInt("v")][pt2.getInt("z")][0] > 0) { // Prevents divide by 0 error
+                  // Adds to probabilty of having access to worker
+                  jobChance[u][v][z][1] += 1.0/workAccess[pt2.getInt("u")][pt2.getInt("v")][pt2.getInt("z")][0];
+                  count++;
+                }
+              }
+            } // end if ((use == 3 && pt2.getInt("use") == 4) || (use == 4 && pt2.getInt("use") == 3))
+          } // end if (uDist + vDist + zDist <= walkDistanceNodes)
+        } // end if (pt2.getInt("use") == 3 || pt2.getInt("use") == 4)
+      } // end while (j > 0)   
+      
+      if (count > 0) {
+        if (use == 3) { //is live node
+          if (workAccess[u][v][z][0] > 0) { // Prevents divide by 0 error
+            // Normalizes Value for given sample size
+            jobChance[u][v][z][1] = jobChance[u][v][z][1]/count*workAccess[u][v][z][0];
+          }
+        } else if (use == 4) { // is job node
+          if (liveAccess[u][v][z][0] > 0) { // Prevents divide by 0 error
+            // Normalizes Value for given sample size
+            jobChance[u][v][z][1] = jobChance[u][v][z][1]/count*liveAccess[u][v][z][0];
+          }
+        }
+      }
+    
+    
+    } else if (use == 2) { //is park
+      jobChance[u][v][z][0] = -1;
+    }
+  } // end for i loop
+  
+  int jobCounter = 0;
+  int employerCounter = 0;
+  int employeeCounter = 0;
+  
+  // Aggregates multiple samples of Chance values into a single, normalized array
+  for (int i = 0; i < numNodes; i++) {
+    // Each input object copied into a temporary object
+    JSONObject pt = points.getJSONObject(i); 
+    
+    u = pt.getInt("u");
+    v = pt.getInt("v");
+    z = pt.getInt("z");
+    use = pt.getInt("use");
+    
+    // Checks if Live or Work
+    if (use == 3 || use == 4) {
+      // Combines Chance scores Samples into average Chance
+      for (int l=1; l<numSamples+1; l++) {
+        jobChance[u][v][z][0] += jobChance[u][v][z][l];
+      }
+      jobChance[u][v][z][0] /= numSamples;
+      
+      if (jobChance[u][v][z][0] > 1) { // Doesn't reward values greater than 100%
+        avgJobChance += 1;
+      } else {
+        avgJobChance += jobChance[u][v][z][0];
+      }
+      jobCounter++;
+      
+      if (use == 3) {
+        if (jobChance[u][v][z][0] > 1) { // Doesn't reward values greater than 100%
+          avgEmployeeChance += 1;
+        } else {
+          avgEmployeeChance += jobChance[u][v][z][0];
+        }
+        employeeCounter++;
+      } else if (use == 4) {
+        if (jobChance[u][v][z][0] > 1) { // Doesn't reward values greater than 100%
+          avgEmployerChance += 1;
+        } else {
+          avgEmployerChance += jobChance[u][v][z][0];
+        }
+        employerCounter++;
+      }
+      
+      // Sets Max Chance Values
+      if (maxJobChance < jobChance[u][v][z][0]) {
+        maxJobChance = jobChance[u][v][z][0];
+      }
+    }
+  } //end i loop
+  
+  avgJobChance /= jobCounter;
+  avgEmployerChance /= employerCounter;
+  avgEmployeeChance /= employeeCounter;
+    
+  println("maxJobChance = " + maxJobChance);
+  println("avgJobChance = " + avgJobChance);
+  println("avgEmployeeChance = " + avgEmployeeChance);
+  println("avgEmployerChance = " + avgEmployerChance);
+  
+  // Merges Input Values and WalkSim Values into a single solutionJSON
+  
+    // Deletes all elements in the solution array 'solutionJSON'
+    clearJSONArray(solutionJSON);
+    
+    // Each solution object populated with fields and appendend to solution array
+    for (int i = 0; i < points.size(); i++) {
+      // Each input object copied into a temporary object
+      JSONObject pt = points.getJSONObject(i); 
+      
+      u = pt.getInt("u");
+      v = pt.getInt("v");
+      z = pt.getInt("z");
+      
+      JSONObject solution = new JSONObject();
+      solution.setInt("u", u);
+      solution.setInt("v", v);
+      solution.setInt("z", z);
+      solution.setInt("use", pt.getInt("use"));
+      
+      solution.setFloat("liveAccess", liveAccess[u][v][z][0]);
+      solution.setFloat("workAccess", workAccess[u][v][z][0]);
+      solution.setFloat("parkAccess", parkAccess[u][v][z][0]);
+      
+      solution.setFloat("jobChance", jobChance[u][v][z][0]);
+      
+      // Placeholder for "score" read by Legotizer
+      solution.setFloat("score", jobChance[u][v][z][0]);
+      
+      solutionJSON.append(solution);
+    } // end 'i' loop
+  
+} //end solveWalk method
+
+
