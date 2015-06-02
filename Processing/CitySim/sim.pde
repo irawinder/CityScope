@@ -9,7 +9,6 @@ JSONArray solutionJSON;
 // 'solution1'
 // 'solution2' ... etc
 
-
 void initializeSolutionJSON() {
   //Output Nodes
   solutionJSON = new JSONArray();
@@ -39,6 +38,8 @@ void runSimulation(int viz) {
       break;
     case 1:
       solveWalk(nodesJSON, walkDistance, employmentRate, householdSize, containmentRate);
+      saveScoreNames(walkScoreNames, "scoreNames.tsv", viz);
+      saveSummary(walkSummary, "summary.tsv", viz);
       break;
   }
   
@@ -49,6 +50,16 @@ void runSimulation(int viz) {
 void saveSolution(String filename, int viz) {
   saveJSONArray(solutionJSON, legotizer_data + demoPrefix + demos[viz] + filename);
   println(simNames[simMode] + " Simulation Results saved to " + legotizer_data + demoPrefix + demos[viz] + filename);
+}
+
+void saveScoreNames(String[] names, String filename, int viz) {
+  saveStrings(legotizer_data + demoPrefix + demos[viz] + filename, names);
+  println("ScoreNames saved to " + legotizer_data + demoPrefix + demos[viz] + filename);
+}
+
+void saveSummary(Table summary, String filename, int viz) {
+  saveTable(summary, legotizer_data + demoPrefix + demos[viz] + filename);
+  println("Summary saved to " + legotizer_data + demoPrefix + demos[viz] + filename);
 }
 
 // Helper method that wipes a JSON array of all elements

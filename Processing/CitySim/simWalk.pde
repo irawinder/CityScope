@@ -1,4 +1,20 @@
 // This set of variables and scripts are used to estimate walkabily of a given configuration of urban space 
+   
+  String[] walkScoreNames = {
+    "jobChance",
+    "parkChance"
+  }; 
+  
+  String[] walkWebNames = {
+    "Employees",
+    "Employers",
+    "Parks",
+    "Live",
+    "Work"
+  };
+  
+  Table walkSummary;
+  
   // Simulation Options
   
     // Sample sizes for various confidence intervals:
@@ -8,9 +24,12 @@
     int sampleSize99 = 16589;
     
     // Number of samples to aggregate
-    int numSamples = 10;
+    int numSamples = 5;
   
   // Independent Variables
+    
+    //Minimum Park Area Needed
+    int parkMin;
     
     //Employment Rate [% of population]
     float employmentRate;
@@ -35,14 +54,24 @@
     //Walk distance in unitless nodes
     int walkDistanceNodes;
     
+    // Areas of various use types
+    float liveArea, workArea, parkArea;
+    
     // Arrays that store amounts of access and Chance to various uses per node
     int[][][][] workAccess, liveAccess, parkAccess;
     int maxWorkAccess, maxLiveAccess, maxParkAccess;
     float[][][][] jobChance;
     float maxJobChance;
+    
+    // Averages of Various Scores
     float avgJobChance;
     float avgEmployeeChance;
     float avgEmployerChance;
+    float avgParkChance;
+    
+    // Population
+    int livePop;
+    int workPop;
 
   // Temp Values Changed multiple times in each iteration
   int uDist, vDist, zDist;
@@ -59,10 +88,13 @@ void initWalk(int maxU, int maxV, int maxZ, JSONArray points, float wlk_dst, flo
   //Max Walking Distance [m]
   walkDistance = 250.0;
   
+  //Minimum Park Area Needed
+  parkMin = 40*40;
+  
   // Live/Work density [m^2/person]
   // NYC Values - Src: http://oldurbanist.blogspot.com/2011/12/living-space-working-space-and.html
-  workDensity = 21.0;
-  liveDensity = 66.0*employmentRate;
+  workDensity = 1.5*21.0;
+  liveDensity = 1.5*66.0*employmentRate;
   
   //Containment Rate (fraction of people willing to work in site)
   containmentRate = 1.0;
@@ -89,9 +121,19 @@ void initWalk(int maxU, int maxV, int maxZ, JSONArray points, float wlk_dst, flo
     } //end j loop
   } //end i loop
   
+  walkSummary = new Table();
+  walkSummary.addColumn(walkWebNames[0], Table.FLOAT);
+  walkSummary.addColumn(walkWebNames[1], Table.FLOAT);
+  walkSummary.addColumn(walkWebNames[2], Table.FLOAT);
+  walkSummary.addColumn(walkWebNames[3], Table.INT);
+  walkSummary.addColumn(walkWebNames[4], Table.INT);
+  
+  walkSummary.addRow();
+  
   for (int i=0; i<numSamples; i++) {
     solveWalk(nodesJSON, walkDistance, employmentRate, householdSize, containmentRate);   
   }
+  
 }
 
 void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float cnt_rt) {
@@ -106,7 +148,7 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
     // 'u'    
     // 'v'
     // 'z'
-    
+  
   // Calculates area of a node
   nodeArea = sq(nodeW);
   
@@ -141,6 +183,10 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
   avgJobChance = 0;
   avgEmployerChance = 0;
   avgEmployeeChance = 0;
+  avgParkChance = 0;
+  liveArea=0;
+  workArea=0;
+  parkArea=0;
   
   // The following for-loop iterates through each Node of an input array and determines partial access values for jobs, homes, and parks
   for (int i = 0; i < numNodes; i++) {
@@ -150,7 +196,17 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
     u = pt.getInt("u");
     v = pt.getInt("v");
     z = pt.getInt("z");
-      
+    use = pt.getInt("use");
+    
+    // Calculates number of each type of live/work/park nodes
+    if (use == 2) {
+      parkArea++;
+    } else if (use == 3) {
+      liveArea++;
+    } else if (use == 4) {
+      workArea++;
+    }
+    
     // loop that runs only for limited amount of sample runs
     int j = sampleSize;
     while (j > 0) {
@@ -182,6 +238,14 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
     } // end j loop
   } // end i loop
   
+  //Normalizes Areas
+  liveArea *= nodeArea;
+  workArea *= nodeArea;
+  parkArea *= nodeArea;
+  
+  // Determines Populations
+  livePop = int(liveArea/liveDensity*employmentRate);
+  workPop = int(workArea/workDensity);
   
   // Aggregates multiple samples of nodes Access into a single, normalized array
   for (int i=0; i<nodesU; i++) {
@@ -302,6 +366,7 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
   int jobCounter = 0;
   int employerCounter = 0;
   int employeeCounter = 0;
+  int parkCounter = 0;
   
   // Aggregates multiple samples of Chance values into a single, normalized array
   for (int i = 0; i < numNodes; i++) {
@@ -312,7 +377,7 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
     v = pt.getInt("v");
     z = pt.getInt("z");
     use = pt.getInt("use");
-    
+
     // Checks if Live or Work
     if (use == 3 || use == 4) {
       // Combines Chance scores Samples into average Chance
@@ -344,21 +409,30 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
         employerCounter++;
       }
       
+      //Calculates Park Chance Value
+      if (parkAccess[u][v][z][0] > parkMin) { // Does not reward values greater than parkMin
+        avgParkChance += 1;
+      }
+      parkCounter++;
+      
       // Sets Max Chance Values
       if (maxJobChance < jobChance[u][v][z][0]) {
         maxJobChance = jobChance[u][v][z][0];
       }
+      
     }
   } //end i loop
   
   avgJobChance /= jobCounter;
   avgEmployerChance /= employerCounter;
   avgEmployeeChance /= employeeCounter;
+  avgParkChance /= parkCounter;
     
   println("maxJobChance = " + maxJobChance);
   println("avgJobChance = " + avgJobChance);
   println("avgEmployeeChance = " + avgEmployeeChance);
   println("avgEmployerChance = " + avgEmployerChance);
+  println("avgParkChance = " + avgParkChance);
   
   // Merges Input Values and WalkSim Values into a single solutionJSON
   
@@ -378,19 +452,30 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
       solution.setInt("u", u);
       solution.setInt("v", v);
       solution.setInt("z", z);
-      solution.setInt("use", pt.getInt("use"));
+      //solution.setInt("use", pt.getInt("use"));
       
-      solution.setFloat("liveAccess", liveAccess[u][v][z][0]);
-      solution.setFloat("workAccess", workAccess[u][v][z][0]);
-      solution.setFloat("parkAccess", parkAccess[u][v][z][0]);
+      //solution.setFloat("liveAccess", liveAccess[u][v][z][0]);
+      //solution.setFloat("workAccess", workAccess[u][v][z][0]);
+      //solution.setFloat("parkAccess", parkAccess[u][v][z][0]);
       
       solution.setFloat("jobChance", jobChance[u][v][z][0]);
+      solution.setFloat("parkChance", float(parkAccess[u][v][z][0])/parkMin);
       
       // Placeholder for "score" read by Legotizer
-      solution.setFloat("score", jobChance[u][v][z][0]);
+//      if (pt.getInt("use") == 3) {
+//        solution.setFloat("score", float(parkAccess[u][v][z][0])/parkMin);
+//      } else {
+//        solution.setFloat("score", -1);
+//      }
       
       solutionJSON.append(solution);
     } // end 'i' loop
+    
+    walkSummary.setFloat(0, walkWebNames[0], avgEmployeeChance);
+    walkSummary.setFloat(0, walkWebNames[1], avgEmployerChance);
+    walkSummary.setFloat(0, walkWebNames[2], avgParkChance);
+    walkSummary.setInt(0, walkWebNames[3], livePop);
+    walkSummary.setInt(0, walkWebNames[4], workPop);
   
 } //end solveWalk method
 

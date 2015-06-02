@@ -21,15 +21,16 @@
  * v1.05: April 11, 2015 - Finished First pass at 'JobChance' Score
  *                       - Added Coefficients that adjust weight of Live and Work Nodes (tentatively set to NYC values
  * v1.06: April 12, 2015 - Added "handshake" to Legotizer when CitySim first opens (sends "reciept" string via UDP)
+ * v1.07: April 13, 2015 - Added summary variables and additional score information to export (including total populations, avg scores, etc)
  *                      
  * TO DO: 
  * 1. Add scores for walkability, jobs rating, worker rating, parks, etc using networks and sampling method
  */
  
-float version = 1.06;
+float version = 1.07;
 
 void setup() {
-  size(1000,1000, P3D);
+  size(1080,1080, P3D);
   frame.setResizable(true);
   initUDP();
   

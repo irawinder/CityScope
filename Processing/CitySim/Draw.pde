@@ -13,7 +13,7 @@ void drawScore() {
     JSONObject node = solutionJSON.getJSONObject(i); 
     if (node.getInt("z") == zee) {
       // draws a layer of the node data set, color-coded to use
-      heatFill(node.getFloat("score"));
+      heatFill(node.getFloat(walkScoreNames[0]));
       drawNode(node.getInt("v"), node.getInt("u"));
     }
   }
