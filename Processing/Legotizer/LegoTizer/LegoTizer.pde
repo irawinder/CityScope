@@ -53,6 +53,7 @@
  *                       - redefined layer modes defined by '0' key
  * v1.27: April 13, 2015 - Resized layer text
  *                       - fixed table row missing bug
+ * v1.28: April 15, 2015 - Improved labels for information display
  *
  * TO DO: 
  * 1. Stop Working on this already and write some simulations
@@ -61,7 +62,7 @@
 
 
 
-float version = 1.26;
+float version = 1.27;
 
 
 
@@ -197,7 +198,7 @@ void draw() {
         
         // Draws Web Representing Scores
         if (displayScoreWeb) {
-          drawScoreWeb(int(0.7*width), int(height - 0.3*width), int(0.3*width), int(0.3*width));
+          drawScoreWeb(int(0.8*width), int(height - 0.3*width), int(0.2*width), int(0.2*width));
         }
         
         // Draws information about current view

@@ -6,6 +6,11 @@ String[] name = {
   "CityScope: Toronto"
 };
 
+String[] metricNames = {
+  "MIT Strategic Design Lab",
+  "MIT City Science: Walkable Trip Capacity"
+};
+
 void drawInfo() {
   
   textFont(font24, 24);
@@ -42,17 +47,31 @@ void drawInfo() {
   fill(#CCCCCC);
   textAlign(LEFT);
   
-  translate(width/8, 3*height/4);
+  translate(60, height-150);
   
   if (colorMode == 0) {
     text("Land Use", 0, 0);
+    fill(#666666);
+    text("MIT City Science", 0, 48);
   } else if (colorMode == 1) {
     text("Form", 0, 0);
+    fill(#666666);
+    text("MIT City Science", 0, 48);
   } else if (colorMode == 2) {
     text(heatMapName + " Heatmap", 0, 0);
+    fill(#666666);
+    if (drawNodes) {
+      text(metricNames[1], 0, 48);
+    } else {
+      text(metricNames[0], 0, 48);
+    }
   }
   
-  translate(-width/8, -3*height/4);
+  if (displayScoreWeb && drawNodes) {
+    text("Walkable Access", .8*width-60, 48);
+  }
+  
+  translate(-width/8, -(height-150));
   
   textAlign(RIGHT);
   textFont(font24, 24);

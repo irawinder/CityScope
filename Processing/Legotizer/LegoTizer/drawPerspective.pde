@@ -632,8 +632,10 @@ void changeScoreWebMode() {
 void toggleNodes() {
   if (drawNodes == false) {
     drawNodes = true;
+    loadSummary();
   } else {
     drawNodes = false;
+    loadSDLSummary();
   }
 }
 
