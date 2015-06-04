@@ -12,6 +12,10 @@ int codeArray[][][] = new int[maxPieces][maxPieces][2];
 int previousArray[][][] = new int[maxPieces][maxPieces][2];
 boolean changeDetected = false;
 
+//Simulation Stats imported from CitySim
+String heatMapName;
+Table summary;
+
 // Default Piece dimensions
 int pieceRotation = 1;
 int pieceW_LU = 4;
@@ -426,6 +430,29 @@ void saveMetaJSON(String filename) {
   println("Metadata saved to " + legotizer_data + demoPrefix + demos[vizMode] + filename);
 }
 
+void loadSummary() {
+  
+  summary = loadTable(legotizer_data + demoPrefix + demos[vizMode] + "summary.tsv");
+  
+  live = summary.getInt(1,3);
+  work = summary.getInt(1,4);
+  
+  summary.removeColumn(4);
+  summary.removeColumn(3);
+  
+  webScores = new ArrayList<Float>();
+  webNames = new ArrayList<String>();
+  avgScore = 0;
+  
+  for (int i=0; i<summary.getColumnCount(); i++) {
+    webNames.add(summary.getString(0,i));
+    webScores.add(summary.getFloat(1,i));
+    avgScore += webScores.get(i);
+  }
+  
+  avgScore /= webScores.size();
+}
+
 void initializeHeatMap() {
   for (int i=0; i<heatMap.length; i++) {
     for (int j=0; j<heatMap[0].length; j++) {
@@ -492,3 +519,4 @@ void toggleStructureMode() {
     structureMode = 0;
   }
 }
+

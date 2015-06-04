@@ -18,6 +18,9 @@ boolean viaUDP = true;
 // boolean for detecting "handshake" from simulation app
 boolean receipt = true;
 
+// set to true when external sim app notifies Legotizer that its data is ready
+boolean readSolution = false;
+
 void initUDP() {
   
   if (viaUDP) {
@@ -37,8 +40,9 @@ void ImportData(String inputStr[]) {
     if(split.length == 1) {
       if (split[0].equals("receipt")) {
         println("'" + split[0] + "' received by Legotizer");
-        loadSolutionJSON(solutionJSON, "solutionNodes.json", vizMode);
+        //loadSolutionJSON(solutionJSON, "solutionNodes.json", vizMode);
         receipt = true;
+        readSolution = true;
       } else if (split[0].equals("")) {
 
       } else {

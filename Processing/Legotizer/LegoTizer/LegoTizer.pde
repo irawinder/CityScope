@@ -42,21 +42,24 @@
  *                       - Webcam detection now triggers simulation loop with CitySim
  *                       - Make Nodes Heatmaps differentiate parks with different shades of gray
  *                       - Fixed bug where live/work total values didn't update when nodeMode == 0
+ * v1.25: April 13, 2015 - Fix occasional 'blip' when visualization is updated
+ *                       - Finish 4x4 Nodes Plan Vizualization
+ *                       - Added Status Update so that user knows the simulation is still updating
+ * v1.26: April 13, 2015 - Reconsiled UMI and CitySim
+ *                       - Converted all visualizations to nodes (non-nodes reserved for UMI)
+ *                       - Rearranged 2D info
+ *                       - simulation can export multiple layers and web output
+ *                       - Added faux3D mode for 2D projection Map!!
+ *                       - redefined layer modes defined by '0' key
  *
  * TO DO: 
- * 0. Reconsile UMI and CitySim
- * 0. Finish 4x4 Nodes Plan Viz
- * 0. Fix occasional 'blip' when visualization is updated
- * 0. Add Status Update so that user knows the simulation is still updating
- * 0. Update plan to show node information
  * 1. Stop Working on this already and write some simulations
  * 2. Include Static Structures in Nodes? Or just have simulator reference original "staticStructures.tsv" file?
- * 3. Make standard method for importing u,v "heatmap" information where value is assigned to each piece (i.e. make rhino obsolete)
  */
 
 
 
-float version = 1.25;
+float version = 1.26;
 
 
 
@@ -93,13 +96,13 @@ void setup() {
   size(canvasWidth, canvasHeight, P3D);         // Canvas Size
   frame.setResizable(true);
   
-  selectFolder("Please select the 'legotizer_data' folder:", "folderSelected");
+  selectFolder("Please select the 'legotizer_data' folder and click 'Open'", "folderSelected");
   
   // Loads Fonts
   loadFonts();                 
   
   //Displays Loading Text
-  loading("Legotizer");
+  loading("Legotizer | Version " + version);
 }
 
 // Infinite draw loop
@@ -126,30 +129,43 @@ void draw() {
     dataLoaded = true;
     
     riyadhMode();                // Sets First Visualization to Riyadh Demo
-  }
-  
-  //-------- ReLoad Simulation .tsv's ------------ //
-  
-  checkSendNodesJSON("scan");
-  
-  if (vizMode == 1) { //Riyadh Demo Mode
-    // Reloads textfiles of SDL outputs  
-    loadSDLSummary();
-    loadSDLData();
-  }
-  
-  if (vizChange) {
-    setMode();
-    vizChange = false;
+    
+    loadSolutionJSON(solutionJSON, "testSolutionNodes.json", "scoreNames.tsv", vizMode);
+    
   }
   
   //-------- Draw functions enabled -------------- //
+  
   if (dataLoaded) {
     
+    //-------- ReLoad Simulation .tsv's ------------ //
+    
+    // Loads Solution from SIM if recieved
+    if (readSolution) {
+      loadSolutionJSON(solutionJSON, "solutionNodes.json", "scoreNames.tsv", vizMode);
+      readSolution = false;
+    }
+    
+    // Sends Input to SIM if Sim is ready and Change has been detected
+    checkSendNodesJSON("scan");
+    
+    // Reloads textfiles of SDL outputs  
+    if (vizMode == 1 && !drawNodes) { //Riyadh Demo Mode
+      loadSDLSummary();
+      loadSDLData();
+    } else {
+      loadSummary();
+    }
+    
+    // Checks if there's been a request to change the visualization
+    if (vizChange) {
+      setMode();
+      vizChange = false;
+    }
+  
+    // Visualization Graphics
     if (displayHelp) {
-      
       drawHelp();
-      
     } else { // Puts most typical draw functions here
       
       background(0);

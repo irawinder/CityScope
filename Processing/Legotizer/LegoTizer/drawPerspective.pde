@@ -42,7 +42,7 @@ boolean drawAxes = false;
 int res, off, ret, ins;
 
 float ht;
-float nodeGap = 0.9;
+float nodeGap = 0.98;
 
 void drawPerspective() {
   
@@ -393,7 +393,7 @@ void draw4x4Nodes(int u, int v, float HT, float offset, float buildingWidth) {
           } else if (nodeMode == 1) {
             if (solutionCloud[u*4+j][v*4+k][i] < 0) {
               fill(offColor);
-              if (useCloud.nodes[u*4+j][v*4+k][i] == 2) { //Makes parks brighter gray in heatmap
+              if (useCloud.nodes[u*4+j][v*4+k][i] > 1) { //Makes parks, live, and work brighter gray in heatmap
                 fill(lightGray);
               }
             } else {
@@ -683,22 +683,38 @@ void toggleStatsDraw() {
 void toggleColorMode() {
   switch(colorMode) {
     case 0:
-      drawNodes = false;
+      drawNodes = true;
+      nodeMode = 0;
       colorMode = 1;
       break;
     case 1:
       colorMode = 2;
-      if (vizMode == 1) {
-        nodeMode = 0;
-        drawNodes = false;
-      } else {
-        nodeMode = 1;
-        drawNodes = true;
-      }
+      nodeMode = 1;
+      drawNodes = true;
+      scoreIndex = 0;
+      heatMapName = scoreNames[scoreIndex];
+      
+      //same as key command '='
+      changeDetected = true;
+      simCounter = simTime;
+      saveMetaJSON("metadata.json");
+      checkSendNodesJSON("user");
       break;
     case 2:
-      drawNodes = false;
-      colorMode = 0;
+      if (scoreIndex < scoreNames.length-1) {
+        scoreIndex++;
+        heatMapName = scoreNames[scoreIndex];
+        
+        //same as key command '='
+        changeDetected = true;
+        simCounter = simTime;
+        saveMetaJSON("metadata.json");
+        checkSendNodesJSON("user");
+      } else {
+        drawNodes = true;
+        nodeMode = 0;
+        colorMode = 0;
+      }
       break;
   }
 }

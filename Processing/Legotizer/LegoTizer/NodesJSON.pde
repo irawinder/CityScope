@@ -5,8 +5,11 @@ JSONObject[][][] obj;
 
 JSONArray solutionJSON;
 
-int simTime = 15;
+int simTime = 14;
 int simCounter= 0;
+
+String[] scoreNames;
+int scoreIndex = 0;
 
 void initializeNodesJSON() {
 
@@ -21,6 +24,8 @@ void initializeNodesJSON() {
     }
   }
   
+  scoreNames = loadStrings(legotizer_data + demoPrefix + demos[vizMode] + "scoreNames.tsv");
+  println(scoreNames + "simulation layers loaded.");
 }
 
 void clearJSONArray(JSONArray json) {
@@ -120,7 +125,10 @@ void checkSendNodesJSON(String filename) {
   }
 }
 
-void loadSolutionJSON(JSONArray solution, String filename, int viz) {
+void loadSolutionJSON(JSONArray solution, String filename, String names, int viz) {
   solution = loadJSONArray(legotizer_data + demoPrefix + demos[viz] + filename); 
+  scoreNames = loadStrings(legotizer_data + demoPrefix + demos[viz] + names);
   updateSolution(solution);
 }
+
+

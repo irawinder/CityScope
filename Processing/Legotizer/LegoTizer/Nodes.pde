@@ -1,4 +1,4 @@
-boolean drawNodes = false;
+boolean drawNodes = true;
 
 Nodes useCloud;
 float[][][] solutionCloud;
@@ -190,7 +190,7 @@ void updateSolution(JSONArray solution) {
   wipeCloud(solutionCloud);
   for (int i=0; i<solution.size(); i++) {
     JSONObject pt = solution.getJSONObject(i);
-    solutionCloud[pt.getInt("u")][pt.getInt("v")][pt.getInt("z")] = pt.getFloat("score");
+    solutionCloud[pt.getInt("u")][pt.getInt("v")][pt.getInt("z")] = pt.getFloat(scoreNames[scoreIndex]);
   }
   println(solution.size() + " solution nodes loaded");
 }

@@ -105,6 +105,9 @@ void keyPressed() {
       saveMetaJSON("metadata.json");
       checkSendNodesJSON("user");
       break;
+    case 'F':
+      toggleFaux3D();
+      break;
     case '1':
       sendCommand("1", 6669);
       break;
@@ -124,4 +127,21 @@ void keyPressed() {
       sendCommand("6", 6669);
       break;
   }
+  
+  if (key == CODED) { 
+    if (keyCode == LEFT) {
+      projU--;
+    }  
+    if (keyCode == RIGHT) {
+      projU++;
+    }  
+    if (keyCode == DOWN) {
+      projV++;
+    }  
+    if (keyCode == UP) {
+      projV--;
+    }
+  }
 }
+
+

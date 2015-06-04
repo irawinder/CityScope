@@ -1,5 +1,4 @@
 Table SDL_data, SDL_summary;
-String heatMapName;
 
 // Loads Data Exported from SDL's UMI/Rhino Module
 void loadSDLData() {
@@ -42,20 +41,20 @@ void loadSDLSummary() {
   SDL_summary.removeColumn(4);
   SDL_summary.removeColumn(3);
   
-  scores = new ArrayList<Float>();
-  scoreNames = new ArrayList<String>();
+  webScores = new ArrayList<Float>();
+  webNames = new ArrayList<String>();
   avgScore = 0;
   
   for (int i=0; i<SDL_summary.getColumnCount(); i++) {
-    scoreNames.add(SDL_summary.getString(0,i));
-    scores.add(SDL_summary.getFloat(1,i));
-    avgScore += scores.get(i);
+    webNames.add(SDL_summary.getString(0,i));
+    webScores.add(SDL_summary.getFloat(1,i));
+    avgScore += webScores.get(i);
   }
   
   // For now, reverses energy score because Cody got it wrong, and changing processing on the fly is easier.
-  scores.set(0, 1-scores.get(0));
+  webScores.set(0, 1-webScores.get(0));
   
-  avgScore /= scores.size();
+  avgScore /= webScores.size();
 }
 
 // Sets heatmap with values of Table where each row is [Value, u, v].  

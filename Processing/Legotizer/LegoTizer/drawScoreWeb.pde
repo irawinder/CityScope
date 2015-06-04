@@ -6,8 +6,8 @@ PGraphics scoreWeb;
 
 int live, work;
 
-ArrayList<Float> scores;
-ArrayList<String> scoreNames;
+ArrayList<Float> webScores;
+ArrayList<String> webNames;
 
 float avgScore;
 
@@ -20,7 +20,7 @@ void initializeScoreWeb() {
 void drawScoreWeb(int x, int y, int w, int h) {
   
   // Web center (X,Y);  Size (D); score names (sNames) and scores (s)
-  generateScoreWeb(int(0.5*scoreWeb.width), int(0.5*scoreWeb.height), int(0.225*scoreWeb.height), scoreNames, scores); 
+  generateScoreWeb(int(0.5*scoreWeb.width), int(0.5*scoreWeb.height), int(0.225*scoreWeb.height), webNames, webScores); 
   
   image(scoreWeb, x, y, w, h);
 }
