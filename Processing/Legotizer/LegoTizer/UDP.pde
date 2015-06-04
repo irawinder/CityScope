@@ -35,12 +35,15 @@ void ImportData(String inputStr[]) {
     String[] split = split(tempS, "\t");
     
     if(split.length == 1) {
-      println("'" + split[0] + "' received by Legotizer");
       if (split[0].equals("receipt")) {
+        println("'" + split[0] + "' received by Legotizer");
         loadSolutionJSON(solutionJSON, "solutionNodes.json", vizMode);
         receipt = true;
+      } else if (split[0].equals("")) {
+
       } else {
-        heatMapName = split[0];
+        // println("'" + split[0] + "' received by Legotizer");
+        // heatMapName = split[0];      
       }
     }
     

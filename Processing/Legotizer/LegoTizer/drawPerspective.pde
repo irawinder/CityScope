@@ -392,7 +392,10 @@ void draw4x4Nodes(int u, int v, float HT, float offset, float buildingWidth) {
             findFill(u, v, useCloud.nodes[u*4+j][v*4+k][i]);
           } else if (nodeMode == 1) {
             if (solutionCloud[u*4+j][v*4+k][i] < 0) {
-              fill(lightGray);
+              fill(offColor);
+              if (useCloud.nodes[u*4+j][v*4+k][i] == 2) { //Makes parks brighter gray in heatmap
+                fill(lightGray);
+              }
             } else {
               fill(255*(1-solutionCloud[u*4+j][v*4+k][i]), 255*solutionCloud[u*4+j][v*4+k][i], 0);
             }

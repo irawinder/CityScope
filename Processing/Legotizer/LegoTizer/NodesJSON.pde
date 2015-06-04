@@ -95,21 +95,28 @@ void checkSendNodesJSON(String filename) {
   // Checks if conditions are ideal to send updated information to a simulation script:
   // 1. Checks if there has actually been a change in the data since last simulation
   // 2. Checks if Simulation has acknowledged the receipt of previous simulation result sent
-  if (changeDetected && receipt) {
-    // Run functions and simulations to update any dependent parameters
+  
+  if (changeDetected) {
     
     updateAllNodes();
-    saveNodesJSON(filename + "Nodes.json");
+    //println("I updated the nodes!");
     
-    //Sends 'resimulate' command to Simulation
-    sendCommand("resimulate_" + filename + "\t" + vizMode, 6667);
-    receipt = false;
-    
-    if (simCounter == 0) {
-      changeDetected = false;
-    } else {
-      simCounter--;
+    if (receipt) {
+      // Run functions and simulations to update any dependent parameters
+  
+      saveNodesJSON(filename + "Nodes.json");
+      
+      //Sends 'resimulate' command to Simulation
+      sendCommand("resimulate_" + filename + "\t" + vizMode, 6667);
+      receipt = false;
+      
+      if (simCounter == 0) {
+        changeDetected = false;
+      } else {
+        simCounter--;
+      }
     }
+    
   }
 }
 

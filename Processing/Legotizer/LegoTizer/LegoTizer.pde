@@ -37,8 +37,14 @@
  *                       - Commented out redundant u_m, v_m, and z_m information exported to JSON, since this can be recreated in the simulation's client-side
  *                       - Runs simulation for 'simTime' iterations when change is detected instead of only once
  * v1.24: April 12, 2015 - Began Editing Plan visualization to show Nodes (still need to finish 4x4 Nodes)
+ * v1.25: April 12, 2015 - Beta-Tested and tweaked so that feedback between colortizer, legotizer, and CitySim work
+ *                       - Changed UDP to not print empty rows received to console
+ *                       - Webcam detection now triggers simulation loop with CitySim
+ *                       - Make Nodes Heatmaps differentiate parks with different shades of gray
+ *                       - Fixed bug where live/work total values didn't update when nodeMode == 0
  *
  * TO DO: 
+ * 0. Reconsile UMI and CitySim
  * 0. Finish 4x4 Nodes Plan Viz
  * 0. Fix occasional 'blip' when visualization is updated
  * 0. Add Status Update so that user knows the simulation is still updating
@@ -50,7 +56,7 @@
 
 
 
-float version = 1.22;
+float version = 1.25;
 
 
 
@@ -126,10 +132,10 @@ void draw() {
   
   checkSendNodesJSON("scan");
   
-  if (vizMode == 1 && nodeMode == 0) { //Riyadh Demo Mode
-    // Reloads textfiles of SDL outputs
-    loadSDLData();              
+  if (vizMode == 1) { //Riyadh Demo Mode
+    // Reloads textfiles of SDL outputs  
     loadSDLSummary();
+    loadSDLData();
   }
   
   if (vizChange) {
