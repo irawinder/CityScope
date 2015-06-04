@@ -55,6 +55,7 @@ String help[] = {
 void drawHelp() {
   textFont(font12);
   fill(#FFFFFF);
+  textAlign(LEFT);
   background(0);
   for (int i=0; i<help.length; i++) {
     text(help[i], 10, 13*(i+1));

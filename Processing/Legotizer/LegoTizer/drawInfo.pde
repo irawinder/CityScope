@@ -38,7 +38,7 @@ void drawInfo() {
     
   }
   
-  textFont(font48, 48);
+  textFont(font48, 36);
   fill(#CCCCCC);
   textAlign(LEFT);
   

@@ -51,6 +51,8 @@
  *                       - simulation can export multiple layers and web output
  *                       - Added faux3D mode for 2D projection Map!!
  *                       - redefined layer modes defined by '0' key
+ * v1.27: April 13, 2015 - Resized layer text
+ *                       - fixed table row missing bug
  *
  * TO DO: 
  * 1. Stop Working on this already and write some simulations
@@ -131,7 +133,7 @@ void draw() {
     riyadhMode();                // Sets First Visualization to Riyadh Demo
     
     loadSolutionJSON(solutionJSON, "testSolutionNodes.json", "scoreNames.tsv", vizMode);
-    
+    loadSummary();
   }
   
   //-------- Draw functions enabled -------------- //
@@ -143,6 +145,7 @@ void draw() {
     // Loads Solution from SIM if recieved
     if (readSolution) {
       loadSolutionJSON(solutionJSON, "solutionNodes.json", "scoreNames.tsv", vizMode);
+      loadSummary();
       readSolution = false;
     }
     
@@ -153,8 +156,6 @@ void draw() {
     if (vizMode == 1 && !drawNodes) { //Riyadh Demo Mode
       loadSDLSummary();
       loadSDLData();
-    } else {
-      loadSummary();
     }
     
     // Checks if there's been a request to change the visualization
