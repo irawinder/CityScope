@@ -373,7 +373,6 @@ void draw4x4Structure(int u, int v, float HT, float offset, float buildingWidth,
             pTranslate(-k*LU_W, pieceH_LU*(-(i-1))*LU_H, -j*LU_W);
           }
           
-          
         }
       }
     }
@@ -392,7 +391,7 @@ void draw4x4Nodes(int u, int v, float HT, float offset, float buildingWidth) {
           if (nodeMode == 0) {
             findFill(u, v, useCloud.nodes[u*4+j][v*4+k][i]);
           } else if (nodeMode == 1) {
-            if (solutionCloud[u*4+j][v*4+k][i] == -1) {
+            if (solutionCloud[u*4+j][v*4+k][i] < 0) {
               fill(lightGray);
             } else {
               fill(255*(1-solutionCloud[u*4+j][v*4+k][i]), 255*solutionCloud[u*4+j][v*4+k][i], 0);

@@ -5,7 +5,7 @@ JSONObject[][][] obj;
 
 JSONArray solutionJSON;
 
-int simTime = 9;
+int simTime = 15;
 int simCounter= 0;
 
 void initializeNodesJSON() {

@@ -50,43 +50,11 @@ void drawPlanDynamic() {
       
       plan.noFill();
       
-      if (gridOnly) { //Shows only plexiglas grid template w/out rendered pieces
-        plan.fill(offColor);
-      
-      } else if (colorMode == 0 || colorMode == 1) { //renders dynamic pieces
-        
-        if  (siteInfo.getInt(i,j) == 1 || overrideStatic) { //is site
-          if (codeArray[i][j][0] >= 0 && codeArray[i][j][0] < NPieces) { //has peice
-            if ((vizMode == 0 && codeArray[i][j][0] == 1) || (vizMode == 1 && codeArray[i][j][0] == 8) || (vizMode == 2 && codeArray[i][j][0] == 2)) { //is Park
-              plan.fill(parkColor);
-            } else {
-              plan.fill(bldgColor);
-            }
-          } else if (siteInfo.getInt(i,j) == 1 || (overrideStatic && !drawPlanStatic && !drawPlanSat) ) {
-            //has no discernable piece on open "cell"; has no dicernable piece on closed "cell," and otherwise unobstructed by static layers
-            plan.fill(openColor);
-          }
-        }
-          
-      } else if (colorMode == 2) { //renders heatmap
-      
-        if  (siteInfo.getInt(i,j) == 1 || overrideStatic) { //is site
-          if (codeArray[i][j][0] >= 0 && codeArray[i][j][0] < NPieces) { //has peice
-            if (heatMapActive[i][j] == 1) {
-              plan.fill(255*(1 - heatMap[i][j]), 255*heatMap[i][j], 0);
-            } else if ((vizMode == 0 && codeArray[i][j][0] == 1) || (vizMode == 1 && codeArray[i][j][0] == 8) || (vizMode == 2 && codeArray[i][j][0] == 2)) { //is Park
-              plan.fill(mediumGray);
-            } else {
-              plan.fill(lightGray);
-            }
-          } else if (siteInfo.getInt(i,j) == 1 || (overrideStatic && !drawPlanStatic && !drawPlanSat) ) {
-            //has no discernable piece on open "cell"; has no dicernable piece on closed "cell," and otherwise unobstructed by static layers
-            plan.fill(offColor);
-          }
-        }
+      if (structureMode == 0) {
+        drawPlan1x1Nodes(i, j);
+      } else if (structureMode == 1) {
+        drawPlan4x4Nodes(i, j);
       }
-       
-      lRect(0, 0, boxW, boxW);
       
       // iterates along j axis
       lTranslate((boxW + dynamicSpacer*gridGap), 0); 
@@ -99,6 +67,7 @@ void drawPlanDynamic() {
   
   // reverses small gap just after 0,0 that acounts o half the width of a plexiglas grid width
   lTranslate(dynamicSpacer*(-gridGap)/2, dynamicSpacer*(-gridGap)/2);
+  
 }
 
 void drawPlanStatic() {
@@ -115,6 +84,11 @@ void drawPlanStatic() {
     }
     
     for (int j = 0; j < staticV; j++) {  
+      
+      // Indroduces a small gap between 4x4 LU grids
+      if (j % 4 == 0 && j > 0) {
+        lTranslate(gridGap*staticSpacer, 0);
+      }   
       
       if (staticStructures.getInt(i,j) == -3) { // Is River
         if (colorMode == 2) {
@@ -147,10 +121,6 @@ void drawPlanStatic() {
           plan.fill(bldgColor);
         }
       }
-      
-      if (j % 4 == 0 && j > 0) {
-        lTranslate(gridGap*staticSpacer, 0);
-      }   
       
       if (staticStructures.getInt(i,j) != -10) { // Is Structure
         lRect(0, 0, LU_W, LU_W);        
@@ -223,3 +193,141 @@ void pickPlanFill(int c0, int c1, int c2) {
       break;
   }
 }
+
+void drawPlan1x1Nodes(int i, int j) {
+  
+  if (!drawNodes) {
+    if (colorMode == 0 || colorMode == 1) { //renders dynamic pieces
+          
+      if  (siteInfo.getInt(i,j) == 1 || overrideStatic) { //is site
+        if (codeArray[i][j][0] >= 0 && codeArray[i][j][0] < NPieces) { //has peice
+          if ((vizMode == 0 && codeArray[i][j][0] == 1) || (vizMode == 1 && codeArray[i][j][0] == 8) || (vizMode == 2 && codeArray[i][j][0] == 2)) { //is Park
+            plan.fill(parkColor);
+          } else {
+            plan.fill(bldgColor);
+          }
+        } else if (siteInfo.getInt(i,j) == 1 || (overrideStatic && !drawPlanStatic && !drawPlanSat) ) {
+          //has no discernable piece on open "cell"; has no dicernable piece on closed "cell," and otherwise unobstructed by static layers
+          plan.fill(openColor);
+        }
+      }
+        
+    } else if (colorMode == 2) { //renders heatmap
+    
+      if  (siteInfo.getInt(i,j) == 1 || overrideStatic) { //is site
+        if (codeArray[i][j][0] >= 0 && codeArray[i][j][0] < NPieces) { //has peice
+          if (heatMapActive[i][j] == 1) {
+            plan.fill(255*(1 - heatMap[i][j]), 255*heatMap[i][j], 0);
+          } else if ((vizMode == 0 && codeArray[i][j][0] == 1) || (vizMode == 1 && codeArray[i][j][0] == 8) || (vizMode == 2 && codeArray[i][j][0] == 2)) { //is Park
+            plan.fill(mediumGray);
+          } else {
+            plan.fill(lightGray);
+          }
+        } else if (siteInfo.getInt(i,j) == 1 || (overrideStatic && !drawPlanStatic && !drawPlanSat) ) {
+          //has no discernable piece on open "cell"; has no dicernable piece on closed "cell," and otherwise unobstructed by static layers
+          plan.fill(offColor);
+        }
+      }
+    }
+  } else {
+    
+    int k = 1;
+    
+    if (nodeMode == 0) {
+      findPlanFill(i, j, useCloud.nodes[i][j][k]);
+    } else if (nodeMode == 1) {
+      if (solutionCloud[i][j][k] == -1) {
+        plan.fill(lightGray);
+      } else {
+        plan.fill(255*(1-solutionCloud[i][j][k]), 255*solutionCloud[i][j][k], 0);
+      }
+    }
+    
+  }
+   
+  lRect(0, 0, boxW, boxW);
+}
+
+void findPlanFill(int u, int v, int value) {
+  switch(value) {
+    case -2:
+      pickPlanFill(riverColor, bldgColor, offColor);
+      break;
+    case 0:
+      pickPlanFill(openColor, openColor, offColor);
+      break;
+    case 1:
+      pickPlanFill(roadColor, roadColor, mediumGray);
+      break;
+    case 2:
+      pickPlanFill(parkColor, parkColor, lightGray);
+      break;
+    case 3:
+      if (colorMode == 0) { // Building and Land Use Mode
+        plan.fill(residentialColor);
+      } else if (colorMode == 1) { // Generic Building Form Mode
+        plan.fill(bldgColor);
+      } else if (colorMode == 2) { // Heatmap
+        if (heatMapActive[u][v] == 1) {
+          plan.fill(255*(1 - heatMap[u][v]), 255*heatMap[u][v], 0);
+        } else {
+          plan.fill(lightGray);
+        }
+      }
+      break;
+    case 4:
+      if (colorMode == 0) { // Building and Land Use Mode
+        plan.fill(officeColor);
+      } else if (colorMode == 1) { // Generic Building Form Mode
+        plan.fill(bldgColor);
+      } else if (colorMode == 2) { // Heatmap
+        if (heatMapActive[u][v] == 1) {
+          plan.fill(255*(1 - heatMap[u][v]), 255*heatMap[u][v], 0);
+        } else {
+          plan.fill(lightGray);
+        }
+      }
+      break;
+  }
+}
+
+void drawPlan4x4Nodes(int i, int j) {
+  
+  // Placeholder until 4x4 Node Functionality Met
+  
+  if (colorMode == 0 || colorMode == 1) { //renders dynamic pieces
+        
+    if  (siteInfo.getInt(i,j) == 1 || overrideStatic) { //is site
+      if (codeArray[i][j][0] >= 0 && codeArray[i][j][0] < NPieces) { //has peice
+        if ((vizMode == 0 && codeArray[i][j][0] == 1) || (vizMode == 1 && codeArray[i][j][0] == 8) || (vizMode == 2 && codeArray[i][j][0] == 2)) { //is Park
+          plan.fill(parkColor);
+        } else {
+          plan.fill(bldgColor);
+        }
+      } else if (siteInfo.getInt(i,j) == 1 || (overrideStatic && !drawPlanStatic && !drawPlanSat) ) {
+        //has no discernable piece on open "cell"; has no dicernable piece on closed "cell," and otherwise unobstructed by static layers
+        plan.fill(openColor);
+      }
+    }
+      
+  } else if (colorMode == 2) { //renders heatmap
+  
+    if  (siteInfo.getInt(i,j) == 1 || overrideStatic) { //is site
+      if (codeArray[i][j][0] >= 0 && codeArray[i][j][0] < NPieces) { //has peice
+        if (heatMapActive[i][j] == 1) {
+          plan.fill(255*(1 - heatMap[i][j]), 255*heatMap[i][j], 0);
+        } else if ((vizMode == 0 && codeArray[i][j][0] == 1) || (vizMode == 1 && codeArray[i][j][0] == 8) || (vizMode == 2 && codeArray[i][j][0] == 2)) { //is Park
+          plan.fill(mediumGray);
+        } else {
+          plan.fill(lightGray);
+        }
+      } else if (siteInfo.getInt(i,j) == 1 || (overrideStatic && !drawPlanStatic && !drawPlanSat) ) {
+        //has no discernable piece on open "cell"; has no dicernable piece on closed "cell," and otherwise unobstructed by static layers
+        plan.fill(offColor);
+      }
+    }
+  }
+    
+  lRect(0, 0, boxW, boxW);
+}
+

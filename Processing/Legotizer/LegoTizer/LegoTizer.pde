@@ -36,8 +36,13 @@
  * v1.23: April 5, 2015  - Added additional Metadata for Simulation Scripts
  *                       - Commented out redundant u_m, v_m, and z_m information exported to JSON, since this can be recreated in the simulation's client-side
  *                       - Runs simulation for 'simTime' iterations when change is detected instead of only once
+ * v1.24: April 12, 2015 - Began Editing Plan visualization to show Nodes (still need to finish 4x4 Nodes)
  *
  * TO DO: 
+ * 0. Finish 4x4 Nodes Plan Viz
+ * 0. Fix occasional 'blip' when visualization is updated
+ * 0. Add Status Update so that user knows the simulation is still updating
+ * 0. Update plan to show node information
  * 1. Stop Working on this already and write some simulations
  * 2. Include Static Structures in Nodes? Or just have simulator reference original "staticStructures.tsv" file?
  * 3. Make standard method for importing u,v "heatmap" information where value is assigned to each piece (i.e. make rhino obsolete)
