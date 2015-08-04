@@ -712,7 +712,9 @@ void keyPressed() {
       if (writer != null) { writer.println("displaymode daylighting"); }
       break;
     case '6':
-      initServer();
+      if(useUMI) {
+        initServer();
+      }
       break;
   }
   

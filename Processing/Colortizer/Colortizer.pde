@@ -1,4 +1,4 @@
-// Colortizer v3.8
+// Colortizer v4.0
 // This software distorts webcam feeds into rectilinear matrices of color data.
 // Run software to see key definitions
 //
@@ -9,10 +9,14 @@
 // REPORT ALL CHANGES WITH DATE AND USER IN THIS AREA:
 // - March 3, 2015: Edited "scanExport" Tab to include addional column of information for rotation
 // - March 3, 2015: Edited "scanGrid" Tab to have buffer condition to reduce noise of pattern reading
-// - March 5, 2015: Added "gameClient" Tab to allow TCP connection to Rhino server. Also added method calls in "Colortizer" tabl and "scan" tab
-// - March 6, 2015: Coded Keys '1,' '2,' '3,' '4,' and '5' to correspond with Rhino/SDL functions in "gameClient" tab
+// - March 5, 2015: Added "UMIClient" Tab to allow TCP connection to Rhino server. Also added method calls in "Colortizer" tabl and "scan" tab
+// - March 6, 2015: Coded Keys '1,' '2,' '3,' '4,' and '5' to correspond with Rhino/SDL functions in "UMIClient" tab
 // - March 6, 2015: Coded '6' key to restart server connection to Rhino
 // - March 14, 2015: Allowed functionalities in keys 1-6 to also be received via UDP (i.e. from Legotizer)
+// - August 4, 2015: IW - Deprecated "UMIClient" Tab (formerly "gameClient" Tab)
+
+// TO DO
+// - Add 8 More Tag Definitions, for a total of 24.
 /*
 
 SETUP:
@@ -46,8 +50,10 @@ void setup() {
   size(vizWidth*2+500, vizHeight*2, P2D);
   setupScan(); //Loads all Scan Objects (coordinates, reference colors, and conf>iguration) into memory with initial conditions and starts camera
   
-  // Initiation of "gameClient" Tab Items
-  initServer();
+  if (useUMI) {
+    // Initiation of "UMIClient" Tab Items
+    initServer();
+  }
 }
 
 void draw() {

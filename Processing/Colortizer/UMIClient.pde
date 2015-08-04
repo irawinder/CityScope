@@ -1,7 +1,11 @@
+// Was created by Cody Rose for Riyadh Demo in April 2015.  
+// Set "useUMI" to true if wanting to connect to UMI's Rhino Environment
+boolean useUMI = false;
+
+
 import java.io.InputStreamReader;
 import java.net.InetAddress;
 import java.net.Socket;
-import processing.video.*;
 
 //Rigidly a 14x14 grid offset 1 from Colortizer Grid
 //USE FOR UMI-RIYADH ONLY

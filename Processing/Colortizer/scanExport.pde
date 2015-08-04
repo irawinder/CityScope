@@ -141,7 +141,9 @@ void ImportData(String inputStr[]) {
           if (writer != null) { writer.println("displaymode daylighting"); }
           break;
         case 6:
-          initServer();
+          if(useUMI) {
+            initServer();
+          }
           break;
       }
       println(split[0]);

@@ -196,8 +196,10 @@ void updateScan(Capture cam, int vizW, int vizH) {
   updateDecoders();
   sendData();
   
-  //Updates "gameClient" Server for UMI Data
-  updateServer();
+  if(useUMI) {
+    //Updates "UMIClient" Server for UMI Data
+    updateServer();
+  }
 }
 
 void updateScan(PImage cam, int vizW, int vizH) {
@@ -225,8 +227,10 @@ void updateScan(PImage cam, int vizW, int vizH) {
   updateDecoders();
   sendData();
   
-  //Updates "gameClient" Server for UMI Data
-  updateServer();
+  if(useUMI) {
+    //Updates "UMIClient" Server for UMI Data
+    updateServer();
+  }
 }
 
 void initOpenCV(int w, int h) {
