@@ -1,4 +1,6 @@
 // Colortizer v4.0
+String version = "Colortizer, V4.0";
+
 // This software distorts webcam feeds into rectilinear matrices of color data.
 // Run software to see key definitions
 //
@@ -14,9 +16,10 @@
 // - March 6, 2015: Coded '6' key to restart server connection to Rhino
 // - March 14, 2015: Allowed functionalities in keys 1-6 to also be received via UDP (i.e. from Legotizer)
 // - August 4, 2015: IW - Deprecated "UMIClient" Tab (formerly "gameClient" Tab)
+// - August 4, 2015: IW - Add 8 More Tag Definitions, for a total of 24.
 
 // TO DO
-// - Add 8 More Tag Definitions, for a total of 24.
+// - Make Extra Tag Definitions easy to turn on/off (i.e. constrain to 16 or 24 IDs only)
 /*
 
 SETUP:

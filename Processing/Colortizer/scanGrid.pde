@@ -183,7 +183,11 @@ public class ScanGrid {
   }
   
   public float getCodeValue(int i, int j) {
-    return HSBRGB[i][j];
+    if(i >= base) {
+      return HSBRGB[base-1][j];
+    } else {
+      return HSBRGB[i][j];
+    }
   }
   
   public void setBaseValue(int i, int u, int v, int w, int x) {
@@ -201,7 +205,11 @@ public class ScanGrid {
   }
   
   public float getHue(int i) {
-    return hue[i];
+    if(i >= base) {
+      return hue[base-1];
+    } else {
+      return hue[i];
+    }
   }
   
   void updateColors() {
@@ -318,6 +326,8 @@ public class ScanGrid {
     
     loadHues();
     updateColors();
+    
+    println("Base = " + base);
   }
   
   void checkUV() {

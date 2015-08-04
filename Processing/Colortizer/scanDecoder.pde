@@ -6,9 +6,32 @@
 // -
 // -
 
+String[] colorDef = new String[]{
+  "White",
+  "Black",
+  "Red",
+  "Yellow",
+  "Blue",
+  "N/A",
+  "N/A",
+  "N/A",
+  "N/A",
+  "N/A",
+  "N/A",
+  "N/A",
+  "N/A",
+  "N/A",
+  "N/A",
+  "N/A",
+  "N/A",
+  "N/A",
+  "N/A",
+  "N/A"
+};
+
 float[][] buildingDef = new float[][]{ 
 // Tag, BLG ID;
-// Tag: 0=White, 1=Black, 2=Red, 3=Yellow
+// Tag: 0=White, 1=Black, 2=Red, 3=Yellow, 4=Blue/Green
   {2000, 0},
   {2100, 1},
   {2010, 2},
@@ -25,7 +48,16 @@ float[][] buildingDef = new float[][]{
   {3110, 12},
   {3101, 13},
   {3011, 14},
-  {3111, 15}
+  {3111, 15},
+  
+  {4000, 16},
+  {4100, 17},
+  {4010, 18},
+  {4001, 19},
+  {4110, 20},
+  {4101, 21},
+  {4011, 22},
+  {4111, 23}
 };
 
 int[][] rotationDef = new int[][]{
@@ -159,11 +191,9 @@ public class TagDecoder {
         for (int i=0; i<W; i++) {
           for (int j=0; j<X; j++) {
             
-            //Generates code for 4-bit color, allowing for rotation based on quadCode values 2 and 3
+            //Generates code for 4-bit color, allowing for rotation based on quadCode values greater than 0 or 1 (not back or white)
             if (W == 2) { 
-              
-              if (quadCode[u][v][i][j] == 2 || quadCode[u][v][i][j] == 3) {
-                
+              if (quadCode[u][v][i][j] > 1) {
                 id[u][v] += 1000 * quadCode[u][v][i][j];
                 
                 if (i==0 && j==0) {

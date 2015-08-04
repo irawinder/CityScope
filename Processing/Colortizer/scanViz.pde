@@ -1,9 +1,7 @@
 // Code that visualizes "ScanGrid" Analysis for debugging, etc
 // by Ira Winder, MIT Medai Lab, July 2014
 
-String version = "Colortizer, V3.8";
-
-// Display Paramters
+// Display Parameters
   boolean freq = false; // Toggle HSBRGB frequency GUI
   boolean showCam = false; // Toggle CornerCalibration GUI
   boolean img = false; // Toggle False Color Image Overlay
@@ -13,6 +11,10 @@ String version = "Colortizer, V3.8";
   boolean locked = false;
   boolean dragged = false;
   boolean hover = false;
+  
+  //Triggers a Nudge if true
+  boolean nudgeBaseUP = false;
+  boolean nudgeBaseDOWN = false;
   
   int colorMode = 0; // '0' is false color based on random hues; '1' is approximate RGBHSB color
   int baseindex = 0; // Number describing which reference color is selected.
@@ -97,6 +99,7 @@ public void camDisplay() {
 }
 
 public void scanDisplay() {
+  
   background(0);
   
   //Determines if frequency table will fit in given canvas proportions
@@ -163,6 +166,18 @@ public void scanDisplay() {
   
   //Checks if scanGrid is being hovered over
   hoverTest();
+  
+  //If user triggers change to number of base colors, does so at the end of current render to avoid "array index out of bounds" error
+  if(nudgeBaseDOWN) {
+    scanDelay = delay;
+    nudgeBase(-1);
+    nudgeBaseDOWN = false;
+  }
+  if(nudgeBaseUP) {
+    scanDelay = delay;
+    nudgeBase(1);
+    nudgeBaseUP = false;
+  }
 }
 
 public void printTitle() {
@@ -418,7 +433,7 @@ void drawReferenceColors() {
     fill(color(scanGrid[numGAforLoop[imageIndex] + gridIndex].getHue(i), 255, 255));
     textSize(12);
     textAlign(LEFT);
-    text("Color " + (i+1), 24+scanGrid[numGAforLoop[imageIndex] + gridIndex].getQuadWidth()+10, i*24+10);
+    text("Color " + (i) + " (Lego " + colorDef[i] + ")", 24+scanGrid[numGAforLoop[imageIndex] + gridIndex].getQuadWidth()+10, i*24+10);
     colorMode(RGB);
   }
   noFill();
@@ -461,7 +476,7 @@ void nudgeCorner(int i, int x, int y) {
 }
 
 void nudgeBase(int dBase) {
-  if (scanGrid[numGAforLoop[imageIndex] + gridIndex].getBaseNum() + dBase > 0 && scanGrid[numGAforLoop[imageIndex] + gridIndex].getBaseNum() + dBase < scanGrid[numGAforLoop[imageIndex] + gridIndex].maxBase) {
+  if (scanGrid[numGAforLoop[imageIndex] + gridIndex].getBaseNum() + dBase > 0 && scanGrid[numGAforLoop[imageIndex] + gridIndex].getBaseNum() + dBase <= scanGrid[numGAforLoop[imageIndex] + gridIndex].maxBase) {
     scanGrid[numGAforLoop[imageIndex] + gridIndex].updateBase(scanGrid[numGAforLoop[imageIndex] + gridIndex].getBaseNum() + dBase);
   }
 }
@@ -689,12 +704,10 @@ void keyPressed() {
       nudgeUV(1,0);
       break;
     case '<':
-      scanDelay = delay;
-      nudgeBase(-1);
+      nudgeBaseDOWN = true;
       break;
     case '>':
-      scanDelay = delay;
-      nudgeBase(1);
+      nudgeBaseUP = true;
       break;
     case '1':
       if (writer != null) { writer.println("resimulate"); }
@@ -821,3 +834,4 @@ void mouseReleased() {
   img = false;
   scanGrid[numGAforLoop[imageIndex] + gridIndex].updatePosition(getLocation(imageIndex, gridIndex));
 }
+
