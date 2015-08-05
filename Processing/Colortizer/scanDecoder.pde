@@ -1,17 +1,13 @@
 // This class allows arrays color values to be translated into corresponding values informed by globally defined code definitions tab
 //
 // By Ira Winder, MIT Media Lab, April 2014
-//
-// REPORT ALL CHANGES WITH DATE AND USER IN THIS AREA:
-// -
-// -
 
 String[] colorDef = new String[]{
-  "White",
-  "Black",
-  "Red",
-  "Yellow",
-  "Blue",
+  "Lego White",
+  "Lego Black",
+  "Lego Red",
+  "Lego Yellow",
+  "Lego Blue/Green",
   "N/A",
   "N/A",
   "N/A",
@@ -168,8 +164,8 @@ public class TagDecoder {
     this.rotationDef = rotationDef;
   }
   
-  public void decoder(int[][][][] quadCode) { 
-  //Decodes a 4-bit code with potential values of 0, 1, 2, or 3, giving rotation and unique id
+  public void decoder(int[][][][] quadCode, int IDMode) { 
+  //Decodes a 4-bit code with potential values of 0, 1, 2, 3, 4, etc giving rotation and unique id
     
     //Resizes arrays if dimensions of quadcode changes.
     if (quadCode.length != U || quadCode[0].length != V) {
@@ -193,37 +189,44 @@ public class TagDecoder {
             
             //Generates code for 4-bit color, allowing for rotation based on quadCode values greater than 0 or 1 (not back or white)
             if (W == 2) { 
+              
+              // Checks to see if color is neither black nor white (0 or 1)
               if (quadCode[u][v][i][j] > 1) {
-                id[u][v] += 1000 * quadCode[u][v][i][j];
                 
-                if (i==0 && j==0) {
+                // Checks to see if Color Tag is allowed via IDMode
+                if (quadCode[u][v][i][j] <= IDMode+1) {
                   
-                  rotation[u][v] = 0;
-                  id[u][v] += 100*quadCode[u][v][1][0];
-                  id[u][v] +=  10*quadCode[u][v][1][1];
-                  id[u][v] +=   1+1*quadCode[u][v][0][1];
-                  
-                } else if (i==1 && j==0) {
-                  
-                  rotation[u][v] = 1;
-                  id[u][v] += 100*quadCode[u][v][1][1];
-                  id[u][v] +=  10*quadCode[u][v][0][1];
-                  id[u][v] +=   1+1*quadCode[u][v][0][0];
-                  
-                } else if (i==1 && j==1) {
-                  
-                  rotation[u][v] = 2;
-                  id[u][v] += 100*quadCode[u][v][0][1];
-                  id[u][v] +=  10*quadCode[u][v][0][0];
-                  id[u][v] +=   1+1*quadCode[u][v][1][0];
-                  
-                } else if (i==0 && j==1) {
-                  
-                  rotation[u][v] = 3;
-                  id[u][v] += 100*quadCode[u][v][0][0];
-                  id[u][v] +=  10*quadCode[u][v][1][0];
-                  id[u][v] +=   1+1*quadCode[u][v][1][1];
-                  
+                  id[u][v] += 1000 * quadCode[u][v][i][j]; 
+                
+                  if (i==0 && j==0) {
+                    
+                    rotation[u][v] = 0;
+                    id[u][v] += 100*quadCode[u][v][1][0];
+                    id[u][v] +=  10*quadCode[u][v][1][1];
+                    id[u][v] +=   1+1*quadCode[u][v][0][1];
+                    
+                  } else if (i==1 && j==0) {
+                    
+                    rotation[u][v] = 1;
+                    id[u][v] += 100*quadCode[u][v][1][1];
+                    id[u][v] +=  10*quadCode[u][v][0][1];
+                    id[u][v] +=   1+1*quadCode[u][v][0][0];
+                    
+                  } else if (i==1 && j==1) {
+                    
+                    rotation[u][v] = 2;
+                    id[u][v] += 100*quadCode[u][v][0][1];
+                    id[u][v] +=  10*quadCode[u][v][0][0];
+                    id[u][v] +=   1+1*quadCode[u][v][1][0];
+                    
+                  } else if (i==0 && j==1) {
+                    
+                    rotation[u][v] = 3;
+                    id[u][v] += 100*quadCode[u][v][0][0];
+                    id[u][v] +=  10*quadCode[u][v][1][0];
+                    id[u][v] +=   1+1*quadCode[u][v][1][1];
+                    
+                  }
                 }
               }
             } else if (W == 1) { //Generates code for 1-bit color. does not allow rotation
