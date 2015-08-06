@@ -183,7 +183,7 @@ public class projApplet extends PApplet {
 
 void toggle2DProjection() {
   if (System.getProperty("os.name").substring(0,3).equals("Mac")) {
-    println("Currently not Supported for MacOS");
+    println("Projection Mapping Currently not Supported for MacOS");
   } else {
     if (displayProjection2D) {
       displayProjection2D = false;
