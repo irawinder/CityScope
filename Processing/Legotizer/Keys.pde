@@ -126,20 +126,32 @@ void keyPressed() {
     case '6':
       sendCommand("6", 6669);
       break;
+    case '-':
+      projH--;
+      saveProjectorLocation();
+      break;
+    case '+':
+      projH++;
+      saveProjectorLocation();
+      break;
   }
   
   if (key == CODED) { 
     if (keyCode == LEFT) {
       projU--;
+      saveProjectorLocation();
     }  
     if (keyCode == RIGHT) {
       projU++;
+      saveProjectorLocation();
     }  
     if (keyCode == DOWN) {
       projV++;
+      saveProjectorLocation();
     }  
     if (keyCode == UP) {
       projV--;
+      saveProjectorLocation();
     }
   }
 }

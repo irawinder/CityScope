@@ -48,6 +48,7 @@ String help[] = {
  "'4' Sends '4' String to colortizer (i.e. 'displaymode walkability' in SDL RhinoScript)",
  "'5' Sends '5' String to colortizer (i.e. 'displaymode daylighting' in SDL RhinoScript)",
  "'6' Sends '6' String to colortizer (i.e. (re)initiates SDL RhinoScript server)",
+ "'UP', 'DOWN', 'LEFT', 'RIGHT', '-', and '+' adjust the projector's location in 3D space.",
  "",
  "Press 'h' key to return to Legotizer"
 };
