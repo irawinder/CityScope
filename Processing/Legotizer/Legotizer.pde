@@ -47,7 +47,7 @@
  *                       - Added Status Update so that user knows the simulation is still updating
  * v1.26: April 13, 2015 - Reconsiled UMI and CitySim
  *                       - Converted all visualizations to nodes (non-nodes reserved for UMI)
- *                       - Rearranged 2D info
+ *                       - Resarranged 2D info
  *                       - simulation can export multiple layers and web output
  *                       - Added faux3D mode for 2D projection Map!!
  *                       - redefined layer modes defined by '0' key
@@ -56,13 +56,13 @@
  * v1.28: April 15, 2015 - Improved labels for information display
  *
  * TO DO: 
- * 1. Stop Working on this already and write some simulations
+ * 1. Patch Bug that crashes Legotizer when all pieces removed
  * 2. Include Static Structures in Nodes? Or just have simulator reference original "staticStructures.tsv" file?
  */
 
 
 
-float version = 1.27;
+float version = 1.29;
 
 
 
