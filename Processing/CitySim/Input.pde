@@ -37,10 +37,13 @@ void initializeInputJSON() {
 
 // Loads Input nodes from 'legotizer_data' folder
 void loadInput(String filename, int viz) {
-  nodesJSON = loadJSONArray(legotizer_data + demoPrefix + demos[viz] + filename); 
-  numNodes = nodesJSON.size();
-  println(numNodes + " nodes loaded.");
-  
+  try {
+    nodesJSON = loadJSONArray(legotizer_data + demoPrefix + demos[viz] + filename); 
+    numNodes = nodesJSON.size();
+    println(numNodes + " nodes loaded.");
+  } catch(RuntimeException e){
+    println("userNodes.json incomplete file");
+  }
 
   // Calculate maxU, maxV, maxZ
   maxZ = 0;
@@ -63,21 +66,25 @@ void loadInput(String filename, int viz) {
     zee = maxZ;
   }
   
-  metaData = loadJSONObject(legotizer_data + demoPrefix + demos[viz] + "metadata.json");
-  // width of a node in meters, definied by lego unit width
-  nodeW = metaData.getInt("dynNodeW");
-  // height of a node in meters
-  nodeH = metaData.getInt("dynNodeH");
-  // Average distance between nodes in meters when accounting for plastic grid spacer that may exist
-  avgNodeW = metaData.getInt("avgDynNodeW");
-  // Max possible pieces in one dimension of a node dataset
-  maxPieces = metaData.getInt("maxPieces");
-  // Max possible width of piece in a node dataset
-  maxLU_W = metaData.getInt("maxLU_W");
-  // Max possible height of any node dataset
-  maxLU_H = metaData.getInt("maxLU_H");
-  // Max nodes in U direction
-  nodesU = metaData.getInt("nodesU");
-  // Max nodes in V direction
-  nodesV = metaData.getInt("nodesV");
+  try {
+    metaData = loadJSONObject(legotizer_data + demoPrefix + demos[viz] + "metadata.json");
+    // width of a node in meters, definied by lego unit width
+    nodeW = metaData.getInt("dynNodeW");
+    // height of a node in meters
+    nodeH = metaData.getInt("dynNodeH");
+    // Average distance between nodes in meters when accounting for plastic grid spacer that may exist
+    avgNodeW = metaData.getInt("avgDynNodeW");
+    // Max possible pieces in one dimension of a node dataset
+    maxPieces = metaData.getInt("maxPieces");
+    // Max possible width of piece in a node dataset
+    maxLU_W = metaData.getInt("maxLU_W");
+    // Max possible height of any node dataset
+    maxLU_H = metaData.getInt("maxLU_H");
+    // Max nodes in U direction
+    nodesU = metaData.getInt("nodesU");
+    // Max nodes in V direction
+    nodesV = metaData.getInt("nodesV");
+  } catch(RuntimeException e){
+    println("metadata.json incomplete file");
+  }
 }

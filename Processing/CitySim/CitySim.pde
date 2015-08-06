@@ -26,6 +26,7 @@
  *                       - Reformated labels for export; turned off parks' score in parks access heatmap
  * v1.09: April 29, 2015 - This time JSONObject not found error ACTUALLY fixed
  *                       - Doubled minimum Park requirement for walkSim
+ * v1.10: August 6, 2015 - Fixed "JSONArray must start with '['" bug
  *                      
  * TO DO: 
  * 1. Add scores for walkability, jobs rating, worker rating, parks, etc using networks and sampling method
