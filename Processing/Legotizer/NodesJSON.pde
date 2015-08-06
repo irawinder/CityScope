@@ -126,9 +126,14 @@ void checkSendNodesJSON(String filename) {
 }
 
 void loadSolutionJSON(JSONArray solution, String filename, String names, int viz) {
-  solution = loadJSONArray(legotizer_data + demoPrefix + demos[viz] + filename); 
-  scoreNames = loadStrings(legotizer_data + demoPrefix + demos[viz] + names);
-  updateSolution(solution);
+    
+  try{
+    solution = loadJSONArray(legotizer_data + demoPrefix + demos[viz] + filename); 
+    scoreNames = loadStrings(legotizer_data + demoPrefix + demos[viz] + names);
+    updateSolution(solution);
+  } catch(RuntimeException e){
+    println(filename + " incomplete file");
+  }
 }
 
 

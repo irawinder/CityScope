@@ -42,7 +42,7 @@ void loadInput(String filename, int viz) {
     numNodes = nodesJSON.size();
     println(numNodes + " nodes loaded.");
   } catch(RuntimeException e){
-    println("userNodes.json incomplete file");
+    println(filename + " incomplete file");
   }
 
   // Calculate maxU, maxV, maxZ
@@ -85,6 +85,6 @@ void loadInput(String filename, int viz) {
     // Max nodes in V direction
     nodesV = metaData.getInt("nodesV");
   } catch(RuntimeException e){
-    println("metadata.json incomplete file");
+    println(filename + " incomplete file");
   }
 }

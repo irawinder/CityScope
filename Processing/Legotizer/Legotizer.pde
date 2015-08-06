@@ -54,9 +54,9 @@
  * v1.27: April 13, 2015 - Resized layer text
  *                       - fixed table row missing bug
  * v1.28: April 15, 2015 - Improved labels for information display
+ * v1.29: August 6, 2015 -  (?) Patched Bug that crashes Legotizer when all pieces removed
  *
  * TO DO: 
- * 1. Patch Bug that crashes Legotizer when all pieces removed
  * 2. Include Static Structures in Nodes? Or just have simulator reference original "staticStructures.tsv" file?
  */
 
