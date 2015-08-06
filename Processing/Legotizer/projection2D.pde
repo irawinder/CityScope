@@ -70,7 +70,25 @@ void initializeProjection2D() {
   projectorWidth  = projector.getInt(0, "width");   // Projector Width in Pixels
   projectorHeight = projector.getInt(0, "height");  // Projector Height in Pixels
   projectorOffset = projector.getInt(0, "offset");  // If multiple screens stacked horizontally, 'offset' specifies number of, pixels to the right before projector screen begins
+  
+  loadProjectorLocation();
+  
   println("Projector Info: " + projectorWidth + ", " + projectorHeight + ", " + projectorOffset);
+}
+
+void loadProjectorLocation(){
+  //Projector location (relative to table grid origin)
+  projU  = projector.getInt(0, "U"); // Projector U Location (4LU units)
+  projV = projector.getInt(0, "V");  // Projector V Location (4LU units)
+  projH = projector.getInt(0, "H");  // Projector Height (4LU units)
+}
+
+void saveProjectorLocation(){
+  projector.setInt(0, "U", (int)projU);  // Projector U Location (4LU units)
+  projector.setInt(0, "V", (int)projV);  // Projector V Location (4LU units)
+  projector.setInt(0, "H", (int)projH);  // Projector Height (4LU units)
+  
+  saveTable(projector, "projector.tsv");
 }
 
 public void showProjection2D() {
@@ -100,6 +118,11 @@ public class projApplet extends PApplet {
     // (The offscreen buffer can be P2D or P3D)
     offscreen = createGraphics(plan.width, plan.height);
     
+    try{
+      ks.load();
+    } catch(RuntimeException e){
+      println("No Keystone.xml.  Save one first if you want to load one.");
+    }
   }
   
   public void draw() {

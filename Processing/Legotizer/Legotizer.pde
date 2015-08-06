@@ -135,6 +135,9 @@ void draw() {
     
     loadSolutionJSON(solutionJSON, "testSolutionNodes.json", "scoreNames.tsv", vizMode);
     loadSummary();
+    
+    //Opens Projection-Mapping Canvas
+    toggle2DProjection();
   }
   
   //-------- Draw functions enabled -------------- //

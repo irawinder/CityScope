@@ -11,6 +11,8 @@ boolean drawPlanStatic = false;
 boolean faux3D = true;
 int k_height;
 
+//Projector location (relative to table grid origin)
+// These default values are overridden by projector.txt if initializeProjection2D() is run
 float projU =  14;
 float projV =  -16;
 float projH =  64;
