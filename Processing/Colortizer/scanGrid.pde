@@ -65,6 +65,11 @@ public class ScanGrid {
   private int maxBase = 20; // If this increases, manually add more rows to "colorSettings.tsv" file
   private float[] hue; // Array of hues distributed evenly across color spectrum
   
+  // For 2x2 tags, IDMode specifies number of colors allowed to be used as a corner definition piece.
+  // Each color allows for 8 additional ID tags, but may reduce reliability of detection.  (IDMode = 1 allows 8  IDS; IDMode = 2 allows 16  IDS; IDMode = 3 allows 24  IDS)
+  private int IDMode = 2; // Default to two colors (i.e. red and yellow)
+  private int maxIDMode = 3;
+  
   private float[][] HSBRGB;
   private TableRow HSBRGB_TSV;
   
@@ -72,13 +77,13 @@ public class ScanGrid {
   
   private int local;  // table index for reading every pixel in an image
 
-  public ScanGrid(int u, int v, float cellGapRatio, int w, int x, float quadGapRatio, int bitresW, int bitresH, int base, TableRow HSBRGB_TSV, int[] toggle) {
+  public ScanGrid(int u, int v, float cellGapRatio, int w, int x, float quadGapRatio, int bitresW, int bitresH, int base, int IDMode, TableRow HSBRGB_TSV, int[] toggle) {
     
     this.HSBRGB_TSV = HSBRGB_TSV;
     updateColors(HSBRGB_TSV);
     presetGrid(); 
     
-    setupGrid(u, v , cellGapRatio, w, x, quadGapRatio, bitresW, bitresH, base, toggle);
+    setupGrid(u, v , cellGapRatio, w, x, quadGapRatio, bitresW, bitresH, base, IDMode, toggle);
   }
   
   public PImage getGridImage() {
@@ -183,7 +188,11 @@ public class ScanGrid {
   }
   
   public float getCodeValue(int i, int j) {
-    return HSBRGB[i][j];
+    if(i >= base) {
+      return HSBRGB[base-1][j];
+    } else {
+      return HSBRGB[i][j];
+    }
   }
   
   public void setBaseValue(int i, int u, int v, int w, int x) {
@@ -201,7 +210,11 @@ public class ScanGrid {
   }
   
   public float getHue(int i) {
-    return hue[i];
+    if(i >= base) {
+      return hue[base-1];
+    } else {
+      return hue[i];
+    }
   }
   
   void updateColors() {
@@ -247,7 +260,7 @@ public class ScanGrid {
     
   }
     
-  void setupGrid(int u, int v, float cellGapRatio, int w, int x, float quadGapRatio, int bitresW, int bitresH, int base, int[] toggle) {
+  void setupGrid(int u, int v, float cellGapRatio, int w, int x, float quadGapRatio, int bitresW, int bitresH, int base, int IDMode, int[] toggle) {
     this.u = u;
     this.v = v;
     this.cellGapRatio = cellGapRatio;
@@ -255,6 +268,7 @@ public class ScanGrid {
     this.x = x;
     this.quadGapRatio = quadGapRatio;
     this.base = base;
+    this.IDMode = IDMode;
     this.toggle = toggle;
     
     checkUV();
@@ -318,6 +332,18 @@ public class ScanGrid {
     
     loadHues();
     updateColors();
+    
+    println("Base = " + base);
+  }
+  
+  // Increments number of principal colors used of tag detection (other than black and white)
+  public void nextIDMode() {
+    if (IDMode < maxIDMode) {
+      IDMode++;
+    } else {
+      IDMode = 0;
+    }
+    println(IDMode*8 + " ID tags now enabled");
   }
   
   void checkUV() {

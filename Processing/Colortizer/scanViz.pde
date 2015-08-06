@@ -1,9 +1,7 @@
 // Code that visualizes "ScanGrid" Analysis for debugging, etc
 // by Ira Winder, MIT Medai Lab, July 2014
 
-String version = "Colortizer, V3.8";
-
-// Display Paramters
+// Display Parameters
   boolean freq = false; // Toggle HSBRGB frequency GUI
   boolean showCam = false; // Toggle CornerCalibration GUI
   boolean img = false; // Toggle False Color Image Overlay
@@ -97,6 +95,7 @@ public void camDisplay() {
 }
 
 public void scanDisplay() {
+  
   background(0);
   
   //Determines if frequency table will fit in given canvas proportions
@@ -159,6 +158,11 @@ public void scanDisplay() {
   drawReferenceColors();
   translate(-(imgW+margLeft+margInputs), -(margTop+marg));
   
+  // Draws status of IDs supported
+  translate(imgW+margLeft+margInputs, margTop+imgH);
+  drawIDMode(scanGrid[numGAforLoop[imageIndex] + gridIndex].IDMode);
+  translate(-(imgW+margLeft+margInputs), -(margTop+imgH));
+  
   translate(0, margBottom);
   
   //Checks if scanGrid is being hovered over
@@ -173,7 +177,9 @@ public void printTitle() {
   text(version, 0, 2.5*tsize);
   textSize(tsize);
   text("Ira Winder, MIT Media Lab", 0, 4*tsize);
-  text("Applet for gridded, programmable color detection", 0, 11*tsize);
+  text("Applet for gridded, programmable color detection", 0, 7*tsize);
+  
+  text("Press 'R' to change ID support (0, 8, 16, or 24 IDs)", 0, 12.5*tsize);
   translate(-margLeft, 0);
 }
 
@@ -418,13 +424,23 @@ void drawReferenceColors() {
     fill(color(scanGrid[numGAforLoop[imageIndex] + gridIndex].getHue(i), 255, 255));
     textSize(12);
     textAlign(LEFT);
-    text("Color " + (i+1), 24+scanGrid[numGAforLoop[imageIndex] + gridIndex].getQuadWidth()+10, i*24+10);
+    text("Color " + (i) + " (" + colorDef[i] + ")", 24+scanGrid[numGAforLoop[imageIndex] + gridIndex].getQuadWidth()+10, i*24+10);
     colorMode(RGB);
   }
+  
   noFill();
   strokeWeight(2);
   stroke(#FFFF00);
   rect(20, baseindex*24, 12, 12);
+}
+
+void drawIDMode(int IDMode) {
+  fill(#FFFFFF);
+  textAlign(LEFT);
+  text("Grid " + (imageIndex+1) + "." + (gridIndex+1) + " may only use Colors 0-" + (1+IDMode) + " to export up to " + (8*IDMode) + " unique IDs", 
+       24+scanGrid[numGAforLoop[imageIndex] + gridIndex].getQuadWidth()+10, -1.5*tsize);
+  text("for 4-bit(2x2) tags only.  1-bit tags unaffected", 
+       24+scanGrid[numGAforLoop[imageIndex] + gridIndex].getQuadWidth()+10, 0);
 }
 
 void printGridTitle(int i) {
@@ -461,7 +477,7 @@ void nudgeCorner(int i, int x, int y) {
 }
 
 void nudgeBase(int dBase) {
-  if (scanGrid[numGAforLoop[imageIndex] + gridIndex].getBaseNum() + dBase > 0 && scanGrid[numGAforLoop[imageIndex] + gridIndex].getBaseNum() + dBase < scanGrid[numGAforLoop[imageIndex] + gridIndex].maxBase) {
+  if (scanGrid[numGAforLoop[imageIndex] + gridIndex].getBaseNum() + dBase > 0 && scanGrid[numGAforLoop[imageIndex] + gridIndex].getBaseNum() + dBase <= scanGrid[numGAforLoop[imageIndex] + gridIndex].maxBase) {
     scanGrid[numGAforLoop[imageIndex] + gridIndex].updateBase(scanGrid[numGAforLoop[imageIndex] + gridIndex].getBaseNum() + dBase);
   }
 }
@@ -578,6 +594,9 @@ void keyPressed() {
         tempu--;
       }
       break;
+    case 'r':
+      scanGrid[numGAforLoop[imageIndex] + gridIndex].nextIDMode();
+      break;
     case 's':
       if (tempx<scanGrid[numGAforLoop[imageIndex] + gridIndex].getGridX()-1) {
         tempx++;
@@ -662,7 +681,7 @@ void keyPressed() {
           update=true;
         }
       }
-    break;
+      break;
     case 'm':
       if (!img) {
         if (colorMode == 0) {
@@ -821,3 +840,4 @@ void mouseReleased() {
   img = false;
   scanGrid[numGAforLoop[imageIndex] + gridIndex].updatePosition(getLocation(imageIndex, gridIndex));
 }
+

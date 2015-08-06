@@ -41,7 +41,10 @@ int gridMax = 20;
 
 // Tables for loadings and saving Settings
 Table cornerSettingsTSV;
+
 Table gridSettings;
+int gS_numCol = 10; //Number of columns per grid in gridSettings.tsv
+
 Table colorSettings;
 Table gridLocations;
 int[] location;
@@ -84,15 +87,16 @@ void setupScan() {
       
       location = getLocation(i,j);
       
-      scanGrid[numGAforLoop[i] + j]  = new ScanGrid(gridSettings.getInt( i, j*9 + 0),
-                                                   gridSettings.getInt(  i, j*9 + 1),
-                                                   gridSettings.getFloat(i, j*9 + 2),
-                                                   gridSettings.getInt(  i, j*9 + 3),
-                                                   gridSettings.getInt(  i, j*9 + 4),
-                                                   gridSettings.getFloat(i, j*9 + 5),
-                                                   gridSettings.getInt(  i, j*9 + 6),
-                                                   gridSettings.getInt(  i, j*9 + 7),
-                                                   gridSettings.getInt(  i, j*9 + 8),
+      scanGrid[numGAforLoop[i] + j]  = new ScanGrid(gridSettings.getInt( i, j*gS_numCol + 0),
+                                                   gridSettings.getInt(  i, j*gS_numCol + 1),
+                                                   gridSettings.getFloat(i, j*gS_numCol + 2),
+                                                   gridSettings.getInt(  i, j*gS_numCol + 3),
+                                                   gridSettings.getInt(  i, j*gS_numCol + 4),
+                                                   gridSettings.getFloat(i, j*gS_numCol + 5),
+                                                   gridSettings.getInt(  i, j*gS_numCol + 6),
+                                                   gridSettings.getInt(  i, j*gS_numCol + 7),
+                                                   gridSettings.getInt(  i, j*gS_numCol + 8),
+                                                   gridSettings.getInt(  i, j*gS_numCol + 9),
                                                    colorSettings.getRow(i*gridMax + j),
                                                    location);
                                                    
@@ -312,15 +316,16 @@ void saveColorSettings() {
 void saveGridSettings() {
   for (int i=0; i<numImages; i++) {
     for (int j=0; j<numGridAreas[i]; j++) {
-      gridSettings.setInt(  i, j*9 + 0, scanGrid[numGAforLoop[i] + j].u);
-      gridSettings.setInt(  i, j*9 + 1, scanGrid[numGAforLoop[i] + j].v);
-      gridSettings.setFloat(i, j*9 + 2, scanGrid[numGAforLoop[i] + j].cellGapRatio);
-      gridSettings.setInt(  i, j*9 + 3, scanGrid[numGAforLoop[i] + j].w);
-      gridSettings.setInt(  i, j*9 + 4, scanGrid[numGAforLoop[i] + j].x);
-      gridSettings.setFloat(i, j*9 + 5, scanGrid[numGAforLoop[i] + j].quadGapRatio);
-      gridSettings.setInt(  i, j*9 + 6, scanGrid[numGAforLoop[i] + j].bitresW);
-      gridSettings.setInt(  i, j*9 + 7, scanGrid[numGAforLoop[i] + j].bitresH);
-      gridSettings.setInt(  i, j*9 + 8, scanGrid[numGAforLoop[i] + j].base);
+      gridSettings.setInt(  i, j*gS_numCol + 0, scanGrid[numGAforLoop[i] + j].u);
+      gridSettings.setInt(  i, j*gS_numCol + 1, scanGrid[numGAforLoop[i] + j].v);
+      gridSettings.setFloat(i, j*gS_numCol + 2, scanGrid[numGAforLoop[i] + j].cellGapRatio);
+      gridSettings.setInt(  i, j*gS_numCol + 3, scanGrid[numGAforLoop[i] + j].w);
+      gridSettings.setInt(  i, j*gS_numCol + 4, scanGrid[numGAforLoop[i] + j].x);
+      gridSettings.setFloat(i, j*gS_numCol + 5, scanGrid[numGAforLoop[i] + j].quadGapRatio);
+      gridSettings.setInt(  i, j*gS_numCol + 6, scanGrid[numGAforLoop[i] + j].bitresW);
+      gridSettings.setInt(  i, j*gS_numCol + 7, scanGrid[numGAforLoop[i] + j].bitresH);
+      gridSettings.setInt(  i, j*gS_numCol + 8, scanGrid[numGAforLoop[i] + j].base);
+      gridSettings.setInt(  i, j*gS_numCol + 9, scanGrid[numGAforLoop[i] + j].IDMode);
     }
   }
   saveTable(gridSettings, "gridSettings.tsv");
@@ -333,15 +338,16 @@ void loadGridSettings() {
       
       location = getLocation(i,j);
       
-      scanGrid[numGAforLoop[i] + j].setupGrid(gridSettings.getInt(   i, j*9 + 0),
-                                               gridSettings.getInt(  i, j*9 + 1),
-                                               gridSettings.getFloat(i, j*9 + 2),
-                                               gridSettings.getInt(  i, j*9 + 3),
-                                               gridSettings.getInt(  i, j*9 + 4),
-                                               gridSettings.getFloat(i, j*9 + 5),
-                                               gridSettings.getInt(  i, j*9 + 6),
-                                               gridSettings.getInt(  i, j*9 + 7),
-                                               gridSettings.getInt(  i, j*9 + 8),
+      scanGrid[numGAforLoop[i] + j].setupGrid(gridSettings.getInt(   i, j + 0),
+                                               gridSettings.getInt(  i, j*gS_numCol + 1),
+                                               gridSettings.getFloat(i, j*gS_numCol + 2),
+                                               gridSettings.getInt(  i, j*gS_numCol + 3),
+                                               gridSettings.getInt(  i, j*gS_numCol + 4),
+                                               gridSettings.getFloat(i, j*gS_numCol + 5),
+                                               gridSettings.getInt(  i, j*gS_numCol + 6),
+                                               gridSettings.getInt(  i, j*gS_numCol + 7),
+                                               gridSettings.getInt(  i, j*gS_numCol + 8),
+                                               gridSettings.getInt(  i, j*gS_numCol + 9),
                                                location);
     }
   }

@@ -1,10 +1,11 @@
 // Colortizer v4.0
+String version = "Colortizer, V4.0";
+
 // This software distorts webcam feeds into rectilinear matrices of color data.
 // Run software to see key definitions
 //
 // By Ira Winder [jiw@mit.edu], CityScope Project, Changing Places Group, MIT Media Lab
-// Produced for MIT-KACST Center for Complex Engineering Systems: CitySchema
-// March, 2015
+// Copyright March, 2014
 
 // REPORT ALL CHANGES WITH DATE AND USER IN THIS AREA:
 // - March 3, 2015: Edited "scanExport" Tab to include addional column of information for rotation
@@ -14,9 +15,9 @@
 // - March 6, 2015: Coded '6' key to restart server connection to Rhino
 // - March 14, 2015: Allowed functionalities in keys 1-6 to also be received via UDP (i.e. from Legotizer)
 // - August 4, 2015: IW - Deprecated "UMIClient" Tab (formerly "gameClient" Tab)
-
-// TO DO
-// - Add 8 More Tag Definitions, for a total of 24.
+// - August 4, 2015: IW - Add 8 More Tag Definitions, for a total of 24.
+// - August 5, 2015: IW - Made Extra Tag Definitions easy to turn on/off (i.e. constrain to 8, 16 or 24 IDs only)
+// - August 5, 2015: IW - Can save/load number of tag definitions to use, and displays state at bottom of screen
 /*
 
 SETUP:
@@ -27,9 +28,6 @@ Step 3: Alter "int[] numGridAreas" accordingly
 Step 4: Alter "scanExport" tab to relevant port on destination machine [i.e. udp.send( dataToSend, "localhost", 6152]
 Step 5: Run application
 
-APPLICATION:
-- If you have trouble altering grid setting (UV dimensions, WX dimensions, etc), try altering "gridSettings.tsv" file
-
 */
 
 // Position within array that describes available cameras
@@ -39,6 +37,7 @@ int camera = 0;
 // For example:
 // {1,1,1,1} creates 4 scan grids, each on their own, separately programmed, distorted image
 // {4} creates 4 scan grids, all sharing the same distorted image
+// Max Spec: {20,20,20,20,20,20,20,20,20,20} <-- will probably run terribly, though
 int[] numGridAreas = {1}; // 1 grid for 1 distortion area
 
 // Dimensions of surface being scanned
