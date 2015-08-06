@@ -47,7 +47,7 @@
  *                       - Added Status Update so that user knows the simulation is still updating
  * v1.26: April 13, 2015 - Reconsiled UMI and CitySim
  *                       - Converted all visualizations to nodes (non-nodes reserved for UMI)
- *                       - Resarranged 2D info
+ *                       - Rearranged 2D info
  *                       - simulation can export multiple layers and web output
  *                       - Added faux3D mode for 2D projection Map!!
  *                       - redefined layer modes defined by '0' key
