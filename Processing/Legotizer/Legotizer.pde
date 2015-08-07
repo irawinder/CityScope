@@ -55,9 +55,10 @@
  *                       - fixed table row missing bug
  * v1.28: April 15, 2015 - Improved labels for information display
  * v1.29: August 6, 2015 -  (?) Patched Bug that crashes Legotizer when all pieces removed
+ *                       - Allows automatic saving of projector location and control of projector height
  *                       - Added Barcelona Piece Types.
-                         - Allows node-based rendering of triple-height Lego Units for 4x4 piece-types
- *
+ *                       - Allows node-based rendering of triple-height Lego Units for 4x4 piece-types
+ *    
  * TO DO: 
  * 2. Include Static Structures in Nodes? Or just have simulator reference original "staticStructures.tsv" file?
  */
