@@ -1,11 +1,3 @@
-String[] name = {
-  "CityScope: Kendall",
-  "CityScope: Riyadh",
-  "CityScope: Flinders",
-  "CityScope: Kendall2",
-  "CityScope: Toronto"
-};
-
 String[] metricNames = {
   "MIT Strategic Design Lab",
   "MIT City Science: Walkable Trip Capacity"

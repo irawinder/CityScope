@@ -1,3 +1,13 @@
+int numDemos = 4;
+Table vizModeTSV;
+
+String[] name = {
+  "CityScope: Kendall",
+  "CityScope: Riyadh",
+  "CityScope: Flinders",
+  "CityScope: Barcelona"
+};
+
 void setMode() {
   if (vizMode == 0) {
     kendallMode();
@@ -5,15 +15,28 @@ void setMode() {
     riyadhMode();
   } else if (vizMode == 2) {
     flindersMode();
+  } else if (vizMode == 3) {
+    barcelonaMode();
   }
 } 
 
+void loadMode() {
+  vizModeTSV = loadTable("vizMode.tsv", "header");
+  vizMode = vizModeTSV.getInt(0, "vizMode");
+}
+
+void saveMode() {
+  vizModeTSV.setInt(0, "vizMode", vizMode);
+  saveTable(vizModeTSV, "vizMode.tsv");
+}
+  
 void changeDemo() {
-  if (vizMode < 2) {
+  if (vizMode < numDemos-1) {
     vizMode++;
   } else {
     vizMode = 0;
   }
+  saveMode();
   loading(name[vizMode]);
   vizChange = true;
 }
@@ -43,6 +66,44 @@ void riyadhMode() {
   
   pieceW_LU = 4;
   pieceH_LU = 1; 
+  staticBaseH_LU = 3;  // [LU] number of lego units high for base
+  staticBasePlate = 0; // 0 has thin gray lego baseplate; 1 does have thin gray lego baseplate
+  dynamicBaseH_LU = 3; // [LU] number of lego units high for base
+  calcDimensions();
+  
+  staticH_LU = 1;
+  staticW_LU = 1;
+  
+  useCloud.wipeNodes();
+  updateAllNodes();
+  saveMetaJSON("metadata.json");
+}
+
+void barcelonaMode() {
+  vizMode = 3;
+  loadSite();
+  loadStaticStructures();
+  
+  staticSpacer = 1;        // Plastic Spacer Needed for Static buildings
+  dynamicSpacer = 1;       // Plastic Spacer Needed for Dynamic buildings
+  UMax = 19;
+  VMax = 19;
+  updateBoard();
+  
+  structureMode = 1;
+  useCloud.wipeNodes();
+  setBarcelonaPieces();
+  displaySatellite = false;
+  satMode = 1;
+  drawPlanSat = false;
+  drawPlanStatic = false;
+  displayScoreWeb = true;
+  overrideStatic = true;
+  displayStatic = false;
+  displayDynamic = true;
+  
+  pieceW_LU = 4;
+  pieceH_LU = 3; 
   staticBaseH_LU = 3;  // [LU] number of lego units high for base
   staticBasePlate = 0; // 0 has thin gray lego baseplate; 1 does have thin gray lego baseplate
   dynamicBaseH_LU = 3; // [LU] number of lego units high for base
