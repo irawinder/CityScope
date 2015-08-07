@@ -56,7 +56,9 @@
  * v1.28: April 15, 2015 - Improved labels for information display
  * v1.29: August 6, 2015 -  (?) Patched Bug that crashes Legotizer when all pieces removed
  *                       - Allows automatic saving of projector location and control of projector height
- *
+ *                       - Added Barcelona Piece Types.
+ *                       - Allows node-based rendering of triple-height Lego Units for 4x4 piece-types
+ *    
  * TO DO: 
  * 2. Include Static Structures in Nodes? Or just have simulator reference original "staticStructures.tsv" file?
  */
@@ -121,6 +123,7 @@ void draw() {
     initUDP();                   // Protocol for recieving data from "Colortizer" Script, run separately
     initCam();                   // Initializes Camera Parameters
     
+    loadMode();                  // Checks which demo is default
     initializeNodes();           // Sets up cloud of nodes for visualization and simulation 
     initializeNodesJSON();       // Sets up JSON File structure
     initializeGrid();            // Sets up Static Framework for displaying Dynamic Pieces
@@ -132,7 +135,7 @@ void draw() {
     
     dataLoaded = true;
     
-    riyadhMode();                // Sets First Visualization to Riyadh Demo
+    setMode();                  // Sets First Visualization to Default Demo
     
     loadSolutionJSON(solutionJSON, "testSolutionNodes.json", "scoreNames.tsv", vizMode);
     loadSummary();
@@ -159,6 +162,7 @@ void draw() {
     
     // Reloads textfiles of SDL outputs  
     if (vizMode == 1 && !drawNodes) { //Riyadh Demo Mode
+      
       loadSDLSummary();
       loadSDLData();
     }

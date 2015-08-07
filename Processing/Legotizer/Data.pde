@@ -20,7 +20,6 @@ Table summary;
 int pieceRotation = 1;
 int pieceW_LU = 4;
 int pieceH_LU = 3;
-// Note: in 4x4piece mode, pieceH_LU Mainly controls the hieght of the default tile created when no piece detected. 
 // Keep 3 to keep at same level at 4x4 piece type and static structures
 // Consider changing to 1 if useing 1x1 piece mode and using Lego plates
 
@@ -56,6 +55,9 @@ int flip, random;
 
 // Riyadh Structures for Import (4x4 Piece Type)
 Table P1, R1, R2, R3, C1, C2, C3, ST1, ST2, ST3, M1, M2, M3, M4, M5, M6;
+
+// Barcelona Structures for Import (4x4 Piece Type)
+Table Bar1, Bar2, Bar3, Bar4, Bar5, Bar6, Bar7, Bar8, Bar9, Bar10, Bar11, Bar12, Bar13, Bar14, Bar15, Bar16, Bar17, Bar18, Bar19, Bar20;
 
 // Kendall Structures for Import (4x4 extruded Piece Type)
 Table kendallStructures;
@@ -329,6 +331,8 @@ void init4x4Structures() {
   // 2 = Ground: Park
   // 3 = Building: Live
   // 4 = Building: Work
+  // 5 = Building: Ammenities
+  // 6 = Parking
   // -1 = Open air (allows voids)
   // -2 = Water
   
@@ -351,8 +355,33 @@ void init4x4Structures() {
   R3 = loadTable(legotizer_data + demoPrefix + demos[1] + "4x4structures/R3.tsv");    // 14, R3
   M5 = loadTable(legotizer_data + demoPrefix + demos[1] + "4x4structures/M5.tsv");    // 15, M5
   
+  // The following Typologies were designed for use in Barcelona Demo by Yan (Ryan) at MIT, Zhang August 2015
+  // Translateded into 4x4 Schema by Ira Winder, August 2015
+  Bar1 = loadTable(legotizer_data + demoPrefix + demos[3] + "4x4structures/Bar1.tsv");    // 0, Bar1
+  Bar2 = loadTable(legotizer_data + demoPrefix + demos[3] + "4x4structures/Bar2.tsv");    // 1, Bar2
+  Bar3 = loadTable(legotizer_data + demoPrefix + demos[3] + "4x4structures/Bar3.tsv");    // 2, Bar3
+  Bar4 = loadTable(legotizer_data + demoPrefix + demos[3] + "4x4structures/Bar4.tsv");    // 3, Bar4
+  Bar5 = loadTable(legotizer_data + demoPrefix + demos[3] + "4x4structures/Bar5.tsv");    // 4, Bar5
+  Bar6 = loadTable(legotizer_data + demoPrefix + demos[3] + "4x4structures/Bar6.tsv");    // 5, Bar6
+  Bar7 = loadTable(legotizer_data + demoPrefix + demos[3] + "4x4structures/Bar7.tsv");    // 6, Bar7
+  Bar8 = loadTable(legotizer_data + demoPrefix + demos[3] + "4x4structures/Bar8.tsv");    // 7, Bar8
+  Bar9 = loadTable(legotizer_data + demoPrefix + demos[3] + "4x4structures/Bar9.tsv");    // 8, Bar9
+  Bar10 = loadTable(legotizer_data + demoPrefix + demos[3] + "4x4structures/Bar10.tsv");  // 9, Bar10
+  Bar11 = loadTable(legotizer_data + demoPrefix + demos[3] + "4x4structures/Bar11.tsv");  // 10, Bar1
+  Bar12 = loadTable(legotizer_data + demoPrefix + demos[3] + "4x4structures/Bar12.tsv");  // 11, Bar2
+  Bar13 = loadTable(legotizer_data + demoPrefix + demos[3] + "4x4structures/Bar13.tsv");  // 12, Bar3
+  Bar14 = loadTable(legotizer_data + demoPrefix + demos[3] + "4x4structures/Bar14.tsv");  // 13, Bar4
+  Bar15 = loadTable(legotizer_data + demoPrefix + demos[3] + "4x4structures/Bar15.tsv");  // 14, Bar5
+  Bar16 = loadTable(legotizer_data + demoPrefix + demos[3] + "4x4structures/Bar16.tsv");  // 15, Bar6
+  Bar17 = loadTable(legotizer_data + demoPrefix + demos[3] + "4x4structures/Bar17.tsv");  // 16, Bar7
+  Bar18 = loadTable(legotizer_data + demoPrefix + demos[3] + "4x4structures/Bar18.tsv");  // 17, Bar8
+  Bar19 = loadTable(legotizer_data + demoPrefix + demos[3] + "4x4structures/Bar19.tsv");  // 18, Bar9
+  Bar20 = loadTable(legotizer_data + demoPrefix + demos[3] + "4x4structures/Bar20.tsv");  // 19, Bar10
+  
   if (vizMode == 1) {
     setRiyadhPieces();
+  } else if (vizMode == 3) {
+    setBarcelonaPieces();
   }
   
 }
@@ -376,6 +405,33 @@ void setRiyadhPieces() {
   structures4x4.add(M1);
   structures4x4.add(R3);
   structures4x4.add(M5);
+  
+  NPieces = structures4x4.size();
+}
+
+void setBarcelonaPieces() {
+  
+  structures4x4.clear();
+  structures4x4.add(Bar1);
+  structures4x4.add(Bar2);
+  structures4x4.add(Bar3);
+  structures4x4.add(Bar4);
+  structures4x4.add(Bar5);
+  structures4x4.add(Bar6);
+  structures4x4.add(Bar7);
+  structures4x4.add(Bar8);
+  structures4x4.add(Bar9);
+  structures4x4.add(Bar10);
+  structures4x4.add(Bar11);
+  structures4x4.add(Bar12);
+  structures4x4.add(Bar13);
+  structures4x4.add(Bar14);
+  structures4x4.add(Bar15);
+  structures4x4.add(Bar16);
+  structures4x4.add(Bar17);
+  structures4x4.add(Bar18);
+  structures4x4.add(Bar19);
+  structures4x4.add(Bar20);
   
   NPieces = structures4x4.size();
 }

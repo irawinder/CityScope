@@ -149,6 +149,7 @@ void drawDynamicModel() {
         drawBox(0, 0.0, boxW);
         
       } else { //renders dynamic pieces 
+        
         if (!drawNodes) {
           pRotateY((-codeArray[i][j][1]+pieceRotation)%4*PI/2);
         }
@@ -156,18 +157,23 @@ void drawDynamicModel() {
         if  (siteInfo.getInt(i,j) == 1 || overrideStatic) { //is site
           if (codeArray[i][j][0] >= 0 && codeArray[i][j][0] < NPieces) { //has peice
             if (structureMode == 0) { // 1x1 pieces used
+            
               if (!drawNodes) {
                 draw1x1Structure(i, j);
               } else {
-                draw1x1Nodes(i, j, boxH, boxH);
+                draw1x1Nodes(i, j, pieceH_LU*boxH, 0);
               }
+              
             } else if (structureMode == 1) { // 4x4 pieces used
+            
               if (!drawNodes) {
                 draw4x4Structure(i, j, pieceH_LU*boxH, boxH*(dynamicBaseH_LU-1), LU_W, structures4x4.get(codeArray[i][j][0]));
               } else {
-                draw4x4Nodes(i, j, pieceH_LU*boxH, boxH*(dynamicBaseH_LU-1), LU_W);
+                draw4x4Nodes(i, j, pieceH_LU*boxH, 0, LU_W);
               }
+              
             }
+            
           } else if (siteInfo.getInt(i,j) == 1 || (overrideStatic && !displayStatic) ) { //Has no dicernable Piece
             checkFill(openColor);
             
@@ -177,14 +183,15 @@ void drawDynamicModel() {
               
             } else {
               if (structureMode == 0) { // 1x1 pieces used
-                draw1x1Nodes(i, j, boxH, boxH);
+                draw1x1Nodes(i, j, pieceH_LU*boxH, 0);
               } else if (structureMode == 1) { // 4x4 pieces used
-                draw4x4Nodes(i, j, boxH, boxH*2, LU_W);
+                draw4x4Nodes(i, j, LU_H*pieceH_LU, 0, LU_W);
               }
             }
-              
+            
           }
         }
+        
         if (!drawNodes) {
           pRotateY(-(-codeArray[i][j][1]+pieceRotation)%4*PI/2);
         }
@@ -339,9 +346,9 @@ void draw1x1Nodes(int u, int v, float HT, float offset) {
       }
     }
     
-    pTranslate(0, k*pieceH_LU*LU_H, 0);
+    pTranslate(0, k*pieceH_LU*LU_H+(3*LU_H-HT+(staticBaseH_LU-3)*LU_H), 0);
     drawBox(nodeGap*HT, offset, nodeGap*pieceW_LU*LU_W);
-    pTranslate(0, -k*pieceH_LU*LU_H, 0);
+    pTranslate(0, -k*pieceH_LU*LU_H-(3*LU_H-HT+(staticBaseH_LU-3)*LU_H), 0);
   }
   
 }
@@ -401,9 +408,9 @@ void draw4x4Nodes(int u, int v, float HT, float offset, float buildingWidth) {
             }
           }
           
-          pTranslate(k*LU_W, i*LU_H, j*LU_W);
-          drawBox(nodeGap*pieceH_LU*HT, offset, nodeGap*LU_W);
-          pTranslate(-k*LU_W, -i*LU_H, -j*LU_W);
+          pTranslate(k*LU_W, i*HT+(3*LU_H-HT+(staticBaseH_LU-3)*LU_H), j*LU_W);
+          drawBox(nodeGap*HT, offset, nodeGap*LU_W);
+          pTranslate(-k*LU_W, -i*HT-(3*LU_H-HT+(staticBaseH_LU-3)*LU_H), -j*LU_W);
         }
       }
     }
@@ -592,6 +599,22 @@ void findFill(int u, int v, int value) {
         }
       }
       break;
+    case 5:
+      if (colorMode == 0) { // Ammenity Land Use Mode
+        fill(retailColor);
+      } else if (colorMode == 1) { // Generic Building Form Mode
+        fill(bldgColor);
+      } else if (colorMode == 2) { // Heatmap
+        if (heatMapActive[u][v] == 1) {
+          fill(255*(1 - heatMap[u][v]), 255*heatMap[u][v], 0);
+        } else {
+          fill(lightGray);
+        }
+      }
+      break;
+    case 6:
+      checkFill(lightGray); //Parking Lot
+      break;
   }
 }
 
@@ -632,10 +655,13 @@ void changeScoreWebMode() {
 void toggleNodes() {
   if (drawNodes == false) {
     drawNodes = true;
+    println(drawNodes);
     loadSummary();
   } else {
     drawNodes = false;
-    loadSDLSummary();
+    println(drawNodes);
+    //loadSDLSummary();
+    loadSummary();
   }
 }
 
