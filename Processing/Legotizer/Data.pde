@@ -124,7 +124,7 @@ void initializeGrid() {
 void loadMeasures() {
   LU_dim = 192;                        // number of Lego Units used in average
   dim = 44;                            // number of laser cut grid squares spread out over 192 Lego Units
-  model_W = 160.973;                   // width of 192 LU in cm
+  model_W = 153.432;                   // width of 192 LU in cm
   LU_W = model_W/LU_dim;               //known dimention of 1 "Lego Unit" width in cm
   LU_H = 0.32115;                      //known dimention of 1 "Lego Unit" height in cm
   gridGap = (model_W - dim*4*LU_W)/dim;  // width of plexiglas grid spacer, derived from empirical measurement (above)
