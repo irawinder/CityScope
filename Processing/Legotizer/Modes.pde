@@ -61,7 +61,7 @@ void riyadhMode() {
   drawPlanStatic = false;
   displayScoreWeb = true;
   overrideStatic = true;
-  displayStatic = true;
+  displayStatic = false;
   displayDynamic = true;
   
   pieceW_LU = 4;
