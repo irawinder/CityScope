@@ -27,12 +27,14 @@
  * v1.09: April 29, 2015 - This time JSONObject not found error ACTUALLY fixed
  *                       - Doubled minimum Park requirement for walkSim
  * v1.10: August 6, 2015 - Fixed "JSONArray must start with '['" bug
+ * v1.11: August 10, 2015- Fixed Residential Pop Summary Variable
+ *                       - Export live and work results as separate layers
  *                      
  * TO DO: 
  * 1. Add scores for walkability, jobs rating, worker rating, parks, etc using networks and sampling method
  */
  
-float version = 1.09;
+float version = 1.11;
 
 void setup() {
   size(1080,1080, P3D);
@@ -78,7 +80,11 @@ void draw() {
       
     } else {
       
-      drawScore();
+      if (simMode == 1) {
+        drawScore(walkScoreNames);
+      } else if (simMode == 0) {
+        drawScore(testScoreNames);
+      }
       
     }
   }

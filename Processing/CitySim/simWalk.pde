@@ -1,19 +1,30 @@
 // This set of variables and scripts are used to estimate walkabily of a given configuration of urban space 
    
   String[] walkScoreNames = {
-    "Walkable Employment Access",
-    "Walkable Park Access"
+    "Walkable Access to Jobs and Amenities",
+    "Walkable Access to Housing",
+    "Walkable Access to Open Space"
   }; 
   
   String[] walkWebNames = {
     "Jobs",
-    "Employees",
-    "Parks",
-    "Live",
-    "Work"
+    "Housing",
+    "Open Spc.",
+    "Living",
+    "Working",
+    "#Jobs"
+  };
+  
+  String[] assumptionNames = {
+    "Residential Density [m^2/pp]",
+    "Non-Residential Density [m^2/pp]",
+    "Employment Rate [%]",
+    "Walkable Distance [m]",
+    "Open Space Requirement [m^2]"
   };
   
   Table walkSummary;
+  Table walkAssumptions;
   
   // Simulation Options
   
@@ -70,8 +81,9 @@
     float avgParkChance;
     
     // Population
-    int livePop;
-    int workPop;
+    int livePop; // How many people live here
+    int workPop; // How many people live here who are able to work
+    int jobsPop; // How many Jobs are here
 
   // Temp Values Changed multiple times in each iteration
   int uDist, vDist, zDist;
@@ -93,8 +105,10 @@ void initWalk(int maxU, int maxV, int maxZ, JSONArray points, float wlk_dst, flo
   
   // Live/Work density [m^2/person]
   // NYC Values - Src: http://oldurbanist.blogspot.com/2011/12/living-space-working-space-and.html
-  workDensity = 1.5*21.0;
-  liveDensity = 1.5*66.0*employmentRate;
+  // Let's assume people in our City need 150% more space than a NYC'r (coefficient of 1.5)
+
+  workDensity = 1.5*20.7;
+  liveDensity = 1.5*66.3*employmentRate;
   
   //Containment Rate (fraction of people willing to work in site)
   containmentRate = 1.0;
@@ -127,8 +141,17 @@ void initWalk(int maxU, int maxV, int maxZ, JSONArray points, float wlk_dst, flo
   walkSummary.addColumn(walkWebNames[2], Table.FLOAT);
   walkSummary.addColumn(walkWebNames[3], Table.INT);
   walkSummary.addColumn(walkWebNames[4], Table.INT);
-  
+  walkSummary.addColumn(walkWebNames[5], Table.INT);
   walkSummary.addRow();
+  
+  walkAssumptions = new Table();
+  walkAssumptions.addColumn(assumptionNames[0], Table.FLOAT);
+  walkAssumptions.addColumn(assumptionNames[1], Table.FLOAT);
+  walkAssumptions.addColumn(assumptionNames[2], Table.FLOAT);
+  walkAssumptions.addColumn(assumptionNames[3], Table.FLOAT);
+  walkAssumptions.addColumn(assumptionNames[4], Table.FLOAT);
+  walkAssumptions.addRow();
+  
   
   for (int i=0; i<numSamples; i++) {
     solveWalk(nodesJSON, walkDistance, employmentRate, householdSize, containmentRate);   
@@ -196,7 +219,6 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
     try {
       pt = points.getJSONObject(i); 
     } catch(RuntimeException e){
-      println("derp derp crash 10");
       pt = points.getJSONObject(0);  
     }
     
@@ -224,7 +246,6 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
       try{
         pt2 = points.getJSONObject(int(random( points.size() - 1 )));
       } catch(RuntimeException e){
-        println("derp derp crash");
         pt2 = points.getJSONObject(0);  
       }
       
@@ -257,8 +278,9 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
   parkArea *= nodeArea;
   
   // Determines Populations
-  livePop = int(liveArea/liveDensity*employmentRate);
-  workPop = int(workArea/workDensity);
+  livePop = int(liveArea/liveDensity/employmentRate);
+  workPop = int(liveArea/liveDensity);
+  jobsPop = int(workArea/workDensity);
   
   // Aggregates multiple samples of nodes Access into a single, normalized array
   for (int i=0; i<nodesU; i++) {
@@ -309,7 +331,6 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
     try {
       pt = points.getJSONObject(i); 
     } catch(RuntimeException e){
-      println("derp derp crash 2");
       pt = points.getJSONObject(0);  
     }
     
@@ -334,7 +355,6 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
         try {
           pt2 = points.getJSONObject(int(random( points.size() - 1 )));
         } catch(RuntimeException e){
-          println("derp derp crash 3");
           pt2 = points.getJSONObject(0);  
         }
         
@@ -403,7 +423,6 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
     try {
       pt = points.getJSONObject(i); 
     } catch(RuntimeException e){
-      println("derp derp crash 4");
       pt = points.getJSONObject(0);  
     }
     
@@ -481,7 +500,6 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
       try {
         pt = points.getJSONObject(i); 
       } catch(RuntimeException e){
-        println("derp derp crash 5");
         pt = points.getJSONObject(0);  
       }
       
@@ -500,12 +518,25 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
       //solution.setFloat("workAccess", workAccess[u][v][z][0]);
       //solution.setFloat("parkAccess", parkAccess[u][v][z][0]);
       
-      solution.setFloat(walkScoreNames[0], jobChance[u][v][z][0]);
-      if (pt.getInt("use") == 2) {
+      if (pt.getInt("use") == 4) {
+        solution.setFloat(walkScoreNames[0], -1);
+      } else {
+        solution.setFloat(walkScoreNames[0], jobChance[u][v][z][0]);
+      }
+        
+      if (pt.getInt("use") == 3) {
         solution.setFloat(walkScoreNames[1], -1);
       } else {
-        solution.setFloat(walkScoreNames[1], float(parkAccess[u][v][z][0])/parkMin);
+        solution.setFloat(walkScoreNames[1], jobChance[u][v][z][0]);
       }
+      
+      if (pt.getInt("use") == 2) {
+        solution.setFloat(walkScoreNames[2], -1);
+      } else {
+        solution.setFloat(walkScoreNames[2], float(parkAccess[u][v][z][0])/parkMin);
+      }
+      
+      
       
       // Placeholder for "score" read by Legotizer
 //      if (pt.getInt("use") == 3) {
@@ -522,7 +553,15 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
     walkSummary.setFloat(0, walkWebNames[2], avgParkChance);
     walkSummary.setInt(0, walkWebNames[3], livePop);
     walkSummary.setInt(0, walkWebNames[4], workPop);
-  
+    walkSummary.setInt(0, walkWebNames[5], jobsPop);
+    
+    walkAssumptions.setFloat(0, assumptionNames[0], liveDensity);
+    walkAssumptions.setFloat(0, assumptionNames[1], workDensity);
+    walkAssumptions.setFloat(0, assumptionNames[2], employmentRate*100);
+    walkAssumptions.setFloat(0, assumptionNames[3], walkDistance);
+    walkAssumptions.setFloat(0, assumptionNames[4], parkMin);
+    
+    
 } //end solveWalk method
 
 

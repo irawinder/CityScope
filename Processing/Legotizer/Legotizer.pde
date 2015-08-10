@@ -58,14 +58,17 @@
  *                       - Allows automatic saving of projector location and control of projector height
  *                       - Added Barcelona Piece Types.
  *                       - Allows node-based rendering of triple-height Lego Units for 4x4 piece-types
- *    
+ * v1.30: August 10, 2015- Allow 3 separate Heatmaps for Housing, Jobs, OpenSpace
+ *                       - Display Assumptions, split working population from total residential population, highlight selected heatmap on score web
+ * 
  * TO DO: 
+ * 1. Uniquely color each Heatmap and/or change description to be more intuitive?
  * 2. Include Static Structures in Nodes? Or just have simulator reference original "staticStructures.tsv" file?
  */
 
 
 
-float version = 1.29;
+float version = 1.30;
 
 
 
@@ -139,6 +142,7 @@ void draw() {
     
     loadSolutionJSON(solutionJSON, "testSolutionNodes.json", "scoreNames.tsv", vizMode);
     loadSummary();
+    loadAssumptions();
     
     //Opens Projection-Mapping Canvas
     toggle2DProjection();
@@ -217,6 +221,7 @@ void draw() {
         //  calcStats();
         //  drawStats();
         //}
+      
       } 
     }
   }

@@ -6,7 +6,7 @@ void drawNode(int u, int v) {
 }
 
 // Draws single layer of OUTPUT nodes at layer "zee"
-void drawScore() {
+void drawScore(String[] scoreNames) {
   noStroke();
       
   for (int i = 0; i < solutionJSON.size(); i++) {
@@ -15,13 +15,12 @@ void drawScore() {
     try {
       node = solutionJSON.getJSONObject(i); 
     } catch(RuntimeException e){
-      println("derp derp crash 6");
       node = solutionJSON.getJSONObject(0);  
     }
     
     if (node.getInt("z") == zee) {
       // draws a layer of the node data set, color-coded to use
-      heatFill(node.getFloat(walkScoreNames[0]));
+      heatFill(node.getFloat(scoreNames[0]));
       drawNode(node.getInt("v"), node.getInt("u"));
     }
   }
@@ -37,7 +36,6 @@ void drawUses() {
    try {
      node = nodesJSON.getJSONObject(i); 
    } catch(RuntimeException e){
-     println("derp derp crash 7");
      node = nodesJSON.getJSONObject(0);  
    }
    

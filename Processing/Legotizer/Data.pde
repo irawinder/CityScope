@@ -15,6 +15,7 @@ boolean changeDetected = false;
 //Simulation Stats imported from CitySim
 String heatMapName;
 Table summary;
+Table assumptions;
 
 // Default Piece dimensions
 int pieceRotation = 1;
@@ -490,9 +491,11 @@ void loadSummary() {
   
   summary = loadTable(legotizer_data + demoPrefix + demos[vizMode] + "summary.tsv");
   
-  live = summary.getInt(1,3);
-  work = summary.getInt(1,4);
+  living = summary.getInt(1,3);
+  working = summary.getInt(1,4);
+  jobs = summary.getInt(1,5);
   
+  summary.removeColumn(5);
   summary.removeColumn(4);
   summary.removeColumn(3);
   
@@ -507,6 +510,10 @@ void loadSummary() {
   }
   
   avgScore /= webScores.size();
+}
+
+void loadAssumptions() {
+  assumptions = loadTable(legotizer_data + demoPrefix + demos[vizMode] + "assumptions.tsv");
 }
 
 void initializeHeatMap() {

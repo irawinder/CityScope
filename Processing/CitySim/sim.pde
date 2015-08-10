@@ -40,6 +40,7 @@ void runSimulation(int viz) {
       solveWalk(nodesJSON, walkDistance, employmentRate, householdSize, containmentRate);
       saveScoreNames(walkScoreNames, "scoreNames.tsv", viz);
       saveSummary(walkSummary, "summary.tsv", viz);
+      saveAssumptions(walkAssumptions, "assumptions.tsv", viz);
       break;
   }
   
@@ -62,6 +63,11 @@ void saveSummary(Table summary, String filename, int viz) {
   println("Summary saved to " + legotizer_data + demoPrefix + demos[viz] + filename);
 }
 
+void saveAssumptions(Table assumptions, String filename, int viz) {
+  saveTable(assumptions, legotizer_data + demoPrefix + demos[viz] + filename);
+  println("Assumptions saved to " + legotizer_data + demoPrefix + demos[viz] + filename);
+}
+  
 // Helper method that wipes a JSON array of all elements
 void clearJSONArray(JSONArray json) {
  while (json.size() > 0) { 

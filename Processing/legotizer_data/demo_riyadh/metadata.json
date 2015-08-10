@@ -2,9 +2,9 @@
   "nodesV": 64,
   "staticH_LU": 1,
   "nodesU": 64,
-  "avgDynNodeW": 21.818180084228516,
+  "avgDynNodeW": 21.81818199157715,
   "pieceH_LU": 1,
-  "dynNodeH": 7.661011695861816,
+  "dynNodeH": 8.037541389465332,
   "scaler": 20,
   "dynamicSpacer": 1,
   "pieceW_LU": 4,
@@ -17,5 +17,5 @@
   "longitude": 0,
   "latitude": 0,
   "staticSpacer": 1,
-  "spacerW": 7.272724628448486
+  "spacerW": 7.272732734680176
 }

@@ -53,7 +53,6 @@ void loadInput(String filename, int viz) {
     try {
       node = nodesJSON.getJSONObject(i);
     } catch(RuntimeException e){
-      println("derp derp crash 8");
       node = nodesJSON.getJSONObject(0);  
     }
     
