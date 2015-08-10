@@ -50,7 +50,7 @@ void drawInfo() {
     fill(#666666);
     text("MIT City Science", 0, 48);
   } else if (colorMode == 2) {
-    text(heatMapName + " Heatmap", 0, 0);
+    text(heatMapName, 0, 0);
     fill(#666666);
     if (drawNodes) {
       text(metricNames[1], 0, 48);
@@ -63,23 +63,44 @@ void drawInfo() {
     text("Walkable Access", .8*width-60, 48);
   }
   
+  translate(0,-200);
+  textAlign(LEFT);
+  textFont(font12, 12);
+  fill(#CCCCCC);
+  text("Assumptions",0, 0);
+  fill(#999999);
+  for (int i = 0; i < assumptions.getColumnCount(); i++) {
+    text(assumptions.getString(0, i) + ": " + (float)int(assumptions.getFloat(1, i)*10)/10, 0, 20 + i*15);
+  }
+  
+  translate(0,200);
+  
   translate(-width/8, -(height-150));
   
-  textAlign(RIGHT);
+  textAlign(LEFT);
   textFont(font24, 24);
   
-  translate(width-60, 100);
+  translate(width-100, 100);
   
+  fill(residentialColor, 200);
+  text("Residential Pop.", 0, 40);
+  fill(#CCCCCC);
+  text(living + " ppl", 0, 70);
+  
+  translate(20, 0);
   fill(residentialColor);
-  text("Live Population", 0, 40);
+  text("Working Pop.", 0, 120);
   fill(#CCCCCC);
-  text(live + " ppl", 0, 70);
+  text(working + " ppl", 0, 150);
   fill(officeColor);
-  text("Work Population", 0, 120);
+  text("# Jobs", 0, 200);
   fill(#CCCCCC);
-  text(work + " ppl", 0, 150);
+  text(jobs + " ppl", 0, 230);
+  translate(-20, 0);
   
   translate(-(width-60), -100);
+  
+  
 }
 
 void loading(String item) {

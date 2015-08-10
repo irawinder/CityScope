@@ -149,6 +149,7 @@ void loadCamera() {
 void cam2D() {
   camera();
   perspective();
+  lights();
 }
 
 // Visualization may be rendered using various types of cameras

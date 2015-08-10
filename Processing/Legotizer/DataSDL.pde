@@ -35,8 +35,8 @@ void loadSDLSummary() {
     //println("Dummy data loaded from sketchPath(../legotizer_data/demo_riyadh/SDL_summary.tsv)");
   }
   
-  live = SDL_summary.getInt(1,3);
-  work = SDL_summary.getInt(1,4);
+  living = SDL_summary.getInt(1,3);
+  jobs = SDL_summary.getInt(1,4);
   
   SDL_summary.removeColumn(4);
   SDL_summary.removeColumn(3);

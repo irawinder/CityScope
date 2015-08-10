@@ -714,6 +714,9 @@ void toggleColorMode() {
       drawNodes = true;
       nodeMode = 0;
       colorMode = 1;
+      
+      println("ColorMode = " + colorMode);
+      
       break;
     case 1:
       colorMode = 2;
@@ -721,16 +724,23 @@ void toggleColorMode() {
       drawNodes = true;
       scoreIndex = 0;
       heatMapName = scoreNames[scoreIndex];
+      hilite++;
       
       //same as key command '='
       changeDetected = true;
       simCounter = simTime;
       saveMetaJSON("metadata.json");
       checkSendNodesJSON("user");
+      
+      
+      
+      println("ColorMode = " + colorMode);
+      
       break;
     case 2:
       if (scoreIndex < scoreNames.length-1) {
         scoreIndex++;
+        hilite++;
         heatMapName = scoreNames[scoreIndex];
         
         //same as key command '='
@@ -738,10 +748,17 @@ void toggleColorMode() {
         simCounter = simTime;
         saveMetaJSON("metadata.json");
         checkSendNodesJSON("user");
+        
+        println("ColorMode = " + colorMode);
+        
       } else {
         drawNodes = true;
         nodeMode = 0;
         colorMode = 0;
+        hilite = -1;
+        
+        println("ColorMode = " + colorMode);
+        
       }
       break;
   }

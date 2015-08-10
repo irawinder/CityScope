@@ -1,4 +1,9 @@
 // This simulation merely tests our ability to set and display a score gradient along the z axis.
+
+String[] testScoreNames = {
+  "score"
+}; 
+
 void solveTest(JSONArray points) {
   
   clearJSONArray(solutionJSON);
@@ -11,7 +16,6 @@ void solveTest(JSONArray points) {
     try {
       pt = points.getJSONObject(i);
     } catch(RuntimeException e){
-      println("derp derp crash 9");
       pt = points.getJSONObject(0);  
     }
     

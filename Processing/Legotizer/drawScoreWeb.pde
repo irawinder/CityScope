@@ -2,9 +2,11 @@ boolean displayScoreWeb = true;
 
 int webMode = 1; // 0=teal(static);  1 = average score fill; 2 = score cluster fill
 
+int hilite = -1;
+
 PGraphics scoreWeb;
 
-int live, work;
+int living, working, jobs;
 
 ArrayList<Float> webScores;
 ArrayList<String> webNames;
@@ -47,13 +49,20 @@ void generateScoreWeb(int x, int y, int d, ArrayList<String> sNames, ArrayList<F
     scoreWeb.rotate(rot);
     for (int i=0; i<nWeb; i++) {
       //Draw Labels
-      scoreWeb.fill(#666666);
+      if (hilite == i) {
+        scoreWeb.fill(#CCCCCC);
+      } else {
+        scoreWeb.fill(#666666);
+      }
+      
       scoreWeb.textFont(font48, 48);
       
       if (PI/2 < (2*PI*i/nWeb+rot) && (2*PI*i/nWeb+rot) < 3*PI/2) { //Flips text upside down
         scoreWeb.rotate(PI);
         scoreWeb.textAlign(RIGHT);
+
         scoreWeb.text(sNames.get(i), - d - 48, 0.4*48);
+        
         scoreWeb.textAlign(LEFT);
         scoreWeb.rotate(-PI);
       } else {
