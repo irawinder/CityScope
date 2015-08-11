@@ -408,9 +408,9 @@ void draw4x4Nodes(int u, int v, float HT, float offset, float buildingWidth) {
             }
           }
           
-          pTranslate(k*LU_W, i*HT+(3*LU_H-HT+(staticBaseH_LU-3)*LU_H), j*LU_W);
+          pTranslate(j*LU_W, i*HT+(3*LU_H-HT+(staticBaseH_LU-3)*LU_H), k*LU_W);
           drawBox(nodeGap*HT, offset, nodeGap*LU_W);
-          pTranslate(-k*LU_W, -i*HT-(3*LU_H-HT+(staticBaseH_LU-3)*LU_H), -j*LU_W);
+          pTranslate(-j*LU_W, -i*HT-(3*LU_H-HT+(staticBaseH_LU-3)*LU_H), -k*LU_W);
         }
       }
     }

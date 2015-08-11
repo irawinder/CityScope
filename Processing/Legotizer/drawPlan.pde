@@ -31,7 +31,7 @@ void initializePlan() {
 
 void drawPlan(int x, int y, int w, int h) {
   plan.beginDraw();
-  plan.colorMode(HSB);
+  //plan.colorMode(HSB);
   plan.background(0);
   plan.noStroke();
   
@@ -347,7 +347,7 @@ void drawPlan4x4Nodes(int i, int j, int k) {
                 }
               }
               
-              lRect(u*LU_W+dU, v*LU_W+dV, LU_W, LU_W);
+              lRect(v*LU_W+dU, u*LU_W+dV, LU_W, LU_W);
             }
           
           } // end for v

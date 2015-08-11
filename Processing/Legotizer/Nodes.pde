@@ -79,19 +79,19 @@ public class Nodes {
       for (int j=0; j<LU; j++) {
         if ((4 - rot + pieceRotation)%4 == 0) {
           for (int k=0; k<type.getColumnCount()/4; k++) {
-            nodes[LU*u + i][LU*v + j][k] = type.getInt(j, k*4+i);
-          }
-        } else if ((4 - rot + pieceRotation)%4 == 1) {
-          for (int k=0; k<type.getColumnCount()/4; k++) {
-            nodes[LU*u + (LU-1-j)][LU*v + i][k] = type.getInt(j, k*4+i);
-          }
-        } else if ((4 - rot + pieceRotation)%4 == 2) {
-          for (int k=0; k<type.getColumnCount()/4; k++) {
-            nodes[LU*u + (LU-1-i)][LU*v + (LU-1-j)][k] = type.getInt(j, k*4+i);
+            nodes[LU*u + i][LU*v + j][k] = type.getInt(i, k*4+j);
           }
         } else if ((4 - rot + pieceRotation)%4 == 3) {
           for (int k=0; k<type.getColumnCount()/4; k++) {
-            nodes[LU*u + j][LU*v + (LU-1-i)][k] = type.getInt(j, k*4+i);
+            nodes[LU*u + (LU-1-j)][LU*v + i][k] = type.getInt(i, k*4+j);
+          }
+        } else if ((4 - rot + pieceRotation)%4 == 2) {
+          for (int k=0; k<type.getColumnCount()/4; k++) {
+            nodes[LU*u + (LU-1-i)][LU*v + (LU-1-j)][k] = type.getInt(i, k*4+j);
+          }
+        } else if ((4 - rot + pieceRotation)%4 == 1) {
+          for (int k=0; k<type.getColumnCount()/4; k++) {
+            nodes[LU*u + j][LU*v + (LU-1-i)][k] = type.getInt(i, k*4+j);
           }
         }
       }
