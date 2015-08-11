@@ -31,6 +31,7 @@ void initializePlan() {
 
 void drawPlan(int x, int y, int w, int h) {
   plan.beginDraw();
+  plan.colorMode(HSB);
   plan.background(0);
   plan.noStroke();
   

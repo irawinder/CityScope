@@ -30,6 +30,9 @@ void keyPressed() {
     case 'o': 
       toggleColorMode();
       break;
+    case ' ':
+      toggleColorMode();
+      break;
     case 'm': 
       changeDisplayMode();
       break;
