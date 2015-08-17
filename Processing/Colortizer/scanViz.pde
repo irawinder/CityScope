@@ -11,6 +11,7 @@
   boolean locked = false;
   boolean dragged = false;
   boolean hover = false;
+  boolean allowDrag = false;
   
   int colorMode = 0; // '0' is false color based on random hues; '1' is approximate RGBHSB color
   int baseindex = 0; // Number describing which reference color is selected.
@@ -158,9 +159,11 @@ public void scanDisplay() {
   drawReferenceColors();
   translate(-(imgW+margLeft+margInputs), -(margTop+marg));
   
-  // Draws status of IDs supported
+  // Draws status of IDs supported, gridLocked status, and UMI client state
   translate(imgW+margLeft+margInputs, margTop+imgH);
   drawIDMode(scanGrid[numGAforLoop[imageIndex] + gridIndex].IDMode);
+  drawGridLock();
+  drawUMIStatus();
   translate(-(imgW+margLeft+margInputs), -(margTop+imgH));
   
   translate(0, margBottom);
@@ -179,6 +182,8 @@ public void printTitle() {
   text("Ira Winder, MIT Media Lab", 0, 4*tsize);
   text("Applet for gridded, programmable color detection", 0, 7*tsize);
   
+  text("Press '`' to connect/disconnect UMI Server", 0, 9.5*tsize);
+  text("Press 'G' to lock/unlock grid editing", 0, 11*tsize);
   text("Press 'R' to change ID support (0, 8, 16, or 24 IDs)", 0, 12.5*tsize);
   translate(-margLeft, 0);
 }
@@ -432,6 +437,20 @@ void drawReferenceColors() {
   strokeWeight(2);
   stroke(#FFFF00);
   rect(20, baseindex*24, 12, 12);
+}
+
+void drawUMIStatus() {
+  fill(#FFFFFF);
+  textAlign(LEFT);
+  text("UMI Connection = " + useUMI + ". If true, establishes server connection to UMI Client.",
+  24+scanGrid[numGAforLoop[imageIndex] + gridIndex].getQuadWidth()+10, -4.5*tsize);
+}
+
+void drawGridLock() {
+  fill(#FFFFFF);
+  textAlign(LEFT);
+  text("Grid editing = " + allowDrag + ". If true, clicking and dragging to resize grid is enabled.",
+  24+scanGrid[numGAforLoop[imageIndex] + gridIndex].getQuadWidth()+10, -3.0*tsize);
 }
 
 void drawIDMode(int IDMode) {
@@ -715,6 +734,21 @@ void keyPressed() {
       scanDelay = delay;
       nudgeBase(1);
       break;
+    case 'g':
+      if(allowDrag) {
+        allowDrag = false;
+      } else {
+        allowDrag = true;
+      }
+      break;
+    case '`':
+      if(useUMI) {
+        useUMI = false;
+      } else {
+        useUMI = true;
+        initServer();
+      }
+      break;
     case '1':
       if (writer != null) { writer.println("resimulate"); }
       break;
@@ -801,43 +835,49 @@ void mouseClicked() {
 }
 
 void mousePressed() {
-  if(hover) { // If inside scanGrid area is selected, drags grid
-    locked = true; 
-    img = true;
-    xOffset = mouseX - XToMouse(gridLocations.getInt(imageIndex, 0 + gridIndex*4)); 
-    yOffset = mouseY - YToMouse(gridLocations.getInt(imageIndex, 1 + gridIndex*4));
-  } else { // If outside of scanGrid is selected, resets size and location of grid according to click and drag
-    dragged = true;
-    xClick = MouseToX(mouseX);
-    yClick = MouseToY(mouseY);
+  if(allowDrag) {
+    if(hover) { // If inside scanGrid area is selected, drags grid
+      locked = true; 
+      img = true;
+      xOffset = mouseX - XToMouse(gridLocations.getInt(imageIndex, 0 + gridIndex*4)); 
+      yOffset = mouseY - YToMouse(gridLocations.getInt(imageIndex, 1 + gridIndex*4));
+    } else { // If outside of scanGrid is selected, resets size and location of grid according to click and drag
+      dragged = true;
+      xClick = MouseToX(mouseX);
+      yClick = MouseToY(mouseY);
+    }
   }
 }
 
 void mouseDragged() {
-  if(locked) {
-    gridLocations.setInt(imageIndex, 0 + gridIndex*4, MouseToX(mouseX - xOffset));
-    gridLocations.setInt(imageIndex, 1 + gridIndex*4, MouseToY(mouseY - yOffset));
-  } else {  
-    xDrag = MouseToX(mouseX) - xClick;
-    yDrag = MouseToY(mouseY) - yClick; 
-    if (xDrag <= 0) {
-      xDrag = 1;
-    }
-    if (yDrag <= 0) {
-      yDrag = 1;
-    }  
-    gridLocations.setInt(imageIndex, 0 + gridIndex*4, xClick); 
-    gridLocations.setInt(imageIndex, 1 + gridIndex*4, yClick);
-    gridLocations.setInt(imageIndex, 2 + gridIndex*4, xDrag); 
-    gridLocations.setInt(imageIndex, 3 + gridIndex*4, yDrag);
-  } 
-  scanGrid[numGAforLoop[imageIndex] + gridIndex].updatePosition(getLocation(imageIndex, gridIndex));
+  if(allowDrag) {
+    if(locked) {
+      gridLocations.setInt(imageIndex, 0 + gridIndex*4, MouseToX(mouseX - xOffset));
+      gridLocations.setInt(imageIndex, 1 + gridIndex*4, MouseToY(mouseY - yOffset));
+    } else {  
+      xDrag = MouseToX(mouseX) - xClick;
+      yDrag = MouseToY(mouseY) - yClick; 
+      if (xDrag <= 0) {
+        xDrag = 1;
+      }
+      if (yDrag <= 0) {
+        yDrag = 1;
+      }  
+      gridLocations.setInt(imageIndex, 0 + gridIndex*4, xClick); 
+      gridLocations.setInt(imageIndex, 1 + gridIndex*4, yClick);
+      gridLocations.setInt(imageIndex, 2 + gridIndex*4, xDrag); 
+      gridLocations.setInt(imageIndex, 3 + gridIndex*4, yDrag);
+    } 
+    scanGrid[numGAforLoop[imageIndex] + gridIndex].updatePosition(getLocation(imageIndex, gridIndex));
+  }
 }
 
 void mouseReleased() {
-  locked = false;
-  dragged = false;
-  img = false;
-  scanGrid[numGAforLoop[imageIndex] + gridIndex].updatePosition(getLocation(imageIndex, gridIndex));
+  if(allowDrag) {
+    locked = false;
+    dragged = false;
+    img = false;
+    scanGrid[numGAforLoop[imageIndex] + gridIndex].updatePosition(getLocation(imageIndex, gridIndex));
+  }
 }
 
