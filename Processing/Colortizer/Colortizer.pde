@@ -18,6 +18,7 @@ String version = "Colortizer, V4.0";
 // - August 4, 2015: IW - Add 8 More Tag Definitions, for a total of 24.
 // - August 5, 2015: IW - Made Extra Tag Definitions easy to turn on/off (i.e. constrain to 8, 16 or 24 IDs only)
 // - August 5, 2015: IW - Can save/load number of tag definitions to use, and displays state at bottom of screen
+// - August 16, 2015:IW - Added UI for locking click-and-drag Grid edits and for turning UMI client on/off 
 /*
 
 SETUP:
@@ -47,7 +48,7 @@ int vizHeight = int(vizWidth/vizRatio);
 
 void setup() {
   size(vizWidth*2+500, vizHeight*2, P2D);
-  setupScan(); //Loads all Scan Objects (coordinates, reference colors, and conf>iguration) into memory with initial conditions and starts camera
+  setupScan(); //Loads all Scan Objects (coordinates, reference colors, and configuration) into memory with initial conditions and starts camera
   
   if (useUMI) {
     // Initiation of "UMIClient" Tab Items
