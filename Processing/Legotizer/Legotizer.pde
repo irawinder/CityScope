@@ -60,6 +60,7 @@
  *                       - Allows node-based rendering of triple-height Lego Units for 4x4 piece-types
  * v1.30: August 10, 2015- Allow 3 separate Heatmaps for Housing, Jobs, OpenSpace
  *                       - Display Assumptions, split working population from total residential population, highlight selected heatmap on score web
+ * v1.31: August 27, 2015- Allow view of 3D model from 4 additional, orthogonal angles
  * 
  * TO DO: 
  * 1. Uniquely color each Heatmap and/or change description to be more intuitive?
@@ -68,7 +69,7 @@
 
 
 
-float version = 1.30;
+float version = 1.31;
 
 
 

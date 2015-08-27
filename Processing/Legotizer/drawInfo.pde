@@ -1,6 +1,6 @@
 String[] metricNames = {
   "MIT Strategic Design Lab",
-  "MIT City Science: Walkable Trip Capacity"
+  "MIT City Science"
 };
 
 void drawInfo() {
@@ -35,7 +35,7 @@ void drawInfo() {
     
   }
   
-  textFont(font48, 36);
+  textFont(font24, 24);
   fill(#CCCCCC);
   textAlign(LEFT);
   

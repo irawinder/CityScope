@@ -1,7 +1,7 @@
 // Camera Settings //
 
 int camMode = 0; //0 is normal cam, 1 is openGL cam
-int camRotation = 3; // 0,1,2, or 3 that describes ortho rotation
+int camRotation = 4; // 0,1,2,3,4,5,6, or 7 that describes ortho rotation
 
 void initCam() {
   initializeNormalCam();
@@ -60,6 +60,26 @@ void normalCam(float standardU, float standardV) {
     noLights();
     pointLight(lightA,lightA,lightA, (0.5-eye)*standard, eye*standard, (0.5-eye)*standard);
     pointLight(lightB,lightB,lightB, (0.5+eye)*standard, eye*standard, (0.5+eye)*standard);
+  } else if (camRotation == 4) {
+    camera((0.5+eye)*standard, (0.5+eye)*standard, (eye)*standard/2, 0.5*standardU, 0, 0.5*standardV, 0, -1, 0);
+    noLights();
+    pointLight(lightA,lightA,lightA, (eye)*standard, eye*standard, (0.5-eye)*standard);
+    pointLight(lightB,lightB,lightB, (0.5-eye)*standard, eye*standard, (0.5+eye)*standard);
+  } else if (camRotation == 5) {
+    camera((eye)*standard/2, (0.5+eye)*standard, (0.5+eye)*standard, 0.5*standardU, 0, 0.5*standardV, 0, -1, 0);
+    noLights();
+    pointLight(lightA,lightA,lightA, (eye)*standard, eye*standard, (0.5-eye)*standard);
+    pointLight(lightB,lightB,lightB, (0.5-eye)*standard, eye*standard, (0.5+eye)*standard);
+  } else if (camRotation == 6) {
+    camera((0.5-eye)*standard, (0.5+eye)*standard, (eye)*standard/2, 0.5*standardU, 0, 0.5*standardV, 0, -1, 0);
+    noLights();
+    pointLight(lightA,lightA,lightA, (eye)*standard, eye*standard, (0.5-eye)*standard);
+    pointLight(lightB,lightB,lightB, (0.5-eye)*standard, eye*standard, (0.5+eye)*standard);
+  } else if (camRotation == 7) {
+    camera((eye)*standard/2, (0.5+eye)*standard, (0.5-eye)*standard, 0.5*standardU, 0, 0.5*standardV, 0, -1, 0);
+    noLights();
+    pointLight(lightA,lightA,lightA, (eye)*standard, eye*standard, (0.5-eye)*standard);
+    pointLight(lightB,lightB,lightB, (0.5-eye)*standard, eye*standard, (0.5+eye)*standard);
   }
   
   // Sets "Field of View" and "Aspect Ratio"
@@ -183,7 +203,7 @@ void screenMode() {
 }
 
 void rotateCamera() {
-  if (camRotation < 3) {
+  if (camRotation < 7) {
     camRotation ++;
   } else {
     camRotation = 0;
