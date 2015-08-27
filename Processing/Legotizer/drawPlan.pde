@@ -4,7 +4,7 @@ PImage planImage;
 PImage plan3DImage;
 
 float planScaler = .5; //fraction of canvas width to make planGraphic
-boolean drawPlan = true;
+boolean drawPlan = false;
 boolean drawPlanSat = true;
 boolean drawPlanStatic = false;
 

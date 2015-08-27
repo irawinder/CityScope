@@ -61,25 +61,25 @@ void normalCam(float standardU, float standardV) {
     pointLight(lightA,lightA,lightA, (0.5-eye)*standard, eye*standard, (0.5-eye)*standard);
     pointLight(lightB,lightB,lightB, (0.5+eye)*standard, eye*standard, (0.5+eye)*standard);
   } else if (camRotation == 4) {
-    camera((0.5+eye)*standard, (0.5+eye)*standard, (eye)*standard/2, 0.5*standardU, 0, 0.5*standardV, 0, -1, 0);
+    camera((0.5+eye)*standard, (0.5+eye)*standard, (eye)*standard/2, 0.65*standardU, 0, 0.5*standardV, 0, -1, 0);
     noLights();
-    pointLight(lightA,lightA,lightA, (eye)*standard, eye*standard, (0.5-eye)*standard);
-    pointLight(lightB,lightB,lightB, (0.5-eye)*standard, eye*standard, (0.5+eye)*standard);
+    pointLight(lightA,lightA,lightA, (eye)*standard/2, (0.5+eye)*standard, (0.5+eye)*standard);
+    pointLight(lightB,lightB,lightB, (eye)*standard/2, (0.5+eye)*standard, (0.5-eye)*standard);
   } else if (camRotation == 5) {
-    camera((eye)*standard/2, (0.5+eye)*standard, (0.5+eye)*standard, 0.5*standardU, 0, 0.5*standardV, 0, -1, 0);
+    camera((eye)*standard/2, (0.5+eye)*standard, (0.5+eye)*standard, 0.5*standardU, 0, 0.65*standardV, 0, -1, 0);
     noLights();
-    pointLight(lightA,lightA,lightA, (eye)*standard, eye*standard, (0.5-eye)*standard);
-    pointLight(lightB,lightB,lightB, (0.5-eye)*standard, eye*standard, (0.5+eye)*standard);
+    pointLight(lightA,lightA,lightA, (0.5+eye)*standard, (0.5+eye)*standard, (eye)*standard/2);
+    pointLight(lightB,lightB,lightB, (0.5-eye)*standard, (0.5+eye)*standard, (eye)*standard/2);
   } else if (camRotation == 6) {
-    camera((0.5-eye)*standard, (0.5+eye)*standard, (eye)*standard/2, 0.5*standardU, 0, 0.5*standardV, 0, -1, 0);
+    camera((0.5-eye)*standard, (0.5+eye)*standard, (eye)*standard/2, 0.35*standardU, 0, 0.5*standardV, 0, -1, 0);
     noLights();
-    pointLight(lightA,lightA,lightA, (eye)*standard, eye*standard, (0.5-eye)*standard);
-    pointLight(lightB,lightB,lightB, (0.5-eye)*standard, eye*standard, (0.5+eye)*standard);
+    pointLight(lightA,lightA,lightA, (eye)*standard/2, (0.5+eye)*standard, (0.5+eye)*standard);
+    pointLight(lightB,lightB,lightB, (eye)*standard/2, (0.5+eye)*standard, (0.5-eye)*standard);
   } else if (camRotation == 7) {
-    camera((eye)*standard/2, (0.5+eye)*standard, (0.5-eye)*standard, 0.5*standardU, 0, 0.5*standardV, 0, -1, 0);
+    camera((eye)*standard/2, (0.5+eye)*standard, (0.5-eye)*standard, 0.5*standardU, 0, 0.35*standardV, 0, -1, 0);
     noLights();
-    pointLight(lightA,lightA,lightA, (eye)*standard, eye*standard, (0.5-eye)*standard);
-    pointLight(lightB,lightB,lightB, (0.5-eye)*standard, eye*standard, (0.5+eye)*standard);
+    pointLight(lightA,lightA,lightA, (0.5-eye)*standard, (0.5+eye)*standard, (eye)*standard/2);
+    pointLight(lightB,lightB,lightB, (0.5+eye)*standard, (0.5+eye)*standard, (eye)*standard/2);
   }
   
   // Sets "Field of View" and "Aspect Ratio"
