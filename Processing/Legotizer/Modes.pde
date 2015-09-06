@@ -3,7 +3,7 @@ String[] name = {
   "CityScope: Riyadh",
   "CityScope: Flinders",
   "CityScope: Barcelona",
-  "CityScope: Hamburg"
+  "CityScope: Hamburg Rothenburgsort"
 };
 
 int numDemos = name.length;
@@ -97,7 +97,7 @@ void barcelonaMode() {
   useCloud.wipeNodes();
   setBarcelonaPieces();
   displaySatellite = false;
-  satMode = 1;
+  satMode = 3;
   drawPlanSat = false;
   drawPlanStatic = false;
   displayScoreWeb = true;
@@ -135,11 +135,11 @@ void hamburgMode() {
   useCloud.wipeNodes();
   setBarcelonaPieces();
   displaySatellite = true;
-  satMode = 1;
-  drawPlanSat = false;
+  satMode = 3;
+  drawPlanSat = true;
   drawPlanStatic = false;
   displayScoreWeb = true;
-  overrideStatic = true;
+  overrideStatic = false;
   displayStatic = true;
   displayDynamic = true;
   
@@ -172,7 +172,7 @@ void kendallMode() {
   structureMode = 0;
   setKendallPieces();
   displaySatellite = true;
-  satMode = 1;
+  satMode = 3;
   drawPlanSat = false;
   drawPlanStatic = true;
   displayScoreWeb = false;
@@ -209,7 +209,7 @@ void flindersMode() {
   structureMode = 0;
   setFlindersPieces();
   displaySatellite = true;
-  satMode = 2;
+  satMode = 3;
   drawPlanSat = false;
   drawPlanStatic = true;
   displayScoreWeb = false;

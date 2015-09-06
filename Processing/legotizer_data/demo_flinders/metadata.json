@@ -1,0 +1,21 @@
+{
+  "nodesV": 48,
+  "staticH_LU": 1,
+  "nodesU": 48,
+  "avgDynNodeW": 40,
+  "pieceH_LU": 1,
+  "dynNodeH": 16.075082778930664,
+  "scaler": 40,
+  "dynamicSpacer": 0,
+  "pieceW_LU": 1,
+  "maxPieces": 100,
+  "maxLU_W": 4,
+  "staticW_LU": 1,
+  "maxLU_H": 31,
+  "dynNodeW": 40,
+  "rotation": 0,
+  "longitude": 0,
+  "latitude": 0,
+  "staticSpacer": 0,
+  "spacerW": 14.545465469360352
+}

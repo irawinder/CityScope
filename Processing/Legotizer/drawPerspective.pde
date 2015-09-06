@@ -22,6 +22,7 @@ int colorMode = 0; //0 for building uses, 1 for generic form
 
 // Designate Satellite Type
 int satMode = 1;
+int basemap_index = 0;
 
 // 0 means "use" cloud; 1 means "solution" cloud
 int nodeMode = 0;
@@ -452,6 +453,11 @@ void drawSatellite() {
     case 2:
       pMap(satellite, boardWidth, boardLength, 0, 0, (1 - staticSpacer)*(dynamicSpacer*gridH + baseH) + (staticBaseH_LU+0.1)*LU_H);
       break;
+    case 3:
+      if (numBasemaps > 0) { //Only shows basemaps if they're present in "/basemaps" folder
+        pMap(basemap[basemap_index], boardWidth, boardLength, 0, 0, (1 - staticSpacer)*(dynamicSpacer*gridH + baseH) + (staticBaseH_LU+0.1)*LU_H);
+      }
+      break;
   }
 }
 
@@ -637,10 +643,18 @@ void toggleScoreWebDraw() {
 }
 
 void changeImageMode() {
-  if (satMode < 2) {
+  if (satMode < 3) {
     satMode ++;
   } else {
     satMode = 0;
+  }
+}
+
+void changeBasemap() {
+  if (basemap_index < numBasemaps-1) {
+    basemap_index ++;
+  } else {
+    basemap_index = 0;
   }
 }
 

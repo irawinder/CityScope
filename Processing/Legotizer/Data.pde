@@ -72,6 +72,9 @@ float scaler, lat, lon, geoRot;
 ArrayList<Table> structures4x4;
 PImage satellite, satellite_nosite, satelliteLG;
 
+PImage[] basemap;
+int numBasemaps = 0;
+
 int testCodes = 2;
 
 //Static Model Colors
@@ -189,6 +192,54 @@ void loadSite() {
   if (vizMode == 1) { //Riyadh Viz Mode larger satellite
     satelliteLG = loadImage(legotizer_data + demoPrefix + demos[vizMode] + "satelliteLG.jpg");
   } 
+  
+  // Loads any other images deposited into ".../basemaps/" folder. Should be cropped to area
+  loadBasemaps();
+}
+
+// Loads any other images deposited into ".../basemaps/" folder. Should be cropped to area
+void loadBasemaps() {
+  
+  File folder = new File(legotizer_data + demoPrefix + demos[vizMode] + "basemaps/");
+  int hasDS = 0;
+  numBasemaps = 0;
+    
+  if(folder.isDirectory()){
+    if(folder.list().length>0){
+      println("Basemaps Directory is not empty!");
+      
+      //Reads names of all Files
+      File[] listOfFiles = folder.listFiles();
+      
+      // Checks if contains .DS_Store file and ignores it
+      if(listOfFiles[0].getName().equals(".DS_Store")) {
+        println(".DS_Store file detected in basemaps folder");
+        hasDS = 1;
+      }
+      
+      numBasemaps = folder.list().length-hasDS;
+      basemap = new PImage[numBasemaps];
+      println("Basemap count = " + numBasemaps);
+      
+      // Lists all basemaps
+      for (int i=0; i<basemap.length; i++) {
+        println(listOfFiles[i+hasDS].getName());
+      }
+      
+      // Loads all basemaps
+      for (int i=0; i<basemap.length; i++) {
+        basemap[i] = loadImage(legotizer_data + demoPrefix + demos[vizMode] + "basemaps/" + listOfFiles[i+hasDS].getName());
+      }
+      
+    }else{
+      println("Basemaps Directory is empty!");
+      basemap = new PImage[0];
+    }
+  }else{
+    System.out.println("This is not a directory");
+  }
+  
+  
   
 }
 

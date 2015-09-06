@@ -11,6 +11,9 @@ boolean drawPlanStatic = false;
 boolean faux3D = true;
 int k_height;
 
+// allows control of projected basemap independently of screen basemap
+int basemap_indexPlan = 0;
+
 //Projector location (relative to table grid origin)
 // These default values are overridden by projector.txt if initializeProjection2D() is run
 float projU =  14;
@@ -36,7 +39,24 @@ void drawPlan(int x, int y, int w, int h) {
   plan.noStroke();
   
   if (drawPlanSat) {
-    plan.image(satellite_nosite, 0, 0, plan.width, plan.height);
+    switch(satMode) {
+      case 0:
+        if (vizMode == 1) { //for riyadhMode only
+          plan.image(satellite_nosite, 0, 0, plan.width, plan.height);
+        }
+        break;
+      case 1:
+        plan.image(satellite_nosite, 0, 0, plan.width, plan.height);
+        break;
+      case 2:
+        plan.image(satellite, 0, 0, plan.width, plan.height);
+        break;
+      case 3:
+        if (numBasemaps > 0) { //Only shows basemaps if they're present in "/basemaps" folder
+          plan.image(basemap[basemap_indexPlan], 0, 0, plan.width, plan.height);
+        }
+        break;
+    }
   }
   
   // Rotate Plan
@@ -206,6 +226,14 @@ void togglePlanStat() {
     drawPlanStatic = true;
   } else {
     drawPlanStatic = false;
+  }
+}
+
+void changeBasemapPlan() {
+  if (basemap_indexPlan < numBasemaps-1) {
+    basemap_indexPlan ++;
+  } else {
+    basemap_indexPlan = 0;
   }
 }
 

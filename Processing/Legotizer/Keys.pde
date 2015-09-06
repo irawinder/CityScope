@@ -28,7 +28,10 @@ void keyPressed() {
       updateAllNodes();
       break;
     case 'o': 
-      toggleColorMode();
+      changeBasemap();
+      break;
+    case 'O': 
+      changeBasemapPlan();
       break;
     case ' ':
       toggleColorMode();
