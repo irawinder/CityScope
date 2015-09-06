@@ -1,12 +1,13 @@
-int numDemos = 4;
-Table vizModeTSV;
-
 String[] name = {
   "CityScope: Kendall",
   "CityScope: Riyadh",
   "CityScope: Flinders",
-  "CityScope: Barcelona"
+  "CityScope: Barcelona",
+  "CityScope: Hamburg"
 };
+
+int numDemos = name.length;
+Table vizModeTSV;
 
 void setMode() {
   if (vizMode == 0) {
@@ -17,6 +18,8 @@ void setMode() {
     flindersMode();
   } else if (vizMode == 3) {
     barcelonaMode();
+  } else if (vizMode == 4) {
+    hamburgMode();
   }
 } 
 
@@ -100,6 +103,44 @@ void barcelonaMode() {
   displayScoreWeb = true;
   overrideStatic = true;
   displayStatic = false;
+  displayDynamic = true;
+  
+  pieceW_LU = 4;
+  pieceH_LU = 3; 
+  staticBaseH_LU = 3;  // [LU] number of lego units high for base
+  staticBasePlate = 0; // 0 has thin gray lego baseplate; 1 does have thin gray lego baseplate
+  dynamicBaseH_LU = 3; // [LU] number of lego units high for base
+  calcDimensions();
+  
+  staticH_LU = 1;
+  staticW_LU = 1;
+  
+  useCloud.wipeNodes();
+  updateAllNodes();
+  saveMetaJSON("metadata.json");
+}
+
+void hamburgMode() {
+  vizMode = 4;
+  loadSite();
+  loadStaticStructures();
+  
+  staticSpacer = 0;        // Plastic Spacer Needed for Static buildings
+  dynamicSpacer = 1;       // Plastic Spacer Needed for Dynamic buildings
+  UMax = 44;
+  VMax = 44;
+  updateBoard();
+  
+  structureMode = 1;
+  useCloud.wipeNodes();
+  setBarcelonaPieces();
+  displaySatellite = true;
+  satMode = 1;
+  drawPlanSat = false;
+  drawPlanStatic = false;
+  displayScoreWeb = true;
+  overrideStatic = true;
+  displayStatic = true;
   displayDynamic = true;
   
   pieceW_LU = 4;
