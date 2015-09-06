@@ -204,11 +204,12 @@ void draw() {
         
         //---------- Begin 2D Graphics ------------//
         
-        // Sets Camera View to 2D
+        // Sets Camera View to 2D, reset fill and alpha values
         cam2D();                     
+        fill(#FFFFFF, 255);
         
         // Draws small Plan in upper corner 
-        drawPlan(10, 10, int(0.3*height), int(0.3*height));                              
+        drawPlan(10, 10, int(0.3*height), int(0.3*height));  
         
         // Draws Web Representing Scores
         if (displayScoreWeb) {

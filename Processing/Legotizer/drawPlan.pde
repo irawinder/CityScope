@@ -4,7 +4,7 @@ PImage planImage;
 PImage plan3DImage;
 
 float planScaler = .5; //fraction of canvas width to make planGraphic
-boolean drawPlan = false;
+boolean drawPlan = true;
 boolean drawPlanSat = true;
 boolean drawPlanStatic = false;
 
@@ -34,7 +34,6 @@ void initializePlan() {
 
 void drawPlan(int x, int y, int w, int h) {
   plan.beginDraw();
-  //plan.colorMode(HSB);
   plan.background(0);
   plan.noStroke();
   
