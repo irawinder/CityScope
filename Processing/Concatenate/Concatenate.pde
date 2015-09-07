@@ -26,7 +26,7 @@ import hypermedia.net.*;
 int PORT_RX = 6666; // receiver port
 int PORT_TX = 6152; // transmitter port
 
-int Ucorrection = 22,Vcorrection = 20;
+int Ucorrection = 22,Vcorrection = 22;
 
 // data holders for the data received from UDP
 String data01="", data02="", data03="", data04="";
@@ -42,8 +42,8 @@ void setup(){
     //udpRX.log( true );     // <-- printout the connection activity
     udpRX.listen( true );
     
-    udpTX = new UDP(this,PORT_TX,HOST_IP);
-    udpTX.log( true ); 
+    //udpTX = new UDP(this,PORT_TX,HOST_IP);
+    //udpTX.log( true ); 
 }
 
 void draw() {
@@ -87,7 +87,8 @@ void draw() {
       toSend += 2*Ucorrection+"\t"+2*Vcorrection;
       text("SENDING DATA...", 50, 50);
       saveStrings("data.txt", split(toSend, "\n"));
-      udpTX.send( toSend, "localhost", 6152 );
+      //udpTX.send( toSend, "localhost", 6152 );
+      udpRX.send( toSend, "localhost", 6152 );
       newDataReceived = false;
     }
 }
