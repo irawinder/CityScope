@@ -64,10 +64,12 @@ void saveNodesJSON(String filename) {
         for (int j=0; j<LU; j++) {
           for (int z=0; z<maxLU_H; z++) {
             
+            /* Commented out since pieces with voids introduced in Barcelona model...
             // breaks loop if void detected
             if (useCloud.nodes[u*LU + j][v*LU + i][z] == -1) {
               break;
             }
+            */
             
             int use = int(useCloud.nodes[u*LU + j][v*LU + i][z]);
             

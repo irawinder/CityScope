@@ -337,6 +337,7 @@ void draw1x1Nodes(int u, int v, float HT, float offset) {
       break;
     }
     
+    
     if (nodeMode == 0) {
       findFill(u, v, useCloud.nodes[u][v][k]);
     } else if (nodeMode == 1) {

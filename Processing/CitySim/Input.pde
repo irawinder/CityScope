@@ -2,13 +2,17 @@ JSONArray nodesJSON;
   // All "Input" Nodes are initially loaded as elements in the 'nodesJSON' JSON Array  
   // Element properties include:
   //
-  // 'use'  
-  //   0 = Ground: Open
-  //   1 = Ground: Street
-  //   2 = Ground: Park
-  //   3 = Building: Live
-  //   4 = Building: Work
-  //   -2 = Water
+  // use:
+  // 0 = Ground: Open
+  // 1 = Ground: Street
+  // 2 = Ground: Park
+  // 3 = Building: Live
+  // 4 = Building: Work
+  // 5 = Building: Ammenities
+  // 6 = Parking
+  // -1 = Open air (allows voids)
+  // -2 = Water
+  //
   // 'u'    
   // 'v'
   // 'z'

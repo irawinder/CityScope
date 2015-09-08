@@ -53,8 +53,8 @@ void ImportData(String inputStr[]) {
     
     // Checks if row formatted for UMax and VMax
     if (split.length == 2) {
-      UMax = int(split[0]);
-      VMax = int(split[1]);
+      UMax = int(split[1]);
+      VMax = int(split[0]);
       updateBoard();
     }
     
