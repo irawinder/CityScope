@@ -159,6 +159,24 @@ void initWalk(int maxU, int maxV, int maxZ, JSONArray points, float wlk_dst, flo
   
 }
 
+void mergeUse(JSONArray points, int source, int merge) {
+  for (int i = 0; i < points.size(); i++) {
+    
+    // Each input object copied into a temporary object
+    JSONObject pt;
+    try {
+      pt = points.getJSONObject(i); 
+    } catch(RuntimeException e){
+      pt = points.getJSONObject(0);  
+    }
+    
+    if (pt.getInt("use") == source) {
+      points.getJSONObject(i).setInt("use", merge);
+    }
+    
+  }
+}
+
 void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float cnt_rt) {
   //Each Node in 'JSONArray points' has the following fields:
     // 'use'  
@@ -171,6 +189,9 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
     // 'u'    
     // 'v'
     // 'z'
+  
+  // Converts any "Ammenities" Use to equivalent jobs
+  mergeUse(points, 5, 4);
   
   // Calculates area of a node
   nodeArea = sq(nodeW);
@@ -226,11 +247,6 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
     v = pt.getInt("v");
     z = pt.getInt("z");
     use = pt.getInt("use");
-    
-    //Treats amenities as non-residential (work)
-    if (use == 5) {
-      use = 4;
-    }
     
     // Calculates number of each type of live/work/park nodes
     if (use == 2) {
@@ -344,11 +360,6 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
     z = pt.getInt("z");
     use = pt.getInt("use");
     
-    //Treats amenities as non-residential (work)
-    if (use == 5) {
-      use = 4;
-    }
-    
     // If live or work node
     if (use == 3 || use == 4) {  
       
@@ -415,7 +426,7 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
       }
     
     
-    } else if (use == 2 || use == 6 || use == 1) { //is park
+    } else if (use == 2 || use == 6 || use == 1) { //is park, parking, or street
       jobChance[u][v][z][0] = -1;
     }
   } // end for i loop
@@ -440,11 +451,6 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
     v = pt.getInt("v");
     z = pt.getInt("z");
     use = pt.getInt("use");
-    
-    //Treats amenities as non-residential (work)
-    if (use == 5) {
-      use = 4;
-    }
 
     // Checks if Live or Work
     if (use == 3 || use == 4) {
@@ -522,11 +528,6 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
       v = pt.getInt("v");
       z = pt.getInt("z");
       use = pt.getInt("use");
-      
-      //Treats amenities as non-residential (work)
-      if (use == 5) {
-        use = 4;
-      }
     
       JSONObject solution = new JSONObject();
       solution.setInt("u", u);
