@@ -2,13 +2,6 @@
  * An application with a basic interactive map. You can zoom and pan the map.
  */
 
-import de.fhpotsdam.unfolding.*;
-import de.fhpotsdam.unfolding.geo.*;
-import de.fhpotsdam.unfolding.utils.*;
-import de.fhpotsdam.unfolding.providers.*;
-
-UnfoldingMap map;
-
 PImage get;
 PGraphics g, crop;
 
@@ -40,12 +33,8 @@ float scale; // distance represented by one pixel
 int modelW_Pix;
 int modelH_Pix;
 
-public void setupWarp() {
+public void setupCrop() {
   g = createGraphics(width, height);
-  
-  map = new UnfoldingMap(this, new Microsoft.AerialProvider());
-  map.zoomAndPanTo(new Location( lat, lon), zoom);
-  MapUtils.createDefaultEventDispatcher(this, map);
   
   setScale();
 }
@@ -64,8 +53,7 @@ public void setScale() {
   crop = createGraphics(modelW_Pix, modelH_Pix);
 }
 
-public void Warp() {
-  map.draw();
+public void Crop() {
   
   //background(0);
   

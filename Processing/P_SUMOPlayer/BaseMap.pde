@@ -6,7 +6,6 @@ import de.fhpotsdam.unfolding.*;
 import de.fhpotsdam.unfolding.geo.*;
 import de.fhpotsdam.unfolding.providers.*;
 
-
 public class BaseMap {
   BaseMap (PApplet _p){
     p = _p;
@@ -15,14 +14,14 @@ public class BaseMap {
   UnfoldingMap currentMap, map1, map2;
   UnfoldingMap[] mapList;
   
-  void setup() {
+  void setup(float lat, float lon, int zoom) {
     map1 = new UnfoldingMap(p, new StamenMapProvider.TonerLite());
     map2 = new UnfoldingMap(p, new Microsoft.AerialProvider());
     mapList = new UnfoldingMap[2];
     mapList[0]=map1;
     mapList[1]= map2;
     for (UnfoldingMap m: mapList){
-      m.zoomAndPanTo(16, new Location(42.329544, -71.083984));
+      m.zoomAndPanTo(zoom, new Location(lat, lon));
       MapUtils.createDefaultEventDispatcher(p, m);
     }
     

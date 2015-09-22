@@ -3,12 +3,19 @@
 void setup() {
   size(1000, 1000, P2D);
   
-  setupWarp();
+  setupMap();
+  
+  setupCrop();
+  setupOps();
+  setup_ImageProj();
 }
 
 void draw() {
-  Warp();
   
+  drawMap();
+  
+  Crop();
+  imageOps();
 }
 
 public void keyPressed() {
