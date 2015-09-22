@@ -14,3 +14,7 @@ public void setupMap() {
 public void drawMap() {
   map.draw();
 }
+
+public void resetMap() {
+  map.zoomAndPanTo(new Location( lat, lon), zoom);
+}

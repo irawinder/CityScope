@@ -13,9 +13,13 @@ float C = 2*PI*6372798.2; // Circumference of Earth
 // float lat =  42.329544;
 // float lon = -71.083984;
 
-//Koharu's Values
-float lat = 42.332387;
-float lon = -71.08790015;
+// Koharu's Values
+// float lat = 42.332387;
+// float lon = -71.08790015;
+
+// Ira's Values
+float lat = 42.332314;
+float lon = -71.08835;
 int zoom = 16;
 
 // Dudley Square Corner Coordinates
@@ -24,9 +28,9 @@ int zoom = 16;
 // c  -71.0786514  42.3355637
 // d  -71.0836182  42.3255234
 
-float modelWidth  = 4752.54/4; // width of model in meters
-float modelHeight = 4752.54/4; // height of model in meters
-float modelRotation = -0.458378018; // rotation of model in radians clockwise from north
+float modelWidth  = 1.05*4752.54/4; // width of model in meters
+float modelHeight = 1.05*4752.54/4; // height of model in meters
+float modelRotation = -0.458378018+0.08; // rotation of model in radians clockwise from north
 
 float scale; // distance represented by one pixel
 

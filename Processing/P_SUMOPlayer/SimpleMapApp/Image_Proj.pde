@@ -32,8 +32,8 @@ PFrame2 proj2Frame;
 proj1Applet proj1A;
 proj2Applet proj2A;
 
-int projector_width = 1280;
-int projector_height = 800;
+int projector_width = 1920;
+int projector_height = 1200;
 
 
 void setup_ImageProj() {
@@ -42,12 +42,12 @@ void setup_ImageProj() {
   // Window # 1
   PFrame1 proj1Frame = new PFrame1();
   proj1Frame.setTitle("Window #1");
-  proj1Frame.setLocation(2560, 0);
+  proj1Frame.setLocation(1280, 0);
 
   // Window # 2
   PFrame2 proj2Frame = new PFrame2();
   proj2Frame.setTitle("Window #2");
-  proj2Frame.setLocation(3840, 0);
+  proj2Frame.setLocation(1280+1920, 0);
 }
 
 
@@ -88,7 +88,7 @@ public class proj1Applet extends PApplet {
     buffer1 = createGraphics(imageCapture_width, piece_height);
     // creates the projection surfaces, to be manipulated in draw()
     surface1 = ks1.createCornerPinSurface(400, 400, 20);
-    //ks1.load("keystone_1.xml");
+    ks1.load("keystone_1.xml");
   }
   public void draw() {
     background(0);
@@ -130,7 +130,7 @@ public class proj2Applet extends PApplet {
     buffer2 = createGraphics(imageCapture_width, piece_height);
     // creates the projection surfaces, to be manipulated in draw()
     surface2 = ks2.createCornerPinSurface(400, 400, 20);
-    //ks2.load("keystone_2.xml");
+    ks2.load("keystone_2.xml");
   }
   public void draw() {
     background(0);

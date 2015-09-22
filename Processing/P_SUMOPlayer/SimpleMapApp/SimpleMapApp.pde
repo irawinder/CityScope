@@ -25,12 +25,17 @@ public void keyPressed() {
     case 'z':
       println("zoom: " + map.getZoomLevel());
       break;
-    case 'h':
-      println("height: " + map.getHeight());
+    case 'c':
+      println("center: " + map.getCenter().getLat() + ", " + map.getCenter().getLon());
       break;
     // Recalculates Scale
     case 's':
       setScale();
+      break;
+    // Recalculates Scale
+    case 'r':
+      resetMap();
+      break;
   }
   
 }
