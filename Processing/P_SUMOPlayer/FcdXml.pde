@@ -185,9 +185,10 @@ public class FcdXml {
                 p.rect(-5f,-2f, 10f, 4f);
             }
             else {
-                p.fill(255,255,255,255);
+                //p.fill(255,255,255,255);
+                p.fill(#E416F0);
               p.scale(m.getZoom()/266000);
-                p.rect(-.5f,-1f,1f,2f);
+                p.rect(-.5f*2,-1f*2,1f*2,2f*2);
             }
             p.popMatrix();
         

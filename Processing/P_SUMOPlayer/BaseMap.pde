@@ -16,6 +16,7 @@ public class BaseMap {
   
   void setup(float lat, float lon, int zoom) {
     map1 = new UnfoldingMap(p, new StamenMapProvider.TonerLite());
+    //map1 = new UnfoldingMap(p, new OpenStreetMap.OSMGrayProvider());
     map2 = new UnfoldingMap(p, new Microsoft.AerialProvider());
     mapList = new UnfoldingMap[2];
     mapList[0]=map1;
