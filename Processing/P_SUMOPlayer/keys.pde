@@ -61,17 +61,18 @@ public void keyPressed(){
         };
       }
       
-    //Toggle realtime vehicle locations
-      if (key =='r'){
-        if (rt == false){
-          timer = -100000;
-          rt = true;
-        }
-        else{
-          rt = false;
-          bm.currentMap.zoomAndPanTo(16, new Location(42.329544, -71.083984));
-        };
-      }
+      
+//    //Toggle realtime vehicle locations
+//      if (key =='r'){
+//        if (rt == false){
+//          timer = -100000;
+//          rt = true;
+//        }
+//        else{
+//          rt = false;
+//          bm.currentMap.zoomAndPanTo(16, new Location(42.329544, -71.083984));
+//        };
+//      }
       
      
   switch(key) {
@@ -80,10 +81,21 @@ public void keyPressed(){
     case 'l':
       println("zoom: " + bm.currentMap.getZoomLevel());
       break;
-      
+    
     // Recalculates Scale
     case 'k':
       setScale();
+      break;
+    
+    // Prints Latitude and Longitude of Map Center to Console  
+    case 'c':
+      println("center: " + bm.currentMap.getCenter().getLat() + ", " + bm.currentMap.getCenter().getLon());
+      break;
+      
+    // Resets Map Position to Default
+    case 'r':
+      bm.resetMap(lat,lon,zoom);
+      break;
   }
 }
   

@@ -18,8 +18,8 @@ float C = 2*PI*6372798.2; // Circumference of Earth
 // float lon = -71.08790015;
 
 // Ira's Values
-float lat = 42.332314;
-float lon = -71.08835;
+float lat = 42.332382;
+float lon = -71.08837;
 int zoom = 16;
 
 // Dudley Square Corner Coordinates
@@ -30,7 +30,7 @@ int zoom = 16;
 
 float modelWidth  = 1.05*4752.54/4; // width of model in meters
 float modelHeight = 1.05*4752.54/4; // height of model in meters
-float modelRotation = -0.458378018+0.08; // rotation of model in radians clockwise from north
+float modelRotation = -0.458378018+0.09; // rotation of model in radians clockwise from north
 
 float scale; // distance represented by one pixel
 

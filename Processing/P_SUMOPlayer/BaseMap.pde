@@ -28,7 +28,15 @@ public class BaseMap {
     currentMap = map2;
   }
   
+  public void resetMap(float lat, float lon, int zoom) {
+    for (UnfoldingMap m: mapList){
+      m.zoomAndPanTo(zoom, new Location(lat, lon));
+      MapUtils.createDefaultEventDispatcher(p, m);
+    }
+  }
+  
   private PApplet p;
   
 }
+
 
