@@ -19,8 +19,8 @@ float lat =  42.329544;
 float lon = -71.083984;
 int zoom = 15;
 
-float modelWidth  = 1000.0; // width of model in meters
-float modelHeight = 1000.0; // height of model in meters
+float modelWidth  = 2000.0; // width of model in meters
+float modelHeight = 2000.0; // height of model in meters
 float modelRotation = .5*PI; // rotation of model in radians clockwise from north
 
 float scale; // distance represented by one pixel

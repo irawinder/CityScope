@@ -8,6 +8,15 @@
 
 /*
 
+// Ira TODO
+
+/*
+ * 1. Convert XML Renders to render lat/long onto Mercator Map Pixels
+ * OR
+ * 1. Render Unfolding Map into a PGraphic with distinct latitude-longitude-rotation boundaries
+ * 2. Find out the God-Damn Latitude Longitude and Rotation boundaries of Dudley Square Model Like I asked Ariel to do 3 weeks ago.
+ * 3. Bring in Keystone Library Object(s) for two canvases
+
 package com.ansonstewart.sumoplayer;
 
 */
@@ -72,6 +81,8 @@ int fr = 25; //fps
 boolean labelBuses, rt = false;
 int rtStep = 0;
 String tokenVector = "000011";
+
+
 
 public void setup() {
   //Screen size
