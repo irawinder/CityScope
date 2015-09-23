@@ -173,7 +173,5 @@ public void drawSUMO() {
   text("Aerial basemap: 2",width-192,height-65);
   text("Toggle realtime: r",width-192,height-50);
   text("Record video: v",width-192,height-35);
-  
-  image(imgOrangeLine,(1920-1080)/2,0,1080,1080);
 
 }

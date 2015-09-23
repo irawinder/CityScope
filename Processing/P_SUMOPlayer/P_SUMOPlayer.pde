@@ -34,6 +34,7 @@ public void setup() {
   setupCrop();
   setupOps();
   setup_ImageProj();
+
 }
 
 public void draw() {
@@ -41,6 +42,11 @@ public void draw() {
   drawSUMO();
   
   Crop();
+  
+  // crop.beginDraw();
+  // crop.image(imgOrangeLine,0,0,crop.width,crop.height);
+  // crop.endDraw();
+  
   imageOps();
 }
 
