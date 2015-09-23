@@ -67,6 +67,7 @@ int fr = 25; //fps
 boolean labelBuses, rt = false;
 int rtStep = 0;
 String tokenVector = "000011";
+PImage imgOrangeLine;
 
 public void setupSUMO() {
   smooth();
@@ -78,6 +79,8 @@ public void setupSUMO() {
   //Load pre-run scenario
     fx = new FcdXml(this);
     fx.setup(tokenVector);
+    
+    imgOrangeLine = loadImage("orangeLine-01.png");
     
   /*
     //Load real-time MBTA vehicle locations  
@@ -170,4 +173,7 @@ public void drawSUMO() {
   text("Aerial basemap: 2",width-192,height-65);
   text("Toggle realtime: r",width-192,height-50);
   text("Record video: v",width-192,height-35);
+  
+  image(imgOrangeLine,(1920-1080)/2,0,1080,1080);
+
 }
