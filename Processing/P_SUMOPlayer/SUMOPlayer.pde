@@ -67,7 +67,7 @@ int fr = 25; //fps
 boolean labelBuses, rt = false;
 int rtStep = 0;
 String tokenVector = "000011";
-PImage imgOrangeLine;
+PImage[] imgOrangeLine;
 
 public void setupSUMO() {
   smooth();
@@ -80,7 +80,11 @@ public void setupSUMO() {
     fx = new FcdXml(this);
     fx.setup(tokenVector);
     
-    imgOrangeLine = loadImage("orangeLine-01.png");
+    imgOrangeLine = new PImage[4];
+    imgOrangeLine[0] = loadImage("orangeLine-01.png");
+    imgOrangeLine[1] = loadImage("newStops-01");
+    imgOrangeLine[2] = loadImage("newStopOutlines-01");
+    imgOrangeLine[3] = loadImage("newRoutes-01");
     
   /*
     //Load real-time MBTA vehicle locations  

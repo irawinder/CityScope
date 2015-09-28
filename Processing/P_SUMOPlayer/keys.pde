@@ -101,6 +101,15 @@ public void keyPressed(){
     case 'v':
     crop.save("crop.png");
     break;
+    
+    // Sow/Hide Overlay
+    case 'o':
+    if (showOverlay) {
+      showOverlay = false;
+    } else {
+      showOverlay = true;
+    }
+    break;
   }
 }
   

@@ -23,7 +23,8 @@ float modelWidth  = 1.05*4752.54/4; // width of model in meters
 float modelHeight = 1.05*4752.54/4; // height of model in meters
 float modelRotation = -0.458378018+0.09; // rotation of model in radians clockwise from north
 
-
+boolean showOverlay = true;
+int overlayIndex = 0;
 
 public void setup() {
   //Screen size
@@ -43,9 +44,11 @@ public void draw() {
   
   Crop();
   
-  // crop.beginDraw();
-  // crop.image(imgOrangeLine,0,0,crop.width,crop.height);
-  // crop.endDraw();
+  if (showOverlay) {
+    crop.beginDraw();
+    crop.image(imgOrangeLine[overlayIndex],0,0,crop.width,crop.height);
+    crop.endDraw();
+  }
   
   imageOps();
 }
