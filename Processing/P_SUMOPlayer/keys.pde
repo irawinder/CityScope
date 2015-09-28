@@ -110,6 +110,15 @@ public void keyPressed(){
       showOverlay = true;
     }
     break;
+    
+    // Iterate through different overlay images
+    case 'i':
+    if (overlayIndex >= imgOrangeLine.length-1 ) {
+      overlayIndex = 0;;
+    } else {
+      overlayIndex++;;
+    }
+    break;
   }
 }
   
