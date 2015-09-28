@@ -96,6 +96,11 @@ public void keyPressed(){
     case 'r':
       bm.resetMap(lat,lon,zoom);
       break;
+      
+    // Save Snapshot
+    case 'v':
+    crop.save("crop.png");
+    break;
   }
 }
   
