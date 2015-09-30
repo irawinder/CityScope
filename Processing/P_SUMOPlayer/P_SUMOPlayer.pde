@@ -16,7 +16,9 @@ public void setup() {
   size(2000,2000,P2D);
   
   // Sets Static Global Variables to a Demo of Choice
-  setupNeighborhoodDemo();
+  
+    setupNeighborhoodDemo();
+    //setupStreetDemo();
   
   // Allocates Memory for SUMO Vehicle Agents
   setupSUMO();

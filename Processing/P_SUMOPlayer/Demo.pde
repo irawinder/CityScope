@@ -26,3 +26,18 @@ public void setupNeighborhoodDemo() {
   projector_height = 1200;
   screenWidth = 1280;
 }
+
+public void setupStreetDemo() {
+  // Ira's Values
+  lat = 0.5*0.5*6*48;
+  lon = 0.5*0.5*2*48;
+  zoom = 19;
+  
+  modelWidth  = 0.5*6*48; // width of model in meters
+  modelHeight = 0.5*2*48; // height of model in meters
+  modelRotation = 0; // rotation of model in radians clockwise from north
+  
+  projector_width = 1920;
+  projector_height = 1200;
+  screenWidth = 1920;
+}
