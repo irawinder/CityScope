@@ -23,13 +23,12 @@ public void keyPressed(){
       
     //Switch which pre-run simulation is playing  
       if (key =='t'){
-        if (tokenVector == "000011"){
-          tokenVector = "000012";
+        if (tokenIndex < tokens.length-1 ){
+          tokenIndex++;
+        } else {
+          tokenIndex = 0;
         }
-        else{
-          tokenVector = "000011";
-        };
-        fx.setup(tokenVector);  
+        fx.setup(tokens[tokenIndex]);  
       }
       
     //Pause

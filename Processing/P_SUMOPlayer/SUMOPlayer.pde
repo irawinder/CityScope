@@ -66,8 +66,9 @@ float playbackSpeed = 1;
 int fr = 25; //fps
 boolean labelBuses, rt = false;
 int rtStep = 0;
-String tokenVector = "000011";
+String[] tokens;
 PImage[] imgOrangeLine;
+int tokenIndex = 0;
 
 public void setupSUMO() {
   smooth();
@@ -78,7 +79,7 @@ public void setupSUMO() {
   
   //Load pre-run scenario
     fx = new FcdXml(this);
-    fx.setup(tokenVector);
+    fx.setup(tokens[tokenIndex]);
     
     imgOrangeLine = new PImage[4];
     imgOrangeLine[0] = loadImage("orangeLine-01.png");

@@ -25,6 +25,11 @@ public void setupNeighborhoodDemo() {
   projector_width = 1920;
   projector_height = 1200;
   screenWidth = 1280;
+  
+  tokens = new String[2];
+  tokens[0] = "000011";
+  tokens[1] = "000012";
+  
 }
 
 public void setupStreetDemo() {
@@ -40,4 +45,7 @@ public void setupStreetDemo() {
   projector_width = 1920;
   projector_height = 1200;
   screenWidth = 1920;
+  
+  tokens = new String[1];
+  tokens[0] = "model0_results";
 }
