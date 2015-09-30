@@ -5,50 +5,58 @@
 /////////// modified some more by Ira Winder
 /////////// 2014
 
+//
+// This is a script that allows one to open a new canvas for the purpose 
+// of simple 2D projection mapping, such as on a flat table surface
+//
+// Right now, only appears to work in windows...
+//
+// To use this example in the real world, you need a projector
+// and a surface you want to project your Processing sketch onto.
+//
+// Simply press the 'c' key and drag the corners of the 
+// CornerPinSurface so that they
+// match the physical surface's corners. The result will be an
+// undistorted projection, regardless of projector position or 
+// orientation.
+//
+// You can also create more than one Surface object, and project
+// onto multiple flat surfaces using a single projector.
+//
+// This extra flexbility can comes at the sacrifice of more or 
+// less pixel resolution, depending on your projector and how
+// many surfaces you want to map. 
+//
 
-
-//import com.sun.awt.AWTUtilities;
-//import  java.awt.GraphicsDevice.*; // PC only
-//import java.awt.Frame;
 import javax.swing.JFrame;
 import deadpixel.keystone.*;
-import processing.video.*;
 
+// Visualization may show 2D projection visualization, or not
 boolean displayProjection2D = false;
 
-// defines various drawing surfaces, all pre-calibrated, to project
+// Defines various drawing surfaces, all pre-calibrated, to project
 CornerPinSurface surface1;
 CornerPinSurface surface2;
-
 PGraphics buffer1; 
 PGraphics buffer2; 
 
-// defines Keystone settings from xml file in parent folder
+// Defines Keystone settings from xml file in parent folder
 Keystone ks1;  
 Keystone ks2;  
 
+// Application Window Parameters
 
-PFrame1 proj1Frame;
-PFrame2 proj2Frame;
-
-proj1Applet proj1A;
-proj2Applet proj2A;
+  // Projector 1
+  PFrame1 proj1Frame = null;
+  proj1Applet proj1A;
+  
+  //Projector 2
+  PFrame2 proj2Frame = null;
+  proj2Applet proj2A;
 
 int projector_width;
 int projector_height;
 int screenWidth;
-
-void setup_ImageProj() {
-
-  // Window # 1
-  proj1Frame = null;
-
-  // Window # 2
-  proj2Frame = null;
-  
-}
-
-
 
 public class PFrame1 extends JFrame {
   public PFrame1() {
@@ -193,7 +201,7 @@ public void showProjection2D() {
   }
   proj1Frame.setVisible(true);
   
-  if (proj1Frame == null) {
+  if (proj2Frame == null) {
     proj2Frame = new PFrame2();
   }
   proj2Frame.setVisible(true);

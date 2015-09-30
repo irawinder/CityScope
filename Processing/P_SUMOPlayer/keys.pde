@@ -7,7 +7,7 @@ public void keyPressed(){
       println("m: " + millis());
       println("t: " + timer);
       println(labelBuses);
-      }
+    }
     
   //Switch to Stamen plain basemap
       if (key == '1') {
