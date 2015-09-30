@@ -130,6 +130,17 @@ public class proj1Applet extends PApplet {
       // saves the layout
       ks1.save("keystone_1.xml");
       break;
+      
+    case '`': 
+      if (displayProjection2D) {
+        displayProjection2D = false;
+        closeProjection2D();
+      } else {
+        displayProjection2D = true;
+        showProjection2D();
+      }
+      break;
+      
     }
   }
 }
@@ -176,6 +187,17 @@ public class proj2Applet extends PApplet {
       // saves the layout
       ks2.save("keystone_2.xml");
       break;
+      
+    case '`': 
+      if (displayProjection2D) {
+        displayProjection2D = false;
+        closeProjection2D();
+      } else {
+        displayProjection2D = true;
+        showProjection2D();
+      }
+      break;
+      
     }
   }
 }
