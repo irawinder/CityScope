@@ -22,6 +22,9 @@ public void setup() {
   setupCrop();
   setupOps();
   setup_ImageProj();
+  
+  // Attempts to turn projection map canvases on
+  toggle2DProjection();
 
 }
 

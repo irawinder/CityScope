@@ -122,13 +122,7 @@ public void keyPressed(){
     
     // Opens and Closes Projection Map Canvas
     case '`': 
-      if (displayProjection2D) {
-        displayProjection2D = false;
-        closeProjection2D();
-      } else {
-        displayProjection2D = true;
-        showProjection2D();
-      }
+      toggle2DProjection();
       break;
   }
 }
