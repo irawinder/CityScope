@@ -99,26 +99,37 @@ public void keyPressed(){
       
     // Save Snapshot
     case 'v':
-    crop.save("crop.png");
-    break;
+      crop.save("crop.png");
+      break;
     
     // Sow/Hide Overlay
     case 'o':
-    if (showOverlay) {
-      showOverlay = false;
-    } else {
-      showOverlay = true;
-    }
-    break;
+      if (showOverlay) {
+        showOverlay = false;
+      } else {
+        showOverlay = true;
+      }
+      break;
     
     // Iterate through different overlay images
     case 'i':
-    if (overlayIndex >= imgOrangeLine.length-1 ) {
-      overlayIndex = 0;;
-    } else {
-      overlayIndex++;;
-    }
-    break;
+      if (overlayIndex >= imgOrangeLine.length-1 ) {
+        overlayIndex = 0;;
+      } else {
+        overlayIndex++;;
+      }
+      break;
+    
+    // Opens and Closes Projection Map Canvas
+    case '`': 
+      if (displayProjection2D) {
+        displayProjection2D = false;
+        closeProjection2D();
+      } else {
+        displayProjection2D = true;
+        showProjection2D();
+      }
+      break;
   }
 }
   

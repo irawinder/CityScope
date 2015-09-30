@@ -14,6 +14,8 @@ import javax.swing.JFrame;
 import deadpixel.keystone.*;
 import processing.video.*;
 
+boolean displayProjection2D = false;
+
 // defines various drawing surfaces, all pre-calibrated, to project
 CornerPinSurface surface1;
 CornerPinSurface surface2;
@@ -32,22 +34,18 @@ PFrame2 proj2Frame;
 proj1Applet proj1A;
 proj2Applet proj2A;
 
-int projector_width = 1920;
-int projector_height = 1200;
-
+int projector_width;
+int projector_height;
+int screenWidth;
 
 void setup_ImageProj() {
 
-
   // Window # 1
-  PFrame1 proj1Frame = new PFrame1();
-  proj1Frame.setTitle("Window #1");
-  proj1Frame.setLocation(1280, 0);
+  proj1Frame = null;
 
   // Window # 2
-  PFrame2 proj2Frame = new PFrame2();
-  proj2Frame.setTitle("Window #2");
-  proj2Frame.setLocation(1280+1920, 0);
+  proj2Frame = null;
+  
 }
 
 
@@ -55,6 +53,7 @@ void setup_ImageProj() {
 public class PFrame1 extends JFrame {
   public PFrame1() {
     setBounds(0, 0, projector_width, projector_height);
+    setLocation(screenWidth, 0);
     proj1A = new proj1Applet();
     setResizable(false);
     setUndecorated(true); 
@@ -69,6 +68,7 @@ public class PFrame1 extends JFrame {
 public class PFrame2 extends JFrame {
   public PFrame2() {
     setBounds(0, 0, projector_width, projector_height);
+    setLocation(screenWidth + projector_width, 0);
     proj2A = new proj2Applet();
     setResizable(false);
     setUndecorated(true); 
@@ -88,7 +88,11 @@ public class proj1Applet extends PApplet {
     buffer1 = createGraphics(imageCapture_width, piece_height);
     // creates the projection surfaces, to be manipulated in draw()
     surface1 = ks1.createCornerPinSurface(400, 400, 20);
-    ks1.load("keystone_1.xml");
+    try{
+      ks1.load("keystone_1.xml");
+    } catch(RuntimeException e){
+      println("keystone_1.xml not found");
+    }
   }
   public void draw() {
     background(0);
@@ -130,7 +134,11 @@ public class proj2Applet extends PApplet {
     buffer2 = createGraphics(imageCapture_width, piece_height);
     // creates the projection surfaces, to be manipulated in draw()
     surface2 = ks2.createCornerPinSurface(400, 400, 20);
-    ks2.load("keystone_2.xml");
+    try{
+      ks2.load("keystone_2.xml");
+    } catch(RuntimeException e){
+      println("keystone_2.xml not found");
+    }
   }
   public void draw() {
     background(0);
@@ -162,5 +170,38 @@ public class proj2Applet extends PApplet {
       break;
     }
   }
+}
+
+void toggle2DProjection() {
+  if (System.getProperty("os.name").substring(0,3).equals("Mac")) {
+    println("Projection Mapping Currently not Supported for MacOS");
+  } else {
+    if (displayProjection2D) {
+      displayProjection2D = false;
+      closeProjection2D();
+    } else {
+      displayProjection2D = true;
+      showProjection2D();
+    }
+  }
+}
+
+public void showProjection2D() {
+  
+  if (proj1Frame == null) {
+    proj1Frame = new PFrame1();
+  }
+  proj1Frame.setVisible(true);
+  
+  if (proj1Frame == null) {
+    proj2Frame = new PFrame2();
+  }
+  proj2Frame.setVisible(true);
+  
+}
+
+public void closeProjection2D() {
+  proj1Frame.setVisible(false);
+  proj2Frame.setVisible(false);
 }
 
