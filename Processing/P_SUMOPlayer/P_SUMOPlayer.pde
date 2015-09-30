@@ -1,7 +1,7 @@
 // Demo Mode 1 = Street Scale
 // Demo Mode 2 = Neighborhood Scale
 
-    int demoMode = 1;
+    int demoMode = 2;
 
 
 
@@ -17,16 +17,16 @@ float modelRotation; // rotation of model in radians clockwise from north
 boolean showOverlay = true;
 int overlayIndex = 0;
 
-// SUMOPlayer Tab Global Variables
-int timer, animationTimer; 
-int frame;
-float playbackSpeed = 1; 
-int fr = 25; //fps
-boolean labelBuses, rt = false;
-int rtStep = 0;
-String[] tokens;
-PImage[] imgOrangeLine;
-int tokenIndex = 0;
+//// SUMOPlayer Tab Global Variables
+//int timer, animationTimer; 
+//int frame;
+//float playbackSpeed = 1; 
+//int fr = 25; //fps
+//boolean labelBuses, rt = false;
+//int rtStep = 0;
+//String[] tokens;
+//PImage[] imgOrangeLine;
+//int tokenIndex = 0;
 
 public void setup() {
   //Screen size
@@ -38,7 +38,7 @@ public void setup() {
     case 1:
       setupStreetDemo();
       
-      setupM_SUMO();
+      //setupM_SUMO();
       break;
       
     case 2:
@@ -70,7 +70,7 @@ public void draw() {
     
     case 1:
       // Draws Agents into primary graphic
-      drawM_SUMO();
+      //drawM_SUMO();
       break;
       
     case 2:
