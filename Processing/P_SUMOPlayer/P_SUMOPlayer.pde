@@ -17,8 +17,8 @@ public void setup() {
   
   // Sets Static Global Variables to a Demo of Choice
   
-    setupNeighborhoodDemo();
-    //setupStreetDemo();
+    //setupNeighborhoodDemo();
+    setupStreetDemo();
   
   // Allocates Memory for SUMO Vehicle Agents
   setupSUMO();

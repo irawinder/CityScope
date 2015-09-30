@@ -13,14 +13,23 @@ int imageCapture_width, imageCapture_height, piece_height; //Global variables us
 
 void setupOps() {
   
-  printerImageW = createGraphics(crop.width, crop.height, P2D);
-  printerImageE = createGraphics(crop.width, crop.height, P2D);
+//  printerImageW = createGraphics(crop.width, crop.height, P2D);
+//  printerImageE = createGraphics(crop.width, crop.height, P2D);
+//
+//  outputE = createGraphics(crop.width, crop.height, P2D);
+//  outputW = createGraphics(crop.width, crop.height, P2D);
+//  
+//  imageCapture_width = crop.width;
+//  imageCapture_height = crop.height;
 
-  outputE = createGraphics(crop.width, crop.height, P2D);
-  outputW = createGraphics(crop.width, crop.height, P2D);
+  printerImageW = createGraphics(crop.height, crop.width, P2D);
+  printerImageE = createGraphics(crop.height, crop.width, P2D);
+
+  outputE = createGraphics(crop.height, crop.width, P2D);
+  outputW = createGraphics(crop.height, crop.width, P2D);
   
-  imageCapture_width = crop.width;
-  imageCapture_height = crop.height;
+  imageCapture_width = crop.height;
+  imageCapture_height = crop.width;
 }
 
 
