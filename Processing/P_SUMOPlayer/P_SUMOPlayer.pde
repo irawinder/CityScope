@@ -1,3 +1,9 @@
+// Demo Mode 1 = Street Scale
+// Demo Mode 2 = Neighborhood Scale
+
+    int demoMode = 2;
+
+
 
 // Unfolding Map Location
 float lat;
@@ -16,12 +22,21 @@ public void setup() {
   size(2000,2000,P2D);
   
   // Sets Static Global Variables to a Demo of Choice
-  
-    //setupNeighborhoodDemo();
-    setupStreetDemo();
+  switch (demoMode) {
+    
+    case 1:
+      setupStreetDemo();
+      break;
+      
+    case 2:
+      setupNeighborhoodDemo();
+      break;
+      
+  }
+    
   
   // Allocates Memory for SUMO Vehicle Agents
-  setupSUMO();
+  setupU_SUMO();
   
   // Allocates Memory for Cropped Rendering
   setupCrop();
@@ -37,7 +52,7 @@ public void setup() {
 public void draw() {
   
   // Draws Agents into primary graphic
-  drawSUMO();
+  drawU_SUMO();
   
   // Crops Graphic to Physical Model Area
   Crop();

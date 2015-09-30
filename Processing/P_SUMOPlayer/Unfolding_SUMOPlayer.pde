@@ -58,7 +58,7 @@ public class SumoPlayer extends PApplet {
 private static final long serialVersionUID = 1L;
 
 BaseMap bm;
-FcdXml fx; //load floating car data from SUMO
+U_FcdXml fx; //load floating car data from SUMO
 //GtfsRt gr; //load GTFS real-time data
 int timer, animationTimer; 
 int frame;
@@ -70,7 +70,7 @@ String[] tokens;
 PImage[] imgOrangeLine;
 int tokenIndex = 0;
 
-public void setupSUMO() {
+public void setupU_SUMO() {
   smooth();
   
   //Set up Unfolding basemap
@@ -78,7 +78,7 @@ public void setupSUMO() {
     bm.setup(lat, lon, zoom);
   
   //Load pre-run scenario
-    fx = new FcdXml(this);
+    fx = new U_FcdXml(this);
     fx.setup(tokens[tokenIndex]);
     
     imgOrangeLine = new PImage[4];
@@ -99,7 +99,7 @@ public void setupSUMO() {
 
 }
 
-public void drawSUMO() {
+public void drawU_SUMO() {
   //Draw pre-run simulation  
   if (rt == false){
     //If there are timesteps left,

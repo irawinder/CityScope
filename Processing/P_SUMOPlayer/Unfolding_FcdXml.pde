@@ -16,9 +16,9 @@ import processing.data.XML;
 //import java.nio.file.Path;
 import java.util.*;
 
-public class FcdXml {
+public class U_FcdXml {
   //Make Processing functions available
-  FcdXml(PApplet _p){
+  U_FcdXml(PApplet _p){
     p = _p;
   }
   
