@@ -28,7 +28,17 @@ public void keyPressed(){
         } else {
           tokenIndex = 0;
         }
-        fx.setup(tokens[tokenIndex]);  
+        
+        switch (demoMode) {
+          case 1:
+            M_fx.setup(tokens[tokenIndex]);  
+            break;
+          
+          case 2:
+            U_fx.setup(tokens[tokenIndex]);  
+            break;
+        }
+        
       }
       
     //Pause

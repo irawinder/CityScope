@@ -49,26 +49,8 @@ import java.io.DataInputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-/*
-@SuppressWarnings("unused")
-public class SumoPlayer extends PApplet {
-   
-*/
-
-private static final long serialVersionUID = 1L;
-
 BaseMap bm;
-U_FcdXml fx; //load floating car data from SUMO
-//GtfsRt gr; //load GTFS real-time data
-int timer, animationTimer; 
-int frame;
-float playbackSpeed = 1; 
-int fr = 25; //fps
-boolean labelBuses, rt = false;
-int rtStep = 0;
-String[] tokens;
-PImage[] imgOrangeLine;
-int tokenIndex = 0;
+U_FcdXml U_fx; //load floating car data from SUMO
 
 public void setupU_SUMO() {
   smooth();
@@ -78,8 +60,8 @@ public void setupU_SUMO() {
     bm.setup(lat, lon, zoom);
   
   //Load pre-run scenario
-    fx = new U_FcdXml(this);
-    fx.setup(tokens[tokenIndex]);
+    U_fx = new U_FcdXml(this);
+    U_fx.setup(tokens[tokenIndex]);
     
     imgOrangeLine = new PImage[4];
     imgOrangeLine[0] = loadImage("orangeLine-01.png");
@@ -103,11 +85,11 @@ public void drawU_SUMO() {
   //Draw pre-run simulation  
   if (rt == false){
     //If there are timesteps left,
-    if (frame+2 < fx.numFrames){
+    if (frame+2 < U_fx.numFrames){
           //Interpolate positions depending on playback speed
           if((millis() - timer)/1000F >= 1F/playbackSpeed){
             frame++;
-            fx.vehicleKeyframe(frame);
+            U_fx.vehicleKeyframe(frame);
             //PApplet.println((millis() - timer)/1000 + " : " + playbackSpeed);
             timer = millis();  
           }          
@@ -122,7 +104,7 @@ public void drawU_SUMO() {
       
     //Draw the vehicles
     noStroke();
-    fx.drawVehicles(bm.currentMap, (millis()-timer)/(1000F)*playbackSpeed, labelBuses);
+    U_fx.drawVehicles(bm.currentMap, (millis()-timer)/(1000F)*playbackSpeed, labelBuses);
   
     //Draw the info window
     fill(0);

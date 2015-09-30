@@ -18,15 +18,15 @@ boolean showOverlay = true;
 int overlayIndex = 0;
 
 //// SUMOPlayer Tab Global Variables
-//int timer, animationTimer; 
-//int frame;
-//float playbackSpeed = 1; 
-//int fr = 25; //fps
-//boolean labelBuses, rt = false;
-//int rtStep = 0;
-//String[] tokens;
-//PImage[] imgOrangeLine;
-//int tokenIndex = 0;
+int timer, animationTimer; 
+int frame;
+float playbackSpeed = 1; 
+int fr = 25; //fps
+boolean labelBuses, rt = false;
+int rtStep = 0;
+String[] tokens;
+PImage[] imgOrangeLine;
+int tokenIndex = 0;
 
 public void setup() {
   //Screen size
@@ -37,16 +37,12 @@ public void setup() {
     
     case 1:
       setupStreetDemo();
-      
-      //setupM_SUMO();
+      setupM_SUMO();
       break;
       
     case 2:
       setupNeighborhoodDemo();
-      
-      // Allocates Memory for SUMO Vehicle Agents
       setupU_SUMO();
-  
       break;
       
   }
@@ -70,7 +66,7 @@ public void draw() {
     
     case 1:
       // Draws Agents into primary graphic
-      //drawM_SUMO();
+      drawM_SUMO();
       break;
       
     case 2:
