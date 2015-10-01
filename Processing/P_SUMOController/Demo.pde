@@ -21,6 +21,11 @@ public void setupStreetDemo() {
 // Neighborhood Scale Toggles
 public void updateIDArray_N() {
   
+  // -1 - Status Quo Bus
+  //  0 - Plain Bus Route
+  //  1 - Enhanced Bus
+  //  2 - Full BRT
+  
   // Route A
   IDArray[0] = codeArray[0][3][0];
     
@@ -37,6 +42,11 @@ public void updateIDArray_N() {
 
 // Street Scale Toggles
 public void updateIDArray_S() {
+  
+  // -1 - Status Quo
+  //  2 - Bike Lane
+  //  5 - Regular Bus
+  //  7 - BRT Bus
   
   // North Curb
   IDArray[0] = codeArray[11][6][0];
