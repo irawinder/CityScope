@@ -4,8 +4,8 @@
 
 //
 // Incoming Port: 6152
-// "Colortizer" Ougoing Port:  6669
-// "NodeSimulator" Outgoing Port: 6667
+// "Colortizer" Outgoing Port:  6669
+// "P_SUMOPlayer" Outgoing Port: 6667
 //
 
 
@@ -14,6 +14,9 @@ UDP udp;  // define the UDP object
 
 boolean busyImporting = false;
 boolean viaUDP = true;
+
+// boolean for detecting "handshake" from simulation app
+boolean receipt = true;
 
 int UMax, VMax;
 
@@ -32,6 +35,13 @@ void ImportData(String inputStr[]) {
 
     String tempS = inputStr[i];
     String[] split = split(tempS, "\t");
+    
+    if(split.length == 1) {
+      if (split[0].equals("receipt")) {
+        println("'" + split[0] + "' received by P_SUMOPlayer");
+        receipt = true;
+      }
+    }
     
     // Checks if row formatted for UMax and VMax
     if (split.length == 2) {
@@ -93,3 +103,14 @@ void receive( byte[] data, String ip, int port ) {  // <-- extended handler
   
 }
 
+void sendCommand(String command, int port) {
+  
+  if (viaUDP) {
+    String dataToSend = "";
+    
+    dataToSend += command;
+    
+    udp.send( dataToSend, "localhost", port );
+  }
+  
+}

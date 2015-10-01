@@ -35,6 +35,8 @@ int streetScalar;
 
 public void setup() {
   
+  initUDP();
+  
   // Sets Static Global Variables to a Demo of Choice
   switch (demoMode) {
     case 1:
