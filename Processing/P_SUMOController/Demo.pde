@@ -44,9 +44,10 @@ public void updateIDArray_N() {
 public void updateIDArray_S() {
   
   // -1 - Status Quo
-  //  2 - Bike Lane
-  //  5 - Regular Bus
-  //  7 - BRT Bus
+  //  3 - Bike Lane
+  //  0 - Regular Bus
+  //  1 - Enhanced Bus
+  //  2 - BRT Bus
   
   // North Curb
   IDArray[0] = codeArray[11][6][0];
