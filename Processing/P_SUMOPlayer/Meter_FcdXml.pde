@@ -105,17 +105,17 @@ public class M_FcdXml {
         //ScreenPosition dotPos = v.marker.getScreenPosition(m);
         
         p.pushMatrix();
-        p.scale(4);
+        p.scale(streetScalar);
         //p.translate(144, 48);
         //p.rotate(3F*PConstants.PI/2F);
-        p.translate(x, y);
+        p.translate(x, 48-y);
         
 //        if(x > Xmax) { Xmax = x; }
 //        if(y > Ymax) { Ymax = y; }
 //        if(x < Xmin) { Xmin = x; }
 //        if(y < Ymin) { Ymin = y; }
         
-        p.rotate(-(angle));
+        p.rotate(-(angle+PI/2));
   
         if (type.equals("passenger") || type.equals("custom1") ){ // Passenger car
             p.fill(255,255,255,255);

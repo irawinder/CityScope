@@ -41,8 +41,8 @@ public class BaseMap {
 }
 
 public void drawUnderlay() {
-  int underW = 4*144;
-  int underH = 4*48;
+  int underW = streetScalar*144;
+  int underH = streetScalar*48;
   
 //  translate(underW, underH);
 //  rotate(PI);

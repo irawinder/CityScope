@@ -42,6 +42,8 @@ public void setupNeighborhoodDemo() {
 }
 
 public void setupStreetDemo() {
+  streetScalar = 16;
+  
   // Ira's Values
   lat = 0.5*0.5*6*48;
   lon = 0.5*0.5*2*48;
@@ -73,7 +75,9 @@ public void setupStreetDemo() {
 //  drawWidth = int(modelWidth);
 //  drawHeight = int(modelHeight);
 
-  drawWidth = 144*4;
-  drawHeight = 48*4;
+  drawWidth = 144*streetScalar;
+  drawHeight = 48*streetScalar;
+  
+  showOverlay = false;
 
 }

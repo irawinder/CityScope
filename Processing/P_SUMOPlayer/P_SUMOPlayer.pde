@@ -1,7 +1,7 @@
 // Demo Mode 1 = Street Scale
 // Demo Mode 2 = Neighborhood Scale
 
-    int demoMode = 2;
+    int demoMode = 1;
 
 
 
@@ -31,6 +31,7 @@ String[] tokens;
 int tokenIndex = 0;
 PImage[] overlay;
 PImage[] underlay;
+int streetScalar;
 
 public void setup() {
   
