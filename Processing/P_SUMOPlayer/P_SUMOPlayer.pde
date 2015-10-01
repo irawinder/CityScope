@@ -70,7 +70,8 @@ public void setup() {
   
   // Attempts to turn projection map canvases on
   toggle2DProjection();
-
+  
+  background(0);
 }
 
 public void draw() {
