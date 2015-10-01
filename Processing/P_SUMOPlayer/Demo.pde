@@ -25,7 +25,7 @@ public void setupNeighborhoodDemo() {
   
   projector_width = 1920;
   projector_height = 1200;
-  screenWidth = 1280;
+  screenWidth = 1824;
   
   tokens = new String[2];
   tokens[0] = "000011";
