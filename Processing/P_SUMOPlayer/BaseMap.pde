@@ -40,4 +40,15 @@ public class BaseMap {
   
 }
 
+public void drawUnderlay() {
+  int underW = 4*144;
+  int underH = 4*48;
+  
+//  translate(underW, underH);
+//  rotate(PI);
+  image(underlay[0], 0, 0, underW, underH);
+//  rotate(-PI);
+//  translate(-underW, -underH);
+}
+
 

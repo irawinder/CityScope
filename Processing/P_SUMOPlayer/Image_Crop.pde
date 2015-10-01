@@ -14,10 +14,14 @@ float scale; // distance represented by one pixel
 int modelW_Pix;
 int modelH_Pix;
 
-public void setupCrop() {
+public void setupU_Crop() {
   g = createGraphics(width, height);
   
   setScale();
+}
+
+public void setupM_Crop() {
+  crop = createGraphics(width, height);
 }
 
 public void setScale() {
@@ -34,7 +38,7 @@ public void setScale() {
   crop = createGraphics(modelW_Pix, modelH_Pix);
 }
 
-public void Crop() {
+public void U_Crop() {
   
   //background(0);
   
@@ -51,6 +55,16 @@ public void Crop() {
   crop.translate(-(g.width-crop.width)/2, -(g.height-crop.height)/2);
   crop.image(g,0,0);
   crop.translate((g.width-crop.width)/2, (g.height-crop.height)/2);
+  crop.endDraw();
+  
+  image(crop,0,0);
+}
+
+public void M_Crop() {
+  
+  crop.beginDraw();
+  crop.background(0);
+  crop.image(get(), 0, 0);
   crop.endDraw();
   
   image(crop,0,0);

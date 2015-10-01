@@ -63,12 +63,6 @@ public void setupU_SUMO() {
     U_fx = new U_FcdXml(this);
     U_fx.setup(tokens[tokenIndex]);
     
-    imgOrangeLine = new PImage[4];
-    imgOrangeLine[0] = loadImage("orangeLine-01.png");
-    imgOrangeLine[1] = loadImage("newStops-01.png");
-    imgOrangeLine[2] = loadImage("newStopOutlines-01.png");
-    imgOrangeLine[3] = loadImage("newRoutes-01.png");
-    
   /*
     //Load real-time MBTA vehicle locations  
       gr = new GtfsRt(this);

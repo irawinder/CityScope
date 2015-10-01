@@ -18,6 +18,10 @@ M_FcdXml M_fx; //load floating car data from SUMO
 public void setupM_SUMO() {
   smooth();
 
+  //Set up Unfolding basemap
+  bm = new BaseMap(this);
+  bm.setup(lat, lon, zoom);
+  
   //Load pre-run scenario
   M_fx = new M_FcdXml(this);
   M_fx.setup(tokens[tokenIndex]);  
@@ -51,29 +55,29 @@ public void drawM_SUMO() {
     noStroke();
     M_fx.drawVehicles((millis()-timer)/(1000F)*playbackSpeed);
   
-    //Draw the info window
-    fill(0);
-    rect(2, 6, 300, 50, 6);
-    textAlign(PConstants.LEFT,PConstants.BOTTOM);
-        textSize(24);
-        fill(255);
-    text("Sim. Playback: " + playbackSpeed + "x", 10, 40);
+//    //Draw the info window
+//    fill(0);
+//    rect(2, 6, 300, 50, 6);
+//    textAlign(PConstants.LEFT,PConstants.BOTTOM);
+//        textSize(24);
+//        fill(255);
+//    text("Sim. Playback: " + playbackSpeed + "x", 10, 40);
   
   }
   
   
-  //Draw the command legend
-  fill(0);
-  rect(width-202, height-156, 200, 150, 6);
-  fill(255);
-  text("Hotkeys",width-192,height-125);
-  textSize(12);
-  text("Faster: a",width-192,height-110);
-  text("Slower: z",width-192,height-95);
-  text("Outline basemap: 1",width-192,height-80);
-  text("Aerial basemap: 2",width-192,height-65);
-  text("Toggle realtime: r",width-192,height-50);
-  text("Record video: v",width-192,height-35);
+//  //Draw the command legend
+//  fill(0);
+//  rect(width-202, height-156, 200, 150, 6);
+//  fill(255);
+//  text("Hotkeys",width-192,height-125);
+//  textSize(12);
+//  text("Faster: a",width-192,height-110);
+//  text("Slower: z",width-192,height-95);
+//  text("Outline basemap: 1",width-192,height-80);
+//  text("Aerial basemap: 2",width-192,height-65);
+//  text("Toggle realtime: r",width-192,height-50);
+//  text("Record video: v",width-192,height-35);
   
   
   //pushMatrix();

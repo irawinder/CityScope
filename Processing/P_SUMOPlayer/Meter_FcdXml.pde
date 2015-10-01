@@ -1,3 +1,9 @@
+float Xmax = 0;
+float Ymax = 0;
+
+float Xmin = 250;
+float Ymin = 250;
+
 public class M_FcdXml {
   //Make Processing functions available
   M_FcdXml(PApplet _p){
@@ -26,8 +32,8 @@ public class M_FcdXml {
         
       for (int j = 0; j < numVehDots; j++){
           String id = vehDotsXml[j].getString("id");
-          Float y = vehDotsXml[j].getFloat("x");
-          Float x = vehDotsXml[j].getFloat("y");
+          Float y = vehDotsXml[j].getFloat("y");
+          Float x = vehDotsXml[j].getFloat("x");
           Float angle = vehDotsXml[j].getFloat("angle");
           Float speed = vehDotsXml[j].getFloat("speed");
           String type = vehDotsXml[j].getString("type");
@@ -39,8 +45,8 @@ public class M_FcdXml {
         int numPerDots = perDotsXml.length;
         for (int j = 0; j < numPerDots; j++){
           String id = perDotsXml[j].getString("id");
-          Float y = perDotsXml[j].getFloat("x");
-          Float x = perDotsXml[j].getFloat("y");
+          Float y = perDotsXml[j].getFloat("y");
+          Float x = perDotsXml[j].getFloat("x");
           Float speed = perDotsXml[j].getFloat("speed");
           Float angle = perDotsXml[j].getFloat("angle");
           dots.get(i).put(id,new VehDot("blank",x,y,angle,speed,"person"));
@@ -56,7 +62,7 @@ public class M_FcdXml {
   }
   
   void drawVehicles(float interpFactor){
-    p.background(0);
+    //p.background(0);
     for (String key: v2.keySet()){
       if (v1.containsKey(key)){
         
@@ -100,9 +106,15 @@ public class M_FcdXml {
         
         p.pushMatrix();
         p.scale(4);
-        p.translate(250, 135);
-        p.rotate(3F*PConstants.PI/2F);
+        //p.translate(144, 48);
+        //p.rotate(3F*PConstants.PI/2F);
         p.translate(x, y);
+        
+//        if(x > Xmax) { Xmax = x; }
+//        if(y > Ymax) { Ymax = y; }
+//        if(x < Xmin) { Xmin = x; }
+//        if(y < Ymin) { Ymin = y; }
+        
         p.rotate(-(angle));
   
         if (type.equals("passenger") || type.equals("custom1") ){ // Passenger car

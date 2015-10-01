@@ -122,7 +122,7 @@ public void keyPressed(){
     
     // Iterate through different overlay images
     case 'i':
-      if (overlayIndex >= imgOrangeLine.length-1 ) {
+      if (overlayIndex >= overlay.length-1 ) {
         overlayIndex = 0;;
       } else {
         overlayIndex++;;

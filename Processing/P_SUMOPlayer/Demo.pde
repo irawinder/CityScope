@@ -1,4 +1,5 @@
 public void setupNeighborhoodDemo() {
+  
   // Anson's Values
   // float lat =  42.329544;
   // float lon = -71.083984;
@@ -30,6 +31,14 @@ public void setupNeighborhoodDemo() {
   tokens[0] = "000011";
   tokens[1] = "000012";
   
+  overlay = new PImage[4];
+  overlay[0] = loadImage("orangeLine-01.png");
+  overlay[1] = loadImage("newStops-01.png");
+  overlay[2] = loadImage("newStopOutlines-01.png");
+  overlay[3] = loadImage("newRoutes-01.png");
+  
+  drawWidth = 2000;
+  drawHeight = 2000;
 }
 
 public void setupStreetDemo() {
@@ -48,4 +57,23 @@ public void setupStreetDemo() {
   
   tokens = new String[1];
   tokens[0] = "model0_results";
+  
+  overlay = new PImage[4];
+  overlay[0] = loadImage("orangeLine-01.png");
+  overlay[1] = loadImage("newStops-01.png");
+  overlay[2] = loadImage("newStopOutlines-01.png");
+  overlay[3] = loadImage("newRoutes-01.png");
+  
+  underlay = new PImage[1];
+  underlay[0] = loadImage("testStreet.png");
+  
+//  drawWidth = 4000;
+//  drawHeight = int(4000*modelHeight/modelWidth);
+
+//  drawWidth = int(modelWidth);
+//  drawHeight = int(modelHeight);
+
+  drawWidth = 144*4;
+  drawHeight = 48*4;
+
 }
