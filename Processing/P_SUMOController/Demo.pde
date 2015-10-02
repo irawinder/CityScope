@@ -22,6 +22,12 @@ public void setupNeighborhoodDemo() {
   pieceNames[2] = "New Enhanced Bus Route";
   pieceNames[3] = "New Bus Rapid Transit (BRT) Route";
   
+  toggleNames = new String[numToggles];
+  toggleNames[0] = "Washington St.";
+  toggleNames[1] = "Blue Hill Ave.";
+  toggleNames[2] = "CrossTown";
+  toggleNames[3] = "Harvard";
+  
 }
 
 public void setupStreetDemo() {
@@ -42,6 +48,10 @@ public void setupStreetDemo() {
   pieceNames[3] = "New Bus Rapid Transit (BRT) Route";
   pieceNames[4] = "New Bike Lane";
   
+  toggleNames = new String[numToggles];
+  toggleNames[0] = "North Curb";
+  toggleNames[1] = "Median";
+  toggleNames[2] = "South Curb";
 }
 
 // Neighborhood Scale Toggles
@@ -53,10 +63,10 @@ public void updateIDArray_N() {
   //  2 - Full BRT
   
   // Route A
-  IDArray[0] = codeArray[0][3][0];
+  IDArray[0] = codeArray[0][0][0];
     
   // Route B
-  IDArray[1] = codeArray[0][0][0];  
+  IDArray[1] = codeArray[0][3][0];  
   
   // Route C
   IDArray[2] = codeArray[2][2][0];
@@ -88,6 +98,9 @@ public void updateIDArray_S() {
 
 public void printIDArray() {
   for(int i=0; i<IDArray.length; i++) {
-    println("ID Array Index " + i + " = " + pieceNames[IDArray[i]+1]);
+    
+    if (IDArray[i]+1 < pieceNames.length) {
+      println("ID Array Index " + i + ", " + toggleNames[i] + " = " + pieceNames[IDArray[i]+1]);
+    }
   }
 }

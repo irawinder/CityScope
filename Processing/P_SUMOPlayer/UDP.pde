@@ -48,7 +48,8 @@ void ImportData(String inputStr[]) {
     }
     
     if(split.length == 2) {
-      println(split[0] + ", " + split[1]);
+      //println(split[0] + ", " + split[1]);
+      IDArray[int(split[0])] = int(split[1]);
     }
     
   }

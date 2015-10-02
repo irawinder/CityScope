@@ -104,8 +104,8 @@ public void draw() {
         crop.beginDraw();
   //    crop.image(overlay[overlayIndex],0,0,crop.width,crop.height);
   
-        crop.image(overlay[0],0,0,crop.width,crop.height);
         crop.image(overlay[5],0,0,crop.width,crop.height);
+        crop.image(overlay[0],0,0,crop.width,crop.height);
         
         // Corridor A
         if (IDArray[0] > -1) {
