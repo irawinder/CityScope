@@ -3,6 +3,7 @@
  * "Legotizer" Outgoing Port: 6152
  */
 
+int[] IDArray;
 
 import hypermedia.net.*;
 UDP udp;  // define the UDP object
@@ -42,9 +43,14 @@ void ImportData(String inputStr[]) {
     String[] split = split(tempS, "\t");
     
     if(split.length == 1) {
-      println("'" + split[0] + "' received by P_SUMOController");
+      println("Player recieved '" + split[0] + "' from P_SUMOController");
       sendCommand("receipt", 6152);
     }
+    
+    if(split.length == 2) {
+      println(split[0] + ", " + split[1]);
+    }
+    
   }
   
   busyImporting = false;

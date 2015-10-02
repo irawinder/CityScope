@@ -31,14 +31,21 @@ public void setupNeighborhoodDemo() {
   tokens[0] = "000011";
   tokens[1] = "000012";
   
-  overlay = new PImage[4];
-  overlay[0] = loadImage("orangeLine-01.png");
-  overlay[1] = loadImage("newStops-01.png");
-  overlay[2] = loadImage("newStopOutlines-01.png");
-  overlay[3] = loadImage("newRoutes-01.png");
+  overlay = new PImage[6];
+  overlay[0] = loadImage("neighborhood_overlays/00_Landmarks.png");
+  overlay[1] = loadImage("neighborhood_overlays/01_A.png");
+  overlay[2] = loadImage("neighborhood_overlays/01_B.png");
+  overlay[3] = loadImage("neighborhood_overlays/01_C.png");
+  overlay[4] = loadImage("neighborhood_overlays/01_D.png");
+  overlay[5] = loadImage("neighborhood_overlays/02_OrangeLine.png");
   
   drawWidth = 2000;
   drawHeight = 2000;
+  
+  IDArray = new int[4];
+  for (int i=0; i<IDArray.length; i++) {
+    IDArray[i] = -1;
+  }
 }
 
 public void setupStreetDemo() {
@@ -79,5 +86,10 @@ public void setupStreetDemo() {
   drawHeight = 48*streetScalar;
   
   showOverlay = false;
+  
+  IDArray = new int[3];
+  for (int i=0; i<IDArray.length; i++) {
+    IDArray[i] = -1;
+  }
 
 }

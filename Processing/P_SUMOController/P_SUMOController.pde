@@ -40,7 +40,14 @@ void draw() {
     
     printIDArray();
     
-    sendCommand("changeDetected", 6667);
+    String IDs = "";
+    
+    for(int i=0; i<IDArray.length; i++) {
+      IDs += i + "\t" + IDArray[i] + "\n";
+    }
+    
+    //sendCommand("changeDetected", 6667);
+    sendCommand(IDs, 6667);
     changeDetected = false;
     
     
