@@ -3,7 +3,7 @@ int[] IDArray;
 String[] toggleNames;
 String[] pieceNames;
 
-int numtoggles, numPieces;
+int numToggles, numPieces;
 
 public void setupNeighborhoodDemo() {
   
@@ -33,13 +33,14 @@ public void setupStreetDemo() {
     IDArray[i] = -1;
   }
   
-  numPieces = 4;
+  numPieces = 5;
   
   pieceNames = new String[numPieces];
-  pieceNames[0] = "Status Quo Lane";
-  pieceNames[1] = "Bike Lane";
-  pieceNames[2] = "New Regular Bus Route";
+  pieceNames[0] = "Status Quo";
+  pieceNames[1] = "New Regular Bus Route";
+  pieceNames[2] = "New Enhanced Bus Route";
   pieceNames[3] = "New Bus Rapid Transit (BRT) Route";
+  pieceNames[4] = "New Bike Lane";
   
 }
 
@@ -69,10 +70,10 @@ public void updateIDArray_N() {
 public void updateIDArray_S() {
   
   // -1 - Status Quo
-  //  3 - Bike Lane
   //  0 - Regular Bus
   //  1 - Enhanced Bus
   //  2 - BRT Bus
+  //  3 - Bike Lane
   
   // North Curb
   IDArray[0] = codeArray[11][6][0];
@@ -87,6 +88,6 @@ public void updateIDArray_S() {
 
 public void printIDArray() {
   for(int i=0; i<IDArray.length; i++) {
-    println("ID Array Index " + i + " = " + IDArray[i]);
+    println("ID Array Index " + i + " = " + pieceNames[IDArray[i]+1]);
   }
 }
