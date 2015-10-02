@@ -1,7 +1,7 @@
 // Demo Mode 1 = Street Scale
 // Demo Mode 2 = Neighborhood Scale
 
-    int demoMode = 1;
+    int demoMode = 2;
 
 
 

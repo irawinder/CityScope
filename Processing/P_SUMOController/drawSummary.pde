@@ -25,7 +25,14 @@ void drawSummary() {
     } else {
       fill(#FFFFFF);
     }
-    text(summary.getString(0, i+1), 0.01*width, float(i+1)/columnCount*height - offset);
+    
+    if (i == 0 && invalid) {
+      fill(#FF0000);
+      text("INVALID", 0.01*width, float(i+1)/columnCount*height - offset);
+      fill(#FFFFFF);
+    } else {
+      text(summary.getString(0, i+1), 0.01*width, float(i+1)/columnCount*height - offset);
+    }
     
     text(summary.getString(scenarioID+1, i+1), 0.6*width, float(i+1)/columnCount*height - offset);
     if (i==0) {
