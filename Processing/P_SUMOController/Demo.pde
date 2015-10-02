@@ -1,3 +1,5 @@
+int screenW, screenH;
+
 int[] IDArray;
 
 String[] toggleNames;
@@ -6,6 +8,11 @@ String[] pieceNames;
 int numToggles, numPieces;
 
 public void setupNeighborhoodDemo() {
+  
+  summary = loadTable("neighborhood_data/summary.csv");
+  
+  screenW = 1824;
+  screenH = 1014;
   
   numToggles = 4;
   
@@ -31,6 +38,11 @@ public void setupNeighborhoodDemo() {
 }
 
 public void setupStreetDemo() {
+  
+  summary = loadTable("street_data/summary.csv");
+  
+  screenW = 1920;
+  screenH = 1080;
   
   numToggles = 3;
   
