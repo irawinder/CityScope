@@ -48,7 +48,7 @@ void drawSummary() {
   }
   
   for(int i=0; i<summary.getRowCount(); i++) {
-    println(summary.getString(i, 0));
+    //println(summary.getString(i, 0));
   }
 
 }

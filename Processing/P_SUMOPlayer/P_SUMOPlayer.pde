@@ -91,7 +91,7 @@ public void draw() {
         underlayIndex = 2;
       } else if (IDArray[0] == -1 && IDArray[2] == 3 && IDArray[1] == 2) {
         underlayIndex = 3;
-      } else if (IDArray[0] == -1 && IDArray[2] == -1 && IDArray[1] == -1) {
+      } else if (IDArray[0] == 0 && IDArray[2] == 0 && IDArray[1] == -1) {
         underlayIndex = 0;
       } else {
         underlayIndex = 0;
