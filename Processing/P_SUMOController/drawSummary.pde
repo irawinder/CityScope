@@ -25,11 +25,11 @@ void drawSummary() {
     } else {
       fill(#FFFFFF);
     }
-    text(summary.getString(0, i+1), 0.1*width, float(i+1)/columnCount*height - offset);
+    text(summary.getString(0, i+1), 0.01*width, float(i+1)/columnCount*height - offset);
     
-    text(summary.getString(scenarioID+1, i+1), 0.4*width, float(i+1)/columnCount*height - offset);
+    text(summary.getString(scenarioID+1, i+1), 0.6*width, float(i+1)/columnCount*height - offset);
     if (i==0) {
-      text("Change from Today", 0.7*width, float(i+1)/columnCount*height - offset);
+      text("Change from Today", 0.75*width, float(i+1)/columnCount*height - offset);
     } else {
       
       delta = summary.getInt(scenarioID+1, i+1) - summary.getInt(0+1, i+1);
@@ -42,7 +42,7 @@ void drawSummary() {
         fill(#FFFFFF);
       }
       
-      text(delta, 0.7*width, float(i+1)/columnCount*height - offset);
+      text(delta, 0.75*width, float(i+1)/columnCount*height - offset);
       fill(#FFFFFF);
     }
   }
