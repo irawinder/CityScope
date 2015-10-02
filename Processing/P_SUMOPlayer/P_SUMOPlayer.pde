@@ -110,6 +110,7 @@ public void draw() {
         // Corridor A
         if (IDArray[0] > -1) {
           crop.image(overlay[1],0,0,crop.width,crop.height);
+          drawA();
         }
         if (IDArray[0] > 0) {
           crop.image(overlay[1],0,0,crop.width,crop.height);
@@ -121,6 +122,7 @@ public void draw() {
         // Corridor B
         if (IDArray[1] > -1) {
           crop.image(overlay[2],0,0,crop.width,crop.height);
+          drawB();
         }
         if (IDArray[1] > 0) {
           crop.image(overlay[2],0,0,crop.width,crop.height);
@@ -132,6 +134,7 @@ public void draw() {
         // Corridor C
         if (IDArray[2] > -1) {
           crop.image(overlay[3],0,0,crop.width,crop.height);
+          drawC();
         }
         if (IDArray[2] > 0) {
           crop.image(overlay[3],0,0,crop.width,crop.height);
@@ -143,6 +146,7 @@ public void draw() {
         // Corridor D
         if (IDArray[3] > -1) {
           crop.image(overlay[4],0,0,crop.width,crop.height);
+          drawD();
         }
         if (IDArray[3] > 0) {
           crop.image(overlay[4],0,0,crop.width,crop.height);
@@ -164,4 +168,50 @@ public void draw() {
   //println("Xmax = " + Xmax + " ; Ymax = " + Ymax + " ; Xmin = " + Xmin + " ; Ymin = " + Ymin);
   
 }
+
+void drawA(){
+ 
+  float x = 39.0;
+  float y = 29.25;
+  crop.fill(#555555);
+  crop.noStroke();
+  
+  crop.rect(int(crop.width*(x/48.0)),int(crop.height*(y/48.0)), int(crop.width*(1.0/48.0)),int(crop.height*(1.0/48.0)) );
+  
+}
+
+void drawB(){
+ 
+  float x = 42.0;
+  float  y = 29.25;
+  crop.fill(#7DD5ED);
+  crop.noStroke();
+  
+  crop.rect(int(crop.width*(x/48.0)),int(crop.height*(y/48.0)), int(crop.width*(1.0/48.0)),int(crop.height*(1.0/48.0)) );
+  
+}
+
+void drawC(){
+ 
+  float x = 41.0;
+  float y = 31.25;
+  crop.fill(#F3E05E);
+  crop.noStroke();
+  
+  crop.rect(int(crop.width*(x/48.0)),int(crop.height*(y/48.0)), int(crop.width*(1.0/48.0)),int(crop.height*(1.0/48.0)) );
+  
+}
+
+void drawD(){
+ 
+  float x = 41.0;
+  float y = 32.25;
+  crop.fill(#E092DF);
+  crop.noStroke();
+  
+  crop.rect(int(crop.width*(x/48.0)),int(crop.height*(y/48.0)), int(crop.width*(1.0/48.0)),int(crop.height*(1.0/48.0)) );
+  
+}
+
+
 
