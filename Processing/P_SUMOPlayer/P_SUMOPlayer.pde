@@ -173,7 +173,7 @@ void drawA(){
  
   float x = 39.0;
   float y = 29.25;
-  crop.fill(#555555);
+  crop.fill(#FFFFFF);
   crop.noStroke();
   
   crop.rect(int(crop.width*(x/48.0)),int(crop.height*(y/48.0)), int(crop.width*(1.0/48.0)),int(crop.height*(1.0/48.0)) );
