@@ -46,7 +46,11 @@ public void drawUnderlay() {
   
 //  translate(underW, underH);
 //  rotate(PI);
-  image(underlay[underlayIndex], 0, 0, underW, underH);
+  if (invalid) {
+    image(underlay[4], 0, crop.height*(1.0/92), underW, underH);
+  } else {
+    image(underlay[underlayIndex], 0, crop.height*(1.0/92), underW, underH);
+  }
 //  rotate(-PI);
 //  translate(-underW, -underH);
 }

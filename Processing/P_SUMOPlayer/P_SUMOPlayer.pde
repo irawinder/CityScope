@@ -1,7 +1,7 @@
 // Demo Mode 1 = Street Scale
 // Demo Mode 2 = Neighborhood Scale
 
-    int demoMode = 2;
+    int demoMode = 1;
 
 
 
@@ -110,7 +110,7 @@ public void draw() {
         fill(#FF0000);
         textSize(height/10);
         textAlign(CENTER);
-        text("INVALID", 0.45*width, 0.55*height);
+        //text("INVALID", 0.45*width, 0.55*height);
       }
       
       // Crops Graphic to Physical Model Area

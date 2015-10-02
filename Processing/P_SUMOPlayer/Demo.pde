@@ -73,11 +73,12 @@ public void setupStreetDemo() {
   overlay[2] = loadImage("newStopOutlines-01.png");
   overlay[3] = loadImage("newRoutes-01.png");
   
-  underlay = new PImage[4];
+  underlay = new PImage[5];
   underlay[0] = loadImage("street_basemaps/0.png");
   underlay[1] = loadImage("street_basemaps/1.png");
   underlay[2] = loadImage("street_basemaps/2.png");
   underlay[3] = loadImage("street_basemaps/3.png");
+  underlay[4] = loadImage("street_basemaps/OFF.png");
   
 //  drawWidth = 4000;
 //  drawHeight = int(4000*modelHeight/modelWidth);
