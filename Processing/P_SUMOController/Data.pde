@@ -5,6 +5,8 @@ int maxPieces = 100;
 int codeArray[][][] = new int[maxPieces][maxPieces][2]; 
 boolean changeDetected = false;
 
+Table summary;
+
 void initializeGrid() {
   
   // Sets default values before Colortizer Inputs received

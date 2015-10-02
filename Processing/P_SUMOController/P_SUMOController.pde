@@ -19,8 +19,18 @@ void setup() {
       
     case 2:
       setupNeighborhoodDemo();
+      
       break;
   }
+  
+  //Debug Size
+//  screenW = 1000;
+//  screenH = 600;
+  
+  size(screenW, screenH);
+  
+  setupSummary();
+  background(0);
 }
 
 void draw() {
@@ -50,6 +60,7 @@ void draw() {
     sendCommand(IDs, 6667);
     changeDetected = false;
     
-    
   }
+  
+  drawSummary();
 }
