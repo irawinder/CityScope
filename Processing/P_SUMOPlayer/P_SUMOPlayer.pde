@@ -1,7 +1,7 @@
 // Demo Mode 1 = Street Scale
 // Demo Mode 2 = Neighborhood Scale
 
-    int demoMode = 2;
+    int demoMode = 1;
 
 
 
@@ -32,8 +32,8 @@ int tokenIndex = 0;
 PImage[] overlay;
 PImage[] underlay;
 int streetScalar;
-
-
+int underlayIndex = 0;
+boolean invalid = false;
 
 public void setup() {
   
@@ -82,11 +82,36 @@ public void draw() {
   switch (demoMode) {
     
     case 1:
+      
+      invalid = false;
+      
+      if (IDArray[0] == 1 && IDArray[2] == 1 && IDArray[1] == -1) {
+        underlayIndex = 1;
+      } else if (IDArray[0] == -1 && IDArray[2] == -1 && IDArray[1] == 2) {
+        underlayIndex = 2;
+      } else if (IDArray[0] == -1 && IDArray[2] == 3 && IDArray[1] == 2) {
+        underlayIndex = 3;
+      } else if (IDArray[0] == -1 && IDArray[2] == -1 && IDArray[1] == -1) {
+        underlayIndex = 0;
+      } else {
+        underlayIndex = 0;
+        invalid = true;
+      }
+      
+      //println(underlayIndex);
+      
       //Draw Underlay
       drawUnderlay();
-    
-      // Draws Agents into primary graphic
-      drawM_SUMO();
+      
+      if (invalid == false) {
+        // Draws Agents into primary graphic
+        drawM_SUMO();
+      } else {
+        fill(#FF0000);
+        textSize(height/10);
+        textAlign(CENTER);
+        text("INVALID", 0.45*width, 0.55*height);
+      }
       
       // Crops Graphic to Physical Model Area
       M_Crop();

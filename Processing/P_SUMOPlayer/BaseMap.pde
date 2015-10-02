@@ -46,7 +46,7 @@ public void drawUnderlay() {
   
 //  translate(underW, underH);
 //  rotate(PI);
-  image(underlay[0], 0, 0, underW, underH);
+  image(underlay[underlayIndex], 0, 0, underW, underH);
 //  rotate(-PI);
 //  translate(-underW, -underH);
 }
