@@ -53,7 +53,7 @@ void draw() {
         } else if (IDArray[0] == -1 && IDArray[2] == 3 && IDArray[1] == 2) {
           scenarioID = 3;
         } else if (IDArray[0] == 0 && IDArray[2] == 0 && IDArray[1] == -1) {
-        underlayIndex = 0;
+          scenarioID = 0;
         } else {
           scenarioID = 0;
           invalid = true;
