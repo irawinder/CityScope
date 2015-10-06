@@ -44,6 +44,8 @@ public void drawUnderlay() {
   int underW = streetScalar*144;
   int underH = streetScalar*48;
   
+  background(0);
+  
 //  translate(underW, underH);
 //  rotate(PI);
   if (invalid) {

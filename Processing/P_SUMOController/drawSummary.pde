@@ -20,7 +20,7 @@ void setupSummary() {
   baseChange = new int[columnCount];
   
   smText = screenH/30;
-  lgText = screenH/10;
+  lgText = screenH/18;
     
 }
 
@@ -94,7 +94,7 @@ void drawStreetSummary() {
   //Print Bus Time
   
       column = 3;
-      x_ = 0.0;
+      x_ = -0.01;
       y_ = 0.01;
       
       // via Bus
@@ -110,21 +110,22 @@ void drawStreetSummary() {
       textSize(smText);
       textAlign(RIGHT);
       if (baseChange[column-1] == -1) {
-        text( "(saved " + ( abs(summary.getInt(scenarioID+1, column) - summary.getInt(0+1, column)) ) + " min)", (0.81+x_)*width, (0.16+y_)*height);
+        text( "-" + ( abs(summary.getInt(scenarioID+1, column) - summary.getInt(0+1, column)) ) + " min", (0.74+x_)*width, (0.21+y_)*height);
       } else if (baseChange[column-1] == 1) {
-        text( "(added " + ( summary.getInt(scenarioID+1, column) - summary.getInt(0+1, column) ) + " min)", (0.81+x_)*width, (0.16+y_)*height);
+        text( "+" + ( summary.getInt(scenarioID+1, column) - summary.getInt(0+1, column) ) + " min", (0.74+x_)*width, (0.21+y_)*height);
       }
       
       // Bus Time
       textAlign(RIGHT);
       textSize(lgText);
+      fill(#FFFFFF);
         text(summary.getString(scenarioID+1, column), (0.79+x_)*width, (0.27+y_)*height);
       
       fill(#FFFFFF);
     
   //Print Driving Time
       column = 2;
-      x_ = 0.0;
+      x_ = -0.01;
       y_ = 0.50;
       
 //      // via Car
@@ -136,18 +137,19 @@ void drawStreetSummary() {
       //Sets color to green or red
       checkChange(column-1, -1);
           
-//      // Change in Time
-//      textSize(smText);
-//      textAlign(RIGHT);
-//      if (baseChange[column-1] == -1) {
-//        text( "(saved " + ( abs(summary.getInt(scenarioID+1, column) - summary.getInt(0+1, column)) ) + " min)", (0.64+x_)*width, (0.27+y_)*height);
-//      } else if (baseChange[column-1] == 1) {
-//        text( "(added " + ( summary.getInt(scenarioID+1, column) - summary.getInt(0+1, column) ) + " min)", (0.64+x_)*width, (0.27+y_)*height);
-//      }
+      // Change in Time
+      textSize(smText);
+      textAlign(RIGHT);
+      if (baseChange[column-1] == -1) {
+        text( "-" + ( abs(summary.getInt(scenarioID+1, column) - summary.getInt(0+1, column)) ) + " min", (0.74+x_)*width, (0.21+y_)*height);
+      } else if (baseChange[column-1] == 1) {
+        text( "+" + ( summary.getInt(scenarioID+1, column) - summary.getInt(0+1, column) ) + " min", (0.74+x_)*width, (0.21+y_)*height);
+      }
       
-      // Bus Time
+      // Car Time
       textAlign(RIGHT);
       textSize(lgText);
+       fill(#FFFFFF);
         text(summary.getString(scenarioID+1, column), (0.79+x_)*width, (0.27+y_)*height);
       
       fill(#FFFFFF);
@@ -166,18 +168,19 @@ void drawStreetSummary() {
       //Sets color to green or red
       checkChange(column-1, -1);
           
-//      // Change in Wait Time
-//      textSize(smText);
-//      textAlign(RIGHT);
-//      if (baseChange[column-1] == -1) {
-//        text( "(saved " + ( abs(summary.getInt(scenarioID+1, column) - summary.getInt(0+1, column)) ) + "sec)", (0.63+x_)*width, (0.27+y_)*height);
-//      } else if (baseChange[column-1] == 1) {
-//        text( "(added " + ( summary.getInt(scenarioID+1, column) - summary.getInt(0+1, column) ) + "sec)", (0.63+x_)*width, (0.27+y_)*height);
-//      }
+      // Change in Wait Time
+      textSize(smText);
+      textAlign(RIGHT);
+      if (baseChange[column-1] == -1) {
+        text( "-" + ( abs(summary.getInt(scenarioID+1, column) - summary.getInt(0+1, column)) ) + " sec", (0.72+x_)*width, (0.21+y_)*height);
+      } else if (baseChange[column-1] == 1) {
+        text( "+" + ( summary.getInt(scenarioID+1, column) - summary.getInt(0+1, column) ) + " sec", (0.72+x_)*width, (0.21+y_)*height);
+      }
       
       // Bus Wait Time
       textAlign(RIGHT);
       textSize(lgText);
+      fill(#FFFFFF);
         text(summary.getString(scenarioID+1, column), (0.79+x_)*width, (0.27+y_)*height);
       
       fill(#FFFFFF);
@@ -197,19 +200,20 @@ void drawStreetSummary() {
       //Sets color to green or red
       checkChange(column-1, 1);
           
-//      // Change in Time
-//      textSize(smText);
-//      textAlign(RIGHT);
-//      if (baseChange[column-1] == -1) {
-//        text( "(removed " + ( abs(summary.getInt(scenarioID+1, column) - summary.getInt(0+1, column)) ) + ")", (0.64+x_)*width, (0.27+y_)*height);
-//      } else if (baseChange[column-1] == 1) {
-//        text( "(added " + ( summary.getInt(scenarioID+1, column) - summary.getInt(0+1, column) ) + ")", (0.64+x_)*width, (0.27+y_)*height);
-//      }
-      
-      // Bus Time
+      // Change in Bike Time
+      textSize(smText);
       textAlign(RIGHT);
+      if (baseChange[column-1] == -1) {
+        text( "-" + ( abs(summary.getInt(scenarioID+1, column) - summary.getInt(0+1, column)) ) + " bikes", (0.82+x_)*width, (0.22+y_)*height);
+      } else if (baseChange[column-1] == 1) {
+        text( "+" + ( summary.getInt(scenarioID+1, column) - summary.getInt(0+1, column) ) + " bikes", (0.82+x_)*width, (0.22+y_)*height);
+      }
+      
+      // Bike Time
+      textAlign(LEFT);
       textSize(lgText);
-        text(summary.getString(scenarioID+1, column), (0.79+x_)*width, (0.27+y_)*height);
+      fill(#FFFFFF);
+        text(summary.getString(scenarioID+1, column), (0.67+x_)*width, (0.27+y_)*height);
       
       fill(#FFFFFF);
       
@@ -227,19 +231,20 @@ void drawStreetSummary() {
       //Sets color to green or red
       checkChange(column-1, 1);
           
-//      // Change in Time
-//      textSize(smText);
-//      textAlign(LEFT);
-//      if (baseChange[column-1] == -1) {
-//        text( "(removed " + ( abs(summary.getInt(scenarioID+1, column) - summary.getInt(0+1, column)) ) + ")", (0.66+x_)*width, (0.43+y_)*height);
-//      } else if (baseChange[column-1] == 1) {
-//        text( "(added " + ( summary.getInt(scenarioID+1, column) - summary.getInt(0+1, column) ) + ")", (0.66+x_)*width, (0.43+y_)*height);
-//      }
+      // Change in Time
+      textSize(smText);
+      textAlign(RIGHT);
+      if (baseChange[column-1] == -1) {
+        text( "-" + ( abs(summary.getInt(scenarioID+1, column) - summary.getInt(0+1, column)) ) + " spaces", (0.77+x_)*width, (0.22+y_)*height);
+      } else if (baseChange[column-1] == 1) {
+        text( "+" + ( summary.getInt(scenarioID+1, column) - summary.getInt(0+1, column) ) + " spaces", (0.77+x_)*width, (0.22+y_)*height);
+      }
       
       // Park Spots
       textAlign(RIGHT);
       textSize(lgText);
-        text(summary.getString(scenarioID+1, column), (0.79+x_)*width, (0.27+y_)*height);
+      fill(#FFFFFF);
+        text(summary.getString(scenarioID+1, column), (0.78+x_)*width, (0.28+y_)*height);
       
       fill(#FFFFFF);
   
