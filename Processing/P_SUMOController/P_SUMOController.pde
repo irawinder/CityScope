@@ -1,4 +1,4 @@
-// Ira
+// Ira!
 
 // Demo Mode 1 = Street Scale
 // Demo Mode 2 = Neighborhood Scale
@@ -30,7 +30,8 @@ void setup() {
 //  screenH = 600;
   
   size(screenW, screenH);
-  
+  frame.setResizable(true);
+    
   setupSummary();
   background(0);
 }

@@ -64,8 +64,10 @@ public void setupStreetDemo() {
   projector_height = 1200;
   screenWidth = 1920;
   
-  tokens = new String[1];
+  tokens = new String[3];
   tokens[0] = "model0_results";
+  tokens[1] = "model1_results";
+  tokens[2] = "model2_results";
   
   overlay = new PImage[4];
   overlay[0] = loadImage("orangeLine-01.png");
@@ -74,10 +76,10 @@ public void setupStreetDemo() {
   overlay[3] = loadImage("newRoutes-01.png");
   
   underlay = new PImage[5];
-  underlay[0] = loadImage("street_basemaps/0.png");
-  underlay[1] = loadImage("street_basemaps/1.png");
-  underlay[2] = loadImage("street_basemaps/2.png");
-  underlay[3] = loadImage("street_basemaps/3.png");
+  underlay[0] = loadImage("street_basemaps/0.jpg");
+  underlay[1] = loadImage("street_basemaps/1.jpg");
+  underlay[2] = loadImage("street_basemaps/2.jpg");
+  underlay[3] = loadImage("street_basemaps/3.jpg");
   underlay[4] = loadImage("street_basemaps/OFF.png");
   
 //  drawWidth = 4000;

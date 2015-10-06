@@ -31,7 +31,6 @@ public void keyPressed(){
         
         switch (demoMode) {
           case 1:
-            M_fx.setup(tokens[tokenIndex]);  
             break;
           
           case 2:

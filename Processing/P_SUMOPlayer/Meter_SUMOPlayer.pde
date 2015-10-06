@@ -13,7 +13,7 @@ import java.io.DataInputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-M_FcdXml M_fx; //load floating car data from SUMO
+M_FcdXml[] M_fx; //load floating car data from SUMO
   
 public void setupM_SUMO() {
   smooth();
@@ -23,11 +23,21 @@ public void setupM_SUMO() {
   bm.setup(lat, lon, zoom);
   
   //Load pre-run scenario
-  M_fx = new M_FcdXml(this);
-  M_fx.setup(tokens[tokenIndex]);  
+  M_fx = new M_FcdXml[3];
+  
+  M_fx[0] = new M_FcdXml(this);
+  M_fx[0].setup(tokens[0]);
+
+  M_fx[1] = new M_FcdXml(this);
+  M_fx[1].setup(tokens[1]);
+
+  M_fx[2] = new M_FcdXml(this);
+  M_fx[2].setup(tokens[2]);  
 
   frameRate(fr);
-  M_fx.vehicleKeyframe(0);
+  M_fx[0].vehicleKeyframe(0);
+  M_fx[1].vehicleKeyframe(0);
+  M_fx[2].vehicleKeyframe(0);
 }
   
 public void drawM_SUMO() {
@@ -35,11 +45,11 @@ public void drawM_SUMO() {
   //Draw pre-run simulation  
   if (rt == false){
     //If there are timesteps left,
-    if (frame+2 < M_fx.numFrames){
+    if (frame+2 < M_fx[tokenIndex].numFrames){
           //Interpolate positions depending on playback speed
           if((millis() - timer)/1000F >= 1F/playbackSpeed){
             frame++;
-            M_fx.vehicleKeyframe(frame);
+            M_fx[tokenIndex].vehicleKeyframe(frame);
             //PApplet.println((millis() - timer)/1000 + " : " + playbackSpeed);
             timer = millis();  
           }          
@@ -53,7 +63,7 @@ public void drawM_SUMO() {
       
     //Draw the vehicles
     noStroke();
-    M_fx.drawVehicles((millis()-timer)/(1000F)*playbackSpeed);
+    M_fx[tokenIndex].drawVehicles((millis()-timer)/(1000F)*playbackSpeed);
   
 //    //Draw the info window
 //    fill(0);
