@@ -85,12 +85,8 @@ void ImportData(String inputStr[]) {
           
           //Identifies rotation vector of piece [WARNING: Colortizer supplies rotation in degrees (0, 90, 180, and 270)]
           codeArray[int(split[2])][int(split[1])][1] = int(split[3])/90; 
-          
-          //sendCommand(inputStr[i], 6667);
-          
           changeDetected = true;
           simCounter = simTime;
-          
         }
 
       }

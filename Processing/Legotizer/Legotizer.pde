@@ -137,6 +137,7 @@ void draw() {
     initializePlan();            // Initializes PGraphic that holds plan Information
     initializeHeatMap();         // Initializes Array that holds heatmap values
     initializeScoreWeb();        // Initialized PGraphics for Score Web Vizualization
+    initializeAgents();          // Initializing agents 
     
     dataLoaded = true;
     
@@ -165,6 +166,9 @@ void draw() {
     
     // Sends Input to SIM if Sim is ready and Change has been detected
     checkSendNodesJSON("scan");
+    
+    //Iterate Agent Visualization every draw frame regardless of update
+    updateAgents(); 
     
     // Reloads textfiles of SDL outputs  
     if (vizMode == 1 && !drawNodes) { //Riyadh Demo Mode

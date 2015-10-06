@@ -42,7 +42,7 @@ int camera = 0;
 int[] numGridAreas = {1}; // 1 grid for 1 distortion area
 
 // Dimensions of surface being scanned
-float vizRatio = float(16)/(16); //Must match measurements in reality, i.e. a table surface
+float vizRatio = float(19)/(19); //Must match measurements in reality, i.e. a table surface
 int vizWidth = 400; //Resolution (in pixels)
 int vizHeight = int(vizWidth/vizRatio);
 

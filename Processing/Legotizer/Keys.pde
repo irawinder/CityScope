@@ -140,6 +140,14 @@ void keyPressed() {
       projH++;
       saveProjectorLocation();
       break;
+      
+    case 'A':
+      if (displayAgents) {
+        displayAgents = false;
+      } else {
+        displayAgents = true;
+      }
+      break;
   }
   
   if (key == CODED) { 

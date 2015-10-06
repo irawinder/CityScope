@@ -32,6 +32,7 @@ void initializePlan() {
   plan = createGraphics(int(planScaler*width), int(planScaler*width*boardLength/boardWidth), P2D);
 }
 
+
 void drawPlan(int x, int y, int w, int h) {
   plan.beginDraw();
   plan.background(0);
@@ -69,9 +70,15 @@ void drawPlan(int x, int y, int w, int h) {
     k_height = 2;
   }
   
+  if (displayAgents) {
+    drawAgents();
+  }
+
   if (drawPlanStatic) {
     drawPlanStatic();
   }
+  
+
   
   if (displayDynamic) {
     drawPlanDynamic();
@@ -88,6 +95,9 @@ void drawPlan(int x, int y, int w, int h) {
 }
 
 void drawPlanDynamic() {
+  
+  plan.noStroke();
+  
   // Indroduces a small gap just after 0,0 that acounts for half the width of a plexiglas grid width
   lTranslate(dynamicSpacer*gridGap/2, dynamicSpacer*gridGap/2);
   
@@ -320,12 +330,15 @@ void drawPlan4x4Nodes(int i, int j, int k) {
           if (codeArray[i][j][0] >= 0 && codeArray[i][j][0] < NPieces) { //has peice
             if ((vizMode == 0 && codeArray[i][j][0] == 1) || (vizMode == 1 && codeArray[i][j][0] == 8) || (vizMode == 2 && codeArray[i][j][0] == 2)) { //is Park
               plan.fill(parkColor);
+              //plan.noFill(); //YZ
             } else {
               plan.fill(bldgColor);
+              //plan.noFill(); //YZ
             }
           } else if (siteInfo.getInt(i,j) == 1 || (overrideStatic && !drawPlanStatic && !drawPlanSat) ) {
             //has no discernable piece on open "cell"; has no dicernable piece on closed "cell," and otherwise unobstructed by static layers
             plan.fill(openColor);
+            //plan.noFill(); //YZ
           }
         }
           
@@ -337,12 +350,15 @@ void drawPlan4x4Nodes(int i, int j, int k) {
               plan.fill(255*(1 - heatMap[i][j]), 255*heatMap[i][j], 0);
             } else if ((vizMode == 0 && codeArray[i][j][0] == 1) || (vizMode == 1 && codeArray[i][j][0] == 8) || (vizMode == 2 && codeArray[i][j][0] == 2)) { //is Park
               plan.fill(mediumGray);
+              //plan.noFill(); //YZ
             } else {
               plan.fill(lightGray);
+              //plan.noFill(); //YZ
             }
           } else if (siteInfo.getInt(i,j) == 1 || (overrideStatic && !drawPlanStatic && !drawPlanSat) ) {
             //has no discernable piece on open "cell"; has no dicernable piece on closed "cell," and otherwise unobstructed by static layers
             plan.fill(offColor);
+            //plan.noFill(); //YZ
           }
         }
       }
