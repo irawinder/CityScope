@@ -1,7 +1,7 @@
 int columnCount;
 int scenarioID = 3;
 float offset;
-int delta;
+float delta;
 int column;
 float x_;
 float y_;
@@ -57,7 +57,7 @@ void drawSummary() {
         text("Change from Today", 0.75*width, float(i+1)/columnCount*height - offset);
       } else {
         
-        delta = summary.getInt(scenarioID+1, i+1) - summary.getInt(0+1, i+1);
+        delta = summary.getFloat(scenarioID+1, i+1) - summary.getFloat(0+1, i+1);
         
         fill(#333333);
         
