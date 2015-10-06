@@ -48,7 +48,7 @@ public void setupStreetDemo() {
   summary = loadTable("street_data/summary.csv");
   
   streetScore_template = loadImage("street_data/D_SB_BLK.png");
-  streetScore_OFF = loadImage("street_data/D_SB_BLK.png");
+  streetScore_OFF = loadImage("street_data/D_SB_BLK_OFF.png");
 
   screenW = 1920;
   screenH = 1080;
