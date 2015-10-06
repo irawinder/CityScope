@@ -76,7 +76,11 @@ void drawSummary() {
     // Sets Static Global Variables to a Demo of Choice
     switch (demoMode) {
       case 1:
-        drawStreetSummary();
+        if (invalid == false) {
+          drawStreetSummary();
+        } else {
+          image(streetScore_OFF, 0, 0, width, height);
+        }
         break;
         
       case 2:
@@ -89,7 +93,25 @@ void drawSummary() {
 void drawStreetSummary() {
   
   image(streetScore_template, 0, 0, width, height);
-
+  
+  textAlign(LEFT);
+  fill(#FFFFFF);
+  textSize(smText);
+  
+   x_ = 0.054;
+   y_ = 0.475;
+   
+  if (scenarioID == 0) {
+    text("Standard Bus Station", x_*width, y_*height);
+  } else if (scenarioID == 1) {
+    text("Upgraded Bus Station", x_*width, y_*height);
+  } else if (scenarioID == 2) {
+    text("Center-Median BRT Stop", x_*width, y_*height);
+  } else if (scenarioID == 3) {
+    text("Center-Median BRT Stop", x_*width, y_*height);
+    text("with bike lane", x_*width, (y_+0.04)*height);
+  }
+    
   
   //Print Bus Time
   

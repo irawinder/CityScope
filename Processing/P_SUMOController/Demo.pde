@@ -8,6 +8,7 @@ String[] pieceNames;
 int numToggles, numPieces;
 
 PImage streetScore_template;
+PImage streetScore_OFF;
 
 // Integer -1, 0, and +1 that describes whether model has changed from basecase
 int[] baseChange;
@@ -47,6 +48,7 @@ public void setupStreetDemo() {
   summary = loadTable("street_data/summary.csv");
   
   streetScore_template = loadImage("street_data/D_SB_BLK.png");
+  streetScore_OFF = loadImage("street_data/D_SB_BLK.png");
 
   screenW = 1920;
   screenH = 1080;
