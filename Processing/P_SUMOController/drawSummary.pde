@@ -292,13 +292,15 @@ void drawNeighborhoodSummary() {
   fill(0);
   textSize(smText);
   
+  //translate(-0.3*width, 0);
+  
   x_ = 0.0;
   y_ = 0.0;
   
   //Dedicated Lanes
   
       column = 6;
-      x_ = 0.28;
+      x_ = 0.16;
       y_ = 0.61;
       
       //Sets color to green or red
@@ -308,21 +310,21 @@ void drawNeighborhoodSummary() {
       textSize(smText);
       textAlign(RIGHT);
       if (baseChange[column-1] == -1) {
-        text( "-" + ( abs(summary.getFloat(scenarioID+1, column) - summary.getFloat(0+1, column)) ) + " mi", (0.12+x_)*width, (0.0+y_)*height);
+        text( "-" + ( abs(summary.getFloat(scenarioID+1, column) - summary.getFloat(0+1, column)) ) + " mi", (0.22+x_)*width, (0.0+y_)*height);
       } else if (baseChange[column-1] == 1) {
-        text( "+" + ( summary.getFloat(scenarioID+1, column) - summary.getFloat(0+1, column) ) + " mi", (0.12+x_)*width, (0.0+y_)*height);
+        text( "+" + ( summary.getFloat(scenarioID+1, column) - summary.getFloat(0+1, column) ) + " mi", (0.22+x_)*width, (0.0+y_)*height);
       }
       
       // # Lanes
       textAlign(RIGHT);
       textSize(lgText);
       fill(0);
-        text(summary.getString(scenarioID+1, column), (0.24+x_)*width, (0.035+y_)*height);
+        text(summary.getString(scenarioID+1, column), (0.04+x_)*width, (0.035+y_)*height);
       
   
   // Passengers 
       column = 7;
-      x_ = 0.11+0.29;
+      x_ = 0.11+0.03;
       y_ = 0.85;
       
       //Sets color to green or red
@@ -348,7 +350,7 @@ void drawNeighborhoodSummary() {
   
   // Parking Spaces Removed
       column = 8;
-      x_ = .11;
+      x_ = -0.21;
       y_ = .02;
       
 //      // via Bus
@@ -404,7 +406,7 @@ void drawNeighborhoodSummary() {
       textAlign(RIGHT);
       textSize(smText);
       fill(0);
-        text(summary.getString(scenarioID+1, column), (0.78+x_)*width, (0.28+y_)*height);
+        text(summary.getString(scenarioID+1, column), (0.61+x_)*width, (0.28+y_)*height);
       
       fill(0);
       
@@ -426,16 +428,16 @@ void drawNeighborhoodSummary() {
       textSize(smText);
       textAlign(RIGHT);
       if (baseChange[column-1] == -1) {
-        text( "-" + ( abs(summary.getFloat(scenarioID+1, column) - summary.getFloat(0+1, column)) ) + " lbs", (0.65+x_)*width, (0.33+y_)*height);
+        text( "-" + ( abs(summary.getFloat(scenarioID+1, column) - summary.getFloat(0+1, column)) ) + " lbs", (0.63+x_)*width, (0.33+y_)*height);
       } else if (baseChange[column-1] == 1) {
-        text( "+" + ( summary.getFloat(scenarioID+1, column) - summary.getFloat(0+1, column) ) + " lbs", (0.65+x_)*width, (0.33+y_)*height);
+        text( "+" + ( summary.getFloat(scenarioID+1, column) - summary.getFloat(0+1, column) ) + " lbs", (0.63+x_)*width, (0.33+y_)*height);
       }
       
       // Park Spots
       textAlign(RIGHT);
       textSize(smText);
       fill(0);
-        text(summary.getString(scenarioID+1, column), (0.78+x_)*width, (0.28+y_)*height);
+        text(summary.getString(scenarioID+1, column), (0.55+x_)*width, (0.28+y_)*height);
       
       fill(0);
   
@@ -457,16 +459,16 @@ void drawNeighborhoodSummary() {
       textSize(smText);
       textAlign(RIGHT);
       if (baseChange[column-1] == -1) {
-        text( "-" + ( int(100*abs(summary.getFloat(scenarioID+1, column) - summary.getFloat(0+1, column)))/100.0 ) + " mph", (0.78+x_)*width, (0.12+y_)*height);
+        text( "-" + ( int(100*abs(summary.getFloat(scenarioID+1, column) - summary.getFloat(0+1, column)))/100.0 ) + " mph", (0.75+x_)*width, (0.12+y_)*height);
       } else if (baseChange[column-1] == 1) {
-        text( "+" + int( 100*( summary.getFloat(scenarioID+1, column) - summary.getFloat(0+1, column) ) )/100.0 + " mph", (0.78+x_)*width, (0.12+y_)*height);
+        text( "+" + int( 100*( summary.getFloat(scenarioID+1, column) - summary.getFloat(0+1, column) ) )/100.0 + " mph", (0.75+x_)*width, (0.12+y_)*height);
       }
       
       // Park Spots
       textAlign(RIGHT);
       textSize(smText);
       fill(0);
-        text(summary.getString(scenarioID+1, column), (0.78+x_)*width, (0.28+y_)*height);
+        text(summary.getString(scenarioID+1, column), (0.67+x_)*width, (0.28+y_)*height);
       
       fill(0);
       
@@ -488,16 +490,16 @@ void drawNeighborhoodSummary() {
       textSize(smText);
       textAlign(RIGHT);
       if (baseChange[column-1] == -1) {
-        text( "-" + ( int(100*abs(summary.getFloat(scenarioID+1, column) - summary.getFloat(0+1, column)))/100.0 ) + " mph", (0.65+x_)*width, (0.33+y_)*height);
+        text( "-" + ( int(100*abs(summary.getFloat(scenarioID+1, column) - summary.getFloat(0+1, column)))/100.0 ) + " mph", (0.69+x_)*width, (0.33+y_)*height);
       } else if (baseChange[column-1] == 1) {
-        text( "+" + int( 100*( summary.getFloat(scenarioID+1, column) - summary.getFloat(0+1, column) ) )/100.0 + " mph", (0.65+x_)*width, (0.33+y_)*height);
+        text( "+" + int( 100*( summary.getFloat(scenarioID+1, column) - summary.getFloat(0+1, column) ) )/100.0 + " mph", (0.69+x_)*width, (0.33+y_)*height);
       }
       
       // Park Spots
       textAlign(RIGHT);
       textSize(smText);
       fill(0);
-        text(summary.getString(scenarioID+1, column), (0.78+x_)*width, (0.28+y_)*height);
+        text(summary.getString(scenarioID+1, column), (0.66+x_)*width, (0.28+y_)*height);
       
       fill(0);
   
