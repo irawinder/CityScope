@@ -141,11 +141,19 @@ void keyPressed() {
       saveProjectorLocation();
       break;
       
-    case 'A':
+    case 'A': //Waleed
       if (displayAgents) {
         displayAgents = false;
       } else {
         displayAgents = true;
+      }
+      break;
+      
+    case 'T': //YZ
+      if (projectSimColorOnly) {
+        projectSimColorOnly = false;
+      } else {
+        projectSimColorOnly = true;
       }
       break;
   }

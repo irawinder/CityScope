@@ -62,6 +62,8 @@
  *                       - Display Assumptions, split working population from total residential population, highlight selected heatmap on score web
  * v1.31: August 27, 2015- Allow view of 3D model from 4 additional, orthogonal angles * v1.31: August 27, 2015- Allow view of 3D model from 4 additional, orthogonal angles
  * v1.32: Sep 6, 2015    - Added New Demomode for Hamburg (legotizer_library folders updated with basemaps!)
+ * v1.33: Oct 8, 2015    - Waleed: display agents
+ *                       - Yan Zhang: unity UDP port confliction fix; project only simulation color
  * 
  * TO DO: 
  * 1. Uniquely color each Heatmap and/or change description to be more intuitive?

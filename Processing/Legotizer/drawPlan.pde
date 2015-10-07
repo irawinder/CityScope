@@ -11,6 +11,8 @@ boolean drawPlanStatic = false;
 boolean faux3D = true;
 int k_height;
 
+boolean projectSimColorOnly = true; //YZ
+
 // allows control of projected basemap independently of screen basemap
 int basemap_indexPlan = 0;
 
@@ -151,31 +153,56 @@ void drawPlanStatic() {
       
       if (staticStructures.getInt(i,j) == -3) { // Is River
         if (colorMode == 2) {
-          plan.fill(offColor);
+          //plan.fill(offColor); //YZ
+          if (projectSimColorOnly) {
+            plan.fill(transparentColor);
+          } else {
+            plan.fill(offColor);
+          }
         } else {
           plan.fill(riverColor);
         }
       } else if (staticStructures.getInt(i,j) == -2) { // Is Park
         if (colorMode == 2) {
-          plan.fill(mediumGray);
+          //plan.fill(mediumGray); //YZ
+          if (projectSimColorOnly) {
+            plan.fill(transparentColor);
+          } else {
+            plan.fill(mediumGray);
+          }
         } else {
           plan.fill(parkColor);
         }
       } else if (staticStructures.getInt(i,j) == -1) { // Is Road
         if (colorMode == 2) {
-          plan.fill(offColor);
+          //plan.fill(offColor); //YZ
+          if (projectSimColorOnly) {
+            plan.fill(transparentColor);
+          } else {
+            plan.fill(offColor);
+          }
         } else {
           plan.fill(roadColor);
         }
       } else if (staticStructures.getInt(i,j) == 0) { // Is Open Space
         if (colorMode == 2) {
-          plan.fill(offColor);
+          //plan.fill(offColor); //YZ
+          if (projectSimColorOnly) {
+            plan.fill(transparentColor);
+          } else {
+            plan.fill(offColor);
+          }
         } else {
           plan.fill(openColor);
         }
       } else if (staticStructures.getInt(i,j) > 0) { // Is above ground structure
         if (colorMode == 2) {
-          plan.fill(lightGray);
+          //plan.fill(lightGray); //YZ
+          if (projectSimColorOnly) {
+            plan.fill(transparentColor);
+          } else {
+            plan.fill(lightGray);
+          }
         } else {
           plan.fill(bldgColor);
         }
@@ -288,13 +315,28 @@ void drawPlan1x1Nodes(int i, int j, int k) {
             if (heatMapActive[i][j] == 1) {
               plan.fill(255*(1 - heatMap[i][j]), 255*heatMap[i][j], 0);
             } else if ((vizMode == 0 && codeArray[i][j][0] == 1) || (vizMode == 1 && codeArray[i][j][0] == 8) || (vizMode == 2 && codeArray[i][j][0] == 2)) { //is Park
-              plan.fill(mediumGray);
+              //plan.fill(mediumGray); //YZ
+              if (projectSimColorOnly) {
+                plan.fill(transparentColor);
+              } else {
+                plan.fill(mediumGray);
+              }
             } else {
-              plan.fill(lightGray);
+              //plan.fill(lightGray); //YZ
+              if (projectSimColorOnly) {
+                plan.fill(transparentColor);
+              } else {
+                plan.fill(lightGray);
+              }
             }
           } else if (siteInfo.getInt(i,j) == 1 || (overrideStatic && !drawPlanStatic && !drawPlanSat) ) {
             //has no discernable piece on open "cell"; has no dicernable piece on closed "cell," and otherwise unobstructed by static layers
-            plan.fill(offColor);
+            //plan.fill(offColor); //YZ
+            if (projectSimColorOnly) {
+              plan.fill(transparentColor);
+            } else {
+              plan.fill(offColor);
+            }
           }
         }
       }
@@ -305,7 +347,12 @@ void drawPlan1x1Nodes(int i, int j, int k) {
           findPlanFill(i, j, useCloud.nodes[i][j][k]);
         } else if (nodeMode == 1) {
           if (solutionCloud[i][j][k] == -1) {
-            plan.fill(lightGray);
+            //plan.fill(lightGray); //YZ
+            if (projectSimColorOnly) {
+              plan.fill(transparentColor);
+            } else {
+              plan.fill(lightGray);
+            }
           } else {
             plan.fill(255*(1-solutionCloud[i][j][k]), 255*solutionCloud[i][j][k], 0);
           }
@@ -330,15 +377,12 @@ void drawPlan4x4Nodes(int i, int j, int k) {
           if (codeArray[i][j][0] >= 0 && codeArray[i][j][0] < NPieces) { //has peice
             if ((vizMode == 0 && codeArray[i][j][0] == 1) || (vizMode == 1 && codeArray[i][j][0] == 8) || (vizMode == 2 && codeArray[i][j][0] == 2)) { //is Park
               plan.fill(parkColor);
-              //plan.noFill(); //YZ
             } else {
               plan.fill(bldgColor);
-              //plan.noFill(); //YZ
             }
           } else if (siteInfo.getInt(i,j) == 1 || (overrideStatic && !drawPlanStatic && !drawPlanSat) ) {
             //has no discernable piece on open "cell"; has no dicernable piece on closed "cell," and otherwise unobstructed by static layers
             plan.fill(openColor);
-            //plan.noFill(); //YZ
           }
         }
           
@@ -349,16 +393,28 @@ void drawPlan4x4Nodes(int i, int j, int k) {
             if (heatMapActive[i][j] == 1) {
               plan.fill(255*(1 - heatMap[i][j]), 255*heatMap[i][j], 0);
             } else if ((vizMode == 0 && codeArray[i][j][0] == 1) || (vizMode == 1 && codeArray[i][j][0] == 8) || (vizMode == 2 && codeArray[i][j][0] == 2)) { //is Park
-              plan.fill(mediumGray);
-              //plan.noFill(); //YZ
+              //plan.fill(mediumGray); //YZ
+              if (projectSimColorOnly) {
+                plan.fill(transparentColor);
+              } else {
+                plan.fill(mediumGray);
+              }
             } else {
-              plan.fill(lightGray);
-              //plan.noFill(); //YZ
+              //plan.fill(lightGray); //YZ
+              if (projectSimColorOnly) {
+                plan.fill(transparentColor);
+              } else {
+                plan.fill(lightGray);
+              }
             }
           } else if (siteInfo.getInt(i,j) == 1 || (overrideStatic && !drawPlanStatic && !drawPlanSat) ) {
             //has no discernable piece on open "cell"; has no dicernable piece on closed "cell," and otherwise unobstructed by static layers
-            plan.fill(offColor);
-            //plan.noFill(); //YZ
+            //plan.fill(offColor); //YZ
+            if (projectSimColorOnly) {
+              plan.fill(transparentColor);
+            } else {
+              plan.fill(offColor);
+            }
           }
         }
       }
@@ -381,9 +437,19 @@ void drawPlan4x4Nodes(int i, int j, int k) {
               } else if (nodeMode == 1) {
                 if (solutionCloud[i*4+u][j*4+v][k] == -1) {
                   if (useCloud.nodes[i*4+u][j*4+v][k] > 1) {
-                    plan.fill(lightGray);
+                    //plan.fill(lightGray); //YZ
+                    if (projectSimColorOnly) {
+                      plan.fill(transparentColor);
+                    } else {
+                      plan.fill(lightGray);
+                    }
                   } else {
-                    plan.fill(offColor);
+                    //plan.fill(offColor); //YZ
+                    if (projectSimColorOnly) {
+                      plan.fill(transparentColor);
+                    } else {
+                      plan.fill(offColor);
+                    }
                   }
                 } else {
                   plan.fill(255*(1-solutionCloud[i*4+u][j*4+v][k]), 255*solutionCloud[i*4+u][j*4+v][k], 0);
@@ -426,7 +492,12 @@ void findPlanFill(int u, int v, int value) {
         if (heatMapActive[u][v] == 1) {
           plan.fill(255*(1 - heatMap[u][v]), 255*heatMap[u][v], 0);
         } else {
-          plan.fill(lightGray);
+          //plan.fill(lightGray); //YZ
+          if (projectSimColorOnly) {
+            plan.fill(transparentColor);
+          } else {
+            plan.fill(lightGray);
+          }
         }
       }
       break;
@@ -439,7 +510,12 @@ void findPlanFill(int u, int v, int value) {
         if (heatMapActive[u][v] == 1) {
           plan.fill(255*(1 - heatMap[u][v]), 255*heatMap[u][v], 0);
         } else {
-          plan.fill(lightGray);
+          //plan.fill(lightGray); //YZ
+          if (projectSimColorOnly) {
+            plan.fill(transparentColor);
+          } else {
+            plan.fill(lightGray);
+          }
         }
       }
       break;
@@ -452,7 +528,12 @@ void findPlanFill(int u, int v, int value) {
         if (heatMapActive[u][v] == 1) {
           plan.fill(255*(1 - heatMap[u][v]), 255*heatMap[u][v], 0);
         } else {
-          plan.fill(lightGray);
+          //plan.fill(lightGray); //YZ
+          if (projectSimColorOnly) {
+            plan.fill(transparentColor);
+          } else {
+            plan.fill(lightGray);
+          }
         }
       }
       break;
