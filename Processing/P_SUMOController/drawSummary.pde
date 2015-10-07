@@ -324,8 +324,8 @@ void drawNeighborhoodSummary() {
   
   // Passengers 
       column = 7;
-      x_ = 0.11+0.03;
-      y_ = 0.85;
+      x_ = 0.11+0.04;
+      y_ = 0.865;
       
       //Sets color to green or red
       checkChange(column-1, 1);
@@ -342,9 +342,9 @@ void drawNeighborhoodSummary() {
       
       // # Lanes
       textAlign(RIGHT);
-      textSize(smText);
+      textSize(lgText);
       checkChange(column-1, 1);
-        text(summary.getString(scenarioID+1, column), (0.00+x_)*width, (0.00+y_)*height);
+        text(summary.getInt(scenarioID+1, column)/1000 + "K", (0.00+x_)*width, (0.00+y_)*height);
       
       fill(0);
   
