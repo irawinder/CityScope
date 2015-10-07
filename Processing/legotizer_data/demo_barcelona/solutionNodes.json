@@ -1,3097 +1,3689 @@
 [
   {
-    "v": 52,
+    "v": 8,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 8,
-    "Walkable Access to Housing": 0.09735243767499924,
+    "u": 24,
+    "Walkable Access to Housing": 0.06693174690008163,
     "Walkable Access to Open Space": 0,
     "z": 1
   },
   {
-    "v": 52,
+    "v": 8,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 8,
-    "Walkable Access to Housing": 0.10723119974136353,
+    "u": 24,
+    "Walkable Access to Housing": 0.06744749844074249,
     "Walkable Access to Open Space": 0,
     "z": 2
   },
   {
-    "v": 52,
+    "v": 8,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 9,
-    "Walkable Access to Housing": 0.2197573482990265,
+    "u": 25,
+    "Walkable Access to Housing": 0.06817452609539032,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 8,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 26,
+    "Walkable Access to Housing": 0.06922061741352081,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 8,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 27,
+    "Walkable Access to Housing": 0.07009311765432358,
     "Walkable Access to Open Space": 0,
     "z": 1
   },
   {
-    "v": 52,
+    "v": 8,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 9,
-    "Walkable Access to Housing": 0.15012282133102417,
+    "u": 27,
+    "Walkable Access to Housing": 0.07997287809848785,
     "Walkable Access to Open Space": 0,
     "z": 2
   },
   {
-    "v": 52,
+    "v": 9,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 10,
-    "Walkable Access to Housing": 0.2989262044429779,
+    "u": 24,
+    "Walkable Access to Housing": 0.07217506319284439,
     "Walkable Access to Open Space": 0,
     "z": 1
   },
   {
-    "v": 52,
+    "v": 9,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 10,
-    "Walkable Access to Housing": 0.2654803693294525,
+    "u": 24,
+    "Walkable Access to Housing": 0.06037157028913498,
     "Walkable Access to Open Space": 0,
     "z": 2
   },
   {
-    "v": 52,
+    "v": 9,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 11,
-    "Walkable Access to Housing": 0.3811112344264984,
+    "u": 25,
+    "Walkable Access to Housing": 0.08310779929161072,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 9,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 26,
+    "Walkable Access to Housing": 0.08559683710336685,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 9,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 27,
+    "Walkable Access to Housing": 0.06713180243968964,
     "Walkable Access to Open Space": 0,
     "z": 1
   },
   {
-    "v": 52,
+    "v": 9,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 11,
-    "Walkable Access to Housing": 0.3849346935749054,
+    "u": 27,
+    "Walkable Access to Housing": 0.07466883957386017,
     "Walkable Access to Open Space": 0,
     "z": 2
   },
   {
-    "v": 53,
+    "v": 10,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 8,
-    "Walkable Access to Housing": 0.08561042696237564,
+    "u": 24,
+    "Walkable Access to Housing": 0.08067420870065689,
     "Walkable Access to Open Space": 0,
     "z": 1
   },
   {
-    "v": 53,
+    "v": 10,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 8,
-    "Walkable Access to Housing": 0.06286872923374176,
+    "u": 24,
+    "Walkable Access to Housing": 0.08489116281270981,
     "Walkable Access to Open Space": 0,
     "z": 2
   },
   {
-    "v": 53,
+    "v": 10,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 9,
-    "Walkable Access to Housing": 0.09564604610204697,
+    "u": 25,
+    "Walkable Access to Housing": 0.06400524079799652,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 10,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 26,
+    "Walkable Access to Housing": 0.0884186252951622,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 10,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 27,
+    "Walkable Access to Housing": 0.07512061297893524,
     "Walkable Access to Open Space": 0,
     "z": 1
   },
   {
-    "v": 53,
+    "v": 10,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 9,
-    "Walkable Access to Housing": 0.0971725732088089,
+    "u": 27,
+    "Walkable Access to Housing": 0.06650558859109879,
     "Walkable Access to Open Space": 0,
     "z": 2
   },
   {
-    "v": 53,
+    "v": 11,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 9,
-    "Walkable Access to Housing": 0.0934741273522377,
+    "u": 24,
+    "Walkable Access to Housing": 0.05886339396238327,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 11,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 24,
+    "Walkable Access to Housing": 0.059863973408937454,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 11,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 25,
+    "Walkable Access to Housing": 0.06661246716976166,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 11,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 26,
+    "Walkable Access to Housing": 0.061106644570827484,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 11,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 27,
+    "Walkable Access to Housing": 0.07479093223810196,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 11,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 27,
+    "Walkable Access to Housing": 0.050742633640766144,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 68,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 32,
+    "Walkable Access to Housing": 0,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 68,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 32,
+    "Walkable Access to Housing": 0,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 68,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 33,
+    "Walkable Access to Housing": 0,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 68,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 33,
+    "Walkable Access to Housing": 0,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 68,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 33,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 3
   },
   {
-    "v": 53,
+    "v": 68,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 9,
-    "Walkable Access to Housing": 0.08479004353284836,
+    "u": 33,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 4
   },
   {
-    "v": 53,
+    "v": 68,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 9,
-    "Walkable Access to Housing": 0.03632934018969536,
+    "u": 33,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 5
   },
   {
-    "v": 53,
+    "v": 68,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 9,
-    "Walkable Access to Housing": 0.03774789348244667,
+    "u": 33,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 6
   },
   {
-    "v": 53,
+    "v": 68,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 9,
-    "Walkable Access to Housing": 0.037971775978803635,
-    "Walkable Access to Open Space": 0,
-    "z": 7
-  },
-  {
-    "v": 53,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 9,
-    "Walkable Access to Housing": 0.028439074754714966,
-    "Walkable Access to Open Space": 0,
-    "z": 8
-  },
-  {
-    "v": 53,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 9,
-    "Walkable Access to Housing": 0.022243499755859375,
-    "Walkable Access to Open Space": 0,
-    "z": 9
-  },
-  {
-    "v": 53,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 10,
-    "Walkable Access to Housing": 0.2006193846464157,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 53,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 10,
-    "Walkable Access to Housing": 0.2010326385498047,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 53,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 10,
-    "Walkable Access to Housing": 0.15298090875148773,
-    "Walkable Access to Open Space": 0,
-    "z": 3
-  },
-  {
-    "v": 53,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 10,
-    "Walkable Access to Housing": 0.1380501687526703,
-    "Walkable Access to Open Space": 0,
-    "z": 4
-  },
-  {
-    "v": 53,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 10,
-    "Walkable Access to Housing": 0.09974172711372375,
-    "Walkable Access to Open Space": 0,
-    "z": 5
-  },
-  {
-    "v": 53,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 10,
-    "Walkable Access to Housing": 0.08262331783771515,
-    "Walkable Access to Open Space": 0,
-    "z": 6
-  },
-  {
-    "v": 53,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 10,
-    "Walkable Access to Housing": 0.06777558475732803,
-    "Walkable Access to Open Space": 0,
-    "z": 7
-  },
-  {
-    "v": 53,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 10,
-    "Walkable Access to Housing": 0.060560692101716995,
-    "Walkable Access to Open Space": 0,
-    "z": 8
-  },
-  {
-    "v": 53,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 10,
-    "Walkable Access to Housing": 0.04125029221177101,
-    "Walkable Access to Open Space": 0,
-    "z": 9
-  },
-  {
-    "v": 53,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 11,
-    "Walkable Access to Housing": 0.34452563524246216,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 53,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 11,
-    "Walkable Access to Housing": 0.27667123079299927,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 53,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 11,
-    "Walkable Access to Housing": 0.31290411949157715,
-    "Walkable Access to Open Space": 0,
-    "z": 3
-  },
-  {
-    "v": 53,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 11,
-    "Walkable Access to Housing": 0.1766107678413391,
-    "Walkable Access to Open Space": 0,
-    "z": 4
-  },
-  {
-    "v": 53,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 11,
-    "Walkable Access to Housing": 0.17109057307243347,
-    "Walkable Access to Open Space": 0,
-    "z": 5
-  },
-  {
-    "v": 53,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 11,
-    "Walkable Access to Housing": 0.13095471262931824,
-    "Walkable Access to Open Space": 0,
-    "z": 6
-  },
-  {
-    "v": 53,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 11,
-    "Walkable Access to Housing": 0.1392400562763214,
-    "Walkable Access to Open Space": 0,
-    "z": 7
-  },
-  {
-    "v": 53,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 11,
-    "Walkable Access to Housing": 0.10704275220632553,
-    "Walkable Access to Open Space": 0,
-    "z": 8
-  },
-  {
-    "v": 53,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 11,
-    "Walkable Access to Housing": 0.07227420806884766,
-    "Walkable Access to Open Space": 0,
-    "z": 9
-  },
-  {
-    "v": 54,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 8,
-    "Walkable Access to Housing": 0.0481298491358757,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 54,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 8,
-    "Walkable Access to Housing": 0.04633518308401108,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 54,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 9,
-    "Walkable Access to Housing": 0.055308930575847626,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 54,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 9,
-    "Walkable Access to Housing": 0.06245533749461174,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 54,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 9,
-    "Walkable Access to Housing": 0.05011183023452759,
-    "Walkable Access to Open Space": 0,
-    "z": 3
-  },
-  {
-    "v": 54,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 9,
-    "Walkable Access to Housing": 0.046157754957675934,
-    "Walkable Access to Open Space": 0,
-    "z": 4
-  },
-  {
-    "v": 54,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 9,
-    "Walkable Access to Housing": 0.01721438765525818,
-    "Walkable Access to Open Space": 0,
-    "z": 5
-  },
-  {
-    "v": 54,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 9,
-    "Walkable Access to Housing": 0.004870651755481958,
-    "Walkable Access to Open Space": 0,
-    "z": 6
-  },
-  {
-    "v": 54,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 9,
-    "Walkable Access to Housing": 0.003651510225608945,
-    "Walkable Access to Open Space": 0,
-    "z": 7
-  },
-  {
-    "v": 54,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 9,
-    "Walkable Access to Housing": 0.006032881792634726,
-    "Walkable Access to Open Space": 0,
-    "z": 8
-  },
-  {
-    "v": 54,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 9,
-    "Walkable Access to Housing": 0.0012422360014170408,
-    "Walkable Access to Open Space": 0,
-    "z": 9
-  },
-  {
-    "v": 54,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 10,
-    "Walkable Access to Housing": 0.10495619475841522,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 54,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 10,
-    "Walkable Access to Housing": 0.08976949751377106,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 54,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 10,
-    "Walkable Access to Housing": 0.08399991691112518,
-    "Walkable Access to Open Space": 0,
-    "z": 3
-  },
-  {
-    "v": 54,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 10,
-    "Walkable Access to Housing": 0.0646657794713974,
-    "Walkable Access to Open Space": 0,
-    "z": 4
-  },
-  {
-    "v": 54,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 10,
-    "Walkable Access to Housing": 0.05813693255186081,
-    "Walkable Access to Open Space": 0,
-    "z": 5
-  },
-  {
-    "v": 54,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 10,
-    "Walkable Access to Housing": 0.040718115866184235,
-    "Walkable Access to Open Space": 0,
-    "z": 6
-  },
-  {
-    "v": 54,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 10,
-    "Walkable Access to Housing": 0.030702006071805954,
-    "Walkable Access to Open Space": 0,
-    "z": 7
-  },
-  {
-    "v": 54,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 10,
-    "Walkable Access to Housing": 0.02945713698863983,
-    "Walkable Access to Open Space": 0,
-    "z": 8
-  },
-  {
-    "v": 54,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 10,
-    "Walkable Access to Housing": 0.01370655931532383,
-    "Walkable Access to Open Space": 0,
-    "z": 9
-  },
-  {
-    "v": 54,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 11,
-    "Walkable Access to Housing": 0.19685229659080505,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 54,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 11,
-    "Walkable Access to Housing": 0.18128463625907898,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 54,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 11,
-    "Walkable Access to Housing": 0.14684827625751495,
-    "Walkable Access to Open Space": 0,
-    "z": 3
-  },
-  {
-    "v": 54,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 11,
-    "Walkable Access to Housing": 0.1187879890203476,
-    "Walkable Access to Open Space": 0,
-    "z": 4
-  },
-  {
-    "v": 54,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 11,
-    "Walkable Access to Housing": 0.09020428359508514,
-    "Walkable Access to Open Space": 0,
-    "z": 5
-  },
-  {
-    "v": 54,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 11,
-    "Walkable Access to Housing": 0.08635251224040985,
-    "Walkable Access to Open Space": 0,
-    "z": 6
-  },
-  {
-    "v": 54,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 11,
-    "Walkable Access to Housing": 0.04879375174641609,
-    "Walkable Access to Open Space": 0,
-    "z": 7
-  },
-  {
-    "v": 54,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 11,
-    "Walkable Access to Housing": 0.06854424625635147,
-    "Walkable Access to Open Space": 0,
-    "z": 8
-  },
-  {
-    "v": 54,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 11,
-    "Walkable Access to Housing": 0.05118197202682495,
-    "Walkable Access to Open Space": 0,
-    "z": 9
-  },
-  {
-    "v": 55,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 8,
-    "Walkable Access to Housing": 0.010108361952006817,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 55,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 8,
-    "Walkable Access to Housing": 0.002454357221722603,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 55,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 9,
-    "Walkable Access to Housing": 0.020919069647789,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 55,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 9,
-    "Walkable Access to Housing": 0.028988543897867203,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 55,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 9,
-    "Walkable Access to Housing": 0.010866000317037106,
-    "Walkable Access to Open Space": 0,
-    "z": 3
-  },
-  {
-    "v": 55,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 9,
-    "Walkable Access to Housing": 0.008603001944720745,
-    "Walkable Access to Open Space": 0,
-    "z": 4
-  },
-  {
-    "v": 55,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 9,
-    "Walkable Access to Housing": 0.007304356899112463,
-    "Walkable Access to Open Space": 0,
-    "z": 5
-  },
-  {
-    "v": 55,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 9,
-    "Walkable Access to Housing": 0.003696223720908165,
-    "Walkable Access to Open Space": 0,
-    "z": 6
-  },
-  {
-    "v": 55,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 9,
+    "u": 33,
     "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 7
   },
   {
-    "v": 55,
+    "v": 68,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 9,
+    "u": 33,
     "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 8
   },
   {
-    "v": 55,
+    "v": 68,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 9,
+    "u": 33,
     "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 9
   },
   {
-    "v": 55,
+    "v": 68,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 10,
-    "Walkable Access to Housing": 0.06840561330318451,
+    "u": 34,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 1
   },
   {
-    "v": 55,
+    "v": 68,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 10,
-    "Walkable Access to Housing": 0.059791743755340576,
+    "u": 34,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 2
   },
   {
-    "v": 55,
+    "v": 68,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 10,
-    "Walkable Access to Housing": 0.06437193602323532,
+    "u": 34,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 3
   },
   {
-    "v": 55,
+    "v": 68,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 10,
-    "Walkable Access to Housing": 0.026992177590727806,
+    "u": 34,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 4
   },
   {
-    "v": 55,
+    "v": 68,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 10,
-    "Walkable Access to Housing": 0.03408854454755783,
+    "u": 34,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 5
   },
   {
-    "v": 55,
+    "v": 68,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 10,
-    "Walkable Access to Housing": 0.013895240612328053,
+    "u": 34,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 6
   },
   {
-    "v": 55,
+    "v": 68,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 10,
-    "Walkable Access to Housing": 0.01115746982395649,
+    "u": 34,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 7
   },
   {
-    "v": 55,
+    "v": 68,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 10,
-    "Walkable Access to Housing": 0.01091781072318554,
+    "u": 34,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 8
   },
   {
-    "v": 55,
+    "v": 68,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 10,
-    "Walkable Access to Housing": 0.0012422360014170408,
+    "u": 34,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 9
   },
   {
-    "v": 55,
+    "v": 68,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 11,
-    "Walkable Access to Housing": 0.13231204450130463,
+    "u": 35,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 1
   },
   {
-    "v": 55,
+    "v": 68,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 11,
-    "Walkable Access to Housing": 0.11031474173069,
+    "u": 35,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 2
   },
   {
-    "v": 55,
+    "v": 68,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 11,
-    "Walkable Access to Housing": 0.09270815551280975,
+    "u": 35,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 3
   },
   {
-    "v": 55,
+    "v": 68,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 11,
-    "Walkable Access to Housing": 0.06702081859111786,
+    "u": 35,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 4
   },
   {
-    "v": 55,
+    "v": 68,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 11,
-    "Walkable Access to Housing": 0.07099784910678864,
+    "u": 35,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 5
   },
   {
-    "v": 55,
+    "v": 68,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 11,
-    "Walkable Access to Housing": 0.04011397436261177,
+    "u": 35,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 6
   },
   {
-    "v": 55,
+    "v": 68,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 11,
-    "Walkable Access to Housing": 0.036563728004693985,
+    "u": 35,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 7
   },
   {
-    "v": 55,
+    "v": 68,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 11,
-    "Walkable Access to Housing": 0.024313369765877724,
+    "u": 35,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 8
   },
   {
-    "v": 55,
+    "v": 68,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 11,
-    "Walkable Access to Housing": 0.024500438943505287,
+    "u": 35,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 9
   },
   {
-    "v": 16,
+    "v": 69,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 12,
-    "Walkable Access to Housing": 0.6635926365852356,
+    "u": 32,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 1
   },
   {
-    "v": 16,
+    "v": 69,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 13,
-    "Walkable Access to Housing": 0.7081058025360107,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 16,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 14,
-    "Walkable Access to Housing": 0.6871911883354187,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 16,
-    "Walkable Access to Jobs and Amenities": 1.4983370304107666,
-    "u": 14,
-    "Walkable Access to Housing": -1,
+    "u": 32,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 2
   },
   {
-    "v": 16,
-    "Walkable Access to Jobs and Amenities": 1.3470953702926636,
-    "u": 14,
-    "Walkable Access to Housing": -1,
+    "v": 69,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 33,
+    "Walkable Access to Housing": 0,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 69,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 33,
+    "Walkable Access to Housing": 0,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 69,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 33,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 3
   },
   {
-    "v": 16,
-    "Walkable Access to Jobs and Amenities": 1.230597734451294,
-    "u": 14,
-    "Walkable Access to Housing": -1,
+    "v": 69,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 33,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 4
   },
   {
-    "v": 16,
-    "Walkable Access to Jobs and Amenities": 1.072214126586914,
-    "u": 14,
-    "Walkable Access to Housing": -1,
+    "v": 69,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 33,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 5
   },
   {
-    "v": 16,
-    "Walkable Access to Jobs and Amenities": 1.1344062089920044,
-    "u": 14,
-    "Walkable Access to Housing": -1,
+    "v": 69,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 33,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 6
   },
   {
-    "v": 16,
+    "v": 69,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 15,
-    "Walkable Access to Housing": 0.6638067364692688,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 16,
-    "Walkable Access to Jobs and Amenities": 1.5905177593231201,
-    "u": 15,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 16,
-    "Walkable Access to Jobs and Amenities": 1.5653727054595947,
-    "u": 15,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 3
-  },
-  {
-    "v": 16,
-    "Walkable Access to Jobs and Amenities": 1.3429542779922485,
-    "u": 15,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 4
-  },
-  {
-    "v": 16,
-    "Walkable Access to Jobs and Amenities": 1.3168232440948486,
-    "u": 15,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 5
-  },
-  {
-    "v": 16,
-    "Walkable Access to Jobs and Amenities": 1.3159818649291992,
-    "u": 15,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 6
-  },
-  {
-    "v": 17,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 12,
-    "Walkable Access to Housing": 0.719173789024353,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 17,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 13,
-    "Walkable Access to Housing": 0.7171384692192078,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 17,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 14,
-    "Walkable Access to Housing": 0.6893802881240845,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 17,
-    "Walkable Access to Jobs and Amenities": 2.3511245250701904,
-    "u": 14,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 17,
-    "Walkable Access to Jobs and Amenities": 2.1347477436065674,
-    "u": 14,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 3
-  },
-  {
-    "v": 17,
-    "Walkable Access to Jobs and Amenities": 1.6893476247787476,
-    "u": 14,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 4
-  },
-  {
-    "v": 17,
-    "Walkable Access to Jobs and Amenities": 1.2696880102157593,
-    "u": 14,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 5
-  },
-  {
-    "v": 17,
-    "Walkable Access to Jobs and Amenities": 1.3683691024780273,
-    "u": 14,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 6
-  },
-  {
-    "v": 17,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 15,
-    "Walkable Access to Housing": 0.6749643087387085,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 17,
-    "Walkable Access to Jobs and Amenities": 2.1484897136688232,
-    "u": 15,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 17,
-    "Walkable Access to Jobs and Amenities": 1.9439693689346313,
-    "u": 15,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 3
-  },
-  {
-    "v": 17,
-    "Walkable Access to Jobs and Amenities": 1.7224581241607666,
-    "u": 15,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 4
-  },
-  {
-    "v": 17,
-    "Walkable Access to Jobs and Amenities": 1.468113899230957,
-    "u": 15,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 5
-  },
-  {
-    "v": 17,
-    "Walkable Access to Jobs and Amenities": 1.4491312503814697,
-    "u": 15,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 6
-  },
-  {
-    "v": 18,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 12,
-    "Walkable Access to Housing": 0.7171505689620972,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 18,
-    "Walkable Access to Jobs and Amenities": 12.835630416870117,
-    "u": 12,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 18,
-    "Walkable Access to Jobs and Amenities": 11.450094223022461,
-    "u": 12,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 3
-  },
-  {
-    "v": 18,
-    "Walkable Access to Jobs and Amenities": 8.381609916687012,
-    "u": 12,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 4
-  },
-  {
-    "v": 18,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 13,
-    "Walkable Access to Housing": 0.7102397084236145,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 18,
-    "Walkable Access to Jobs and Amenities": 7.307769775390625,
-    "u": 13,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 18,
-    "Walkable Access to Jobs and Amenities": 5.830836296081543,
-    "u": 13,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 3
-  },
-  {
-    "v": 18,
-    "Walkable Access to Jobs and Amenities": 4.078075408935547,
-    "u": 13,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 4
-  },
-  {
-    "v": 18,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 14,
-    "Walkable Access to Housing": 0.712096631526947,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 18,
-    "Walkable Access to Jobs and Amenities": 3.9137015342712402,
-    "u": 14,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 18,
-    "Walkable Access to Jobs and Amenities": 3.419893741607666,
-    "u": 14,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 3
-  },
-  {
-    "v": 18,
-    "Walkable Access to Jobs and Amenities": 2.794147491455078,
-    "u": 14,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 4
-  },
-  {
-    "v": 18,
-    "Walkable Access to Jobs and Amenities": 1.9783267974853516,
-    "u": 14,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 5
-  },
-  {
-    "v": 18,
-    "Walkable Access to Jobs and Amenities": 1.8868114948272705,
-    "u": 14,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 6
-  },
-  {
-    "v": 18,
-    "Walkable Access to Jobs and Amenities": 1.6093895435333252,
-    "u": 14,
-    "Walkable Access to Housing": -1,
+    "u": 33,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 7
   },
   {
-    "v": 18,
-    "Walkable Access to Jobs and Amenities": 1.2270015478134155,
-    "u": 14,
-    "Walkable Access to Housing": -1,
+    "v": 69,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 33,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 8
   },
   {
-    "v": 18,
+    "v": 69,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 15,
-    "Walkable Access to Housing": 0.6538084745407104,
+    "u": 33,
+    "Walkable Access to Housing": 0,
+    "Walkable Access to Open Space": 0,
+    "z": 9
+  },
+  {
+    "v": 69,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 34,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 1
   },
   {
-    "v": 18,
-    "Walkable Access to Jobs and Amenities": 2.6173646450042725,
-    "u": 15,
-    "Walkable Access to Housing": -1,
+    "v": 69,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 34,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 2
   },
   {
-    "v": 18,
-    "Walkable Access to Jobs and Amenities": 2.5796873569488525,
-    "u": 15,
-    "Walkable Access to Housing": -1,
+    "v": 69,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 34,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 3
   },
   {
-    "v": 18,
-    "Walkable Access to Jobs and Amenities": 2.282236099243164,
-    "u": 15,
-    "Walkable Access to Housing": -1,
+    "v": 69,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 34,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 4
   },
   {
-    "v": 18,
-    "Walkable Access to Jobs and Amenities": 1.7620766162872314,
-    "u": 15,
-    "Walkable Access to Housing": -1,
+    "v": 69,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 34,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 5
   },
   {
-    "v": 18,
-    "Walkable Access to Jobs and Amenities": 1.6636035442352295,
-    "u": 15,
-    "Walkable Access to Housing": -1,
+    "v": 69,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 34,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 6
   },
   {
-    "v": 18,
-    "Walkable Access to Jobs and Amenities": 1.5364125967025757,
-    "u": 15,
-    "Walkable Access to Housing": -1,
+    "v": 69,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 34,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 7
   },
   {
-    "v": 18,
-    "Walkable Access to Jobs and Amenities": 1.2789881229400635,
-    "u": 15,
-    "Walkable Access to Housing": -1,
+    "v": 69,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 34,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 8
   },
   {
-    "v": 19,
+    "v": 69,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 12,
-    "Walkable Access to Housing": 0.6591693758964539,
+    "u": 34,
+    "Walkable Access to Housing": 0,
+    "Walkable Access to Open Space": 0,
+    "z": 9
+  },
+  {
+    "v": 69,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 35,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 1
   },
   {
-    "v": 19,
-    "Walkable Access to Jobs and Amenities": 16.921375274658203,
-    "u": 12,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 19,
-    "Walkable Access to Jobs and Amenities": 19.254796981811523,
-    "u": 12,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 3
-  },
-  {
-    "v": 19,
-    "Walkable Access to Jobs and Amenities": 16.522356033325195,
-    "u": 12,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 4
-  },
-  {
-    "v": 19,
+    "v": 69,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 13,
-    "Walkable Access to Housing": 0.6849928498268127,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 19,
-    "Walkable Access to Jobs and Amenities": 12.238476753234863,
-    "u": 13,
-    "Walkable Access to Housing": -1,
+    "u": 35,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 2
   },
   {
-    "v": 19,
-    "Walkable Access to Jobs and Amenities": 9.264459609985352,
-    "u": 13,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 3
-  },
-  {
-    "v": 19,
-    "Walkable Access to Jobs and Amenities": 8.227534294128418,
-    "u": 13,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 4
-  },
-  {
-    "v": 19,
+    "v": 69,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 14,
-    "Walkable Access to Housing": 0.7225857973098755,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 19,
-    "Walkable Access to Jobs and Amenities": 7.5074663162231445,
-    "u": 14,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 19,
-    "Walkable Access to Jobs and Amenities": 6.394190311431885,
-    "u": 14,
-    "Walkable Access to Housing": -1,
+    "u": 35,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 3
   },
   {
-    "v": 19,
-    "Walkable Access to Jobs and Amenities": 4.753049373626709,
-    "u": 14,
-    "Walkable Access to Housing": -1,
+    "v": 69,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 35,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 4
   },
   {
-    "v": 19,
-    "Walkable Access to Jobs and Amenities": 3.2792906761169434,
-    "u": 14,
-    "Walkable Access to Housing": -1,
+    "v": 69,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 35,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 5
   },
   {
-    "v": 19,
-    "Walkable Access to Jobs and Amenities": 3.1316866874694824,
-    "u": 14,
-    "Walkable Access to Housing": -1,
+    "v": 69,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 35,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 6
   },
   {
-    "v": 19,
-    "Walkable Access to Jobs and Amenities": 2.3276970386505127,
-    "u": 14,
-    "Walkable Access to Housing": -1,
+    "v": 69,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 35,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 7
   },
   {
-    "v": 19,
-    "Walkable Access to Jobs and Amenities": 2.04390549659729,
-    "u": 14,
-    "Walkable Access to Housing": -1,
+    "v": 69,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 35,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 8
   },
   {
-    "v": 19,
+    "v": 69,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 15,
-    "Walkable Access to Housing": 0.6503568887710571,
+    "u": 35,
+    "Walkable Access to Housing": 0,
+    "Walkable Access to Open Space": 0,
+    "z": 9
+  },
+  {
+    "v": 70,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 32,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 1
   },
   {
-    "v": 19,
-    "Walkable Access to Jobs and Amenities": 4.677478313446045,
-    "u": 15,
-    "Walkable Access to Housing": -1,
+    "v": 70,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 32,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 2
   },
   {
-    "v": 19,
-    "Walkable Access to Jobs and Amenities": 4.086869239807129,
-    "u": 15,
-    "Walkable Access to Housing": -1,
+    "v": 70,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 33,
+    "Walkable Access to Housing": 0,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 70,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 33,
+    "Walkable Access to Housing": 0,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 70,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 33,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 3
   },
   {
-    "v": 19,
-    "Walkable Access to Jobs and Amenities": 3.2052230834960938,
-    "u": 15,
-    "Walkable Access to Housing": -1,
+    "v": 70,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 33,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 4
   },
   {
-    "v": 19,
-    "Walkable Access to Jobs and Amenities": 2.5546300411224365,
-    "u": 15,
-    "Walkable Access to Housing": -1,
+    "v": 70,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 33,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 5
   },
   {
-    "v": 19,
-    "Walkable Access to Jobs and Amenities": 2.248443603515625,
-    "u": 15,
-    "Walkable Access to Housing": -1,
+    "v": 70,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 33,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 6
   },
   {
-    "v": 19,
-    "Walkable Access to Jobs and Amenities": 1.766458511352539,
-    "u": 15,
-    "Walkable Access to Housing": -1,
+    "v": 70,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 33,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 7
   },
   {
-    "v": 19,
-    "Walkable Access to Jobs and Amenities": 1.6431747674942017,
-    "u": 15,
-    "Walkable Access to Housing": -1,
+    "v": 70,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 33,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 8
   },
   {
-    "v": 36,
+    "v": 70,
     "Walkable Access to Jobs and Amenities": -1,
-    "u": 16,
-    "Walkable Access to Housing": 0.4892870783805847,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 36,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 16,
-    "Walkable Access to Housing": 0.4796828329563141,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 36,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 17,
-    "Walkable Access to Housing": 0.4213027358055115,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 36,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 17,
-    "Walkable Access to Housing": 0.45945364236831665,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 36,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 18,
-    "Walkable Access to Housing": 0.45464596152305603,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 36,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 18,
-    "Walkable Access to Housing": 0.5375849008560181,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 36,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 19,
-    "Walkable Access to Housing": 0.4445681571960449,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 36,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 19,
-    "Walkable Access to Housing": 0.4935113787651062,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 37,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 16,
-    "Walkable Access to Housing": 0.4975488781929016,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 37,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 16,
-    "Walkable Access to Housing": 0.45128950476646423,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 37,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 17,
-    "Walkable Access to Housing": 0.48021069169044495,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 37,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 17,
-    "Walkable Access to Housing": 0.4584835171699524,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 37,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 18,
-    "Walkable Access to Housing": 0.527379035949707,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 37,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 18,
-    "Walkable Access to Housing": 0.40639153122901917,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 37,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 19,
-    "Walkable Access to Housing": 0.456500768661499,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 37,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 19,
-    "Walkable Access to Housing": 0.45129260420799255,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 38,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 16,
-    "Walkable Access to Housing": 0.4875718057155609,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 38,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 16,
-    "Walkable Access to Housing": 0.4299624562263489,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 38,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 17,
-    "Walkable Access to Housing": 0.49818405508995056,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 38,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 17,
-    "Walkable Access to Housing": 0.4727274477481842,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 38,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 18,
-    "Walkable Access to Housing": 0.44192615151405334,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 38,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 18,
-    "Walkable Access to Housing": 0.4685420095920563,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 38,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 19,
-    "Walkable Access to Housing": 0.49720364809036255,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 38,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 19,
-    "Walkable Access to Housing": 0.48281699419021606,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 39,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 16,
-    "Walkable Access to Housing": 0.4872512221336365,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 39,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 16,
-    "Walkable Access to Housing": 0.454611599445343,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 39,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 17,
-    "Walkable Access to Housing": 0.45180806517601013,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 39,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 17,
-    "Walkable Access to Housing": 0.47754040360450745,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 39,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 18,
-    "Walkable Access to Housing": 0.46809476613998413,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 39,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 18,
-    "Walkable Access to Housing": 0.495435893535614,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 39,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 19,
-    "Walkable Access to Housing": 0.5370930433273315,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 39,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 19,
-    "Walkable Access to Housing": 0.45373231172561646,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 52,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 28,
-    "Walkable Access to Housing": 0.06698359549045563,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 52,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 29,
-    "Walkable Access to Housing": 0.05828813835978508,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 52,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 30,
-    "Walkable Access to Housing": 0.06106747314333916,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 52,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 30,
-    "Walkable Access to Housing": 0.05435913801193237,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 52,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 30,
-    "Walkable Access to Housing": 0.06327749788761139,
-    "Walkable Access to Open Space": 0,
-    "z": 3
-  },
-  {
-    "v": 52,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 30,
-    "Walkable Access to Housing": 0.06528593599796295,
-    "Walkable Access to Open Space": 0,
-    "z": 4
-  },
-  {
-    "v": 52,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 30,
-    "Walkable Access to Housing": 0.05777016282081604,
-    "Walkable Access to Open Space": 0,
-    "z": 5
-  },
-  {
-    "v": 52,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 30,
-    "Walkable Access to Housing": 0.06948261708021164,
-    "Walkable Access to Open Space": 0,
-    "z": 6
-  },
-  {
-    "v": 52,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 31,
-    "Walkable Access to Housing": 0.06847526133060455,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 52,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 31,
-    "Walkable Access to Housing": 0.04379861429333687,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 52,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 31,
-    "Walkable Access to Housing": 0.054296672344207764,
-    "Walkable Access to Open Space": 0,
-    "z": 3
-  },
-  {
-    "v": 52,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 31,
-    "Walkable Access to Housing": 0.06215782091021538,
-    "Walkable Access to Open Space": 0,
-    "z": 4
-  },
-  {
-    "v": 52,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 31,
-    "Walkable Access to Housing": 0.05480215698480606,
-    "Walkable Access to Open Space": 0,
-    "z": 5
-  },
-  {
-    "v": 52,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 31,
-    "Walkable Access to Housing": 0.07029304653406143,
-    "Walkable Access to Open Space": 0,
-    "z": 6
-  },
-  {
-    "v": 53,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 28,
-    "Walkable Access to Housing": 0.056455522775650024,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 53,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 29,
-    "Walkable Access to Housing": 0.04148866981267929,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 53,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 30,
-    "Walkable Access to Housing": 0.06565128266811371,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 53,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 30,
-    "Walkable Access to Housing": 0.05187935382127762,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 53,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 30,
-    "Walkable Access to Housing": 0.04580708593130112,
-    "Walkable Access to Open Space": 0,
-    "z": 3
-  },
-  {
-    "v": 53,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 30,
-    "Walkable Access to Housing": 0.06429378688335419,
-    "Walkable Access to Open Space": 0,
-    "z": 4
-  },
-  {
-    "v": 53,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 30,
-    "Walkable Access to Housing": 0.0477265827357769,
-    "Walkable Access to Open Space": 0,
-    "z": 5
-  },
-  {
-    "v": 53,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 30,
-    "Walkable Access to Housing": 0.0672827810049057,
-    "Walkable Access to Open Space": 0,
-    "z": 6
-  },
-  {
-    "v": 53,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 31,
-    "Walkable Access to Housing": 0.05668904259800911,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 53,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 31,
-    "Walkable Access to Housing": 0.05555538460612297,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 53,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 31,
-    "Walkable Access to Housing": 0.06202573701739311,
-    "Walkable Access to Open Space": 0,
-    "z": 3
-  },
-  {
-    "v": 53,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 31,
-    "Walkable Access to Housing": 0.058608800172805786,
-    "Walkable Access to Open Space": 0,
-    "z": 4
-  },
-  {
-    "v": 53,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 31,
-    "Walkable Access to Housing": 0.0665995180606842,
-    "Walkable Access to Open Space": 0,
-    "z": 5
-  },
-  {
-    "v": 53,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 31,
-    "Walkable Access to Housing": 0.06130761653184891,
-    "Walkable Access to Open Space": 0,
-    "z": 6
-  },
-  {
-    "v": 54,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 28,
-    "Walkable Access to Housing": 0.0690692737698555,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 54,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 29,
-    "Walkable Access to Housing": 0.05067075416445732,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 54,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 30,
-    "Walkable Access to Housing": 0.05423315614461899,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 54,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 30,
-    "Walkable Access to Housing": 0.05559952184557915,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 54,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 30,
-    "Walkable Access to Housing": 0.05636107176542282,
-    "Walkable Access to Open Space": 0,
-    "z": 3
-  },
-  {
-    "v": 54,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 30,
-    "Walkable Access to Housing": 0.05847641080617905,
-    "Walkable Access to Open Space": 0,
-    "z": 4
-  },
-  {
-    "v": 54,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 30,
-    "Walkable Access to Housing": 0.049596481025218964,
-    "Walkable Access to Open Space": 0,
-    "z": 5
-  },
-  {
-    "v": 54,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 30,
-    "Walkable Access to Housing": 0.05689855292439461,
-    "Walkable Access to Open Space": 0,
-    "z": 6
-  },
-  {
-    "v": 54,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 31,
-    "Walkable Access to Housing": 0.0645589604973793,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 54,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 31,
-    "Walkable Access to Housing": 0.04456186294555664,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 54,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 31,
-    "Walkable Access to Housing": 0.05323461815714836,
-    "Walkable Access to Open Space": 0,
-    "z": 3
-  },
-  {
-    "v": 54,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 31,
-    "Walkable Access to Housing": 0.06332667171955109,
-    "Walkable Access to Open Space": 0,
-    "z": 4
-  },
-  {
-    "v": 54,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 31,
-    "Walkable Access to Housing": 0.051262833178043365,
-    "Walkable Access to Open Space": 0,
-    "z": 5
-  },
-  {
-    "v": 54,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 31,
-    "Walkable Access to Housing": 0.0490647591650486,
-    "Walkable Access to Open Space": 0,
-    "z": 6
-  },
-  {
-    "v": 55,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 28,
-    "Walkable Access to Housing": 0.0516543909907341,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 55,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 29,
-    "Walkable Access to Housing": 0.054405488073825836,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 55,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 30,
-    "Walkable Access to Housing": 0.06665052473545074,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 55,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 30,
-    "Walkable Access to Housing": 0.06818050146102905,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 55,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 30,
-    "Walkable Access to Housing": 0.056067727506160736,
-    "Walkable Access to Open Space": 0,
-    "z": 3
-  },
-  {
-    "v": 55,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 30,
-    "Walkable Access to Housing": 0.062101542949676514,
-    "Walkable Access to Open Space": 0,
-    "z": 4
-  },
-  {
-    "v": 55,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 30,
-    "Walkable Access to Housing": 0.05830575153231621,
-    "Walkable Access to Open Space": 0,
-    "z": 5
-  },
-  {
-    "v": 55,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 30,
-    "Walkable Access to Housing": 0.05476237088441849,
-    "Walkable Access to Open Space": 0,
-    "z": 6
-  },
-  {
-    "v": 55,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 31,
-    "Walkable Access to Housing": 0.06411620229482651,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 55,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 31,
-    "Walkable Access to Housing": 0.06365706771612167,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 55,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 31,
-    "Walkable Access to Housing": 0.060949333012104034,
-    "Walkable Access to Open Space": 0,
-    "z": 3
-  },
-  {
-    "v": 55,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 31,
-    "Walkable Access to Housing": 0.05685622617602348,
-    "Walkable Access to Open Space": 0,
-    "z": 4
-  },
-  {
-    "v": 55,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 31,
-    "Walkable Access to Housing": 0.05287923663854599,
-    "Walkable Access to Open Space": 0,
-    "z": 5
-  },
-  {
-    "v": 55,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 31,
-    "Walkable Access to Housing": 0.05996953696012497,
-    "Walkable Access to Open Space": 0,
-    "z": 6
-  },
-  {
-    "v": 4,
-    "Walkable Access to Jobs and Amenities": 1.8229777812957764,
-    "u": 32,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 4,
-    "Walkable Access to Jobs and Amenities": 1.7569315433502197,
-    "u": 32,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 4,
-    "Walkable Access to Jobs and Amenities": 1.721353530883789,
     "u": 33,
-    "Walkable Access to Housing": -1,
+    "Walkable Access to Housing": 0,
+    "Walkable Access to Open Space": 0,
+    "z": 9
+  },
+  {
+    "v": 70,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 34,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 1
   },
   {
-    "v": 4,
-    "Walkable Access to Jobs and Amenities": 1.7627032995224,
+    "v": 70,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 34,
+    "Walkable Access to Housing": 0,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 70,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 34,
+    "Walkable Access to Housing": 0,
+    "Walkable Access to Open Space": 0,
+    "z": 3
+  },
+  {
+    "v": 70,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 34,
+    "Walkable Access to Housing": 0,
+    "Walkable Access to Open Space": 0,
+    "z": 4
+  },
+  {
+    "v": 70,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 34,
+    "Walkable Access to Housing": 0,
+    "Walkable Access to Open Space": 0,
+    "z": 5
+  },
+  {
+    "v": 70,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 34,
+    "Walkable Access to Housing": 0,
+    "Walkable Access to Open Space": 0,
+    "z": 6
+  },
+  {
+    "v": 70,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 34,
+    "Walkable Access to Housing": 0,
+    "Walkable Access to Open Space": 0,
+    "z": 7
+  },
+  {
+    "v": 70,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 34,
+    "Walkable Access to Housing": 0,
+    "Walkable Access to Open Space": 0,
+    "z": 8
+  },
+  {
+    "v": 70,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 34,
+    "Walkable Access to Housing": 0,
+    "Walkable Access to Open Space": 0,
+    "z": 9
+  },
+  {
+    "v": 70,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 35,
+    "Walkable Access to Housing": 0,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 70,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 35,
+    "Walkable Access to Housing": 0,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 70,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 35,
+    "Walkable Access to Housing": 0,
+    "Walkable Access to Open Space": 0,
+    "z": 3
+  },
+  {
+    "v": 70,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 35,
+    "Walkable Access to Housing": 0,
+    "Walkable Access to Open Space": 0,
+    "z": 4
+  },
+  {
+    "v": 70,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 35,
+    "Walkable Access to Housing": 0,
+    "Walkable Access to Open Space": 0,
+    "z": 5
+  },
+  {
+    "v": 70,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 35,
+    "Walkable Access to Housing": 0,
+    "Walkable Access to Open Space": 0,
+    "z": 6
+  },
+  {
+    "v": 70,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 35,
+    "Walkable Access to Housing": 0,
+    "Walkable Access to Open Space": 0,
+    "z": 7
+  },
+  {
+    "v": 70,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 35,
+    "Walkable Access to Housing": 0,
+    "Walkable Access to Open Space": 0,
+    "z": 8
+  },
+  {
+    "v": 70,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 35,
+    "Walkable Access to Housing": 0,
+    "Walkable Access to Open Space": 0,
+    "z": 9
+  },
+  {
+    "v": 71,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 32,
+    "Walkable Access to Housing": 0,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 71,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 32,
+    "Walkable Access to Housing": 0,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 71,
+    "Walkable Access to Jobs and Amenities": -1,
     "u": 33,
-    "Walkable Access to Housing": -1,
+    "Walkable Access to Housing": 0,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 71,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 33,
+    "Walkable Access to Housing": 0,
     "Walkable Access to Open Space": 0,
     "z": 2
   },
   {
-    "v": 4,
-    "Walkable Access to Jobs and Amenities": 1.6039940118789673,
+    "v": 71,
+    "Walkable Access to Jobs and Amenities": -1,
     "u": 34,
+    "Walkable Access to Housing": 0,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 71,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 34,
+    "Walkable Access to Housing": 0,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 71,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 35,
+    "Walkable Access to Housing": 0,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 71,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 35,
+    "Walkable Access to Housing": 0,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 20,
+    "Walkable Access to Jobs and Amenities": 15.520520210266113,
+    "u": 36,
     "Walkable Access to Housing": -1,
     "Walkable Access to Open Space": 0,
     "z": 1
   },
   {
-    "v": 4,
-    "Walkable Access to Jobs and Amenities": 1.6820290088653564,
-    "u": 34,
+    "v": 20,
+    "Walkable Access to Jobs and Amenities": 15.413775444030762,
+    "u": 36,
     "Walkable Access to Housing": -1,
     "Walkable Access to Open Space": 0,
     "z": 2
   },
   {
-    "v": 4,
-    "Walkable Access to Jobs and Amenities": 1.8895981311798096,
-    "u": 35,
+    "v": 20,
+    "Walkable Access to Jobs and Amenities": 15.859967231750488,
+    "u": 37,
     "Walkable Access to Housing": -1,
     "Walkable Access to Open Space": 0,
     "z": 1
   },
   {
-    "v": 4,
-    "Walkable Access to Jobs and Amenities": 1.8542187213897705,
-    "u": 35,
+    "v": 20,
+    "Walkable Access to Jobs and Amenities": 16.310935974121094,
+    "u": 37,
     "Walkable Access to Housing": -1,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 20,
+    "Walkable Access to Jobs and Amenities": 17.22743797302246,
+    "u": 38,
+    "Walkable Access to Housing": -1,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 20,
+    "Walkable Access to Jobs and Amenities": 16.119247436523438,
+    "u": 38,
+    "Walkable Access to Housing": -1,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 20,
+    "Walkable Access to Jobs and Amenities": 18.216251373291016,
+    "u": 39,
+    "Walkable Access to Housing": -1,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 20,
+    "Walkable Access to Jobs and Amenities": 17.229778289794922,
+    "u": 39,
+    "Walkable Access to Housing": -1,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 21,
+    "Walkable Access to Jobs and Amenities": 15.016093254089355,
+    "u": 36,
+    "Walkable Access to Housing": -1,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 21,
+    "Walkable Access to Jobs and Amenities": 14.45219898223877,
+    "u": 36,
+    "Walkable Access to Housing": -1,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 21,
+    "Walkable Access to Jobs and Amenities": 16.891725540161133,
+    "u": 39,
+    "Walkable Access to Housing": -1,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 21,
+    "Walkable Access to Jobs and Amenities": 16.39280891418457,
+    "u": 39,
+    "Walkable Access to Housing": -1,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 22,
+    "Walkable Access to Jobs and Amenities": 13.923944473266602,
+    "u": 36,
+    "Walkable Access to Housing": -1,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 22,
+    "Walkable Access to Jobs and Amenities": 12.664133071899414,
+    "u": 36,
+    "Walkable Access to Housing": -1,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 22,
+    "Walkable Access to Jobs and Amenities": 17.322917938232422,
+    "u": 39,
+    "Walkable Access to Housing": -1,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 22,
+    "Walkable Access to Jobs and Amenities": 16.905832290649414,
+    "u": 39,
+    "Walkable Access to Housing": -1,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 23,
+    "Walkable Access to Jobs and Amenities": 13.78538703918457,
+    "u": 36,
+    "Walkable Access to Housing": -1,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 23,
+    "Walkable Access to Jobs and Amenities": 13.494688034057617,
+    "u": 36,
+    "Walkable Access to Housing": -1,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 23,
+    "Walkable Access to Jobs and Amenities": 13.720301628112793,
+    "u": 37,
+    "Walkable Access to Housing": -1,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 23,
+    "Walkable Access to Jobs and Amenities": 13.229646682739258,
+    "u": 37,
+    "Walkable Access to Housing": -1,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 23,
+    "Walkable Access to Jobs and Amenities": 14.842883110046387,
+    "u": 38,
+    "Walkable Access to Housing": -1,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 23,
+    "Walkable Access to Jobs and Amenities": 13.888409614562988,
+    "u": 38,
+    "Walkable Access to Housing": -1,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 23,
+    "Walkable Access to Jobs and Amenities": 15.525424003601074,
+    "u": 39,
+    "Walkable Access to Housing": -1,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 23,
+    "Walkable Access to Jobs and Amenities": 14.517265319824219,
+    "u": 39,
+    "Walkable Access to Housing": -1,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 24,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 36,
+    "Walkable Access to Housing": 0.06318720430135727,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 24,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 36,
+    "Walkable Access to Housing": 0.07102558761835098,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 24,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 37,
+    "Walkable Access to Housing": 0.0594097301363945,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 24,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 37,
+    "Walkable Access to Housing": 0.07555611431598663,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 24,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 37,
+    "Walkable Access to Housing": 0.055400341749191284,
+    "Walkable Access to Open Space": 0,
+    "z": 3
+  },
+  {
+    "v": 24,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 37,
+    "Walkable Access to Housing": 0.08120063692331314,
+    "Walkable Access to Open Space": 0,
+    "z": 4
+  },
+  {
+    "v": 24,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 37,
+    "Walkable Access to Housing": 0.07098537683486938,
+    "Walkable Access to Open Space": 0,
+    "z": 5
+  },
+  {
+    "v": 24,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 37,
+    "Walkable Access to Housing": 0.07391993701457977,
+    "Walkable Access to Open Space": 0,
+    "z": 6
+  },
+  {
+    "v": 24,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 37,
+    "Walkable Access to Housing": 0.09038109332323074,
+    "Walkable Access to Open Space": 0,
+    "z": 7
+  },
+  {
+    "v": 24,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 37,
+    "Walkable Access to Housing": 0.07298313081264496,
+    "Walkable Access to Open Space": 0,
+    "z": 8
+  },
+  {
+    "v": 24,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 37,
+    "Walkable Access to Housing": 0.071202352643013,
+    "Walkable Access to Open Space": 0,
+    "z": 9
+  },
+  {
+    "v": 24,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 38,
+    "Walkable Access to Housing": 0.06731998175382614,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 24,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 38,
+    "Walkable Access to Housing": 0.06622011959552765,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 24,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 38,
+    "Walkable Access to Housing": 0.06426438689231873,
+    "Walkable Access to Open Space": 0,
+    "z": 3
+  },
+  {
+    "v": 24,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 38,
+    "Walkable Access to Housing": 0.07210187613964081,
+    "Walkable Access to Open Space": 0,
+    "z": 4
+  },
+  {
+    "v": 24,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 38,
+    "Walkable Access to Housing": 0.06141256168484688,
+    "Walkable Access to Open Space": 0,
+    "z": 5
+  },
+  {
+    "v": 24,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 38,
+    "Walkable Access to Housing": 0.06395693868398666,
+    "Walkable Access to Open Space": 0,
+    "z": 6
+  },
+  {
+    "v": 24,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 38,
+    "Walkable Access to Housing": 0.07252246141433716,
+    "Walkable Access to Open Space": 0,
+    "z": 7
+  },
+  {
+    "v": 24,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 38,
+    "Walkable Access to Housing": 0.07225243747234344,
+    "Walkable Access to Open Space": 0,
+    "z": 8
+  },
+  {
+    "v": 24,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 38,
+    "Walkable Access to Housing": 0.07000058889389038,
+    "Walkable Access to Open Space": 0,
+    "z": 9
+  },
+  {
+    "v": 24,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 39,
+    "Walkable Access to Housing": 0.07824724912643433,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 24,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 39,
+    "Walkable Access to Housing": 0.07109790295362473,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 24,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 39,
+    "Walkable Access to Housing": 0.08074645698070526,
+    "Walkable Access to Open Space": 0,
+    "z": 3
+  },
+  {
+    "v": 24,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 39,
+    "Walkable Access to Housing": 0.06659428775310516,
+    "Walkable Access to Open Space": 0,
+    "z": 4
+  },
+  {
+    "v": 24,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 39,
+    "Walkable Access to Housing": 0.0703807845711708,
+    "Walkable Access to Open Space": 0,
+    "z": 5
+  },
+  {
+    "v": 24,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 39,
+    "Walkable Access to Housing": 0.06272543966770172,
+    "Walkable Access to Open Space": 0,
+    "z": 6
+  },
+  {
+    "v": 24,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 39,
+    "Walkable Access to Housing": 0.06153085082769394,
+    "Walkable Access to Open Space": 0,
+    "z": 7
+  },
+  {
+    "v": 24,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 39,
+    "Walkable Access to Housing": 0.06939901411533356,
+    "Walkable Access to Open Space": 0,
+    "z": 8
+  },
+  {
+    "v": 24,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 39,
+    "Walkable Access to Housing": 0.06149301677942276,
+    "Walkable Access to Open Space": 0,
+    "z": 9
+  },
+  {
+    "v": 25,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 36,
+    "Walkable Access to Housing": 0.06995455920696259,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 25,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 36,
+    "Walkable Access to Housing": 0.07531344145536423,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 25,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 37,
+    "Walkable Access to Housing": 0.0818229615688324,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 25,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 37,
+    "Walkable Access to Housing": 0.07373280823230743,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 25,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 37,
+    "Walkable Access to Housing": 0.06996568292379379,
+    "Walkable Access to Open Space": 0,
+    "z": 3
+  },
+  {
+    "v": 25,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 37,
+    "Walkable Access to Housing": 0.06223887950181961,
+    "Walkable Access to Open Space": 0,
+    "z": 4
+  },
+  {
+    "v": 25,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 37,
+    "Walkable Access to Housing": 0.0666455551981926,
+    "Walkable Access to Open Space": 0,
+    "z": 5
+  },
+  {
+    "v": 25,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 37,
+    "Walkable Access to Housing": 0.08240626752376556,
+    "Walkable Access to Open Space": 0,
+    "z": 6
+  },
+  {
+    "v": 25,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 37,
+    "Walkable Access to Housing": 0.06298045814037323,
+    "Walkable Access to Open Space": 0,
+    "z": 7
+  },
+  {
+    "v": 25,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 37,
+    "Walkable Access to Housing": 0.05916024371981621,
+    "Walkable Access to Open Space": 0,
+    "z": 8
+  },
+  {
+    "v": 25,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 37,
+    "Walkable Access to Housing": 0.06994788348674774,
+    "Walkable Access to Open Space": 0,
+    "z": 9
+  },
+  {
+    "v": 25,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 38,
+    "Walkable Access to Housing": 0.0919407531619072,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 25,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 38,
+    "Walkable Access to Housing": 0.057870544493198395,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 25,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 38,
+    "Walkable Access to Housing": 0.07613568007946014,
+    "Walkable Access to Open Space": 0,
+    "z": 3
+  },
+  {
+    "v": 25,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 38,
+    "Walkable Access to Housing": 0.08035079389810562,
+    "Walkable Access to Open Space": 0,
+    "z": 4
+  },
+  {
+    "v": 25,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 38,
+    "Walkable Access to Housing": 0.07249896228313446,
+    "Walkable Access to Open Space": 0,
+    "z": 5
+  },
+  {
+    "v": 25,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 38,
+    "Walkable Access to Housing": 0.07634860277175903,
+    "Walkable Access to Open Space": 0,
+    "z": 6
+  },
+  {
+    "v": 25,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 38,
+    "Walkable Access to Housing": 0.07145818322896957,
+    "Walkable Access to Open Space": 0,
+    "z": 7
+  },
+  {
+    "v": 25,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 38,
+    "Walkable Access to Housing": 0.07109151780605316,
+    "Walkable Access to Open Space": 0,
+    "z": 8
+  },
+  {
+    "v": 25,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 38,
+    "Walkable Access to Housing": 0.07051126658916473,
+    "Walkable Access to Open Space": 0,
+    "z": 9
+  },
+  {
+    "v": 25,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 39,
+    "Walkable Access to Housing": 0.06859154254198074,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 25,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 39,
+    "Walkable Access to Housing": 0.07070527970790863,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 25,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 39,
+    "Walkable Access to Housing": 0.07120164483785629,
+    "Walkable Access to Open Space": 0,
+    "z": 3
+  },
+  {
+    "v": 25,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 39,
+    "Walkable Access to Housing": 0.0609150305390358,
+    "Walkable Access to Open Space": 0,
+    "z": 4
+  },
+  {
+    "v": 25,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 39,
+    "Walkable Access to Housing": 0.07045605033636093,
+    "Walkable Access to Open Space": 0,
+    "z": 5
+  },
+  {
+    "v": 25,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 39,
+    "Walkable Access to Housing": 0.05816245079040527,
+    "Walkable Access to Open Space": 0,
+    "z": 6
+  },
+  {
+    "v": 25,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 39,
+    "Walkable Access to Housing": 0.07043468952178955,
+    "Walkable Access to Open Space": 0,
+    "z": 7
+  },
+  {
+    "v": 25,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 39,
+    "Walkable Access to Housing": 0.0703001469373703,
+    "Walkable Access to Open Space": 0,
+    "z": 8
+  },
+  {
+    "v": 25,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 39,
+    "Walkable Access to Housing": 0.06968587636947632,
+    "Walkable Access to Open Space": 0,
+    "z": 9
+  },
+  {
+    "v": 26,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 36,
+    "Walkable Access to Housing": 0.0651165023446083,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 26,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 36,
+    "Walkable Access to Housing": 0.06581604480743408,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 26,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 37,
+    "Walkable Access to Housing": 0.06546257436275482,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 26,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 37,
+    "Walkable Access to Housing": 0.06728930026292801,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 26,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 37,
+    "Walkable Access to Housing": 0.05870957300066948,
+    "Walkable Access to Open Space": 0,
+    "z": 3
+  },
+  {
+    "v": 26,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 37,
+    "Walkable Access to Housing": 0.06648063659667969,
+    "Walkable Access to Open Space": 0,
+    "z": 4
+  },
+  {
+    "v": 26,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 37,
+    "Walkable Access to Housing": 0.07562534511089325,
+    "Walkable Access to Open Space": 0,
+    "z": 5
+  },
+  {
+    "v": 26,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 37,
+    "Walkable Access to Housing": 0.07047545909881592,
+    "Walkable Access to Open Space": 0,
+    "z": 6
+  },
+  {
+    "v": 26,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 37,
+    "Walkable Access to Housing": 0.06953806430101395,
+    "Walkable Access to Open Space": 0,
+    "z": 7
+  },
+  {
+    "v": 26,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 37,
+    "Walkable Access to Housing": 0.06275894492864609,
+    "Walkable Access to Open Space": 0,
+    "z": 8
+  },
+  {
+    "v": 26,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 37,
+    "Walkable Access to Housing": 0.07145798206329346,
+    "Walkable Access to Open Space": 0,
+    "z": 9
+  },
+  {
+    "v": 26,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 38,
+    "Walkable Access to Housing": 0.07459823787212372,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 26,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 38,
+    "Walkable Access to Housing": 0.07069594413042068,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 26,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 38,
+    "Walkable Access to Housing": 0.09308391809463501,
+    "Walkable Access to Open Space": 0,
+    "z": 3
+  },
+  {
+    "v": 26,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 38,
+    "Walkable Access to Housing": 0.08484798669815063,
+    "Walkable Access to Open Space": 0,
+    "z": 4
+  },
+  {
+    "v": 26,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 38,
+    "Walkable Access to Housing": 0.0643007904291153,
+    "Walkable Access to Open Space": 0,
+    "z": 5
+  },
+  {
+    "v": 26,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 38,
+    "Walkable Access to Housing": 0.07259827107191086,
+    "Walkable Access to Open Space": 0,
+    "z": 6
+  },
+  {
+    "v": 26,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 38,
+    "Walkable Access to Housing": 0.07444775104522705,
+    "Walkable Access to Open Space": 0,
+    "z": 7
+  },
+  {
+    "v": 26,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 38,
+    "Walkable Access to Housing": 0.06471282243728638,
+    "Walkable Access to Open Space": 0,
+    "z": 8
+  },
+  {
+    "v": 26,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 38,
+    "Walkable Access to Housing": 0.06822475045919418,
+    "Walkable Access to Open Space": 0,
+    "z": 9
+  },
+  {
+    "v": 26,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 39,
+    "Walkable Access to Housing": 0.05842309445142746,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 26,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 39,
+    "Walkable Access to Housing": 0.07180618494749069,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 26,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 39,
+    "Walkable Access to Housing": 0.06881605088710785,
+    "Walkable Access to Open Space": 0,
+    "z": 3
+  },
+  {
+    "v": 26,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 39,
+    "Walkable Access to Housing": 0.07839992642402649,
+    "Walkable Access to Open Space": 0,
+    "z": 4
+  },
+  {
+    "v": 26,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 39,
+    "Walkable Access to Housing": 0.08777295798063278,
+    "Walkable Access to Open Space": 0,
+    "z": 5
+  },
+  {
+    "v": 26,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 39,
+    "Walkable Access to Housing": 0.06353183835744858,
+    "Walkable Access to Open Space": 0,
+    "z": 6
+  },
+  {
+    "v": 26,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 39,
+    "Walkable Access to Housing": 0.07386685162782669,
+    "Walkable Access to Open Space": 0,
+    "z": 7
+  },
+  {
+    "v": 26,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 39,
+    "Walkable Access to Housing": 0.07653120160102844,
+    "Walkable Access to Open Space": 0,
+    "z": 8
+  },
+  {
+    "v": 26,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 39,
+    "Walkable Access to Housing": 0.0719836950302124,
+    "Walkable Access to Open Space": 0,
+    "z": 9
+  },
+  {
+    "v": 27,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 36,
+    "Walkable Access to Housing": 0.0662422627210617,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 27,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 36,
+    "Walkable Access to Housing": 0.0701473131775856,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 27,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 37,
+    "Walkable Access to Housing": 0.056904714554548264,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 27,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 37,
+    "Walkable Access to Housing": 0.07745233923196793,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 27,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 38,
+    "Walkable Access to Housing": 0.06554044783115387,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 27,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 38,
+    "Walkable Access to Housing": 0.07594182342290878,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 27,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 39,
+    "Walkable Access to Housing": 0.07792116701602936,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 27,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 39,
+    "Walkable Access to Housing": 0.06556583195924759,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 32,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 36,
+    "Walkable Access to Housing": 0.054743122309446335,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 32,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 36,
+    "Walkable Access to Housing": 0.07579246163368225,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 32,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 37,
+    "Walkable Access to Housing": 0.07919928431510925,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 32,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 37,
+    "Walkable Access to Housing": 0.06895501911640167,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 32,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 38,
+    "Walkable Access to Housing": 0.06587400287389755,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 32,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 38,
+    "Walkable Access to Housing": 0.052300672978162766,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 32,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 39,
+    "Walkable Access to Housing": 0.07109037041664124,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 32,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 39,
+    "Walkable Access to Housing": 0.07599717378616333,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 33,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 36,
+    "Walkable Access to Housing": 0.06721571087837219,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 33,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 36,
+    "Walkable Access to Housing": 0.07365430891513824,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 33,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 37,
+    "Walkable Access to Housing": 0.07551206648349762,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 33,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 37,
+    "Walkable Access to Housing": 0.06090991571545601,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 33,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 38,
+    "Walkable Access to Housing": 0.08372378349304199,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 33,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 38,
+    "Walkable Access to Housing": 0.06785403192043304,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 33,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 39,
+    "Walkable Access to Housing": 0.07992476224899292,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 33,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 39,
+    "Walkable Access to Housing": 0.06948838382959366,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 34,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 36,
+    "Walkable Access to Housing": 0.07333438098430634,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 34,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 36,
+    "Walkable Access to Housing": 0.07691521942615509,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 34,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 37,
+    "Walkable Access to Housing": 0.06700904667377472,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 34,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 37,
+    "Walkable Access to Housing": 0.07564061880111694,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 34,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 38,
+    "Walkable Access to Housing": 0.06992297619581223,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 34,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 38,
+    "Walkable Access to Housing": 0.07996825128793716,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 34,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 39,
+    "Walkable Access to Housing": 0.0778665617108345,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 34,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 39,
+    "Walkable Access to Housing": 0.07190411537885666,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 35,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 36,
+    "Walkable Access to Housing": 0.07837479561567307,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 35,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 36,
+    "Walkable Access to Housing": 0.07284384220838547,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 35,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 37,
+    "Walkable Access to Housing": 0.07995748519897461,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 35,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 37,
+    "Walkable Access to Housing": 0.08594776690006256,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 35,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 38,
+    "Walkable Access to Housing": 0.06941096484661102,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 35,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 38,
+    "Walkable Access to Housing": 0.07644474506378174,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 35,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 39,
+    "Walkable Access to Housing": 0.06698228418827057,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 35,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 39,
+    "Walkable Access to Housing": 0.07084853947162628,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 64,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 40,
+    "Walkable Access to Housing": 0.18759723007678986,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 64,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 40,
+    "Walkable Access to Housing": 0.14511676132678986,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 64,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 41,
+    "Walkable Access to Housing": 0.16830070316791534,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 64,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 41,
+    "Walkable Access to Housing": 0.14760491251945496,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 64,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 42,
+    "Walkable Access to Housing": 0.1455702930688858,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 64,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 42,
+    "Walkable Access to Housing": 0.14441557228565216,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 64,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 43,
+    "Walkable Access to Housing": 0.16174666583538055,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 64,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 43,
+    "Walkable Access to Housing": 0.20179370045661926,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 65,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 40,
+    "Walkable Access to Housing": 0.1537354588508606,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 65,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 40,
+    "Walkable Access to Housing": 0.16546037793159485,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 65,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 41,
+    "Walkable Access to Housing": 0.15812547504901886,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 65,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 41,
+    "Walkable Access to Housing": 0.15142561495304108,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 65,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 41,
+    "Walkable Access to Housing": 0.1924813985824585,
+    "Walkable Access to Open Space": 0,
+    "z": 3
+  },
+  {
+    "v": 65,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 41,
+    "Walkable Access to Housing": 0.20975804328918457,
+    "Walkable Access to Open Space": 0,
+    "z": 4
+  },
+  {
+    "v": 65,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 41,
+    "Walkable Access to Housing": 0.16989894211292267,
+    "Walkable Access to Open Space": 0,
+    "z": 5
+  },
+  {
+    "v": 65,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 41,
+    "Walkable Access to Housing": 0.19078397750854492,
+    "Walkable Access to Open Space": 0,
+    "z": 6
+  },
+  {
+    "v": 65,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 41,
+    "Walkable Access to Housing": 0.1329684555530548,
+    "Walkable Access to Open Space": 0,
+    "z": 7
+  },
+  {
+    "v": 65,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 41,
+    "Walkable Access to Housing": 0.16969017684459686,
+    "Walkable Access to Open Space": 0,
+    "z": 8
+  },
+  {
+    "v": 65,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 41,
+    "Walkable Access to Housing": 0.15981772541999817,
+    "Walkable Access to Open Space": 0,
+    "z": 9
+  },
+  {
+    "v": 65,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 42,
+    "Walkable Access to Housing": 0.18809956312179565,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 65,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 42,
+    "Walkable Access to Housing": 0.13420222699642181,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 65,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 42,
+    "Walkable Access to Housing": 0.1672556847333908,
+    "Walkable Access to Open Space": 0,
+    "z": 3
+  },
+  {
+    "v": 65,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 42,
+    "Walkable Access to Housing": 0.1551477164030075,
+    "Walkable Access to Open Space": 0,
+    "z": 4
+  },
+  {
+    "v": 65,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 42,
+    "Walkable Access to Housing": 0.1340211033821106,
+    "Walkable Access to Open Space": 0,
+    "z": 5
+  },
+  {
+    "v": 65,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 42,
+    "Walkable Access to Housing": 0.15183620154857635,
+    "Walkable Access to Open Space": 0,
+    "z": 6
+  },
+  {
+    "v": 65,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 42,
+    "Walkable Access to Housing": 0.13979625701904297,
+    "Walkable Access to Open Space": 0,
+    "z": 7
+  },
+  {
+    "v": 65,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 42,
+    "Walkable Access to Housing": 0.13831870257854462,
+    "Walkable Access to Open Space": 0,
+    "z": 8
+  },
+  {
+    "v": 65,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 42,
+    "Walkable Access to Housing": 0.15492039918899536,
+    "Walkable Access to Open Space": 0,
+    "z": 9
+  },
+  {
+    "v": 65,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 43,
+    "Walkable Access to Housing": 0.1825147420167923,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 65,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 43,
+    "Walkable Access to Housing": 0.19992299377918243,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 65,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 43,
+    "Walkable Access to Housing": 0.16758756339550018,
+    "Walkable Access to Open Space": 0,
+    "z": 3
+  },
+  {
+    "v": 65,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 43,
+    "Walkable Access to Housing": 0.159084290266037,
+    "Walkable Access to Open Space": 0,
+    "z": 4
+  },
+  {
+    "v": 65,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 43,
+    "Walkable Access to Housing": 0.15560372173786163,
+    "Walkable Access to Open Space": 0,
+    "z": 5
+  },
+  {
+    "v": 65,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 43,
+    "Walkable Access to Housing": 0.1674690991640091,
+    "Walkable Access to Open Space": 0,
+    "z": 6
+  },
+  {
+    "v": 65,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 43,
+    "Walkable Access to Housing": 0.16604769229888916,
+    "Walkable Access to Open Space": 0,
+    "z": 7
+  },
+  {
+    "v": 65,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 43,
+    "Walkable Access to Housing": 0.16974997520446777,
+    "Walkable Access to Open Space": 0,
+    "z": 8
+  },
+  {
+    "v": 65,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 43,
+    "Walkable Access to Housing": 0.14767387509346008,
+    "Walkable Access to Open Space": 0,
+    "z": 9
+  },
+  {
+    "v": 66,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 40,
+    "Walkable Access to Housing": 0.16349121928215027,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 66,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 40,
+    "Walkable Access to Housing": 0.1304617077112198,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 66,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 41,
+    "Walkable Access to Housing": 0.14304682612419128,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 66,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 41,
+    "Walkable Access to Housing": 0.15946176648139954,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 66,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 41,
+    "Walkable Access to Housing": 0.1803610920906067,
+    "Walkable Access to Open Space": 0,
+    "z": 3
+  },
+  {
+    "v": 66,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 41,
+    "Walkable Access to Housing": 0.1191869005560875,
+    "Walkable Access to Open Space": 0,
+    "z": 4
+  },
+  {
+    "v": 66,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 41,
+    "Walkable Access to Housing": 0.15397879481315613,
+    "Walkable Access to Open Space": 0,
+    "z": 5
+  },
+  {
+    "v": 66,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 41,
+    "Walkable Access to Housing": 0.1371239870786667,
+    "Walkable Access to Open Space": 0,
+    "z": 6
+  },
+  {
+    "v": 66,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 41,
+    "Walkable Access to Housing": 0.1401234269142151,
+    "Walkable Access to Open Space": 0,
+    "z": 7
+  },
+  {
+    "v": 66,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 41,
+    "Walkable Access to Housing": 0.11232368648052216,
+    "Walkable Access to Open Space": 0,
+    "z": 8
+  },
+  {
+    "v": 66,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 41,
+    "Walkable Access to Housing": 0.1050785556435585,
+    "Walkable Access to Open Space": 0,
+    "z": 9
+  },
+  {
+    "v": 66,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 42,
+    "Walkable Access to Housing": 0.12180554866790771,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 66,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 42,
+    "Walkable Access to Housing": 0.15771766006946564,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 66,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 42,
+    "Walkable Access to Housing": 0.16145364940166473,
+    "Walkable Access to Open Space": 0,
+    "z": 3
+  },
+  {
+    "v": 66,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 42,
+    "Walkable Access to Housing": 0.1374705731868744,
+    "Walkable Access to Open Space": 0,
+    "z": 4
+  },
+  {
+    "v": 66,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 42,
+    "Walkable Access to Housing": 0.14330576360225677,
+    "Walkable Access to Open Space": 0,
+    "z": 5
+  },
+  {
+    "v": 66,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 42,
+    "Walkable Access to Housing": 0.1846613883972168,
+    "Walkable Access to Open Space": 0,
+    "z": 6
+  },
+  {
+    "v": 66,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 42,
+    "Walkable Access to Housing": 0.1577964574098587,
+    "Walkable Access to Open Space": 0,
+    "z": 7
+  },
+  {
+    "v": 66,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 42,
+    "Walkable Access to Housing": 0.12827809154987335,
+    "Walkable Access to Open Space": 0,
+    "z": 8
+  },
+  {
+    "v": 66,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 42,
+    "Walkable Access to Housing": 0.1565171480178833,
+    "Walkable Access to Open Space": 0,
+    "z": 9
+  },
+  {
+    "v": 66,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 43,
+    "Walkable Access to Housing": 0.12754400074481964,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 66,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 43,
+    "Walkable Access to Housing": 0.14309710264205933,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 66,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 43,
+    "Walkable Access to Housing": 0.15421070158481598,
+    "Walkable Access to Open Space": 0,
+    "z": 3
+  },
+  {
+    "v": 66,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 43,
+    "Walkable Access to Housing": 0.1300096958875656,
+    "Walkable Access to Open Space": 0,
+    "z": 4
+  },
+  {
+    "v": 66,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 43,
+    "Walkable Access to Housing": 0.2015824317932129,
+    "Walkable Access to Open Space": 0,
+    "z": 5
+  },
+  {
+    "v": 66,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 43,
+    "Walkable Access to Housing": 0.1386815756559372,
+    "Walkable Access to Open Space": 0,
+    "z": 6
+  },
+  {
+    "v": 66,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 43,
+    "Walkable Access to Housing": 0.1640443056821823,
+    "Walkable Access to Open Space": 0,
+    "z": 7
+  },
+  {
+    "v": 66,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 43,
+    "Walkable Access to Housing": 0.18216650187969208,
+    "Walkable Access to Open Space": 0,
+    "z": 8
+  },
+  {
+    "v": 66,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 43,
+    "Walkable Access to Housing": 0.1327434629201889,
+    "Walkable Access to Open Space": 0,
+    "z": 9
+  },
+  {
+    "v": 67,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 40,
+    "Walkable Access to Housing": 0.12382034957408905,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 67,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 40,
+    "Walkable Access to Housing": 0.16027922928333282,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 67,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 41,
+    "Walkable Access to Housing": 0.15068212151527405,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 67,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 41,
+    "Walkable Access to Housing": 0.13041269779205322,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 67,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 41,
+    "Walkable Access to Housing": 0.13555604219436646,
+    "Walkable Access to Open Space": 0,
+    "z": 3
+  },
+  {
+    "v": 67,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 41,
+    "Walkable Access to Housing": 0.15762057900428772,
+    "Walkable Access to Open Space": 0,
+    "z": 4
+  },
+  {
+    "v": 67,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 41,
+    "Walkable Access to Housing": 0.08911893516778946,
+    "Walkable Access to Open Space": 0,
+    "z": 5
+  },
+  {
+    "v": 67,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 41,
+    "Walkable Access to Housing": 0.12078151851892471,
+    "Walkable Access to Open Space": 0,
+    "z": 6
+  },
+  {
+    "v": 67,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 41,
+    "Walkable Access to Housing": 0.11487412452697754,
+    "Walkable Access to Open Space": 0,
+    "z": 7
+  },
+  {
+    "v": 67,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 41,
+    "Walkable Access to Housing": 0.09742523729801178,
+    "Walkable Access to Open Space": 0,
+    "z": 8
+  },
+  {
+    "v": 67,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 41,
+    "Walkable Access to Housing": 0.09912677854299545,
+    "Walkable Access to Open Space": 0,
+    "z": 9
+  },
+  {
+    "v": 67,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 42,
+    "Walkable Access to Housing": 0.16958087682724,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 67,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 42,
+    "Walkable Access to Housing": 0.1432945728302002,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 67,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 42,
+    "Walkable Access to Housing": 0.1586802899837494,
+    "Walkable Access to Open Space": 0,
+    "z": 3
+  },
+  {
+    "v": 67,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 42,
+    "Walkable Access to Housing": 0.1225559264421463,
+    "Walkable Access to Open Space": 0,
+    "z": 4
+  },
+  {
+    "v": 67,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 42,
+    "Walkable Access to Housing": 0.13066259026527405,
+    "Walkable Access to Open Space": 0,
+    "z": 5
+  },
+  {
+    "v": 67,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 42,
+    "Walkable Access to Housing": 0.1663154661655426,
+    "Walkable Access to Open Space": 0,
+    "z": 6
+  },
+  {
+    "v": 67,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 42,
+    "Walkable Access to Housing": 0.1320776790380478,
+    "Walkable Access to Open Space": 0,
+    "z": 7
+  },
+  {
+    "v": 67,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 42,
+    "Walkable Access to Housing": 0.1092587262392044,
+    "Walkable Access to Open Space": 0,
+    "z": 8
+  },
+  {
+    "v": 67,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 42,
+    "Walkable Access to Housing": 0.11136861890554428,
+    "Walkable Access to Open Space": 0,
+    "z": 9
+  },
+  {
+    "v": 67,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 43,
+    "Walkable Access to Housing": 0.1705015003681183,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 67,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 43,
+    "Walkable Access to Housing": 0.1806914359331131,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 67,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 43,
+    "Walkable Access to Housing": 0.13456714153289795,
+    "Walkable Access to Open Space": 0,
+    "z": 3
+  },
+  {
+    "v": 67,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 43,
+    "Walkable Access to Housing": 0.1755247265100479,
+    "Walkable Access to Open Space": 0,
+    "z": 4
+  },
+  {
+    "v": 67,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 43,
+    "Walkable Access to Housing": 0.13600465655326843,
+    "Walkable Access to Open Space": 0,
+    "z": 5
+  },
+  {
+    "v": 67,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 43,
+    "Walkable Access to Housing": 0.14100401103496552,
+    "Walkable Access to Open Space": 0,
+    "z": 6
+  },
+  {
+    "v": 67,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 43,
+    "Walkable Access to Housing": 0.157974973320961,
+    "Walkable Access to Open Space": 0,
+    "z": 7
+  },
+  {
+    "v": 67,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 43,
+    "Walkable Access to Housing": 0.16384664177894592,
+    "Walkable Access to Open Space": 0,
+    "z": 8
+  },
+  {
+    "v": 67,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 43,
+    "Walkable Access to Housing": 0.16226786375045776,
+    "Walkable Access to Open Space": 0,
+    "z": 9
+  },
+  {
+    "v": 0,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 52,
+    "Walkable Access to Housing": 0.06464997678995132,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 0,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 52,
+    "Walkable Access to Housing": 0.06321282684803009,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 0,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 53,
+    "Walkable Access to Housing": 0.07236538827419281,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 0,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 54,
+    "Walkable Access to Housing": 0.0681767389178276,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 0,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 55,
+    "Walkable Access to Housing": 0.047696553170681,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 0,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 55,
+    "Walkable Access to Housing": 0.03636234998703003,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 1,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 52,
+    "Walkable Access to Housing": 0.0675077810883522,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 1,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 52,
+    "Walkable Access to Housing": 0.05685647577047348,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 1,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 53,
+    "Walkable Access to Housing": 0.082729771733284,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 1,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 54,
+    "Walkable Access to Housing": 0.08290672302246094,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 1,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 55,
+    "Walkable Access to Housing": 0.0765647441148758,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 1,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 55,
+    "Walkable Access to Housing": 0.07230203598737717,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 2,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 52,
+    "Walkable Access to Housing": 0.07079068571329117,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 2,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 52,
+    "Walkable Access to Housing": 0.08013208210468292,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 2,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 53,
+    "Walkable Access to Housing": 0.07869157940149307,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 2,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 54,
+    "Walkable Access to Housing": 0.06117774173617363,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 2,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 55,
+    "Walkable Access to Housing": 0.05761602520942688,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 2,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 55,
+    "Walkable Access to Housing": 0.07933901995420456,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 3,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 52,
+    "Walkable Access to Housing": 0.05578774958848953,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 3,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 52,
+    "Walkable Access to Housing": 0.0697111040353775,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 3,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 53,
+    "Walkable Access to Housing": 0.06118020415306091,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 3,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 54,
+    "Walkable Access to Housing": 0.08510828763246536,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 3,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 55,
+    "Walkable Access to Housing": 0.07308705151081085,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 3,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 55,
+    "Walkable Access to Housing": 0.08321847021579742,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 4,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 60,
+    "Walkable Access to Housing": 0.04497070237994194,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 4,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 60,
+    "Walkable Access to Housing": 0.04443877935409546,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 4,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 61,
+    "Walkable Access to Housing": 0.018737459555268288,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 4,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 61,
+    "Walkable Access to Housing": 0.025990042835474014,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 4,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 62,
+    "Walkable Access to Housing": 0.027750488370656967,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 4,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 62,
+    "Walkable Access to Housing": 0.016557615250349045,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 4,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 63,
+    "Walkable Access to Housing": 0.006242488510906696,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 4,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 63,
+    "Walkable Access to Housing": 0.0023051046300679445,
     "Walkable Access to Open Space": 0,
     "z": 2
   },
   {
     "v": 5,
-    "Walkable Access to Jobs and Amenities": 1.7307946681976318,
-    "u": 32,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 5,
-    "Walkable Access to Jobs and Amenities": 1.5632660388946533,
-    "u": 32,
-    "Walkable Access to Housing": -1,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 60,
+    "Walkable Access to Housing": 0.04895937070250511,
     "Walkable Access to Open Space": 0,
     "z": 2
   },
   {
     "v": 5,
-    "Walkable Access to Jobs and Amenities": 1.8330981731414795,
-    "u": 33,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 5,
-    "Walkable Access to Jobs and Amenities": 1.7699871063232422,
-    "u": 33,
-    "Walkable Access to Housing": -1,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 61,
+    "Walkable Access to Housing": 0.03114168904721737,
     "Walkable Access to Open Space": 0,
     "z": 2
   },
   {
     "v": 5,
-    "Walkable Access to Jobs and Amenities": 1.6692081689834595,
-    "u": 34,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 5,
-    "Walkable Access to Jobs and Amenities": 1.6548744440078735,
-    "u": 34,
-    "Walkable Access to Housing": -1,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 62,
+    "Walkable Access to Housing": 0.025874918326735497,
     "Walkable Access to Open Space": 0,
     "z": 2
   },
   {
     "v": 5,
-    "Walkable Access to Jobs and Amenities": 1.871999740600586,
-    "u": 35,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 5,
-    "Walkable Access to Jobs and Amenities": 1.756842851638794,
-    "u": 35,
-    "Walkable Access to Housing": -1,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 63,
+    "Walkable Access to Housing": 0.020250631496310234,
     "Walkable Access to Open Space": 0,
     "z": 2
   },
   {
     "v": 6,
-    "Walkable Access to Jobs and Amenities": 1.6784833669662476,
-    "u": 32,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 6,
-    "Walkable Access to Jobs and Amenities": 1.8036916255950928,
-    "u": 32,
-    "Walkable Access to Housing": -1,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 60,
+    "Walkable Access to Housing": 0.07239300012588501,
     "Walkable Access to Open Space": 0,
     "z": 2
   },
   {
     "v": 6,
-    "Walkable Access to Jobs and Amenities": 1.624262809753418,
-    "u": 33,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 6,
-    "Walkable Access to Jobs and Amenities": 1.6071088314056396,
-    "u": 33,
-    "Walkable Access to Housing": -1,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 61,
+    "Walkable Access to Housing": 0.04175279289484024,
     "Walkable Access to Open Space": 0,
     "z": 2
   },
   {
     "v": 6,
-    "Walkable Access to Jobs and Amenities": 1.7348006963729858,
-    "u": 34,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 6,
-    "Walkable Access to Jobs and Amenities": 1.8110730648040771,
-    "u": 34,
-    "Walkable Access to Housing": -1,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 62,
+    "Walkable Access to Housing": 0.031679797917604446,
     "Walkable Access to Open Space": 0,
     "z": 2
   },
   {
     "v": 6,
-    "Walkable Access to Jobs and Amenities": 1.8383057117462158,
-    "u": 35,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 6,
-    "Walkable Access to Jobs and Amenities": 1.6721912622451782,
-    "u": 35,
-    "Walkable Access to Housing": -1,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 63,
+    "Walkable Access to Housing": 0.03020774945616722,
     "Walkable Access to Open Space": 0,
     "z": 2
   },
   {
     "v": 7,
-    "Walkable Access to Jobs and Amenities": 1.9723870754241943,
-    "u": 32,
-    "Walkable Access to Housing": -1,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 60,
+    "Walkable Access to Housing": 0.07029765844345093,
     "Walkable Access to Open Space": 0,
     "z": 1
   },
   {
     "v": 7,
-    "Walkable Access to Jobs and Amenities": 1.5950257778167725,
-    "u": 32,
-    "Walkable Access to Housing": -1,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 60,
+    "Walkable Access to Housing": 0.06358509510755539,
     "Walkable Access to Open Space": 0,
     "z": 2
   },
   {
     "v": 7,
-    "Walkable Access to Jobs and Amenities": 1.729983925819397,
-    "u": 33,
-    "Walkable Access to Housing": -1,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 61,
+    "Walkable Access to Housing": 0.07073674350976944,
     "Walkable Access to Open Space": 0,
     "z": 1
   },
   {
     "v": 7,
-    "Walkable Access to Jobs and Amenities": 1.7081482410430908,
-    "u": 33,
-    "Walkable Access to Housing": -1,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 61,
+    "Walkable Access to Housing": 0.058978378772735596,
     "Walkable Access to Open Space": 0,
     "z": 2
   },
   {
     "v": 7,
-    "Walkable Access to Jobs and Amenities": 1.954970359802246,
-    "u": 34,
-    "Walkable Access to Housing": -1,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 62,
+    "Walkable Access to Housing": 0.054170213639736176,
     "Walkable Access to Open Space": 0,
     "z": 1
   },
   {
     "v": 7,
-    "Walkable Access to Jobs and Amenities": 1.6839039325714111,
-    "u": 34,
-    "Walkable Access to Housing": -1,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 62,
+    "Walkable Access to Housing": 0.06448262184858322,
     "Walkable Access to Open Space": 0,
     "z": 2
   },
   {
     "v": 7,
-    "Walkable Access to Jobs and Amenities": 1.92919921875,
-    "u": 35,
-    "Walkable Access to Housing": -1,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 63,
+    "Walkable Access to Housing": 0.03791244700551033,
     "Walkable Access to Open Space": 0,
     "z": 1
   },
   {
     "v": 7,
-    "Walkable Access to Jobs and Amenities": 1.8322935104370117,
-    "u": 35,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 63,
+    "Walkable Access to Housing": 0.04237673431634903,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 8,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 60,
+    "Walkable Access to Housing": 0.06808023154735565,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 8,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 60,
+    "Walkable Access to Housing": 0.0656987801194191,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 8,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 61,
+    "Walkable Access to Housing": 0.058183085173368454,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 8,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 61,
+    "Walkable Access to Housing": 0.07243494689464569,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 8,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 62,
+    "Walkable Access to Housing": 0.06766752898693085,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 8,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 62,
+    "Walkable Access to Housing": 0.06070222333073616,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 8,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 63,
+    "Walkable Access to Housing": 0.052419811487197876,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 8,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 63,
+    "Walkable Access to Housing": 0.050456803292036057,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 9,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 60,
+    "Walkable Access to Housing": 0.07020716369152069,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 9,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 61,
+    "Walkable Access to Housing": 0.078569695353508,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 9,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 62,
+    "Walkable Access to Housing": 0.07202710211277008,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 9,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 63,
+    "Walkable Access to Housing": 0.07575596868991852,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 10,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 60,
+    "Walkable Access to Housing": 0.06383050978183746,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 10,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 61,
+    "Walkable Access to Housing": 0.05478471517562866,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 10,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 62,
+    "Walkable Access to Housing": 0.08338727802038193,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 10,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 63,
+    "Walkable Access to Housing": 0.06464540958404541,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 11,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 60,
+    "Walkable Access to Housing": 0.07308425009250641,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 11,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 60,
+    "Walkable Access to Housing": 0.06277737766504288,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 11,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 61,
+    "Walkable Access to Housing": 0.067174531519413,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 11,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 61,
+    "Walkable Access to Housing": 0.05108270049095154,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 11,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 62,
+    "Walkable Access to Housing": 0.07275925576686859,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 11,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 62,
+    "Walkable Access to Housing": 0.053897567093372345,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 11,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 63,
+    "Walkable Access to Housing": 0.07064630836248398,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 11,
+    "Walkable Access to Jobs and Amenities": -1,
+    "u": 63,
+    "Walkable Access to Housing": 0.08080017566680908,
+    "Walkable Access to Open Space": 0,
+    "z": 2
+  },
+  {
+    "v": 56,
+    "Walkable Access to Jobs and Amenities": 7.117759704589844,
+    "u": 68,
+    "Walkable Access to Housing": -1,
+    "Walkable Access to Open Space": 0,
+    "z": 1
+  },
+  {
+    "v": 56,
+    "Walkable Access to Jobs and Amenities": 6.622776985168457,
+    "u": 68,
     "Walkable Access to Housing": -1,
     "Walkable Access to Open Space": 0,
     "z": 2
   },
   {
-    "v": 36,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 34,
-    "Walkable Access to Housing": 0.7823210954666138,
+    "v": 56,
+    "Walkable Access to Jobs and Amenities": 6.08623743057251,
+    "u": 69,
+    "Walkable Access to Housing": -1,
     "Walkable Access to Open Space": 0,
     "z": 1
   },
   {
-    "v": 36,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 34,
-    "Walkable Access to Housing": 0.7153677940368652,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 36,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 34,
-    "Walkable Access to Housing": 0.6420294046401978,
-    "Walkable Access to Open Space": 0,
-    "z": 3
-  },
-  {
-    "v": 36,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 34,
-    "Walkable Access to Housing": 0.6456308364868164,
-    "Walkable Access to Open Space": 0,
-    "z": 4
-  },
-  {
-    "v": 36,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 35,
-    "Walkable Access to Housing": 0.6274596452713013,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 36,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 35,
-    "Walkable Access to Housing": 0.561770498752594,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 36,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 35,
-    "Walkable Access to Housing": 0.5532271265983582,
-    "Walkable Access to Open Space": 0,
-    "z": 3
-  },
-  {
-    "v": 36,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 35,
-    "Walkable Access to Housing": 0.5482254028320312,
-    "Walkable Access to Open Space": 0,
-    "z": 4
-  },
-  {
-    "v": 37,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 34,
-    "Walkable Access to Housing": 0.6889560222625732,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 37,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 34,
-    "Walkable Access to Housing": 0.626518726348877,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 37,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 34,
-    "Walkable Access to Housing": 0.5943498611450195,
-    "Walkable Access to Open Space": 0,
-    "z": 3
-  },
-  {
-    "v": 37,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 34,
-    "Walkable Access to Housing": 0.530314028263092,
-    "Walkable Access to Open Space": 0,
-    "z": 4
-  },
-  {
-    "v": 37,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 35,
-    "Walkable Access to Housing": 0.46999067068099976,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 37,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 35,
-    "Walkable Access to Housing": 0.48066219687461853,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 37,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 35,
-    "Walkable Access to Housing": 0.4162755012512207,
-    "Walkable Access to Open Space": 0,
-    "z": 3
-  },
-  {
-    "v": 37,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 35,
-    "Walkable Access to Housing": 0.42293834686279297,
-    "Walkable Access to Open Space": 0,
-    "z": 4
-  },
-  {
-    "v": 38,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 34,
-    "Walkable Access to Housing": 0.4923980236053467,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 38,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 34,
-    "Walkable Access to Housing": 0.451069176197052,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 38,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 34,
-    "Walkable Access to Housing": 0.4438680112361908,
-    "Walkable Access to Open Space": 0,
-    "z": 3
-  },
-  {
-    "v": 38,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 34,
-    "Walkable Access to Housing": 0.3714260458946228,
-    "Walkable Access to Open Space": 0,
-    "z": 4
-  },
-  {
-    "v": 38,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 35,
-    "Walkable Access to Housing": 0.38846758008003235,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 38,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 35,
-    "Walkable Access to Housing": 0.3422142267227173,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 38,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 35,
-    "Walkable Access to Housing": 0.3527897298336029,
-    "Walkable Access to Open Space": 0,
-    "z": 3
-  },
-  {
-    "v": 38,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 35,
-    "Walkable Access to Housing": 0.3197528123855591,
-    "Walkable Access to Open Space": 0,
-    "z": 4
-  },
-  {
-    "v": 39,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 34,
-    "Walkable Access to Housing": 0.4566393792629242,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 39,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 34,
-    "Walkable Access to Housing": 0.38651806116104126,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 39,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 34,
-    "Walkable Access to Housing": 0.3415064215660095,
-    "Walkable Access to Open Space": 0,
-    "z": 3
-  },
-  {
-    "v": 39,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 34,
-    "Walkable Access to Housing": 0.36609548330307007,
-    "Walkable Access to Open Space": 0,
-    "z": 4
-  },
-  {
-    "v": 39,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 35,
-    "Walkable Access to Housing": 0.2946474254131317,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 39,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 35,
-    "Walkable Access to Housing": 0.3025527000427246,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 39,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 35,
-    "Walkable Access to Housing": 0.3216547966003418,
-    "Walkable Access to Open Space": 0,
-    "z": 3
-  },
-  {
-    "v": 39,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 35,
-    "Walkable Access to Housing": 0.33906129002571106,
-    "Walkable Access to Open Space": 0,
-    "z": 4
-  },
-  {
-    "v": 40,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 48,
-    "Walkable Access to Housing": 0.05889759585261345,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 40,
-    "Walkable Access to Jobs and Amenities": 9.567516326904297,
-    "u": 48,
+    "v": 56,
+    "Walkable Access to Jobs and Amenities": 6.466073513031006,
+    "u": 69,
     "Walkable Access to Housing": -1,
     "Walkable Access to Open Space": 0,
     "z": 2
   },
   {
-    "v": 40,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 49,
-    "Walkable Access to Housing": 0.062091000378131866,
+    "v": 56,
+    "Walkable Access to Jobs and Amenities": 6.744571685791016,
+    "u": 70,
+    "Walkable Access to Housing": -1,
     "Walkable Access to Open Space": 0,
     "z": 1
   },
   {
-    "v": 40,
-    "Walkable Access to Jobs and Amenities": 9.974024772644043,
-    "u": 49,
+    "v": 56,
+    "Walkable Access to Jobs and Amenities": 5.6993818283081055,
+    "u": 70,
     "Walkable Access to Housing": -1,
     "Walkable Access to Open Space": 0,
     "z": 2
   },
   {
-    "v": 40,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 50,
-    "Walkable Access to Housing": 0.06749598681926727,
+    "v": 56,
+    "Walkable Access to Jobs and Amenities": 5.0752081871032715,
+    "u": 71,
+    "Walkable Access to Housing": -1,
     "Walkable Access to Open Space": 0,
     "z": 1
   },
   {
-    "v": 40,
-    "Walkable Access to Jobs and Amenities": 10.351658821105957,
-    "u": 50,
+    "v": 56,
+    "Walkable Access to Jobs and Amenities": 4.3343071937561035,
+    "u": 71,
     "Walkable Access to Housing": -1,
     "Walkable Access to Open Space": 0,
     "z": 2
   },
   {
-    "v": 40,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 51,
-    "Walkable Access to Housing": 0.0593860037624836,
+    "v": 57,
+    "Walkable Access to Jobs and Amenities": 6.982882499694824,
+    "u": 68,
+    "Walkable Access to Housing": -1,
     "Walkable Access to Open Space": 0,
     "z": 1
   },
   {
-    "v": 40,
-    "Walkable Access to Jobs and Amenities": 9.984926223754883,
-    "u": 51,
+    "v": 57,
+    "Walkable Access to Jobs and Amenities": 7.759922981262207,
+    "u": 68,
     "Walkable Access to Housing": -1,
     "Walkable Access to Open Space": 0,
     "z": 2
   },
   {
-    "v": 41,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 48,
-    "Walkable Access to Housing": 0.04238463193178177,
+    "v": 57,
+    "Walkable Access to Jobs and Amenities": 6.4878950119018555,
+    "u": 71,
+    "Walkable Access to Housing": -1,
     "Walkable Access to Open Space": 0,
     "z": 1
   },
   {
-    "v": 41,
-    "Walkable Access to Jobs and Amenities": 9.392215728759766,
-    "u": 48,
+    "v": 57,
+    "Walkable Access to Jobs and Amenities": 5.7869157791137695,
+    "u": 71,
     "Walkable Access to Housing": -1,
     "Walkable Access to Open Space": 0,
     "z": 2
   },
   {
-    "v": 41,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 49,
-    "Walkable Access to Housing": 0.068577840924263,
+    "v": 58,
+    "Walkable Access to Jobs and Amenities": 7.015324592590332,
+    "u": 68,
+    "Walkable Access to Housing": -1,
     "Walkable Access to Open Space": 0,
     "z": 1
   },
   {
-    "v": 41,
-    "Walkable Access to Jobs and Amenities": 9.479814529418945,
-    "u": 49,
+    "v": 58,
+    "Walkable Access to Jobs and Amenities": 7.3623366355896,
+    "u": 68,
     "Walkable Access to Housing": -1,
     "Walkable Access to Open Space": 0,
     "z": 2
   },
   {
-    "v": 41,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 50,
-    "Walkable Access to Housing": 0.058698493987321854,
+    "v": 58,
+    "Walkable Access to Jobs and Amenities": 7.048142433166504,
+    "u": 71,
+    "Walkable Access to Housing": -1,
     "Walkable Access to Open Space": 0,
     "z": 1
   },
   {
-    "v": 41,
-    "Walkable Access to Jobs and Amenities": 9.132174491882324,
-    "u": 50,
+    "v": 58,
+    "Walkable Access to Jobs and Amenities": 7.04111385345459,
+    "u": 71,
     "Walkable Access to Housing": -1,
     "Walkable Access to Open Space": 0,
     "z": 2
   },
   {
-    "v": 41,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 51,
-    "Walkable Access to Housing": 0.05862899497151375,
+    "v": 59,
+    "Walkable Access to Jobs and Amenities": 7.023016929626465,
+    "u": 68,
+    "Walkable Access to Housing": -1,
     "Walkable Access to Open Space": 0,
     "z": 1
   },
   {
-    "v": 41,
-    "Walkable Access to Jobs and Amenities": 9.638869285583496,
-    "u": 51,
+    "v": 59,
+    "Walkable Access to Jobs and Amenities": 7.023848056793213,
+    "u": 68,
     "Walkable Access to Housing": -1,
     "Walkable Access to Open Space": 0,
     "z": 2
   },
   {
-    "v": 42,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 48,
-    "Walkable Access to Housing": 0.058764658868312836,
+    "v": 59,
+    "Walkable Access to Jobs and Amenities": 7.454035758972168,
+    "u": 69,
+    "Walkable Access to Housing": -1,
     "Walkable Access to Open Space": 0,
     "z": 1
   },
   {
-    "v": 42,
-    "Walkable Access to Jobs and Amenities": 9.898736953735352,
-    "u": 48,
+    "v": 59,
+    "Walkable Access to Jobs and Amenities": 7.35128927230835,
+    "u": 69,
     "Walkable Access to Housing": -1,
     "Walkable Access to Open Space": 0,
     "z": 2
   },
   {
-    "v": 42,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 49,
-    "Walkable Access to Housing": 0.06024628132581711,
+    "v": 59,
+    "Walkable Access to Jobs and Amenities": 7.437571048736572,
+    "u": 70,
+    "Walkable Access to Housing": -1,
     "Walkable Access to Open Space": 0,
     "z": 1
   },
   {
-    "v": 42,
-    "Walkable Access to Jobs and Amenities": 9.751790046691895,
-    "u": 49,
+    "v": 59,
+    "Walkable Access to Jobs and Amenities": 8.008004188537598,
+    "u": 70,
     "Walkable Access to Housing": -1,
     "Walkable Access to Open Space": 0,
     "z": 2
   },
   {
-    "v": 42,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 50,
-    "Walkable Access to Housing": 0.07776370644569397,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 42,
-    "Walkable Access to Jobs and Amenities": 9.853006362915039,
-    "u": 50,
+    "v": 59,
+    "Walkable Access to Jobs and Amenities": 8.332502365112305,
+    "u": 71,
     "Walkable Access to Housing": -1,
     "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 42,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 51,
-    "Walkable Access to Housing": 0.06165168434381485,
-    "Walkable Access to Open Space": 0,
     "z": 1
   },
   {
-    "v": 42,
-    "Walkable Access to Jobs and Amenities": 9.832662582397461,
-    "u": 51,
+    "v": 59,
+    "Walkable Access to Jobs and Amenities": 7.6529340744018555,
+    "u": 71,
     "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 43,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 48,
-    "Walkable Access to Housing": 0.05276057869195938,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 43,
-    "Walkable Access to Jobs and Amenities": 9.566017150878906,
-    "u": 48,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 43,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 49,
-    "Walkable Access to Housing": 0.05422153323888779,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 43,
-    "Walkable Access to Jobs and Amenities": 10.321054458618164,
-    "u": 49,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 43,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 50,
-    "Walkable Access to Housing": 0.06154743582010269,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 43,
-    "Walkable Access to Jobs and Amenities": 10.44222640991211,
-    "u": 50,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 43,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 51,
-    "Walkable Access to Housing": 0.07766329497098923,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 43,
-    "Walkable Access to Jobs and Amenities": 10.289400100708008,
-    "u": 51,
-    "Walkable Access to Housing": -1,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 16,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 52,
-    "Walkable Access to Housing": 0.5932615399360657,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 16,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 52,
-    "Walkable Access to Housing": 0.5645275712013245,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 16,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 53,
-    "Walkable Access to Housing": 0.48437976837158203,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 16,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 53,
-    "Walkable Access to Housing": 0.4592870771884918,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 16,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 54,
-    "Walkable Access to Housing": 0.45644354820251465,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 16,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 54,
-    "Walkable Access to Housing": 0.38581377267837524,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 16,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 55,
-    "Walkable Access to Housing": 0.367959588766098,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 16,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 55,
-    "Walkable Access to Housing": 0.3567287027835846,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 17,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 52,
-    "Walkable Access to Housing": 0.6706958413124084,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 17,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 52,
-    "Walkable Access to Housing": 0.6024823188781738,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 17,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 53,
-    "Walkable Access to Housing": 0.5216639637947083,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 17,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 53,
-    "Walkable Access to Housing": 0.5412566661834717,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 17,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 54,
-    "Walkable Access to Housing": 0.4598924517631531,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 17,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 54,
-    "Walkable Access to Housing": 0.4019748568534851,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 17,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 55,
-    "Walkable Access to Housing": 0.3414696156978607,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 17,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 55,
-    "Walkable Access to Housing": 0.31057867407798767,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 18,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 52,
-    "Walkable Access to Housing": 0.664743185043335,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 18,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 52,
-    "Walkable Access to Housing": 0.7063783407211304,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 18,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 53,
-    "Walkable Access to Housing": 0.5333288311958313,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 18,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 53,
-    "Walkable Access to Housing": 0.5407192707061768,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 18,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 54,
-    "Walkable Access to Housing": 0.38177162408828735,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 18,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 54,
-    "Walkable Access to Housing": 0.33496999740600586,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 18,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 55,
-    "Walkable Access to Housing": 0.34409841895103455,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 18,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 55,
-    "Walkable Access to Housing": 0.34001654386520386,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 19,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 52,
-    "Walkable Access to Housing": 0.6539363861083984,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 19,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 52,
-    "Walkable Access to Housing": 0.5740723013877869,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 19,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 53,
-    "Walkable Access to Housing": 0.5548789501190186,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 19,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 53,
-    "Walkable Access to Housing": 0.46936607360839844,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 19,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 54,
-    "Walkable Access to Housing": 0.4079303741455078,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 19,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 54,
-    "Walkable Access to Housing": 0.3562525808811188,
-    "Walkable Access to Open Space": 0,
-    "z": 2
-  },
-  {
-    "v": 19,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 55,
-    "Walkable Access to Housing": 0.3370850682258606,
-    "Walkable Access to Open Space": 0,
-    "z": 1
-  },
-  {
-    "v": 19,
-    "Walkable Access to Jobs and Amenities": -1,
-    "u": 55,
-    "Walkable Access to Housing": 0.30917245149612427,
     "Walkable Access to Open Space": 0,
     "z": 2
   }
