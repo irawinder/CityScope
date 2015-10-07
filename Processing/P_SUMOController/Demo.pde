@@ -42,10 +42,10 @@ public void setupNeighborhoodDemo() {
   pieceNames[3] = "New Bus Rapid Transit (BRT) Route";
   
   toggleNames = new String[numToggles];
-  toggleNames[0] = "Washington St.";
-  toggleNames[1] = "Blue Hill Ave.";
-  toggleNames[2] = "CrossTown";
-  toggleNames[3] = "Harvard";
+  toggleNames[0] = "Washington St. to Downtown";
+  toggleNames[1] = "Blue Hill Ave. to Mattapan";
+  toggleNames[2] = "Malcolm X Blvd. to Sullivan Sq.";
+  toggleNames[3] = "Malcolm X Blvd. to Harvard Sq.";
   
 }
 

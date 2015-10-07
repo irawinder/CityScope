@@ -534,6 +534,46 @@ void drawNeighborhoodSummary() {
         text(int(summary.getFloat(scenarioID+1, column)/1000000.0), (0.78+x_)*width, (0.28+y_)*height);
       
       fill(0);
+      
+      // Corridor State
+      x_ = .00;
+      y_ = 0.0;
+      
+      fill(#FFFFFF);
+      textAlign(LEFT);
+      textSize(smText);
+      
+      // A
+      if (IDArray[0] > -1) {
+        fill(#555555);
+      } else {
+        fill(#111111);
+      }
+      text("A: " + toggleNames[0], (0.05+x_)*width, (0.05+y_)*height);
+      
+      // B
+      if (IDArray[1] > -1) {
+        fill(#7dd5ed);
+      } else {
+        fill(#111111);
+      }
+      text("B: " + toggleNames[1], (0.05+x_)*width, (0.10+y_)*height);
+      
+      // C
+      if (IDArray[2] > -1) {
+        fill(#f3e05e);
+      } else {
+        fill(#111111);
+      }
+      text("C: " + toggleNames[2], (0.05+x_)*width, (0.15+y_)*height);
+      
+      // D
+      if (IDArray[3] > -1) {
+        fill(#e092df);
+      } else {
+        fill(#111111);
+      }
+      text("D: " + toggleNames[3], (0.05+x_)*width, (0.20+y_)*height);
 }
 
 void refreshChangeBools() {
