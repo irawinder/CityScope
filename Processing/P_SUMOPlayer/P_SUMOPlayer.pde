@@ -177,23 +177,38 @@ public void draw() {
         invalid = true;
       }
       
-      if (invalid == false) {  
+      if (invalid == false && scenarioID == 0) {
         // Draws Agents into primary graphic
         drawU_SUMO();
-      } else {
+      } else {  
         background(0);
       }
       
       // Crops Graphic to Physical Model Area
       U_Crop();
       
-      // Overlays any static PNGs onto Cropped Image
-      if (showOverlay && invalid == false) {
+      if (invalid == false && scenarioID == 0) {
+        //do nothing
+      } else {
+        crop.beginDraw();
+        crop.image(overlay[6],0,0,crop.width,crop.height);
+        crop.endDraw();
+      }
+      
+      if (showOverlay) {
+        
+        // Overlays any static PNGs onto Cropped Image
+        
         crop.beginDraw();
   //    crop.image(overlay[overlayIndex],0,0,crop.width,crop.height);
   
+        // Orange Line
         crop.image(overlay[5],0,0,crop.width,crop.height);
-        crop.image(overlay[0],0,0,crop.width,crop.height);
+        
+        if (invalid == false && scenarioID == 0) {
+          //Landmarks
+          crop.image(overlay[0],0,0,crop.width,crop.height);
+        }
         
         // Corridor A
         if (IDArray[0] > -1) {
@@ -243,14 +258,8 @@ public void draw() {
           crop.image(overlay[4],0,0,crop.width,crop.height);
         } 
         
-        
         crop.endDraw();
-      } else {
-        
-        crop.beginDraw();
-        crop.image(overlay[6],0,0,crop.width,crop.height);
-        crop.endDraw();
-      }
+      } 
         
       break;
   }

@@ -27,9 +27,9 @@ public void setupNeighborhoodDemo() {
   projector_height = 1200;
   screenWidth = 1824;
   
-  tokens = new String[2];
+  tokens = new String[1];
   tokens[0] = "000011";
-  tokens[1] = "000012";
+  //tokens[1] = "000012";
   
   overlay = new PImage[7];
   overlay[0] = loadImage("neighborhood_overlays/00_Landmarks.png");
@@ -38,15 +38,19 @@ public void setupNeighborhoodDemo() {
   overlay[3] = loadImage("neighborhood_overlays/01_C.png");
   overlay[4] = loadImage("neighborhood_overlays/01_D.png");
   overlay[5] = loadImage("neighborhood_overlays/02_OrangeLine.png");
-  overlay[6] = loadImage("neighborhood_overlays/02_OrangeLine.png");
+  overlay[6] = loadImage("neighborhood_overlays/Dudley_OFF.png");
   
   drawWidth = 2000;
   drawHeight = 2000;
   
   IDArray = new int[4];
-  for (int i=0; i<IDArray.length; i++) {
-    IDArray[i] = -1;
-  }
+  IDArray[0] = -1;
+  IDArray[1] = -1;
+  IDArray[2] = 0;
+  IDArray[3] = -1;
+//  for (int i=0; i<IDArray.length; i++) {
+//    IDArray[i] = -1;
+//  }
 }
 
 public void setupStreetDemo() {
