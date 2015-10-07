@@ -62,7 +62,7 @@ void draw() {
     runSimulation(defaultIndex);
     
     // If Legotizer was opened before simulator, this creates a handshake between the two applications
-    sendCommand("receipt", 6152);
+    sendCommand("receipt", 6111); //6152 //YZ
   }
   
   //-------- Draw functions enabled -------------- //

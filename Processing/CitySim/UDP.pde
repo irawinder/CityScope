@@ -1,6 +1,6 @@
 /*
  * Incoming Port: 6667
- * "Legotizer" Outgoing Port: 6152
+ * "Legotizer" Outgoing Port: 6111 //6152 //YZ
  */
 
 
@@ -50,8 +50,8 @@ void ImportData(String inputStr[]) {
         // Loads new JSON Inputs from file and runs simulation
         updateArrayJSON("scanNodes.json", int(split[1]));
       }
-      sendCommand("receipt", 6152);
-      sendCommand(simNames[simMode], 6152);
+      sendCommand("receipt", 6111); //6152 //YZ
+      sendCommand(simNames[simMode], 6111); //6152 //YZ
     }
   }
   

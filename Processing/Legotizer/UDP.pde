@@ -3,7 +3,7 @@
 // - UMax, VMax
 
 //
-// Incoming Port: 6152
+// Incoming Port: 6111 //6152 //YZ
 // "Colortizer" Ougoing Port:  6669
 // "NodeSimulator" Outgoing Port: 6667
 //
@@ -24,7 +24,7 @@ boolean readSolution = false;
 void initUDP() {
   
   if (viaUDP) {
-    udp = new UDP( this, 6152 );
+    udp = new UDP( this, 6111 ); //6152 //YZ
     //udp.log( true );     // <-- printout the connection activity
     udp.listen( true );
   }

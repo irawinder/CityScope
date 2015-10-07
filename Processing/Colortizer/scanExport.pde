@@ -1,11 +1,13 @@
 /*
  * Incoming Port: 6669
- * Ougoing Port:  6152
+ * //Ougoing Port:  6152 //YZ
+ * Ougoing Port 01: 6152 - for Unity
+ * Ougoing Port 02: 6111 - for Legotizer/CitySim
  *
  * REPORT ALL CHANGES WITH DATE AND USER IN THIS AREA:
  * - Updated to include location array "locArray" that passes x, y, width, and height values for scanGrids
  * -
- * -
+ * - 9/24/2015 Update to have 2 ougoing port, one for Legotizer/CitySim, another for Unity //YZ
  * -
  */
 
@@ -106,6 +108,7 @@ void sendData() {
     saveStrings("data.txt", split(dataToSend, "\n"));
     //udp.send( dataToSend, "18.85.55.241", 6152 );
     udp.send( dataToSend, "localhost", 6152 );
+    udp.send( dataToSend, "localhost", 6111 ); //YZ
     
     //println("update received");
     
