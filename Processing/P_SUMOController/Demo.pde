@@ -16,6 +16,9 @@ PImage neighborhoodScore_OFF;
 // Integer -1, 0, and +1 that describes whether model has changed from basecase
 int[] baseChange;
 
+String[] terminal;
+String via;
+
 public void setupNeighborhoodDemo() {
   
   summary = loadTable("neighborhood_data/summary.csv");
@@ -26,7 +29,7 @@ public void setupNeighborhoodDemo() {
   screenW = 1824;
   screenH = 1014;
   
-  numToggles = 4;
+  numToggles = 7;
   
   IDArray = new int[numToggles];
   for (int i=0; i<IDArray.length; i++) {
@@ -41,12 +44,29 @@ public void setupNeighborhoodDemo() {
   pieceNames[2] = "New Enhanced Bus Route";
   pieceNames[3] = "New Bus Rapid Transit (BRT) Route";
   
-  toggleNames = new String[numToggles];
-  toggleNames[0] = "Washington St. to Downtown";
-  toggleNames[1] = "Blue Hill Ave. to Mattapan";
-  toggleNames[2] = "Malcolm X Blvd. to Sullivan Sq.";
-  toggleNames[3] = "Malcolm X Blvd. to Harvard Sq.";
+  terminal = new String[4];
+  terminal[0] = "Downtown";
+  terminal[1] = "Mattapan";
+  terminal[2] = "Sullivan Square";
+  terminal[3] = "Harvard Square";
   
+  via = "Dudley Sq.";
+  
+  toggleNames = new String[numToggles];
+  //A
+  toggleNames[0] = via + " to " + terminal[0];
+  //B
+  toggleNames[1] = via + " to " + terminal[1];
+  //C
+  toggleNames[2] = via + " to " + terminal[2];
+  //D
+  toggleNames[3] = via + " to " + terminal[3];
+  //BA
+  toggleNames[4] = terminal[1] + " to " + terminal[0] + " via " + via;
+  //BC
+  toggleNames[5] = terminal[1] + " to " + terminal[2] + " via " + via;
+  //BD
+  toggleNames[6] = terminal[1] + " to " + terminal[3] + " via " + via;
 }
 
 public void setupStreetDemo() {

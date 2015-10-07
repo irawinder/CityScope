@@ -541,10 +541,10 @@ void drawNeighborhoodSummary() {
       
       fill(#FFFFFF);
       textAlign(LEFT);
-      textSize(smText);
+      textSize(smText/2);
       
       // A
-      if (IDArray[0] > -1) {
+      if (IDArray[0] > -1 && IDArray[1] == -1 && IDArray[2] == -1 && IDArray[3] == -1 ) {
         fill(#555555);
       } else {
         fill(#111111);
@@ -552,28 +552,54 @@ void drawNeighborhoodSummary() {
       text("A: " + toggleNames[0], (0.05+x_)*width, (0.05+y_)*height);
       
       // B
-      if (IDArray[1] > -1) {
+      if (IDArray[1] > -1 && IDArray[0] == -1 && IDArray[2] == -1 && IDArray[3] == -1 ) {
         fill(#7dd5ed);
       } else {
         fill(#111111);
       }
-      text("B: " + toggleNames[1], (0.05+x_)*width, (0.10+y_)*height);
+      text("B: " + toggleNames[1], (0.05+x_)*width, (0.075+y_)*height);
       
       // C
-      if (IDArray[2] > -1) {
+      if (IDArray[2] > -1 && IDArray[1] == -1 && IDArray[0] == -1 && IDArray[3] == -1 ) {
         fill(#f3e05e);
       } else {
         fill(#111111);
       }
-      text("C: " + toggleNames[2], (0.05+x_)*width, (0.15+y_)*height);
+      text("C: " + toggleNames[2], (0.05+x_)*width, (0.10+y_)*height);
       
       // D
-      if (IDArray[3] > -1) {
+      if (IDArray[3] > -1 && IDArray[1] == -1 && IDArray[2] == -1 && IDArray[0] == -1 ) {
         fill(#e092df);
       } else {
         fill(#111111);
       }
-      text("D: " + toggleNames[3], (0.05+x_)*width, (0.20+y_)*height);
+      text("D: " + toggleNames[3], (0.05+x_)*width, (0.125+y_)*height);
+      
+      
+      // BA
+      if (IDArray[0] > -1 && IDArray[1] > -1 && IDArray[2] == -1 && IDArray[3] == -1 ) {
+        fill(#7dd5ed);
+      } else {
+        fill(#111111);
+      }
+      text("BA: " + toggleNames[4], (0.05+x_)*width, (0.15+y_)*height);
+      
+      // BC
+      if (IDArray[0] == -1 && IDArray[1] > -1 && IDArray[2] > -1 && IDArray[3] == -1 ) {
+        fill(#7dd5ed);
+      } else {
+        fill(#111111);
+      }
+      text("BC: " + toggleNames[5], (0.05+x_)*width, (0.175+y_)*height);
+      
+      // BD
+      if (IDArray[0] == -1 && IDArray[1] > -1 && IDArray[2] == -1 && IDArray[3] > -1 ) {
+        fill(#7dd5ed);
+      } else {
+        fill(#111111);
+      }
+      text("BD: " + toggleNames[6], (0.05+x_)*width, (0.2+y_)*height);
+      
 }
 
 void refreshChangeBools() {
