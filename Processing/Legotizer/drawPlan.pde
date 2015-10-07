@@ -166,7 +166,7 @@ void drawPlanStatic() {
         if (colorMode == 2) {
           //plan.fill(mediumGray); //YZ
           if (projectSimColorOnly) {
-            plan.fill(transparentColor);
+            plan.fill(blackColor);
           } else {
             plan.fill(mediumGray);
           }
@@ -199,7 +199,7 @@ void drawPlanStatic() {
         if (colorMode == 2) {
           //plan.fill(lightGray); //YZ
           if (projectSimColorOnly) {
-            plan.fill(transparentColor);
+            plan.fill(blackColor);
           } else {
             plan.fill(lightGray);
           }
@@ -317,14 +317,14 @@ void drawPlan1x1Nodes(int i, int j, int k) {
             } else if ((vizMode == 0 && codeArray[i][j][0] == 1) || (vizMode == 1 && codeArray[i][j][0] == 8) || (vizMode == 2 && codeArray[i][j][0] == 2)) { //is Park
               //plan.fill(mediumGray); //YZ
               if (projectSimColorOnly) {
-                plan.fill(transparentColor);
+                plan.fill(blackColor);
               } else {
                 plan.fill(mediumGray);
               }
             } else {
               //plan.fill(lightGray); //YZ
               if (projectSimColorOnly) {
-                plan.fill(transparentColor);
+                plan.fill(blackColor);
               } else {
                 plan.fill(lightGray);
               }
@@ -349,7 +349,7 @@ void drawPlan1x1Nodes(int i, int j, int k) {
           if (solutionCloud[i][j][k] == -1) {
             //plan.fill(lightGray); //YZ
             if (projectSimColorOnly) {
-              plan.fill(transparentColor);
+              plan.fill(blackColor);
             } else {
               plan.fill(lightGray);
             }
@@ -395,14 +395,14 @@ void drawPlan4x4Nodes(int i, int j, int k) {
             } else if ((vizMode == 0 && codeArray[i][j][0] == 1) || (vizMode == 1 && codeArray[i][j][0] == 8) || (vizMode == 2 && codeArray[i][j][0] == 2)) { //is Park
               //plan.fill(mediumGray); //YZ
               if (projectSimColorOnly) {
-                plan.fill(transparentColor);
+                plan.fill(blackColor);
               } else {
                 plan.fill(mediumGray);
               }
             } else {
               //plan.fill(lightGray); //YZ
               if (projectSimColorOnly) {
-                plan.fill(transparentColor);
+                plan.fill(blackColor);
               } else {
                 plan.fill(lightGray);
               }
@@ -439,7 +439,7 @@ void drawPlan4x4Nodes(int i, int j, int k) {
                   if (useCloud.nodes[i*4+u][j*4+v][k] > 1) {
                     //plan.fill(lightGray); //YZ
                     if (projectSimColorOnly) {
-                      plan.fill(transparentColor);
+                      plan.fill(blackColor);
                     } else {
                       plan.fill(lightGray);
                     }
@@ -494,7 +494,7 @@ void findPlanFill(int u, int v, int value) {
         } else {
           //plan.fill(lightGray); //YZ
           if (projectSimColorOnly) {
-            plan.fill(transparentColor);
+            plan.fill(blackColor);
           } else {
             plan.fill(lightGray);
           }
@@ -512,7 +512,7 @@ void findPlanFill(int u, int v, int value) {
         } else {
           //plan.fill(lightGray); //YZ
           if (projectSimColorOnly) {
-            plan.fill(transparentColor);
+            plan.fill(blackColor);
           } else {
             plan.fill(lightGray);
           }
@@ -530,7 +530,7 @@ void findPlanFill(int u, int v, int value) {
         } else {
           //plan.fill(lightGray); //YZ
           if (projectSimColorOnly) {
-            plan.fill(transparentColor);
+            plan.fill(blackColor);
           } else {
             plan.fill(lightGray);
           }

@@ -95,6 +95,7 @@ int residentialColor  = 0xCCFFFF00; // yellow
 int academicColor     = 0xCC0000ff; // blue
 int offColor          = 0xFF333333; // dark gray
 int transparentColor  = 0x01000000; // transparent pure black //YZ
+int blackColor        = 0xFF000000; // pure black non-transparent //YZ
 
 JSONObject metaData;
 
