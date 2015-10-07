@@ -10,12 +10,18 @@ int numToggles, numPieces;
 PImage streetScore_template;
 PImage streetScore_OFF;
 
+PImage neighborhoodScore_template;
+PImage neighborhoodScore_OFF;
+
 // Integer -1, 0, and +1 that describes whether model has changed from basecase
 int[] baseChange;
 
 public void setupNeighborhoodDemo() {
   
   summary = loadTable("neighborhood_data/summary.csv");
+  
+  neighborhoodScore_template = loadImage("neighborhood_data/ScoreBoard.jpg");
+  neighborhoodScore_OFF = loadImage("neighborhood_data/ScoreBoard_OFF.jpg");
   
   screenW = 1824;
   screenH = 1014;
