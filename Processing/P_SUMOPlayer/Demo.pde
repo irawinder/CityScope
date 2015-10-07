@@ -31,13 +31,14 @@ public void setupNeighborhoodDemo() {
   tokens[0] = "000011";
   tokens[1] = "000012";
   
-  overlay = new PImage[6];
+  overlay = new PImage[7];
   overlay[0] = loadImage("neighborhood_overlays/00_Landmarks.png");
   overlay[1] = loadImage("neighborhood_overlays/01_A.png");
   overlay[2] = loadImage("neighborhood_overlays/01_B.png");
   overlay[3] = loadImage("neighborhood_overlays/01_C.png");
   overlay[4] = loadImage("neighborhood_overlays/01_D.png");
   overlay[5] = loadImage("neighborhood_overlays/02_OrangeLine.png");
+  overlay[6] = loadImage("neighborhood_overlays/02_OrangeLine.png");
   
   drawWidth = 2000;
   drawHeight = 2000;

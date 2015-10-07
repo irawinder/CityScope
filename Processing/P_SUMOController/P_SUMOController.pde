@@ -139,12 +139,12 @@ void draw() {
   drawSummary();
   
     
-  if (invalid && demoMode == 2) {
-    textSize(0.3*height);
-    textAlign(CENTER);
-    fill(#FF0000);
-    text("Nope!", width/2, 0.6*height);
-    fill(#FFFFFF);
-  }
+//  if (invalid && demoMode == 2) {
+//    textSize(0.3*height);
+//    textAlign(CENTER);
+//    fill(#FF0000);
+//    text("Nope!", width/2, 0.6*height);
+//    fill(#FFFFFF);
+//  }
   
 }

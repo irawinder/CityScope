@@ -93,13 +93,15 @@ public void drawU_SUMO() {
       frame=0;
     }
     
-    //Draw the basemap
-    bm.currentMap.draw();
-      
-    //Draw the vehicles
-    noStroke();
-    U_fx.drawVehicles(bm.currentMap, (millis()-timer)/(1000F)*playbackSpeed, labelBuses);
-  
+    
+      //Draw the basemap
+      bm.currentMap.draw();
+        
+      //Draw the vehicles
+      noStroke();
+      U_fx.drawVehicles(bm.currentMap, (millis()-timer)/(1000F)*playbackSpeed, labelBuses);
+    
+    
     //Draw the info window
     fill(0);
     rect(2, 6, 300, 50, 6);

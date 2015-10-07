@@ -1,7 +1,7 @@
 // Demo Mode 1 = Street Scale
 // Demo Mode 2 = Neighborhood Scale
 
-    int demoMode = 1;
+    int demoMode = 2;
 
 
 
@@ -34,6 +34,8 @@ PImage[] underlay;
 int streetScalar;
 int underlayIndex = 0;
 boolean invalid = false;
+
+int scenarioID = 0;
 
 public void setup() {
   
@@ -123,14 +125,70 @@ public void draw() {
       break;
       
     case 2:
-      // Draws Agents into primary graphic
-      drawU_SUMO();
+    
+      invalid = false;
+              //               A                    B                   C                  D
+             if (IDArray[0] == -1 && IDArray[1] == -1 && IDArray[2] == -1 && IDArray[3] == -1) {
+        scenarioID = 0;
+      } else if (IDArray[0] == 0 && IDArray[1] == -1 && IDArray[2] == -1 && IDArray[3] == -1) {
+        scenarioID = 1;
+      } else if (IDArray[0] == 1 && IDArray[1] == -1 && IDArray[2] == -1 && IDArray[3] == -1) {
+        scenarioID = 2;
+      } else if (IDArray[0] == 2 && IDArray[1] == -1 && IDArray[2] == -1 && IDArray[3] == -1) {
+        scenarioID = 3;
+      } else if (IDArray[0] == -1 && IDArray[1] == 0 && IDArray[2] == -1 && IDArray[3] == -1) {
+        scenarioID = 4;
+      } else if (IDArray[0] == -1 && IDArray[1] == 1 && IDArray[2] == -1 && IDArray[3] == -1) {
+        scenarioID = 5;
+      } else if (IDArray[0] == -1 && IDArray[1] == 2 && IDArray[2] == -1 && IDArray[3] == -1) {
+        scenarioID = 6;
+      } else if (IDArray[0] == -1 && IDArray[1] == -1 && IDArray[2] == 0 && IDArray[3] == -1) {
+        scenarioID = 7;
+      } else if (IDArray[0] == -1 && IDArray[1] == -1 && IDArray[2] == 1 && IDArray[3] == -1) {
+        scenarioID = 8;
+      } else if (IDArray[0] == -1 && IDArray[1] == -1 && IDArray[2] == 2 && IDArray[3] == -1) {
+        scenarioID = 9;
+      } else if (IDArray[0] == -1 && IDArray[1] == -1 && IDArray[2] == -1 && IDArray[3] == 0) {
+        scenarioID = 10;
+      } else if (IDArray[0] == -1 && IDArray[1] == -1 && IDArray[2] == -1 && IDArray[3] == 1) {
+        scenarioID = 11;
+      } else if (IDArray[0] == -1 && IDArray[1] == -1 && IDArray[2] == -1 && IDArray[3] == 2) {
+        scenarioID = 12;
+      } else if (IDArray[0] == 0 && IDArray[1] == 0 && IDArray[2] == -1 && IDArray[3] == -1) {
+        scenarioID = 13;
+      } else if (IDArray[0] == 1 && IDArray[1] == 1 && IDArray[2] == -1 && IDArray[3] == -1) {
+        scenarioID = 14;
+      } else if (IDArray[0] == 2 && IDArray[1] == 2 && IDArray[2] == -1 && IDArray[3] == -1) {
+        scenarioID = 15;
+      } else if (IDArray[0] == -1 && IDArray[1] == 0 && IDArray[2] == 0 && IDArray[3] == -1) {
+        scenarioID = 16;
+      } else if (IDArray[0] == -1 && IDArray[1] == 1 && IDArray[2] == 1 && IDArray[3] == -1) {
+        scenarioID = 17;
+      } else if (IDArray[0] == -1 && IDArray[1] == 2 && IDArray[2] == 2 && IDArray[3] == -1) {
+        scenarioID = 18;
+      } else if (IDArray[0] == -1 && IDArray[1] == 0 && IDArray[2] == -1 && IDArray[3] == 0) {
+        scenarioID = 19;
+      } else if (IDArray[0] == -1 && IDArray[1] == 1 && IDArray[2] == -1 && IDArray[3] == 1) {
+        scenarioID = 20;
+      } else if (IDArray[0] == -1 && IDArray[1] == 2 && IDArray[2] == -1 && IDArray[3] == 2) {
+        scenarioID = 21;
+      } else {
+        scenarioID = 0;
+        invalid = true;
+      }
+      
+      if (invalid == false) {  
+        // Draws Agents into primary graphic
+        drawU_SUMO();
+      } else {
+        background(0);
+      }
       
       // Crops Graphic to Physical Model Area
       U_Crop();
       
       // Overlays any static PNGs onto Cropped Image
-      if (showOverlay) {
+      if (showOverlay && invalid == false) {
         crop.beginDraw();
   //    crop.image(overlay[overlayIndex],0,0,crop.width,crop.height);
   
@@ -183,10 +241,17 @@ public void draw() {
         }
         if (IDArray[3] > 1) {
           crop.image(overlay[4],0,0,crop.width,crop.height);
-        }
-      
+        } 
+        
+        
+        crop.endDraw();
+      } else {
+        
+        crop.beginDraw();
+        crop.image(overlay[6],0,0,crop.width,crop.height);
         crop.endDraw();
       }
+        
       break;
   }
   
