@@ -17,6 +17,7 @@ boolean viaUDP = true;
 // import UDP library
 import hypermedia.net.*;
 UDP udp;  // define the UDP object
+UDP udpComp2;  // define the UDP object
 
 void startUDP(){
   
@@ -28,6 +29,11 @@ void startUDP(){
     udp = new UDP( this, 6669 );
     //udp.log( true );     // <-- printout the connection activity
     udp.listen( true );
+    
+        udpComp2 = new UDP( this, 6669 );
+    //udp.log( true );     // <-- printout the connection activity
+    udpComp2.listen( true );
+    
   }
   
 }
@@ -109,7 +115,8 @@ void sendData() {
     //udp.send( dataToSend, "18.85.55.241", 6152 );
     udp.send( dataToSend, "localhost", 6152 );
     udp.send( dataToSend, "localhost", 6111 ); //YZ
-    
+    udpComp2.send( dataToSend, "192.168.0.1", 6152 ); //WD-YZ-CS
+
     //println("update received");
     
   } else {
