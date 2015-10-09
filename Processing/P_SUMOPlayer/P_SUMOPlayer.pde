@@ -204,6 +204,7 @@ public void draw() {
   
         // Orange Line
         crop.image(overlay[5],0,0,crop.width,crop.height);
+        crop.image(overlay[10],0,0,crop.width,crop.height);
         
         if (invalid == false && scenarioID == 0) {
           //Landmarks
@@ -211,52 +212,61 @@ public void draw() {
         }
         
         // Corridor A
-        if (IDArray[0] > -1) {
+        if (IDArray[0] > -1 && IDArray[1] == -1 && IDArray[2] == -1 && IDArray[3] == -1 ) {
+          crop.image(overlay[1],0,0,crop.width,crop.height);
+          crop.image(overlay[1],0,0,crop.width,crop.height);
           crop.image(overlay[1],0,0,crop.width,crop.height);
           drawA();
         }
-        if (IDArray[0] > 0) {
-          crop.image(overlay[1],0,0,crop.width,crop.height);
-        }
-        if (IDArray[0] > 1) {
-          crop.image(overlay[1],0,0,crop.width,crop.height);
-        }
         
         // Corridor B
-        if (IDArray[1] > -1) {
+        if (IDArray[1] > -1 && IDArray[0] == -1 && IDArray[2] == -1 && IDArray[3] == -1 ) {
+          crop.image(overlay[2],0,0,crop.width,crop.height);
+          crop.image(overlay[2],0,0,crop.width,crop.height);
           crop.image(overlay[2],0,0,crop.width,crop.height);
           drawB();
         }
-        if (IDArray[1] > 0) {
-          crop.image(overlay[2],0,0,crop.width,crop.height);
-        }
-        if (IDArray[1] > 1) {
-          crop.image(overlay[2],0,0,crop.width,crop.height);
-        }
         
         // Corridor C
-        if (IDArray[2] > -1) {
+        if (IDArray[2] > -1 && IDArray[1] == -1 && IDArray[0] == -1 && IDArray[3] == -1 ) {
+          crop.image(overlay[3],0,0,crop.width,crop.height);
+          crop.image(overlay[3],0,0,crop.width,crop.height);
           crop.image(overlay[3],0,0,crop.width,crop.height);
           drawC();
         }
-        if (IDArray[2] > 0) {
-          crop.image(overlay[3],0,0,crop.width,crop.height);
-        }
-        if (IDArray[2] > 1) {
-          crop.image(overlay[3],0,0,crop.width,crop.height);
-        }
         
         // Corridor D
-        if (IDArray[3] > -1) {
+        if (IDArray[3] > -1 && IDArray[1] == -1 && IDArray[2] == -1 && IDArray[0] == -1 ) {
+          crop.image(overlay[4],0,0,crop.width,crop.height);
+          crop.image(overlay[4],0,0,crop.width,crop.height);
           crop.image(overlay[4],0,0,crop.width,crop.height);
           drawD();
         }
-        if (IDArray[3] > 0) {
-          crop.image(overlay[4],0,0,crop.width,crop.height);
+        
+        
+        // Corridor BA
+        if (IDArray[0] > -1 && IDArray[1] > -1 && IDArray[2] == -1 && IDArray[3] == -1 ) {
+          crop.image(overlay[7],0,0,crop.width,crop.height);
+          crop.image(overlay[7],0,0,crop.width,crop.height);
+          crop.image(overlay[7],0,0,crop.width,crop.height);
+          drawD();
         }
-        if (IDArray[3] > 1) {
-          crop.image(overlay[4],0,0,crop.width,crop.height);
-        } 
+        
+        // Corridor BC
+        if (IDArray[0] == -1 && IDArray[1] > -1 && IDArray[2] > -1 && IDArray[3] == -1 ) {
+          crop.image(overlay[8],0,0,crop.width,crop.height);
+          crop.image(overlay[8],0,0,crop.width,crop.height);
+          crop.image(overlay[8],0,0,crop.width,crop.height);
+          drawD();
+        }
+        
+        // Corridor BD
+        if (IDArray[0] == -1 && IDArray[1] > -1 && IDArray[2] == -1 && IDArray[3] > -1 ) {
+          crop.image(overlay[9],0,0,crop.width,crop.height);
+          crop.image(overlay[9],0,0,crop.width,crop.height);
+          crop.image(overlay[9],0,0,crop.width,crop.height);
+          drawD();
+        }
         
         crop.endDraw();
       } 
