@@ -481,7 +481,7 @@ void drawNeighborhoodSummary() {
       checkChange(column-1, 1);
           
       // Change in Time
-      textSize(smText/2);
+      textSize(smText);
       textAlign(RIGHT);
       
       if ( abs(summary.getFloat(scenarioID+1, column) - summary.getFloat(0+1, column)) > 0.1 ) {
@@ -517,7 +517,7 @@ void drawNeighborhoodSummary() {
       checkChange(column-1, 1);
           
       // Change in Time
-      textSize(smText/2);
+      textSize(smText);
       textAlign(RIGHT);
       
       if ( abs(summary.getFloat(scenarioID+1, column) - summary.getFloat(0+1, column)) > 0.1 ) {
@@ -553,7 +553,7 @@ void drawNeighborhoodSummary() {
       checkChange(column-1, 1);
           
       // Change in Time
-      textSize(smText/2);
+      textSize(smText);
       textAlign(RIGHT);
       
       if ( abs(summary.getFloat(scenarioID+1, column) - summary.getFloat(0+1, column)) > 0.1 ) {
