@@ -204,7 +204,6 @@ public void draw() {
   
         // Orange Line
         crop.image(overlay[5],0,0,crop.width,crop.height);
-        crop.image(overlay[10],0,0,crop.width,crop.height);
         
         if (invalid == false && scenarioID == 0) {
           //Landmarks
@@ -216,6 +215,7 @@ public void draw() {
           crop.image(overlay[1],0,0,crop.width,crop.height);
           crop.image(overlay[1],0,0,crop.width,crop.height);
           crop.image(overlay[1],0,0,crop.width,crop.height);
+          crop.image(overlay[10],0,0,crop.width,crop.height);
           drawA();
         }
         
@@ -224,6 +224,7 @@ public void draw() {
           crop.image(overlay[2],0,0,crop.width,crop.height);
           crop.image(overlay[2],0,0,crop.width,crop.height);
           crop.image(overlay[2],0,0,crop.width,crop.height);
+          crop.image(overlay[11],0,0,crop.width,crop.height);
           drawB();
         }
         
@@ -232,6 +233,7 @@ public void draw() {
           crop.image(overlay[3],0,0,crop.width,crop.height);
           crop.image(overlay[3],0,0,crop.width,crop.height);
           crop.image(overlay[3],0,0,crop.width,crop.height);
+          crop.image(overlay[12],0,0,crop.width,crop.height);
           drawC();
         }
         
@@ -240,6 +242,7 @@ public void draw() {
           crop.image(overlay[4],0,0,crop.width,crop.height);
           crop.image(overlay[4],0,0,crop.width,crop.height);
           crop.image(overlay[4],0,0,crop.width,crop.height);
+          crop.image(overlay[13],0,0,crop.width,crop.height);
           drawD();
         }
         
@@ -249,7 +252,9 @@ public void draw() {
           crop.image(overlay[7],0,0,crop.width,crop.height);
           crop.image(overlay[7],0,0,crop.width,crop.height);
           crop.image(overlay[7],0,0,crop.width,crop.height);
-          drawD();
+          crop.image(overlay[14],0,0,crop.width,crop.height);
+          drawB();
+          drawA();
         }
         
         // Corridor BC
@@ -257,7 +262,9 @@ public void draw() {
           crop.image(overlay[8],0,0,crop.width,crop.height);
           crop.image(overlay[8],0,0,crop.width,crop.height);
           crop.image(overlay[8],0,0,crop.width,crop.height);
-          drawD();
+          crop.image(overlay[15],0,0,crop.width,crop.height);
+          drawB();
+          drawC();
         }
         
         // Corridor BD
@@ -265,6 +272,8 @@ public void draw() {
           crop.image(overlay[9],0,0,crop.width,crop.height);
           crop.image(overlay[9],0,0,crop.width,crop.height);
           crop.image(overlay[9],0,0,crop.width,crop.height);
+          crop.image(overlay[16],0,0,crop.width,crop.height);
+          drawB();
           drawD();
         }
         
