@@ -21,7 +21,7 @@ String via;
 
 public void setupNeighborhoodDemo() {
   
-  summary = loadTable("neighborhood_data/summary.csv");
+  summary = loadTable("neighborhood_data/summary_final.csv");
   
   neighborhoodScore_template = loadImage("neighborhood_data/ScoreBoard.jpg");
   neighborhoodScore_OFF = loadImage("neighborhood_data/ScoreBoard_OFF.jpg");
