@@ -31,7 +31,7 @@ public void setupNeighborhoodDemo() {
   tokens[0] = "000011";
   //tokens[1] = "000012";
   
-  overlay = new PImage[17];
+  overlay = new PImage[18];
   overlay[0] = loadImage("neighborhood_overlays/00_Landmarks.png");
   overlay[1] = loadImage("neighborhood_overlays/01_A.png");
   overlay[2] = loadImage("neighborhood_overlays/01_B.png");
@@ -49,6 +49,7 @@ public void setupNeighborhoodDemo() {
   overlay[14] = loadImage("neighborhood_overlays/stn_BA.png");
   overlay[15] = loadImage("neighborhood_overlays/stn_BC.png");
   overlay[16] = loadImage("neighborhood_overlays/stn_BD.png");
+  overlay[17] = loadImage("neighborhood_overlays/stn_Dudley.png");
   
   drawWidth = 2000;
   drawHeight = 2000;
