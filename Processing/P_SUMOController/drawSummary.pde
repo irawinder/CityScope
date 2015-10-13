@@ -520,21 +520,26 @@ void drawNeighborhoodSummary() {
       textSize(smText);
       textAlign(RIGHT);
       
-      if ( abs(summary.getFloat(scenarioID+1, column) - summary.getFloat(0+1, column)) > 0.1 ) {
-        
-        if (baseChange[column-1] == -1) {
-          text( "-" + ( int(10*abs(summary.getFloat(scenarioID+1, column) - summary.getFloat(0+1, column)))/10.0 ), (0.65+x_)*width, (0.325+y_)*height);
-        } else if (baseChange[column-1] == 1) {
-          text( "+" + int( 10*( summary.getFloat(scenarioID+1, column) - summary.getFloat(0+1, column) ) )/10.0, (0.65+x_)*width, (0.325+y_)*height);
+      if (IDArray[0] == -1 && IDArray[1] == -1 && IDArray[2] == -1 && IDArray[3] == -1) {
+
+      } else {
+                
+        if ( abs(summary.getFloat(scenarioID+1, column) - summary.getFloat(0+1, column)) > 0.1 ) {
+          
+          if (baseChange[column-1] == -1) {
+            text( "-" + ( int(10*abs(summary.getFloat(scenarioID+1, column) - summary.getFloat(0+1, column)))/10.0 ), (0.65+x_)*width, (0.325+y_)*height);
+          } else if (baseChange[column-1] == 1) {
+            text( "+" + int( 10*( summary.getFloat(scenarioID+1, column) - summary.getFloat(0+1, column) ) )/10.0, (0.65+x_)*width, (0.325+y_)*height);
+          }
+          
         }
         
-      }
-      
-      // Park Spots
-      textAlign(RIGHT);
-      textSize(smText);
-      fill(0);
+        // Park Spots
+        textAlign(RIGHT);
+        textSize(smText);
+        fill(0);
         text(summary.getString(scenarioID+1, column), (0.67+x_)*width, (0.28+y_)*height);
+      }
       
       fill(0);
       
@@ -602,7 +607,7 @@ void drawNeighborhoodSummary() {
       textAlign(RIGHT);
       textSize(lgText);
       checkChange(column-1, -1);
-        text(int(summary.getFloat(scenarioID+1, column)/1000000.0), (0.78+x_)*width, (0.28+y_)*height);
+        text(int(summary.getFloat(scenarioID+1, column)/1000000.0), (0.77+x_)*width, (0.25+y_)*height);
       
       fill(0);
       
