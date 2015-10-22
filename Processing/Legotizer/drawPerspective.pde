@@ -18,7 +18,7 @@ boolean overrideStatic = true;
 int structureMode = 0; //0 for 1x1, lowres structures, 1 for higher res 4x4 structures of same tile size
 
 // Designate color style
-int colorMode = 0; //0 for building uses, 1 for generic form
+int colorMode = 1; //0 for building uses, 1 for generic form
 
 // Designate Satellite Type
 int satMode = 1;

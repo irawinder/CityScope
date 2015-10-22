@@ -101,7 +101,7 @@ void initWalk(int maxU, int maxV, int maxZ, JSONArray points, float wlk_dst, flo
   walkDistance = 250.0;
   
   //Minimum Park Area Needed
-  parkMin = 80*160;
+  parkMin = 30*160;
   
   // Live/Work density [m^2/person]
   // NYC Values - Src: http://oldurbanist.blogspot.com/2011/12/living-space-working-space-and.html
@@ -114,7 +114,7 @@ void initWalk(int maxU, int maxV, int maxZ, JSONArray points, float wlk_dst, flo
   containmentRate = 1.0;
   
   //Sample size used to run simulations
-  sampleSize = sampleSize95/2;
+  sampleSize = sampleSize90/2;
   
   workAccess = new int[maxU][maxV][maxZ][numSamples+1];
   liveAccess = new int[maxU][maxV][maxZ][numSamples+1];

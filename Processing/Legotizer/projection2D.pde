@@ -147,6 +147,9 @@ public class projApplet extends PApplet {
    
     // render the scene, transformed using the corner pin surface
     surface.render(offscreen);
+    
+    fill(0, 150);
+    rect(0,0,width, height);
   }
   
   void keyPressed() {

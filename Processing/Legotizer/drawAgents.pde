@@ -798,7 +798,7 @@ public class MidCareer {
   
   MidCareer(float x, float y) {
     location = new PVector(x, y);
-    r = 5 ;
+    r = 6 ;
     maxspeed = 6;
     maxforce = 0.2;
     acceleration = new PVector(0, 0);
@@ -1072,7 +1072,7 @@ public class Senior {
   
   Senior(float x, float y) {
     location = new PVector(x, y);
-    r = 4 ;
+    r = 6 ;
     maxspeed = 6;
     maxforce = 0.2;
     acceleration = new PVector(0, 0);

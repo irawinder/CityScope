@@ -1,21 +1,21 @@
 {
-  "nodesV": 76,
+  "nodesV": 176,
   "staticH_LU": 1,
-  "nodesU": 76,
-  "avgDynNodeW": 8.717727661132812,
+  "nodesU": 176,
+  "avgDynNodeW": 6.545454978942871,
   "pieceH_LU": 3,
-  "dynNodeH": 3.2115001678466797,
-  "scaler": 7.991250038146973,
+  "dynNodeH": 2.411262273788452,
+  "scaler": 6,
   "dynamicSpacer": 1,
   "pieceW_LU": 4,
   "maxPieces": 100,
   "maxLU_W": 4,
   "staticW_LU": 1,
   "maxLU_H": 31,
-  "dynNodeW": 7.991250038146973,
+  "dynNodeW": 6,
   "rotation": 0,
   "longitude": 0,
   "latitude": 0,
   "staticSpacer": 0,
-  "spacerW": 2.905911445617676
+  "spacerW": 2.1818199157714844
 }
