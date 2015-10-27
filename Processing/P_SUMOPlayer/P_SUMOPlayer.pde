@@ -1,3 +1,5 @@
+// This Script works in conjunction with Colortizer and PSUMOController for Barr CityScope Demos
+
 // Demo Mode 1 = Street Scale
 // Demo Mode 2 = Neighborhood Scale
 
