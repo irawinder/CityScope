@@ -7,7 +7,7 @@ public void keyPressed(){
       println("m: " + millis());
       println("t: " + timer);
       println(labelBuses);
-      }
+    }
     
   //Switch to Stamen plain basemap
       if (key == '1') {
@@ -23,13 +23,21 @@ public void keyPressed(){
       
     //Switch which pre-run simulation is playing  
       if (key =='t'){
-        if (tokenVector == "000011"){
-          tokenVector = "000012";
+        if (tokenIndex < tokens.length-1 ){
+          tokenIndex++;
+        } else {
+          tokenIndex = 0;
         }
-        else{
-          tokenVector = "000011";
-        };
-        fx.setup(tokenVector);  
+        
+        switch (demoMode) {
+          case 1:
+            break;
+          
+          case 2:
+            U_fx.setup(tokens[tokenIndex]);  
+            break;
+        }
+        
       }
       
     //Pause
@@ -99,26 +107,31 @@ public void keyPressed(){
       
     // Save Snapshot
     case 'v':
-    crop.save("crop.png");
-    break;
+      crop.save("crop.png");
+      break;
     
     // Sow/Hide Overlay
     case 'o':
-    if (showOverlay) {
-      showOverlay = false;
-    } else {
-      showOverlay = true;
-    }
-    break;
+      if (showOverlay) {
+        showOverlay = false;
+      } else {
+        showOverlay = true;
+      }
+      break;
     
     // Iterate through different overlay images
     case 'i':
-    if (overlayIndex >= imgOrangeLine.length-1 ) {
-      overlayIndex = 0;;
-    } else {
-      overlayIndex++;;
-    }
-    break;
+      if (overlayIndex >= overlay.length-1 ) {
+        overlayIndex = 0;;
+      } else {
+        overlayIndex++;;
+      }
+      break;
+    
+    // Opens and Closes Projection Map Canvas
+    case '`': 
+      toggle2DProjection();
+      break;
   }
 }
   
