@@ -55,7 +55,11 @@
     int canvasHeight = int((tableHeight/tableWidth)*2*projectorWidth);
     
     PGraphics tableCanvas;
+    
     PImage topo;
+    
+    import processing.video.*;
+    Movie theMovie;
 
 
 /**
@@ -113,6 +117,9 @@ void setup() {
   
   // loads the saved layout
   ks.load();
+  
+  theMovie = new Movie(this, "cityscope_sponsorweek.mp4");
+  theMovie.loop();
 }
 
 void draw() {
@@ -168,8 +175,11 @@ void keyPressed() {
 
 void drawTableCanvas() {
   tableCanvas.beginDraw();
-  tableCanvas.background(#C400DB);
-  tableCanvas.image(topo, (marginWidth/tableWidth)*canvasWidth, (marginWidth/tableHeight)*canvasHeight, (topoWidth/tableWidth)*canvasWidth, (topoHeight/tableHeight)*canvasHeight);
+  tableCanvas.background(#555555);
+  
+  //tableCanvas.image(topo, (marginWidth/tableWidth)*canvasWidth, (marginWidth/tableHeight)*canvasHeight, (topoWidth/tableWidth)*canvasWidth, (topoHeight/tableHeight)*canvasHeight);
+  tableCanvas.image(theMovie, (marginWidth/tableWidth)*canvasWidth, (marginWidth/tableHeight)*canvasHeight, (topoWidth/tableWidth)*canvasWidth, (topoHeight/tableHeight)*canvasHeight);
+  
   tableCanvas.endDraw();
 }
 
@@ -200,4 +210,8 @@ void chopScreen(int projector) {
 
 boolean sketchFullScreen() {
   return true;
+}
+
+void movieEvent(Movie m) {
+  m.read();
 }
