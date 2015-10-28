@@ -88,7 +88,7 @@ void setup() {
   
   // Keystone will only work with P3D or OPENGL renderers, 
   // since it relies on texture mapping to deform
-  size(4*projectorWidth, projectorHeight, P3D);
+  size(projectorWidth, projectorHeight, P3D);
 
   ks = new Keystone(this);
   
