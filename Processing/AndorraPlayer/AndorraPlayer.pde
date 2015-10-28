@@ -109,7 +109,7 @@ void setup() {
   tableCanvas = createGraphics(canvasWidth, canvasHeight, P3D);
   
   // loads baseimage for topographic model
-  topo = loadImage("test6200x2200.png");
+  topo = loadImage("crop.png");
   
   // loads the saved layout
   ks.load();
@@ -168,7 +168,7 @@ void keyPressed() {
 
 void drawTableCanvas() {
   tableCanvas.beginDraw();
-  tableCanvas.background(255);
+  tableCanvas.background(#C400DB);
   tableCanvas.image(topo, (marginWidth/tableWidth)*canvasWidth, (marginWidth/tableHeight)*canvasHeight, (topoWidth/tableWidth)*canvasWidth, (topoHeight/tableHeight)*canvasHeight);
   tableCanvas.endDraw();
 }

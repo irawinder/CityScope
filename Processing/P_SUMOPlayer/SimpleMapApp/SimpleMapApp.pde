@@ -1,13 +1,13 @@
 
 
 void setup() {
-  size(1000, 1000, P2D);
+  size(4000, 4000, P2D);
   
   setupMap();
   
   setupCrop();
   setupOps();
-  setup_ImageProj();
+  //setup_ImageProj();
 }
 
 void draw() {
@@ -35,6 +35,10 @@ public void keyPressed() {
     // Recalculates Scale
     case 'r':
       resetMap();
+      break;
+    // Save Snapshot
+    case 'v':
+      crop.save("crop.png");
       break;
   }
   
