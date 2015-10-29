@@ -115,6 +115,8 @@ void sendData() {
     //udp.send( dataToSend, "18.85.55.241", 6152 );
     udp.send( dataToSend, "localhost", 6152 );
     udp.send( dataToSend, "localhost", 6111 ); //YZ
+    udp.send( dataToSend, "YANs-iMAC", 6152 ); //YZ
+    udp.send( dataToSend, "mkh-ml", 4000 ); //Mo
     udpComp2.send( dataToSend, "192.168.0.1", 6152 ); //WD-YZ-CS
 
     //println("update received");
