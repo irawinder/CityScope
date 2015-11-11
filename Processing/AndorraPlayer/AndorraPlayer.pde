@@ -109,16 +109,22 @@ PGraphics offscreen;
 //        float modelHeight = 1100; // height of model in meters
 //        float modelRotation = 24.218/180*PI; // rotation of model in radians clockwise from north
         
+// Rotated and Cropped Corner locations
+PVector UpperLeft = new PVector(42.505086, 1.509961);
+PVector UpperRight = new PVector(42.517066, 1.544024);
+PVector LowerRight = new PVector(42.508161, 1.549798);
+PVector LowerLeft = new PVector(42.496164, 1.515728);
+
 //Amount of degrees rectangular canvas is rotated from horizontal latitude axis. These values specific to Kendall Square.
 float rotation = 25.5000; //degrees
-float lat1 = 42.517065; // Uppermost Latitude on canvas
+float lat1 = 42.517066; // Uppermost Latitude on canvas
 float lat2 = 42.496164; // Lowermost Latitude on canvas
-float lon1 = 1.549798; // Uppermost Longitude on canvas
-float lon2 = 1.509961; // Lowermost Longitude on canvas
+float lon1 = 1.509961; // Uppermost Longitude on canvas
+float lon2 = 1.549798; // Lowermost Longitude on canvas
 
 // Creates larger canvas, rotated, that bounds and intersects 4 corners of original 
-float lg_width = topoWidthPix*sin(abs(rotation)*2*PI/360) + topoWidthPix*cos(abs(rotation)*2*PI/360);
-float lg_height = topoHeightPix*sin(abs(rotation)*2*PI/360) + topoHeightPix*cos(abs(rotation)*2*PI/360);
+float lg_width = topoHeightPix*sin(abs(rotation)*2*PI/360) + topoWidthPix*cos(abs(rotation)*2*PI/360);
+float lg_height = topoWidthPix*sin(abs(rotation)*2*PI/360) + topoHeightPix*cos(abs(rotation)*2*PI/360);
 
 float w_shift = (lg_width-topoWidthPix)/2;
 float h_shift = (lg_height-topoHeightPix)/2;
@@ -246,7 +252,9 @@ void drawTableCanvas() {
   tableCanvas.beginDraw();
   tableCanvas.background(#555555);
   
-  tableCanvas.image(topo, marginWidthPix, marginWidthPix, topoWidthPix, topoHeightPix);
+  tableCanvas.translate(marginWidthPix, marginWidthPix);
+  
+  tableCanvas.image(topo, 0, 0, topoWidthPix, topoHeightPix);
   
   
   // Draw Dots //
@@ -256,7 +264,7 @@ void drawTableCanvas() {
   tableCanvas.translate(-w_shift, -h_shift);
   //println(w_shift + ", " + h_shift + ", " + topoWidthPix + ", " + topoHeightPix + ", " + marginWidthPix);
   
-  tableCanvas.translate(marginWidthPix, marginWidthPix);
+  
   
   tableCanvas.fill(#0000FF);
   
@@ -268,7 +276,7 @@ void drawTableCanvas() {
       coord = mercatorMap.getScreenLocation(new PVector(sampleOutput.getFloat(i, "origin lat"), sampleOutput.getFloat(i, "origin lon")));
       
       
-      tableCanvas.ellipse(coord.x+random(50), coord.y+random(50), 30, 30);
+      tableCanvas.ellipse(coord.x, coord.y, 30, 30);
     }
     
   }
@@ -298,29 +306,42 @@ void drawTableCanvas() {
     
   }
   
-  tableCanvas.translate(-marginWidthPix, -marginWidthPix);
+  /*
+  tableCanvas.strokeWeight(20);
+  
+  tableCanvas.stroke(#FFFFFF);
+  tableCanvas.line(mercatorMap.getScreenX(UpperLeft.y), mercatorMap.getScreenY(UpperLeft.x), mercatorMap.getScreenX(UpperRight.y), mercatorMap.getScreenY(UpperRight.x));
+  tableCanvas.stroke(#FF0000);
+  tableCanvas.line(mercatorMap.getScreenX(UpperRight.y), mercatorMap.getScreenY(UpperRight.x), mercatorMap.getScreenX(LowerRight.y), mercatorMap.getScreenY(LowerRight.x));
+  tableCanvas.stroke(#00FF00);
+  tableCanvas.line(mercatorMap.getScreenX(LowerRight.y), mercatorMap.getScreenY(LowerRight.x), mercatorMap.getScreenX(LowerLeft.y), mercatorMap.getScreenY(LowerLeft.x));
+  tableCanvas.stroke(#0000FF);
+  tableCanvas.line(mercatorMap.getScreenX(UpperLeft.y), mercatorMap.getScreenY(UpperLeft.x), mercatorMap.getScreenX(LowerLeft.y), mercatorMap.getScreenY(LowerLeft.x));
+
+  */
+  
   tableCanvas.translate(w_shift, h_shift);
-  
   unsetMercator(topoWidthPix, topoHeightPix);
+  tableCanvas.translate(-marginWidthPix, -marginWidthPix);
   
-//  //tableCanvas.image(theMovie, (marginWidth/tableWidth)*canvasWidth, (marginWidth/tableHeight)*canvasHeight, (topoWidth/tableWidth)*canvasWidth, (topoHeight/tableHeight)*canvasHeight);
-//  
-//  //framewidth = 1920; frameheight = 1080
-//  tableCanvas.image(theMovie, 0, -60, 3800, 2138);
-//  
-//  tableCanvas.stroke(255, 255, 255);
-//  tableCanvas.fill(0, 0, 0);
-//  
-//  tableCanvas.rect(0, 0, canvasWidth/3, (marginWidth/tableWidth)*canvasWidth);
-//  tableCanvas.rect(canvasWidth/3, 0, canvasWidth/3, (marginWidth/tableWidth)*canvasWidth);
-//  tableCanvas.rect(2*canvasWidth/3, 0, canvasWidth/3, (marginWidth/tableWidth)*canvasWidth);
-//  
-//  tableCanvas.rect(0, (marginWidth/tableWidth)*canvasWidth, (marginWidth/tableWidth)*canvasWidth, canvasHeight-2*(marginWidth/tableWidth)*canvasWidth);
-//  tableCanvas.rect(canvasWidth-(marginWidth/tableWidth)*canvasWidth, (marginWidth/tableWidth)*canvasWidth, (marginWidth/tableWidth)*canvasWidth, canvasHeight-2*(marginWidth/tableWidth)*canvasWidth);
-//  
-//  tableCanvas.rect(0, canvasHeight-(marginWidth/tableWidth)*canvasWidth, canvasWidth/3, (marginWidth/tableWidth)*canvasWidth);
-//  tableCanvas.rect(canvasWidth/3, canvasHeight-(marginWidth/tableWidth)*canvasWidth, canvasWidth/3, (marginWidth/tableWidth)*canvasWidth);
-//  tableCanvas.rect(2*canvasWidth/3, canvasHeight-(marginWidth/tableWidth)*canvasWidth, canvasWidth/3, (marginWidth/tableWidth)*canvasWidth);
+  //tableCanvas.image(theMovie, (marginWidth/tableWidth)*canvasWidth, (marginWidth/tableHeight)*canvasHeight, (topoWidth/tableWidth)*canvasWidth, (topoHeight/tableHeight)*canvasHeight);
+  
+  //framewidth = 1920; frameheight = 1080
+  //tableCanvas.image(theMovie, 0, -60, 3800, 2138);
+  
+  tableCanvas.stroke(255, 255, 255);
+  tableCanvas.fill(0, 0, 0);
+  
+  tableCanvas.rect(0, 0, canvasWidth/3, (marginWidth/tableWidth)*canvasWidth);
+  tableCanvas.rect(canvasWidth/3, 0, canvasWidth/3, (marginWidth/tableWidth)*canvasWidth);
+  tableCanvas.rect(2*canvasWidth/3, 0, canvasWidth/3, (marginWidth/tableWidth)*canvasWidth);
+  
+  tableCanvas.rect(0, (marginWidth/tableWidth)*canvasWidth, (marginWidth/tableWidth)*canvasWidth, canvasHeight-2*(marginWidth/tableWidth)*canvasWidth);
+  tableCanvas.rect(canvasWidth-(marginWidth/tableWidth)*canvasWidth, (marginWidth/tableWidth)*canvasWidth, (marginWidth/tableWidth)*canvasWidth, canvasHeight-2*(marginWidth/tableWidth)*canvasWidth);
+  
+  tableCanvas.rect(0, canvasHeight-(marginWidth/tableWidth)*canvasWidth, canvasWidth/3, (marginWidth/tableWidth)*canvasWidth);
+  tableCanvas.rect(canvasWidth/3, canvasHeight-(marginWidth/tableWidth)*canvasWidth, canvasWidth/3, (marginWidth/tableWidth)*canvasWidth);
+  tableCanvas.rect(2*canvasWidth/3, canvasHeight-(marginWidth/tableWidth)*canvasWidth, canvasWidth/3, (marginWidth/tableWidth)*canvasWidth);
   
   // End Margaret's Containers
   
