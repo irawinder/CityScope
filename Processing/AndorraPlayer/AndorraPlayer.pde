@@ -58,6 +58,11 @@
     // canvas height reduced to minimum ratio to save memory
     int canvasHeight = int((tableHeight/tableWidth)*2*projectorWidth);
     
+    // Table Object Dimensions in Pixels
+    int topoWidthPix = int((topoWidth/tableWidth)*canvasWidth);
+    int topoHeightPix = int((topoHeight/tableHeight)*canvasHeight);
+    int marginWidthPix = int((marginWidth/tableWidth)*canvasWidth);
+    
     PGraphics tableCanvas;
     
     PImage topo;
@@ -92,6 +97,40 @@ CornerPinSurface[] surface = new CornerPinSurface[numProjectors];
 
 PGraphics offscreen;
 
+/**
+ * Objects for converting Latitude-Longitude to Canvas Coordinates
+ */
+
+//        // Ira's Numbers
+//        float lat = 42.506294;
+//        float lon = 1.5296538;
+//        int zoom = 17;
+//        float modelWidth  = 3100; // width of model in meters
+//        float modelHeight = 1100; // height of model in meters
+//        float modelRotation = 24.218/180*PI; // rotation of model in radians clockwise from north
+        
+//Amount of degrees rectangular canvas is rotated from horizontal latitude axis. These values specific to Kendall Square.
+float rotation = 25.5000; //degrees
+float lat1 = 42.517065; // Uppermost Latitude on canvas
+float lat2 = 42.496164; // Lowermost Latitude on canvas
+float lon1 = 1.549798; // Uppermost Longitude on canvas
+float lon2 = 1.509961; // Lowermost Longitude on canvas
+
+// Creates larger canvas, rotated, that bounds and intersects 4 corners of original 
+float lg_width = topoWidthPix*sin(abs(rotation)*2*PI/360) + topoWidthPix*cos(abs(rotation)*2*PI/360);
+float lg_height = topoHeightPix*sin(abs(rotation)*2*PI/360) + topoHeightPix*cos(abs(rotation)*2*PI/360);
+
+float w_shift = (lg_width-topoWidthPix)/2;
+float h_shift = (lg_height-topoHeightPix)/2;
+ 
+MercatorMap mercatorMap; // rectangular projection environment to convert latitude and longitude into pixel locations on the canvas
+
+// Draw Modes:
+// 0 = Render For Screen
+// 1 = Render for Projection-Mapping
+
+int drawMode = 1;
+
 void setup() {
   
   // Keystone will only work with P3D or OPENGL renderers, 
@@ -119,8 +158,13 @@ void setup() {
   // loads baseimage for topographic model
   topo = loadImage("crop.png");
   
+  // Creates projection environment to convert latitude and longitude into pixel locations on the canvas
+  mercatorMap = new MercatorMap(lg_width, lg_height, lat1, lat2, lon1, lon2);
+  
   // loads the saved layout
   ks.load();
+  
+  initData();
   
   theMovie = new Movie(this, "cityscope_sponsorweek.mp4");
   theMovie.loop();
@@ -140,21 +184,31 @@ void draw() {
   // most likely, you'll want a black background to minimize
   // bleeding around your projection area
   background(0);
- 
-  // render the scene, transformed using the corner pin surface
-  for (int i=0; i<surface.length; i++) {
-    chopScreen(i);
+  
+  switch (drawMode) {
     
-    // Draw the scene, offscreen
-    offscreen.beginDraw();
-    //offscreen.background(255);
-    offscreen.fill(0, 255, 0);
-    offscreen.ellipse(surfaceMouse.x, surfaceMouse.y, 75, 75);
-    offscreen.endDraw();
-  
-    surface[i].render(offscreen);
+    case 0: // On-Screen Rendering
+      image(tableCanvas, 0, 0, tableCanvas.width/2, tableCanvas.height/2);
+      break;
+      
+    case 1: // Projection-Mapping Rendering
+      // render the scene, transformed using the corner pin surface
+      for (int i=0; i<surface.length; i++) {
+        chopScreen(i);
+        
+        // Draw the scene, offscreen
+        offscreen.beginDraw();
+        //offscreen.background(255);
+        offscreen.fill(0, 255, 0);
+        offscreen.ellipse(surfaceMouse.x, surfaceMouse.y, 75, 75);
+        offscreen.endDraw();
+      
+        surface[i].render(offscreen);
+      }
+      break;
+      
   }
-  
+
 }
 
 void keyPressed() {
@@ -174,14 +228,81 @@ void keyPressed() {
     // saves the layout
     ks.save();
     break;
+  
+  case 'm':
+    // changes draw mode
+    if (drawMode < 1) {
+      drawMode++;
+    } else {
+      drawMode = 0;
+    }
+    break;
   }
 }
+
+PVector coord;
 
 void drawTableCanvas() {
   tableCanvas.beginDraw();
   tableCanvas.background(#555555);
   
-  tableCanvas.image(topo, (marginWidth/tableWidth)*canvasWidth, (marginWidth/tableHeight)*canvasHeight, (topoWidth/tableWidth)*canvasWidth, (topoHeight/tableHeight)*canvasHeight);
+  tableCanvas.image(topo, marginWidthPix, marginWidthPix, topoWidthPix, topoHeightPix);
+  
+  
+  // Draw Dots //
+  
+  setMercator(topoWidthPix, topoHeightPix);
+  
+  tableCanvas.translate(-w_shift, -h_shift);
+  //println(w_shift + ", " + h_shift + ", " + topoWidthPix + ", " + topoHeightPix + ", " + marginWidthPix);
+  
+  tableCanvas.translate(marginWidthPix, marginWidthPix);
+  
+  tableCanvas.fill(#0000FF);
+  
+  for (int i=0; i<sampleOutput.getRowCount(); i+=2) {
+    
+    if (sampleOutput.getInt(i, "origin container") == 0) {
+      
+      // turns latitude and longitude of a point into canvas location within PGraphic topo
+      coord = mercatorMap.getScreenLocation(new PVector(sampleOutput.getFloat(i, "origin lat"), sampleOutput.getFloat(i, "origin lon")));
+      
+      
+      tableCanvas.ellipse(coord.x+random(50), coord.y+random(50), 30, 30);
+    }
+    
+  }
+  
+  tableCanvas.fill(#FF0000);
+  
+  for (int i=0; i<tripAdvisor.getRowCount(); i+=2) {
+
+    // turns latitude and longitude of a point into canvas location within PGraphic topo
+    coord = mercatorMap.getScreenLocation(new PVector(tripAdvisor.getFloat(i, "Lat"), tripAdvisor.getFloat(i, "Long")));
+    
+
+    tableCanvas.ellipse(coord.x, coord.y, 30, 30);
+    
+  }
+  
+  tableCanvas.fill(#00FF00);
+  
+  for (int i=0; i<frenchWifi.getRowCount(); i+=2) {
+
+    // turns latitude and longitude of a point into canvas location within PGraphic topo
+    coord = mercatorMap.getScreenLocation(new PVector(frenchWifi.getFloat(i, "Source_lat"), frenchWifi.getFloat(i, "Source_long")));
+    
+
+    tableCanvas.ellipse(coord.x, coord.y, 30, 30);
+
+    
+  }
+  
+  tableCanvas.translate(-marginWidthPix, -marginWidthPix);
+  tableCanvas.translate(w_shift, h_shift);
+  
+  unsetMercator(topoWidthPix, topoHeightPix);
+  
 //  //tableCanvas.image(theMovie, (marginWidth/tableWidth)*canvasWidth, (marginWidth/tableHeight)*canvasHeight, (topoWidth/tableWidth)*canvasWidth, (topoHeight/tableHeight)*canvasHeight);
 //  
 //  //framewidth = 1920; frameheight = 1080
@@ -231,9 +352,25 @@ void chopScreen(int projector) {
   
 }
 
+public void setMercator(int w, int h) { //Run this function before drawing latitude and longitude-based data
+  //Mercator Coordinates
+  tableCanvas.translate(w/2, h/2);
+  tableCanvas.rotate(rotation*TWO_PI/360);
+  tableCanvas.translate(-w/2, -h/2);
+}
+
+public void unsetMercator(int w, int h) { //Run this function before drawing text, legends, etc
+  //Canvas Coordinates
+  tableCanvas.translate(w/2, h/2);
+  tableCanvas.rotate(-rotation*TWO_PI/360);
+  tableCanvas.translate(-w/2, -h/2);
+}
+
+/*
 boolean sketchFullScreen() {
   return true;
 }
+*/
 
 void movieEvent(Movie m) {
   m.read();

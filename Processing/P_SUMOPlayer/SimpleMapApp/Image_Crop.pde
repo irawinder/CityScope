@@ -37,12 +37,12 @@ float C = 2*PI*6372798.2; // Circumference of Earth
 //        float modelRotation = -25.218*(180/PI); // rotation of model in radians clockwise from north
 
         // Ira's Numbers
-        float lat = 42.506294;
-        float lon = 1.5296538;
+        float lat = 42.506596;
+        float lon = 1.5299543;
         int zoom = 17;
         float modelWidth  = 3100; // width of model in meters
         float modelHeight = 1100; // height of model in meters
-        float modelRotation = 24.218/180*PI; // rotation of model in radians clockwise from north
+        float modelRotation = 25.5/180*PI; // rotation of model in radians clockwise from north
 
 float scale; // distance represented by one pixel
 
