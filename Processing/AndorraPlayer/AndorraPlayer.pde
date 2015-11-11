@@ -1,6 +1,6 @@
 // This is the staging script to allow splitting 4k projection mapping across two sets of two projectors
 
-// Hi Nina
+// Andorra Data Stories
 
 // Need Libaries:
 // Keystone
