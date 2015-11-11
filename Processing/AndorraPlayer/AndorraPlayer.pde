@@ -177,8 +177,27 @@ void drawTableCanvas() {
   tableCanvas.beginDraw();
   tableCanvas.background(#555555);
   
-  //tableCanvas.image(topo, (marginWidth/tableWidth)*canvasWidth, (marginWidth/tableHeight)*canvasHeight, (topoWidth/tableWidth)*canvasWidth, (topoHeight/tableHeight)*canvasHeight);
-  tableCanvas.image(theMovie, (marginWidth/tableWidth)*canvasWidth, (marginWidth/tableHeight)*canvasHeight, (topoWidth/tableWidth)*canvasWidth, (topoHeight/tableHeight)*canvasHeight);
+  tableCanvas.image(topo, (marginWidth/tableWidth)*canvasWidth, (marginWidth/tableHeight)*canvasHeight, (topoWidth/tableWidth)*canvasWidth, (topoHeight/tableHeight)*canvasHeight);
+//  //tableCanvas.image(theMovie, (marginWidth/tableWidth)*canvasWidth, (marginWidth/tableHeight)*canvasHeight, (topoWidth/tableWidth)*canvasWidth, (topoHeight/tableHeight)*canvasHeight);
+//  
+//  //framewidth = 1920; frameheight = 1080
+//  tableCanvas.image(theMovie, 0, -60, 3800, 2138);
+//  
+//  tableCanvas.stroke(255, 255, 255);
+//  tableCanvas.fill(0, 0, 0);
+//  
+//  tableCanvas.rect(0, 0, canvasWidth/3, (marginWidth/tableWidth)*canvasWidth);
+//  tableCanvas.rect(canvasWidth/3, 0, canvasWidth/3, (marginWidth/tableWidth)*canvasWidth);
+//  tableCanvas.rect(2*canvasWidth/3, 0, canvasWidth/3, (marginWidth/tableWidth)*canvasWidth);
+//  
+//  tableCanvas.rect(0, (marginWidth/tableWidth)*canvasWidth, (marginWidth/tableWidth)*canvasWidth, canvasHeight-2*(marginWidth/tableWidth)*canvasWidth);
+//  tableCanvas.rect(canvasWidth-(marginWidth/tableWidth)*canvasWidth, (marginWidth/tableWidth)*canvasWidth, (marginWidth/tableWidth)*canvasWidth, canvasHeight-2*(marginWidth/tableWidth)*canvasWidth);
+//  
+//  tableCanvas.rect(0, canvasHeight-(marginWidth/tableWidth)*canvasWidth, canvasWidth/3, (marginWidth/tableWidth)*canvasWidth);
+//  tableCanvas.rect(canvasWidth/3, canvasHeight-(marginWidth/tableWidth)*canvasWidth, canvasWidth/3, (marginWidth/tableWidth)*canvasWidth);
+//  tableCanvas.rect(2*canvasWidth/3, canvasHeight-(marginWidth/tableWidth)*canvasWidth, canvasWidth/3, (marginWidth/tableWidth)*canvasWidth);
+  
+  // End Margaret's Containers
   
   tableCanvas.endDraw();
 }
