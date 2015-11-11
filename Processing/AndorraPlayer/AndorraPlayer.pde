@@ -1,5 +1,9 @@
 // This is the staging script to allow splitting 4k projection mapping across two sets of two projectors
 
+// Need Libaries:
+// Keystone
+// Just to be safe: opencv
+
 // Table SetUp with Margin:
 
 //  |------------------------------------|      ^ North
