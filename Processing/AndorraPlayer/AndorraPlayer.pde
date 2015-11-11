@@ -2,6 +2,25 @@
 // For Andorra Data Stories
 // Ira Winder, MIT Media Lab, jiw@mit.edu, Fall 2015
 
+boolean debug = true;
+
+// !!!
+// Developers of this Code (Nina and Connie!) probably need only concern themselves with the 'data' and 'draw' tabs
+//
+
+
+// Key Commands:
+//
+//   View Mode:
+//     'm' - toggle On-Screen mode or Projection-mapping mode
+//
+//   Projection Mapping:
+//     'c' - toggle callibration mode for projection mapping
+//     's' - save callibration
+//     'l' - load callibration
+//
+//     'g' - toggle debug
+
 // Need Libaries:
 // Keystone for Processing
 
@@ -191,15 +210,8 @@ void setup() {
 
 void draw() {
   
-  // Calls draw function located in 'draw' tab
+  // Renders frame onto 'tableCanvas' PGraphic
   drawTableCanvas();
-  
-  // Convert the mouse coordinate into surface coordinates
-  // this will allow you to use mouse events inside the 
-  // surface from your screen. 
-  PVector surfaceMouse = surface[0].getTransformedMouse();
-
-
 
   // most likely, you'll want a black background to minimize
   // bleeding around your projection area
@@ -221,9 +233,33 @@ void draw() {
         surface[i].render(offscreen);
       }
       break;
-      
   }
 
+}
+
+void chopScreen(int projector) {
+  
+  offscreen.beginDraw();
+  
+  switch (projector) {
+    
+    case 0:
+      offscreen.image(tableCanvas, 0, 0);
+      break;
+    case 1:
+      offscreen.image(tableCanvas, -canvasWidth/2, 0);
+      break;
+    case 2:
+      offscreen.image(tableCanvas, 0, -canvasHeight/2);
+      break;
+    case 3:
+      offscreen.image(tableCanvas, -canvasWidth/2, -canvasHeight/2);
+      break;
+      
+  }
+  
+  offscreen.endDraw();
+  
 }
 
 void keyPressed() {
@@ -250,6 +286,15 @@ void keyPressed() {
       drawMode++;
     } else {
       drawMode = 0;
+    }
+    break;
+    
+  case 'g':
+    // changes debug mode
+    if (debug) {
+      debug = false;
+    } else {
+      debug = true;
     }
     break;
   }
