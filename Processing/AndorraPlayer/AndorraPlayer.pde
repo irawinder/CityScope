@@ -387,11 +387,11 @@ public void unsetMercator(int w, int h) { //Run this function before drawing tex
   tableCanvas.translate(-w/2, -h/2);
 }
 
-/*
+
 boolean sketchFullScreen() {
   return true;
 }
-*/
+
 
 void movieEvent(Movie m) {
   m.read();
