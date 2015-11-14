@@ -28,6 +28,8 @@ class Obstacle {
   
   PVector[] vertices;
   
+  boolean active = true;
+  
   int    polyCorners; //  =  how many corners the polygon has (no repeats)
   float  polyX[]    ; //      =  horizontal coordinates of corners
   float  polyY[]    ; //      =  vertical coordinates of corners
@@ -133,12 +135,12 @@ class Obstacle {
     normal = new PVector(vert[0].x-vert[1].x, vert[0].y-vert[1].y);
     
     
-    if ( (vX*vY < 0 && normal.x*normal.y > 0) || 
-         (vX*vY > 0 && normal.x*normal.y < 0)     ) {
-      normal.rotate(PI);
-    } else {
-      normal.rotate(-PI);
-    }
+//    if ( (vX*vY < 0 && normal.x*normal.y > 0) || 
+//         (vX*vY > 0 && normal.x*normal.y < 0)     ) {
+//      normal.rotate(PI);
+//    } else {
+//      normal.rotate(-PI);
+//    }
     
     return normal;
     

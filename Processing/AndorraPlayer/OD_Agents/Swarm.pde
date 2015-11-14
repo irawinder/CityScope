@@ -73,7 +73,8 @@ class Swarm {
           
           if (testWall[i].pointInPolygon(v.location.x, v.location.y) ) {
             collision = true;
-            v.reverseCourse();
+            //v.reverseCourse();
+            v.roll(testWall[i].normalOfEdge(v.location.x, v.location.y, v.velocity.x, v.velocity.y));
             break;
           }
           
@@ -84,14 +85,15 @@ class Swarm {
           v.applyBehaviors(swarm, new PVector(random(width), random(height)));
           v.update(int(agentLife));
           // draws as red if collision detected
-          v.display(#FF0000, 100);
+          //v.display(#FF0000, 100);
           collision = false;
         } else {
           v.applyBehaviors(swarm, destination);
           v.update(int(agentLife));
           // draws normally if collision detected
-          v.display(fill, 100);
+          //v.display(fill, 100);
         }
+        v.display(fill, 100);
       }
     }
   }

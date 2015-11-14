@@ -8,10 +8,9 @@ PVector[] origin;
 PVector[] destination;
 float[] weight;
 
-// points for defining sample obstacles;
-PVector[] points;
-
 Path course1, course2;
+
+PVector[] obPts;
 
 void setup() {
   
@@ -45,59 +44,49 @@ void draw() {
 }
 
 void reset() {
-  origin = new PVector[8];
-  origin[0] = new PVector(random(width), random(height));
-  origin[1] = new PVector(random(width), random(height));
-  origin[2] = new PVector(random(width), random(height));
-  origin[3] = new PVector(random(width), random(height));
-  origin[4] = new PVector(random(width), random(height));
-  origin[5] = new PVector(random(width), random(height));
-  origin[6] = new PVector(random(width), random(height));
-  origin[7] = new PVector(random(width), random(height));
   
-  destination = new PVector[8];
-  destination[0] = new PVector(random(width), random(height));
-  destination[1] = new PVector(random(width), random(height));
-  destination[2] = new PVector(random(width), random(height));
-  destination[3] = new PVector(random(width), random(height));
-  destination[4] = new PVector(random(width), random(height));
-  destination[5] = new PVector(random(width), random(height));
-  destination[6] = new PVector(random(width), random(height));
-  destination[7] = new PVector(random(width), random(height));
+  int numSwarm = 20;
   
-  weight = new float[8];
-  weight[0] = int(random(40));
-  weight[1] = int(random(40));
-  weight[2] = int(random(40));
-  weight[3] = int(random(40));
-  weight[4] = int(random(40));
-  weight[5] = int(random(40));
-  weight[6] = int(random(40));
-  weight[7] = int(random(40));
+  origin = new PVector[numSwarm];
+  destination = new PVector[numSwarm];
+  weight = new float[numSwarm];
+  
+  for (int i=0; i<numSwarm; i++) {
+    origin[i] = new PVector(random(width), random(height));
+    destination[i] = new PVector(random(width), random(height));
+    weight[i] = int(random(40));
+  }
   
   // rate, life, origin, destination
-  testSwarm = new Swarm[8];
-  for (int i=0; i<testSwarm.length; i++) {
-    testSwarm[i] = new Swarm(weight[i], origin[i], destination[i], 2, color(random(255), random(255), random(255)));
+  testSwarm = new Swarm[numSwarm];
+  for (int i=0; i<numSwarm; i++) {
+    testSwarm[i] = new Swarm(weight[i], origin[i], destination[i], numSwarm/(i+10.0), color(random(255), random(255), random(255)));
   }
   
   course1 = new Path(origin);
   course2 = new Path(destination);
   
-  points = new PVector[5];
-  points[0] = new PVector(300, 300);
-  points[1] = new PVector(350, 300);
-  points[2] = new PVector(350, 380);
-  points[3] = new PVector(325, 350);
-  points[4] = new PVector(300, 350);
+  int u = 16;
+  int v = 16;
+  int l = 40;
   
-  testWall = new Obstacle[4];
-  PVector shift;
-  for (int i=0; i<testWall.length; i++) {
-    testWall[i] = new Obstacle(points);
-    shift = new PVector(random(-400, 400), random(-400, 400));
-    for (int j=0; j<points.length; j++) {
-      points[j].add(shift);
+  obPts = new PVector[4];
+  for (int i=0; i<obPts.length; i++) {
+    obPts[i] = new PVector(0,0);
+  }
+  
+  testWall = new Obstacle[u*v];
+  for (int i=0; i<u; i++) {
+    for (int j=0; j<v; j++) {
+      
+      float x = float(width)*i/(u+1)+l/2.0;
+      float y = float(height)*j/(v+1)+l/2.0;
+      obPts[0].x = x;     obPts[0].y = y;
+      obPts[1].x = x+l;   obPts[1].y = y;
+      obPts[2].x = x+l;   obPts[2].y = y+l;
+      obPts[3].x = x;     obPts[3].y = y+l;
+      
+      testWall[i*u + j] = new Obstacle(obPts);
     }
   }
   

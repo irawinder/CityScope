@@ -32,6 +32,15 @@ class Agent {
     velocity.y *= random(-20);
   }
   
+  void roll(PVector normalForce) {
+    PVector negNorm = new PVector(-1*normalForce.x, -1*normalForce.y);
+    if (PVector.angleBetween(velocity, normalForce) > PVector.angleBetween(velocity, negNorm)) {
+      normalForce.mult(-1);
+    }
+    normalForce.setMag(2);
+    applyForce(normalForce);
+  }
+  
   void applyBehaviors(ArrayList<Agent> agents, PVector destination) {
      PVector separateForce = separate(agents);
      PVector seekForce = seek(new PVector(destination.x + random(-tolerance, tolerance),destination.y + random(-tolerance, tolerance)));
@@ -81,9 +90,12 @@ class Agent {
   void update(int life) {
     // Update velocity
     velocity.add(acceleration);
-    location.add(velocity);
+    
     // Limit speed
     velocity.limit(maxspeed);
+    
+    location.add(velocity);
+    
     // Reset accelertion to 0 each cycle
     acceleration.mult(0);
     
