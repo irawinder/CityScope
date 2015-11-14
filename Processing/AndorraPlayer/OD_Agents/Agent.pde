@@ -61,7 +61,8 @@ class Agent {
   }
   
   PVector separate(ArrayList<Agent> agents){
-    float desiredseparation = r*1.5;
+    //float desiredseparation = r*1.5;
+    float desiredseparation = r*0.5;
     PVector sum = new PVector();
     int count = 0;
     
@@ -91,10 +92,10 @@ class Agent {
     // Update velocity
     velocity.add(acceleration);
     
+    location.add(velocity);
+        
     // Limit speed
     velocity.limit(maxspeed);
-    
-    location.add(velocity);
     
     // Reset accelertion to 0 each cycle
     acceleration.mult(0);

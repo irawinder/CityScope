@@ -23,7 +23,7 @@ class Swarm {
     destination = b;
     maxSpeed = maxS;
     agentLife *= (abs(a.x - b.x) + abs(a.y - b.y)) / (width+height);
-    agentLife *= 2.0/maxSpeed;
+    agentLife *= 4.0/maxSpeed;
     //println(agentLife);
     agentDelay = delay;
     swarm = new ArrayList<Agent>();
@@ -52,7 +52,7 @@ class Swarm {
       generateAgent = false;
     }
     
-    // removes an agent if too crowded
+    // removes an agent if too old
     if (swarm.size() > 0) {
       for (int i=0; i<swarm.size(); i++){
         if (swarm.get(i).finished){
@@ -64,7 +64,16 @@ class Swarm {
   }
   
   void display() {
+    
+//    // Draw lines from origin to destinations
+//    stroke(#666666);
+//    strokeWeight(2);
+//    line(origin.x, origin.y, destination.x, destination.y);
+//    strokeWeight(1);
+//    noStroke();
+    
     if (swarm.size() > 0) {
+      
       for (Agent v : swarm){
         
         boolean collision = false;

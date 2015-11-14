@@ -1,5 +1,6 @@
 boolean showSinks = false;
 boolean showObstacles = false;
+boolean showFrameRate = false;
 
 Swarm[] testSwarm;
 Obstacle[] testWall;
@@ -13,34 +14,8 @@ Path course1, course2;
 PVector[] obPts;
 
 void setup() {
-  
-  
-  size(800, 800);
-
+  size(1000, 1000);
   reset();
-  
-}
-
-void draw() {
-  
-  background(0);
-  
-  if (showSinks) {
-    course1.display(#00FF00, 100);
-    course2.display(#FF0000, 100);
-  }
-  
-  if (showObstacles) {
-    for (Obstacle o : testWall) {
-      o.display(#0000FF, 100);
-    }
-  }
-  
-  for (Swarm s : testSwarm) {
-    s.update();
-    s.display();
-  }
-  
 }
 
 void reset() {
@@ -95,6 +70,33 @@ void reset() {
 //  }
 }
 
+void draw() {
+  
+  background(0);
+  
+  if (showSinks) {
+    course1.display(#00FF00, 50);
+    course2.display(#FF0000, 50);
+    
+  }
+  
+  if (showObstacles) {
+    for (Obstacle o : testWall) {
+      o.display(#0000FF, 100);
+    }
+  }
+  
+  for (Swarm s : testSwarm) {
+    s.update();
+    s.display();
+  }
+  
+  if (showFrameRate) {
+    println("frameRate = " + frameRate);
+  }
+  
+}
+
 void keyPressed() {
   
   switch (key) {
@@ -114,6 +116,13 @@ void keyPressed() {
       break;
     case 'r':
       reset();
+      break;
+    case 'f':
+      if (showFrameRate) {
+        showFrameRate = false;
+      } else {
+        showFrameRate = true;
+      }
       break;
   }
   

@@ -30,10 +30,19 @@ class Obstacle {
   
   boolean active = true;
   
+  boolean drawOutline;
+  boolean drawFill;
+  
+  
   int    polyCorners; //  =  how many corners the polygon has (no repeats)
   float  polyX[]    ; //      =  horizontal coordinates of corners
   float  polyY[]    ; //      =  vertical coordinates of corners
-  float  x, y       ; //       =  point to be tested
+  //float  x, y     ; //       =  point to be tested
+  float minX, minY, maxX, maxY;
+  
+  // Graphics object to hold fill information
+  PGraphics fill;
+  
   //
   //  The following global arrays should be allocated before calling these functions:
   //
@@ -49,10 +58,45 @@ class Obstacle {
     constant = new float[polyCorners];
     multiple = new float[polyCorners];
     
+    drawOutline = true;
+    drawFill = true;
+    
     for (int i=0; i<vert.length; i++) {
       vertices[i] = new PVector(vert[i].x, vert[i].y);
       polyX[i] = vert[i].x;
       polyY[i] = vert[i].y;
+      
+      //Determins max extents of polygone
+      if (i==0) {
+        minX = vert[i].x;
+        minY = vert[i].y;
+        maxX = vert[i].x;
+        maxY = vert[i].y;
+      } else {
+        
+        if (minX > vert[i].x) {
+          minX = vert[i].x;
+        } else if (maxX < vert[i].x) {
+          maxX = vert[i].x;
+        }
+        
+        if (minY > vert[i].y) {
+          minY = vert[i].y;
+        } else if (maxY < vert[i].y) {
+          maxY = vert[i].y;
+        }
+        
+      }
+      
+    }
+
+    // Creates the smallest possible rectilinear graphics object that holds the polygon
+    if (maxX-minX > 0 && maxY-minY > 0) {
+      fill = createGraphics(int(maxX-minX), int(maxY-minY));
+      //println("Fill Size: " + fill.width + ", " + fill.height);
+    } else {
+      createGraphics(1,1);
+      println("object has no area");
     }
     
     precalc_values();
@@ -147,14 +191,35 @@ class Obstacle {
   }
   
   void display(color stroke, int alpha) {
-    for (int i=0; i<polyCorners; i++) {
-      stroke(stroke, alpha);
-      if (i == polyCorners-1) {
-        line(vertices[i].x, vertices[i].y, vertices[0].x, vertices[0].y);
-      } else {
-        line(vertices[i].x, vertices[i].y, vertices[i+1].x, vertices[i+1].y);
+    
+    if (drawOutline) {
+      // Draws Polygon Ouline
+      for (int i=0; i<polyCorners; i++) {
+        stroke(stroke, alpha);
+        if (i == polyCorners-1) {
+          line(vertices[i].x, vertices[i].y, vertices[0].x, vertices[0].y);
+        } else {
+          line(vertices[i].x, vertices[i].y, vertices[i+1].x, vertices[i+1].y);
+        }
       }
     }
+    
+    if (drawFill) {
+      // Draws Polygon fill
+      fill.beginDraw();
+      
+      for (int j=0; j<fill.width; j++) {
+        for (int k=0; k<fill.height; k++) {
+          if (pointInPolygon(j + minX, k + minY)) {
+            fill.set(j, k, #333333);
+          }
+        }
+      }
+      fill.endDraw();
+      
+      image(fill, minX, minY);
+    }
+    
   }
   
 }
