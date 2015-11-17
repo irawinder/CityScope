@@ -17,7 +17,8 @@ float[] weight;
 PVector[] obPts;
 
 int textSize;
-int numAgents;
+int numAgents, maxAgents;
+int[] swarmSize;
 
 void setup() {
   size(1000, 1000);
@@ -27,7 +28,9 @@ void setup() {
 
 void reset(int u, int v) {
   
-  int numNodes = 5;
+  maxAgents = 100;
+  
+  int numNodes = 4;
   int numEdges = numNodes*(numNodes-1);
   int numSwarm = numEdges;
   
@@ -35,6 +38,7 @@ void reset(int u, int v) {
   origin = new PVector[numSwarm];
   destination = new PVector[numSwarm];
   weight = new float[numSwarm];
+  swarmSize = new int[numSwarm];
   
   for (int i=0; i<numNodes; i++) {
     nodes[i] = new PVector(random(width), random(height));
@@ -49,7 +53,7 @@ void reset(int u, int v) {
       
       weight[i*(numNodes-1)+j] = int(random(40));
       
-      println("swarm:" + (i*(numNodes-1)+j) + "; (" + i + ", " + (i+j+1)%(numNodes) + ")");
+      //println("swarm:" + (i*(numNodes-1)+j) + "; (" + i + ", " + (i+j+1)%(numNodes) + ")");
     }
   }
   
@@ -130,17 +134,58 @@ void draw() {
     if (showSwarm) {
       s.display();
     }
+    
   }
   
-  textSize = 12;
+  for(int i=0; i<testSwarm.length; i++) {
+    swarmSize[i] = testSwarm[i].swarm.size();
+  }
+  
+  if (numAgents > maxAgents) {
+    
+    int rand;
+    int counter;
+    while(numAgents > maxAgents) {
+      
+      // Picks a random agent from one of the swarms.  Larger swarms are more likely to be selected
+      rand = int(random(0, numAgents));
+      counter = 0;
+      for (int i=0; i<testSwarm.length; i++) {
+        counter += swarmSize[i];
+        if (rand < counter) {
+          rand = i;
+          println("random: " + rand);
+          break;
+        }
+      }
+      
+      //kills a random agent in the selected swarm
+      if (testSwarm[rand].swarm.size() > 0) {
+        testSwarm[rand].swarm.get(int(random(testSwarm[rand].swarm.size()))).finished = true;
+        numAgents--;
+      }
+    }
+  }
+  
+  textSize = 8;
   
   if (showInfo) {
     pushMatrix();
     translate(2*textSize, 2*textSize);
+    
+    // Background rectangle
+    fill(#555555, 50);
+    noStroke();
+    rect(0, 0, 32*textSize, (testSwarm.length+4)*1.5*textSize, textSize, textSize, textSize, textSize);
+    
+    // Text
+    translate(2*textSize, 2*textSize);
     for (int i=0; i<testSwarm.length; i++) {
       fill(testSwarm[i].fill);
       textSize(textSize);
-      text("Swarm[" + i + "] Weight: " + 1000.0/testSwarm[i].agentDelay + "/sec", 0,0);
+      text("Swarm[" + i + "]: ", 0,0);
+      text("Weight: " + int(1000.0/testSwarm[i].agentDelay) + "/sec", 10*textSize,0);
+      text("Size: " + testSwarm[i].swarm.size() + " agents", 20*textSize,0);
       translate(0, 1.5*textSize);
     }
     translate(0, 1.5*textSize);
