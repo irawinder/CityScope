@@ -59,7 +59,7 @@ class Obstacle {
     multiple = new float[polyCorners];
     
     drawOutline = true;
-    drawFill = true;
+    drawFill = false;
     
     for (int i=0; i<vert.length; i++) {
       vertices[i] = new PVector(vert[i].x, vert[i].y);

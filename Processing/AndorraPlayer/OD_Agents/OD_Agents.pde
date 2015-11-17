@@ -1,48 +1,80 @@
-boolean showSinks = false;
+boolean showSource = false;
 boolean showObstacles = false;
 boolean showFrameRate = false;
+boolean showEdges = false;
+boolean showSwarm = true;
+boolean showInfo = false;
+boolean placeObstacles = true;
 
 Swarm[] testSwarm;
 Obstacle[] testWall;
 
 PVector[] origin;
 PVector[] destination;
+PVector[] nodes;
 float[] weight;
-
-Path course1, course2;
 
 PVector[] obPts;
 
+int textSize;
+int numAgents;
+
 void setup() {
   size(1000, 1000);
-  reset();
+  background(0);
+  reset(0, 0);
 }
 
-void reset() {
+void reset(int u, int v) {
   
-  int numSwarm = 20;
+  int numNodes = 5;
+  int numEdges = numNodes*(numNodes-1);
+  int numSwarm = numEdges;
   
+  nodes = new PVector[numNodes];
   origin = new PVector[numSwarm];
   destination = new PVector[numSwarm];
   weight = new float[numSwarm];
   
-  for (int i=0; i<numSwarm; i++) {
-    origin[i] = new PVector(random(width), random(height));
-    destination[i] = new PVector(random(width), random(height));
-    weight[i] = int(random(40));
+  for (int i=0; i<numNodes; i++) {
+    nodes[i] = new PVector(random(width), random(height));
+  }
+  
+  for (int i=0; i<numNodes; i++) {
+    for (int j=0; j<numNodes-1; j++) {
+      
+      origin[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
+      
+      destination[i*(numNodes-1)+j] = new PVector(nodes[(i+j+1)%(numNodes)].x, nodes[(i+j+1)%(numNodes)].y);
+      
+      weight[i*(numNodes-1)+j] = int(random(40));
+      
+      println("swarm:" + (i*(numNodes-1)+j) + "; (" + i + ", " + (i+j+1)%(numNodes) + ")");
+    }
   }
   
   // rate, life, origin, destination
   testSwarm = new Swarm[numSwarm];
+  colorMode(HSB);
   for (int i=0; i<numSwarm; i++) {
-    testSwarm[i] = new Swarm(weight[i], origin[i], destination[i], numSwarm/(i+10.0), color(random(255), random(255), random(255)));
+    // delay, origin, destination, speed, color
+    testSwarm[i] = new Swarm(weight[i], origin[i], destination[i], 2, color(255.0*i/numSwarm, 255, 255));
   }
+  colorMode(RGB);
   
-  course1 = new Path(origin);
-  course2 = new Path(destination);
+  placeObstacles(placeObstacles);
+}
+
+void placeObstacles(boolean place) {
+  if (place) {
+    setObstacles(16, 16);
+  } else {
+    setObstacles(0, 0);
+  }
+}
+
+void setObstacles(int u, int v) {
   
-  int u = 16;
-  int v = 16;
   int l = 40;
   
   obPts = new PVector[4];
@@ -64,21 +96,16 @@ void reset() {
       testWall[i*u + j] = new Obstacle(obPts);
     }
   }
-  
-//  for (int i=0; i < course1.origin.length; i++) {
-//    println(i+1 + ": " + course1.origin[i].x + ", " + course1.origin[i].y);
-//  }
 }
 
 void draw() {
   
-  background(0);
-  
-  if (showSinks) {
-    course1.display(#00FF00, 50);
-    course2.display(#FF0000, 50);
-    
-  }
+  // Instead of solid background draws a translucent overlay every frame.
+  // Provides the effect of giving animated elements "tails"
+  noStroke();
+  fill(#ffffff, 100);
+  //fill(0, 100);
+  rect(0,0,width,height);
   
   if (showObstacles) {
     for (Obstacle o : testWall) {
@@ -86,10 +113,43 @@ void draw() {
     }
   }
   
+  numAgents = 0;
+  
   for (Swarm s : testSwarm) {
     s.update();
-    s.display();
+    numAgents += s.swarm.size();
+    
+    if (showSource) {
+      s.displaySource();
+    }
+    
+    if (showEdges) {
+      s.displayEdges();
+    }
+    
+    if (showSwarm) {
+      s.display();
+    }
   }
+  
+  textSize = 12;
+  
+  if (showInfo) {
+    pushMatrix();
+    translate(2*textSize, 2*textSize);
+    for (int i=0; i<testSwarm.length; i++) {
+      fill(testSwarm[i].fill);
+      textSize(textSize);
+      text("Swarm[" + i + "] Weight: " + 1000.0/testSwarm[i].agentDelay + "/sec", 0,0);
+      translate(0, 1.5*textSize);
+    }
+    translate(0, 1.5*textSize);
+    text("Total Swarms: " + testSwarm.length,0,0);
+    translate(0, 1.5*textSize);
+    text("Total Agents: " + numAgents,0,0);
+    popMatrix();
+  }
+  
   
   if (showFrameRate) {
     println("frameRate = " + frameRate);
@@ -101,29 +161,38 @@ void keyPressed() {
   
   switch (key) {
     case 'o':
-      if (showObstacles) {
-        showObstacles = false;
-      } else {
-        showObstacles = true;
-      }
+      showObstacles = toggle(showObstacles);
       break;
     case 'k':
-      if (showSinks) {
-        showSinks = false;
-      } else {
-        showSinks = true;
-      }
+      showSource = toggle(showSource);
       break;
     case 'r':
-      reset();
+      reset(16, 16);
       break;
     case 'f':
-      if (showFrameRate) {
-        showFrameRate = false;
-      } else {
-        showFrameRate = true;
-      }
+      showFrameRate = toggle(showFrameRate);
+      break;
+    case 's':
+      showSwarm = toggle(showSwarm);
+      break;
+    case 'e':
+      showEdges = toggle(showEdges);
+      break;
+    case 'i':
+      showInfo = toggle(showInfo);
+      break;
+    case 'p':
+      placeObstacles = toggle(placeObstacles);
+      placeObstacles(placeObstacles);
       break;
   }
   
+}
+
+boolean toggle(boolean bool) {
+  if (bool) {
+    return false;
+  } else {
+    return true;
+  }
 }

@@ -7,7 +7,7 @@ class Agent {
   float maxforce;
   float maxspeed;
   int age;
-  float tolerance = 10;
+  float tolerance = 2;
   
   boolean finished = false;
   
@@ -61,8 +61,8 @@ class Agent {
   }
   
   PVector separate(ArrayList<Agent> agents){
-    //float desiredseparation = r*1.5;
-    float desiredseparation = r*0.5;
+    float desiredseparation = r*1.5;
+    //float desiredseparation = r*0.5;
     PVector sum = new PVector();
     int count = 0;
     
@@ -88,7 +88,7 @@ class Agent {
    return sum;   
   }
   
-  void update(int life) {
+  void update(int life, Obstacle sink) {
     // Update velocity
     velocity.add(acceleration);
     
@@ -105,6 +105,12 @@ class Agent {
     if (age > life*maxspeed/4) {
       finished = true;
     }
+    
+    //Checks if Agent reached destination
+     if (sink.pointInPolygon(location.x, location.y)) {
+       finished = true;
+     }
+    
   }
   
   void display(color fill, int alpha) {
