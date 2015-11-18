@@ -1,3 +1,5 @@
+boolean showData = true;
+
 // temp variable that holds coordinate location for a point to render
 PVector coord;
 
@@ -36,8 +38,10 @@ void drawTableCanvas() {
   
   
       //-----------Begin Drawing Geolocated Data--------------//
-      
-        drawData();
+        
+        if (showData) {
+          drawData();
+        }
       
       //-----------End Drawing Geolocated Data---------------//
   
