@@ -2,7 +2,11 @@
 // For Andorra Data Stories
 // Ira Winder, MIT Media Lab, jiw@mit.edu, Fall 2015
 
+// Set to false when rendering on projectors; true when developing on your PC, etc
+// Setting to false opens a 4k canvas
 boolean debug = true;
+
+boolean showFrameRate = false;
 
 // !!!
 // Developers of this Code (Nina and Connie!) probably need only concern themselves with the 'data' and 'draw' tabs
@@ -149,11 +153,8 @@ boolean debug = true;
 
     int drawMode = 1;
     
-    // switch this to true when using script on table
-    boolean fullScreen = false;
-    
     boolean sketchFullScreen() {
-      return fullScreen;
+      return !debug;
     }
 
 //import processing.video.*;
@@ -169,7 +170,11 @@ void setup() {
   
   // Keystone will only work with P3D or OPENGL renderers, 
   // since it relies on texture mapping to deform
-  size(projectorWidth, projectorHeight, P3D);
+  if (debug) {
+    size(projectorWidth, projectorHeight, P3D);
+  } else {
+    size(2*projectorWidth, 2*projectorHeight, P3D);
+  }
   
   // object for holding projection-map canvas callibration information
   ks = new Keystone(this);
@@ -234,6 +239,10 @@ void draw() {
       }
       break;
   }
+  
+  if (showFrameRate) {
+    println(frameRate);
+  }
 
 }
 
@@ -291,12 +300,26 @@ void keyPressed() {
     
   case 'g':
     // changes debug mode
-    if (debug) {
-      debug = false;
-    } else {
-      debug = true;
-    }
+    debug = toggle(debug);
     break;
+    
+  case 'd':
+    // changes debug mode
+    showData = toggle(showData);
+    break;
+  
+  case 'f':
+    // changes debug mode
+    showFrameRate = toggle(showFrameRate);
+    break;
+  }
+}
+
+boolean toggle(boolean bool) {
+  if (bool) {
+    return false;
+  } else {
+    return true;
   }
 }
 
