@@ -1,9 +1,9 @@
 boolean showSource = false;
-boolean showObstacles = false;
+boolean showObstacles = true;
 boolean showFrameRate = false;
 boolean showEdges = false;
 boolean showSwarm = true;
-boolean showInfo = false;
+boolean showInfo = true;
 boolean placeObstacles = true;
 boolean showTraces = false;
 
