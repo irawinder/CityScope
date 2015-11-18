@@ -1,5 +1,5 @@
 float time_0 = 0;
-float speed = 1;
+float speed = 0.4444444;
 //Set to true if agents iterated by frame
 //Set to false if agents iterated by time (useful for choppy framerate; but may cause agents to "jump")
 boolean frameStep = true;
@@ -124,12 +124,12 @@ class Agent {
   }
   
   void display(color fill, int alpha) {
-    fill(fill, alpha);
-    noStroke();
-    pushMatrix();
-    translate(location.x, location.y);
-    ellipse(0, 0, r, r);
-    popMatrix();
+    tableCanvas.fill(fill, alpha);
+    tableCanvas.noStroke();
+    tableCanvas.pushMatrix();
+    tableCanvas.translate(location.x, location.y);
+    tableCanvas.ellipse(0, 0, r, r);
+    tableCanvas.popMatrix();
   }
   
 }

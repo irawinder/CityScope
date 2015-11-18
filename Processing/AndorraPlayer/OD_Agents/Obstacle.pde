@@ -195,11 +195,11 @@ class Obstacle {
     if (drawOutline) {
       // Draws Polygon Ouline
       for (int i=0; i<polyCorners; i++) {
-        stroke(stroke, alpha);
+        tableCanvas.stroke(stroke, alpha);
         if (i == polyCorners-1) {
-          line(vertices[i].x, vertices[i].y, vertices[0].x, vertices[0].y);
+          tableCanvas.line(vertices[i].x, vertices[i].y, vertices[0].x, vertices[0].y);
         } else {
-          line(vertices[i].x, vertices[i].y, vertices[i+1].x, vertices[i+1].y);
+          tableCanvas.line(vertices[i].x, vertices[i].y, vertices[i+1].x, vertices[i+1].y);
         }
       }
     }
@@ -217,7 +217,7 @@ class Obstacle {
       }
       fill.endDraw();
       
-      image(fill, minX, minY);
+      tableCanvas.image(fill, minX, minY);
     }
     
   }

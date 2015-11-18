@@ -20,18 +20,29 @@ PVector[] obPts;
 int textSize;
 int numAgents, maxAgents;
 int[] swarmSize;
+float adjust;
 
 HeatMap traces;
 
+int canvasWidth = 1000;
+int canvasHeight = 1000;
+
+PGraphics tableCanvas;
+
 void setup() {
-  size(1000, 1000);
-  background(0);
+  size(canvasWidth, canvasHeight);
+  tableCanvas = createGraphics(canvasWidth, canvasHeight);
+    tableCanvas.beginDraw();
+    tableCanvas.background(#FFFFFF);
+    tableCanvas.endDraw();
   reset(0, 0);
 }
 
 void reset(int u, int v) {
   
   maxAgents = 1000;
+  
+  adjust = 1;
   
   int numNodes = 8;
   int numEdges = numNodes*(numNodes-1);
@@ -44,7 +55,7 @@ void reset(int u, int v) {
   swarmSize = new int[numSwarm];
   
   for (int i=0; i<numNodes; i++) {
-    nodes[i] = new PVector(random(width), random(height));
+    nodes[i] = new PVector(random(canvasWidth), random(canvasHeight));
   }
   
   for (int i=0; i<numNodes; i++) {
@@ -65,13 +76,13 @@ void reset(int u, int v) {
   colorMode(HSB);
   for (int i=0; i<numSwarm; i++) {
     // delay, origin, destination, speed, color
-    testSwarm[i] = new Swarm(weight[i], origin[i], destination[i], 2, color(255.0*i/numSwarm, 255, 255));
+    testSwarm[i] = new Swarm(weight[i], origin[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
   }
   colorMode(RGB);
   
   placeObstacles(placeObstacles);
   
-  traces = new HeatMap(width/5, height/5, width, height);
+  traces = new HeatMap(canvasWidth/5, canvasHeight/5, canvasWidth, canvasHeight);
 }
 
 void placeObstacles(boolean place) {
@@ -95,8 +106,8 @@ void setObstacles(int u, int v) {
   for (int i=0; i<u; i++) {
     for (int j=0; j<v; j++) {
       
-      float x = float(width)*i/(u+1)+l/2.0;
-      float y = float(height)*j/(v+1)+l/2.0;
+      float x = float(canvasWidth)*i/(u+1)+l/2.0;
+      float y = float(canvasHeight)*j/(v+1)+l/2.0;
       obPts[0].x = x;     obPts[0].y = y;
       obPts[1].x = x+l;   obPts[1].y = y;
       obPts[2].x = x+l;   obPts[2].y = y+l;
@@ -108,15 +119,17 @@ void setObstacles(int u, int v) {
 }
 
 void draw() {
+  tableCanvas.beginDraw();
+  
   
   // Instead of solid background draws a translucent overlay every frame.
   // Provides the effect of giving animated elements "tails"
-  noStroke();
+  tableCanvas.noStroke();
   //fill(#ffffff, 100);
-  fill(0, 100);
-  rect(0,0,width,height);
+  tableCanvas.fill(0, 50);
+  tableCanvas.rect(0,0,canvasWidth,canvasHeight);
   
-  translate(scrollX, scrollY);
+  tableCanvas.translate(scrollX, scrollY);
   
   if(showTraces) {
     traces.display();
@@ -160,8 +173,13 @@ void draw() {
     swarmSize[i] = testSwarm[i].swarm.size();
   }
   
+//  if (frameRate < 45) {
+//    maxAgents --;
+//  } else if (frameRate > 50) {
+//    maxAgents ++;
+//  }
+  
   if (numAgents > maxAgents) {
-    
     int rand;
     int counter;
     while(numAgents > maxAgents) {
@@ -184,38 +202,46 @@ void draw() {
         numAgents--;
       }
     }
+    adjust /= 0.99;
+  } else {
+    adjust *= 0.99;
   }
+  //println("Adjust: " + adjust);
+
   
-  translate(-scrollX, -scrollY);
+  tableCanvas.translate(-scrollX, -scrollY);
   
   textSize = 8;
   
   if (showInfo) {
-    pushMatrix();
-    translate(2*textSize, 2*textSize + scroll);
+    tableCanvas.pushMatrix();
+    tableCanvas.translate(2*textSize, 2*textSize + scroll);
     
     // Background rectangle
-    fill(#555555, 50);
-    noStroke();
-    rect(0, 0, 32*textSize, (testSwarm.length+4)*1.5*textSize, textSize, textSize, textSize, textSize);
+    tableCanvas.fill(#555555, 50);
+    tableCanvas.noStroke();
+    tableCanvas.rect(0, 0, 32*textSize, (testSwarm.length+4)*1.5*textSize, textSize, textSize, textSize, textSize);
     
     // Text
-    translate(2*textSize, 2*textSize);
+    tableCanvas.translate(2*textSize, 2*textSize);
     for (int i=0; i<testSwarm.length; i++) {
-      fill(testSwarm[i].fill);
-      textSize(textSize);
-      text("Swarm[" + i + "]: ", 0,0);
-      text("Weight: " + int(1000.0/testSwarm[i].agentDelay) + "/sec", 10*textSize,0);
-      text("Size: " + testSwarm[i].swarm.size() + " agents", 20*textSize,0);
-      translate(0, 1.5*textSize);
+      tableCanvas.fill(testSwarm[i].fill);
+      tableCanvas.textSize(textSize);
+      tableCanvas.text("Swarm[" + i + "]: ", 0,0);
+      tableCanvas.text("Weight: " + int(1000.0/testSwarm[i].agentDelay) + "/sec", 10*textSize,0);
+      tableCanvas.text("Size: " + testSwarm[i].swarm.size() + " agents", 20*textSize,0);
+      tableCanvas.translate(0, 1.5*textSize);
     }
-    translate(0, 1.5*textSize);
-    text("Total Swarms: " + testSwarm.length,0,0);
-    translate(0, 1.5*textSize);
-    text("Total Agents: " + numAgents,0,0);
-    popMatrix();
+    tableCanvas.translate(0, 1.5*textSize);
+    tableCanvas.text("Total Swarms: " + testSwarm.length,0,0);
+    tableCanvas.translate(0, 1.5*textSize);
+    tableCanvas.text("Total Agents: " + numAgents,0,0);
+    tableCanvas.popMatrix();
   }
   
+  tableCanvas.endDraw();
+  
+  image(tableCanvas, 0, 0);
   
   if (showFrameRate) {
     println("frameRate = " + frameRate);

@@ -61,21 +61,21 @@ class HeatMap {
   
   void display() {
     
-    colorMode(HSB);
-    noStroke();
+    tableCanvas.colorMode(HSB);
+    tableCanvas.noStroke();
     for (int i=0; i<U; i++) {
       for (int j=0; j<V; j++) {
         if (values[i][j] >= 0) {
-          fill(0.25*255*values[i][j], 255, 255, 50);
-          rect(0, 0, float(width)/U, float(height)/V);
+          tableCanvas.fill(0.25*255*values[i][j], 255, 255, 50);
+          tableCanvas.rect(0, 0, float(canvasWidth)/U, float(canvasHeight)/V);
         }
-        translate(0, float(height)/V);
+        tableCanvas.translate(0, float(canvasHeight)/V);
       }
-      translate(0, -float(height));
-      translate(float(width)/U, 0);
+      tableCanvas.translate(0, -float(canvasHeight));
+      tableCanvas.translate(float(canvasWidth)/U, 0);
     }
-    translate(-float(width), 0);
-    colorMode(RGB);
+    tableCanvas.translate(-float(canvasWidth), 0);
+    tableCanvas.colorMode(RGB);
     
   }
   
