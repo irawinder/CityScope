@@ -5,6 +5,7 @@ boolean showEdges = false;
 boolean showSwarm = true;
 boolean showInfo = false;
 boolean placeObstacles = true;
+boolean showTraces = false;
 
 Swarm[] testSwarm;
 Obstacle[] testWall;
@@ -20,6 +21,8 @@ int textSize;
 int numAgents, maxAgents;
 int[] swarmSize;
 
+HeatMap traces;
+
 void setup() {
   size(1000, 1000);
   background(0);
@@ -28,9 +31,9 @@ void setup() {
 
 void reset(int u, int v) {
   
-  maxAgents = 100;
+  maxAgents = 2000;
   
-  int numNodes = 4;
+  int numNodes = 8;
   int numEdges = numNodes*(numNodes-1);
   int numSwarm = numEdges;
   
@@ -51,7 +54,7 @@ void reset(int u, int v) {
       
       destination[i*(numNodes-1)+j] = new PVector(nodes[(i+j+1)%(numNodes)].x, nodes[(i+j+1)%(numNodes)].y);
       
-      weight[i*(numNodes-1)+j] = int(random(40));
+      weight[i*(numNodes-1)+j] = int(random(1, 40));
       
       //println("swarm:" + (i*(numNodes-1)+j) + "; (" + i + ", " + (i+j+1)%(numNodes) + ")");
     }
@@ -67,6 +70,8 @@ void reset(int u, int v) {
   colorMode(RGB);
   
   placeObstacles(placeObstacles);
+  
+  traces = new HeatMap(width/5, height/5, width, height);
 }
 
 void placeObstacles(boolean place) {
@@ -107,9 +112,13 @@ void draw() {
   // Instead of solid background draws a translucent overlay every frame.
   // Provides the effect of giving animated elements "tails"
   noStroke();
-  fill(#ffffff, 100);
-  //fill(0, 100);
+  //fill(#ffffff, 100);
+  fill(0, 100);
   rect(0,0,width,height);
+  
+  if(showTraces) {
+    traces.display();
+  }
   
   if (showObstacles) {
     for (Obstacle o : testWall) {
@@ -132,10 +141,18 @@ void draw() {
     }
     
     if (showSwarm) {
-      s.display();
+      
+      if (showTraces) {
+        traces.update(s);
+        s.display("grayscale");
+      } else {
+        s.display("color");
+      }
     }
     
   }
+  
+  traces.decay();
   
   for(int i=0; i<testSwarm.length; i++) {
     swarmSize[i] = testSwarm[i].swarm.size();
@@ -154,7 +171,7 @@ void draw() {
         counter += swarmSize[i];
         if (rand < counter) {
           rand = i;
-          println("random: " + rand);
+          //println("random: " + rand);
           break;
         }
       }
@@ -171,7 +188,7 @@ void draw() {
   
   if (showInfo) {
     pushMatrix();
-    translate(2*textSize, 2*textSize);
+    translate(2*textSize, 2*textSize + scroll);
     
     // Background rectangle
     fill(#555555, 50);
@@ -230,9 +247,30 @@ void keyPressed() {
       placeObstacles = toggle(placeObstacles);
       placeObstacles(placeObstacles);
       break;
+    case 't':
+      showTraces = toggle(showTraces);
+      break;
   }
   
 }
+
+int y_0;
+int scroll = 0;
+int scroll_0 = 0;
+
+void mousePressed() {
+  y_0 = mouseY;
+}
+
+void mouseDragged() {
+  
+  scroll = scroll_0 + mouseY - y_0;
+}
+
+void mouseReleased() {
+  scroll_0 = scroll;
+}
+  
 
 boolean toggle(boolean bool) {
   if (bool) {

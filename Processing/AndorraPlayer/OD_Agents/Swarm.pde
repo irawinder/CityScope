@@ -73,7 +73,7 @@ class Swarm {
     
   }
   
-  void display() {
+  void display(String colorMode) {
     
     if (swarm.size() > 0) {
       
@@ -105,7 +105,14 @@ class Swarm {
           // draws normally if collision detected
           //v.display(fill, 100);
         }
-        v.display(fill, 100);
+        
+        if(colorMode.equals("color")) {
+            v.display(fill, 100);
+        } else if(colorMode.equals("grayscale")) {
+            v.display(#333333, 100);
+        } else {
+            v.display(fill, 100);
+        }
       }
     }
   }
