@@ -1,5 +1,8 @@
 float time_0 = 0;
-float speed = 0.0625;
+float speed = 1;
+//Set to true if agents iterated by frame
+//Set to false if agents iterated by time (useful for choppy framerate; but may cause agents to "jump")
+boolean frameStep = true;
 
 class Agent {
   
@@ -95,8 +98,11 @@ class Agent {
     // Update velocity
     velocity.add(acceleration);
     
-    location.add(new PVector(speed*velocity.x*(millis()-time_0), speed*velocity.y*(millis()-time_0)));
-    //location.add(velocity);
+    if (frameStep) {
+      location.add(new PVector(speed*velocity.x, speed*velocity.y));
+    } else {
+      location.add(new PVector(speed*0.0625*velocity.x*(millis()-time_0), speed*0.0625*velocity.y*(millis()-time_0)));
+    }
         
     // Limit speed
     velocity.limit(maxspeed);

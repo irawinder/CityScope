@@ -252,6 +252,10 @@ void keyPressed() {
     case 't':
       showTraces = toggle(showTraces);
       break;
+    case 'F':
+      frameStep = toggle(frameStep);
+      println("FrameStep = " + frameStep);
+      break;
     case '+':
       updateSpeed(1);
       break;
@@ -291,10 +295,10 @@ boolean toggle(boolean bool) {
 void updateSpeed(int dir) {
   switch (dir) {
     case -1:
-      speed /= 2;
+      speed /= 1.5;
       break;
     case 1:
-      speed *= 2;
+      speed *= 1.5;
       break;
   }
   println("Speed: " + speed);

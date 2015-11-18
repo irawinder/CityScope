@@ -46,7 +46,7 @@ class Swarm {
     counter ++ ;
     
     // Determines if a new agent is needed
-    if (counter == agentDelay) {
+    if (counter > agentDelay/speed) {
       generateAgent = true;
       counter = 0;
     }
@@ -95,13 +95,13 @@ class Swarm {
         
         if (collision) {
           v.applyBehaviors(swarm, new PVector(random(width), random(height)));
-          v.update(int(agentLife), sink);
+          v.update(int(agentLife/speed), sink);
           // draws as red if collision detected
           //v.display(#FF0000, 100);
           collision = false;
         } else {
           v.applyBehaviors(swarm, destination);
-          v.update(int(agentLife), sink);
+          v.update(int(agentLife/speed), sink);
           // draws normally if collision detected
           //v.display(fill, 100);
         }
