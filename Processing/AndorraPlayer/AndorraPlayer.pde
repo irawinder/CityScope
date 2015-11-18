@@ -4,7 +4,10 @@
 
 // Set to false when rendering on projectors; true when developing on your PC, etc
 // Setting to false opens a 4k canvas
-boolean debug = true;
+boolean debug = false;
+
+// Only set this to true if projectors display output is 4k
+boolean use4k = false;
 
 boolean loadData = false;
 
@@ -173,7 +176,11 @@ void setup() {
   if (debug) {
     size(projectorWidth, projectorHeight, P3D);
   } else {
-    size(2*projectorWidth, 2*projectorHeight, P3D);
+    if (use4k) {
+      size(2*projectorWidth, 2*projectorHeight, P3D);
+    } else {
+      size(projectorWidth, projectorHeight, P3D);
+    }
   }
   
   // object for holding projection-map canvas callibration information
