@@ -39,8 +39,10 @@ void drawTableCanvas() {
   
       //-----------Begin Drawing Geolocated Data--------------//
         
-        if (showData) {
-          drawData();
+        if (loadData) {
+          if (showData) {
+            drawData();
+          }
         }
       
       //-----------End Drawing Geolocated Data---------------//

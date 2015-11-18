@@ -6,7 +6,7 @@
 // Setting to false opens a 4k canvas
 boolean debug = true;
 
-boolean showFrameRate = false;
+boolean loadData = false;
 
 // !!!
 // Developers of this Code (Nina and Connie!) probably need only concern themselves with the 'data' and 'draw' tabs
@@ -205,8 +205,10 @@ void setup() {
   // loads the saved layout
   ks.load();
   
-  // Loads csv files referenced in data tab
-  initData();
+  if (loadData) {
+    // Loads csv files referenced in data tab
+    initData();
+  }
 
 //  Deprecated movie animation
 //      theMovie = new Movie(this, "cityscope_sponsorweek.mp4");
@@ -270,6 +272,8 @@ void chopScreen(int projector) {
   offscreen.endDraw();
   
 }
+
+boolean showFrameRate = false;
 
 void keyPressed() {
   switch(key) {
