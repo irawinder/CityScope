@@ -116,6 +116,8 @@ void draw() {
   fill(0, 100);
   rect(0,0,width,height);
   
+  translate(scrollX, scrollY);
+  
   if(showTraces) {
     traces.display();
   }
@@ -183,6 +185,8 @@ void draw() {
       }
     }
   }
+  
+  translate(-scrollX, -scrollY);
   
   textSize = 8;
   
@@ -266,21 +270,43 @@ void keyPressed() {
   
 }
 
+// variables for Scroll Bar
 int y_0;
 int scroll = 0;
 int scroll_0 = 0;
 
+//Move Variables for Network
+int X_0, Y_0;
+int scrollX = 0;
+int scrollY = 0;
+int scrollX_0 = 0;
+int scrollY_0 = 0;
+
 void mousePressed() {
-  y_0 = mouseY;
+  if (showInfo) {
+    y_0 = mouseY;
+  } else {
+    X_0 = mouseX;
+    Y_0 = mouseY;
+  }
 }
 
 void mouseDragged() {
-  
-  scroll = scroll_0 + mouseY - y_0;
+  if (showInfo) {
+    scroll = scroll_0 + mouseY - y_0;
+  } else {
+    scrollX = scrollX_0 + mouseX - X_0;
+    scrollY = scrollY_0 + mouseY - Y_0;
+  }
 }
 
 void mouseReleased() {
-  scroll_0 = scroll;
+  if (showInfo) {
+    scroll_0 = scroll;
+  } else {
+    scrollX_0 = scrollX;
+    scrollY_0 = scrollY;
+  }
 }
   
 
