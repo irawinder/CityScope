@@ -1,3 +1,6 @@
+float time_0 = 0;
+float speed = 0.0625;
+
 class Agent {
   
   PVector location;
@@ -92,7 +95,8 @@ class Agent {
     // Update velocity
     velocity.add(acceleration);
     
-    location.add(velocity);
+    location.add(new PVector(speed*velocity.x*(millis()-time_0), speed*velocity.y*(millis()-time_0)));
+    //location.add(velocity);
         
     // Limit speed
     velocity.limit(maxspeed);

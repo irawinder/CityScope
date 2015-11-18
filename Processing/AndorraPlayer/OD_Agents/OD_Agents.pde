@@ -31,7 +31,7 @@ void setup() {
 
 void reset(int u, int v) {
   
-  maxAgents = 2000;
+  maxAgents = 1000;
   
   int numNodes = 8;
   int numEdges = numNodes*(numNodes-1);
@@ -217,6 +217,8 @@ void draw() {
     println("frameRate = " + frameRate);
   }
   
+  time_0 = millis();
+  
 }
 
 void keyPressed() {
@@ -250,6 +252,12 @@ void keyPressed() {
     case 't':
       showTraces = toggle(showTraces);
       break;
+    case '+':
+      updateSpeed(1);
+      break;
+    case '-':
+      updateSpeed(-1);
+      break;
   }
   
 }
@@ -278,4 +286,16 @@ boolean toggle(boolean bool) {
   } else {
     return true;
   }
+}
+
+void updateSpeed(int dir) {
+  switch (dir) {
+    case -1:
+      speed /= 2;
+      break;
+    case 1:
+      speed *= 2;
+      break;
+  }
+  println("Speed: " + speed);
 }
