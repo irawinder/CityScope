@@ -8,7 +8,7 @@ void setup() {
   
   tableCanvas = createGraphics(canvasWidth, canvasHeight);
     
-  init(0, 0);
+  initAgents(0, 0);
 }
 
 void draw() {

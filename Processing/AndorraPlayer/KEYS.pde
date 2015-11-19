@@ -1,5 +1,4 @@
 void keyPressed() {
-  
   switch (key) {
     case 'o':
       showObstacles = toggle(showObstacles);
@@ -13,7 +12,7 @@ void keyPressed() {
     case 'f':
       showFrameRate = toggle(showFrameRate);
       break;
-    case 's':
+    case 'S':
       showSwarm = toggle(showSwarm);
       break;
     case 'e':
@@ -39,8 +38,48 @@ void keyPressed() {
     case '-':
       updateSpeed(-1);
       break;
+    case 'c':
+      // enter/leave calibration mode, where surfaces can be warped 
+      // and moved
+      ks.toggleCalibration();
+      break;
+    case 'l':
+      // loads the saved layout
+      ks.load();
+      break;
+    case 's':
+      // saves the layout
+      ks.save();
+      break;
+    case 'm':
+      // changes draw mode
+      if (drawMode < 1) {
+        drawMode++;
+      } else {
+        drawMode = 0;
+      }
+      break;
+    case 'g':
+      // changes debug mode
+      debug = toggle(debug);
+      break;
+    case 'd':
+      showData = toggle(showData);
+      println("showData = " + showData);
+      break;
+    case 'T':
+      // toggle topo
+      showTopo = toggle(showTopo);
+      break;
   }
-  
+}
+
+boolean toggle(boolean bool) {
+  if (bool) {
+    return false;
+  } else {
+    return true;
+  }
 }
 
 // variables for Scroll Bar
@@ -79,14 +118,5 @@ void mouseReleased() {
   } else {
     scrollX_0 = scrollX;
     scrollY_0 = scrollY;
-  }
-}
-  
-
-boolean toggle(boolean bool) {
-  if (bool) {
-    return false;
-  } else {
-    return true;
   }
 }

@@ -1,7 +1,28 @@
 boolean showData = true;
+boolean showTopo = true;
 
 // temp variable that holds coordinate location for a point to render
 PVector coord;
+
+void drawTable() {
+  // most likely, you'll want a black background to minimize
+  // bleeding around your projection area
+  background(0);
+  
+  // Renders the tableCanvas as either a projection map or on-screen 
+  switch (drawMode) {
+    case 0: // On-Screen Rendering
+      image(tableCanvas, 0, (height-tableCanvas.height)/2, tableCanvas.width, tableCanvas.height);
+      break;
+    case 1: // Projection-Mapping Rendering
+      // render the scene, transformed using the corner pin surface
+      for (int i=0; i<surface.length; i++) {
+        chopScreen(i);
+        surface[i].render(offscreen);
+      }
+      break;
+  }
+}
 
 void drawTableCanvas() {
   
@@ -23,8 +44,10 @@ void drawTableCanvas() {
   
   
       //-----------BEGIN Drawing Topo Information Data--------------//
-      
-        drawTopo();
+        
+        if (showTopo) {
+          drawTopo();
+        }
     
       //-----------END Drawing Topo Information Data---------------//
 

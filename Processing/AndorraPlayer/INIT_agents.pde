@@ -24,7 +24,7 @@ float adjust;
 
 HeatMap traces;
 
-void init(int u, int v) {
+void initAgents(int u, int v) {
   
   maxAgents = 1000;
   
@@ -81,7 +81,8 @@ void placeObstacles(boolean place) {
 
 void setObstacles(int u, int v) {
   
-  int l = 40;
+  float w = 0.75*float(canvasWidth)/(u+1);
+  float h = 0.75*float(canvasHeight)/(v+1);
   
   obPts = new PVector[4];
   for (int i=0; i<obPts.length; i++) {
@@ -92,12 +93,12 @@ void setObstacles(int u, int v) {
   for (int i=0; i<u; i++) {
     for (int j=0; j<v; j++) {
       
-      float x = float(canvasWidth)*i/(u+1)+l/2.0;
-      float y = float(canvasHeight)*j/(v+1)+l/2.0;
+      float x = float(canvasWidth)*i/(u+1)+w/2.0;
+      float y = float(canvasHeight)*j/(v+1)+h/2.0;
       obPts[0].x = x;     obPts[0].y = y;
-      obPts[1].x = x+l;   obPts[1].y = y;
-      obPts[2].x = x+l;   obPts[2].y = y+l;
-      obPts[3].x = x;     obPts[3].y = y+l;
+      obPts[1].x = x+w;   obPts[1].y = y;
+      obPts[2].x = x+w;   obPts[2].y = y+h;
+      obPts[3].x = x;     obPts[3].y = y+h;
       
       testWall[i*u + j] = new Obstacle(obPts);
     }
