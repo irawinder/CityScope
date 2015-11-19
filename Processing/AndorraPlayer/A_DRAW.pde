@@ -89,7 +89,7 @@ void drawTableCanvas() {
 void drawMargin() {
   
   // sets background, including Margin, to gray
-  tableCanvas.background(#555555);
+  tableCanvas.background(0);
   
   // Sets line color to white      
   tableCanvas.stroke(#FFFFFF);
