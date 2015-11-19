@@ -10,8 +10,13 @@ boolean debug = true;
 // Also set to false if developing on your machine in 1080p
 boolean use4k = false;
 
-boolean loadData = true;
+boolean loadData = false;
 
+// Draw Modes:
+// 0 = Render For Screen
+// 1 = Render for Projection-Mapping
+int drawMode = 0;
+    
 // !!!
 // Developers of this Code (Nina and Connie!) probably need only concern themselves with the 'data' and 'draw' tabs
 //
@@ -150,12 +155,6 @@ boolean loadData = true;
     float h_shift = (lg_height-topoHeightPix)/2;
      
     MercatorMap mercatorMap; // rectangular projection environment to convert latitude and longitude into pixel locations on the canvas
-
-// Draw Modes:
-// 0 = Render For Screen
-// 1 = Render for Projection-Mapping
-
-    int drawMode = 1;
     
     boolean sketchFullScreen() {
       return !debug;
@@ -248,7 +247,7 @@ void draw() {
     
     case 0: // On-Screen Rendering
     
-      image(tableCanvas, 0, 0, tableCanvas.width, tableCanvas.height);
+      image(tableCanvas, 0, (height-tableCanvas.height)/2, tableCanvas.width, tableCanvas.height);
       break;
       
     case 1: // Projection-Mapping Rendering
