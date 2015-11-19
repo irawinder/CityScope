@@ -1,8 +1,21 @@
-float time_0 = 0;
-float speed = 0.4444444;
 //Set to true if agents iterated by frame
 //Set to false if agents iterated by time (useful for choppy framerate; but may cause agents to "jump")
 boolean frameStep = true;
+
+float time_0 = 0;
+float speed = 0.4444444;
+
+void updateSpeed(int dir) {
+  switch (dir) {
+    case -1:
+      speed /= 1.5;
+      break;
+    case 1:
+      speed *= 1.5;
+      break;
+  }
+  println("Speed: " + speed);
+}
 
 class Agent {
   

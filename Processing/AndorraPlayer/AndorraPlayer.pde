@@ -2,14 +2,15 @@
 // For Andorra Data Stories
 // Ira Winder, MIT Media Lab, jiw@mit.edu, Fall 2015
 
-// Set to false when rendering on projectors; true when developing on your PC, etc
-// Setting to false opens a 4k canvas
-boolean debug = false;
+// set to true when running app to prevent fullScreen Mode
+// also enables some visualizations for debugging
+boolean debug = true;
 
 // Only set this to true if projectors display output is 4k
+// Also set to false if developing on your machine in 1080p
 boolean use4k = false;
 
-boolean loadData = false;
+boolean loadData = true;
 
 // !!!
 // Developers of this Code (Nina and Connie!) probably need only concern themselves with the 'data' and 'draw' tabs
@@ -170,18 +171,29 @@ boolean loadData = false;
 
 
 void setup() {
+  //size(2*projectorWidth, 2*projectorHeight, P3D);
   
   // Keystone will only work with P3D or OPENGL renderers, 
   // since it relies on texture mapping to deform
-  if (debug) {
-    size(projectorWidth, projectorHeight, P3D);
+  if (use4k) {
+    size(2*projectorWidth, 2*projectorHeight, P3D);
   } else {
-    if (use4k) {
-      size(2*projectorWidth, 2*projectorHeight, P3D);
-    } else {
-      size(projectorWidth, projectorHeight, P3D);
-    }
+    size(projectorWidth, projectorHeight, P3D);
   }
+  
+  if (!use4k) {
+    canvasWidth    /= 2;
+    canvasHeight   /= 2;
+    topoWidthPix   /= 2;
+    topoHeightPix  /= 2;
+    marginWidthPix /= 2;
+    lg_width       /= 2;
+    lg_height      /= 2;
+    w_shift        /= 2;
+    h_shift        /= 2;
+  }
+      
+  println(canvasWidth + ", " + canvasHeight);
   
   // object for holding projection-map canvas callibration information
   ks = new Keystone(this);
@@ -236,7 +248,7 @@ void draw() {
     
     case 0: // On-Screen Rendering
     
-      image(tableCanvas, 0, 0, tableCanvas.width/2, tableCanvas.height/2);
+      image(tableCanvas, 0, 0, tableCanvas.width, tableCanvas.height);
       break;
       
     case 1: // Projection-Mapping Rendering
@@ -317,6 +329,7 @@ void keyPressed() {
   case 'd':
     // changes debug mode
     showData = toggle(showData);
+    println("showData = " + showData);
     break;
   
   case 'f':
