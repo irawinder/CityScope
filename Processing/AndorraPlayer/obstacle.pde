@@ -26,7 +26,10 @@
   
 class Obstacle {
   
-  PVector[] vertices;
+  //PVector[] vertices;
+  
+  //vertices of a polygon obstacles
+  ArrayList<PVector> v;
   
   boolean active = true;
   
@@ -35,9 +38,6 @@ class Obstacle {
   
   
   int    polyCorners; //  =  how many corners the polygon has (no repeats)
-  float  polyX[]    ; //      =  horizontal coordinates of corners
-  float  polyY[]    ; //      =  vertical coordinates of corners
-  //float  x, y     ; //       =  point to be tested
   float minX, minY, maxX, maxY;
   
   // Graphics object to hold fill information
@@ -46,44 +46,43 @@ class Obstacle {
   //
   //  The following global arrays should be allocated before calling these functions:
   //
-  float  constant[]; // = storage for precalculated constants (same size as polyX)
-  float  multiple[]; // = storage for precalculated multipliers (same size as polyX)
+  ArrayList<Float>  constant; // = storage for precalculated constants (same size as polyX)
+  ArrayList<Float>  multiple; // = storage for precalculated multipliers (same size as polyX)
   
   Obstacle (PVector[] vert) {
     
-    vertices = new PVector[vert.length];
-    polyCorners = vertices.length;
-    polyX  = new float[polyCorners];
-    polyY  = new float[polyCorners];
-    constant = new float[polyCorners];
-    multiple = new float[polyCorners];
+    v = new ArrayList<PVector>();
+    
+    polyCorners = vert.length;
+    
+    constant = new ArrayList<Float>();
+    multiple = new ArrayList<Float>();
     
     drawOutline = true;
     drawFill = false;
     
     for (int i=0; i<vert.length; i++) {
-      vertices[i] = new PVector(vert[i].x, vert[i].y);
-      polyX[i] = vert[i].x;
-      polyY[i] = vert[i].y;
+      
+      v.add(new PVector(vert[i].x, vert[i].y));
       
       //Determins max extents of polygone
       if (i==0) {
-        minX = vert[i].x;
-        minY = vert[i].y;
-        maxX = vert[i].x;
-        maxY = vert[i].y;
+        minX = v.get(i).x;
+        minY = v.get(i).y;
+        maxX = v.get(i).x;
+        maxY = v.get(i).y;
       } else {
         
-        if (minX > vert[i].x) {
-          minX = vert[i].x;
-        } else if (maxX < vert[i].x) {
-          maxX = vert[i].x;
+        if (minX > v.get(i).x) {
+          minX = v.get(i).x;
+        } else if (maxX < v.get(i).x) {
+          maxX = v.get(i).x;
         }
         
-        if (minY > vert[i].y) {
-          minY = vert[i].y;
-        } else if (maxY < vert[i].y) {
-          maxY = vert[i].y;
+        if (minY > v.get(i).y) {
+          minY = v.get(i).y;
+        } else if (maxY < v.get(i).y) {
+          maxY = v.get(i).y;
         }
         
       }
@@ -108,12 +107,12 @@ class Obstacle {
     int   i, j=polyCorners-1 ;
   
     for(i=0; i<polyCorners; i++) {
-      if(polyY[j]==polyY[i]) {
-        constant[i]=polyX[i];
-        multiple[i]=0; 
+      if(v.get(j).y==v.get(i).y) {
+        constant.add(v.get(i).x);
+        multiple.add(0.0); 
       } else {
-        constant[i]=polyX[i]-(polyY[i]*polyX[j])/(polyY[j]-polyY[i])+(polyY[i]*polyX[i])/(polyY[j]-polyY[i]);
-        multiple[i]=(polyX[j]-polyX[i])/(polyY[j]-polyY[i]); 
+        constant.add(v.get(i).x-(v.get(i).y*v.get(j).x)/(v.get(j).y-v.get(i).y)+(v.get(i).y*v.get(i).x)/(v.get(j).y-v.get(i).y));
+        multiple.add((v.get(j).x-v.get(i).x)/(v.get(j).y-v.get(i).y)); 
       }
       j=i; 
     }
@@ -125,9 +124,9 @@ class Obstacle {
     boolean  oddNodes = false;
   
     for (i=0; i<polyCorners; i++) {
-      if ((polyY[i]< y && polyY[j]>=y
-      ||   polyY[j]< y && polyY[i]>=y)) {
-        oddNodes^=(y*multiple[i]+constant[i]<x); 
+      if ((v.get(i).y< y && v.get(j).y>=y
+      ||   v.get(j).y< y && v.get(i).y>=y)) {
+        oddNodes^=(y*multiple.get(i)+constant.get(i)<x); 
       }
       j=i; 
     }
@@ -145,10 +144,10 @@ class Obstacle {
     int bigger;
     
     // populates with first two points
-    vert[0] = new PVector(vertices[0].x,vertices[0].y);
-    vert[1] = new PVector(vertices[1].x,vertices[1].y);
-    dist[0] = abs(x-vertices[0].x) + abs(y-vertices[0].y);
-    dist[1] = abs(x-vertices[1].x) + abs(y-vertices[1].y);
+    vert[0] = new PVector(v.get(0).x,v.get(0).y);
+    vert[1] = new PVector(v.get(1).x,v.get(1).y);
+    dist[0] = abs(x-v.get(0).x) + abs(y-v.get(0).y);
+    dist[1] = abs(x-v.get(1).x) + abs(y-v.get(1).y);
     
     if (dist[0] > dist[1]) {
       bigger = 0;
@@ -157,14 +156,14 @@ class Obstacle {
     }
     
     for (int i=2; i<polyCorners; i++) {
-      dist_temp = abs(x-vertices[i].x) + abs(y-vertices[i].y);
+      dist_temp = abs(x-v.get(i).x) + abs(y-v.get(i).y);
       
       if (bigger == 1)
       
       if (dist_temp < dist[bigger]) {
         dist[bigger] = dist_temp;
-        vert[bigger].x = vertices[i].x;
-        vert[bigger].y = vertices[i].y;
+        vert[bigger].x = v.get(i).x;
+        vert[bigger].y = v.get(i).y;
         //println("vert0: " + vert[0].x + ", " + vert[0].y);
         //println("vert1: " + vert[1].x + ", " + vert[1].y);
       }
@@ -197,9 +196,9 @@ class Obstacle {
       for (int i=0; i<polyCorners; i++) {
         tableCanvas.stroke(stroke, alpha);
         if (i == polyCorners-1) {
-          tableCanvas.line(vertices[i].x, vertices[i].y, vertices[0].x, vertices[0].y);
+          tableCanvas.line(v.get(i).x, v.get(i).y, v.get(0).x, v.get(0).y);
         } else {
-          tableCanvas.line(vertices[i].x, vertices[i].y, vertices[i+1].x, vertices[i+1].y);
+          tableCanvas.line(v.get(i).x, v.get(i).y, v.get(i+1).x, v.get(i+1).y);
         }
       }
     }

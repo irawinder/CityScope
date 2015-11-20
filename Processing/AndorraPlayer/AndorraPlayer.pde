@@ -58,7 +58,7 @@
 
 // set to true when running app to prevent fullScreen Mode
 // also enables some visualizations for debugging
-boolean debug = false;
+boolean debug = true;
 
 // Only set this to true if projectors display output is 4k
 // Also set to false if developing on your machine in 1080p
@@ -69,7 +69,7 @@ boolean loadData = false;
 // Draw Modes:
 // 0 = Render For Screen
 // 1 = Render for Projection-Mapping
-int drawMode = 1;
+int drawMode = 0;
 
 void setup() {
   //size(2*projectorWidth, 2*projectorHeight, P3D);

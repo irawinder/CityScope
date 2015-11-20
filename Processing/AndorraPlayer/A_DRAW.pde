@@ -1,5 +1,5 @@
 boolean showData = true;
-boolean showTopo = true;
+boolean showTopo = false;
 
 // temp variable that holds coordinate location for a point to render
 PVector coord;
