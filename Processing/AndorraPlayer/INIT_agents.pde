@@ -73,7 +73,7 @@ void initAgents(int u, int v) {
 
 void placeObstacles(boolean place) {
   if (place) {
-    setObstacles(16, 16);
+    setObstacles(32, 16);
   } else {
     setObstacles(0, 0);
   }
@@ -100,7 +100,10 @@ void setObstacles(int u, int v) {
       obPts[2].x = x+w;   obPts[2].y = y+h;
       obPts[3].x = x;     obPts[3].y = y+h;
       
-      testWall[i*u + j] = new Obstacle(obPts);
+      testWall[i*v + j] = new Obstacle(obPts);
+      //testWall[i*v + j].addVertex(new PVector(x+w/2, y+h/2));
+      //testWall[i*v + j].removeVertex();
+      
     }
   }
 }

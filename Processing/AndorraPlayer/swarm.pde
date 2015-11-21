@@ -94,7 +94,8 @@ class Swarm {
         
         
         if (collision) {
-          v.applyBehaviors(swarm, new PVector(random(canvasWidth), random(canvasHeight)));
+          v.applyBehaviors(swarm, new PVector(v.location.x+random(-10, 10), v.location.y+random(-10, 10)));
+          //v.applyBehaviors(swarm, destination);
           v.update(int(agentLife/speed), sink);
           // draws as red if collision detected
           //v.display(#FF0000, 100);

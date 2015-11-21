@@ -56,7 +56,7 @@ class Agent {
     if (PVector.angleBetween(velocity, normalForce) > PVector.angleBetween(velocity, negNorm)) {
       normalForce.mult(-1);
     }
-    normalForce.setMag(2);
+    normalForce.setMag(1);
     applyForce(normalForce);
   }
   
