@@ -57,6 +57,11 @@
 //
 //    ObStacle Editor:
 //      'E': toggle editing
+//      'A': Add Obstacle
+//      'R': Remove Obstacle
+//      'SPACEBAR': Select next Obstacle to edit
+//      'CLICK' add vertex to selected obstacle
+//      'DELETE' remove vertex from selected obstacle
 
 
 // set to true when running app to prevent fullScreen Mode
