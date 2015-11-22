@@ -62,6 +62,9 @@
 //      'SPACEBAR': Select next Obstacle to edit
 //      'CLICK' add vertex to selected obstacle
 //      'DELETE' remove vertex from selected obstacle
+//       Arrow Keys - fine movement of seleted vertex in obstacle
+//      's' save CSV file of boundary locations (if editor is on)
+//      'l' load CSV file of boundary locations (if editor is on)
 
 
 // set to true when running app to prevent fullScreen Mode
@@ -84,6 +87,7 @@ void setup() {
   
   // Keystone will only work with P3D or OPENGL renderers, 
   // since it relies on texture mapping to deform
+  
   if (use4k) {
     size(2*projectorWidth, 2*projectorHeight, P3D);
   } else {

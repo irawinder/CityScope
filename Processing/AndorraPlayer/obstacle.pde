@@ -40,6 +40,7 @@ class Obstacle {
   
   
   int    polyCorners; //  =  how many corners the polygon has (no repeats)
+  int index;
   float minX, minY, maxX, maxY;
   
   // Graphics object to hold fill information
@@ -63,6 +64,7 @@ class Obstacle {
     drawFill = false;
     
     polyCorners = vert.length;
+    index = 0;
     
     for (int i=0; i<vert.length; i++) {
       v.add(new PVector(vert[i].x, vert[i].y));
@@ -78,7 +80,7 @@ class Obstacle {
   }
   
   Obstacle () {
-    
+
     v = new ArrayList<PVector>();
     l = new ArrayList<Float>();
     
@@ -89,6 +91,7 @@ class Obstacle {
     drawFill = false;
     
     polyCorners = 0;
+    index = 0;
       
     }
   
@@ -103,6 +106,30 @@ class Obstacle {
       } else {
         l.add(sqrt( sq(v.get(0).x-v.get(i).x) + sq(v.get(0).y-v.get(i).y)));
       }
+    }
+  }
+  
+  void nextIndex() {
+    index = afterIndex();
+  }
+  
+  int priorIndex() {
+    if (v.size() == 0) {
+      return 0;
+    } else if (index == 0) {
+      return v.size()-1;
+    } else {
+      return index - 1;
+    }
+  }
+  
+  int afterIndex() {
+    if (v.size() == 0) {
+      return 0;
+    } else if (index >= v.size()-1) {
+      return 0;
+    } else {
+      return index + 1;
     }
   }
   
@@ -164,17 +191,31 @@ class Obstacle {
   
   void addVertex(PVector vert) {
     polyCorners++;
-    v.add(vert);
+    if(index == v.size()-1) {
+      v.add(vert);
+    } else {
+      v.add(afterIndex(), vert);
+    }
+    index = afterIndex();
     if (polyCorners > 2) {
       calc_lengths();
       precalc_values();
     }
   }
   
+  void nudgeVertex(int x, int y) {
+   PVector vert = v.get(index);
+   vert.x += x;
+   vert.y += y;
+   
+   v.set(index, vert);
+  }
+  
   void removeVertex(){
     if (polyCorners > 0) {
       polyCorners--;
-      v.remove(polyCorners);
+      v.remove(index);
+      index = priorIndex();
       if (polyCorners > 2) {
         calc_lengths();
         precalc_values();
@@ -276,7 +317,7 @@ class Obstacle {
     
   }
   
-  void display(color stroke, int alpha) {
+  void display(color stroke, int alpha, boolean editing) {
     
     if (drawOutline && polyCorners > 1) {
       // Draws Polygon Ouline
@@ -287,6 +328,18 @@ class Obstacle {
         } else {
           tableCanvas.line(v.get(i).x, v.get(i).y, v.get(i+1).x, v.get(i+1).y);
         }
+      }
+    }
+    
+    if (editing) {
+      if (editObstacles && polyCorners > 0) {
+        tableCanvas.stroke(#00FF00, alpha);
+        tableCanvas.ellipse(v.get(index).x, v.get(index).y, 30, 30);
+      } if (editObstacles && polyCorners > 1) {
+        tableCanvas.line(v.get(index).x, v.get(index).y, v.get(afterIndex()).x, v.get(afterIndex()).y);
+        tableCanvas.noStroke();
+        tableCanvas.fill(stroke, alpha);
+        tableCanvas.ellipse(v.get(afterIndex()).x, v.get(afterIndex()).y, 30/2, 30/2);
       }
     }
     

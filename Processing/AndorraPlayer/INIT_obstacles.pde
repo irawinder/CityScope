@@ -9,7 +9,9 @@ void initObstacles() {
   testObstacles(testObstacles);
   boundaries = new ObstacleCourse();
   
-  boundaries.addObstacle();
+  boundaries.loadCourse("data/course.tsv");
+  
+  //boundaries.addObstacle();
   //boundaries.addVertex(new PVector(random(canvasWidth/2), random(canvasHeight/2)));
   //boundaries.addVertex(new PVector(random(canvasWidth/2, canvasWidth), random(canvasHeight/2)));
   //boundaries.addVertex(new PVector(random(canvasWidth/2, canvasWidth), random(canvasHeight/2, canvasHeight)));

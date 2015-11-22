@@ -17,7 +17,7 @@ void drawAgents() {
   
   if (showObstacles) {
     for (Obstacle o : testWall) {
-      o.display(#0000FF, 100);
+      o.display(#0000FF, 100, false);
     }
     boundaries.display(#00FF00, 100);
   }

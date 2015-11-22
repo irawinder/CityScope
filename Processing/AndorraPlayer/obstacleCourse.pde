@@ -18,12 +18,24 @@ class ObstacleCourse {
     }
   }
   
+  void nextVert() {
+    Obstacle o = course.get(index);
+    o.nextIndex();
+    course.set(index, o);
+  }
+  
   void addVertex(PVector vert) {
     if (course.size() == 0) {
       addObstacle();
     }
     Obstacle o = course.get(index);
     o.addVertex(vert);
+    course.set(index, o);
+  }
+  
+  void nudgeVertex(int x, int y) {
+    Obstacle o = course.get(index);
+    o.nudgeVertex(x, y);
     course.set(index, o);
   }
   
@@ -68,17 +80,69 @@ class ObstacleCourse {
   }
   
   void display(color stroke, int alpha) {
-    
     for (int i=0; i<course.size(); i++) {
-      if (i == index) {
-        strokeWeight(2);
-        course.get(i).display(#FFFF00, alpha);
-        strokeWeight(1);
+      if (i == index && editObstacles) {
+        tableCanvas.strokeWeight(2);
+        course.get(i).display(#FFFF00, alpha, true);
+        tableCanvas.strokeWeight(1);
       } else {
-        course.get(i).display(stroke, alpha);
+        course.get(i).display(stroke, alpha, false);
+      }
+    }
+  }
+  
+  void saveCourse() {
+    Table courseTSV = new Table();
+    courseTSV.addColumn("obstacle");
+    courseTSV.addColumn("vertX");
+    courseTSV.addColumn("vertY");
+  
+    for (int i=0; i<course.size(); i++) {
+      for (int j=0; j<course.get(i).polyCorners; j++) {
+        TableRow newRow = courseTSV.addRow();
+        newRow.setInt("obstacle", i);
+        newRow.setFloat("vertX", course.get(i).v.get(j).x);
+        newRow.setFloat("vertY", course.get(i).v.get(j).y);
       }
     }
     
+    saveTable(courseTSV, "data/course.tsv");
+    
+    println("ObstacleCourse data saved to 'data/course.tsv'");
+    
   }
   
+  // filename = "data/course.tsv"
+  void loadCourse(String filename) {
+    
+    Table courseTSV;
+    
+    try {
+      courseTSV = loadTable(filename, "header");
+      println("Obstacle Course Loaded from " + filename);
+    } catch(RuntimeException e){
+      courseTSV = new Table();
+      println(filename + " incomplete file");
+    }
+      
+    int obstacle;
+    
+    if (courseTSV.getRowCount() > 0) {
+      
+      while (numObstacles > 0) {
+        removeObstacle();
+      }
+      
+      obstacle = -1;
+      
+      for (int i=0; i<courseTSV.getRowCount(); i++) {
+        if (obstacle != courseTSV.getInt(i, "obstacle")) {
+          obstacle = courseTSV.getInt(i, "obstacle");
+          addObstacle();
+        }
+        addVertex(new PVector(courseTSV.getFloat(i, "vertX"), courseTSV.getFloat(i, "vertY")));
+      }
+      
+    }
+  }
 }

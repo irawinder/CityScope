@@ -44,12 +44,20 @@ void keyPressed() {
       ks.toggleCalibration();
       break;
     case 'l':
-      // loads the saved layout
-      ks.load();
+      if (editObstacles) {
+        boundaries.loadCourse("data/course.tsv");
+      } else {
+        // loads the saved layout
+        ks.load();
+      }
       break;
     case 's':
-      // saves the layout
-      ks.save();
+      if (editObstacles) {
+        boundaries.saveCourse();
+      } else {
+        // saves the layout
+        ks.save();
+      }
       break;
     case 'm':
       // changes draw mode
@@ -81,21 +89,54 @@ void keyPressed() {
       println("editObstacles = " + editObstacles);
       break;
     case '':
-      boundaries.removeVertex();
-      println("deleted");
+      if (editObstacles) {
+        boundaries.removeVertex();
+      }
       break;
     case 'A':
-      boundaries.addObstacle();
+      if (editObstacles) {
+        boundaries.addObstacle();
+      }
       break;
     case 'R':
-      boundaries.removeObstacle();
+      if (editObstacles) {
+        boundaries.removeObstacle();
+      }
       break;
     case ' ':
-      boundaries.nextIndex();
+      if (editObstacles) {
+        boundaries.nextIndex();
+      }
+      break;
+    case 'N':
+      if (editObstacles) {
+        boundaries.nextVert();
+      }
       break;
   }
   
-  println(key);
+  if (key == CODED) { 
+    if (keyCode == LEFT) {
+      if (editObstacles) {
+        boundaries.nudgeVertex(-1, 0);
+      }
+    }  
+    if (keyCode == RIGHT) {
+      if (editObstacles) {
+        boundaries.nudgeVertex(+1, 0);
+      }
+    }  
+    if (keyCode == DOWN) {
+      if (editObstacles) {
+        boundaries.nudgeVertex(0, +1);
+      }
+    }  
+    if (keyCode == UP) {
+      if (editObstacles) {
+        boundaries.nudgeVertex(0, -1);
+      }
+    }
+  }
 }
 
 boolean toggle(boolean bool) {
