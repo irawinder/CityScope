@@ -128,6 +128,8 @@
 //  m.read();
 //}
 
+  boolean showFrameRate = false;
+  
 void initPlayer() {
   if (!use4k) {
     canvasWidth    /= 2;

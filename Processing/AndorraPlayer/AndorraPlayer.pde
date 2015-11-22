@@ -54,6 +54,9 @@
 //      case 'F': Toggle Frame-based or Time-based acceleration
 //      case '+': Increase Agent Speed
 //      case '-': Decrease Agent Speed
+//
+//    ObStacle Editor:
+//      'E': toggle editing
 
 
 // set to true when running app to prevent fullScreen Mode
@@ -84,6 +87,7 @@ void setup() {
   
   initPlayer();
   initAgents(0, 0);
+  initObstacles();
   
 }
 
@@ -92,6 +96,7 @@ void draw() {
   // Renders frame onto 'tableCanvas' PGraphic
   drawTableCanvas();
   
+  // Renders Agent 'dots' and corresponding obstacles and heatmaps
   drawAgents();
   
   // draws Table Canvas onto projection map or on screen

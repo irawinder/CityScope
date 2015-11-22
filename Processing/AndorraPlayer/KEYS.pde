@@ -22,8 +22,8 @@ void keyPressed() {
       showInfo = toggle(showInfo);
       break;
     case 'p':
-      placeObstacles = toggle(placeObstacles);
-      placeObstacles(placeObstacles);
+      testObstacles = toggle(testObstacles);
+      testObstacles(testObstacles);
       break;
     case 't':
       showTraces = toggle(showTraces);
@@ -64,6 +64,10 @@ void keyPressed() {
       debug = toggle(debug);
       break;
     case 'd':
+      if (!showData && !loadData) {
+        loadData = toggle(loadData);
+        initData();
+      }
       showData = toggle(showData);
       println("showData = " + showData);
       break;
@@ -71,7 +75,27 @@ void keyPressed() {
       // toggle topo
       showTopo = toggle(showTopo);
       break;
+    case 'E':
+      // toggle obstacles editor
+      editObstacles = toggle(editObstacles);
+      println("editObstacles = " + editObstacles);
+      break;
+    case '':
+      boundaries.removeVertex();
+      println("deleted");
+      break;
+    case 'A':
+      boundaries.addObstacle();
+      break;
+    case 'R':
+      boundaries.removeObstacle();
+      break;
+    case ' ':
+      boundaries.nextIndex();
+      break;
   }
+  
+  println(key);
 }
 
 boolean toggle(boolean bool) {
@@ -118,5 +142,11 @@ void mouseReleased() {
   } else {
     scrollX_0 = scrollX;
     scrollY_0 = scrollY;
+  }
+}
+
+void mouseClicked() {
+  if (editObstacles) {
+    boundaries.addVertex(new PVector(mouseX, mouseY));
   }
 }

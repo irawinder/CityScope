@@ -81,16 +81,18 @@ class Swarm {
         
         boolean collision = false;
         
+        // Tests for Collision with Test Objects
         for (int i=0; i<testWall.length; i++) {
-          
           if (testWall[i].pointInPolygon(v.location.x, v.location.y) ) {
             collision = true;
             //v.reverseCourse();
             v.roll(testWall[i].normalOfEdge(v.location.x, v.location.y, v.velocity.x, v.velocity.y));
             break;
           }
-          
         }
+        
+        // Tests for Collision with obstacleCourse boundaries
+        collision = boundaries.testForCollision(v);
         
         
         if (collision) {

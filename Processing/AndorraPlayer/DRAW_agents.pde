@@ -19,11 +19,12 @@ void drawAgents() {
     for (Obstacle o : testWall) {
       o.display(#0000FF, 100);
     }
+    boundaries.display(#00FF00, 100);
   }
   
   numAgents = 0;
   
-  for (Swarm s : testSwarm) {
+  for (Swarm s : swarms) {
     s.update();
     numAgents += s.swarm.size();
     
@@ -49,8 +50,8 @@ void drawAgents() {
   
   traces.decay();
   
-  for(int i=0; i<testSwarm.length; i++) {
-    swarmSize[i] = testSwarm[i].swarm.size();
+  for(int i=0; i<swarms.length; i++) {
+    swarmSize[i] = swarms[i].swarm.size();
   }
   
 //  if (frameRate < 45) {
@@ -67,7 +68,7 @@ void drawAgents() {
       // Picks a random agent from one of the swarms.  Larger swarms are more likely to be selected
       rand = int(random(0, numAgents));
       counter = 0;
-      for (int i=0; i<testSwarm.length; i++) {
+      for (int i=0; i<swarms.length; i++) {
         counter += swarmSize[i];
         if (rand < counter) {
           rand = i;
@@ -77,8 +78,8 @@ void drawAgents() {
       }
       
       //kills a random agent in the selected swarm
-      if (testSwarm[rand].swarm.size() > 0) {
-        testSwarm[rand].swarm.get(int(random(testSwarm[rand].swarm.size()))).finished = true;
+      if (swarms[rand].swarm.size() > 0) {
+        swarms[rand].swarm.get(int(random(swarms[rand].swarm.size()))).finished = true;
         numAgents--;
       }
     }
@@ -100,20 +101,20 @@ void drawAgents() {
     // Background rectangle
     tableCanvas.fill(#555555, 50);
     tableCanvas.noStroke();
-    tableCanvas.rect(0, 0, 32*textSize, (testSwarm.length+4)*1.5*textSize, textSize, textSize, textSize, textSize);
+    tableCanvas.rect(0, 0, 32*textSize, (swarms.length+4)*1.5*textSize, textSize, textSize, textSize, textSize);
     
     // Text
     tableCanvas.translate(2*textSize, 2*textSize);
-    for (int i=0; i<testSwarm.length; i++) {
-      tableCanvas.fill(testSwarm[i].fill);
+    for (int i=0; i<swarms.length; i++) {
+      tableCanvas.fill(swarms[i].fill);
       tableCanvas.textSize(textSize);
       tableCanvas.text("Swarm[" + i + "]: ", 0,0);
-      tableCanvas.text("Weight: " + int(1000.0/testSwarm[i].agentDelay) + "/sec", 10*textSize,0);
-      tableCanvas.text("Size: " + testSwarm[i].swarm.size() + " agents", 20*textSize,0);
+      tableCanvas.text("Weight: " + int(1000.0/swarms[i].agentDelay) + "/sec", 10*textSize,0);
+      tableCanvas.text("Size: " + swarms[i].swarm.size() + " agents", 20*textSize,0);
       tableCanvas.translate(0, 1.5*textSize);
     }
     tableCanvas.translate(0, 1.5*textSize);
-    tableCanvas.text("Total Swarms: " + testSwarm.length,0,0);
+    tableCanvas.text("Total Swarms: " + swarms.length,0,0);
     tableCanvas.translate(0, 1.5*textSize);
     tableCanvas.text("Total Agents: " + numAgents,0,0);
     tableCanvas.popMatrix();

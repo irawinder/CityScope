@@ -56,7 +56,31 @@ class Obstacle {
     v = new ArrayList<PVector>();
     l = new ArrayList<Float>();
     
+    constant = new ArrayList<Float>();
+    multiple = new ArrayList<Float>();
+    
+    drawOutline = true;
+    drawFill = false;
+    
     polyCorners = vert.length;
+    
+    for (int i=0; i<vert.length; i++) {
+      v.add(new PVector(vert[i].x, vert[i].y));
+    }
+    
+    if (polyCorners > 2) {
+      fillGraphic(v);
+    
+      calc_lengths();
+      precalc_values();
+    }
+    
+  }
+  
+  Obstacle () {
+    
+    v = new ArrayList<PVector>();
+    l = new ArrayList<Float>();
     
     constant = new ArrayList<Float>();
     multiple = new ArrayList<Float>();
@@ -64,11 +88,28 @@ class Obstacle {
     drawOutline = true;
     drawFill = false;
     
-    for (int i=0; i<vert.length; i++) {
+    polyCorners = 0;
       
-      v.add(new PVector(vert[i].x, vert[i].y));
+    }
+  
+  void calc_lengths() {
+    
+    l.clear();
+    
+    // Calculates the length of each edge in pixels
+    for (int i=0; i<v.size(); i++) {
+      if (i < v.size()-1 ){
+        l.add(sqrt( sq(v.get(i+1).x-v.get(i).x) + sq(v.get(i+1).y-v.get(i).y)));
+      } else {
+        l.add(sqrt( sq(v.get(0).x-v.get(i).x) + sq(v.get(0).y-v.get(i).y)));
+      }
+    }
+  }
+  
+  void fillGraphic(ArrayList<PVector> v) {
+    for (int i=0; i<v.size(); i++) {
       
-      //Determins max extents of polygone
+      //Determins max extents of polygon
       if (i==0) {
         minX = v.get(i).x;
         minY = v.get(i).y;
@@ -100,25 +141,6 @@ class Obstacle {
       createGraphics(1,1);
       println("object has no area");
     }
-    
-    calc_lengths();
-    
-    precalc_values();
-    
-  }
-  
-  void calc_lengths() {
-    
-    l.clear();
-    
-    // Calculates the length of each edge in pixels
-    for (int i=0; i<v.size(); i++) {
-      if (i < v.size()-1 ){
-        l.add(sqrt( sq(v.get(i+1).x-v.get(i).x) + sq(v.get(i+1).y-v.get(i).y)));
-      } else {
-        l.add(sqrt( sq(v.get(0).x-v.get(i).x) + sq(v.get(0).y-v.get(i).y)));
-      }
-    }
   }
   
   void precalc_values() {
@@ -143,160 +165,120 @@ class Obstacle {
   void addVertex(PVector vert) {
     polyCorners++;
     v.add(vert);
-    calc_lengths();
-    precalc_values();
+    if (polyCorners > 2) {
+      calc_lengths();
+      precalc_values();
+    }
   }
   
   void removeVertex(){
-    polyCorners--;
-    v.remove(polyCorners);
-    calc_lengths();
-    precalc_values();
+    if (polyCorners > 0) {
+      polyCorners--;
+      v.remove(polyCorners);
+      if (polyCorners > 2) {
+        calc_lengths();
+        precalc_values();
+      }
+    }
   }
   
   boolean pointInPolygon(float x, float y) {
-  
-    int   i, j = polyCorners-1;
-    boolean  oddNodes = false;
-  
-    for (i=0; i<polyCorners; i++) {
-      if ((v.get(i).y< y && v.get(j).y>=y
-      ||   v.get(j).y< y && v.get(i).y>=y)) {
-        oddNodes^=(y*multiple.get(i)+constant.get(i)<x); 
+    
+    if (polyCorners > 2) {
+      int   i, j = polyCorners-1;
+      boolean  oddNodes = false;
+    
+      for (i=0; i<polyCorners; i++) {
+        if ((v.get(i).y< y && v.get(j).y>=y
+        ||   v.get(j).y< y && v.get(i).y>=y)) {
+          oddNodes^=(y*multiple.get(i)+constant.get(i)<x); 
+        }
+        j=i; 
       }
-      j=i; 
+    
+      return oddNodes; 
+    } else {
+      return false;
     }
-  
-    return oddNodes; 
   
   }
   
   PVector normalOfEdge(float x, float y, float vX, float vY) {
-    
-    PVector normal;
-    PVector tangent;
-    
-    //approx length into which we divide obstacle edges
-    int segmentLength = 20;
-    float minDist = canvasWidth + canvasHeight;
-    int closestEdge = 0;
-    float x_seg, y_seg;
-    
-    float d;
-    float[] dist = new float[polyCorners];
-    
-    for (int i=0; i<polyCorners; i++) {
-        
-      float seg = l.get(i)/segmentLength;
-      dist[i] = canvasWidth + canvasHeight;
-      for (int j=0; j<seg; j++) {
-        if (i < polyCorners-1) {
-          x_seg = v.get(i).x + float(j)/seg*(v.get(i+1).x-v.get(i).x);
-          y_seg = v.get(i).y + float(j)/seg*(v.get(i+1).y-v.get(i).y);
-          //tableCanvas.ellipse(x_seg, y_seg, 10, 10);
-        } else {
-          x_seg = v.get(i).x + j/seg*(v.get(0).x-v.get(i).x);
-          y_seg = v.get(i).y + j/seg*(v.get(0).y-v.get(i).y);
-          //tableCanvas.ellipse(x_seg, y_seg, 10, 10);
+    if (polyCorners > 2) {
+      PVector normal;
+      PVector tangent;
+      
+      //approx length into which we divide obstacle edges
+      int segmentLength = 20;
+      float minDist = canvasWidth + canvasHeight;
+      int closestEdge = 0;
+      float x_seg, y_seg;
+      
+      float d;
+      float[] dist = new float[polyCorners];
+      
+      for (int i=0; i<polyCorners; i++) {
+          
+        float seg = l.get(i)/segmentLength;
+        dist[i] = canvasWidth + canvasHeight;
+        for (int j=0; j<seg; j++) {
+          if (i < polyCorners-1) {
+            x_seg = v.get(i).x + float(j)/seg*(v.get(i+1).x-v.get(i).x);
+            y_seg = v.get(i).y + float(j)/seg*(v.get(i+1).y-v.get(i).y);
+            //tableCanvas.ellipse(x_seg, y_seg, 10, 10);
+          } else {
+            x_seg = v.get(i).x + j/seg*(v.get(0).x-v.get(i).x);
+            y_seg = v.get(i).y + j/seg*(v.get(0).y-v.get(i).y);
+            //tableCanvas.ellipse(x_seg, y_seg, 10, 10);
+          }
+          d = sqrt( sq(x_seg-x) + sq(y_seg-y));
+          if (dist[i] > d) {
+            dist[i] = d;
+          } 
         }
-        d = sqrt( sq(x_seg-x) + sq(y_seg-y));
-        if (dist[i] > d) {
-          dist[i] = d;
-        } 
+        
+        // Sets 
+        if (minDist > dist[i]) {
+          minDist = dist[i];
+          closestEdge = i;
+        }
       }
       
-      // Sets 
-      if (minDist > dist[i]) {
-        minDist = dist[i];
-        closestEdge = i;
-      }
-    }
-    
-    tableCanvas.stroke(#FFFFFF);
-    tableCanvas.strokeWeight(4);
-    
-    if (closestEdge < polyCorners - 1) {
-      tangent = new PVector(v.get(closestEdge+1).x - v.get(closestEdge).x, v.get(closestEdge+1).y - v.get(closestEdge).y);
-      //tableCanvas.line(v.get(closestEdge+1).x, v.get(closestEdge+1).y, v.get(closestEdge).x, v.get(closestEdge).y);
-    } else {
-      tangent = new PVector(v.get(0).x - v.get(closestEdge).x, v.get(0).y - v.get(closestEdge).y);
-      //tableCanvas.line(v.get(0).x, v.get(0).y, v.get(closestEdge).x, v.get(closestEdge).y);
-    }
-    
-//    normal = new PVector(tangent.x, tangent.y);
-//    
-//    if ( (vX*vY < 0 && tangent.x*tangent.y > 0) || 
-//         (vX*vY > 0 && tangent.x*tangent.y < 0)     ) {
-//      normal.rotate(-PI/2);
-//    } else {
-//      normal.rotate(PI/2);
-//    }
-//    
-//    
-//    normal.mult(0.5);
-//    
-//    tangent.add(normal);
-    
-    return tangent;
-    
-    /* It turns out this is a really terrible algorithm for determining the edge of collision.  don't ask.
-    
-    PVector[] vert = new PVector[2];
-    PVector normal;
-    float[] dist = new float[2];
-    float dist_temp;
-    int bigger;
-    
-    // populates with first two points
-    vert[0] = new PVector(v.get(0).x,v.get(0).y);
-    vert[1] = new PVector(v.get(1).x,v.get(1).y);
-    dist[0] = abs(x-v.get(0).x) + abs(y-v.get(0).y);
-    dist[1] = abs(x-v.get(1).x) + abs(y-v.get(1).y);
-    
-    if (dist[0] > dist[1]) {
-      bigger = 0;
-    } else {
-      bigger = 1;
-    }
-    
-    for (int i=2; i<polyCorners; i++) {
-      dist_temp = abs(x-v.get(i).x) + abs(y-v.get(i).y);
+      tableCanvas.stroke(#FFFFFF);
+      tableCanvas.strokeWeight(4);
       
-      if (bigger == 1)
-      
-      if (dist_temp < dist[bigger]) {
-        dist[bigger] = dist_temp;
-        vert[bigger].x = v.get(i).x;
-        vert[bigger].y = v.get(i).y;
-        //println("vert0: " + vert[0].x + ", " + vert[0].y);
-        //println("vert1: " + vert[1].x + ", " + vert[1].y);
-      }
-      
-      if (dist[0] > dist[1]) {
-        bigger = 0;
+      if (closestEdge < polyCorners - 1) {
+        tangent = new PVector(v.get(closestEdge+1).x - v.get(closestEdge).x, v.get(closestEdge+1).y - v.get(closestEdge).y);
+        //tableCanvas.line(v.get(closestEdge+1).x, v.get(closestEdge+1).y, v.get(closestEdge).x, v.get(closestEdge).y);
       } else {
-        bigger = 1;
+        tangent = new PVector(v.get(0).x - v.get(closestEdge).x, v.get(0).y - v.get(closestEdge).y);
+        //tableCanvas.line(v.get(0).x, v.get(0).y, v.get(closestEdge).x, v.get(closestEdge).y);
       }
+      
+  //    normal = new PVector(tangent.x, tangent.y);
+  //    
+  //    if ( (vX*vY < 0 && tangent.x*tangent.y > 0) || 
+  //         (vX*vY > 0 && tangent.x*tangent.y < 0)     ) {
+  //      normal.rotate(-PI/2);
+  //    } else {
+  //      normal.rotate(PI/2);
+  //    }
+  //    
+  //    
+  //    normal.mult(0.5);
+  //    
+  //    tangent.add(normal);
+      
+      return tangent;
+    } else {
+      return new PVector(0,0);
     }
-    
-    normal = new PVector(vert[0].x-vert[1].x, vert[0].y-vert[1].y);
-    
-    
-//    if ( (vX*vY < 0 && normal.x*normal.y > 0) || 
-//         (vX*vY > 0 && normal.x*normal.y < 0)     ) {
-//      normal.rotate(PI);
-//    } else {
-//      normal.rotate(-PI);
-//    }
-    
-    return normal;
-    */
     
   }
   
   void display(color stroke, int alpha) {
     
-    if (drawOutline) {
+    if (drawOutline && polyCorners > 1) {
       // Draws Polygon Ouline
       for (int i=0; i<polyCorners; i++) {
         tableCanvas.stroke(stroke, alpha);
@@ -308,7 +290,7 @@ class Obstacle {
       }
     }
     
-    if (drawFill) {
+    if (drawFill && polyCorners > 1) {
       // Draws Polygon fill
       fill.beginDraw();
       

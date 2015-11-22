@@ -1,4 +1,4 @@
-boolean showData = true;
+boolean showData = false;
 boolean showTopo = false;
 
 // temp variable that holds coordinate location for a point to render
@@ -12,7 +12,8 @@ void drawTable() {
   // Renders the tableCanvas as either a projection map or on-screen 
   switch (drawMode) {
     case 0: // On-Screen Rendering
-      image(tableCanvas, 0, (height-tableCanvas.height)/2, tableCanvas.width, tableCanvas.height);
+      //image(tableCanvas, 0, (height-tableCanvas.height)/2, tableCanvas.width, tableCanvas.height);
+      image(tableCanvas, 0, 0, tableCanvas.width, tableCanvas.height);
       break;
     case 1: // Projection-Mapping Rendering
       // render the scene, transformed using the corner pin surface
@@ -93,6 +94,7 @@ void drawMargin() {
   
   // Sets line color to white      
   tableCanvas.stroke(#FFFFFF);
+  tableCanvas.strokeWeight(1);
   
   // Makes rectangles transparent
   tableCanvas.noFill();
