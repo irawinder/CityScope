@@ -4,6 +4,9 @@ boolean showTopo = false;
 // temp variable that holds coordinate location for a point to render
 PVector coord;
 
+// temp variable that holds coordinate locations for a line to render
+PVector[] line = new PVector[2];
+
 void drawTable() {
   // most likely, you'll want a black background to minimize
   // bleeding around your projection area
@@ -51,12 +54,6 @@ void drawTableCanvas() {
         }
     
       //-----------END Drawing Topo Information Data---------------//
-
-
-
-
-  // Changes coordinate system for geolocated data
-  setMercator(topoWidthPix, topoHeightPix);
   
   
   
@@ -68,12 +65,16 @@ void drawTableCanvas() {
             drawData();
           }
         }
+        
+        PVector geo;
+        
+        geo = mercatorMap.getGeo(new PVector( mouseX-marginWidthPix, mouseY-marginWidthPix));
+        println(geo.x + ", " + geo.y);
+        coord = mercatorMap.getScreenLocation(geo);
+        tableCanvas.fill(#00FF00);
+        tableCanvas.ellipse(coord.x, coord.y, 10, 10);
       
       //-----------End Drawing Geolocated Data---------------//
-  
-  
-  // Reverses coordinate system for geolocated data
-  unsetMercator(topoWidthPix, topoHeightPix);
   
   // Reverses margin offset
   tableCanvas.translate(-marginWidthPix, -marginWidthPix);
@@ -176,34 +177,26 @@ void drawData() {
     
     //Top (White)
     tableCanvas.stroke(#FFFFFF); //White
-    tableCanvas.line(mercatorMap.getScreenX(UpperLeft.y), mercatorMap.getScreenY(UpperLeft.x), mercatorMap.getScreenX(UpperRight.y), mercatorMap.getScreenY(UpperRight.x));
+    line[0] = mercatorMap.getScreenLocation(UpperLeft);
+    line[1] = mercatorMap.getScreenLocation(UpperRight);
+    tableCanvas.line(line[0].x, line[0].y, line[1].x, line[1].y);
     //Right (Red)
     tableCanvas.stroke(#FF0000); //Red
-    tableCanvas.line(mercatorMap.getScreenX(UpperRight.y), mercatorMap.getScreenY(UpperRight.x), mercatorMap.getScreenX(LowerRight.y), mercatorMap.getScreenY(LowerRight.x));
+    line[0] = mercatorMap.getScreenLocation(UpperRight);
+    line[1] = mercatorMap.getScreenLocation(LowerRight);
+    tableCanvas.line(line[0].x, line[0].y, line[1].x, line[1].y);
     //Bottom (Green)
     tableCanvas.stroke(#00FF00); //Green
-    tableCanvas.line(mercatorMap.getScreenX(LowerRight.y), mercatorMap.getScreenY(LowerRight.x), mercatorMap.getScreenX(LowerLeft.y), mercatorMap.getScreenY(LowerLeft.x));
+    line[0] = mercatorMap.getScreenLocation(LowerRight);
+    line[1] = mercatorMap.getScreenLocation(LowerLeft);
+    tableCanvas.line(line[0].x, line[0].y, line[1].x, line[1].y);
     //Left (Blue)
     tableCanvas.stroke(#0000FF); //Blue
-    tableCanvas.line(mercatorMap.getScreenX(UpperLeft.y), mercatorMap.getScreenY(UpperLeft.x), mercatorMap.getScreenX(LowerLeft.y), mercatorMap.getScreenY(LowerLeft.x));
+    line[0] = mercatorMap.getScreenLocation(UpperLeft);
+    line[1] = mercatorMap.getScreenLocation(LowerLeft);
+    tableCanvas.line(line[0].x, line[0].y, line[1].x, line[1].y);
   
     tableCanvas.strokeWeight(1);
   }
   
-}
-
-public void setMercator(int w, int h) { //Run this function before drawing latitude and longitude-based data
-  //Mercator Coordinates
-  tableCanvas.translate(w/2, h/2);
-  tableCanvas.rotate(rotation*TWO_PI/360);
-  tableCanvas.translate(-w/2, -h/2);
-  tableCanvas.translate(-w_shift, -h_shift);
-}
-
-public void unsetMercator(int w, int h) { //Run this function after drawing latitude longitude data, before drawing text, legends, etc
-  //Canvas Coordinates
-  tableCanvas.translate(w/2, h/2);
-  tableCanvas.rotate(-rotation*TWO_PI/360);
-  tableCanvas.translate(-w/2, -h/2);
-  tableCanvas.translate(w_shift, h_shift);
 }

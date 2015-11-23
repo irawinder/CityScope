@@ -103,20 +103,12 @@
     PVector LowerRight = new PVector(42.508161, 1.549798);
     PVector LowerLeft = new PVector(42.496164, 1.515728);
     
-    //Amount of degrees rectangular canvas is rotated from horizontal latitude axis.
+    //Amount of degrees rectangular canvas is rotated from horizontal latitude axis
     float rotation = 25.5000; //degrees
-    
     float lat1 = 42.517066; // Uppermost Latitude on canvas
     float lat2 = 42.496164; // Lowermost Latitude on canvas
-    float lon1 = 1.509961; // Uppermost Longitude on canvas
-    float lon2 = 1.549798; // Lowermost Longitude on canvas
-    
-    // Dimensions for larger or equal-size canvas, perpendicular to north, that bounds and intersects 4 corners of original 
-    float lg_width = topoHeightPix*sin(abs(rotation)*2*PI/360) + topoWidthPix*cos(abs(rotation)*2*PI/360);
-    float lg_height = topoWidthPix*sin(abs(rotation)*2*PI/360) + topoHeightPix*cos(abs(rotation)*2*PI/360);
-    
-    float w_shift = (lg_width-topoWidthPix)/2;
-    float h_shift = (lg_height-topoHeightPix)/2;
+    float lon1 = 1.509961; // Leftmost Longitude on canvas
+    float lon2 = 1.549798; // Rightmost Longitude on canvas
      
     MercatorMap mercatorMap; // rectangular projection environment to convert latitude and longitude into pixel locations on the canvas
     
@@ -140,10 +132,6 @@ void initPlayer() {
     topoWidthPix   /= 2;
     topoHeightPix  /= 2;
     marginWidthPix /= 2;
-    lg_width       /= 2;
-    lg_height      /= 2;
-    w_shift        /= 2;
-    h_shift        /= 2;
   }
   
   // object for holding projection-map canvas callibration information
@@ -170,7 +158,8 @@ void initPlayer() {
   topo = loadImage("crop.png");
   
   // Creates projection environment to convert latitude and longitude into pixel locations on the canvas
-  mercatorMap = new MercatorMap(lg_width, lg_height, lat1, lat2, lon1, lon2);
+  //mercatorMap = new MercatorMap(lg_width, lg_height, lat1, lat2, lon1, lon2, rotation);
+  mercatorMap = new MercatorMap(topoWidthPix, topoHeightPix, lat1, lat2, lon1, lon2, rotation);
   
   // loads the saved layout
   ks.load();

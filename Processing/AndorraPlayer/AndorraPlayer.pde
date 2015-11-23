@@ -106,14 +106,15 @@ void draw() {
   drawTableCanvas();
   
   // Renders Agent 'dots' and corresponding obstacles and heatmaps
-  drawAgents();
-  
+  drawAgents(); 
+
   // draws Table Canvas onto projection map or on screen
   drawTable();
 
   if (showFrameRate) {
     println(frameRate);
   }
+  
 }
 
 void chopScreen(int projector) {
