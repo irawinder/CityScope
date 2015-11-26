@@ -1,4 +1,5 @@
 //----mouse interaction and random colors---
+//move mouse around and draw ellipses as you go 
 void setup(){
   size(1000, 1000);
 }
