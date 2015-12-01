@@ -111,7 +111,7 @@ void sendData() {
     dataToSend += "\n" ;
     */
     
-    saveStrings("data.txt", split(dataToSend, "\n"));
+    //saveStrings("data.txt", split(dataToSend, "\n"));
     //udp.send( dataToSend, "18.85.55.241", 6152 );
     udp.send( dataToSend, "localhost", 6152 );
     udp.send( dataToSend, "localhost", 6111 ); //YZ
