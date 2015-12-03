@@ -96,7 +96,7 @@ void drawAgents() {
         
       }
     }
-    adjust /= 0.9;
+    adjust /= 0.99;
   } else {
     adjust *= 0.99;
   }

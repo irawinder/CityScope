@@ -25,11 +25,11 @@
     
     int numProjectors = 4;
     
-//    int projectorWidth = 1920;
-//    int projectorHeight = 1080;
+    int projectorWidth = 1920;
+    int projectorHeight = 1080;
 
-    int projectorWidth = 1000;
-    int projectorHeight = 1000;
+//    int projectorWidth = 1000;
+//    int projectorHeight = 1000;
     
 // Model and Table Dimensions in Centimeters
 
