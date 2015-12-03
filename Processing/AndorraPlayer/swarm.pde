@@ -39,6 +39,8 @@ class Swarm {
     swarm = new ArrayList<Agent>();
     fill = f;
     
+    counter += -int(random(40));
+    
   }
   
   void update() {
@@ -65,7 +67,7 @@ class Swarm {
     // removes an agent if too old or reached destination
     if (swarm.size() > 0) {
       for (int i=0; i<swarm.size(); i++){
-        if (swarm.get(i).finished){
+        if (swarm.get(i).dead){
           swarm.remove(i);
         }
       }
@@ -96,8 +98,8 @@ class Swarm {
         
         
         if (collision) {
-          v.applyBehaviors(swarm, new PVector(v.location.x+random(-10, 10), v.location.y+random(-10, 10)));
-          //v.applyBehaviors(swarm, destination);
+          //v.applyBehaviors(swarm, new PVector(v.location.x+random(-10, 10), v.location.y+random(-10, 10)));
+          v.applyBehaviors(swarm, destination);
           v.update(int(agentLife/speed), sink);
           // draws as red if collision detected
           //v.display(#FF0000, 100);

@@ -27,8 +27,10 @@ class Agent {
   float maxspeed;
   int age;
   float tolerance = 2;
+  float fade = 1;
   
   boolean finished = false;
+  boolean dead = false;
   
   Agent(float x, float y, int rad, float maxS) {
     r = rad;
@@ -129,6 +131,14 @@ class Agent {
       finished = true;
     }
     
+    if (finished) {
+      //fade -= .1;
+      fade -= 1;
+      if (fade <= 0) {
+        dead = true;
+      }
+    }
+    
     //Checks if Agent reached destination
      if (sink.pointInPolygon(location.x, location.y)) {
        finished = true;
@@ -137,7 +147,7 @@ class Agent {
   }
   
   void display(color fill, int alpha) {
-    tableCanvas.fill(fill, alpha);
+    tableCanvas.fill(fill, fade*alpha);
     tableCanvas.noStroke();
     tableCanvas.pushMatrix();
     tableCanvas.translate(location.x, location.y);

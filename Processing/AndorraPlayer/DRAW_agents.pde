@@ -27,7 +27,18 @@ void drawAgents() {
   for (Swarm s : swarms) {
     s.update();
     numAgents += s.swarm.size();
-    
+  }
+  
+
+  
+  numAgents = 0;
+  
+  for (Swarm s : swarms) {
+    s.update();
+    numAgents += s.swarm.size();
+  }
+  
+  for (Swarm s : swarms) {
     if (showSource) {
       s.displaySource();
     }
@@ -81,14 +92,18 @@ void drawAgents() {
       if (swarms[rand].swarm.size() > 0) {
         swarms[rand].swarm.get(int(random(swarms[rand].swarm.size()))).finished = true;
         numAgents--;
+        text("TWEAK", 20,20);
+        
       }
     }
-    adjust /= 0.99;
+    adjust /= 0.9;
   } else {
     adjust *= 0.99;
   }
   //println("Adjust: " + adjust);
-
+  
+  tableCanvas.fill(#FFFFFF);
+  tableCanvas.text("Total Agents: " + numAgents,20,50);
   
   tableCanvas.translate(-scrollX, -scrollY);
   

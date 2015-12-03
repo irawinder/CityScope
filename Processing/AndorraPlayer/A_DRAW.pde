@@ -69,7 +69,7 @@ void drawTableCanvas() {
         PVector geo;
         
         geo = mercatorMap.getGeo(new PVector( mouseX-marginWidthPix, mouseY-marginWidthPix));
-        println(geo.x + ", " + geo.y);
+        //println(geo.x + ", " + geo.y);
         coord = mercatorMap.getScreenLocation(geo);
         tableCanvas.fill(#00FF00);
         tableCanvas.ellipse(coord.x, coord.y, 10, 10);
@@ -146,7 +146,7 @@ void drawData() {
   // Sets fill color to red
   tableCanvas.fill(#FF0000);
   
-  for (int i=0; i<tripAdvisor.getRowCount(); i+=2) {
+  for (int i=0; i<tripAdvisor.getRowCount(); i++) {
     // turns latitude and longitude of a point into canvas location within PGraphic topo
     coord = mercatorMap.getScreenLocation(new PVector(tripAdvisor.getFloat(i, "Lat"), tripAdvisor.getFloat(i, "Long")));
     

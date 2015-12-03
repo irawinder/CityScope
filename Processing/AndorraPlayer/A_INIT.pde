@@ -163,11 +163,6 @@ void initPlayer() {
   
   // loads the saved layout
   ks.load();
-  
-  if (loadData) {
-    // Loads csv files referenced in data tab
-    initData();
-  }
 
 //  Deprecated movie animation
 //      theMovie = new Movie(this, "cityscope_sponsorweek.mp4");

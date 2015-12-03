@@ -75,8 +75,6 @@ boolean debug = true;
 // Also set to false if developing on your machine in 1080p
 boolean use4k = false;
 
-boolean loadData = false;
-
 // Draw Modes:
 // 0 = Render For Screen
 // 1 = Render for Projection-Mapping
@@ -92,6 +90,11 @@ void setup() {
     size(2*projectorWidth, 2*projectorHeight, P3D);
   } else {
     size(projectorWidth, projectorHeight, P3D);
+  }
+  
+  if (loadData) {
+    // Loads csv files referenced in data tab
+    initData();
   }
   
   initPlayer();

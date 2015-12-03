@@ -88,7 +88,6 @@ class Obstacle {
     multiple = new ArrayList<Float>();
     
     drawOutline = true;
-    drawFill = false;
     
     polyCorners = 0;
     index = 0;
