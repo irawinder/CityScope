@@ -1,49 +1,47 @@
 void keyPressed() {
   switch (key) {
-    case 'o':
+    case 'o': //show obstacle outlines
       showObstacles = toggle(showObstacles);
       break;
-    case 'k':
+    case 'k': //show sources and sinks for agents
       showSource = toggle(showSource);
       break;
-    case 'r':
+    case 'r': //reset agent sinks and sources; random
       initAgents(16, 16);
       break;
-    case 'f':
+    case 'f': //print framerate to console
       showFrameRate = toggle(showFrameRate);
       break;
-    case 'S':
+    case 'S': //displays swarms of agents
       showSwarm = toggle(showSwarm);
       break;
-    case 'e':
+    case 'e': //shows network edges of motion
       showEdges = toggle(showEdges);
       break;
-    case 'i':
+    case 'i': //shows info about swarms like weight and agent numbers
       showInfo = toggle(showInfo);
       break;
-    case 'p':
+    case 'p': //makes a grid of obstacles
       testObstacles = toggle(testObstacles);
       testObstacles(testObstacles);
       break;
-    case 't':
+    case 't': //shows thermal/traces of where agents have been 
       showTraces = toggle(showTraces);
       break;
-    case 'F':
+    case 'F': //toggles frameStep
       frameStep = toggle(frameStep);
       println("FrameStep = " + frameStep);
       break;
-    case '+':
+    case '+': //speed it up
       updateSpeed(1);
       break;
-    case '-':
+    case '-': //slow it down
       updateSpeed(-1);
       break;
-    case 'c':
-      // enter/leave calibration mode, where surfaces can be warped 
-      // and moved
+    case 'c': //enter calibration mode 
       ks.toggleCalibration();
       break;
-    case 'l':
+    case 'l': //loads course
       if (editObstacles) {
         boundaries.loadCourse("data/course.tsv");
       } else {
@@ -51,7 +49,7 @@ void keyPressed() {
         ks.load();
       }
       break;
-    case 's':
+    case 's'://save course
       if (editObstacles) {
         boundaries.saveCourse();
       } else {
@@ -59,19 +57,17 @@ void keyPressed() {
         ks.save();
       }
       break;
-    case 'm':
-      // changes draw mode
+    case 'm': // changes draw mode
       if (drawMode < 1) {
         drawMode++;
       } else {
         drawMode = 0;
       }
       break;
-    case 'g':
-      // changes debug mode
+    case 'g': // changes debug mode
       debug = toggle(debug);
       break;
-    case 'd':
+    case 'd': //shows still data, makes it slow
       if (!showData && !loadData) {
         loadData = toggle(loadData);
         initData();
@@ -79,12 +75,10 @@ void keyPressed() {
       showData = toggle(showData);
       println("showData = " + showData);
       break;
-    case 'T':
-      // toggle topo
+    case 'T': // show topography 
       showTopo = toggle(showTopo);
       break;
-    case 'E':
-      // toggle obstacles editor
+    case 'E': // shows or hides obstale editor 
       editObstacles = toggle(editObstacles);
       println("editObstacles = " + editObstacles);
       break;
@@ -93,28 +87,29 @@ void keyPressed() {
         boundaries.removeVertex();
       }
       break;
-    case 'A':
+    case 'A': //lets you add obstcles
       if (editObstacles) {
         boundaries.addObstacle();
       }
       break;
-    case 'R':
+    case 'R': //lets you remove obstacles 
       if (editObstacles) {
         boundaries.removeObstacle();
       }
       break;
-    case ' ':
+    case ' ': //switch between the two obstacles to edit them 
       if (editObstacles) {
         boundaries.nextIndex();
       }
       break;
-    case 'N':
+    case 'N': //hops to next vertice 
       if (editObstacles) {
         boundaries.nextVert();
       }
       break;
   }
   
+  //------arrow keys and how to code keys that aren't characters exactly----- 
   if (key == CODED) { 
     if (keyCode == LEFT) {
       if (editObstacles) {
