@@ -7,7 +7,8 @@ void keyPressed() {
       showSource = toggle(showSource);
       break;
     case 'r': //reset agent sinks and sources; random
-      initAgents(16, 16);
+      testMode = nextMode(testMode, 1);
+      initAgents();
       break;
     case 'f': //print framerate to console
       showFrameRate = toggle(showFrameRate);
@@ -139,6 +140,14 @@ boolean toggle(boolean bool) {
     return false;
   } else {
     return true;
+  }
+}
+
+int nextMode(int mode, int maxMode) {
+  if (mode < maxMode) {
+    return mode + 1;
+  } else {
+    return 0;
   }
 }
 

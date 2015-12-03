@@ -4,6 +4,9 @@ boolean showSwarm = true;
 boolean showInfo = false;
 boolean showTraces = false;
 
+  int testMode = 0;
+  // testMode = 0 for random network
+  // testMode = 1 for basic network of Andorra Tower Locations
 
 Swarm[] swarms;
 
@@ -18,41 +21,76 @@ PVector[] obPts;
 int textSize;
 int numAgents, maxAgents;
 int[] swarmSize;
-float adjust;
+float adjust; // dynamic scalar used to nomralize agent generation rate
 
 HeatMap traces;
 
-void initAgents(int u, int v) {
+void initAgents() {
   
   maxAgents = 1000;
-  
   adjust = 1;
   
-//  int numNodes = frenchWifi.getRowCount() + localTowers.getRowCount();
-//  int numNodes = frenchWifi.getRowCount();
-  int numNodes = 8;
-  int numEdges = numNodes*(numNodes-1);
-  int numSwarm = numEdges;
+  testNetwork();
   
-  nodes = new PVector[numNodes];
-  origin = new PVector[numSwarm];
-  destination = new PVector[numSwarm];
-  weight = new float[numSwarm];
-  swarmSize = new int[numSwarm];
+  traces = new HeatMap(canvasWidth/5, canvasHeight/5, canvasWidth, canvasHeight);
+}
+
+void testNetwork() {
   
-  for (int i=0; i<numNodes; i++) {
-    nodes[i] = new PVector(random(10, canvasWidth-10), random(10, canvasHeight-10));
+  int numNodes, numEdges, numSwarm;
+  
+  if (testMode == 0) { // testMode = 0 for random network
+  
+    numNodes = 8;
+    numEdges = numNodes*(numNodes-1);
+    numSwarm = numEdges;
     
-//    if (i < frenchWifi.getRowCount()) {
-//      nodes[i] = mercatorMap.getScreenLocation(new PVector(frenchWifi.getFloat(i, "Source_lat"), frenchWifi.getFloat(i, "Source_long")));
-//    } else {
-//      //nodes[i] = mercatorMap.getScreenLocation(new PVector(tripAdvisor.getFloat(int(random(tripAdvisor.getRowCount())), "Lat"), tripAdvisor.getFloat(int(random(tripAdvisor.getRowCount())), "Long")));
-//      //int rando = int(random(tripAdvisor.getRowCount()));
-//      //nodes[i] = mercatorMap.getScreenLocation(new PVector(tripAdvisor.getFloat(rando, "Lat"), tripAdvisor.getFloat(rando, "Long")));
-//      nodes[i] = mercatorMap.getScreenLocation(new PVector(localTowers.getFloat(i-frenchWifi.getRowCount(), "Lat"), localTowers.getFloat(i-frenchWifi.getRowCount(), "Lon")));
-//    }
-//    nodes[i].x += marginWidthPix;
-//    nodes[i].y += marginWidthPix;
+    nodes = new PVector[numNodes];
+    origin = new PVector[numSwarm];
+    destination = new PVector[numSwarm];
+    weight = new float[numSwarm];
+    swarmSize = new int[numSwarm];
+    
+    for (int i=0; i<numNodes; i++) {
+      nodes[i] = new PVector(random(10, canvasWidth-10), random(10, canvasHeight-10));
+    }
+    
+  } else if (testMode == 1) { // testMode = 1 for basic network of Andorra Tower Locations
+    
+    numNodes = frenchWifi.getRowCount() + localTowers.getRowCount();
+    numEdges = numNodes*(numNodes-1);
+    numSwarm = numEdges;
+    
+    nodes = new PVector[numNodes];
+    origin = new PVector[numSwarm];
+    destination = new PVector[numSwarm];
+    weight = new float[numSwarm];
+    swarmSize = new int[numSwarm];
+    
+    for (int i=0; i<numNodes; i++) {
+      
+      if (i < frenchWifi.getRowCount()) {
+        nodes[i] = mercatorMap.getScreenLocation(new PVector(frenchWifi.getFloat(i, "Source_lat"), frenchWifi.getFloat(i, "Source_long")));
+      } else {
+        //nodes[i] = mercatorMap.getScreenLocation(new PVector(tripAdvisor.getFloat(int(random(tripAdvisor.getRowCount())), "Lat"), tripAdvisor.getFloat(int(random(tripAdvisor.getRowCount())), "Long")));
+        //int rando = int(random(tripAdvisor.getRowCount()));
+        //nodes[i] = mercatorMap.getScreenLocation(new PVector(tripAdvisor.getFloat(rando, "Lat"), tripAdvisor.getFloat(rando, "Long")));
+        nodes[i] = mercatorMap.getScreenLocation(new PVector(localTowers.getFloat(i-frenchWifi.getRowCount(), "Lat"), localTowers.getFloat(i-frenchWifi.getRowCount(), "Lon")));
+      }
+      nodes[i].x += marginWidthPix;
+      nodes[i].y += marginWidthPix;
+    }
+  } else {
+    
+    numNodes = 0;
+    numEdges = numNodes*(numNodes-1);
+    numSwarm = numEdges;
+    
+    nodes = new PVector[numNodes];
+    origin = new PVector[numSwarm];
+    destination = new PVector[numSwarm];
+    weight = new float[numSwarm];
+    swarmSize = new int[numSwarm];
   }
   
   for (int i=0; i<numNodes; i++) {
@@ -69,7 +107,7 @@ void initAgents(int u, int v) {
     }
   }
   
-  // rate, life, origin, destination
+    // rate, life, origin, destination
   swarms = new Swarm[numSwarm];
   colorMode(HSB);
   for (int i=0; i<numSwarm; i++) {
@@ -78,7 +116,4 @@ void initAgents(int u, int v) {
   }
   colorMode(RGB);
   
-  traces = new HeatMap(canvasWidth/5, canvasHeight/5, canvasWidth, canvasHeight);
 }
-
-

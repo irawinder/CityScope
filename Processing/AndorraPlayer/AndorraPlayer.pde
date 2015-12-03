@@ -98,7 +98,7 @@ void setup() {
   }
   
   initPlayer();
-  initAgents(0, 0);
+  initAgents();
   initObstacles();
   
 }
