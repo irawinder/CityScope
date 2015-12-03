@@ -82,7 +82,7 @@ void keyPressed() {
       editObstacles = toggle(editObstacles);
       println("editObstacles = " + editObstacles);
       break;
-    case '':
+    case '': //hit the delete key 
       if (editObstacles) {
         boundaries.removeVertex();
       }
