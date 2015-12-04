@@ -35,7 +35,7 @@ void drawTableCanvas() {
   
       //-----------BEGIN Drawing Margin Information --------------//
         
-        drawMargin();
+        //drawMargin();
       
       //-----------END Drawing Margin Information ----------------//
   

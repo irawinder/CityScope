@@ -16,7 +16,7 @@ void initData() {
   //frenchWifi = new Table();
   frenchWifi = loadTable("data/network_edges_french.csv", "header");
   
-  tourists_0 = loadTable("data/OD_1225/1_1225.csv", "header");
+  tourists_0 = loadTable("data/OD_1225/20_1225.csv", "header");
   
   for (int i=tripAdvisor.getRowCount()-1; i >= 0; i--) {
     if (tripAdvisor.getFloat(i, "Lat") < lat2 || tripAdvisor.getFloat(i, "Lat") > lat1 ||

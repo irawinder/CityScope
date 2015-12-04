@@ -66,6 +66,8 @@
     // Satellite image of Andorra
     PImage topo;
 
+    // Canvas location of hamlet 
+    PVector[] hamlets;
 
 /**
  * This is a simple example of how to use the Keystone library.

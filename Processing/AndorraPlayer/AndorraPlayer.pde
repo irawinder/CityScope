@@ -101,6 +101,10 @@ void setup() {
   initAgents();
   initObstacles();
   
+  tableCanvas.beginDraw();
+  tableCanvas.background(#FFFFFF);
+  tableCanvas.endDraw();
+  
 }
 
 void draw() {
@@ -116,6 +120,10 @@ void draw() {
 
   if (showFrameRate) {
     println(frameRate);
+  }
+  
+  if (printFrames) {
+    tableCanvas.save("videoFrames/" + millis() + ".png");
   }
   
 }

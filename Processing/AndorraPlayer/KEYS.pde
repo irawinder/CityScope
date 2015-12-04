@@ -108,6 +108,9 @@ void keyPressed() {
         boundaries.nextVert();
       }
       break;
+    case 'V': //starts printing frames to file
+      printFrames = toggle(printFrames);
+      break;
   }
   
   //------arrow keys and how to code keys that aren't characters exactly----- 

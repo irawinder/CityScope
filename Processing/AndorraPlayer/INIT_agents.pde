@@ -3,6 +3,7 @@ boolean showEdges = false;
 boolean showSwarm = true;
 boolean showInfo = false;
 boolean showTraces = false;
+boolean printFrames = false;
 
   int testMode = 0;
   // testMode = 0 for random network
@@ -136,12 +137,13 @@ void touristNetwork() {
   for (int i=0; i<numSwarm; i++) {
     origin[i] = mercatorMap.getScreenLocation(new PVector(tourists_0.getFloat(i, "origin_lat"), tourists_0.getFloat(i, "origin_lon")));
     destination[i] = mercatorMap.getScreenLocation(new PVector(tourists_0.getFloat(i, "destination_lat"), tourists_0.getFloat(i, "destination_lon")));
+    
     weight[i] = tourists_0.getFloat(i, "amount");
     
     if (tourists_0.getString(i, "country").equals("sp")) {
-      col = #0000FF;
+      col = #7883F7;
     } else if (tourists_0.getString(i, "country").equals("fr")) {
-      col = #EDFF00;
+      col = #ADAF67;
     } else {
       col = #666666;
     }

@@ -1,5 +1,5 @@
-boolean showObstacles = true;
-boolean editObstacles = true;
+boolean showObstacles = false;
+boolean editObstacles = false;
 boolean testObstacles = false;
 
 Obstacle[] testWall;

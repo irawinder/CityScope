@@ -100,7 +100,7 @@ class Swarm {
         
         if (collision) {
           //v.applyBehaviors(swarm, new PVector(v.location.x+random(-10, 10), v.location.y+random(-10, 10)));
-          v.applyBehaviors(swarm, v.location);
+          //v.applyBehaviors(swarm, v.location);
           v.update(int(agentLife/speed), sink);
           // draws as red if collision detected
           //v.display(#FF0000, 100);
@@ -112,25 +112,27 @@ class Swarm {
           //v.display(fill, 100);
         }
         
-        if (!cropAgents) {
-          if(colorMode.equals("color")) {
-              v.display(fill, 100);
-          } else if(colorMode.equals("grayscale")) {
-              v.display(#333333, 100);
+        if (showSwarm) {
+          if (!cropAgents) {
+            if(colorMode.equals("color")) {
+                v.display(fill, 100);
+            } else if(colorMode.equals("grayscale")) {
+                v.display(#333333, 100);
+            } else {
+                v.display(fill, 100);
+            }
           } else {
-              v.display(fill, 100);
-          }
-        } else {
-          if (v.location.x > marginWidthPix && v.location.x < (tableCanvas.width - marginWidthPix) && 
-              v.location.y > marginWidthPix && v.location.y < (tableCanvas.height - marginWidthPix) ) {
-                if(colorMode.equals("color")) {
-                    v.display(fill, 100);
-                } else if(colorMode.equals("grayscale")) {
-                    v.display(#333333, 100);
-                } else {
-                    v.display(fill, 100);
+            if (v.location.x > marginWidthPix && v.location.x < (tableCanvas.width - marginWidthPix) && 
+                v.location.y > marginWidthPix && v.location.y < (tableCanvas.height - marginWidthPix) ) {
+                  if(colorMode.equals("color")) {
+                      v.display(fill, 100);
+                  } else if(colorMode.equals("grayscale")) {
+                      v.display(#333333, 100);
+                  } else {
+                      v.display(fill, 100);
+                  }
                 }
-              }
+          }
         }
       }
     }
@@ -158,7 +160,7 @@ class Swarm {
     // Draws weighted lines from origin to destinations
     tableCanvas.stroke(fill, 50);
     if (agentDelay > 0) {
-      tableCanvas.strokeWeight(100.0/agentDelay);
+      tableCanvas.strokeWeight(10.0/agentDelay);
     } else {
       tableCanvas.noStroke();
     }

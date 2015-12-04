@@ -6,7 +6,7 @@ void drawAgents() {
   // Provides the effect of giving animated elements "tails"
   tableCanvas.noStroke();
   //fill(#ffffff, 100);
-  tableCanvas.fill(0, 75);
+  tableCanvas.fill(#FFFFFF, 75);
   tableCanvas.rect(0,0,canvasWidth,canvasHeight);
   
   tableCanvas.translate(scrollX, scrollY);
@@ -46,16 +46,14 @@ void drawAgents() {
     if (showEdges) {
       s.displayEdges();
     }
-    
-    if (showSwarm) {
       
-      if (showTraces) {
-        traces.update(s);
-        s.display("grayscale");
-      } else {
-        s.display("color");
-      }
+    if (showTraces) {
+      traces.update(s);
+      s.display("grayscale");
+    } else {
+      s.display("color");
     }
+    
     
   }
   
@@ -105,7 +103,16 @@ void drawAgents() {
   tableCanvas.fill(#FFFFFF);
   //tableCanvas.text("Total Agents: " + numAgents,20,50);
   
-  tableCanvas.translate(-scrollX, -scrollY);
+  tableCanvas.fill(0);
+  tableCanvas.textSize(24);
+  tableCanvas.text("Tourists:", marginWidthPix, tableCanvas.height-7*marginWidthPix/12);
+  tableCanvas.text("December 25, 2014, 20:00 - 21:00", 7*marginWidthPix, tableCanvas.height-7*marginWidthPix/12);
+  
+  tableCanvas.fill(#7883F7);
+  tableCanvas.text("Spanish", 2.5*marginWidthPix, tableCanvas.height-7*marginWidthPix/12);
+  
+  tableCanvas.fill(#ADAF67);
+  tableCanvas.text("French", 2.5*marginWidthPix, tableCanvas.height-2*marginWidthPix/12);
   
   textSize = 8;
   
