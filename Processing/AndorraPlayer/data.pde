@@ -4,6 +4,7 @@ Table sampleOutput;
 Table tripAdvisor;
 Table frenchWifi;
 Table localTowers;
+Table tourists_0;
 
 void initData() {
   
@@ -14,6 +15,8 @@ void initData() {
   tripAdvisor = loadTable("data/Tripadvisor_andorra_la_vella.csv", "header");
   //frenchWifi = new Table();
   frenchWifi = loadTable("data/network_edges_french.csv", "header");
+  
+  tourists_0 = loadTable("data/OD_1225/1_1225.csv", "header");
   
   for (int i=tripAdvisor.getRowCount()-1; i >= 0; i--) {
     if (tripAdvisor.getFloat(i, "Lat") < lat2 || tripAdvisor.getFloat(i, "Lat") > lat1 ||

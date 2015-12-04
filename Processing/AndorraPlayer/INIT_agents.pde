@@ -30,7 +30,8 @@ void initAgents() {
   maxAgents = 1000;
   adjust = 1;
   
-  testNetwork();
+  //testNetwork();
+  touristNetwork();
   
   traces = new HeatMap(canvasWidth/5, canvasHeight/5, canvasWidth, canvasHeight);
 }
@@ -116,4 +117,44 @@ void testNetwork() {
   }
   colorMode(RGB);
   
+}
+
+void touristNetwork() {
+  
+  int numSwarm;
+  color col;
+  
+  //numSwarm = tourists_0.getRowCount();
+  numSwarm = 79;
+  
+  origin = new PVector[numSwarm];
+  destination = new PVector[numSwarm];
+  weight = new float[numSwarm];
+  swarmSize = new int[numSwarm];
+  swarms = new Swarm[numSwarm];
+  
+  for (int i=0; i<numSwarm; i++) {
+    origin[i] = mercatorMap.getScreenLocation(new PVector(tourists_0.getFloat(i, "origin_lat"), tourists_0.getFloat(i, "origin_lon")));
+    destination[i] = mercatorMap.getScreenLocation(new PVector(tourists_0.getFloat(i, "destination_lat"), tourists_0.getFloat(i, "destination_lon")));
+    weight[i] = tourists_0.getFloat(i, "amount");
+    
+    if (tourists_0.getString(i, "country").equals("sp")) {
+      col = #5561C9;
+    } else if (tourists_0.getString(i, "country").equals("fr")) {
+      col = #EDFF00;
+    } else {
+      col = #666666;
+    }
+    
+    // delay, origin, destination, speed, color
+    swarms[i] = new Swarm(weight[i], origin[i], destination[i], 1, col);
+  }
+  
+  // rate, life, origin, destination
+  
+  colorMode(HSB);
+  for (int i=0; i<numSwarm; i++) {
+    
+  }
+  colorMode(RGB);
 }
