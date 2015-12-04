@@ -43,6 +43,8 @@ class Agent {
     age = 0;
   }
   
+  
+  
   void applyForce(PVector force){
     acceleration.add(force);
 

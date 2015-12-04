@@ -139,7 +139,7 @@ void touristNetwork() {
     weight[i] = tourists_0.getFloat(i, "amount");
     
     if (tourists_0.getString(i, "country").equals("sp")) {
-      col = #5561C9;
+      col = #0000FF;
     } else if (tourists_0.getString(i, "country").equals("fr")) {
       col = #EDFF00;
     } else {

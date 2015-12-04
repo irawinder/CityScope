@@ -1,6 +1,7 @@
 class Swarm {
   
   boolean generateAgent = true;
+  boolean cropAgents = true;
   
   ArrayList<Agent> swarm;
   
@@ -111,12 +112,25 @@ class Swarm {
           //v.display(fill, 100);
         }
         
-        if(colorMode.equals("color")) {
-            v.display(fill, 100);
-        } else if(colorMode.equals("grayscale")) {
-            v.display(#333333, 100);
+        if (!cropAgents) {
+          if(colorMode.equals("color")) {
+              v.display(fill, 100);
+          } else if(colorMode.equals("grayscale")) {
+              v.display(#333333, 100);
+          } else {
+              v.display(fill, 100);
+          }
         } else {
-            v.display(fill, 100);
+          if (v.location.x > marginWidthPix && v.location.x < (tableCanvas.width - marginWidthPix) && 
+              v.location.y > marginWidthPix && v.location.y < (tableCanvas.height - marginWidthPix) ) {
+                if(colorMode.equals("color")) {
+                    v.display(fill, 100);
+                } else if(colorMode.equals("grayscale")) {
+                    v.display(#333333, 100);
+                } else {
+                    v.display(fill, 100);
+                }
+              }
         }
       }
     }
