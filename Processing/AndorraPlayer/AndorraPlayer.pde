@@ -123,10 +123,6 @@ void draw() {
     println(frameRate);
   }
   
-  if (printFrames) {
-    tableCanvas.save("videoFrames/" + millis() + ".png");
-  }
-  
   // Temporary Graph //
   
   fill(#FFFFFF);
@@ -216,6 +212,11 @@ void draw() {
   
   fill(other);
   text("Other", 5.0*marginWidthPix, 0);
+  
+  if (printFrames) {
+    //tableCanvas.save("videoFrames/" + millis() + ".png");
+    save("videoFrames/" + millis() + ".png");
+  }
   
 }
 
