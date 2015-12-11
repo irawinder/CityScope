@@ -91,7 +91,7 @@ class ObstacleCourse {
     }
   }
   
-  void saveCourse() {
+  void saveCourse(String filename) {
     Table courseTSV = new Table();
     courseTSV.addColumn("obstacle");
     courseTSV.addColumn("vertX");
@@ -106,9 +106,9 @@ class ObstacleCourse {
       }
     }
     
-    saveTable(courseTSV, "data/course.tsv");
+    saveTable(courseTSV, filename);
     
-    println("ObstacleCourse data saved to 'data/course.tsv'");
+    println("ObstacleCourse data saved to '" + filename + "'");
     
   }
   
@@ -140,8 +140,9 @@ class ObstacleCourse {
           obstacle = courseTSV.getInt(i, "obstacle");
           addObstacle();
         }
-        //addVertex(new PVector(courseTSV.getFloat(i, "vertX"), courseTSV.getFloat(i, "vertY")));
-        addVertex(new PVector((projectorWidth/1920.0)*courseTSV.getFloat(i, "vertX"), (projectorWidth/1920.0)*courseTSV.getFloat(i, "vertY")));
+        addVertex(new PVector(courseTSV.getFloat(i, "vertX"), courseTSV.getFloat(i, "vertY")));
+        //addVertex(new PVector((projectorWidth/1000.0)*courseTSV.getFloat(i, "vertX"), (projectorWidth/1000.0)*courseTSV.getFloat(i, "vertY")));
+        //addVertex(new PVector((projectorWidth/1920.0)*courseTSV.getFloat(i, "vertX"), (projectorWidth/1920.0)*courseTSV.getFloat(i, "vertY")));
       }
       
     }

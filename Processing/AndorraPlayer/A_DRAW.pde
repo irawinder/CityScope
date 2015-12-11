@@ -1,5 +1,5 @@
 boolean showData = false;
-boolean showTopo = false;
+boolean showTopo = true;
 
 // temp variable that holds coordinate location for a point to render
 PVector coord;
@@ -7,6 +7,10 @@ PVector coord;
 // temp variable that holds coordinate locations for a line to render
 PVector[] line = new PVector[2];
 
+color french = #ADAF67;
+color spanish = #7883F7;
+color other = #CCCCCC;
+  
 void drawTable() {
   // most likely, you'll want a black background to minimize
   // bleeding around your projection area
@@ -89,7 +93,6 @@ void drawTableCanvas() {
   //------ BEGIN Draw Movie------//
   //tableCanvas.image(theMovie, (marginWidth/tableWidth)*canvasWidth, (marginWidth/tableHeight)*canvasHeight, (topoWidth/tableWidth)*canvasWidth, (topoHeight/tableHeight)*canvasHeight);
   //------ END Draw Movie------//
-
   
   tableCanvas.endDraw();
 }
@@ -121,22 +124,98 @@ void drawMargin() {
     tableCanvas.line(container_Locations[lineMatrix[i][0]].x, container_Locations[lineMatrix[i][0]].y, container_Locations[lineMatrix[i][1]].x, container_Locations[lineMatrix[i][1]].y);
   }
   
+  
+  tableCanvas.strokeJoin(ROUND);
+  tableCanvas.noFill();
+  
+  // St. Julia
+  tableCanvas.beginShape();
+  tableCanvas.vertex(container_Locations[1].x, container_Locations[1].y);
+  tableCanvas.vertex(container_Locations[1].x, marginWidthPix + 0.5*topoHeightPix);
+  tableCanvas.vertex(marginWidthPix, marginWidthPix + 0.5*topoHeightPix);
+  tableCanvas.endShape();
+  
+  // La Massana
+  tableCanvas.beginShape();
+  tableCanvas.vertex(container_Locations[2].x, container_Locations[2].y);
+  tableCanvas.vertex(container_Locations[2].x, marginWidthPix + 0.75*topoHeightPix);
+  tableCanvas.vertex(1.0*marginWidthPix + topoWidthPix, marginWidthPix + 0.75*topoHeightPix);
+  tableCanvas.endShape();
+  
+  // Encamp
+  tableCanvas.beginShape();
+  tableCanvas.vertex(container_Locations[4].x, container_Locations[4].y);
+  tableCanvas.vertex(1.0*marginWidthPix + 0.96*topoWidthPix, container_Locations[4].y);
+  tableCanvas.vertex(1.0*marginWidthPix + 0.96*topoWidthPix, 1.0*marginWidthPix + topoHeightPix);
+  tableCanvas.endShape();
+  
   tableCanvas.stroke(background);
   tableCanvas.strokeWeight(marginWidthPix/8);
-  tableCanvas.fill(grayColor);
+  tableCanvas.fill(textColor);
+  
+  tableCanvas.endDraw();
+  tableCanvas.beginDraw();
   
   for (int i=1; i<container_Locations.length; i++) {
     tableCanvas.ellipse(container_Locations[i].x, container_Locations[i].y, 0.5*marginWidthPix, 0.5*marginWidthPix);
-   }
+  }
   
+  tableCanvas.textSize(24*(projectorWidth/1920.0));
+  
+  tableCanvas.translate(container_Locations[1].x, container_Locations[1].y);
+  tableCanvas.rotate(PI/2);
+  tableCanvas.textAlign(CENTER);
+  tableCanvas.text(container_Names[1], 0, marginWidthPix/2);
+  tableCanvas.textAlign(LEFT);
+  tableCanvas.rotate(-PI/2);
+  tableCanvas.translate(-container_Locations[1].x, -container_Locations[1].y);
+  
+  for (int i=2; i<4; i++) {
+    tableCanvas.translate(container_Locations[i].x, container_Locations[i].y);
+    tableCanvas.rotate(-PI/2);
+    tableCanvas.textAlign(CENTER);
+    tableCanvas.text(container_Names[i], 0, marginWidthPix/2);
+    tableCanvas.textAlign(LEFT);
+    tableCanvas.rotate(PI/2);
+    tableCanvas.translate(-container_Locations[i].x, -container_Locations[i].y);
+  }
+  
+  for (int i=4; i<7; i++) {
+    tableCanvas.translate(container_Locations[i].x, container_Locations[i].y);
+    //tableCanvas.rotate(-PI/2);
+    tableCanvas.textAlign(CENTER);
+    tableCanvas.text(container_Names[i], 0, marginWidthPix/2);
+    tableCanvas.textAlign(LEFT);
+    //tableCanvas.rotate(PI/2);
+    tableCanvas.translate(-container_Locations[i].x, -container_Locations[i].y);
+  }
+  
+  tableCanvas.textSize(36*(projectorWidth/1920.0));
+  tableCanvas.text(container_Names[0], marginWidthPix, tableCanvas.height-7*marginWidthPix/12);
+  
+  tableCanvas.textSize(24*(projectorWidth/1920.0));
+  tableCanvas.text("Tourists |", marginWidthPix, tableCanvas.height-2*marginWidthPix/12);
+  
+  tableCanvas.fill(#00FF00);
+  tableCanvas.text(dates[dateIndex] + ", " + "Hour: " + hourIndex%24 + ":00 - " + (hourIndex+1)%24 + ":00", 
+                   5*marginWidthPix, tableCanvas.height-7*marginWidthPix/12);
+  
+  tableCanvas.fill(spanish);
+  tableCanvas.text("Spanish", 4.5*marginWidthPix, tableCanvas.height-2*marginWidthPix/12);
+  
+  tableCanvas.fill(french);
+  tableCanvas.text("French", 3.0*marginWidthPix, tableCanvas.height-2*marginWidthPix/12);
+  
+  tableCanvas.fill(other);
+  tableCanvas.text("Other", 6.0*marginWidthPix, tableCanvas.height-2*marginWidthPix/12);
 
 }
 
 void drawTopo() {
  
   // Draws Satellite images
-  tableCanvas.tint(255, 50);
-  tableCanvas.filter(GRAY);
+  tableCanvas.tint(255, 15);
+  //tableCanvas.filter(GRAY);
   tableCanvas.image(topo, 0, 0, topoWidthPix, topoHeightPix);
   tableCanvas.tint(255, 255);
   

@@ -1,3 +1,5 @@
+boolean mainCourse = false;
+
 void keyPressed() {
   switch (key) {
     case 'o': //show obstacle outlines
@@ -44,7 +46,11 @@ void keyPressed() {
       break;
     case 'l': //loads course
       if (editObstacles) {
-        boundaries.loadCourse("data/course.tsv");
+        if (mainCourse) {
+          boundaries.loadCourse("data/course.tsv");
+        } else {
+          container.loadCourse("data/container.tsv");
+        }
       } else {
         // loads the saved layout
         ks.load();
@@ -52,7 +58,11 @@ void keyPressed() {
       break;
     case 's'://save course
       if (editObstacles) {
-        boundaries.saveCourse();
+        if (mainCourse) {
+          boundaries.saveCourse("data/course.tsv");
+        } else {
+          container.saveCourse("data/container.tsv");
+        }
       } else {
         // saves the layout
         ks.save();
@@ -85,27 +95,47 @@ void keyPressed() {
       break;
     case '': //hit the delete key 
       if (editObstacles) {
-        boundaries.removeVertex();
+        if (mainCourse) {
+          boundaries.removeVertex();
+        } else {
+          container.removeVertex();
+        }
       }
       break;
     case 'A': //lets you add obstcles
       if (editObstacles) {
-        boundaries.addObstacle();
+        if (mainCourse) {
+          boundaries.addObstacle();
+        } else {
+          container.addObstacle();
+        }
       }
       break;
     case 'R': //lets you remove obstacles 
       if (editObstacles) {
-        boundaries.removeObstacle();
+        if (mainCourse) {
+          boundaries.removeObstacle();
+        } else {
+          container.removeObstacle();
+        }
       }
       break;
     case ' ': //switch between the two obstacles to edit them 
       if (editObstacles) {
-        boundaries.nextIndex();
+        if (mainCourse) {
+          boundaries.nextIndex(); 
+        } else {
+          container.nextIndex();
+        }
       }
       break;
     case 'N': //hops to next vertice 
       if (editObstacles) {
-        boundaries.nextVert();
+        if (mainCourse) {
+          boundaries.nextVert();
+        } else {
+          container.nextVert();
+        }
       }
       break;
     case 'V': //starts printing frames to file
@@ -119,28 +149,54 @@ void keyPressed() {
       hourIndex = nextHour(hourIndex);
       setSwarmFlow(hourIndex);
       break;
+    case 'I': //next data index
+      dateIndex = nextMode(dateIndex, dates.length-1);
+      initData();
+      initAgents();
+      if (hourIndex == 24) {
+        hourIndex = 0;
+      } else {
+        hourIndex = hourIndex%24;
+      }
+      break;
   }
   
   //------arrow keys and how to code keys that aren't characters exactly----- 
   if (key == CODED) { 
     if (keyCode == LEFT) {
       if (editObstacles) {
-        boundaries.nudgeVertex(-1, 0);
+        if (mainCourse) {
+          boundaries.nudgeVertex(-1, 0);
+        } else {
+          container.nudgeVertex(-1, 0);
+        }
       }
     }  
     if (keyCode == RIGHT) {
       if (editObstacles) {
-        boundaries.nudgeVertex(+1, 0);
+        if (mainCourse) {
+          boundaries.nudgeVertex(+1, 0);
+        } else {
+          container.nudgeVertex(+1, 0);
+        }
       }
     }  
     if (keyCode == DOWN) {
       if (editObstacles) {
-        boundaries.nudgeVertex(0, +1);
+        if (mainCourse) {
+          boundaries.nudgeVertex(0, +1);
+        } else {
+          container.nudgeVertex(0, +1);
+        }
       }
     }  
     if (keyCode == UP) {
       if (editObstacles) {
-        boundaries.nudgeVertex(0, -1);
+        if (mainCourse) {
+          boundaries.nudgeVertex(0, -1);
+        } else {
+          container.nudgeVertex(0, -1);
+        }
       }
     }
   }
@@ -213,6 +269,10 @@ void mouseReleased() {
 
 void mouseClicked() {
   if (editObstacles) {
-    boundaries.addVertex(new PVector(mouseX, mouseY));
+    if (mainCourse) {
+      boundaries.addVertex(new PVector(mouseX, mouseY));
+    } else {
+      container.addVertex(new PVector(mouseX, mouseY));
+    }
   }
 }

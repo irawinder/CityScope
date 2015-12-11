@@ -26,15 +26,22 @@ class Swarm {
     origin = a;
     destination = b;
     
-    sink_vert[0] = new PVector(destination.x - hitbox, destination.y - hitbox);
-    sink_vert[1] = new PVector(destination.x + hitbox, destination.y - hitbox);
-    sink_vert[2] = new PVector(destination.x + hitbox, destination.y + hitbox);
-    sink_vert[3] = new PVector(destination.x - hitbox, destination.y + hitbox);
+    if (a == b) {
+      sink_vert[0] = new PVector(0, 0);
+      sink_vert[1] = sink_vert[0];
+      sink_vert[2] = sink_vert[0];
+      sink_vert[3] = sink_vert[0];
+    } else {
+      sink_vert[0] = new PVector(destination.x - hitbox, destination.y - hitbox);
+      sink_vert[1] = new PVector(destination.x + hitbox, destination.y - hitbox);
+      sink_vert[2] = new PVector(destination.x + hitbox, destination.y + hitbox);
+      sink_vert[3] = new PVector(destination.x - hitbox, destination.y + hitbox);
+    }
     sink = new Obstacle(sink_vert);
     
     maxSpeed = maxS;
-    agentLife *= (abs(a.x - b.x) + abs(a.y - b.y)) / (canvasWidth+canvasHeight);
-    agentLife *= 20.0/maxSpeed;
+    agentLife *= 1 + (abs(a.x - b.x) + abs(a.y - b.y)) / (canvasWidth+canvasHeight);
+    agentLife *= 40.0/maxSpeed;
     //println(agentLife);
     agentDelay = delay;
     swarm = new ArrayList<Agent>();
@@ -95,8 +102,12 @@ class Swarm {
           }
         }
         
-        // Tests for Collision with obstacleCourse boundaries
-        collision = boundaries.testForCollision(v);
+        if (cropAgents) {
+          // Tests for Collision with obstacleCourse boundaries
+          collision = boundaries.testForCollision(v);
+        } else {
+          collision = container.testForCollision(v);
+        }
         
         
         if (collision) {
@@ -115,16 +126,19 @@ class Swarm {
         
         if (showSwarm) {
           if (!cropAgents) {
-            if(colorMode.equals("color")) {
-                v.display(fill, 100);
-            } else if(colorMode.equals("grayscale")) {
-                v.display(#333333, 100);
-            } else {
-                v.display(fill, 100);
-            }
+//            if (v.location.x < 0.75*marginWidthPix || v.location.x > (tableCanvas.width - 0.75*marginWidthPix) || 
+//                v.location.y < 0 || v.location.y > (tableCanvas.height - 0.75*marginWidthPix) ) {
+                  if(colorMode.equals("color")) {
+                      v.display(fill, 100);
+                  } else if(colorMode.equals("grayscale")) {
+                      v.display(#333333, 100);
+                  } else {
+                      v.display(fill, 100);
+                  }
+//                }
           } else {
-            if (v.location.x > marginWidthPix && v.location.x < (tableCanvas.width - marginWidthPix) && 
-                v.location.y > marginWidthPix && v.location.y < (tableCanvas.height - marginWidthPix) ) {
+            if (v.location.x > 1.25*marginWidthPix && v.location.x < (tableCanvas.width - 1.25*marginWidthPix) && 
+                v.location.y > 1.25*marginWidthPix && v.location.y < (tableCanvas.height - 1.25*marginWidthPix) ) {
                   if(colorMode.equals("color")) {
                       v.display(fill, 100);
                   } else if(colorMode.equals("grayscale")) {
@@ -158,16 +172,27 @@ class Swarm {
   }
   
   void displayEdges() {
+    
     // Draws weighted lines from origin to destinations
     tableCanvas.stroke(fill, 50);
+    tableCanvas.fill(fill, 50);
     if (agentDelay > 0) {
-      tableCanvas.strokeWeight(10000.0/agentDelay);
+      tableCanvas.strokeWeight(10.0/agentDelay);
     } else {
       tableCanvas.noStroke();
     }
-    tableCanvas.line(origin.x, origin.y, destination.x, destination.y);
+    
+    
+      
+    if (origin != destination) {
+      tableCanvas.line(origin.x, origin.y, destination.x, destination.y);
+    } else {
+      tableCanvas.noStroke();
+      tableCanvas.ellipse(origin.x, origin.y, 3.0/agentDelay, 3.0/agentDelay);
+    }
     tableCanvas.strokeWeight(1);
     tableCanvas.noStroke();
+      
   }
   
 }

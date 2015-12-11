@@ -4,18 +4,21 @@ boolean testObstacles = false;
 
 Obstacle[] testWall;
 ObstacleCourse boundaries;
+ObstacleCourse container;
 
 void initObstacles() {
   testObstacles(testObstacles);
   boundaries = new ObstacleCourse();
+  container = new ObstacleCourse();
   
   boundaries.loadCourse("data/course.tsv");
+  container.loadCourse("data/container.tsv");
   
-  //boundaries.addObstacle();
-  //boundaries.addVertex(new PVector(random(canvasWidth/2), random(canvasHeight/2)));
-  //boundaries.addVertex(new PVector(random(canvasWidth/2, canvasWidth), random(canvasHeight/2)));
-  //boundaries.addVertex(new PVector(random(canvasWidth/2, canvasWidth), random(canvasHeight/2, canvasHeight)));
-  //boundaries.addVertex(new PVector(random(canvasWidth/2), random(canvasHeight/2, canvasHeight)));
+//  container.addObstacle();
+//  container.addVertex(new PVector(0.75*marginWidthPix, 0.75*marginWidthPix));
+//  container.addVertex(new PVector(1.25*marginWidthPix + topoWidthPix, 0.75*marginWidthPix));
+//  container.addVertex(new PVector(1.25*marginWidthPix + topoWidthPix, 1.25*marginWidthPix + topoHeightPix));
+//  container.addVertex(new PVector(0.75*marginWidthPix, 1.25*marginWidthPix + topoHeightPix));
 }
 
 void testObstacles(boolean place) {

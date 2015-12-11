@@ -9,7 +9,7 @@ Table tourists_0;
 Table network;
 Table OD;
 
-int dateIndex = 5;
+int dateIndex = 0;
 
 String[] dates = { "20140602", 
                    "20140815",
@@ -20,21 +20,24 @@ String[] dates = { "20140602",
                    "outputCirq",
                    "volta" };
                    
-String[] containerNames = { "Andorra La Vella",
+String[] container_Names = { "Andorra La Vella",
                             "St. Julia",
                             "Massana",
                             "Arans",
                             "Encamp",
                             "Soldeu",
                             "El Pas de la Casa" };
+
+//float offset = -0.25;     
+float offset = -.2;   
                       
-PVector[] container_Locations = {new PVector(0.5*canvasWidth, 0.5*canvasHeight), 
-                                 new PVector(0.5*marginWidthPix, 0.6*canvasHeight), 
-                                 new PVector(1.5*marginWidthPix + topoWidthPix, 0.5*canvasHeight), 
-                                 new PVector(1.5*marginWidthPix + topoWidthPix, 0.25*canvasHeight), 
-                                 new PVector(0.9*canvasWidth, 1.5*marginWidthPix + topoHeightPix), 
-                                 new PVector(0.7*canvasWidth, 1.5*marginWidthPix + topoHeightPix), 
-                                 new PVector(0.5*canvasWidth, 1.5*marginWidthPix + topoHeightPix) };
+PVector[] container_Locations = {new PVector(topoWidthPix+0.5*marginWidthPix, topoHeightPix+0.5*marginWidthPix), 
+                                 new PVector((0.5-offset)*marginWidthPix, topoHeightPix + 0.5*marginWidthPix), 
+                                 new PVector((1.5+offset)*marginWidthPix + topoWidthPix, 0.45*canvasHeight), 
+                                 new PVector((1.5+offset)*marginWidthPix + topoWidthPix, 0.20*canvasHeight), 
+                                 new PVector(0.80*canvasWidth, (1.5+offset)*marginWidthPix + topoHeightPix), 
+                                 new PVector(0.65*canvasWidth, (1.5+offset)*marginWidthPix + topoHeightPix), 
+                                 new PVector(0.50*canvasWidth, (1.5+offset)*marginWidthPix + topoHeightPix) };
 
 void initData() {
   
@@ -58,3 +61,4 @@ void initData() {
     }
   }
 }
+  

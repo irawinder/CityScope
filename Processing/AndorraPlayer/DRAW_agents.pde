@@ -1,6 +1,6 @@
 int background = 0;
 int textColor = 255;
-int grayColor = int(255.0/2);
+int grayColor = int(255.0/4);
 
 void drawAgents() {
   tableCanvas.beginDraw();
@@ -16,6 +16,8 @@ void drawAgents() {
       o.display(#0000FF, 100, false);
     }
     boundaries.display(#00FF00, 100);
+    container.display(#0000FF, 100);
+    
   }
   
   numAgents = 0;
@@ -96,19 +98,13 @@ void drawAgents() {
   }
   //println("Adjust: " + adjust);
   
-  tableCanvas.fill(textColor);
-  //tableCanvas.text("Total Agents: " + numAgents,20,50);
+  //adjust = 1000;
   
   tableCanvas.fill(textColor);
-  tableCanvas.textSize(24*(projectorWidth/1920.0));
-  tableCanvas.text("Tourists:", marginWidthPix, tableCanvas.height-7*marginWidthPix/12);
-  tableCanvas.text(dates[dateIndex] + ", " + "Hour: " + hourIndex + ":00 - " + (hourIndex+1) + ":00", 7*marginWidthPix, tableCanvas.height-7*marginWidthPix/12);
-  
-  tableCanvas.fill(#7883F7);
-  tableCanvas.text("Spanish", 2.5*marginWidthPix, tableCanvas.height-7*marginWidthPix/12);
-  
-  tableCanvas.fill(#ADAF67);
-  tableCanvas.text("French", 2.5*marginWidthPix, tableCanvas.height-2*marginWidthPix/12);
+  tableCanvas.textSize(1.5*textSize);
+  tableCanvas.text("Total Agents Rendered: " + numAgents, marginWidthPix, 0.4*marginWidthPix);
+  tableCanvas.text("Adjust: " + int(adjust), marginWidthPix, 0.7*marginWidthPix);
+  tableCanvas.text("Total Agents in OD: " + summary.getInt(hourIndex, "TOTAL"), 7*marginWidthPix, 0.4*marginWidthPix);
   
   textSize = 8;
   

@@ -26,7 +26,7 @@ class Agent {
   float maxforce;
   float maxspeed;
   int age;
-  float tolerance = 2;
+  float tolerance = 1;
   float fade = 1;
   
   boolean finished = false;

@@ -127,6 +127,90 @@ void draw() {
     tableCanvas.save("videoFrames/" + millis() + ".png");
   }
   
+  // Temporary Graph //
+  
+  fill(#FFFFFF);
+  translate(float(1)/(maxHour+6)*width, 1.45*canvasHeight);
+  text("Hr", 0, 0);
+  
+  int graphHeight = 2*marginWidthPix;
+  
+  textAlign(CENTER);
+  for (int i=0; i<=maxHour; i+=3) {
+    float hor = float(i+2)/(maxHour+6)*width;
+    text(i%24, hor, 0);
+  }
+  
+  
+  noStroke();
+  fill(french, 200);
+  beginShape();
+  vertex(float(0+2)/(maxHour+6)*width, 0 - 2*textSize);
+  for (int i=0; i<=maxHour; i++) {
+    float hor = float(i+2)/(maxHour+6)*width;
+    vertex(hor, -graphHeight*summary.getFloat(i, "TOTAL")/maxFlow - 2*textSize);
+  }
+  vertex(float(maxHour+2)/(maxHour+6)*width, 0 - 2*textSize);
+  endShape();
+  
+  noStroke();
+  fill(spanish, 200);
+  beginShape();
+  vertex(float(0+2)/(maxHour+6)*width, 0 - 2*textSize);
+  for (int i=0; i<=maxHour; i++) {
+    float hor = float(i+2)/(maxHour+6)*width;
+    vertex(hor, -graphHeight*(summary.getFloat(i, "TOTAL")-summary.getFloat(i, "FRENCH"))/maxFlow - 2*textSize);
+  }
+  vertex(float(maxHour+2)/(maxHour+6)*width, 0 - 2*textSize);
+  endShape();
+  
+  noStroke();
+  fill(other, 200);
+  beginShape();
+  vertex(float(0+2)/(maxHour+6)*width, 0 - 2*textSize);
+  for (int i=0; i<=maxHour; i++) {
+    float hor = float(i+2)/(maxHour+6)*width;
+    vertex(hor, -graphHeight*(summary.getFloat(i, "TOTAL")-summary.getFloat(i, "FRENCH")-summary.getFloat(i, "SPANISH"))/maxFlow - 2*textSize);
+  }
+  vertex(float(maxHour+2)/(maxHour+6)*width, 0 - 2*textSize);
+  endShape();
+  
+  textAlign(LEFT);
+  textSize(24*(projectorWidth/1920.0));
+  
+  float hor = float(hourIndex+2)/(maxHour+6)*width;
+  stroke(#00FF00);
+  strokeWeight(2);
+  line(hor, -graphHeight - 4*textSize, hor, -1.75*textSize);
+  fill(french);
+  text(int(100*summary.getFloat(hourIndex, "FRENCH") / summary.getFloat(hourIndex, "TOTAL")) + "%", 
+                   hor + 0.5*textSize, -graphHeight - 3*textSize);
+  fill(spanish);
+  text(int(100*summary.getFloat(hourIndex, "SPANISH") / summary.getFloat(hourIndex, "TOTAL")) + "%", 
+                   hor + 0.5*textSize, -graphHeight - 3*textSize + 2*textSize);
+  fill(other);
+  text(int(100*summary.getFloat(hourIndex, "OTHER") / summary.getFloat(hourIndex, "TOTAL")) + "%", 
+                   hor + 0.5*textSize, -graphHeight - 3*textSize + 4*textSize);
+  
+  
+  noStroke();
+  
+  translate(float(0+2)/(maxHour+6)*width, -1.5*graphHeight);
+  
+  fill(#FFFFFF);
+  textSize(24*(projectorWidth/1920.0));
+  textAlign(LEFT);
+  text("Tourists |", 0, 0);
+  
+  fill(spanish);
+  text("Spanish", 3.5*marginWidthPix, 0);
+  
+  fill(french);
+  text("French", 2.0*marginWidthPix, 0);
+  
+  fill(other);
+  text("Other", 5.0*marginWidthPix, 0);
+  
 }
 
 void chopScreen(int projector) {
