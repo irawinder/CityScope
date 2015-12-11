@@ -130,7 +130,7 @@ class Swarm {
 //            if (v.location.x < 0.75*marginWidthPix || v.location.x > (tableCanvas.width - 0.75*marginWidthPix) || 
 //                v.location.y < 0 || v.location.y > (tableCanvas.height - 0.75*marginWidthPix) ) {
                   if(colorMode.equals("color")) {
-                      v.display(fill, 100);
+                      v.display(fill, 255);
                   } else if(colorMode.equals("grayscale")) {
                       v.display(#333333, 100);
                   } else {
@@ -141,7 +141,7 @@ class Swarm {
             if (v.location.x > 1.25*marginWidthPix && v.location.x < (tableCanvas.width - 1.25*marginWidthPix) && 
                 v.location.y > 1.25*marginWidthPix && v.location.y < (tableCanvas.height - 1.25*marginWidthPix) ) {
                   if(colorMode.equals("color")) {
-                      v.display(fill, 100);
+                      v.display(fill, 255);
                   } else if(colorMode.equals("grayscale")) {
                       v.display(#333333, 100);
                   } else {

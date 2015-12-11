@@ -7,9 +7,9 @@ PVector coord;
 // temp variable that holds coordinate locations for a line to render
 PVector[] line = new PVector[2];
 
-color french = #ADAF67;
-color spanish = #7883F7;
-color other = #CCCCCC;
+color french = #2D34EA;
+color spanish = #E5953F;
+color other = #666666;
   
 void drawTable() {
   // most likely, you'll want a black background to minimize

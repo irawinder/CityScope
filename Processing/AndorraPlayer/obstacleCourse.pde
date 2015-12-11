@@ -1,4 +1,4 @@
-boolean mainCourse = false;
+boolean mainCourse = true;
 
 class ObstacleCourse {
   

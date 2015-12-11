@@ -1,4 +1,4 @@
-boolean showSource = false;
+boolean showSource = true;
 boolean showEdges = false;
 boolean showSwarm = true;
 boolean showInfo = false;
@@ -223,7 +223,7 @@ void CDRNetwork() {
     
     if (external) {
       swarms[i].cropAgents = false;
-      //swarms[i].maxSpeed = 0.2;
+      swarms[i].maxSpeed = 0.2;
     }
     
   }
