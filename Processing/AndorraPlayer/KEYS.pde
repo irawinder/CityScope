@@ -8,14 +8,14 @@ void keyPressed() {
     case 'k': //show sources and sinks for agents
       showSource = toggle(showSource);
       break;
-    case 'r': //reset agent sinks and sources; random
+    case 'r': //reset agents and simulation
       testMode = nextMode(testMode, 1);
       initAgents();
       break;
     case 'f': //print framerate to console
       showFrameRate = toggle(showFrameRate);
       break;
-    case 'S': //displays swarms of agents
+    case 'S': //toggles display of swarms of agents
       showSwarm = toggle(showSwarm);
       break;
     case 'e': //shows network edges of motion
