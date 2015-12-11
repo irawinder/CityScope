@@ -22,9 +22,9 @@ void setup() {
   OD_Data("20141102");
   OD_Data("20141109");
   OD_Data("20141225");
-//  OD_Data("mtb");
-//  OD_Data("outputCirq");
-//  OD_Data("volta");
+  OD_Data("mtb");
+  OD_Data("outputCirq");
+  OD_Data("volta");
 }
 
 void draw() {
@@ -71,6 +71,7 @@ void OD_Data(String date) {
   network.addColumn("NATION");// Nationality of Edge
   
   outputOD = new Table();
+  outputOD.addColumn("DATE");
   outputOD.addColumn("HOUR");
   outputOD.addColumn("EDGE_ID");
   outputOD.addColumn("AMOUNT");
@@ -111,6 +112,7 @@ void OD_Data(String date) {
         edgeID = edge.getInt("EDGE_ID");
         
         TableRow output = outputOD.addRow();
+        output.setString("DATE", inputOD.getString(i, "date"));
         output.setInt("HOUR", inputOD.getInt(i, "hour") + 24*dayCount);
         output.setInt("EDGE_ID", edgeID);
         output.setInt("AMOUNT", inputOD.getInt(i, "amount"));
@@ -202,6 +204,7 @@ void OD_Data(String date) {
         
         // Adds Optimized OD information to output table
         TableRow output = outputOD.addRow();
+        output.setString("DATE", inputOD.getString(i, "date"));
         output.setInt("HOUR", inputOD.getInt(i, "hour") + 24*dayCount); //Adds 24 hours to time of each consecutive unique date
         output.setInt("EDGE_ID", edgeID);
         output.setInt("AMOUNT", inputOD.getInt(i, "amount"));

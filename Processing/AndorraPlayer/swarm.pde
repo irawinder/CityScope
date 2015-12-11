@@ -126,6 +126,7 @@ class Swarm {
         
         if (showSwarm) {
           if (!cropAgents) {
+              if (v.location.y > marginWidthPix) {
 //            if (v.location.x < 0.75*marginWidthPix || v.location.x > (tableCanvas.width - 0.75*marginWidthPix) || 
 //                v.location.y < 0 || v.location.y > (tableCanvas.height - 0.75*marginWidthPix) ) {
                   if(colorMode.equals("color")) {
@@ -135,7 +136,7 @@ class Swarm {
                   } else {
                       v.display(fill, 100);
                   }
-//                }
+                }
           } else {
             if (v.location.x > 1.25*marginWidthPix && v.location.x < (tableCanvas.width - 1.25*marginWidthPix) && 
                 v.location.y > 1.25*marginWidthPix && v.location.y < (tableCanvas.height - 1.25*marginWidthPix) ) {

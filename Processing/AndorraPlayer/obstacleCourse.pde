@@ -1,3 +1,5 @@
+boolean mainCourse = false;
+
 class ObstacleCourse {
   
   ArrayList<Obstacle> course;
@@ -101,8 +103,8 @@ class ObstacleCourse {
       for (int j=0; j<course.get(i).polyCorners; j++) {
         TableRow newRow = courseTSV.addRow();
         newRow.setInt("obstacle", i);
-        newRow.setFloat("vertX", course.get(i).v.get(j).x);
-        newRow.setFloat("vertY", course.get(i).v.get(j).y);
+        newRow.setFloat("vertX", (1920.0/projectorWidth)*course.get(i).v.get(j).x);
+        newRow.setFloat("vertY", (1920.0/projectorWidth)*course.get(i).v.get(j).y);
       }
     }
     
@@ -140,9 +142,9 @@ class ObstacleCourse {
           obstacle = courseTSV.getInt(i, "obstacle");
           addObstacle();
         }
-        addVertex(new PVector(courseTSV.getFloat(i, "vertX"), courseTSV.getFloat(i, "vertY")));
+        //addVertex(new PVector(courseTSV.getFloat(i, "vertX"), courseTSV.getFloat(i, "vertY")));
         //addVertex(new PVector((projectorWidth/1000.0)*courseTSV.getFloat(i, "vertX"), (projectorWidth/1000.0)*courseTSV.getFloat(i, "vertY")));
-        //addVertex(new PVector((projectorWidth/1920.0)*courseTSV.getFloat(i, "vertX"), (projectorWidth/1920.0)*courseTSV.getFloat(i, "vertY")));
+        addVertex(new PVector((projectorWidth/1920.0)*courseTSV.getFloat(i, "vertX"), (projectorWidth/1920.0)*courseTSV.getFloat(i, "vertY")));
       }
       
     }

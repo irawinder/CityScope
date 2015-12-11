@@ -131,14 +131,14 @@ void draw() {
   
   fill(#FFFFFF);
   translate(float(1)/(maxHour+6)*width, 1.45*canvasHeight);
-  text("Hr", 0, 0);
+  text("Hr", 0, textSize);
   
   int graphHeight = 2*marginWidthPix;
   
   textAlign(CENTER);
   for (int i=0; i<=maxHour; i+=3) {
     float hor = float(i+2)/(maxHour+6)*width;
-    text(i%24, hor, 0);
+    text(i%24, hor, textSize);
   }
   
   
@@ -176,21 +176,27 @@ void draw() {
   endShape();
   
   textAlign(LEFT);
-  textSize(24*(projectorWidth/1920.0));
+  textSize(18*(projectorWidth/1920.0));
   
   float hor = float(hourIndex+2)/(maxHour+6)*width;
-  stroke(#00FF00);
+  stroke(#00FF00, 150);
+  fill(#00FF00);
   strokeWeight(2);
   line(hor, -graphHeight - 4*textSize, hor, -1.75*textSize);
-  fill(french);
-  text(int(100*summary.getFloat(hourIndex, "FRENCH") / summary.getFloat(hourIndex, "TOTAL")) + "%", 
+  text(hourIndex%24 + ":00 - " + (hourIndex%24+1) + ":00", 
                    hor + 0.5*textSize, -graphHeight - 3*textSize);
-  fill(spanish);
-  text(int(100*summary.getFloat(hourIndex, "SPANISH") / summary.getFloat(hourIndex, "TOTAL")) + "%", 
-                   hor + 0.5*textSize, -graphHeight - 3*textSize + 2*textSize);
-  fill(other);
-  text(int(100*summary.getFloat(hourIndex, "OTHER") / summary.getFloat(hourIndex, "TOTAL")) + "%", 
-                   hor + 0.5*textSize, -graphHeight - 3*textSize + 4*textSize);
+  text(date, 
+                   hor + 0.5*textSize, -graphHeight - 3*textSize + 2.5*textSize);
+  
+//  fill(french);
+//  text(int(100*summary.getFloat(hourIndex, "FRENCH") / summary.getFloat(hourIndex, "TOTAL")) + "%", 
+//                   hor + 0.5*textSize, -graphHeight - 3*textSize);
+//  fill(spanish);
+//  text(int(100*summary.getFloat(hourIndex, "SPANISH") / summary.getFloat(hourIndex, "TOTAL")) + "%", 
+//                   hor + 0.5*textSize, -graphHeight - 3*textSize + 2*textSize);
+//  fill(other);
+//  text(int(100*summary.getFloat(hourIndex, "OTHER") / summary.getFloat(hourIndex, "TOTAL")) + "%", 
+//                   hor + 0.5*textSize, -graphHeight - 3*textSize + 4*textSize);
   
   
   noStroke();

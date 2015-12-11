@@ -24,9 +24,10 @@ int numAgents, maxAgents, maxFlow, agentCap;
 int[] swarmSize;
 float adjust; // dynamic scalar used to nomralize agent generation rate
 
-int hourIndex = 17;
+int hourIndex = 25;
 int maxHour = 23;
 Table summary;
+String date;
 
 HeatMap traces;
 
@@ -277,10 +278,12 @@ void setSwarmFlow(int hr) {
   for (int i=0; i<OD.getRowCount(); i++) {
     if (OD.getInt(i, "HOUR") == hr) {
       swarms[OD.getInt(i, "EDGE_ID")].agentDelay = 1.0/OD.getInt(i, "AMOUNT");
+      date = OD.getString(i, "DATE");
     }
   }
   
   maxAgents = int(agentCap * summary.getFloat(hr, "TOTAL")/maxFlow);
+  
   
 }
 

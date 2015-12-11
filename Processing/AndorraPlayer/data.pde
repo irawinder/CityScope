@@ -9,7 +9,7 @@ Table tourists_0;
 Table network;
 Table OD;
 
-int dateIndex = 0;
+int dateIndex = 6;
 
 String[] dates = { "20140602", 
                    "20140815",

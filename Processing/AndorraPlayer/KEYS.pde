@@ -1,5 +1,3 @@
-boolean mainCourse = false;
-
 void keyPressed() {
   switch (key) {
     case 'o': //show obstacle outlines
@@ -150,14 +148,18 @@ void keyPressed() {
       setSwarmFlow(hourIndex);
       break;
     case 'I': //next data index
-      dateIndex = nextMode(dateIndex, dates.length-1);
-      initData();
-      initAgents();
+    
       if (hourIndex == 24) {
         hourIndex = 0;
       } else {
         hourIndex = hourIndex%24;
       }
+      
+      dateIndex = nextMode(dateIndex, dates.length-1);
+      initData();
+      initAgents();
+      
+
       break;
   }
   
