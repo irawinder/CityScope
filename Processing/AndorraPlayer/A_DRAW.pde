@@ -32,10 +32,16 @@ void drawTableCanvas() {
   
   tableCanvas.beginDraw();
   
+  // Instead of solid background draws a translucent overlay every frame.
+  // Provides the effect of giving animated elements "tails"
+  tableCanvas.noStroke();
+  //fill(#ffffff, 100);
+  tableCanvas.fill(background, 75);
+  tableCanvas.rect(0,0,canvasWidth,canvasHeight);
   
       //-----------BEGIN Drawing Margin Information --------------//
         
-        //drawMargin();
+        drawMargin();
       
       //-----------END Drawing Margin Information ----------------//
   
@@ -90,36 +96,49 @@ void drawTableCanvas() {
 
 void drawMargin() {
   
-  // sets background, including Margin, to gray
-  tableCanvas.background(0);
+  // sets colors and weight
+  tableCanvas.fill(background);
+  tableCanvas.noStroke();
   
-  // Sets line color to white      
-  tableCanvas.stroke(#FFFFFF);
-  tableCanvas.strokeWeight(1);
+  // Top
+  tableCanvas.rect(0, 0, canvasWidth, marginWidthPix); 
+  // Bottom
+  tableCanvas.rect(0, marginWidthPix + topoHeightPix, canvasWidth, marginWidthPix); 
+  // Left
+  tableCanvas.rect(0, marginWidthPix, marginWidthPix, canvasHeight); 
+  // Right
+  tableCanvas.rect(marginWidthPix + topoWidthPix, marginWidthPix, marginWidthPix, canvasHeight); 
   
-  // Makes rectangles transparent
-  tableCanvas.noFill();
+  int[][] lineMatrix = { {2, 3},
+                         {4, 5},
+                         {5, 6} };
   
-  // draws top containers
-  tableCanvas.rect(0, 0, canvasWidth/3, (marginWidth/tableWidth)*canvasWidth);
-  tableCanvas.rect(canvasWidth/3, 0, canvasWidth/3, (marginWidth/tableWidth)*canvasWidth);
-  tableCanvas.rect(2*canvasWidth/3, 0, canvasWidth/3, (marginWidth/tableWidth)*canvasWidth);
+  tableCanvas.stroke(grayColor);
+  tableCanvas.strokeWeight(marginWidthPix/4);
+  tableCanvas.fill(grayColor);
   
-  // draws side containers
-  tableCanvas.rect(0, (marginWidth/tableWidth)*canvasWidth, (marginWidth/tableWidth)*canvasWidth, canvasHeight-2*(marginWidth/tableWidth)*canvasWidth);
-  tableCanvas.rect(canvasWidth-(marginWidth/tableWidth)*canvasWidth, (marginWidth/tableWidth)*canvasWidth, (marginWidth/tableWidth)*canvasWidth, canvasHeight-2*(marginWidth/tableWidth)*canvasWidth);
+  for (int i=0; i<lineMatrix.length; i++) {
+    tableCanvas.line(container_Locations[lineMatrix[i][0]].x, container_Locations[lineMatrix[i][0]].y, container_Locations[lineMatrix[i][1]].x, container_Locations[lineMatrix[i][1]].y);
+  }
   
-  // draws bottom containers
-  tableCanvas.rect(0, canvasHeight-(marginWidth/tableWidth)*canvasWidth, canvasWidth/3, (marginWidth/tableWidth)*canvasWidth);
-  tableCanvas.rect(canvasWidth/3, canvasHeight-(marginWidth/tableWidth)*canvasWidth, canvasWidth/3, (marginWidth/tableWidth)*canvasWidth);
-  tableCanvas.rect(2*canvasWidth/3, canvasHeight-(marginWidth/tableWidth)*canvasWidth, canvasWidth/3, (marginWidth/tableWidth)*canvasWidth);
+  tableCanvas.stroke(background);
+  tableCanvas.strokeWeight(marginWidthPix/8);
+  tableCanvas.fill(grayColor);
+  
+  for (int i=1; i<container_Locations.length; i++) {
+    tableCanvas.ellipse(container_Locations[i].x, container_Locations[i].y, 0.5*marginWidthPix, 0.5*marginWidthPix);
+   }
+  
 
 }
 
 void drawTopo() {
  
   // Draws Satellite images
+  tableCanvas.tint(255, 50);
+  tableCanvas.filter(GRAY);
   tableCanvas.image(topo, 0, 0, topoWidthPix, topoHeightPix);
+  tableCanvas.tint(255, 255);
   
 }
 

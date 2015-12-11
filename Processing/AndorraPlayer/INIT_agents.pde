@@ -24,6 +24,9 @@ int numAgents, maxAgents;
 int[] swarmSize;
 float adjust; // dynamic scalar used to nomralize agent generation rate
 
+int hourIndex = 0;
+int maxHour = 23;
+
 HeatMap traces;
 
 void initAgents() {
@@ -32,7 +35,8 @@ void initAgents() {
   adjust = 1;
   
   //testNetwork();
-  touristNetwork();
+  //touristNetwork();
+  CDRNetwork();
   
   traces = new HeatMap(canvasWidth/5, canvasHeight/5, canvasWidth, canvasHeight);
 }
@@ -160,3 +164,83 @@ void touristNetwork() {
   }
   colorMode(RGB);
 }
+
+void CDRNetwork() {
+  
+  int numSwarm;
+  color col;
+  
+  numSwarm = network.getRowCount();
+  
+  origin = new PVector[numSwarm];
+  destination = new PVector[numSwarm];
+  weight = new float[numSwarm];
+  swarmSize = new int[numSwarm];
+  swarms = new Swarm[numSwarm];
+  
+  for (int i=0; i<numSwarm; i++) {
+    
+    // If edge is within table area
+    if (network.getInt(i, "CON_O") == 0 && network.getInt(i, "CON_D") == 0) {
+      origin[i] = mercatorMap.getScreenLocation(new PVector(network.getFloat(i, "LAT_O"), network.getFloat(i, "LON_O")));
+      destination[i] = mercatorMap.getScreenLocation(new PVector(network.getFloat(i, "LAT_D"), network.getFloat(i, "LON_D")));
+    } 
+    
+    // If edge crosses table area
+    else {
+      origin[i] = container_Locations[network.getInt(i, "CON_O")];
+      destination[i] = container_Locations[network.getInt(i, "CON_D")];
+    }
+    
+
+      
+    weight[i] = 20;
+    
+    if (network.getString(i, "NATION").equals("sp")) {
+      col = #7883F7;
+    } else if (network.getString(i, "NATION").equals("fr")) {
+      col = #ADAF67;
+    } else {
+      col = #666666;
+    }
+    
+    // delay, origin, destination, speed, color
+    swarms[i] = new Swarm(weight[i], origin[i], destination[i], 1, col);
+  }
+  
+  // Sets to rates at specific hour ...
+  setSwarmFlow(hourIndex);
+  
+  //Sets maximum range for hourly data
+  maxHour = 0;
+  for (int i=0; i<OD.getRowCount(); i++) {
+    if (OD.getInt(i, "HOUR") > maxHour) {
+      maxHour = OD.getInt(i, "HOUR");
+    }
+  }
+}
+
+// Sets to rates at specific hour ...
+void setSwarmFlow(int hr) {
+  
+  for (int i=0; i<swarms.length; i++) {
+    swarms[i].agentDelay = 100000;
+  }
+  
+  for (int i=0; i<OD.getRowCount(); i++) {
+    if (OD.getInt(i, "HOUR") == hr) {
+      swarms[OD.getInt(i, "EDGE_ID")].agentDelay = 1000.0/OD.getInt(i, "AMOUNT");
+    }
+  }
+}
+
+int nextHour(int hr) {
+  if (hr < maxHour) {
+    hr++;
+  } else {
+    hr = 0;
+  }
+  println("Hour: " + hr + ":00 - " + (hr+1) + ":00");
+  return hr;
+}
+  

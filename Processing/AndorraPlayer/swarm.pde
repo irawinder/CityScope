@@ -40,6 +40,7 @@ class Swarm {
     swarm = new ArrayList<Agent>();
     fill = f;
     
+    //All Agents do not spawn on first frame
     counter += -int(random(40));
     
   }
@@ -160,7 +161,7 @@ class Swarm {
     // Draws weighted lines from origin to destinations
     tableCanvas.stroke(fill, 50);
     if (agentDelay > 0) {
-      tableCanvas.strokeWeight(10.0/agentDelay);
+      tableCanvas.strokeWeight(10000.0/agentDelay);
     } else {
       tableCanvas.noStroke();
     }

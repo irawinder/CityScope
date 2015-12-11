@@ -54,6 +54,7 @@
 //      case 'F': Toggle Frame-based or Time-based acceleration
 //      case '+': Increase Agent Speed
 //      case '-': Decrease Agent Speed
+//      case 'b': Toggle Background color black/white
 //
 //    ObStacle Editor:
 //      'E': toggle editing
@@ -102,7 +103,7 @@ void setup() {
   initObstacles();
   
   tableCanvas.beginDraw();
-  tableCanvas.background(#FFFFFF);
+  tableCanvas.background(background);
   tableCanvas.endDraw();
   
 }

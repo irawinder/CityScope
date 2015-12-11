@@ -140,8 +140,8 @@ class ObstacleCourse {
           obstacle = courseTSV.getInt(i, "obstacle");
           addObstacle();
         }
-        addVertex(new PVector(courseTSV.getFloat(i, "vertX"), courseTSV.getFloat(i, "vertY")));
-        //addVertex(new PVector((1000.0/1920)*courseTSV.getFloat(i, "vertX"), (1000.0/1920)*courseTSV.getFloat(i, "vertY")));
+        //addVertex(new PVector(courseTSV.getFloat(i, "vertX"), courseTSV.getFloat(i, "vertY")));
+        addVertex(new PVector((projectorWidth/1920.0)*courseTSV.getFloat(i, "vertX"), (projectorWidth/1920.0)*courseTSV.getFloat(i, "vertY")));
       }
       
     }

@@ -25,11 +25,11 @@
     
     int numProjectors = 4;
     
-    int projectorWidth = 1920;
-    int projectorHeight = 1080;
+//    int projectorWidth = 1920;
+//    int projectorHeight = 1080;
 
-//    int projectorWidth = 1000;
-//    int projectorHeight = 1000;
+    int projectorWidth = 1000;
+    int projectorHeight = 1000;
     
 // Model and Table Dimensions in Centimeters
 
@@ -134,6 +134,10 @@ void initPlayer() {
     topoWidthPix   /= 2;
     topoHeightPix  /= 2;
     marginWidthPix /= 2;
+    
+    for (int i=0; i<container_Locations.length; i++) {
+      container_Locations[i].mult(.5);
+    }
   }
   
   // object for holding projection-map canvas callibration information

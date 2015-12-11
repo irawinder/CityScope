@@ -284,7 +284,7 @@ class Obstacle {
         }
       }
       
-      tableCanvas.stroke(#FFFFFF);
+      tableCanvas.stroke(textColor);
       tableCanvas.strokeWeight(4);
       
       if (closestEdge < polyCorners - 1) {

@@ -111,6 +111,14 @@ void keyPressed() {
     case 'V': //starts printing frames to file
       printFrames = toggle(printFrames);
       break;
+    case 'b': //toggle background between black and white
+      background = toggleBW(background);
+      textColor = toggleBW(textColor);
+      break;
+    case 'H': //manually iterate to next Hour in data
+      hourIndex = nextHour(hourIndex);
+      setSwarmFlow(hourIndex);
+      break;
   }
   
   //------arrow keys and how to code keys that aren't characters exactly----- 
@@ -143,6 +151,16 @@ boolean toggle(boolean bool) {
     return false;
   } else {
     return true;
+  }
+}
+
+int toggleBW(int col) {
+  if (col == 255) {
+    return 0;
+  } else if (col == 0) {
+    return 255;
+  } else {
+    return 0;
   }
 }
 
