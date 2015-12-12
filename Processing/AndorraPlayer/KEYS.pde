@@ -147,6 +147,10 @@ void keyPressed() {
       hourIndex = nextHour(hourIndex);
       setSwarmFlow(hourIndex);
       break;
+    case 'h': //go to previous Hour in data 
+      hourIndex -= 1;
+      setSwarmFlow(hourIndex);
+      break;
     case 'I': //next data index
     
       if (hourIndex == 24) {
