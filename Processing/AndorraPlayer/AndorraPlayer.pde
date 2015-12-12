@@ -55,6 +55,8 @@
 //      case '+': Increase Agent Speed
 //      case '-': Decrease Agent Speed
 //      case 'b': Toggle Background color black/white
+//      case 'H': Go forward an hour in dataset
+//      case 'h': Go backward an hour in dataset 
 //
 //    ObStacle Editor:
 //      'E': toggle editing
