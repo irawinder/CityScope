@@ -178,7 +178,7 @@ class Swarm {
     tableCanvas.stroke(fill, 50);
     tableCanvas.fill(fill, 50);
     if (agentDelay > 0) {
-      tableCanvas.strokeWeight(10.0/agentDelay);
+      tableCanvas.strokeWeight(5.0/agentDelay);
     } else {
       tableCanvas.noStroke();
     }
@@ -189,7 +189,7 @@ class Swarm {
       tableCanvas.line(origin.x, origin.y, destination.x, destination.y);
     } else {
       tableCanvas.noStroke();
-      tableCanvas.ellipse(origin.x, origin.y, 3.0/agentDelay, 3.0/agentDelay);
+      tableCanvas.ellipse(origin.x, origin.y, 1.0/agentDelay, 1.0/agentDelay);
     }
     tableCanvas.strokeWeight(1);
     tableCanvas.noStroke();
