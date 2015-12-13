@@ -157,12 +157,9 @@ void keyPressed() {
       } else {
         hourIndex = hourIndex%24;
       }
-      
       dateIndex = nextMode(dateIndex, dates.length-1);
       initData();
       initAgents();
-      
-
       break;
   }
   
