@@ -296,4 +296,15 @@ int nextHour(int hr) {
   println("Hour: " + hr + ":00 - " + (hr+1) + ":00");
   return hr;
 }
-  
+//introducing new prevHour function for back button 
+int prevHour(int hr){ 
+  if (hr < maxHour && hr != 0) { 
+    hr--; 
+  } else{ 
+    hr = maxHour;
+    if (hr == maxHour){
+    hr--;
+    }
+  } 
+  return hr;
+}
