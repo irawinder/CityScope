@@ -16,7 +16,7 @@ void solveTest(JSONArray points) {
     try {
       pt = points.getJSONObject(i);
     } catch(RuntimeException e){
-      pt = points.getJSONObject(0);  
+      pt = defaultNode;  
     }
     
     // Each solution object pupolated with fields and appendend to solution array

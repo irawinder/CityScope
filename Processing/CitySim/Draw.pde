@@ -15,7 +15,7 @@ void drawScore(String[] scoreNames) {
     try {
       node = solutionJSON.getJSONObject(i); 
     } catch(RuntimeException e){
-      node = solutionJSON.getJSONObject(0);  
+      node = defaultNode;  
     }
     
     if (node.getInt("z") == zee) {
@@ -36,7 +36,7 @@ void drawUses() {
    try {
      node = nodesJSON.getJSONObject(i); 
    } catch(RuntimeException e){
-     node = nodesJSON.getJSONObject(0);  
+     node = defaultNode;  
    }
    
     if (node.getInt("z") == zee) {

@@ -30,6 +30,9 @@ JSONObject metaData;
   // Max Extent Values
   int maxPieces, maxLU_W, maxLU_H, nodesU, nodesV, numNodes;
 
+//Default Node
+JSONObject defaultNode;
+
 // Initialize Input and Output Arrays
 void initializeInputJSON() {
   //Input Nodes
@@ -37,6 +40,7 @@ void initializeInputJSON() {
   
   //Input MetaData
   metaData = new JSONObject();
+  
 }
 
 // Loads Input nodes from 'legotizer_data' folder
@@ -48,6 +52,8 @@ void loadInput(String filename, int viz) {
   } catch(RuntimeException e){
     println(filename + " incomplete file");
   }
+  
+  defaultNode = loadJSONObject(legotizer_data + demoPrefix + demos[viz] + "defaultNode.json"); 
 
   // Calculate maxU, maxV, maxZ
   maxZ = 0;
@@ -57,7 +63,7 @@ void loadInput(String filename, int viz) {
     try {
       node = nodesJSON.getJSONObject(i);
     } catch(RuntimeException e){
-      node = nodesJSON.getJSONObject(0);  
+      node = defaultNode;  
     }
     
     if (node.getInt("z") > maxZ) {

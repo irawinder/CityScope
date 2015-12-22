@@ -167,7 +167,7 @@ void mergeUse(JSONArray points, int source, int merge) {
     try {
       pt = points.getJSONObject(i); 
     } catch(RuntimeException e){
-      pt = points.getJSONObject(0);  
+      pt = defaultNode;  
     }
     
     if (pt.getInt("use") == source) {
@@ -240,7 +240,7 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
     try {
       pt = points.getJSONObject(i); 
     } catch(RuntimeException e){
-      pt = points.getJSONObject(0);  
+      pt = defaultNode;  
     }
     
     u = pt.getInt("u");
@@ -267,7 +267,7 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
       try{
         pt2 = points.getJSONObject(int(random( points.size() - 1 )));
       } catch(RuntimeException e){
-        pt2 = points.getJSONObject(0);  
+        pt2 = defaultNode;  
       }
       
       // Orthogonal horizontal distance
@@ -352,7 +352,7 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
     try {
       pt = points.getJSONObject(i); 
     } catch(RuntimeException e){
-      pt = points.getJSONObject(0);  
+      pt = defaultNode;  
     }
     
     u = pt.getInt("u");
@@ -376,7 +376,7 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
         try {
           pt2 = points.getJSONObject(int(random( points.size() - 1 )));
         } catch(RuntimeException e){
-          pt2 = points.getJSONObject(0);  
+          pt2 = defaultNode;  
         }
         
         // If live or work node
@@ -444,7 +444,7 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
     try {
       pt = points.getJSONObject(i); 
     } catch(RuntimeException e){
-      pt = points.getJSONObject(0);  
+      pt = defaultNode;  
     }
     
     u = pt.getInt("u");
@@ -521,7 +521,7 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
       try {
         pt = points.getJSONObject(i); 
       } catch(RuntimeException e){
-        pt = points.getJSONObject(0);  
+        pt = defaultNode;  
       }
       
       u = pt.getInt("u");
