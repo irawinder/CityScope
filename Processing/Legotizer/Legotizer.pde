@@ -72,8 +72,6 @@
 
 float version = 1.32;
 
-
-
 // For any given setup, please update these dimensions, in pixels
 //
 // Example TSV Format:
@@ -85,6 +83,11 @@ String canvasPath = "canvas.tsv";
 Table canvas;
 // Initial dimensions of canvas when application is run, in pixels
 int canvasWidth, canvasHeight;
+
+// Set to true to automatically open in present mode
+boolean sketchFullScreen() {
+  return true;
+}
 
 // Visualization is usually customized to a particular demo configuration.
 // Configurations are named accordingly, given 'index.txt' as of v1.18:
