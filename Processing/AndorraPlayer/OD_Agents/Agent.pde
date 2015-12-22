@@ -1,3 +1,22 @@
+//Set to true if agents iterated by frame
+//Set to false if agents iterated by time (useful for choppy framerate; but may cause agents to "jump")
+boolean frameStep = true;
+
+float time_0 = 0;
+float speed = 0.4444444;
+
+void updateSpeed(int dir) {
+  switch (dir) {
+    case -1:
+      speed /= 1.5;
+      break;
+    case 1:
+      speed *= 1.5;
+      break;
+  }
+  println("Speed: " + speed);
+}
+
 class Agent {
   
   PVector location;
@@ -92,7 +111,11 @@ class Agent {
     // Update velocity
     velocity.add(acceleration);
     
-    location.add(velocity);
+    if (frameStep) {
+      location.add(new PVector(speed*velocity.x, speed*velocity.y));
+    } else {
+      location.add(new PVector(speed*0.0625*velocity.x*(millis()-time_0), speed*0.0625*velocity.y*(millis()-time_0)));
+    }
         
     // Limit speed
     velocity.limit(maxspeed);
@@ -114,12 +137,12 @@ class Agent {
   }
   
   void display(color fill, int alpha) {
-    fill(fill, alpha);
-    noStroke();
-    pushMatrix();
-    translate(location.x, location.y);
-    ellipse(0, 0, r, r);
-    popMatrix();
+    tableCanvas.fill(fill, alpha);
+    tableCanvas.noStroke();
+    tableCanvas.pushMatrix();
+    tableCanvas.translate(location.x, location.y);
+    tableCanvas.ellipse(0, 0, r, r);
+    tableCanvas.popMatrix();
   }
   
 }

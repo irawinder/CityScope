@@ -2,29 +2,6 @@
 // For Andorra Data Stories
 // Ira Winder, MIT Media Lab, jiw@mit.edu, Fall 2015
 
-// Set to false when rendering on projectors; true when developing on your PC, etc
-// Setting to false opens a 4k canvas
-boolean debug = true;
-
-boolean showFrameRate = false;
-
-// !!!
-// Developers of this Code (Nina and Connie!) probably need only concern themselves with the 'data' and 'draw' tabs
-//
-
-
-// Key Commands:
-//
-//   View Mode:
-//     'm' - toggle On-Screen mode or Projection-mapping mode
-//
-//   Projection Mapping:
-//     'c' - toggle callibration mode for projection mapping
-//     's' - save callibration
-//     'l' - load callibration
-//
-//     'g' - toggle debug
-
 // Need Libaries:
 // Keystone for Processing
 
@@ -51,207 +28,203 @@ boolean showFrameRate = false;
 //  |                  |                 |
 //  |------------------------------------|
 
-// Projector dimensions in Pixels
-    
-    int numProjectors = 4;
-    
-    int projectorWidth = 1920;
-    int projectorHeight = 1080;
-    
-// Model and Table Dimensions in Centimeters
-
-    // Dimensions of Topographic Model
-    float topoWidth = 310;
-    float topoHeight = 110;
-    
-    // Dimension of Margin around Table
-    float marginWidth = 15;
-    
-    // Net Table Dimensions
-    float tableWidth = topoWidth + 2*marginWidth;
-    float tableHeight = topoHeight + 2*marginWidth;
-    
-    // Scale of model (i.e. meters represented per actual meter)
-    float scale = 1000;
-    
-// Graphics Objects
-
-    // canvas width = 2x Projector Width ensure all pixels being used
-    int canvasWidth = 2*projectorWidth;
-    
-    // canvas height reduced to minimum ratio to save memory
-    int canvasHeight = int((tableHeight/tableWidth)*2*projectorWidth);
-    
-    // Table Object Dimensions in Pixels
-    int topoWidthPix = int((topoWidth/tableWidth)*canvasWidth);
-    int topoHeightPix = int((topoHeight/tableHeight)*canvasHeight);
-    int marginWidthPix = int((marginWidth/tableWidth)*canvasWidth);
-    
-    // Graphics object in memory that matches the surface of the table to which we write undistorted graphics
-    PGraphics tableCanvas;
-    
-    // Satellite image of Andorra
-    PImage topo;
-
-
-/**
- * This is a simple example of how to use the Keystone library.
- *
- * To use this example in the real world, you need a projector
- * and a surface you want to project your Processing sketch onto.
- *
- * Simply drag the corners of the CornerPinSurface so that they
- * match the physical surface's corners. The result will be an
- * undistorted projection, regardless of projector position or 
- * orientation.
- *
- * You can also create more than one Surface object, and project
- * onto multiple flat surfaces using a single projector.
- *
- * This extra flexbility can comes at the sacrifice of more or 
- * less pixel resolution, depending on your projector and how
- * many surfaces you want to map. 
- */
-
-    import deadpixel.keystone.*;
-    
-    Keystone ks;
-    CornerPinSurface[] surface = new CornerPinSurface[numProjectors];
-    
-    PGraphics offscreen;
+// Key Commands:
+//
+//     'g' - Toggle debug
+//
+//   View Mode:
+//     'm' - Toggle On-Screen mode or Projection-mapping mode
+//     'T' - Toggle Topographic Map
+//
+//   Projection Mapping:
+//     'c' - Toggle callibration mode for projection mapping
+//     's' - Save callibration
+//     'l' - Load callibration
+//
+//   Agent-based Modeling:
+//      case 'o': Show Obstacle Outlines
+//      case 'k': Show Sources and Sinks for Agents
+//      case 'r': Reset Agent Sinks and Sources
+//      case 'f': Print Framerate to console
+//      case 'S': Toggle display of agents
+//      case 'e': Toggle display of network edges
+//      case 'i': Toggle Information Menu
+//      case 'p': Toggle Obstacles On/Off
+//      case 't': Toggle HeatMap Visualization
+//      case 'F': Toggle Frame-based or Time-based acceleration
+//      case '+': Increase Agent Speed
+//      case '-': Decrease Agent Speed
+//      case 'b': Toggle Background color black/white
+//      case 'H': Go forward an hour in dataset
+//      case 'h': Go backward an hour in dataset 
+//
+//    ObStacle Editor:
+//      'E': toggle editing
+//      'A': Add Obstacle
+//      'R': Remove Obstacle
+//      'SPACEBAR': Select next Obstacle to edit
+//      'CLICK' add vertex to selected obstacle
+//      'DELETE' remove vertex from selected obstacle
+//       Arrow Keys - fine movement of seleted vertex in obstacle
+//      's' save CSV file of boundary locations (if editor is on)
+//      'l' load CSV file of boundary locations (if editor is on)
 
 
+// set to true when running app to prevent fullScreen Mode
+// also enables some visualizations for debugging
+boolean debug = true;
 
-// Objects for converting Latitude-Longitude to Canvas Coordinates
-   
-    // corner locations for topographic model (latitude and longitude)
-    PVector UpperLeft = new PVector(42.505086, 1.509961);
-    PVector UpperRight = new PVector(42.517066, 1.544024);
-    PVector LowerRight = new PVector(42.508161, 1.549798);
-    PVector LowerLeft = new PVector(42.496164, 1.515728);
-    
-    //Amount of degrees rectangular canvas is rotated from horizontal latitude axis.
-    float rotation = 25.5000; //degrees
-    
-    float lat1 = 42.517066; // Uppermost Latitude on canvas
-    float lat2 = 42.496164; // Lowermost Latitude on canvas
-    float lon1 = 1.509961; // Uppermost Longitude on canvas
-    float lon2 = 1.549798; // Lowermost Longitude on canvas
-    
-    // Dimensions for larger or equal-size canvas, perpendicular to north, that bounds and intersects 4 corners of original 
-    float lg_width = topoHeightPix*sin(abs(rotation)*2*PI/360) + topoWidthPix*cos(abs(rotation)*2*PI/360);
-    float lg_height = topoWidthPix*sin(abs(rotation)*2*PI/360) + topoHeightPix*cos(abs(rotation)*2*PI/360);
-    
-    float w_shift = (lg_width-topoWidthPix)/2;
-    float h_shift = (lg_height-topoHeightPix)/2;
-     
-    MercatorMap mercatorMap; // rectangular projection environment to convert latitude and longitude into pixel locations on the canvas
+// Only set this to true if projectors display output is 4k
+// Also set to false if developing on your machine in 1080p
+boolean use4k = false;
 
 // Draw Modes:
 // 0 = Render For Screen
 // 1 = Render for Projection-Mapping
-
-    int drawMode = 1;
-    
-    boolean sketchFullScreen() {
-      return !debug;
-    }
-
-//import processing.video.*;
-//Movie theMovie;
-//
-//void movieEvent(Movie m) {
-//  m.read();
-//}
-
-
+int drawMode = 0;
 
 void setup() {
+  //size(2*projectorWidth, 2*projectorHeight, P3D);
   
   // Keystone will only work with P3D or OPENGL renderers, 
   // since it relies on texture mapping to deform
-  if (debug) {
-    size(projectorWidth, projectorHeight, P3D);
-  } else {
+  
+  if (use4k) {
     size(2*projectorWidth, 2*projectorHeight, P3D);
+  } else {
+    size(projectorWidth, projectorHeight, P3D);
   }
   
-  // object for holding projection-map canvas callibration information
-  ks = new Keystone(this);
-  
-  // Creates 4 cornerpin surfaces for projection mapping (1 for each projector)
-  for (int i=0; i<surface.length; i++) {
-    surface[i] = ks.createCornerPinSurface(canvasWidth/2, canvasHeight/2, 20);
+  if (loadData) {
+    // Loads csv files referenced in data tab
+    initData();
   }
   
-  // We need an offscreen buffer to draw the surface we
-  // want projected
-  // note that we're matching the resolution of the
-  // CornerPinSurface.
-  // (The offscreen buffer can be P2D or P3D)
+  initPlayer();
+  initAgents();
+  initObstacles();
   
-  // Largest Canvas that holds unchopped parent graphic.
-  tableCanvas = createGraphics(canvasWidth, canvasHeight, P3D);
+  tableCanvas.beginDraw();
+  tableCanvas.background(background);
+  tableCanvas.endDraw();
   
-  // Smaller PGraphic to hold quadrants 1-4 of parent tableCanvas.
-  offscreen = createGraphics(canvasWidth/2, canvasHeight/2, P3D);
-  
-  // loads baseimage for topographic model
-  topo = loadImage("crop.png");
-  
-  // Creates projection environment to convert latitude and longitude into pixel locations on the canvas
-  mercatorMap = new MercatorMap(lg_width, lg_height, lat1, lat2, lon1, lon2);
-  
-  // loads the saved layout
-  ks.load();
-  
-  // Loads csv files referenced in data tab
-  initData();
-
-//  Deprecated movie animation
-//      theMovie = new Movie(this, "cityscope_sponsorweek.mp4");
-//      theMovie.loop();
 }
 
 void draw() {
   
   // Renders frame onto 'tableCanvas' PGraphic
   drawTableCanvas();
+  
+  // Renders Agent 'dots' and corresponding obstacles and heatmaps
+  drawAgents(); 
 
-  // most likely, you'll want a black background to minimize
-  // bleeding around your projection area
-  background(0);
-  
-  // Renders the tableCanvas as either a projection map or on-screen 
-  switch (drawMode) {
-    
-    case 0: // On-Screen Rendering
-    
-      image(tableCanvas, 0, 0, tableCanvas.width/2, tableCanvas.height/2);
-      break;
-      
-    case 1: // Projection-Mapping Rendering
-    
-      // render the scene, transformed using the corner pin surface
-      for (int i=0; i<surface.length; i++) {
-        chopScreen(i);
-        surface[i].render(offscreen);
-      }
-      break;
-  }
-  
+  // draws Table Canvas onto projection map or on screen
+  drawTable();
+
   if (showFrameRate) {
     println(frameRate);
   }
-
+  
+  // Temporary Graph //
+  
+  fill(#FFFFFF);
+  translate(float(1)/(maxHour+6)*width, 1.45*canvasHeight);
+  text("Hr", 0, textSize);
+  
+  int graphHeight = 2*marginWidthPix;
+  
+  textAlign(CENTER);
+  for (int i=0; i<=maxHour; i+=3) {
+    float hor = float(i+2)/(maxHour+6)*width;
+    text(i%24, hor, textSize);
+  }
+  
+  
+  noStroke();
+  fill(french, 200);
+  beginShape();
+  vertex(float(0+2)/(maxHour+6)*width, 0 - 2*textSize);
+  for (int i=0; i<=maxHour; i++) {
+    float hor = float(i+2)/(maxHour+6)*width;
+    vertex(hor, -graphHeight*summary.getFloat(i, "TOTAL")/maxFlow - 2*textSize);
+  }
+  vertex(float(maxHour+2)/(maxHour+6)*width, 0 - 2*textSize);
+  endShape();
+  
+  noStroke();
+  fill(spanish, 200);
+  beginShape();
+  vertex(float(0+2)/(maxHour+6)*width, 0 - 2*textSize);
+  for (int i=0; i<=maxHour; i++) {
+    float hor = float(i+2)/(maxHour+6)*width;
+    vertex(hor, -graphHeight*(summary.getFloat(i, "TOTAL")-summary.getFloat(i, "FRENCH"))/maxFlow - 2*textSize);
+  }
+  vertex(float(maxHour+2)/(maxHour+6)*width, 0 - 2*textSize);
+  endShape();
+  
+  noStroke();
+  fill(other, 200);
+  beginShape();
+  vertex(float(0+2)/(maxHour+6)*width, 0 - 2*textSize);
+  for (int i=0; i<=maxHour; i++) {
+    float hor = float(i+2)/(maxHour+6)*width;
+    vertex(hor, -graphHeight*(summary.getFloat(i, "TOTAL")-summary.getFloat(i, "FRENCH")-summary.getFloat(i, "SPANISH"))/maxFlow - 2*textSize);
+  }
+  vertex(float(maxHour+2)/(maxHour+6)*width, 0 - 2*textSize);
+  endShape();
+  
+  textAlign(LEFT);
+  textSize(18*(projectorWidth/1920.0));
+  
+  float hor = float(hourIndex+2)/(maxHour+6)*width;
+  stroke(#00FF00, 150);
+  fill(#00FF00);
+  strokeWeight(2);
+  line(hor, -graphHeight - 4*textSize, hor, -1.75*textSize);
+  text(hourIndex%24 + ":00 - " + (hourIndex%24+1) + ":00", 
+                   hor + 0.5*textSize, -graphHeight - 3*textSize);
+  text(date, 
+                   hor + 0.5*textSize, -graphHeight - 3*textSize + 2.5*textSize);
+  
+//  fill(french);
+//  text(int(100*summary.getFloat(hourIndex, "FRENCH") / summary.getFloat(hourIndex, "TOTAL")) + "%", 
+//                   hor + 0.5*textSize, -graphHeight - 3*textSize);
+//  fill(spanish);
+//  text(int(100*summary.getFloat(hourIndex, "SPANISH") / summary.getFloat(hourIndex, "TOTAL")) + "%", 
+//                   hor + 0.5*textSize, -graphHeight - 3*textSize + 2*textSize);
+//  fill(other);
+//  text(int(100*summary.getFloat(hourIndex, "OTHER") / summary.getFloat(hourIndex, "TOTAL")) + "%", 
+//                   hor + 0.5*textSize, -graphHeight - 3*textSize + 4*textSize);
+  
+  
+  noStroke();
+  
+  translate(float(0+2)/(maxHour+6)*width, -1.5*graphHeight);
+  
+  fill(#FFFFFF);
+  textSize(24*(projectorWidth/1920.0));
+  textAlign(LEFT);
+  text("Tourists |", 0, 0);
+  
+  fill(spanish);
+  text("Spanish", 3.5*marginWidthPix, 0);
+  
+  fill(french);
+  text("French", 2.0*marginWidthPix, 0);
+  
+  fill(other);
+  text("Other", 5.0*marginWidthPix, 0);
+  
+  if (printFrames) {
+    //tableCanvas.save("videoFrames/" + millis() + ".png");
+    save("videoFrames/" + millis() + ".png");
+  }
+  
 }
 
 void chopScreen(int projector) {
-  
   offscreen.beginDraw();
-  
   switch (projector) {
-    
     case 0:
       offscreen.image(tableCanvas, 0, 0);
       break;
@@ -264,63 +237,8 @@ void chopScreen(int projector) {
     case 3:
       offscreen.image(tableCanvas, -canvasWidth/2, -canvasHeight/2);
       break;
-      
   }
-  
   offscreen.endDraw();
-  
-}
-
-void keyPressed() {
-  switch(key) {
-  case 'c':
-    // enter/leave calibration mode, where surfaces can be warped 
-    // and moved
-    ks.toggleCalibration();
-    break;
-
-  case 'l':
-    // loads the saved layout
-    ks.load();
-    break;
-
-  case 's':
-    // saves the layout
-    ks.save();
-    break;
-  
-  case 'm':
-    // changes draw mode
-    if (drawMode < 1) {
-      drawMode++;
-    } else {
-      drawMode = 0;
-    }
-    break;
-    
-  case 'g':
-    // changes debug mode
-    debug = toggle(debug);
-    break;
-    
-  case 'd':
-    // changes debug mode
-    showData = toggle(showData);
-    break;
-  
-  case 'f':
-    // changes debug mode
-    showFrameRate = toggle(showFrameRate);
-    break;
-  }
-}
-
-boolean toggle(boolean bool) {
-  if (bool) {
-    return false;
-  } else {
-    return true;
-  }
 }
 
 

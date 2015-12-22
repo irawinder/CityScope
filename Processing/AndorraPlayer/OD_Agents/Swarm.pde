@@ -4,7 +4,7 @@ class Swarm {
   
   ArrayList<Agent> swarm;
   
-  float agentLife = width+height;
+  float agentLife = canvasWidth+canvasHeight;
   float agentDelay;
   float maxSpeed;
   float counter = 0;
@@ -32,7 +32,7 @@ class Swarm {
     sink = new Obstacle(sink_vert);
     
     maxSpeed = maxS;
-    agentLife *= (abs(a.x - b.x) + abs(a.y - b.y)) / (width+height);
+    agentLife *= (abs(a.x - b.x) + abs(a.y - b.y)) / (canvasWidth+canvasHeight);
     agentLife *= 20.0/maxSpeed;
     //println(agentLife);
     agentDelay = delay;
@@ -46,7 +46,7 @@ class Swarm {
     counter ++ ;
     
     // Determines if a new agent is needed
-    if (counter == agentDelay) {
+    if (counter > adjust*agentDelay/speed) {
       generateAgent = true;
       counter = 0;
     }
@@ -54,7 +54,7 @@ class Swarm {
     // Adds an agent
     if (generateAgent) {
       if (origin == null) {
-        swarm.add(new Agent(random(width), random(height), 6, maxSpeed));
+        swarm.add(new Agent(random(canvasWidth), random(canvasHeight), 6, maxSpeed));
       } else {
         swarm.add(new Agent(origin.x, origin.y, 6, maxSpeed));
       }
@@ -94,14 +94,14 @@ class Swarm {
         
         
         if (collision) {
-          v.applyBehaviors(swarm, new PVector(random(width), random(height)));
-          v.update(int(agentLife), sink);
+          v.applyBehaviors(swarm, new PVector(random(canvasWidth), random(canvasHeight)));
+          v.update(int(agentLife/speed), sink);
           // draws as red if collision detected
           //v.display(#FF0000, 100);
           collision = false;
         } else {
           v.applyBehaviors(swarm, destination);
-          v.update(int(agentLife), sink);
+          v.update(int(agentLife/speed), sink);
           // draws normally if collision detected
           //v.display(fill, 100);
         }
@@ -121,31 +121,31 @@ class Swarm {
   void displaySource() {
     
     if (swarm.size() > 0) {
-      noFill();
-      stroke(fill, 100);
+      tableCanvas.noFill();
+      tableCanvas.stroke(fill, 100);
       
       //Draw Source
-      strokeWeight(2);
-      line(origin.x - swarm.get(0).r, origin.y - swarm.get(0).r, origin.x + swarm.get(0).r, origin.y + swarm.get(0).r);
-      line(origin.x - swarm.get(0).r, origin.y + swarm.get(0).r, origin.x + swarm.get(0).r, origin.y - swarm.get(0).r);
+      tableCanvas.strokeWeight(2);
+      tableCanvas.line(origin.x - swarm.get(0).r, origin.y - swarm.get(0).r, origin.x + swarm.get(0).r, origin.y + swarm.get(0).r);
+      tableCanvas.line(origin.x - swarm.get(0).r, origin.y + swarm.get(0).r, origin.x + swarm.get(0).r, origin.y - swarm.get(0).r);
       
       //Draw Sink
-      strokeWeight(3);
-      ellipse(destination.x, destination.y, 30, 30);
+      tableCanvas.strokeWeight(3);
+      tableCanvas.ellipse(destination.x, destination.y, 30, 30);
     }
   }
   
   void displayEdges() {
     // Draws weighted lines from origin to destinations
-    stroke(fill, 50);
+    tableCanvas.stroke(fill, 50);
     if (agentDelay > 0) {
-      strokeWeight(100.0/agentDelay);
+      tableCanvas.strokeWeight(100.0/agentDelay);
     } else {
-      noStroke();
+      tableCanvas.noStroke();
     }
-    line(origin.x, origin.y, destination.x, destination.y);
-    strokeWeight(1);
-    noStroke();
+    tableCanvas.line(origin.x, origin.y, destination.x, destination.y);
+    tableCanvas.strokeWeight(1);
+    tableCanvas.noStroke();
   }
   
 }
