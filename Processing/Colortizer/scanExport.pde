@@ -11,6 +11,7 @@
 
 boolean busyImporting = false;
 boolean viaUDP = true;
+boolean karthikPrototype = false;
 
 // import UDP library
 import hypermedia.net.*;
@@ -106,6 +107,15 @@ void sendData() {
     saveStrings("data.txt", split(dataToSend, "\n"));
     //udp.send( dataToSend, "18.85.55.241", 6152 );
     udp.send( dataToSend, "localhost", 6152 );
+    
+    // Karthik's IP Address
+    if(karthikPrototype) {
+      // Phone 1
+      udp.send( dataToSend, "18.85.25.65", 6152 );
+      
+      // Phone 2
+      udp.send( dataToSend, "18.85.27.217", 6152 );
+    }
     
     //println("update received");
     

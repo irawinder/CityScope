@@ -161,6 +161,7 @@ public void scanDisplay() {
   
   // Draws status of IDs supported, gridLocked status, and UMI client state
   translate(imgW+margLeft+margInputs, margTop+imgH);
+  drawVRMode();
   drawIDMode(scanGrid[numGAforLoop[imageIndex] + gridIndex].IDMode);
   drawGridLock();
   drawUMIStatus();
@@ -460,6 +461,13 @@ void drawIDMode(int IDMode) {
        24+scanGrid[numGAforLoop[imageIndex] + gridIndex].getQuadWidth()+10, -1.5*tsize);
   text("for 4-bit(2x2) tags only.  1-bit tags unaffected", 
        24+scanGrid[numGAforLoop[imageIndex] + gridIndex].getQuadWidth()+10, 0);
+}
+
+void drawVRMode() {
+  fill(#FFFFFF);
+  textAlign(LEFT);
+  text("Export to IPs for Karthik's VR Prototype: " + karthikPrototype + " [Press 'V' to toggle on/off]", 
+       24+scanGrid[numGAforLoop[imageIndex] + gridIndex].getQuadWidth()+10, -6.0*tsize);
 }
 
 void printGridTitle(int i) {
@@ -767,6 +775,13 @@ void keyPressed() {
     case '6':
       if(useUMI) {
         initServer();
+      }
+      break;
+    case 'V':
+      if (karthikPrototype) {
+        karthikPrototype = false;
+      } else {
+        karthikPrototype = true;
       }
       break;
   }
