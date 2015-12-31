@@ -30,21 +30,19 @@ void drawPathfinder() {
   
   tableCanvas.strokeWeight(2);
   
+  // Draw Path
   for (int i=0; i<testPath.size(); i++) {
     tableCanvas.stroke(#00FF00);
     tableCanvas.ellipse(testPath.get(i).x, testPath.get(i).y, 20, 20);
-    println(testPath.get(i).x + ", " + testPath.get(i).y);
   }
-  println("--");
   
+  //Draw Origin
   tableCanvas.stroke(#FF0000);
   tableCanvas.ellipse(A.x, A.y, 20, 20);
   
+  //Draw Destination
   tableCanvas.stroke(#0000FF);
   tableCanvas.ellipse(B.x, B.y, 20, 20);
-  println(A.x + ", " + A.y);
-  println(B.x + ", " + B.y);
-  println("-");
   
 }
 
@@ -95,6 +93,7 @@ class Pathfinder {
           parentNode[network.getNeighbor(current, i)] = current;
         }
         
+        // Adds non-visited neighbors of current node to queue
         if (!visited[network.getNeighbor(current, i)]) {
           toVisit.add(network.getNeighbor(current, i));
           visited[network.getNeighbor(current, i)] = true;
@@ -102,25 +101,35 @@ class Pathfinder {
       }
       
       visited[current] = true;
-      //path.add(network.nodes.get(current).node);
       toVisit.remove(0);
-      current = toVisit.get(0);
       
-      if (current == b) {
+      if (toVisit.size() > 0) {
+        current = toVisit.get(0);
+      } else {
+        // Returns path-not-found
         complete = true;
-        println("complete");
+        println("Path Not Found");
+        
+        // only returns the origin node as path
+        path.add(0, network.nodes.get(a).node);
       }
-    }
- 
-    path.add(0, network.nodes.get(b).node);
-    current = b;
-    complete = false;
-    while (!complete) {
-      path.add(0, network.nodes.get(parentNode[current]).node);
-      current = parentNode[current];
       
-      if (current == a) {
-        complete = true;
+      // Terminates loop if destination is reached
+      if (current == b) {
+        println("Total Distance to Distination: " + totalDist[current]);
+        
+        // Working backward from destination, rebuilds optimal path to origin from parentNode data
+        path.add(0, network.nodes.get(b).node);
+        current = b;
+        while (!complete) {
+          path.add(0, network.nodes.get(parentNode[current]).node);
+          current = parentNode[current];
+          
+          if (current == a) {
+            complete = true;
+          }
+        }
+        
       }
     }
     
