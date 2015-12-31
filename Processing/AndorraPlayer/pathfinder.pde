@@ -6,16 +6,46 @@
 
 // Step 4: Modify Swarm Behavior to follow path
 
-Graph testGraph;
+Pathfinder finder;
 
-void initGraph() {
-  testGraph = new Graph(tableCanvas.width, tableCanvas.height, 20);
-  testGraph.cullObstacles(boundaries);
-  testGraph.generateEdges();
+void initPathfinder() {
+  finder = new Pathfinder(tableCanvas.width, tableCanvas.height, 20, boundaries);
 }
 
-void drawGraph() {
-  testGraph.display();
+void drawPathfinder() {
+  finder.display();
+}
+
+class Pathfinder { 
+  Graph network;
+  float[] totalDist;
+  
+  Pathfinder(int w, int h, float tol, ObstacleCourse c) {
+    network = new Graph(w, h, tol);
+    network.cullObstacles(c);
+    network.generateEdges();
+    
+    totalDist = new float[network.nodes.size()];
+  }
+  
+  // a, b, represent respective index for start and end nodes in pathfinding network
+  ArrayList<PVector> findPath(int a, int b) {
+    
+    for (int i=0; i<totalDist.length; i++) {
+      totalDist[i] = Integer.MAX_VALUE;
+    }
+    
+    ArrayList<PVector> path = new ArrayList<PVector>();
+    
+    
+    
+    return path;
+  }
+    
+  void display() {
+    network.display();
+  }
+    
 }
 
 class Graph {
@@ -107,9 +137,5 @@ class Node {
     neighbors.add(n);
     distance.add(d);
   }
-  
-}
-
-class Pathfinder { 
   
 }

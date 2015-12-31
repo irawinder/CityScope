@@ -53,7 +53,7 @@ void drawTableCanvas() {
       
       // draws pathfinding nodes onto Canvas
       if (showPaths) {
-        drawGraph();
+        drawPathfinder();
       }
   
   
