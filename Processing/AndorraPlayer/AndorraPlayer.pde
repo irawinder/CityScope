@@ -1,4 +1,5 @@
 // This is the staging script to allow splitting 4k projection mapping across 4 projectors
+// It's also the staging area for the AI of some agent-based modeling
 // For Andorra Data Stories
 // Ira Winder, MIT Media Lab, jiw@mit.edu, Fall 2015
 
