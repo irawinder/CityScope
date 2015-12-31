@@ -124,7 +124,7 @@ class Agent {
     // Limit speed
     velocity.limit(maxspeed);
     
-    // Reset accelertion to 0 each cycle
+    // Reset acceleration to 0 each cycle
     acceleration.mult(0);
     
     // Check if agent at end of life

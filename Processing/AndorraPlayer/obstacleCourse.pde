@@ -73,7 +73,8 @@ class ObstacleCourse {
     for (int i=0; i<numObstacles; i++) {
       if (course.get(i).pointInPolygon(v.location.x, v.location.y) ) {
         collision = true;
-        v.roll(course.get(i).normalOfEdge(v.location.x, v.location.y, v.velocity.x, v.velocity.y));
+        // Applies unique forcevector if collision detected....not so great
+        //v.roll(course.get(i).normalOfEdge(v.location.x, v.location.y, v.velocity.x, v.velocity.y));
         break;
       }
     }

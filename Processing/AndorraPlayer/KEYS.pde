@@ -165,7 +165,7 @@ void keyPressed() {
       showPaths = toggle(showPaths);
       break;
     case 'X': // randomize locations of origin and destination paths
-      pathTest();
+      pathTest(finderTest);
       break;
   }
   

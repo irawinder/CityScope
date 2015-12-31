@@ -1,39 +1,43 @@
 // Step 1: Create a matrix of Nodes that exclude those overlapping with Obstacle Course
 // Step 2: Generate Edges connect adjacent nodes 
 // Step 3: Implement Djikkkijikkissar's Algorithm 
-
 // Step 3.1 Convert canvas coordinates to pathfinding graph node index
 
 // Step 3.2 Modify Swarm Class to retain Path object of some sort (Probably an ArrayList<PVector>)
 
 // Step 4: Modify Swarm Behavior to follow path
 
-Pathfinder finder;
+Pathfinder finderTopo, finderMargin;
+int finderResolution = 20;
+
+// Pathfinder test and debugging Objects
+Pathfinder finderTest;
 PVector A, B;
 ArrayList<PVector> testPath;
 
 void initPathfinder() {
-  finder = new Pathfinder(tableCanvas.width, tableCanvas.height, 20, boundaries);
+  finderTopo = new Pathfinder(tableCanvas.width, tableCanvas.height, finderResolution, boundaries);
+  finderMargin = new Pathfinder(tableCanvas.width, tableCanvas.height, finderResolution, container);
   
-  // debugging check
-  pathTest();
+  finderTest = new Pathfinder(tableCanvas.width, tableCanvas.height, finderResolution, boundaries);
+  pathTest(finderTest);
 }
 
-void pathTest() {
+void pathTest(Pathfinder finder) {
   A = new PVector(random(1.0)*tableCanvas.width, random(1.0)*tableCanvas.height);
   B = new PVector(random(1.0)*tableCanvas.width, random(1.0)*tableCanvas.height);
   testPath = finder.findPath(A, B);
 }
 
 void drawPathfinder() {
-  finder.display();
+  finderTest.display();
   
   tableCanvas.strokeWeight(2);
   
 //  // Draw Path Nodes
 //  for (int i=0; i<testPath.size(); i++) {
 //    tableCanvas.stroke(#00FF00);
-//    tableCanvas.ellipse(testPath.get(i).x, testPath.get(i).y, 20, 20);
+//    tableCanvas.ellipse(testPath.get(i).x, testPath.get(i).y, finderResolution, finderResolution);
 //  }
   
   // Draw Path Edges
@@ -44,11 +48,11 @@ void drawPathfinder() {
   
   //Draw Origin
   tableCanvas.stroke(#FF0000);
-  tableCanvas.ellipse(A.x, A.y, 20, 20);
+  tableCanvas.ellipse(A.x, A.y, finderResolution, finderResolution);
   
   //Draw Destination
   tableCanvas.stroke(#0000FF);
-  tableCanvas.ellipse(B.x, B.y, 20, 20);
+  tableCanvas.ellipse(B.x, B.y, finderResolution, finderResolution);
   
 }
 
@@ -64,6 +68,7 @@ class Pathfinder {
   Pathfinder(int w, int h, float tol, ObstacleCourse c) {
     network = new Graph(w, h, tol);
     network.cullObstacles(c);
+    //network.cullRandom(0.5);
     network.generateEdges();
     
     networkSize = network.nodes.size();
@@ -223,6 +228,15 @@ class Graph {
   void cullObstacles(ObstacleCourse c) {
     for (int i=nodes.size()-1; i>=0; i--) {
       if(c.testForCollision(nodes.get(i).node)) {
+        nodes.remove(i);
+      }
+    }
+  }
+  
+  // Removes Random Nodes from graph.  Useful for debugging
+  void cullRandom(float percent) {
+    for (int i=nodes.size()-1; i>=0; i--) {
+      if(random(1.0) < percent) {
         nodes.remove(i);
       }
     }

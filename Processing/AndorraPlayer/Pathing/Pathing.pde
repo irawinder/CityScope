@@ -1,6 +1,7 @@
 PGraphics tableCanvas;
-int textColor = 255;
+int textColor = 50;
 ObstacleCourse boundaries = new ObstacleCourse();
+ObstacleCourse container = new ObstacleCourse();
 
 void setup() {
   tableCanvas = createGraphics(1000, 500);
@@ -35,7 +36,7 @@ class ObstacleCourse {
 void keyPressed() {
   switch(key) {
     case 'X':
-      pathTest();
+      pathTest(finderTest);
       break;
   }
 }

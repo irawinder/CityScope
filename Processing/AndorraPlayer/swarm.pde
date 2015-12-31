@@ -4,6 +4,7 @@ class Swarm {
   boolean cropAgents = true;
   
   ArrayList<Agent> swarm;
+  ArrayList<PVector> path;
   
   float agentLife = canvasWidth+canvasHeight;
   float agentDelay;
@@ -25,6 +26,10 @@ class Swarm {
   Swarm (float delay, PVector a, PVector b, float maxS, color f) {
     origin = a;
     destination = b;
+    
+    path = new ArrayList<PVector>();
+    path.add(origin);
+    path.add(destination);
     
     if (a == b) {
       sink_vert[0] = new PVector(0, 0);
@@ -50,6 +55,10 @@ class Swarm {
     //All Agents do not spawn on first frame
     counter += -int(random(40));
     
+  }
+  
+  void solvePath(Pathfinder f) {
+    f.findPath(origin, destination);
   }
   
   void update() {
@@ -102,27 +111,34 @@ class Swarm {
           }
         }
         
+        // Tests for Collision with obstacleCourse boundaries
         if (cropAgents) {
-          // Tests for Collision with obstacleCourse boundaries
+          // agents internal to table
           collision = boundaries.testForCollision(v);
         } else {
+          // agents on margins of table
           collision = container.testForCollision(v);
         }
         
         
-        if (collision) {
-          //v.applyBehaviors(swarm, new PVector(v.location.x+random(-10, 10), v.location.y+random(-10, 10)));
-          //v.applyBehaviors(swarm, v.location);
-          v.update(int(agentLife/speed), sink);
-          // draws as red if collision detected
-          //v.display(#FF0000, 100);
-          collision = false;
-        } else {
-          v.applyBehaviors(swarm, destination);
-          v.update(int(agentLife/speed), sink);
-          // draws normally if collision detected
-          //v.display(fill, 100);
-        }
+//        // Applies unique forcevector if collision detected....not so great
+//        if (collision) {
+//          //v.applyBehaviors(swarm, new PVector(v.location.x+random(-10, 10), v.location.y+random(-10, 10)));
+//          //v.applyBehaviors(swarm, v.location);
+//          v.update(int(agentLife/speed), sink);
+//          // draws as red if collision detected
+//          //v.display(#FF0000, 100);
+//          collision = false;
+//        } else {
+//          v.applyBehaviors(swarm, destination);
+//          v.update(int(agentLife/speed), sink);
+//          // draws normally if collision detected
+//          //v.display(fill, 100);
+//        }
+        
+        // Updates agent behavior
+        v.applyBehaviors(swarm, destination);
+        v.update(int(agentLife/speed), sink);
         
         if (showSwarm) {
           if (!cropAgents) {
