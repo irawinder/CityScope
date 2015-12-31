@@ -11,7 +11,10 @@ void initObstacles() {
   boundaries = new ObstacleCourse();
   container = new ObstacleCourse();
   
+  // Obstacles for agents generates within Andorra le Vella
   boundaries.loadCourse("data/course.tsv");
+  
+  // Obstacles for agents generated outside of Andorra le Vella (i.e. margins of table)
   container.loadCourse("data/container.tsv");
   
 //  container.addObstacle();

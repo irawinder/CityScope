@@ -161,6 +161,9 @@ void keyPressed() {
       initData();
       initAgents();
       break;
+    case 'P': //toggle display of pathfinding grid
+      showPaths = toggle(showPaths);
+      break;
   }
   
   //------arrow keys and how to code keys that aren't characters exactly----- 

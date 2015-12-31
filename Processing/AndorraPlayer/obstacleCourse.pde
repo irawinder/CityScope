@@ -81,6 +81,21 @@ class ObstacleCourse {
     return collision;
   }
   
+  boolean testForCollision(PVector v) {
+    
+    boolean collision = false;
+    
+    // Tests for Collision with Agent of known location and velocity
+    for (int i=0; i<numObstacles; i++) {
+      if (course.get(i).pointInPolygon(v.x, v.y) ) {
+        collision = true;
+        break;
+      }
+    }
+    
+    return collision;
+  }
+  
   void display(color stroke, int alpha) {
     for (int i=0; i<course.size(); i++) {
       if (i == index && editObstacles) {
