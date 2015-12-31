@@ -1,25 +1,39 @@
-//// Flocking
-//// Daniel Shiffman <http://www.shiffman.net>
-//// The Nature of Code, Spring 2011
+// Andorra PEV Simulation v0010 
+// for MIT Media Lab, Changing Place Group, CityScope Project
 
-//// Flock class
-//// Does very little, simply manages the ArrayList of all the boids
+// by Yan Zhang (Ryan) <ryanz@mit.edu>
+// Dec.8th.2015
 
-//class Flock {
-//  ArrayList<Boid> boids; // An ArrayList for all the boids
 
-//  Flock() {
-//    boids = new ArrayList<Boid>(); // Initialize the ArrayList
-//  }
+class PEVs {
 
-//  void run() {
-//    for (Boid b : boids) {
-//      b.run(boids);  // Passing the entire list of boids to each boid individually
-//    }
-//  }
+  ArrayList<PEV> PEVs;
+  int currentPEVID;
 
-//  void addBoid(Boid b) {
-//    boids.add(b);
-//  }
+  PEVs() {
+    PEVs = new ArrayList<PEV>();
+    currentPEVID = 0;
+  }
+  
+  void initiateRandom(int _maxPEVNum){
+    int maxPEVNum = _maxPEVNum;
+    for (int i = 0; i < maxPEVNum; i ++) {
+      int tmpRoadID = int(random(0.0F, 12.0F));
+      float t = random(0.0F, 1.0F);
+      PEV tmpPEV = new PEV(currentPEVID, tmpRoadID, t);
+      PEVs.add(tmpPEV);
+      currentPEVID ++;
+    }
+  }
 
-//}
+  void run() {
+    for (PEV PEV : PEVs) {
+      PEV.run();
+    }
+  }
+
+  void addPEV(PEV _PEV) {
+    PEVs.add(_PEV);
+  }
+  
+}
