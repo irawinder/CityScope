@@ -1,8 +1,10 @@
 // Step 1: Create a matrix of Nodes that exclude those overlapping with Obstacle Course
-
 // Step 2: Generate Edges connect adjacent nodes 
+// Step 3: Implement Djikkkijikkissar's Algorithm 
 
-// Step 3: Implement Djikkkijikkissar's Algorithm to output path for each Swarm
+// Step 3.1 Convert canvas coordinates to pathfinding graph node index
+
+// Step 3.2 Modify Swarm Class to retain Path object of some sort (Probably an ArrayList<PVector>)
 
 // Step 4: Modify Swarm Behavior to follow path
 
@@ -18,11 +20,9 @@ void initPathfinder() {
 }
 
 void pathTest() {
-  int a = int(random(finder.network.nodes.size()-1));
-  int b = int(random(finder.network.nodes.size()-1));
-  testPath = finder.findPath(a, b);
-  A = finder.network.nodes.get(a).node;
-  B = finder.network.nodes.get(b).node;
+  A = new PVector(random(1.0)*tableCanvas.width, random(1.0)*tableCanvas.height);
+  B = new PVector(random(1.0)*tableCanvas.width, random(1.0)*tableCanvas.height);
+  testPath = finder.findPath(A, B);
 }
 
 void drawPathfinder() {
@@ -30,10 +30,16 @@ void drawPathfinder() {
   
   tableCanvas.strokeWeight(2);
   
-  // Draw Path
-  for (int i=0; i<testPath.size(); i++) {
+//  // Draw Path Nodes
+//  for (int i=0; i<testPath.size(); i++) {
+//    tableCanvas.stroke(#00FF00);
+//    tableCanvas.ellipse(testPath.get(i).x, testPath.get(i).y, 20, 20);
+//  }
+  
+  // Draw Path Edges
+  for (int i=0; i<testPath.size()-1; i++) {
     tableCanvas.stroke(#00FF00);
-    tableCanvas.ellipse(testPath.get(i).x, testPath.get(i).y, 20, 20);
+    tableCanvas.line(testPath.get(i).x, testPath.get(i).y, testPath.get(i+1).x, testPath.get(i+1).y);
   }
   
   //Draw Origin
@@ -68,13 +74,16 @@ class Pathfinder {
   }
   
   // a, b, represent respective index for start and end nodes in pathfinding network
-  ArrayList<PVector> findPath(int a, int b) {
+  ArrayList<PVector> findPath(PVector A, PVector B) {
+    
+    int a = getClosestNode(A);
+    int b = getClosestNode(B);
     
     ArrayList<PVector> path = new ArrayList<PVector>();
     ArrayList<Integer> toVisit = new ArrayList<Integer>();
     
     for (int i=0; i<networkSize; i++) {
-      totalDist[i] = Integer.MAX_VALUE;
+      totalDist[i] = Float.MAX_VALUE;
       visited[i] = false;
     }
     totalDist[a] = 0;
@@ -82,58 +91,104 @@ class Pathfinder {
     int current = a;
     toVisit.add(current);
     
+    // Loop runs until path is found or ruled out
     boolean complete = false;
     while(!complete) {
       
-      for(int i=0; i<network.getNeighborCount(current); i++) { // Cycles through al neighbors in current node
-        float currentDist = totalDist[current] + network.getNeighborDistance(current, i);
+      // Cycles through all neighbors in current node
+      for(int i=0; i<network.getNeighborCount(current); i++) { 
+        
         // Resets the cumulative distance if shorter path is found
-        if (totalDist[network.getNeighbor(current, i)] > currentDist) {
-          totalDist[network.getNeighbor(current, i)] = currentDist;
-          parentNode[network.getNeighbor(current, i)] = current;
+        float currentDist = totalDist[current] + getNeighborDistance(current, i);
+        if (totalDist[getNeighbor(current, i)] > currentDist) {
+          totalDist[getNeighbor(current, i)] = currentDist;
+          parentNode[getNeighbor(current, i)] = current;
         }
         
         // Adds non-visited neighbors of current node to queue
-        if (!visited[network.getNeighbor(current, i)]) {
-          toVisit.add(network.getNeighbor(current, i));
-          visited[network.getNeighbor(current, i)] = true;
+        if (!visited[getNeighbor(current, i)]) {
+          toVisit.add(getNeighbor(current, i));
+          visited[getNeighbor(current, i)] = true;
         }
       }
       
+      // Marks current node as visited and removes from queue
       visited[current] = true;
       toVisit.remove(0);
       
+      // If there are still nodes in the queue, goes to the next.  
       if (toVisit.size() > 0) {
+        
         current = toVisit.get(0);
+        
+        // Terminates loop if destination is reached
+        if (current == b) {
+          println("Total Distance to Distination: " + totalDist[current]);
+          
+          // Working backward from destination, rebuilds optimal path to origin from parentNode data
+          path.add(0, B); //Canvas Coordinate of destination
+          path.add(0, getNode(b) ); //PAthfinding node closest to destination
+          current = b;
+          while (!complete) {
+            path.add(0, getNode(parentNode[current]) );
+            current = parentNode[current];
+            
+            if (current == a) {
+              complete = true;
+              path.add(0, A); //Canvas Coordinate of origin
+            }
+          }
+        }
+      
+      // If no more nodes left in queue, path is returned as unsolved
       } else {
+        
         // Returns path-not-found
         complete = true;
         println("Path Not Found");
         
-        // only returns the origin node as path
-        path.add(0, network.nodes.get(a).node);
+        // only returns the origin as path
+        path.add(0, A);
       }
       
-      // Terminates loop if destination is reached
-      if (current == b) {
-        println("Total Distance to Distination: " + totalDist[current]);
-        
-        // Working backward from destination, rebuilds optimal path to origin from parentNode data
-        path.add(0, network.nodes.get(b).node);
-        current = b;
-        while (!complete) {
-          path.add(0, network.nodes.get(parentNode[current]).node);
-          current = parentNode[current];
-          
-          if (current == a) {
-            complete = true;
-          }
-        }
-        
-      }
+      
     }
     
     return path;
+  }
+  
+  int getNeighbor(int current, int i) {
+    return network.getNeighbor(current, i);
+  }
+  
+  float getNeighborDistance(int current, int i) {
+    return network.getNeighborDistance(current, i);
+  }
+  
+  // calculates the index of pathfinding node closest to the given canvas coordinate 'v'
+  // returns -1 if node not found
+  int getClosestNode(PVector v) {
+    int node = -1;
+    float distance = Float.MAX_VALUE;
+    float currentDist;
+    
+    for (int i=0; i<networkSize; i++) {
+      currentDist = sqrt( sq(v.x-getNode(i).x) + sq(v.y-getNode(i).y) );
+      if (currentDist < distance) {
+        node = i;
+        distance = currentDist;
+      }
+    }
+    
+    return node;
+  }
+  
+  PVector getNode(int i) {
+    if (i < networkSize) {
+      return network.nodes.get(i).node;
+    } else {
+      return new PVector(-1,-1);
+    }
   }
     
   void display() {
@@ -208,7 +263,7 @@ class Graph {
   }
   
   float getNeighborDistance (int i, int j) {
-    float dist = Integer.MAX_VALUE;
+    float dist = Float.MAX_VALUE;
     
     if (getNeighborCount(i) > 0) {
       dist = nodes.get(i).distance.get(j);
@@ -219,7 +274,7 @@ class Graph {
   
   int getClosestNeighbor(int i) {
     int closest = -1;
-    float dist = Integer.MAX_VALUE;
+    float dist = Float.MAX_VALUE;
     float currentDist;
     
     if (getNeighborCount(i) > 0) {
@@ -236,7 +291,7 @@ class Graph {
   }
   
   float getClosestNeighborDistance(int i) {
-    float dist = Integer.MAX_VALUE;
+    float dist = Float.MAX_VALUE;
     int n = getClosestNeighbor(i);
     
     for (int j=0; j<getNeighborCount(i); j++) {
