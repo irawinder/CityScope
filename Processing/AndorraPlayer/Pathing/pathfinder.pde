@@ -68,7 +68,7 @@ class Pathfinder {
   Pathfinder(int w, int h, float tol, ObstacleCourse c) {
     network = new Graph(w, h, tol);
     network.cullObstacles(c);
-    //network.cullRandom(.5);
+    //network.cullRandom(0.5);
     network.generateEdges();
     
     networkSize = network.nodes.size();
@@ -321,7 +321,7 @@ class Graph {
     
     // Formatting
     tableCanvas.noFill();
-    tableCanvas.stroke(textColor);
+    tableCanvas.stroke(50);
     tableCanvas.strokeWeight(1);
     
     // Draws Tangent Circles Centered at pathfinding nodes

@@ -102,9 +102,9 @@ void setup() {
   }
   
   initPlayer();
-  initAgents();
   initObstacles();
   initPathfinder();
+  initAgents();
   
   tableCanvas.beginDraw();
   tableCanvas.background(background);

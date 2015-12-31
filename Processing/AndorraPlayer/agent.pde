@@ -32,7 +32,9 @@ class Agent {
   boolean finished = false;
   boolean dead = false;
   
-  Agent(float x, float y, int rad, float maxS) {
+  int pathIndex, pathLength;
+  
+  Agent(float x, float y, int rad, float maxS, int pLength) {
     r = rad;
     tolerance *= r;
     location = new PVector(x + random(-tolerance, tolerance), y + random(-tolerance, tolerance));
@@ -41,6 +43,8 @@ class Agent {
     acceleration = new PVector(0, 0);
     velocity = new PVector(0, 0);
     age = 0;
+    pathIndex = 0;
+    pathLength = pLength;
   }
   
   

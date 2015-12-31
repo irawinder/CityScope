@@ -321,7 +321,7 @@ class Graph {
     
     // Formatting
     tableCanvas.noFill();
-    tableCanvas.stroke(textColor);
+    tableCanvas.stroke(50);
     tableCanvas.strokeWeight(1);
     
     // Draws Tangent Circles Centered at pathfinding nodes

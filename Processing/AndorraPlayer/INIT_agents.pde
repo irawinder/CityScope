@@ -224,6 +224,9 @@ void CDRNetwork() {
     if (external) {
       swarms[i].cropAgents = false;
       swarms[i].maxSpeed = 0.2;
+      swarms[i].solvePath(finderMargin);
+    } else {
+      swarms[i].solvePath(finderTopo);
     }
     
   }

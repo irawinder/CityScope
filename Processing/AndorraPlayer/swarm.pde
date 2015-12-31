@@ -54,11 +54,10 @@ class Swarm {
     
     //All Agents do not spawn on first frame
     counter += -int(random(40));
-    
   }
   
   void solvePath(Pathfinder f) {
-    f.findPath(origin, destination);
+    path = f.findPath(origin, destination);
   }
   
   void update() {
@@ -74,9 +73,9 @@ class Swarm {
     // Adds an agent
     if (generateAgent) {
       if (origin == null) {
-        swarm.add(new Agent(random(canvasWidth), random(canvasHeight), 6, maxSpeed));
+        swarm.add(new Agent(random(canvasWidth), random(canvasHeight), 6, maxSpeed, path.size()));
       } else {
-        swarm.add(new Agent(origin.x, origin.y, 6, maxSpeed));
+        swarm.add(new Agent(origin.x, origin.y, 6, maxSpeed, path.size()));
       }
       
       generateAgent = false;
@@ -210,6 +209,30 @@ class Swarm {
     tableCanvas.strokeWeight(1);
     tableCanvas.noStroke();
       
+  }
+  
+  void displayPath() {
+    tableCanvas.strokeWeight(2);
+    
+//    // Draw Path Nodes
+//    for (int i=0; i<testPath.size(); i++) {
+//      tableCanvas.stroke(#00FF00);
+//      tableCanvas.ellipse(testPath.get(i).x, testPath.get(i).y, finderResolution, finderResolution);
+//    }
+    
+    // Draw Path Edges
+    for (int i=0; i<path.size()-1; i++) {
+      tableCanvas.stroke(#00FF00);
+      tableCanvas.line(path.get(i).x, path.get(i).y, path.get(i+1).x, path.get(i+1).y);
+    }
+    
+    //Draw Origin
+    tableCanvas.stroke(#FF0000);
+    tableCanvas.ellipse(origin.x, origin.y, finderResolution, finderResolution);
+    
+    //Draw Destination
+    tableCanvas.stroke(#0000FF);
+    tableCanvas.ellipse(destination.x, destination.y, finderResolution, finderResolution);
   }
   
 }

@@ -44,6 +44,10 @@ void drawAgents() {
     if (showEdges) {
       s.displayEdges();
     }
+    
+    if (showPaths) {
+      s.displayPath();
+    }
       
     if (showTraces) {
       traces.update(s);
