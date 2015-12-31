@@ -164,6 +164,9 @@ void keyPressed() {
     case 'P': //toggle display of pathfinding grid
       showPaths = toggle(showPaths);
       break;
+    case 'X': // randomize locations of origin and destination paths
+      pathTest();
+      break;
   }
   
   //------arrow keys and how to code keys that aren't characters exactly----- 

@@ -13,6 +13,7 @@ void setup() {
 void draw() {
   
   tableCanvas.beginDraw();
+  tableCanvas.background(0);
   drawPathfinder();
   tableCanvas.endDraw();
   

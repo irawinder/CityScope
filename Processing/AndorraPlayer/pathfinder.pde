@@ -12,7 +12,17 @@ ArrayList<PVector> testPath;
 
 void initPathfinder() {
   finder = new Pathfinder(tableCanvas.width, tableCanvas.height, 20, boundaries);
-  testPath = finder.findPath(33, 135);
+  
+  // debugging check
+  pathTest();
+}
+
+void pathTest() {
+  int a = int(random(finder.network.nodes.size()-1));
+  int b = int(random(finder.network.nodes.size()-1));
+  testPath = finder.findPath(a, b);
+  A = finder.network.nodes.get(a).node;
+  B = finder.network.nodes.get(b).node;
 }
 
 void drawPathfinder() {
@@ -29,6 +39,8 @@ void drawPathfinder() {
   
   tableCanvas.stroke(#FF0000);
   tableCanvas.ellipse(A.x, A.y, 20, 20);
+  
+  tableCanvas.stroke(#0000FF);
   tableCanvas.ellipse(B.x, B.y, 20, 20);
   println(A.x + ", " + A.y);
   println(B.x + ", " + B.y);
@@ -43,7 +55,7 @@ class Pathfinder {
   float[] totalDist;
   int[] parentNode;
   boolean[] visited;
-  
+  ArrayList<Integer> toVisit;
   
   Pathfinder(int w, int h, float tol, ObstacleCourse c) {
     network = new Graph(w, h, tol);
@@ -54,24 +66,23 @@ class Pathfinder {
     totalDist = new float[networkSize];
     parentNode = new int[networkSize];
     visited = new boolean[networkSize];
+    
   }
   
   // a, b, represent respective index for start and end nodes in pathfinding network
   ArrayList<PVector> findPath(int a, int b) {
     
-    A = network.nodes.get(a).node;
-    B = network.nodes.get(b).node;
-    
     ArrayList<PVector> path = new ArrayList<PVector>();
+    ArrayList<Integer> toVisit = new ArrayList<Integer>();
     
     for (int i=0; i<networkSize; i++) {
       totalDist[i] = Integer.MAX_VALUE;
+      visited[i] = false;
     }
     totalDist[a] = 0;
     parentNode[a] = a;
     int current = a;
-    
-    int counter = 0;
+    toVisit.add(current);
     
     boolean complete = false;
     while(!complete) {
@@ -83,23 +94,36 @@ class Pathfinder {
           totalDist[network.getNeighbor(current, i)] = currentDist;
           parentNode[network.getNeighbor(current, i)] = current;
         }
+        
+        if (!visited[network.getNeighbor(current, i)]) {
+          toVisit.add(network.getNeighbor(current, i));
+          visited[network.getNeighbor(current, i)] = true;
+        }
       }
       
       visited[current] = true;
-      path.add(network.nodes.get(current).node);
-      current = network.getClosestNeighbor(current);
+      //path.add(network.nodes.get(current).node);
+      toVisit.remove(0);
+      current = toVisit.get(0);
       
       if (current == b) {
         complete = true;
         println("complete");
       }
+    }
+ 
+    path.add(0, network.nodes.get(b).node);
+    current = b;
+    complete = false;
+    while (!complete) {
+      path.add(0, network.nodes.get(parentNode[current]).node);
+      current = parentNode[current];
       
-      counter ++;
-      
-      if (counter > 100) {
+      if (current == a) {
         complete = true;
       }
     }
+    
     return path;
   }
     
