@@ -14,9 +14,15 @@ void initPathfinder() {
   finder = new Pathfinder(tableCanvas.width, tableCanvas.height, 20, boundaries);
   
   // debugging check
-  testPath = finder.findPath(514, 135);
-  A = finder.network.nodes.get(514).node;
-  B = finder.network.nodes.get(135).node;
+  pathTest();
+}
+
+void pathTest() {
+  int a = int(random(finder.network.nodes.size()-1));
+  int b = int(random(finder.network.nodes.size()-1));
+  testPath = finder.findPath(a, b);
+  A = finder.network.nodes.get(a).node;
+  B = finder.network.nodes.get(b).node;
 }
 
 void drawPathfinder() {
@@ -61,16 +67,17 @@ class Pathfinder {
     parentNode = new int[networkSize];
     visited = new boolean[networkSize];
     
-    toVisit = new ArrayList<Integer>();
   }
   
   // a, b, represent respective index for start and end nodes in pathfinding network
   ArrayList<PVector> findPath(int a, int b) {
     
     ArrayList<PVector> path = new ArrayList<PVector>();
+    ArrayList<Integer> toVisit = new ArrayList<Integer>();
     
     for (int i=0; i<networkSize; i++) {
       totalDist[i] = Integer.MAX_VALUE;
+      visited[i] = false;
     }
     totalDist[a] = 0;
     parentNode[a] = a;
@@ -104,8 +111,7 @@ class Pathfinder {
         println("complete");
       }
     }
-    
-    int counter = 0;
+ 
     path.add(0, network.nodes.get(b).node);
     current = b;
     complete = false;
@@ -114,12 +120,6 @@ class Pathfinder {
       current = parentNode[current];
       
       if (current == a) {
-        complete = true;
-      }
-      
-      counter++;
-      
-      if (counter > 1000) {
         complete = true;
       }
     }

@@ -31,3 +31,11 @@ class ObstacleCourse {
     return false;
   }
 }
+
+void keyPressed() {
+  switch(key) {
+    case 'X':
+      pathTest();
+      break;
+  }
+}
