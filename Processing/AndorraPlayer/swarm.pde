@@ -4,7 +4,6 @@ class Swarm {
   boolean cropAgents = true;
   
   ArrayList<Agent> swarm;
-  ArrayList<PVector> path;
   
   float agentLife = canvasWidth+canvasHeight;
   float agentDelay;
@@ -14,8 +13,11 @@ class Swarm {
   int hitbox = 5;
   
   PVector origin, destination;
-  PVector[] sink_vert = new PVector[4];
+  
   Obstacle sink;
+  
+  ArrayList<PVector> path;
+//  ArrayList<Obstacle> pathBoxes;
   
   Swarm (float delay, int life) {
     agentLife = life;
@@ -31,22 +33,17 @@ class Swarm {
     path.add(origin);
     path.add(destination);
     
-    if (a == b) {
-      sink_vert[0] = new PVector(0, 0);
-      sink_vert[1] = sink_vert[0];
-      sink_vert[2] = sink_vert[0];
-      sink_vert[3] = sink_vert[0];
+    if (a == b) { // No sink created
+      sink = hitBox(destination, hitbox, false);
     } else {
-      sink_vert[0] = new PVector(destination.x - hitbox, destination.y - hitbox);
-      sink_vert[1] = new PVector(destination.x + hitbox, destination.y - hitbox);
-      sink_vert[2] = new PVector(destination.x + hitbox, destination.y + hitbox);
-      sink_vert[3] = new PVector(destination.x - hitbox, destination.y + hitbox);
+      sink = hitBox(destination, hitbox, true);
     }
-    sink = new Obstacle(sink_vert);
     
     maxSpeed = maxS;
-    agentLife *= 1 + (abs(a.x - b.x) + abs(a.y - b.y)) / (canvasWidth+canvasHeight);
-    agentLife *= 40.0/maxSpeed;
+    if (a != b) {
+      agentLife *= 1 + (abs(a.x - b.x) + abs(a.y - b.y)) / (canvasWidth+canvasHeight);
+      agentLife *= 40.0/maxSpeed;
+    }
     //println(agentLife);
     agentDelay = delay;
     swarm = new ArrayList<Agent>();
@@ -56,8 +53,36 @@ class Swarm {
     counter += -int(random(40));
   }
   
+  Obstacle hitBox(PVector coord, int r, boolean make) {
+
+    PVector[] hitBox = new PVector[4];
+    
+    if (!make) { // Creates, essentially, a useless hitbox with no area
+      hitBox[0] = new PVector(0, 0);
+      hitBox[1] = new PVector(0, 0);
+      hitBox[2] = new PVector(0, 0);
+      hitBox[3] = new PVector(0, 0);
+    } else {
+      hitBox[0] = new PVector( - r,  - r);
+      hitBox[1] = new PVector( + r,  - r);
+      hitBox[2] = new PVector( + r,  + r);
+      hitBox[3] = new PVector( - r,  + r);
+    }
+    
+    for (int i=0; i<hitBox.length; i++) {
+      hitBox[i].add(coord);
+    }
+    
+    return new Obstacle(hitBox);
+  }
+    
+  
   void solvePath(Pathfinder f) {
     path = f.findPath(origin, destination);
+//    pathBoxes = new ArrayList<Obstacle>();
+//    for (int i=0; i<path.size(); i++) {
+//      pathBoxes.add(hitBox(path.get(i), hitbox, true));
+//    }
   }
   
   void update() {
@@ -90,10 +115,7 @@ class Swarm {
       }
     }
     
-  }
-  
-  void display(String colorMode) {
-    
+    // Updates existing agents in swarm
     if (swarm.size() > 0) {
       
       for (Agent v : swarm){
@@ -136,9 +158,16 @@ class Swarm {
 //        }
         
         // Updates agent behavior
-        v.applyBehaviors(swarm, destination);
-        v.update(int(agentLife/speed), sink);
+        v.applyBehaviors(swarm, path.get(v.pathIndex));
+        v.update(int(agentLife/speed), sink, path.get(v.pathIndex));
         
+      }
+    }
+  }
+  
+  void display(String colorMode) {
+    if (swarm.size() > 0) {
+      for (Agent v : swarm){
         if (showSwarm) {
           if (!cropAgents) {
               if (v.location.y > marginWidthPix) {

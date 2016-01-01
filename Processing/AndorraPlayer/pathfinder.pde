@@ -2,10 +2,10 @@
 // Step 2: Generate Edges connect adjacent nodes 
 // Step 3: Implement Djikkkijikkissar's Algorithm 
 // Step 3.1 Convert canvas coordinates to pathfinding graph node index
-
 // Step 3.2 Modify Swarm Class to retain Path object of some sort (Probably an ArrayList<PVector>)
-
 // Step 4: Modify Swarm Behavior to follow path
+
+// Step 5: Allow editing of pathfinder network in realtime?
 
 Pathfinder finderTopo, finderMargin;
 int finderResolution = 20;

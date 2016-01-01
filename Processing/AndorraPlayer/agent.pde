@@ -68,9 +68,9 @@ class Agent {
     applyForce(normalForce);
   }
   
-  void applyBehaviors(ArrayList<Agent> agents, PVector destination) {
+  void applyBehaviors(ArrayList<Agent> agents, PVector waypoint) {
      PVector separateForce = separate(agents);
-     PVector seekForce = seek(new PVector(destination.x + random(-tolerance, tolerance),destination.y + random(-tolerance, tolerance)));
+     PVector seekForce = seek(new PVector(waypoint.x + random(-tolerance, tolerance),waypoint.y + random(-tolerance, tolerance)));
      separateForce.mult(3);
      seekForce.mult(1);
      applyForce(separateForce);
@@ -115,7 +115,7 @@ class Agent {
    return sum;   
   }
   
-  void update(int life, Obstacle sink) {
+  void update(int life, Obstacle sink, PVector waypoint) {
     // Update velocity
     velocity.add(acceleration);
     
@@ -145,10 +145,20 @@ class Agent {
       }
     }
     
+    // Checks if Agents reached current waypoint
+    float prox = abs( (location.x - waypoint.x) + (location.y - waypoint.y) );
+    if (prox < finderResolution) {
+      pathIndex++;
+      if (pathIndex >= pathLength) {
+        pathIndex = pathLength - 1;
+      }
+    }
+    
     //Checks if Agent reached destination
-     if (sink.pointInPolygon(location.x, location.y)) {
-       finished = true;
-     }
+    if (sink.pointInPolygon(location.x, location.y)) {
+      finished = true;
+    }
+     
     
   }
   

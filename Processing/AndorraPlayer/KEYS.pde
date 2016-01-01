@@ -282,5 +282,14 @@ void mouseClicked() {
     } else {
       container.addVertex(new PVector(mouseX, mouseY));
     }
+    
+//    initPathfinder();
+//    for (Swarm s : swarms) {
+//      if (s.cropAgents == false) {
+//        s.solvePath(finderMargin);
+//      } else {
+//        s.solvePath(finderTopo);
+//      }
+//    }
   }
 }

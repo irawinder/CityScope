@@ -16,7 +16,7 @@ void drawAgents() {
       o.display(#0000FF, 100, false);
     }
     boundaries.display(#00FF00, 100);
-    container.display(#0000FF, 100);
+    //container.display(#0000FF, 100);
     
   }
   
