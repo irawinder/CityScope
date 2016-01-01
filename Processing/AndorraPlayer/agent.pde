@@ -147,7 +147,7 @@ class Agent {
     
     // Checks if Agents reached current waypoint
     float prox = abs( (location.x - waypoint.x) + (location.y - waypoint.y) );
-    if (prox < finderResolution) {
+    if (prox < finderResolution/4) {
       pathIndex++;
       if (pathIndex >= pathLength) {
         pathIndex = pathLength - 1;

@@ -8,7 +8,7 @@
 // Step 5: Allow editing of pathfinder network in realtime?
 
 Pathfinder finderTopo, finderMargin;
-int finderResolution = 20;
+int finderResolution = 10;
 
 // Pathfinder test and debugging Objects
 Pathfinder finderTest;
