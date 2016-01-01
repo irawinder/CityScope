@@ -1,11 +1,14 @@
+// The Pathfinder class allows one to the retreive a path (ArrayList<PVector>) that
+// describes an optimal route.  The Pathfinder must be initialized as a graph (i.e. a network of nodes and edges).
+// An ObstacleCourse object may be used to customize the Pathfinder Graph
+//
+// Development Notes/Process
 // Step 1: Create a matrix of Nodes that exclude those overlapping with Obstacle Course
 // Step 2: Generate Edges connect adjacent nodes 
 // Step 3: Implement Djikkkijikkissar's Algorithm 
 // Step 3.1 Convert canvas coordinates to pathfinding graph node index
 // Step 3.2 Modify Swarm Class to retain Path object of some sort (Probably an ArrayList<PVector>)
 // Step 4: Modify Swarm Behavior to follow path
-
-// Step 5: Allow editing of pathfinder network in realtime?
 
 class Pathfinder { 
   Graph network;

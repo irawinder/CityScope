@@ -33,6 +33,13 @@
 //
 //     'g' - Toggle debug
 //
+//   Data Navigation
+//     'D' = Load/Unload non essential data
+//     'I' - Next OD Data Set
+//     'H' - Go forward an hour in OD dataset
+//     'h' - Go backward an hour in OD dataset 
+//     'd' - Show/hide test geodata
+//
 //   View Mode:
 //     'm' - Toggle On-Screen mode or Projection-mapping mode
 //     'T' - Toggle Topographic Map
@@ -43,6 +50,7 @@
 //     'l' - Load callibration
 //
 //   Agent-based Modeling:
+//      case 'i': Show Swarm Index
 //      case 'o': Show Obstacle Outlines
 //      case 'k': Show Sources and Sinks for Agents
 //      case 'r': Reset Agent Sinks and Sources
@@ -56,10 +64,8 @@
 //      case '+': Increase Agent Speed
 //      case '-': Decrease Agent Speed
 //      case 'b': Toggle Background color black/white
-//      case 'H': Go forward an hour in dataset
-//      case 'h': Go backward an hour in dataset 
 //
-//    ObStacle Editor:
+//    Obstacle Editor:
 //      'E': toggle editing
 //      'A': Add Obstacle
 //      'R': Remove Obstacle
@@ -69,6 +75,10 @@
 //       Arrow Keys - fine movement of seleted vertex in obstacle
 //      's' save CSV file of boundary locations (if editor is on)
 //      'l' load CSV file of boundary locations (if editor is on)
+//
+//    Pathfinding Tools:
+//      'P': show/hide pathfinder network
+//      'X': regenerate a random origin and destination
 
 
 // set to true when running app to prevent fullScreen Mode
