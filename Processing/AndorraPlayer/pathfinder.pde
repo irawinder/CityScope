@@ -7,55 +7,6 @@
 
 // Step 5: Allow editing of pathfinder network in realtime?
 
-Pathfinder finderTopo, finderMargin;
-int finderResolution = 10;
-
-// Pathfinder test and debugging Objects
-Pathfinder finderTest;
-PVector A, B;
-ArrayList<PVector> testPath;
-
-void initPathfinder() {
-  finderTopo = new Pathfinder(tableCanvas.width, tableCanvas.height, finderResolution, boundaries);
-  finderMargin = new Pathfinder(tableCanvas.width, tableCanvas.height, finderResolution, container);
-  
-  finderTest = new Pathfinder(tableCanvas.width, tableCanvas.height, finderResolution, boundaries);
-  pathTest(finderTest);
-}
-
-void pathTest(Pathfinder finder) {
-  A = new PVector(random(1.0)*tableCanvas.width, random(1.0)*tableCanvas.height);
-  B = new PVector(random(1.0)*tableCanvas.width, random(1.0)*tableCanvas.height);
-  testPath = finder.findPath(A, B);
-}
-
-void drawPathfinder() {
-  finderTest.display();
-  
-  tableCanvas.strokeWeight(2);
-  
-//  // Draw Path Nodes
-//  for (int i=0; i<testPath.size(); i++) {
-//    tableCanvas.stroke(#00FF00);
-//    tableCanvas.ellipse(testPath.get(i).x, testPath.get(i).y, finderResolution, finderResolution);
-//  }
-  
-  // Draw Path Edges
-  for (int i=0; i<testPath.size()-1; i++) {
-    tableCanvas.stroke(#00FF00);
-    tableCanvas.line(testPath.get(i).x, testPath.get(i).y, testPath.get(i+1).x, testPath.get(i+1).y);
-  }
-  
-  //Draw Origin
-  tableCanvas.stroke(#FF0000);
-  tableCanvas.ellipse(A.x, A.y, finderResolution, finderResolution);
-  
-  //Draw Destination
-  tableCanvas.stroke(#0000FF);
-  tableCanvas.ellipse(B.x, B.y, finderResolution, finderResolution);
-  
-}
-
 class Pathfinder { 
   Graph network;
   
@@ -65,10 +16,21 @@ class Pathfinder {
   boolean[] visited;
   ArrayList<Integer> toVisit;
   
-  Pathfinder(int w, int h, float tol, ObstacleCourse c) {
-    network = new Graph(w, h, tol);
+  Pathfinder(int w, int h, float res, ObstacleCourse c) {
+    network = new Graph(w, h, res);
     network.cullObstacles(c);
-    //network.cullRandom(0.5);
+    network.generateEdges();
+    
+    networkSize = network.nodes.size();
+    totalDist = new float[networkSize];
+    parentNode = new int[networkSize];
+    visited = new boolean[networkSize];
+    
+  }
+  
+  Pathfinder(int w, int h, float res, float cullRatio) {
+    network = new Graph(w, h, res);
+    network.cullRandom(cullRatio);
     network.generateEdges();
     
     networkSize = network.nodes.size();
@@ -162,6 +124,10 @@ class Pathfinder {
     return path;
   }
   
+  float getResolution() {
+    return network.SCALE;
+  }
+  
   int getNeighbor(int current, int i) {
     return network.getNeighbor(current, i);
   }
@@ -196,8 +162,8 @@ class Pathfinder {
     }
   }
     
-  void display() {
-    network.display();
+  void display(PGraphics p) {
+    network.display(p);
   }
     
 }
@@ -317,16 +283,16 @@ class Graph {
     return dist;
   }
   
-  void display() {
+  void display(PGraphics p) {
     
     // Formatting
-    tableCanvas.noFill();
-    tableCanvas.stroke(50);
-    tableCanvas.strokeWeight(1);
+    p.noFill();
+    p.stroke(50);
+    p.strokeWeight(1);
     
     // Draws Tangent Circles Centered at pathfinding nodes
     for (int i=0; i<nodes.size(); i++) {
-      tableCanvas.ellipse(nodes.get(i).node.x, nodes.get(i).node.y, SCALE, SCALE);
+      p.ellipse(nodes.get(i).node.x, nodes.get(i).node.y, SCALE, SCALE);
     }
     
     // Draws Edges that Connect Nodes
@@ -335,7 +301,7 @@ class Graph {
       for (int j=0; j<nodes.get(i).neighbors.size(); j++) {
         neighbor = nodes.get(i).neighbors.get(j);
         //println(neighbor);
-        tableCanvas.line(nodes.get(i).node.x, nodes.get(i).node.y, nodes.get(neighbor).node.x, nodes.get(neighbor).node.y);
+        p.line(nodes.get(i).node.x, nodes.get(i).node.y, nodes.get(neighbor).node.x, nodes.get(neighbor).node.y);
       }
     }
     

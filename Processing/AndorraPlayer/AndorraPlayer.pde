@@ -74,6 +74,7 @@
 // set to true when running app to prevent fullScreen Mode
 // also enables some visualizations for debugging
 boolean debug = true;
+boolean showFrameRate = false;
 
 // Only set this to true if projectors display output is 4k
 // Also set to false if developing on your machine in 1080p
@@ -96,14 +97,13 @@ void setup() {
     size(projectorWidth, projectorHeight, P3D);
   }
   
-  if (loadData) {
-    // Loads csv files referenced in data tab
-    initData();
-  }
+  initCanvas();
   
-  initPlayer();
+  // Loads MercatorMap projecetion for canvas, csv files referenced in 'DATA' tab, etc
+  initData();
+  
   initObstacles();
-  initPathfinder();
+  initPathfinder(tableCanvas, 10);
   initAgents();
   
   tableCanvas.beginDraw();
@@ -116,15 +116,17 @@ void draw() {
   
   // Renders frame onto 'tableCanvas' PGraphic
   drawTableCanvas();
-  
-  // Renders Agent 'dots' and corresponding obstacles and heatmaps
-  drawAgents(); 
 
+  // Renders Agent 'dots' and corresponding obstacles and heatmaps
+  drawAgents(tableCanvas); 
+  
   // draws Table Canvas onto projection map or on screen
   drawTable();
-
+  
   // draws a line graph of all data for given OD matrix
-  drawLineGraph();
+  if (load_non_essential_data) {
+    drawLineGraph();
+  }
   
   
   

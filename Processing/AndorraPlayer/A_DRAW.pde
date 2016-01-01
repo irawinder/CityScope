@@ -2,6 +2,10 @@ boolean showData = false;
 boolean showTopo = true;
 boolean showPaths = false;
 
+int background = 0;
+int textColor = 255;
+int grayColor = int(255.0/4);
+
 // temp variable that holds coordinate location for a point to render
 PVector coord;
 
@@ -46,14 +50,16 @@ void drawTableCanvas() {
   
       //-----------BEGIN Drawing Margin Information --------------//
         
-        drawMargin();
+        if (load_non_essential_data) {
+          drawMargin(tableCanvas);
+        }
       
       //-----------END Drawing Margin Information ----------------//
       
       
       // draws pathfinding nodes onto Canvas
       if (showPaths) {
-        drawPathfinder();
+        drawPathfinder(tableCanvas);
       }
   
   
@@ -66,7 +72,7 @@ void drawTableCanvas() {
       //-----------BEGIN Drawing Topo Information Data--------------//
         
         if (showTopo) {
-          drawTopo();
+          drawTopo(tableCanvas);
         }
     
       //-----------END Drawing Topo Information Data---------------//
@@ -76,19 +82,19 @@ void drawTableCanvas() {
   
       //-----------Begin Drawing Geolocated Data--------------//
         
-        if (loadData) {
+        if (load_non_essential_data) {
           if (showData) {
-            drawData();
+            drawData(tableCanvas);
           }
         }
         
-        PVector geo;
-        
-        geo = mercatorMap.getGeo(new PVector( mouseX-marginWidthPix, mouseY-marginWidthPix));
-        //println(geo.x + ", " + geo.y);
-        coord = mercatorMap.getScreenLocation(geo);
-        tableCanvas.fill(#00FF00);
-        tableCanvas.ellipse(coord.x, coord.y, 10, 10);
+//        // Test that Mouse location is filtered through geo-locator correctly
+//        PVector geo;
+//        geo = mercatorMap.getGeo(new PVector( mouseX-marginWidthPix, mouseY-marginWidthPix));
+//        //println(geo.x + ", " + geo.y);
+//        coord = mercatorMap.getScreenLocation(geo);
+//        tableCanvas.fill(#00FF00);
+//        tableCanvas.ellipse(coord.x, coord.y, 10, 10);
       
       //-----------End Drawing Geolocated Data---------------//
   
@@ -103,137 +109,137 @@ void drawTableCanvas() {
   tableCanvas.endDraw();
 }
 
-void drawMargin() {
+void drawMargin(PGraphics p) {
   
   // sets colors and weight
-  tableCanvas.fill(background);
-  tableCanvas.noStroke();
+  p.fill(background);
+  p.noStroke();
   
   // Top
-  tableCanvas.rect(0, 0, canvasWidth, marginWidthPix); 
+  p.rect(0, 0, canvasWidth, marginWidthPix); 
   // Bottom
-  tableCanvas.rect(0, marginWidthPix + topoHeightPix, canvasWidth, marginWidthPix); 
+  p.rect(0, marginWidthPix + topoHeightPix, canvasWidth, marginWidthPix); 
   // Left
-  tableCanvas.rect(0, marginWidthPix, marginWidthPix, canvasHeight); 
+  p.rect(0, marginWidthPix, marginWidthPix, canvasHeight); 
   // Right
-  tableCanvas.rect(marginWidthPix + topoWidthPix, marginWidthPix, marginWidthPix, canvasHeight); 
+  p.rect(marginWidthPix + topoWidthPix, marginWidthPix, marginWidthPix, canvasHeight); 
   
   int[][] lineMatrix = { {2, 3},
                          {4, 5},
                          {5, 6} };
   
-  tableCanvas.stroke(grayColor);
-  tableCanvas.strokeWeight(marginWidthPix/4);
-  tableCanvas.fill(grayColor);
+  p.stroke(grayColor);
+  p.strokeWeight(marginWidthPix/4);
+  p.fill(grayColor);
   
   for (int i=0; i<lineMatrix.length; i++) {
-    tableCanvas.line(container_Locations[lineMatrix[i][0]].x, container_Locations[lineMatrix[i][0]].y, container_Locations[lineMatrix[i][1]].x, container_Locations[lineMatrix[i][1]].y);
+    p.line(container_Locations[lineMatrix[i][0]].x, container_Locations[lineMatrix[i][0]].y, container_Locations[lineMatrix[i][1]].x, container_Locations[lineMatrix[i][1]].y);
   }
   
   
-  tableCanvas.strokeJoin(ROUND);
-  tableCanvas.noFill();
+  p.strokeJoin(ROUND);
+  p.noFill();
   
   // St. Julia
-  tableCanvas.beginShape();
-  tableCanvas.vertex(container_Locations[1].x, container_Locations[1].y);
-  tableCanvas.vertex(container_Locations[1].x, marginWidthPix + 0.5*topoHeightPix);
-  tableCanvas.vertex(marginWidthPix, marginWidthPix + 0.5*topoHeightPix);
-  tableCanvas.endShape();
+  p.beginShape();
+  p.vertex(container_Locations[1].x, container_Locations[1].y);
+  p.vertex(container_Locations[1].x, marginWidthPix + 0.5*topoHeightPix);
+  p.vertex(marginWidthPix, marginWidthPix + 0.5*topoHeightPix);
+  p.endShape();
   
   // La Massana
-  tableCanvas.beginShape();
-  tableCanvas.vertex(container_Locations[2].x, container_Locations[2].y);
-  tableCanvas.vertex(container_Locations[2].x, marginWidthPix + 0.75*topoHeightPix);
-  tableCanvas.vertex(1.0*marginWidthPix + topoWidthPix, marginWidthPix + 0.75*topoHeightPix);
-  tableCanvas.endShape();
+  p.beginShape();
+  p.vertex(container_Locations[2].x, container_Locations[2].y);
+  p.vertex(container_Locations[2].x, marginWidthPix + 0.75*topoHeightPix);
+  p.vertex(1.0*marginWidthPix + topoWidthPix, marginWidthPix + 0.75*topoHeightPix);
+  p.endShape();
   
   // Encamp
-  tableCanvas.beginShape();
-  tableCanvas.vertex(container_Locations[4].x, container_Locations[4].y);
-  tableCanvas.vertex(1.0*marginWidthPix + 0.96*topoWidthPix, container_Locations[4].y);
-  tableCanvas.vertex(1.0*marginWidthPix + 0.96*topoWidthPix, 1.0*marginWidthPix + topoHeightPix);
-  tableCanvas.endShape();
+  p.beginShape();
+  p.vertex(container_Locations[4].x, container_Locations[4].y);
+  p.vertex(1.0*marginWidthPix + 0.96*topoWidthPix, container_Locations[4].y);
+  p.vertex(1.0*marginWidthPix + 0.96*topoWidthPix, 1.0*marginWidthPix + topoHeightPix);
+  p.endShape();
   
-  tableCanvas.stroke(background);
-  tableCanvas.strokeWeight(marginWidthPix/8);
-  tableCanvas.fill(textColor);
+  p.stroke(background);
+  p.strokeWeight(marginWidthPix/8);
+  p.fill(textColor);
   
-  tableCanvas.endDraw();
-  tableCanvas.beginDraw();
+  p.endDraw();
+  p.beginDraw();
   
   for (int i=1; i<container_Locations.length; i++) {
-    tableCanvas.ellipse(container_Locations[i].x, container_Locations[i].y, 0.5*marginWidthPix, 0.5*marginWidthPix);
+    p.ellipse(container_Locations[i].x, container_Locations[i].y, 0.5*marginWidthPix, 0.5*marginWidthPix);
   }
   
-  tableCanvas.textSize(24*(projectorWidth/1920.0));
+  p.textSize(24*(projectorWidth/1920.0));
   
-  tableCanvas.translate(container_Locations[1].x, container_Locations[1].y);
-  tableCanvas.rotate(PI/2);
-  tableCanvas.textAlign(CENTER);
-  tableCanvas.text(container_Names[1], 0, marginWidthPix/2);
-  tableCanvas.textAlign(LEFT);
-  tableCanvas.rotate(-PI/2);
-  tableCanvas.translate(-container_Locations[1].x, -container_Locations[1].y);
+  p.translate(container_Locations[1].x, container_Locations[1].y);
+  p.rotate(PI/2);
+  p.textAlign(CENTER);
+  p.text(container_Names[1], 0, marginWidthPix/2);
+  p.textAlign(LEFT);
+  p.rotate(-PI/2);
+  p.translate(-container_Locations[1].x, -container_Locations[1].y);
   
   for (int i=2; i<4; i++) {
-    tableCanvas.translate(container_Locations[i].x, container_Locations[i].y);
-    tableCanvas.rotate(-PI/2);
-    tableCanvas.textAlign(CENTER);
-    tableCanvas.text(container_Names[i], 0, marginWidthPix/2);
-    tableCanvas.textAlign(LEFT);
-    tableCanvas.rotate(PI/2);
-    tableCanvas.translate(-container_Locations[i].x, -container_Locations[i].y);
+    p.translate(container_Locations[i].x, container_Locations[i].y);
+    p.rotate(-PI/2);
+    p.textAlign(CENTER);
+    p.text(container_Names[i], 0, marginWidthPix/2);
+    p.textAlign(LEFT);
+    p.rotate(PI/2);
+    p.translate(-container_Locations[i].x, -container_Locations[i].y);
   }
   
   for (int i=4; i<7; i++) {
-    tableCanvas.translate(container_Locations[i].x, container_Locations[i].y);
-    //tableCanvas.rotate(-PI/2);
-    tableCanvas.textAlign(CENTER);
-    tableCanvas.text(container_Names[i], 0, marginWidthPix/2);
-    tableCanvas.textAlign(LEFT);
-    //tableCanvas.rotate(PI/2);
-    tableCanvas.translate(-container_Locations[i].x, -container_Locations[i].y);
+    p.translate(container_Locations[i].x, container_Locations[i].y);
+    //p.rotate(-PI/2);
+    p.textAlign(CENTER);
+    p.text(container_Names[i], 0, marginWidthPix/2);
+    p.textAlign(LEFT);
+    //p.rotate(PI/2);
+    p.translate(-container_Locations[i].x, -container_Locations[i].y);
   }
   
-  tableCanvas.textSize(36*(projectorWidth/1920.0));
-  tableCanvas.text(container_Names[0], marginWidthPix, tableCanvas.height-7*marginWidthPix/12);
+  p.textSize(36*(projectorWidth/1920.0));
+  p.text(container_Names[0], marginWidthPix, p.height-7*marginWidthPix/12);
   
-  tableCanvas.textSize(24*(projectorWidth/1920.0));
-  tableCanvas.text("Tourists |", marginWidthPix, tableCanvas.height-2*marginWidthPix/12);
+  p.textSize(24*(projectorWidth/1920.0));
+  p.text("Tourists |", marginWidthPix, p.height-2*marginWidthPix/12);
   
-  tableCanvas.fill(#00FF00);
-  tableCanvas.text(dates[dateIndex] + ", " + "Hour: " + hourIndex%24 + ":00 - " + (hourIndex+1)%24 + ":00", 
-                   5*marginWidthPix, tableCanvas.height-7*marginWidthPix/12);
+  p.fill(#00FF00);
+  p.text(dates[dateIndex] + ", " + "Hour: " + hourIndex%24 + ":00 - " + (hourIndex+1)%24 + ":00", 
+                   5*marginWidthPix, p.height-7*marginWidthPix/12);
   
-  tableCanvas.fill(spanish);
-  tableCanvas.text("Spanish", 4.5*marginWidthPix, tableCanvas.height-2*marginWidthPix/12);
+  p.fill(spanish);
+  p.text("Spanish", 4.5*marginWidthPix, p.height-2*marginWidthPix/12);
   
-  tableCanvas.fill(french);
-  tableCanvas.text("French", 3.0*marginWidthPix, tableCanvas.height-2*marginWidthPix/12);
+  p.fill(french);
+  p.text("French", 3.0*marginWidthPix, p.height-2*marginWidthPix/12);
   
-  tableCanvas.fill(other);
-  tableCanvas.text("Other", 6.0*marginWidthPix, tableCanvas.height-2*marginWidthPix/12);
+  p.fill(other);
+  p.text("Other", 6.0*marginWidthPix, p.height-2*marginWidthPix/12);
 
 }
 
-void drawTopo() {
+void drawTopo(PGraphics p) {
  
   // Draws Satellite images
-  tableCanvas.tint(255, 15);
-  //tableCanvas.filter(GRAY);
-  tableCanvas.image(topo, 0, 0, topoWidthPix, topoHeightPix);
-  tableCanvas.tint(255, 255);
+  p.tint(255, 15);
+  //p.filter(GRAY);
+  p.image(topo, 0, 0, topoWidthPix, topoHeightPix);
+  p.tint(255, 255);
   
 }
 
-void drawData() {
+void drawData(PGraphics p) {
   
   // Currently renders 3 sets of sample data (CDRs, Wifi, and TripAdvisor)
   
   // CDR Data:
   // Sets fill color to blue
-  tableCanvas.fill(#0000FF);
+  p.fill(#0000FF);
   for (int i=0; i<sampleOutput.getRowCount(); i+=2) { // iterates through each row
     if (sampleOutput.getInt(i, "origin container") == 0) { // checks if lat-long of point is actually on table
       
@@ -241,34 +247,34 @@ void drawData() {
       coord = mercatorMap.getScreenLocation(new PVector(sampleOutput.getFloat(i, "origin lat"), sampleOutput.getFloat(i, "origin lon")));
       
       // Draw a circle 30 pixels in diameter at geolocation
-      tableCanvas.ellipse(coord.x, coord.y, 30, 30);
+      p.ellipse(coord.x, coord.y, 30, 30);
     }
   }
   
   
   // TripAdvisor Data:
   // Sets fill color to red
-  tableCanvas.fill(#FF0000);
+  p.fill(#FF0000);
   
   for (int i=0; i<tripAdvisor.getRowCount(); i++) {
     // turns latitude and longitude of a point into canvas location within PGraphic topo
     coord = mercatorMap.getScreenLocation(new PVector(tripAdvisor.getFloat(i, "Lat"), tripAdvisor.getFloat(i, "Long")));
     
     // Draw a circle 30 pixels in diameter at geolocation
-    tableCanvas.ellipse(coord.x, coord.y, 30, 30);
+    p.ellipse(coord.x, coord.y, 30, 30);
   }
   
   
   // WiFi Data:
   // Sets fill color to green
-  tableCanvas.fill(#00FF00);
+  p.fill(#00FF00);
   
   for (int i=0; i<frenchWifi.getRowCount(); i+=2) {
     // turns latitude and longitude of a point into canvas location within PGraphic topo
     coord = mercatorMap.getScreenLocation(new PVector(frenchWifi.getFloat(i, "Source_lat"), frenchWifi.getFloat(i, "Source_long")));
     
     // Draw a circle 30 pixels in diameter at geolocation
-    tableCanvas.ellipse(coord.x, coord.y, 30, 30);
+    p.ellipse(coord.x, coord.y, 30, 30);
   }
   
   
@@ -277,30 +283,30 @@ void drawData() {
     // Draws a boarder around the site using latitude and longitude of corner locations
     // Should line up with edge of topo canvas
     
-    tableCanvas.strokeWeight(20);
+    p.strokeWeight(20);
     
     //Top (White)
-    tableCanvas.stroke(#FFFFFF); //White
+    p.stroke(#FFFFFF); //White
     line[0] = mercatorMap.getScreenLocation(UpperLeft);
     line[1] = mercatorMap.getScreenLocation(UpperRight);
-    tableCanvas.line(line[0].x, line[0].y, line[1].x, line[1].y);
+    p.line(line[0].x, line[0].y, line[1].x, line[1].y);
     //Right (Red)
-    tableCanvas.stroke(#FF0000); //Red
+    p.stroke(#FF0000); //Red
     line[0] = mercatorMap.getScreenLocation(UpperRight);
     line[1] = mercatorMap.getScreenLocation(LowerRight);
-    tableCanvas.line(line[0].x, line[0].y, line[1].x, line[1].y);
+    p.line(line[0].x, line[0].y, line[1].x, line[1].y);
     //Bottom (Green)
-    tableCanvas.stroke(#00FF00); //Green
+    p.stroke(#00FF00); //Green
     line[0] = mercatorMap.getScreenLocation(LowerRight);
     line[1] = mercatorMap.getScreenLocation(LowerLeft);
-    tableCanvas.line(line[0].x, line[0].y, line[1].x, line[1].y);
+    p.line(line[0].x, line[0].y, line[1].x, line[1].y);
     //Left (Blue)
-    tableCanvas.stroke(#0000FF); //Blue
+    p.stroke(#0000FF); //Blue
     line[0] = mercatorMap.getScreenLocation(UpperLeft);
     line[1] = mercatorMap.getScreenLocation(LowerLeft);
-    tableCanvas.line(line[0].x, line[0].y, line[1].x, line[1].y);
+    p.line(line[0].x, line[0].y, line[1].x, line[1].y);
   
-    tableCanvas.strokeWeight(1);
+    p.strokeWeight(1);
   }
   
 }
@@ -394,4 +400,31 @@ void drawLineGraph() {
   
   fill(other);
   text("Other", 5.0*marginWidthPix, 0);
+}
+
+void drawPathfinder(PGraphics p) {
+  finderTest.display(p);
+  
+  p.strokeWeight(2);
+  
+//  // Draw Path Nodes
+//  for (int i=0; i<testPath.size(); i++) {
+//    p.stroke(#00FF00);
+//    p.ellipse(testPath.get(i).x, testPath.get(i).y, finderTest.getResolution(), finderTest.getResolution());
+//  }
+  
+  // Draw Path Edges
+  for (int i=0; i<testPath.size()-1; i++) {
+    p.stroke(#00FF00);
+    p.line(testPath.get(i).x, testPath.get(i).y, testPath.get(i+1).x, testPath.get(i+1).y);
+  }
+  
+  //Draw Origin
+  p.stroke(#FF0000);
+  p.ellipse(A.x, A.y, finderTest.getResolution(), finderTest.getResolution());
+  
+  //Draw Destination
+  p.stroke(#0000FF);
+  p.ellipse(B.x, B.y, finderTest.getResolution(), finderTest.getResolution());
+  
 }

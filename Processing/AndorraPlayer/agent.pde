@@ -5,18 +5,6 @@ boolean frameStep = true;
 float time_0 = 0;
 float speed = 0.4444444;
 
-void updateSpeed(int dir) {
-  switch (dir) {
-    case -1:
-      speed /= 1.5;
-      break;
-    case 1:
-      speed *= 1.5;
-      break;
-  }
-  println("Speed: " + speed);
-}
-
 class Agent {
   
   PVector location;
@@ -115,7 +103,7 @@ class Agent {
    return sum;   
   }
   
-  void update(int life, Obstacle sink, PVector waypoint) {
+  void update(int life, Obstacle sink, PVector waypoint, float finderResolution) {
     // Update velocity
     velocity.add(acceleration);
     
@@ -162,19 +150,30 @@ class Agent {
     
   }
   
-  void display(color fill, int alpha) {
-    tableCanvas.fill(fill, fade*alpha);
-    tableCanvas.noStroke();
-    tableCanvas.pushMatrix();
-    tableCanvas.translate(location.x, location.y);
-    tableCanvas.ellipse(0, 0, r, r);
-    tableCanvas.popMatrix();
+  void display(PGraphics p, color fill, int alpha) {
+    p.fill(fill, fade*alpha);
+    p.noStroke();
+    p.pushMatrix();
+    p.translate(location.x, location.y);
+    p.ellipse(0, 0, r, r);
+    p.popMatrix();
   }
   
 }
 
-// A class for managing multiple agents
+void updateSpeed(int dir) {
+  switch (dir) {
+    case -1:
+      speed /= 1.5;
+      break;
+    case 1:
+      speed *= 1.5;
+      break;
+  }
+  println("Speed: " + speed);
+}
 
+// A class for managing multiple agents
 class Swarm {
   
   boolean generateAgent = true;
@@ -188,6 +187,7 @@ class Swarm {
   float counter = 0;
   color fill;
   int hitbox = 5;
+  float finderResolution = hitbox*2;
   
   PVector origin, destination;
   
@@ -256,6 +256,7 @@ class Swarm {
   
   void solvePath(Pathfinder f) {
     path = f.findPath(origin, destination);
+    finderResolution = f.getResolution();
 //    pathBoxes = new ArrayList<Obstacle>();
 //    for (int i=0; i<path.size(); i++) {
 //      pathBoxes.add(hitBox(path.get(i), hitbox, true));
@@ -321,52 +322,46 @@ class Swarm {
         
 //        // Applies unique forcevector if collision detected....not so great
 //        if (collision) {
-//          //v.applyBehaviors(swarm, new PVector(v.location.x+random(-10, 10), v.location.y+random(-10, 10)));
-//          //v.applyBehaviors(swarm, v.location);
 //          v.update(int(agentLife/speed), sink);
-//          // draws as red if collision detected
-//          //v.display(#FF0000, 100);
 //          collision = false;
 //        } else {
 //          v.applyBehaviors(swarm, destination);
 //          v.update(int(agentLife/speed), sink);
-//          // draws normally if collision detected
-//          //v.display(fill, 100);
 //        }
         
         // Updates agent behavior
         v.applyBehaviors(swarm, path.get(v.pathIndex));
-        v.update(int(agentLife/speed), sink, path.get(v.pathIndex));
+        v.update(int(agentLife/speed), sink, path.get(v.pathIndex), finderResolution);
         
       }
     }
   }
   
-  void display(String colorMode) {
+  void display(PGraphics p, String colorMode) {
     if (swarm.size() > 0) {
       for (Agent v : swarm){
         if (showSwarm) {
           if (!cropAgents) {
               if (v.location.y > marginWidthPix) {
-//            if (v.location.x < 0.75*marginWidthPix || v.location.x > (tableCanvas.width - 0.75*marginWidthPix) || 
-//                v.location.y < 0 || v.location.y > (tableCanvas.height - 0.75*marginWidthPix) ) {
+//            if (v.location.x < 0.75*marginWidthPix || v.location.x > (p.width - 0.75*marginWidthPix) || 
+//                v.location.y < 0 || v.location.y > (p.height - 0.75*marginWidthPix) ) {
                   if(colorMode.equals("color")) {
-                      v.display(fill, 255);
+                      v.display(p, fill, 255);
                   } else if(colorMode.equals("grayscale")) {
-                      v.display(#333333, 100);
+                      v.display(p, #333333, 100);
                   } else {
-                      v.display(fill, 100);
+                      v.display(p, fill, 100);
                   }
                 }
           } else {
-            if (v.location.x > 1.25*marginWidthPix && v.location.x < (tableCanvas.width - 1.25*marginWidthPix) && 
-                v.location.y > 1.25*marginWidthPix && v.location.y < (tableCanvas.height - 1.25*marginWidthPix) ) {
+            if (v.location.x > 1.25*marginWidthPix && v.location.x < (p.width - 1.25*marginWidthPix) && 
+                v.location.y > 1.25*marginWidthPix && v.location.y < (p.height - 1.25*marginWidthPix) ) {
                   if(colorMode.equals("color")) {
-                      v.display(fill, 255);
+                      v.display(p, fill, 255);
                   } else if(colorMode.equals("grayscale")) {
-                      v.display(#333333, 100);
+                      v.display(p, #333333, 100);
                   } else {
-                      v.display(fill, 100);
+                      v.display(p, fill, 100);
                   }
                 }
           }
@@ -376,69 +371,69 @@ class Swarm {
   }
   
   // Draw Sources and Sinks
-  void displaySource() {
+  void displaySource(PGraphics p) {
     
     if (swarm.size() > 0) {
-      tableCanvas.noFill();
-      tableCanvas.stroke(fill, 100);
+      p.noFill();
+      p.stroke(fill, 100);
       
       //Draw Source
-      tableCanvas.strokeWeight(2);
-      tableCanvas.line(origin.x - swarm.get(0).r, origin.y - swarm.get(0).r, origin.x + swarm.get(0).r, origin.y + swarm.get(0).r);
-      tableCanvas.line(origin.x - swarm.get(0).r, origin.y + swarm.get(0).r, origin.x + swarm.get(0).r, origin.y - swarm.get(0).r);
+      p.strokeWeight(2);
+      p.line(origin.x - swarm.get(0).r, origin.y - swarm.get(0).r, origin.x + swarm.get(0).r, origin.y + swarm.get(0).r);
+      p.line(origin.x - swarm.get(0).r, origin.y + swarm.get(0).r, origin.x + swarm.get(0).r, origin.y - swarm.get(0).r);
       
       //Draw Sink
-      tableCanvas.strokeWeight(3);
-      tableCanvas.ellipse(destination.x, destination.y, 30, 30);
+      p.strokeWeight(3);
+      p.ellipse(destination.x, destination.y, 30, 30);
     }
   }
   
-  void displayEdges() {
+  void displayEdges(PGraphics p) {
     
     // Draws weighted lines from origin to destinations
-    tableCanvas.stroke(fill, 50);
-    tableCanvas.fill(fill, 50);
+    p.stroke(fill, 50);
+    p.fill(fill, 50);
     if (agentDelay > 0) {
-      tableCanvas.strokeWeight(5.0/agentDelay);
+      p.strokeWeight(5.0/agentDelay);
     } else {
-      tableCanvas.noStroke();
+      p.noStroke();
     }
     
     
       
     if (origin != destination) {
-      tableCanvas.line(origin.x, origin.y, destination.x, destination.y);
+      p.line(origin.x, origin.y, destination.x, destination.y);
     } else {
-      tableCanvas.noStroke();
-      tableCanvas.ellipse(origin.x, origin.y, 1.0/agentDelay, 1.0/agentDelay);
+      p.noStroke();
+      p.ellipse(origin.x, origin.y, 1.0/agentDelay, 1.0/agentDelay);
     }
-    tableCanvas.strokeWeight(1);
-    tableCanvas.noStroke();
+    p.strokeWeight(1);
+    p.noStroke();
       
   }
   
-  void displayPath() {
-    tableCanvas.strokeWeight(2);
+  void displayPath(PGraphics p) {
+    p.strokeWeight(2);
     
 //    // Draw Path Nodes
 //    for (int i=0; i<testPath.size(); i++) {
-//      tableCanvas.stroke(#00FF00);
-//      tableCanvas.ellipse(testPath.get(i).x, testPath.get(i).y, finderResolution, finderResolution);
+//      p.stroke(#00FF00);
+//      p.ellipse(testPath.get(i).x, testPath.get(i).y, finderResolution, finderResolution);
 //    }
     
     // Draw Path Edges
     for (int i=0; i<path.size()-1; i++) {
-      tableCanvas.stroke(#00FF00);
-      tableCanvas.line(path.get(i).x, path.get(i).y, path.get(i+1).x, path.get(i+1).y);
+      p.stroke(#00FF00);
+      p.line(path.get(i).x, path.get(i).y, path.get(i+1).x, path.get(i+1).y);
     }
     
     //Draw Origin
-    tableCanvas.stroke(#FF0000);
-    tableCanvas.ellipse(origin.x, origin.y, finderResolution, finderResolution);
+    p.stroke(#FF0000);
+    p.ellipse(origin.x, origin.y, finderResolution, finderResolution);
     
     //Draw Destination
-    tableCanvas.stroke(#0000FF);
-    tableCanvas.ellipse(destination.x, destination.y, finderResolution, finderResolution);
+    p.stroke(#0000FF);
+    p.ellipse(destination.x, destination.y, finderResolution, finderResolution);
   }
   
 }

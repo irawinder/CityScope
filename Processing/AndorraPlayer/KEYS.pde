@@ -77,12 +77,25 @@ void keyPressed() {
       debug = toggle(debug);
       break;
     case 'd': //shows still data, makes it slow
-      if (!showData && !loadData) {
-        loadData = toggle(loadData);
+      if (!showData && !load_non_essential_data) {
+        load_non_essential_data = toggle(load_non_essential_data);
+        
         initData();
+        initObstacles();
+        initPathfinder(tableCanvas, 10);
+        initAgents();
       }
       showData = toggle(showData);
       println("showData = " + showData);
+      break;
+    case 'D': //shows still data, makes it slow
+      load_non_essential_data = toggle(load_non_essential_data);
+      
+      initData();
+      initObstacles();
+      initPathfinder(tableCanvas, 10);
+      initAgents();
+      println("Load Data = " + load_non_essential_data);
       break;
     case 'T': // show topography 
       showTopo = toggle(showTopo);
@@ -165,7 +178,7 @@ void keyPressed() {
       showPaths = toggle(showPaths);
       break;
     case 'X': // randomize locations of origin and destination paths
-      pathTest(finderTest);
+      pathTest(tableCanvas, finderTest);
       break;
   }
   

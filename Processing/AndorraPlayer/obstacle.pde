@@ -273,8 +273,8 @@ class Obstacle {
         }
       }
       
-      tableCanvas.stroke(textColor);
-      tableCanvas.strokeWeight(4);
+      //tableCanvas.stroke(textColor);
+      //tableCanvas.strokeWeight(4);
       
       if (closestEdge < polyCorners - 1) {
         tangent = new PVector(v.get(closestEdge+1).x - v.get(closestEdge).x, v.get(closestEdge+1).y - v.get(closestEdge).y);
@@ -305,29 +305,29 @@ class Obstacle {
     
   }
   
-  void display(color stroke, int alpha, boolean editing) {
+  void display(PGraphics p, color stroke, int alpha, boolean editing) {
     
     if (drawOutline && polyCorners > 1) {
       // Draws Polygon Ouline
       for (int i=0; i<polyCorners; i++) {
-        tableCanvas.stroke(stroke, alpha);
+        p.stroke(stroke, alpha);
         if (i == polyCorners-1) {
-          tableCanvas.line(v.get(i).x, v.get(i).y, v.get(0).x, v.get(0).y);
+          p.line(v.get(i).x, v.get(i).y, v.get(0).x, v.get(0).y);
         } else {
-          tableCanvas.line(v.get(i).x, v.get(i).y, v.get(i+1).x, v.get(i+1).y);
+          p.line(v.get(i).x, v.get(i).y, v.get(i+1).x, v.get(i+1).y);
         }
       }
     }
     
     if (editing) {
       if (editObstacles && polyCorners > 0) {
-        tableCanvas.stroke(#00FF00, alpha);
-        tableCanvas.ellipse(v.get(index).x, v.get(index).y, 30, 30);
+        p.stroke(#00FF00, alpha);
+        p.ellipse(v.get(index).x, v.get(index).y, 30, 30);
       } if (editObstacles && polyCorners > 1) {
-        tableCanvas.line(v.get(index).x, v.get(index).y, v.get(afterIndex()).x, v.get(afterIndex()).y);
-        tableCanvas.noStroke();
-        tableCanvas.fill(stroke, alpha);
-        tableCanvas.ellipse(v.get(afterIndex()).x, v.get(afterIndex()).y, 30/2, 30/2);
+        p.line(v.get(index).x, v.get(index).y, v.get(afterIndex()).x, v.get(afterIndex()).y);
+        p.noStroke();
+        p.fill(stroke, alpha);
+        p.ellipse(v.get(afterIndex()).x, v.get(afterIndex()).y, 30/2, 30/2);
       }
     }
     
@@ -344,7 +344,7 @@ class Obstacle {
       }
       fill.endDraw();
       
-      tableCanvas.image(fill, minX, minY);
+      p.image(fill, minX, minY);
     }
     
   }
@@ -452,14 +452,14 @@ class ObstacleCourse {
     return collision;
   }
   
-  void display(color stroke, int alpha) {
+  void display(PGraphics p, color stroke, int alpha) {
     for (int i=0; i<course.size(); i++) {
       if (i == index && editObstacles) {
-        tableCanvas.strokeWeight(2);
-        course.get(i).display(#FFFF00, alpha, true);
-        tableCanvas.strokeWeight(1);
+        p.strokeWeight(2);
+        course.get(i).display(p, #FFFF00, alpha, true);
+        p.strokeWeight(1);
       } else {
-        course.get(i).display(stroke, alpha, false);
+        course.get(i).display(p, stroke, alpha, false);
       }
     }
   }
