@@ -3,11 +3,16 @@
 // For Andorra Data Stories
 // Ira Winder, MIT Media Lab, jiw@mit.edu, Fall 2015
 
+// To Do:
+// Allow Dynamic Editing of PAthfinder Routes
+// Allow finer control of pathfinder network data
+// In general, migrate glabal "void drawFoo()" methods into class-specific "display()" methods
+
 // Need Libaries:
 // Keystone for Processing
 
 // Table SetUp with Margin:
-
+//
 //  |------------------------------------|      ^ North
 //  | |--------------------------------| |
 //  | |                                | |
