@@ -3,11 +3,20 @@
 // For Andorra Data Stories
 // Ira Winder, MIT Media Lab, jiw@mit.edu, Fall 2015
 
+// To Do:
+// Merge 'container' and 'boundary' ObstacleCourses
+// Have speed of agent depend on region, not swarm identity
+
+// Allow Dynamic Editing of Pathfinder Routes
+// Allow finer control of visualizing pathfinder network data
+// In general, migrate glabal "void drawFoo()" methods into class-specific "display()" methods
+// Consolidate Agents, Obstacles, and Pathfinder classes to libraries and/or standalone applets and/or libraries?
+
 // Need Libaries:
 // Keystone for Processing
 
 // Table SetUp with Margin:
-
+//
 //  |------------------------------------|      ^ North
 //  | |--------------------------------| |
 //  | |                                | |
@@ -33,6 +42,13 @@
 //
 //     'g' - Toggle debug
 //
+//   Data Navigation
+//     'D' = Load/Unload non essential data
+//     'I' - Next OD Data Set
+//     ']' - Go forward an hour in OD dataset
+//     '[' - Go backward an hour in OD dataset 
+//     'd' - Show/hide test geodata
+//
 //   View Mode:
 //     'm' - Toggle On-Screen mode or Projection-mapping mode
 //     'T' - Toggle Topographic Map
@@ -43,6 +59,7 @@
 //     'l' - Load callibration
 //
 //   Agent-based Modeling:
+//      case 'i': Show Swarm Index
 //      case 'o': Show Obstacle Outlines
 //      case 'k': Show Sources and Sinks for Agents
 //      case 'r': Reset Agent Sinks and Sources
@@ -56,10 +73,8 @@
 //      case '+': Increase Agent Speed
 //      case '-': Decrease Agent Speed
 //      case 'b': Toggle Background color black/white
-//      case 'H': Go forward an hour in dataset
-//      case 'h': Go backward an hour in dataset 
 //
-//    ObStacle Editor:
+//    Obstacle Editor:
 //      'E': toggle editing
 //      'A': Add Obstacle
 //      'R': Remove Obstacle
@@ -69,11 +84,18 @@
 //       Arrow Keys - fine movement of seleted vertex in obstacle
 //      's' save CSV file of boundary locations (if editor is on)
 //      'l' load CSV file of boundary locations (if editor is on)
+//
+//    Pathfinding Tools:
+//      'P': show/hide pathfinder network
+//      'h': show/hide additional info about pathfinder network
+//      'X': regenerate a random origin and destination
+//      'n': regenerate a random network for testing
 
 
 // set to true when running app to prevent fullScreen Mode
 // also enables some visualizations for debugging
 boolean debug = true;
+boolean showFrameRate = false;
 
 // Only set this to true if projectors display output is 4k
 // Also set to false if developing on your machine in 1080p
@@ -96,14 +118,14 @@ void setup() {
     size(projectorWidth, projectorHeight, P3D);
   }
   
-  if (loadData) {
-    // Loads csv files referenced in data tab
-    initData();
-  }
+  initCanvas();
   
-  initPlayer();
-  initAgents();
+  // Loads MercatorMap projecetion for canvas, csv files referenced in 'DATA' tab, etc
+  initData();
+  
   initObstacles();
+  initPathfinder(tableCanvas, 10);
+  initAgents();
   
   tableCanvas.beginDraw();
   tableCanvas.background(background);
@@ -115,106 +137,23 @@ void draw() {
   
   // Renders frame onto 'tableCanvas' PGraphic
   drawTableCanvas();
-  
-  // Renders Agent 'dots' and corresponding obstacles and heatmaps
-  drawAgents(); 
 
+  // Renders Agent 'dots' and corresponding obstacles and heatmaps
+  drawAgents(tableCanvas); 
+  
   // draws Table Canvas onto projection map or on screen
   drawTable();
-
+  
+  // draws a line graph of all data for given OD matrix
+  if (load_non_essential_data) {
+    drawLineGraph();
+  }
+  
+  
+  
   if (showFrameRate) {
     println(frameRate);
   }
-  
-  // Temporary Graph //
-  
-  fill(#FFFFFF);
-  translate(float(1)/(maxHour+6)*width, 1.45*canvasHeight);
-  text("Hr", 0, textSize);
-  
-  int graphHeight = 2*marginWidthPix;
-  
-  textAlign(CENTER);
-  for (int i=0; i<=maxHour; i+=3) {
-    float hor = float(i+2)/(maxHour+6)*width;
-    text(i%24, hor, textSize);
-  }
-  
-  
-  noStroke();
-  fill(french, 200);
-  beginShape();
-  vertex(float(0+2)/(maxHour+6)*width, 0 - 2*textSize);
-  for (int i=0; i<=maxHour; i++) {
-    float hor = float(i+2)/(maxHour+6)*width;
-    vertex(hor, -graphHeight*summary.getFloat(i, "TOTAL")/maxFlow - 2*textSize);
-  }
-  vertex(float(maxHour+2)/(maxHour+6)*width, 0 - 2*textSize);
-  endShape();
-  
-  noStroke();
-  fill(spanish, 200);
-  beginShape();
-  vertex(float(0+2)/(maxHour+6)*width, 0 - 2*textSize);
-  for (int i=0; i<=maxHour; i++) {
-    float hor = float(i+2)/(maxHour+6)*width;
-    vertex(hor, -graphHeight*(summary.getFloat(i, "TOTAL")-summary.getFloat(i, "FRENCH"))/maxFlow - 2*textSize);
-  }
-  vertex(float(maxHour+2)/(maxHour+6)*width, 0 - 2*textSize);
-  endShape();
-  
-  noStroke();
-  fill(other, 200);
-  beginShape();
-  vertex(float(0+2)/(maxHour+6)*width, 0 - 2*textSize);
-  for (int i=0; i<=maxHour; i++) {
-    float hor = float(i+2)/(maxHour+6)*width;
-    vertex(hor, -graphHeight*(summary.getFloat(i, "TOTAL")-summary.getFloat(i, "FRENCH")-summary.getFloat(i, "SPANISH"))/maxFlow - 2*textSize);
-  }
-  vertex(float(maxHour+2)/(maxHour+6)*width, 0 - 2*textSize);
-  endShape();
-  
-  textAlign(LEFT);
-  textSize(18*(projectorWidth/1920.0));
-  
-  float hor = float(hourIndex+2)/(maxHour+6)*width;
-  stroke(#00FF00, 150);
-  fill(#00FF00);
-  strokeWeight(2);
-  line(hor, -graphHeight - 4*textSize, hor, -1.75*textSize);
-  text(hourIndex%24 + ":00 - " + (hourIndex%24+1) + ":00", 
-                   hor + 0.5*textSize, -graphHeight - 3*textSize);
-  text(date, 
-                   hor + 0.5*textSize, -graphHeight - 3*textSize + 2.5*textSize);
-  
-//  fill(french);
-//  text(int(100*summary.getFloat(hourIndex, "FRENCH") / summary.getFloat(hourIndex, "TOTAL")) + "%", 
-//                   hor + 0.5*textSize, -graphHeight - 3*textSize);
-//  fill(spanish);
-//  text(int(100*summary.getFloat(hourIndex, "SPANISH") / summary.getFloat(hourIndex, "TOTAL")) + "%", 
-//                   hor + 0.5*textSize, -graphHeight - 3*textSize + 2*textSize);
-//  fill(other);
-//  text(int(100*summary.getFloat(hourIndex, "OTHER") / summary.getFloat(hourIndex, "TOTAL")) + "%", 
-//                   hor + 0.5*textSize, -graphHeight - 3*textSize + 4*textSize);
-  
-  
-  noStroke();
-  
-  translate(float(0+2)/(maxHour+6)*width, -1.5*graphHeight);
-  
-  fill(#FFFFFF);
-  textSize(24*(projectorWidth/1920.0));
-  textAlign(LEFT);
-  text("Tourists |", 0, 0);
-  
-  fill(spanish);
-  text("Spanish", 3.5*marginWidthPix, 0);
-  
-  fill(french);
-  text("French", 2.0*marginWidthPix, 0);
-  
-  fill(other);
-  text("Other", 5.0*marginWidthPix, 0);
   
   if (printFrames) {
     //tableCanvas.save("videoFrames/" + millis() + ".png");
