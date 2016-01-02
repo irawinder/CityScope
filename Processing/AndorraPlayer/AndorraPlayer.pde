@@ -4,9 +4,10 @@
 // Ira Winder, MIT Media Lab, jiw@mit.edu, Fall 2015
 
 // To Do:
-// Allow Dynamic Editing of PAthfinder Routes
+// Allow Dynamic Editing of Pathfinder Routes
 // Allow finer control of pathfinder network data
 // In general, migrate glabal "void drawFoo()" methods into class-specific "display()" methods
+// Consolidate Agents, Obstacles, and Pathfinder classes to libraries and/or standalone applets and/or libraries?
 
 // Need Libaries:
 // Keystone for Processing

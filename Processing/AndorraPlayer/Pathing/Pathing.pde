@@ -7,15 +7,16 @@ void setup() {
   tableCanvas = createGraphics(1000, 500);
   size(tableCanvas.width, tableCanvas.height);
   
-  initPathfinder();
-  
+  initPathfinder(tableCanvas, 20);
 }
 
 void draw() {
   
   tableCanvas.beginDraw();
   tableCanvas.background(0);
-  drawPathfinder();
+  
+  drawPathfinder(tableCanvas);
+  
   tableCanvas.endDraw();
   
   image(tableCanvas, 0, 0);
@@ -36,7 +37,7 @@ class ObstacleCourse {
 void keyPressed() {
   switch(key) {
     case 'X':
-      pathTest(finderTest);
+      pathTest(tableCanvas, finderTest);
       break;
   }
 }
