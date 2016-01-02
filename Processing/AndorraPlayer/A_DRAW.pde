@@ -432,6 +432,9 @@ void drawPathfinder(PGraphics p) {
   p.stroke(#0000FF);
   p.ellipse(B.x, B.y, finderTest.getResolution(), finderTest.getResolution());
   
+  //Draw Directions
+  p.text("A network has been randomly generated.", 20, 20);
+  p.text("Press 'r' to randomly generate an origin-destination pair.", 20, 40);
 }
 
 

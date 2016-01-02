@@ -1,7 +1,10 @@
 PGraphics tableCanvas;
-int textColor = 50;
+int textColor = 255;
+int background = 0;
 ObstacleCourse boundaries = new ObstacleCourse();
 ObstacleCourse container = new ObstacleCourse();
+
+boolean redraw = true;
 
 void setup() {
   tableCanvas = createGraphics(1000, 500);
@@ -12,14 +15,17 @@ void setup() {
 
 void draw() {
   
-  tableCanvas.beginDraw();
-  tableCanvas.background(0);
-  
-  drawPathfinder(tableCanvas);
-  
-  tableCanvas.endDraw();
-  
-  image(tableCanvas, 0, 0);
+  if (redraw) {
+    tableCanvas.beginDraw();
+    tableCanvas.background(background);
+    tableCanvas.endDraw();
+    
+    drawPathfinder(tableCanvas);
+    
+    image(tableCanvas, 0, 0);
+    
+    redraw = false;
+  }
   
 }
 
@@ -31,13 +37,5 @@ class ObstacleCourse {
   
   boolean testForCollision(PVector v) {
     return false;
-  }
-}
-
-void keyPressed() {
-  switch(key) {
-    case 'X':
-      pathTest(tableCanvas, finderTest);
-      break;
   }
 }
