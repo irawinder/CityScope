@@ -9,7 +9,7 @@
 
 // Allow Dynamic Editing of Pathfinder Routes
 // Allow finer control of visualizing pathfinder network data
-// In general, migrate glabal "void drawFoo()" methods into class-specific "display()" methods
+// In general, migrate global "void drawFoo()" methods into class-specific "display()" methods
 // Consolidate Agents, Obstacles, and Pathfinder classes to libraries and/or standalone applets and/or libraries?
 
 // Need Libaries:

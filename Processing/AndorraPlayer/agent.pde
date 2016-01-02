@@ -300,25 +300,11 @@ class Swarm {
         
         boolean collision = false;
         
-        // Tests for Collision with Test Objects
-        for (int i=0; i<testWall.length; i++) {
-          if (testWall[i].pointInPolygon(v.location.x, v.location.y) ) {
-            collision = true;
-            //v.reverseCourse();
-            v.roll(testWall[i].normalOfEdge(v.location.x, v.location.y, v.velocity.x, v.velocity.y));
-            break;
-          }
-        }
+        // Tests for Collision with Test Objects    
+        collision = grid.testForCollision(v);
         
-        // Tests for Collision with obstacleCourse boundaries
-        if (cropAgents) {
-          // agents internal to table
-          collision = boundaries.testForCollision(v);
-        } else {
-          // agents on margins of table
-          collision = container.testForCollision(v);
-        }
-        
+        // Tests for Collision with Andorra Course
+        collision = boundaries.testForCollision(v);
         
 //        // Applies unique forcevector if collision detected....not so great
 //        if (collision) {

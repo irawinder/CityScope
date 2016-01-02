@@ -509,12 +509,8 @@ void drawAgents(PGraphics p) {
   }
   
   if (showObstacles) {
-    for (Obstacle o : testWall) {
-      o.display(p, #0000FF, 100, false);
-    }
-    boundaries.display(p, #00FF00, 100);
-    //container.display(#0000FF, 100);
-    
+    grid.display(p, #00FF00, 100);
+    boundaries.display(p, #0000FF, 100);
   }
   
 //  numAgents = 0;

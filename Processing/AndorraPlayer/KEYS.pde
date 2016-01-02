@@ -46,11 +46,7 @@ void keyPressed() {
       break;
     case 'l': //loads course
       if (editObstacles) {
-        if (mainCourse) {
-          boundaries.loadCourse("data/course.tsv");
-        } else {
-          container.loadCourse("data/container.tsv");
-        }
+        boundaries.loadCourse("data/course.tsv");
       } else {
         // loads the saved layout
         ks.load();
@@ -58,11 +54,7 @@ void keyPressed() {
       break;
     case 's'://save course
       if (editObstacles) {
-        if (mainCourse) {
-          boundaries.saveCourse("data/course.tsv");
-        } else {
-          container.saveCourse("data/container.tsv");
-        }
+        boundaries.saveCourse("data/course.tsv");
       } else {
         // saves the layout
         ks.save();
@@ -100,47 +92,27 @@ void keyPressed() {
       break;
     case '': //hit the delete key 
       if (editObstacles) {
-        if (mainCourse) {
-          boundaries.removeVertex();
-        } else {
-          container.removeVertex();
-        }
+        boundaries.removeVertex();
       }
       break;
     case 'A': //lets you add obstcles
       if (editObstacles) {
-        if (mainCourse) {
-          boundaries.addObstacle();
-        } else {
-          container.addObstacle();
-        }
+        boundaries.addObstacle();
       }
       break;
     case 'R': //lets you remove obstacles 
       if (editObstacles) {
-        if (mainCourse) {
-          boundaries.removeObstacle();
-        } else {
-          container.removeObstacle();
-        }
+        boundaries.removeObstacle();
       }
       break;
     case ' ': //switch between the two obstacles to edit them 
       if (editObstacles) {
-        if (mainCourse) {
-          boundaries.nextIndex(); 
-        } else {
-          container.nextIndex();
-        }
+        boundaries.nextIndex();
       }
       break;
     case 'N': //hops to next vertice 
       if (editObstacles) {
-        if (mainCourse) {
-          boundaries.nextVert();
-        } else {
-          container.nextVert();
-        }
+        boundaries.nextVert();
       }
       break;
     case 'V': //starts printing frames to file
@@ -185,38 +157,22 @@ void keyPressed() {
   if (key == CODED) { 
     if (keyCode == LEFT) {
       if (editObstacles) {
-        if (mainCourse) {
-          boundaries.nudgeVertex(-1, 0);
-        } else {
-          container.nudgeVertex(-1, 0);
-        }
+        boundaries.nudgeVertex(-1, 0);
       }
     }  
     if (keyCode == RIGHT) {
       if (editObstacles) {
-        if (mainCourse) {
-          boundaries.nudgeVertex(+1, 0);
-        } else {
-          container.nudgeVertex(+1, 0);
-        }
+        boundaries.nudgeVertex(+1, 0);
       }
     }  
     if (keyCode == DOWN) {
       if (editObstacles) {
-        if (mainCourse) {
-          boundaries.nudgeVertex(0, +1);
-        } else {
-          container.nudgeVertex(0, +1);
-        }
+        boundaries.nudgeVertex(0, +1);
       }
     }  
     if (keyCode == UP) {
       if (editObstacles) {
-        if (mainCourse) {
-          boundaries.nudgeVertex(0, -1);
-        } else {
-          container.nudgeVertex(0, -1);
-        }
+        boundaries.nudgeVertex(0, -1);
       }
     }
   }
@@ -289,19 +245,11 @@ void mouseReleased() {
 
 void mouseClicked() {
   if (editObstacles) {
-    if (mainCourse) {
-      boundaries.addVertex(new PVector(mouseX, mouseY));
-    } else {
-      container.addVertex(new PVector(mouseX, mouseY));
-    }
+    boundaries.addVertex(new PVector(mouseX, mouseY));
     
 //    initPathfinder();
 //    for (Swarm s : swarms) {
-//      if (s.cropAgents == false) {
-//        s.solvePath(finderMargin);
-//      } else {
-//        s.solvePath(finderTopo);
-//      }
+//      s.solvePath(finder);
 //    }
   }
 }

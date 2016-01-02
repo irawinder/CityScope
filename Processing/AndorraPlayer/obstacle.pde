@@ -353,8 +353,6 @@ class Obstacle {
     
 // A class for assembling courses of obstacles
 
-boolean mainCourse = true;
-
 class ObstacleCourse {
   
   ArrayList<Obstacle> course;
@@ -410,6 +408,14 @@ class ObstacleCourse {
     }
   }
   
+  void addObstacle(Obstacle o) {
+    course.add(o);
+    numObstacles++;
+    if (index == numObstacles-2) {
+      index++;
+    }
+  }
+  
   void removeObstacle() {
     if (numObstacles > 0) {
       course.remove(index);
@@ -418,6 +424,12 @@ class ObstacleCourse {
         index--;
       }
     }
+  }
+  
+  void clearCourse() {
+    course.clear();
+    numObstacles = 0;
+    index = 0;
   }
   
   boolean testForCollision(Agent v) {

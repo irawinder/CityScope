@@ -248,13 +248,11 @@ void CDRNetwork() {
     
     // delay, origin, destination, speed, color
     swarms[i] = new Swarm(weight[i], origin[i], destination[i], 1, col);
+    swarms[i].solvePath(finder);
     
     if (external) {
       swarms[i].cropAgents = false;
       swarms[i].maxSpeed = 0.2;
-      swarms[i].solvePath(finderMargin);
-    } else {
-      swarms[i].solvePath(finderTopo);
     }
     
   }
@@ -444,29 +442,19 @@ void testNetwork_Random() {
 
 boolean showObstacles = false;
 boolean editObstacles = false;
-boolean testObstacles = false;
+boolean testObstacles = true;
 
-Obstacle[] testWall;
 ObstacleCourse boundaries;
-ObstacleCourse container;
+ObstacleCourse grid;
 
 void initObstacles() {
+  // Gridded Obstacles for testing
+  grid = new ObstacleCourse();
   testObstacles(testObstacles);
-  boundaries = new ObstacleCourse();
-  container = new ObstacleCourse();
   
   // Obstacles for agents generates within Andorra le Vella
+  boundaries = new ObstacleCourse();
   boundaries.loadCourse("data/course.tsv");
-  
-  // Obstacles for agents generated outside of Andorra le Vella (i.e. margins of table)
-  //container.loadCourse("data/container.tsv");
-  container.loadCourse("data/course.tsv");
-  
-//  container.addObstacle();
-//  container.addVertex(new PVector(0.75*marginWidthPix, 0.75*marginWidthPix));
-//  container.addVertex(new PVector(1.25*marginWidthPix + topoWidthPix, 0.75*marginWidthPix));
-//  container.addVertex(new PVector(1.25*marginWidthPix + topoWidthPix, 1.25*marginWidthPix + topoHeightPix));
-//  container.addVertex(new PVector(0.75*marginWidthPix, 1.25*marginWidthPix + topoHeightPix));
 }
 
 void testObstacles(boolean place) {
@@ -479,6 +467,8 @@ void testObstacles(boolean place) {
 
 void setObstacleGrid(int u, int v) {
   
+  grid.clearCourse();
+  
   float w = 0.75*float(canvasWidth)/(u+1);
   float h = 0.75*float(canvasHeight)/(v+1);
   
@@ -487,7 +477,6 @@ void setObstacleGrid(int u, int v) {
     obPts[i] = new PVector(0,0);
   }
   
-  testWall = new Obstacle[u*v];
   for (int i=0; i<u; i++) {
     for (int j=0; j<v; j++) {
       
@@ -498,10 +487,7 @@ void setObstacleGrid(int u, int v) {
       obPts[2].x = x+w;   obPts[2].y = y+h;
       obPts[3].x = x;     obPts[3].y = y+h;
       
-      testWall[i*v + j] = new Obstacle(obPts);
-      //testWall[i*v + j].addVertex(new PVector(x+w/2, y+h/2));
-      //testWall[i*v + j].removeVertex();
-      
+      grid.addObstacle(new Obstacle(obPts));
     }
   }
 }
@@ -511,7 +497,7 @@ void setObstacleGrid(int u, int v) {
 
 //------------- Initialize Pathfinding Objects
 
-Pathfinder finderTopo, finderMargin;
+Pathfinder finder;
 
 // Pathfinder test and debugging Objects
 Pathfinder finderTest;
@@ -519,8 +505,7 @@ PVector A, B;
 ArrayList<PVector> testPath, testVisited;
 
 void initPathfinder(PGraphics p, int res) {
-  finderTopo = new Pathfinder(p.width, p.height, res, boundaries);
-  finderMargin = new Pathfinder(p.width, p.height, res, container);
+  finder = new Pathfinder(p.width, p.height, res, boundaries);
   
   initOD(p);
   initNetwork(p, 10, 0.55);
