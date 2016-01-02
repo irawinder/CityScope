@@ -102,7 +102,7 @@ class Pathfinder {
         
         // Terminates loop if destination is reached
         if (current == b) {
-          println("Total Distance to Distination: " + totalDist[current]);
+          //println("Total Distance to Distination: " + totalDist[current]);
           
           // Working backward from destination, rebuilds optimal path to origin from parentNode data
           path.add(0, B); //Canvas Coordinate of destination
@@ -124,7 +124,7 @@ class Pathfinder {
         
         // Returns path-not-found
         complete = true;
-        println("Path Not Found");
+        //println("Path Not Found");
         
         // only returns the origin as path
         path.add(0, A);

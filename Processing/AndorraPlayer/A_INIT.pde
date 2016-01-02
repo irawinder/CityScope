@@ -119,7 +119,14 @@ void initCanvas() {
 
 
 
-
+void reInit() {
+  // Loads MercatorMap projecetion for canvas, csv files referenced in 'DATA' tab, etc
+  initData();
+  
+  initObstacles();
+  initPathfinder(tableCanvas, 10);
+  initAgents();
+}
 
 
 
@@ -138,12 +145,12 @@ boolean showInfo = false;
 boolean showTraces = false;
 boolean printFrames = false;
 
-  int testMode = 0;
-  // testMode = 0 for random network
-  // testMode = 1 for basic network of Andorra Tower Locations
+  int dataMode = 2;
+  // dataMode = 0 for random network
+  // dataMode = 1 for basic network of Andorra Tower Locations
+  // dataMode = 2 for Andorra CDR Network (circa Dec 2015)
 
 Swarm[] swarms;
-
 
 PVector[] origin;
 PVector[] destination;
@@ -177,9 +184,21 @@ void initAgents() {
   summary.addColumn("FRENCH");
   summary.addColumn("OTHER");
   
-  //testNetwork();
-  //touristNetwork();
   CDRNetwork();
+  
+  switch(dataMode) {
+    case 0:
+      testNetwork_Random();
+      break;
+    case 1:
+      testNetwork_CDRWifi();
+      break;
+    case 2:
+      CDRNetwork();
+      break;
+  }
+      
+  //touristNetwork();
   
   traces = new HeatMap(canvasWidth/5, canvasHeight/5, canvasWidth, canvasHeight);
   
@@ -289,6 +308,7 @@ void setSwarmFlow(int hr) {
   for (int i=0; i<OD.getRowCount(); i++) {
     if (OD.getInt(i, "HOUR") == hr) {
       swarms[OD.getInt(i, "EDGE_ID")].agentDelay = 1.0/OD.getInt(i, "AMOUNT");
+      //println(1.0/OD.getInt(i, "AMOUNT"));
       date = OD.getString(i, "DATE");
     }
   }
@@ -323,62 +343,29 @@ int prevHour(int hr){
   return hr;
 }
 
-void testNetwork() {
+// dataMode for basic network of Andorra Tower Locations
+void testNetwork_CDRWifi() {
   
   int numNodes, numEdges, numSwarm;
+  numNodes = frenchWifi.getRowCount() + localTowers.getRowCount();
+  numEdges = numNodes*(numNodes-1);
+  numSwarm = numEdges;
   
-  if (testMode == 0) { // testMode = 0 for random network
+  nodes = new PVector[numNodes];
+  origin = new PVector[numSwarm];
+  destination = new PVector[numSwarm];
+  weight = new float[numSwarm];
+  swarmSize = new int[numSwarm];
   
-    numNodes = 8;
-    numEdges = numNodes*(numNodes-1);
-    numSwarm = numEdges;
+  for (int i=0; i<numNodes; i++) {
     
-    nodes = new PVector[numNodes];
-    origin = new PVector[numSwarm];
-    destination = new PVector[numSwarm];
-    weight = new float[numSwarm];
-    swarmSize = new int[numSwarm];
-    
-    for (int i=0; i<numNodes; i++) {
-      nodes[i] = new PVector(random(10, canvasWidth-10), random(10, canvasHeight-10));
+    if (i < frenchWifi.getRowCount()) { // load wifi routers
+      nodes[i] = mercatorMap.getScreenLocation(new PVector(frenchWifi.getFloat(i, "Source_lat"), frenchWifi.getFloat(i, "Source_long")));
+    } else { // Load cell towers
+      nodes[i] = mercatorMap.getScreenLocation(new PVector(localTowers.getFloat(i-frenchWifi.getRowCount(), "Lat"), localTowers.getFloat(i-frenchWifi.getRowCount(), "Lon")));
     }
-    
-  } else if (testMode == 1) { // testMode = 1 for basic network of Andorra Tower Locations
-    
-    numNodes = frenchWifi.getRowCount() + localTowers.getRowCount();
-    numEdges = numNodes*(numNodes-1);
-    numSwarm = numEdges;
-    
-    nodes = new PVector[numNodes];
-    origin = new PVector[numSwarm];
-    destination = new PVector[numSwarm];
-    weight = new float[numSwarm];
-    swarmSize = new int[numSwarm];
-    
-    for (int i=0; i<numNodes; i++) {
-      
-      if (i < frenchWifi.getRowCount()) {
-        nodes[i] = mercatorMap.getScreenLocation(new PVector(frenchWifi.getFloat(i, "Source_lat"), frenchWifi.getFloat(i, "Source_long")));
-      } else {
-        //nodes[i] = mercatorMap.getScreenLocation(new PVector(tripAdvisor.getFloat(int(random(tripAdvisor.getRowCount())), "Lat"), tripAdvisor.getFloat(int(random(tripAdvisor.getRowCount())), "Long")));
-        //int rando = int(random(tripAdvisor.getRowCount()));
-        //nodes[i] = mercatorMap.getScreenLocation(new PVector(tripAdvisor.getFloat(rando, "Lat"), tripAdvisor.getFloat(rando, "Long")));
-        nodes[i] = mercatorMap.getScreenLocation(new PVector(localTowers.getFloat(i-frenchWifi.getRowCount(), "Lat"), localTowers.getFloat(i-frenchWifi.getRowCount(), "Lon")));
-      }
-      nodes[i].x += marginWidthPix;
-      nodes[i].y += marginWidthPix;
-    }
-  } else {
-    
-    numNodes = 0;
-    numEdges = numNodes*(numNodes-1);
-    numSwarm = numEdges;
-    
-    nodes = new PVector[numNodes];
-    origin = new PVector[numSwarm];
-    destination = new PVector[numSwarm];
-    weight = new float[numSwarm];
-    swarmSize = new int[numSwarm];
+    nodes[i].x += marginWidthPix;
+    nodes[i].y += marginWidthPix;
   }
   
   for (int i=0; i<numNodes; i++) {
@@ -388,8 +375,7 @@ void testNetwork() {
       
       destination[i*(numNodes-1)+j] = new PVector(nodes[(i+j+1)%(numNodes)].x, nodes[(i+j+1)%(numNodes)].y);
       
-      weight[i*(numNodes-1)+j] = int(random(1, 40));
-      //weight[i*(numNodes-1)+j] = 40;
+      weight[i*(numNodes-1)+j] = random(2.0);
       
       //println("swarm:" + (i*(numNodes-1)+j) + "; (" + i + ", " + (i+j+1)%(numNodes) + ")");
     }
@@ -404,47 +390,51 @@ void testNetwork() {
   }
   colorMode(RGB);
   
+  maxAgents = agentCap;
 }
 
-void touristNetwork() {
+// dataMode for random network
+void testNetwork_Random() {
   
-  int numSwarm;
-  color col;
+  int numNodes, numEdges, numSwarm;
   
-  //numSwarm = tourists_0.getRowCount();
-  numSwarm = 79;
+  numNodes = 8;
+  numEdges = numNodes*(numNodes-1);
+  numSwarm = numEdges;
   
+  nodes = new PVector[numNodes];
   origin = new PVector[numSwarm];
   destination = new PVector[numSwarm];
   weight = new float[numSwarm];
   swarmSize = new int[numSwarm];
-  swarms = new Swarm[numSwarm];
   
-  for (int i=0; i<numSwarm; i++) {
-    origin[i] = mercatorMap.getScreenLocation(new PVector(tourists_0.getFloat(i, "origin_lat"), tourists_0.getFloat(i, "origin_lon")));
-    destination[i] = mercatorMap.getScreenLocation(new PVector(tourists_0.getFloat(i, "destination_lat"), tourists_0.getFloat(i, "destination_lon")));
-    
-    weight[i] = tourists_0.getFloat(i, "amount");
-    
-    if (tourists_0.getString(i, "country").equals("sp")) {
-      col = spanish;
-    } else if (tourists_0.getString(i, "country").equals("fr")) {
-      col = french;
-    } else {
-      col = other;
-    }
-    
-    // delay, origin, destination, speed, color
-    swarms[i] = new Swarm(weight[i], origin[i], destination[i], 1, col);
+  for (int i=0; i<numNodes; i++) {
+    nodes[i] = new PVector(random(10, canvasWidth-10), random(10, canvasHeight-10));
   }
   
-  // rate, life, origin, destination
+  for (int i=0; i<numNodes; i++) {
+    for (int j=0; j<numNodes-1; j++) {
+      
+      origin[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
+      
+      destination[i*(numNodes-1)+j] = new PVector(nodes[(i+j+1)%(numNodes)].x, nodes[(i+j+1)%(numNodes)].y);
+      
+      weight[i*(numNodes-1)+j] = random(2.0);
+      
+      //println("swarm:" + (i*(numNodes-1)+j) + "; (" + i + ", " + (i+j+1)%(numNodes) + ")");
+    }
+  }
   
+    // rate, life, origin, destination
+  swarms = new Swarm[numSwarm];
   colorMode(HSB);
   for (int i=0; i<numSwarm; i++) {
-    
+    // delay, origin, destination, speed, color
+    swarms[i] = new Swarm(weight[i], origin[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
   }
   colorMode(RGB);
+  
+  maxAgents = agentCap;
 }
 
 

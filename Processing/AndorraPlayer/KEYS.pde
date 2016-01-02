@@ -7,7 +7,6 @@ void keyPressed() {
       showSource = toggle(showSource);
       break;
     case 'r': //reset agents and simulation
-      testMode = nextMode(testMode, 1);
       initAgents();
       break;
     case 'f': //print framerate to console
@@ -82,23 +81,15 @@ void keyPressed() {
     case 'd': //shows still data, makes it slow
       if (!showData && !load_non_essential_data) {
         load_non_essential_data = toggle(load_non_essential_data);
-        
-        initData();
-        initObstacles();
-        initPathfinder(tableCanvas, 10);
-        initAgents();
+        dataMode = 2;
+        reInit();
       }
       showData = toggle(showData);
       println("showData = " + showData);
       break;
     case 'D': //shows still data, makes it slow
-      load_non_essential_data = toggle(load_non_essential_data);
-      
-      initData();
-      initObstacles();
-      initPathfinder(tableCanvas, 10);
-      initAgents();
-      println("Load Data = " + load_non_essential_data);
+      dataMode = nextMode(dataMode, 2);
+      reInit();
       break;
     case 'T': // show topography 
       showTopo = toggle(showTopo);

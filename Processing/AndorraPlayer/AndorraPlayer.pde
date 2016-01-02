@@ -43,7 +43,7 @@
 //     'g' - Toggle debug
 //
 //   Data Navigation
-//     'D' = Load/Unload non essential data
+//     'D' = Next Data Mode
 //     'I' - Next OD Data Set
 //     ']' - Go forward an hour in OD dataset
 //     '[' - Go backward an hour in OD dataset 

@@ -235,27 +235,29 @@ void drawTopo(PGraphics p) {
 
 void drawData(PGraphics p) {
   
-  // Currently renders 3 sets of sample data (CDRs, Wifi, and TripAdvisor)
+  // Currently renders 3 sets of sample data (Local Cell Towers, Wifi, and TripAdvisor)
+  
+  
   
   // CDR Data:
   // Sets fill color to blue
-  p.fill(#0000FF);
-  for (int i=0; i<sampleOutput.getRowCount(); i+=2) { // iterates through each row
-    if (sampleOutput.getInt(i, "origin container") == 0) { // checks if lat-long of point is actually on table
+  p.noStroke();
+  p.fill(#0000FF, 150);
+  for (int i=0; i<localTowers.getRowCount(); i+=2) { // iterates through each row
       
-      // turns latitude and longitude of a point into canvas location within PGraphic topo
-      coord = mercatorMap.getScreenLocation(new PVector(sampleOutput.getFloat(i, "origin lat"), sampleOutput.getFloat(i, "origin lon")));
-      
-      // Draw a circle 30 pixels in diameter at geolocation
-      p.ellipse(coord.x, coord.y, 30, 30);
-    }
+    // turns latitude and longitude of a point into canvas location within PGraphic topo
+    coord = mercatorMap.getScreenLocation(new PVector(localTowers.getFloat(i, "Lat"), localTowers.getFloat(i, "Lon")));
+    
+    // Draw a circle 30 pixels in diameter at geolocation
+    p.ellipse(coord.x, coord.y, 30, 30);
+    
   }
   
   
   // TripAdvisor Data:
   // Sets fill color to red
-  p.fill(#FF0000);
-  
+  p.noStroke();
+  p.fill(#FF0000, 150);
   for (int i=0; i<tripAdvisor.getRowCount(); i++) {
     // turns latitude and longitude of a point into canvas location within PGraphic topo
     coord = mercatorMap.getScreenLocation(new PVector(tripAdvisor.getFloat(i, "Lat"), tripAdvisor.getFloat(i, "Long")));
@@ -267,8 +269,8 @@ void drawData(PGraphics p) {
   
   // WiFi Data:
   // Sets fill color to green
-  p.fill(#00FF00);
-  
+  p.noStroke();
+  p.fill(#00FF00, 150);
   for (int i=0; i<frenchWifi.getRowCount(); i+=2) {
     // turns latitude and longitude of a point into canvas location within PGraphic topo
     coord = mercatorMap.getScreenLocation(new PVector(frenchWifi.getFloat(i, "Source_lat"), frenchWifi.getFloat(i, "Source_long")));
@@ -283,6 +285,7 @@ void drawData(PGraphics p) {
     // Draws a boarder around the site using latitude and longitude of corner locations
     // Should line up with edge of topo canvas
     
+    p.fill(0, 0);
     p.strokeWeight(20);
     
     //Top (White)
