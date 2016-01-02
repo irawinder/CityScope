@@ -23,14 +23,18 @@ void drawPathfinder(PGraphics p) {
   //Draw Origin
   p.strokeWeight(2);
   p.stroke(#FF0000);
+  p.noFill();
   p.ellipse(A.x, A.y, finderTest.getResolution(), finderTest.getResolution());
+  
   p.fill(textColor);
   p.text("origin", A.x + finderTest.getResolution(), A.y);
   
   //Draw Destination
   p.strokeWeight(2);
   p.stroke(#0000FF);
+  p.noFill();
   p.ellipse(B.x, B.y, finderTest.getResolution(), finderTest.getResolution());
+  
   p.fill(textColor);
   p.text("destination", B.x + finderTest.getResolution(), B.y);
   
