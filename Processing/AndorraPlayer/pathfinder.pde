@@ -19,29 +19,22 @@ class Pathfinder {
   boolean[] visited;
   ArrayList<Integer> allVisited;
   
-  Pathfinder(int w, int h, float res, ObstacleCourse c) {
-    network = new Graph(w, h, res);
-    network.cullObstacles(c);
-    network.generateEdges();
-    
-    networkSize = network.nodes.size();
-    totalDist = new float[networkSize];
-    parentNode = new int[networkSize];
-    visited = new boolean[networkSize];
-    
-    allVisited = new ArrayList<Integer>();
-  }
-  
   Pathfinder(int w, int h, float res, float cullRatio) {
     network = new Graph(w, h, res);
-    network.cullRandom(cullRatio);
+    refresh();
+  }
+  
+  void applyObstacleCourse(ObstacleCourse c) {
+    network.applyObstacleCourse(c);
+    refresh();
+  }
+  
+  void refresh() {
     network.generateEdges();
-    
     networkSize = network.nodes.size();
     totalDist = new float[networkSize];
     parentNode = new int[networkSize];
     visited = new boolean[networkSize];
-    
     allVisited = new ArrayList<Integer>();
   }
   
@@ -214,7 +207,7 @@ class Graph {
   }
   
   // Removes Nodes that intersect with set of obstacles
-  void cullObstacles(ObstacleCourse c) {
+  void applyObstacleCourse(ObstacleCourse c) {
     for (int i=nodes.size()-1; i>=0; i--) {
       if(c.testForCollision(nodes.get(i).node)) {
         nodes.remove(i);
@@ -236,6 +229,7 @@ class Graph {
     float dist;
     
     for (int i=0; i<nodes.size(); i++) {
+      nodes.get(i).clearNeighbors();
       for (int j=0; j<nodes.size(); j++) {
         dist = sqrt(sq(nodes.get(i).node.x - nodes.get(j).node.x) + sq(nodes.get(i).node.y - nodes.get(j).node.y));
         
@@ -308,8 +302,6 @@ class Graph {
   
   void display(PGraphics p) {
     
-    p.beginDraw();
-    
     // Formatting
     p.noFill();
     p.stroke(abs(textColor-200));
@@ -329,7 +321,6 @@ class Graph {
         p.line(nodes.get(i).node.x, nodes.get(i).node.y, nodes.get(neighbor).node.x, nodes.get(neighbor).node.y);
       }
     }
-    p.endDraw();
   }
   
 }
@@ -351,6 +342,11 @@ class Node {
   void addNeighbor(int n, float d) {
     neighbors.add(n);
     distance.add(d);
+  }
+  
+  void clearNeighbors() {
+    neighbors.clear();
+    distance.clear();
   }
   
 }

@@ -500,22 +500,31 @@ void setObstacleGrid(int u, int v) {
 Pathfinder finder;
 
 // Pathfinder test and debugging Objects
-Pathfinder finderTest;
+Pathfinder finderTest, finderGrid;
 PVector A, B;
 ArrayList<PVector> testPath, testVisited;
 
 void initPathfinder(PGraphics p, int res) {
-  finder = new Pathfinder(p.width, p.height, res, boundaries);
+  
+  // Initializes a Pathfinding network
+  finder = new Pathfinder(p.width, p.height, res, 0.0); // 4th float object is a number 0-1 that represents how much of the network you would like to randomly cull, 0 being none
+  finder.applyObstacleCourse(boundaries);
   
   initOD(p);
   initNetwork(p, 10, 0.55);
   initPath(finderTest, A, B);
   
-  // Ensures that a valid path is always initialized upon start
+  // Ensures that a valid path is always initialized upon start, to an extent...
+  int counter = 0;
   while (testPath.size() < 2) {
     println("Generating new origin-destination pair ...");
     initOD(p);
     initPath(finderTest, A, B);
+    
+    counter++;
+    if (counter > 1000) {
+      break;
+    }
   }
 }
 

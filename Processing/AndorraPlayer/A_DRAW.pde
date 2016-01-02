@@ -15,99 +15,74 @@ PVector[] line = new PVector[2];
 color french = #2D34EA;
 color spanish = #E5953F;
 color other = #666666;
-  
-void drawTable() {
-  // most likely, you'll want a black background to minimize
-  // bleeding around your projection area
-  background(0);
-  
-  // Renders the tableCanvas as either a projection map or on-screen 
-  switch (drawMode) {
-    case 0: // On-Screen Rendering
-      //image(tableCanvas, 0, (height-tableCanvas.height)/2, tableCanvas.width, tableCanvas.height);
-      image(tableCanvas, 0, 0, tableCanvas.width, tableCanvas.height);
-      break;
-    case 1: // Projection-Mapping Rendering
-      // render the scene, transformed using the corner pin surface
-      for (int i=0; i<surface.length; i++) {
-        chopScreen(i);
-        surface[i].render(offscreen);
-      }
-      break;
-  }
-}
 
 void drawTableCanvas() {
-  
   tableCanvas.beginDraw();
   
-  // Instead of solid background draws a translucent overlay every frame.
-  // Provides the effect of giving animated elements "tails"
-  tableCanvas.noStroke();
-  //fill(#ffffff, 100);
-  tableCanvas.fill(background, 75);
-  tableCanvas.rect(0,0,canvasWidth,canvasHeight);
+      // Instead of solid background draws a translucent overlay every frame.
+      // Provides the effect of giving animated elements "tails"
+      tableCanvas.noStroke();
+      tableCanvas.fill(background, 75);
+      tableCanvas.rect(0,0,canvasWidth,canvasHeight);
+      
+      // Draw Margin Information
+      if (load_non_essential_data) {
+        drawMargin(tableCanvas);
+      }
+      
+      // Allows dragging of Table Area Info
+      tableCanvas.translate(scrollX, scrollY);
+      
+      // Offsets from margin in upper-left corner 
+      // Points geolocated with MercatorMap class should be rendered within this section
+      tableCanvas.translate(marginWidthPix, marginWidthPix);
+            
+            // Draw raster image of topography
+            if (showTopo) {
+              drawTopo(tableCanvas);
+            }
+            
+            // Draw Sample Geographic data (debugging purposes)
+            if (load_non_essential_data) {
+              if (showData) {
+                drawData(tableCanvas);
+              }
+            }
+      
+      // Reverses margin offset
+      tableCanvas.translate(-marginWidthPix, -marginWidthPix);
+
+      
+      // Displays Heatmap
+      if(showTraces) {
+        traces.display();
+      }
   
-      //-----------BEGIN Drawing Margin Information --------------//
-        
-        if (load_non_essential_data) {
-          drawMargin(tableCanvas);
-        }
-      
-      //-----------END Drawing Margin Information ----------------//
-      
-      
-      // draws pathfinding nodes onto Canvas
+      // Displays ObstacleCourses
+      if (showObstacles) {
+        grid.display(tableCanvas, textColor, 100);
+        boundaries.display(tableCanvas, textColor, 100);
+      }
+
+      // Draws pathfinding nodes onto Canvas
       if (showPaths) {
         drawPathfinder(tableCanvas);
       }
-  
-  
-  
-  // Offsets from margin in upper-left corner 
-  tableCanvas.translate(marginWidthPix, marginWidthPix);
-  
-  
-  
-      //-----------BEGIN Drawing Topo Information Data--------------//
-        
-        if (showTopo) {
-          drawTopo(tableCanvas);
-        }
-    
-      //-----------END Drawing Topo Information Data---------------//
-  
-  
-  
-  
-      //-----------Begin Drawing Geolocated Data--------------//
-        
-        if (load_non_essential_data) {
-          if (showData) {
-            drawData(tableCanvas);
-          }
-        }
-        
-//        // Test that Mouse location is filtered through geo-locator correctly
-//        PVector geo;
-//        geo = mercatorMap.getGeo(new PVector( mouseX-marginWidthPix, mouseY-marginWidthPix));
-//        //println(geo.x + ", " + geo.y);
-//        coord = mercatorMap.getScreenLocation(geo);
-//        tableCanvas.fill(#00FF00);
-//        tableCanvas.ellipse(coord.x, coord.y, 10, 10);
       
-      //-----------End Drawing Geolocated Data---------------//
-  
-  // Reverses margin offset
-  tableCanvas.translate(-marginWidthPix, -marginWidthPix);
-  
-  
-  //------ BEGIN Draw Movie------//
-  //tableCanvas.image(theMovie, (marginWidth/tableWidth)*canvasWidth, (marginWidth/tableHeight)*canvasHeight, (topoWidth/tableWidth)*canvasWidth, (topoHeight/tableHeight)*canvasHeight);
-  //------ END Draw Movie------//
+      // Renders Agent 'dots' and corresponding obstacles and heatmaps
+      tableCanvas.beginDraw();
+      drawSwarms(tableCanvas);
+      tableCanvas.endDraw();
+     
+      // Revereses dragging of Table Area Info
+      tableCanvas.translate(-scrollX, -scrollY); 
   
   tableCanvas.endDraw();
 }
+
+
+
+
 
 void drawMargin(PGraphics p) {
   
@@ -161,12 +136,12 @@ void drawMargin(PGraphics p) {
   p.vertex(1.0*marginWidthPix + 0.96*topoWidthPix, 1.0*marginWidthPix + topoHeightPix);
   p.endShape();
   
-  p.stroke(background);
-  p.strokeWeight(marginWidthPix/8);
-  p.fill(textColor);
-  
   p.endDraw();
   p.beginDraw();
+  
+  p.stroke(background, 255);
+  p.strokeWeight(marginWidthPix/8);
+  p.fill(grayColor);
   
   for (int i=1; i<container_Locations.length; i++) {
     p.ellipse(container_Locations[i].x, container_Locations[i].y, 0.5*marginWidthPix, 0.5*marginWidthPix);
@@ -220,6 +195,9 @@ void drawMargin(PGraphics p) {
   
   p.fill(other);
   p.text("Other", 6.0*marginWidthPix, p.height-2*marginWidthPix/12);
+  
+  p.endDraw();
+  p.beginDraw();
 
 }
 
@@ -311,6 +289,15 @@ void drawData(PGraphics p) {
   
     p.strokeWeight(1);
   }
+  
+  // Test that Mouse location is filtered through geo-locator correctly
+  PVector geo;
+  geo = mercatorMap.getGeo(new PVector( mouseX-marginWidthPix, mouseY-marginWidthPix));
+  //println(geo.x + ", " + geo.y);
+  coord = mercatorMap.getScreenLocation(geo);
+  p.fill(#00FF00);
+  p.noStroke();
+  p.ellipse(coord.x, coord.y, 10, 10);
   
 }
 
@@ -416,8 +403,6 @@ void drawPathfinder(PGraphics p) {
   
   finderTest.display(p);
   
-  p.beginDraw();
-  
   // Draw Nodes Visited in order to find path solution
   p.strokeWeight(1);
   p.stroke(abs(textColor-125));
@@ -487,38 +472,12 @@ void drawPathfinder(PGraphics p) {
   p.fill(textColor);
   p.text("Pathfinder v1.0", 20, p.height - 40);
   p.text("Ira Winder, MIT Media Lab 2015", 20, p.height - 20);
-  
-  p.endDraw();
 }
 
 
 
 
-void drawAgents(PGraphics p) {
-  
-  if (hourIndex > summary.getRowCount()) {
-     hourIndex = summary.getRowCount()-1;
-  }
-  
-  p.beginDraw();
-  
-  p.translate(scrollX, scrollY);
-  
-  if(showTraces) {
-    traces.display();
-  }
-  
-  if (showObstacles) {
-    grid.display(p, #00FF00, 100);
-    boundaries.display(p, #0000FF, 100);
-  }
-  
-//  numAgents = 0;
-//  
-//  for (Swarm s : swarms) {
-//    s.update();
-//    numAgents += s.swarm.size();
-//  }
+void drawSwarms(PGraphics p) {
   
   numAgents = 0;
   
@@ -546,21 +505,15 @@ void drawAgents(PGraphics p) {
     } else {
       s.display(p, "color");
     }
-    
-    
   }
   
-  traces.decay();
+  if (showTraces) {
+    traces.decay();
+  }
   
   for(int i=0; i<swarms.length; i++) {
     swarmSize[i] = swarms[i].swarm.size();
   }
-  
-//  if (frameRate < 45) {
-//    maxAgents --;
-//  } else if (frameRate > 50) {
-//    maxAgents ++;
-//  }
   
   if (numAgents > maxAgents) {
     int rand;
@@ -591,9 +544,11 @@ void drawAgents(PGraphics p) {
   } else {
     adjust *= 0.99;
   }
-  //println("Adjust: " + adjust);
   
-  //adjust = 1000;
+  // Ensures that hourIndex doesn't null point
+  if (hourIndex > summary.getRowCount()) {
+     hourIndex = summary.getRowCount()-1;
+  }
   
   p.fill(textColor);
   p.textSize(1.5*textSize);
@@ -628,8 +583,6 @@ void drawAgents(PGraphics p) {
     p.text("Total Agents: " + numAgents,0,0);
     p.popMatrix();
   }
-  
-  p.endDraw();
   
   time_0 = millis();
 }

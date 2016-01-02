@@ -298,23 +298,6 @@ class Swarm {
       
       for (Agent v : swarm){
         
-        boolean collision = false;
-        
-        // Tests for Collision with Test Objects    
-        collision = grid.testForCollision(v);
-        
-        // Tests for Collision with Andorra Course
-        collision = boundaries.testForCollision(v);
-        
-//        // Applies unique forcevector if collision detected....not so great
-//        if (collision) {
-//          v.update(int(agentLife/speed), sink);
-//          collision = false;
-//        } else {
-//          v.applyBehaviors(swarm, destination);
-//          v.update(int(agentLife/speed), sink);
-//        }
-        
         // Updates agent behavior
         v.applyBehaviors(swarm, path.get(v.pathIndex));
         v.update(int(agentLife/speed), sink, path.get(v.pathIndex), finderResolution);
