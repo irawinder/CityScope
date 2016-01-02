@@ -22,6 +22,9 @@ void keyPressed() {
     case 'i': //shows info about swarms like weight and agent numbers
       showInfo = toggle(showInfo);
       break;
+    case 'h': //shows info about paths
+      showPathInfo = toggle(showPathInfo);
+      break;
     case 'p': //makes a grid of obstacles
       testObstacles = toggle(testObstacles);
       testObstacles(testObstacles);
@@ -156,11 +159,11 @@ void keyPressed() {
       background = toggleBW(background);
       textColor = toggleBW(textColor);
       break;
-    case 'H': //manually iterate to next Hour in data
+    case ']': //manually iterate to next Hour in data
       hourIndex = nextHour(hourIndex);
       setSwarmFlow(hourIndex);
       break;
-    case 'h': //go to previous hour in data and wrap around like forward 
+    case '[': //go to previous hour in data and wrap around like forward 
       hourIndex = prevHour(hourIndex);
       setSwarmFlow(hourIndex);
       break;
@@ -178,7 +181,12 @@ void keyPressed() {
       showPaths = toggle(showPaths);
       break;
     case 'X': // randomize locations of origin and destination paths
-      pathTest(tableCanvas, finderTest);
+      initOD(tableCanvas);
+      initPath(finderTest, A, B);
+      break;
+    case 'n': // randomize a new test network for pathfinding
+      initNetwork(tableCanvas, 10, 0.55);
+      initPath(finderTest, A, B);
       break;
   }
   

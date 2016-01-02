@@ -17,7 +17,7 @@ class Pathfinder {
   float[] totalDist;
   int[] parentNode;
   boolean[] visited;
-  ArrayList<Integer> toVisit;
+  ArrayList<Integer> allVisited;
   
   Pathfinder(int w, int h, float res, ObstacleCourse c) {
     network = new Graph(w, h, res);
@@ -29,6 +29,7 @@ class Pathfinder {
     parentNode = new int[networkSize];
     visited = new boolean[networkSize];
     
+    allVisited = new ArrayList<Integer>();
   }
   
   Pathfinder(int w, int h, float res, float cullRatio) {
@@ -41,6 +42,7 @@ class Pathfinder {
     parentNode = new int[networkSize];
     visited = new boolean[networkSize];
     
+    allVisited = new ArrayList<Integer>();
   }
   
   // a, b, represent respective index for start and end nodes in pathfinding network
@@ -52,6 +54,11 @@ class Pathfinder {
     ArrayList<PVector> path = new ArrayList<PVector>();
     ArrayList<Integer> toVisit = new ArrayList<Integer>();
     
+    // Clears last list of visited nodes
+    for (int i=allVisited.size()-1; i>=0; i--) {
+      allVisited.remove(i);
+    }
+    
     for (int i=0; i<networkSize; i++) {
       totalDist[i] = Float.MAX_VALUE;
       visited[i] = false;
@@ -60,6 +67,7 @@ class Pathfinder {
     parentNode[a] = a;
     int current = a;
     toVisit.add(current);
+    allVisited.add(current);
     
     // Loop runs until path is found or ruled out
     boolean complete = false;
@@ -78,6 +86,7 @@ class Pathfinder {
         // Adds non-visited neighbors of current node to queue
         if (!visited[getNeighbor(current, i)]) {
           toVisit.add(getNeighbor(current, i));
+          allVisited.add(getNeighbor(current, i));
           visited[getNeighbor(current, i)] = true;
         }
       }
@@ -127,6 +136,17 @@ class Pathfinder {
     return path;
   }
   
+  ArrayList<PVector> getVisited() {
+    
+    ArrayList<PVector> visited = new ArrayList<PVector>();
+    
+    for (int i=0; i<allVisited.size(); i++) {
+      visited.add(getNode(allVisited.get(i)));
+    }
+    
+    return visited;
+  }
+    
   float getResolution() {
     return network.SCALE;
   }
@@ -288,9 +308,11 @@ class Graph {
   
   void display(PGraphics p) {
     
+    p.beginDraw();
+    
     // Formatting
     p.noFill();
-    p.stroke(50);
+    p.stroke(abs(textColor-200));
     p.strokeWeight(1);
     
     // Draws Tangent Circles Centered at pathfinding nodes
@@ -307,7 +329,7 @@ class Graph {
         p.line(nodes.get(i).node.x, nodes.get(i).node.y, nodes.get(neighbor).node.x, nodes.get(neighbor).node.y);
       }
     }
-    
+    p.endDraw();
   }
   
 }

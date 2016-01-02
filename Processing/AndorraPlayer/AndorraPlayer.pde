@@ -4,8 +4,11 @@
 // Ira Winder, MIT Media Lab, jiw@mit.edu, Fall 2015
 
 // To Do:
+// Merge 'container' and 'boundary' ObstacleCourses
+// Have speed of agent depend on region, not swarm identity
+
 // Allow Dynamic Editing of Pathfinder Routes
-// Allow finer control of pathfinder network data
+// Allow finer control of visualizing pathfinder network data
 // In general, migrate glabal "void drawFoo()" methods into class-specific "display()" methods
 // Consolidate Agents, Obstacles, and Pathfinder classes to libraries and/or standalone applets and/or libraries?
 
@@ -42,8 +45,8 @@
 //   Data Navigation
 //     'D' = Load/Unload non essential data
 //     'I' - Next OD Data Set
-//     'H' - Go forward an hour in OD dataset
-//     'h' - Go backward an hour in OD dataset 
+//     ']' - Go forward an hour in OD dataset
+//     '[' - Go backward an hour in OD dataset 
 //     'd' - Show/hide test geodata
 //
 //   View Mode:
@@ -84,7 +87,9 @@
 //
 //    Pathfinding Tools:
 //      'P': show/hide pathfinder network
+//      'h': show/hide additional info about pathfinder network
 //      'X': regenerate a random origin and destination
+//      'n': regenerate a random network for testing
 
 
 // set to true when running app to prevent fullScreen Mode

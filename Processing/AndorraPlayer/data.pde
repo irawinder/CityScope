@@ -1,4 +1,4 @@
-boolean load_non_essential_data = false;
+boolean load_non_essential_data = true;
 
 //Raster Graphics for basemaps of model
 
