@@ -119,13 +119,7 @@ void setup() {
   }
   
   initCanvas();
-  
-  // Loads MercatorMap projecetion for canvas, csv files referenced in 'DATA' tab, etc
-  initData();
-  
-  initObstacles();
-  initPathfinder(tableCanvas, 10);
-  initAgents();
+  initContent();
   
   tableCanvas.beginDraw();
   tableCanvas.background(background);
@@ -140,7 +134,7 @@ void draw() {
   // projection-mapped onto a big giant table
   
       // Renders frame onto 'tableCanvas' PGraphic (Margins, basemap, and sample Geo-Data)
-      drawTableCanvas();
+      drawTableCanvas(tableCanvas);
   
   // -----------------------------------------------------------------------------
   // -----------------------------------------------------------------------------

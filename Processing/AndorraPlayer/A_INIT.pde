@@ -114,12 +114,7 @@ void initCanvas() {
 
 }
 
-
-
-
-
-
-void reInit() {
+void initContent() {
   // Loads MercatorMap projecetion for canvas, csv files referenced in 'DATA' tab, etc
   initData();
   
@@ -132,10 +127,6 @@ void reInit() {
 
 
 
-
-
-
-//
 // ---------------------Initialize Agent-based Objects---
 
 boolean showSource = true;

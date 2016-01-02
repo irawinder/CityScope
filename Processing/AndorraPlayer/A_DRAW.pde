@@ -1,6 +1,7 @@
 boolean showData = false;
 boolean showTopo = true;
 boolean showPaths = false;
+boolean showPathInfo = true;
 
 int background = 0;
 int textColor = 255;
@@ -16,41 +17,41 @@ color french = #2D34EA;
 color spanish = #E5953F;
 color other = #666666;
 
-void drawTableCanvas() {
-  tableCanvas.beginDraw();
+void drawTableCanvas(PGraphics p) {
+  p.beginDraw();
   
       // Instead of solid background draws a translucent overlay every frame.
       // Provides the effect of giving animated elements "tails"
-      tableCanvas.noStroke();
-      tableCanvas.fill(background, 75);
-      tableCanvas.rect(0,0,canvasWidth,canvasHeight);
+      p.noStroke();
+      p.fill(background, 75);
+      p.rect(0,0,canvasWidth,canvasHeight);
       
       // Draw Margin Information
       if (load_non_essential_data) {
-        drawMargin(tableCanvas);
+        drawMargin(p);
       }
       
       // Allows dragging of Table Area Info
-      tableCanvas.translate(scrollX, scrollY);
+      p.translate(scrollX, scrollY);
       
       // Offsets from margin in upper-left corner 
       // Points geolocated with MercatorMap class should be rendered within this section
-      tableCanvas.translate(marginWidthPix, marginWidthPix);
+      p.translate(marginWidthPix, marginWidthPix);
             
             // Draw raster image of topography
             if (showTopo) {
-              drawTopo(tableCanvas);
+              drawTopo(p);
             }
             
             // Draw Sample Geographic data (debugging purposes)
             if (load_non_essential_data) {
               if (showData) {
-                drawData(tableCanvas);
+                drawData(p);
               }
             }
       
       // Reverses margin offset
-      tableCanvas.translate(-marginWidthPix, -marginWidthPix);
+      p.translate(-marginWidthPix, -marginWidthPix);
 
       
       // Displays Heatmap
@@ -60,24 +61,22 @@ void drawTableCanvas() {
   
       // Displays ObstacleCourses
       if (showObstacles) {
-        grid.display(tableCanvas, textColor, 100);
-        boundaries.display(tableCanvas, textColor, 100);
+        grid.display(p, textColor, 100);
+        boundaries.display(p, textColor, 100);
       }
 
       // Draws pathfinding nodes onto Canvas
       if (showPaths) {
-        drawPathfinder(tableCanvas);
+        drawPathfinder(p);
       }
       
       // Renders Agent 'dots' and corresponding obstacles and heatmaps
-      tableCanvas.beginDraw();
-      drawSwarms(tableCanvas);
-      tableCanvas.endDraw();
+      drawSwarms(p);
      
       // Revereses dragging of Table Area Info
-      tableCanvas.translate(-scrollX, -scrollY); 
+      p.translate(-scrollX, -scrollY); 
   
-  tableCanvas.endDraw();
+  p.endDraw();
 }
 
 
@@ -201,6 +200,8 @@ void drawMargin(PGraphics p) {
 
 }
 
+
+
 void drawTopo(PGraphics p) {
  
   // Draws Satellite images
@@ -210,6 +211,8 @@ void drawTopo(PGraphics p) {
   p.tint(255, 255);
   
 }
+
+
 
 void drawData(PGraphics p) {
   
@@ -396,9 +399,6 @@ void drawLineGraph() {
 
 
 
-
-boolean showPathInfo = true;
-
 void drawPathfinder(PGraphics p) {
   
   finderTest.display(p);
@@ -473,7 +473,6 @@ void drawPathfinder(PGraphics p) {
   p.text("Pathfinder v1.0", 20, p.height - 40);
   p.text("Ira Winder, MIT Media Lab 2015", 20, p.height - 20);
 }
-
 
 
 

@@ -74,14 +74,14 @@ void keyPressed() {
       if (!showData && !load_non_essential_data) {
         load_non_essential_data = toggle(load_non_essential_data);
         dataMode = 2;
-        reInit();
+        initContent();
       }
       showData = toggle(showData);
       println("showData = " + showData);
       break;
     case 'D': //shows still data, makes it slow
       dataMode = nextMode(dataMode, 2);
-      reInit();
+      initContent();
       break;
     case 'T': // show topography 
       showTopo = toggle(showTopo);
