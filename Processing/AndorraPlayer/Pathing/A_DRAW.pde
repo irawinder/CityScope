@@ -22,7 +22,7 @@ void drawPathfinder(PGraphics p) {
   
   //Draw Origin
   p.strokeWeight(2);
-  p.stroke(#FF0000);
+  p.stroke(#0000FF);
   p.noFill();
   p.ellipse(A.x, A.y, finderTest.getResolution(), finderTest.getResolution());
   
@@ -31,7 +31,7 @@ void drawPathfinder(PGraphics p) {
   
   //Draw Destination
   p.strokeWeight(2);
-  p.stroke(#0000FF);
+  p.stroke(#FF0000);
   p.noFill();
   p.ellipse(B.x, B.y, finderTest.getResolution(), finderTest.getResolution());
   
@@ -74,7 +74,7 @@ void drawPathfinder(PGraphics p) {
   
   p.fill(textColor);
   p.text("Pathfinder v1.0", 20, p.height - 40);
-  p.text("Ira Winder, MIT Media Lab 2015", 20, p.height - 20);
+  p.text("Ira Winder 2015", 20, p.height - 20);
   
   p.endDraw();
 }
