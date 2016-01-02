@@ -35,8 +35,8 @@ void drawPathfinder(PGraphics p) {
   p.noFill();
   p.ellipse(B.x, B.y, finderTest.getResolution(), finderTest.getResolution());
   
-  p.fill(textColor);
-  p.text("destination", B.x + finderTest.getResolution(), B.y);
+//  p.fill(textColor);
+//  p.text("destination", B.x + finderTest.getResolution(), B.y);
   
   //Draw Path not Found Message
   if (testPath.size() < 2) {
@@ -73,7 +73,8 @@ void drawPathfinder(PGraphics p) {
   }
   
   p.fill(textColor);
-  p.text("Ira Winder, MIT Media Lab, 2015", 20, p.height - 20);
+  p.text("Pathfinder v1.0", 20, p.height - 40);
+  p.text("Ira Winder, MIT Media Lab 2015", 20, p.height - 20);
   
   p.endDraw();
 }
