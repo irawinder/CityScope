@@ -39,7 +39,7 @@ class Roads {
       int ptNum = endLineID.get(i) - startLineID.get(i) - 2;
       String[] roadLines = subset(allLines, startLineID.get(i) + 2, ptNum);
       int directionType;
-      if (allLines[startLineID.get(i)+1] == "one way") {
+      if (allLines[startLineID.get(i)+1].indexOf("one way") != -1) {
         directionType = 0;
       } else {
         directionType = 1;
@@ -53,5 +53,11 @@ class Roads {
 
   void addRoad(Road road) {
     roads.add(road);
+  }
+  
+  void drawRoads() {
+    for(Road road:roads) {
+      road.drawRoad();
+    }
   }
 }

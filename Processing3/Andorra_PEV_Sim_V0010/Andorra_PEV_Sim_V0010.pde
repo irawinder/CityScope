@@ -23,14 +23,19 @@ PImage img_PEV_PSG;
 String roadPtFile;
 //int tmpRoadID = int(random(0, 12));
 
+float screenScale = 2.0F;  //1.0F(for normal res or OS UHD)  2.0F(for WIN UHD)
+int maxPEVNum = 10;
+
 Roads roads;
 PEVs PEVs; 
 
 
 void setup() {
 
-  //size(2160, 1100); 
-  size(1620, 825);
+  //size(2160, 1100);
+  //size(1620, 825); //screenScale = 1.0F(for normal res or OS UHD)
+  size(3240, 1650); //screenScale = 2.0F(for WIN UHD)
+  scale(screenScale);
 
   //smooth();
   smooth(8); //2,3,4, or 8
@@ -44,27 +49,27 @@ void setup() {
   //img_TMP_PEV = loadImage("TMP_PEVS_75DPI-01.png");
   //img_TMP_PATH = loadImage("TMP_START_END_PATH_75DPI-01.png");
   img_PEV_PSG = loadImage("PEV_PSG_300DPI.png");
-  
+
   // add roads
   roadPtFile = "RD_CRV_PTS_151231.txt";
   roads = new Roads();
   roads.addRoadsByRoadPtFile(roadPtFile);
-  
+
   // add PEVs
-  int maxPEVNum = 5;
   PEVs = new PEVs();
   PEVs.initiateRandom(maxPEVNum);
 }
 
 void draw() {
 
+  scale(screenScale);
   background(255);
 
   //println(frameRate);
 
   imageMode(CORNER);
 
-  image(img_BG, 0, 0, width, height);
+  image(img_BG, 0, 0, 1620, 825);
   //image(img_TMP_PEV, 0, 0, width, height);
   //image(img_TMP_PATH, 0, 0, width, height);
   //image(img_RD, 0, 0, width, height);
@@ -84,7 +89,9 @@ void draw() {
   //point(tmpPt.x, tmpPt.y);
   ////println("t = "+t+", x = "+tmpPt.x+", y = "+tmpPt.y);
   
+  // draw roads
+  roads.drawRoads();
+
   // run PEVs
   PEVs.run();
-  
 }
