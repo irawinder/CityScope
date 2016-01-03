@@ -114,75 +114,99 @@ void initCanvas() {
 
 }
 
+void initContent() {
+  // Loads MercatorMap projecetion for canvas, csv files referenced in 'DATA' tab, etc
+  initData();
+  
+  initObstacles();
+  initPathfinder(tableCanvas, 10);
+  initAgents(tableCanvas);
+  
+  //hurrySwarms(tableCanvas);
+}
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-//
 // ---------------------Initialize Agent-based Objects---
-
-boolean showSource = true;
-boolean showEdges = false;
-boolean showSwarm = true;
-boolean showInfo = false;
-boolean showTraces = false;
-boolean printFrames = false;
-
-  int testMode = 0;
-  // testMode = 0 for random network
-  // testMode = 1 for basic network of Andorra Tower Locations
 
 Swarm[] swarms;
 
-
-PVector[] origin;
-PVector[] destination;
-PVector[] nodes;
+PVector[] origin, destination, nodes;
 float[] weight;
-
-PVector[] obPts;
 
 int textSize = 8;
 int numAgents, maxAgents, maxFlow, agentCap;
 int[] swarmSize;
 float adjust; // dynamic scalar used to nomralize agent generation rate
 
-int hourIndex = 16;
-int maxHour = 23;
-Table summary;
-String date = "no data";
+
 
 HeatMap traces;
 
-void initAgents() {
+void initAgents(PGraphics p) {
   
   agentCap = 2000;
   adjust = 1;
   maxFlow = 0;
   
+  resetSummary();
+  
+  CDRNetwork();
+  
+  switch(dataMode) {
+    case 0:
+      testNetwork_Random(0);
+      break;
+    case 1:
+      testNetwork_Random(8);
+      break;
+    case 2:
+      testNetwork_CDRWifi();
+      break;
+    case 3:
+      CDRNetwork();
+      break;
+  }
+  
+  pathSwarms(p);
+  
+  traces = new HeatMap(canvasWidth/5, canvasHeight/5, canvasWidth, canvasHeight);
+}
+
+void pathSwarms(PGraphics p) {
+  // Applyies pathfinding network to swarms
+  for (Swarm s : swarms) {
+    s.solvePath(pFinder);
+  }
+  
+  pFinderPaths_Viz(p);
+}
+
+void hurrySwarms(PGraphics p) {
+  speed = 20;
+  showSwarm = false;
+  showEdges = false;
+  showSource = false;
+  showPaths = false;
+  showTraces = false;
+  for (int i=0; i<100; i++) {
+    p.beginDraw();
+    drawSwarms(p);
+    p.endDraw();
+  }
+  showSwarm = true;
+  speed = 1.5;
+}
+
+void resetSummary() {
   summary = new Table();
   summary.addColumn("HOUR");
   summary.addColumn("TOTAL");
   summary.addColumn("SPANISH");
   summary.addColumn("FRENCH");
   summary.addColumn("OTHER");
-  
-  //testNetwork();
-  //touristNetwork();
-  CDRNetwork();
-  
-  traces = new HeatMap(canvasWidth/5, canvasHeight/5, canvasWidth, canvasHeight);
-  
 }
 
 void CDRNetwork() {
@@ -214,8 +238,6 @@ void CDRNetwork() {
       destination[i] = container_Locations[network.getInt(i, "CON_D")];
       external = true;
     }
-    
-
       
     weight[i] = 20;
     
@@ -230,12 +252,18 @@ void CDRNetwork() {
     // delay, origin, destination, speed, color
     swarms[i] = new Swarm(weight[i], origin[i], destination[i], 1, col);
     
-    if (external) {
-      swarms[i].cropAgents = false;
-      swarms[i].maxSpeed = 0.2;
-      swarms[i].solvePath(finderMargin);
-    } else {
-      swarms[i].solvePath(finderTopo);
+    // Makes sure that agents 'staying put' eventually die; 
+    // also that they don't blead into the margin or topo
+    if (origin[i] == destination[i]) {
+      if (external) {
+        swarms[i].cropAgents = true;
+        swarms[i].cropDir = 1;
+        swarms[i].agentLife = 2000;
+      } else {
+        swarms[i].cropAgents = true;
+        swarms[i].cropDir = 0;
+        swarms[i].agentLife = 2000;
+      }
     }
     
   }
@@ -289,6 +317,7 @@ void setSwarmFlow(int hr) {
   for (int i=0; i<OD.getRowCount(); i++) {
     if (OD.getInt(i, "HOUR") == hr) {
       swarms[OD.getInt(i, "EDGE_ID")].agentDelay = 1.0/OD.getInt(i, "AMOUNT");
+      //println(1.0/OD.getInt(i, "AMOUNT"));
       date = OD.getString(i, "DATE");
     }
   }
@@ -323,62 +352,29 @@ int prevHour(int hr){
   return hr;
 }
 
-void testNetwork() {
+// dataMode for basic network of Andorra Tower Locations
+void testNetwork_CDRWifi() {
   
   int numNodes, numEdges, numSwarm;
+  numNodes = frenchWifi.getRowCount() + localTowers.getRowCount();
+  numEdges = numNodes*(numNodes-1);
+  numSwarm = numEdges;
   
-  if (testMode == 0) { // testMode = 0 for random network
+  nodes = new PVector[numNodes];
+  origin = new PVector[numSwarm];
+  destination = new PVector[numSwarm];
+  weight = new float[numSwarm];
+  swarmSize = new int[numSwarm];
   
-    numNodes = 8;
-    numEdges = numNodes*(numNodes-1);
-    numSwarm = numEdges;
+  for (int i=0; i<numNodes; i++) {
     
-    nodes = new PVector[numNodes];
-    origin = new PVector[numSwarm];
-    destination = new PVector[numSwarm];
-    weight = new float[numSwarm];
-    swarmSize = new int[numSwarm];
-    
-    for (int i=0; i<numNodes; i++) {
-      nodes[i] = new PVector(random(10, canvasWidth-10), random(10, canvasHeight-10));
+    if (i < frenchWifi.getRowCount()) { // load wifi routers
+      nodes[i] = mercatorMap.getScreenLocation(new PVector(frenchWifi.getFloat(i, "Source_lat"), frenchWifi.getFloat(i, "Source_long")));
+    } else { // Load cell towers
+      nodes[i] = mercatorMap.getScreenLocation(new PVector(localTowers.getFloat(i-frenchWifi.getRowCount(), "Lat"), localTowers.getFloat(i-frenchWifi.getRowCount(), "Lon")));
     }
-    
-  } else if (testMode == 1) { // testMode = 1 for basic network of Andorra Tower Locations
-    
-    numNodes = frenchWifi.getRowCount() + localTowers.getRowCount();
-    numEdges = numNodes*(numNodes-1);
-    numSwarm = numEdges;
-    
-    nodes = new PVector[numNodes];
-    origin = new PVector[numSwarm];
-    destination = new PVector[numSwarm];
-    weight = new float[numSwarm];
-    swarmSize = new int[numSwarm];
-    
-    for (int i=0; i<numNodes; i++) {
-      
-      if (i < frenchWifi.getRowCount()) {
-        nodes[i] = mercatorMap.getScreenLocation(new PVector(frenchWifi.getFloat(i, "Source_lat"), frenchWifi.getFloat(i, "Source_long")));
-      } else {
-        //nodes[i] = mercatorMap.getScreenLocation(new PVector(tripAdvisor.getFloat(int(random(tripAdvisor.getRowCount())), "Lat"), tripAdvisor.getFloat(int(random(tripAdvisor.getRowCount())), "Long")));
-        //int rando = int(random(tripAdvisor.getRowCount()));
-        //nodes[i] = mercatorMap.getScreenLocation(new PVector(tripAdvisor.getFloat(rando, "Lat"), tripAdvisor.getFloat(rando, "Long")));
-        nodes[i] = mercatorMap.getScreenLocation(new PVector(localTowers.getFloat(i-frenchWifi.getRowCount(), "Lat"), localTowers.getFloat(i-frenchWifi.getRowCount(), "Lon")));
-      }
-      nodes[i].x += marginWidthPix;
-      nodes[i].y += marginWidthPix;
-    }
-  } else {
-    
-    numNodes = 0;
-    numEdges = numNodes*(numNodes-1);
-    numSwarm = numEdges;
-    
-    nodes = new PVector[numNodes];
-    origin = new PVector[numSwarm];
-    destination = new PVector[numSwarm];
-    weight = new float[numSwarm];
-    swarmSize = new int[numSwarm];
+    nodes[i].x += marginWidthPix;
+    nodes[i].y += marginWidthPix;
   }
   
   for (int i=0; i<numNodes; i++) {
@@ -388,8 +384,7 @@ void testNetwork() {
       
       destination[i*(numNodes-1)+j] = new PVector(nodes[(i+j+1)%(numNodes)].x, nodes[(i+j+1)%(numNodes)].y);
       
-      weight[i*(numNodes-1)+j] = int(random(1, 40));
-      //weight[i*(numNodes-1)+j] = 40;
+      weight[i*(numNodes-1)+j] = random(2.0);
       
       //println("swarm:" + (i*(numNodes-1)+j) + "; (" + i + ", " + (i+j+1)%(numNodes) + ")");
     }
@@ -404,47 +399,51 @@ void testNetwork() {
   }
   colorMode(RGB);
   
+  maxAgents = agentCap;
 }
 
-void touristNetwork() {
+// dataMode for random network
+void testNetwork_Random(int _numNodes) {
   
-  int numSwarm;
-  color col;
+  int numNodes, numEdges, numSwarm;
   
-  //numSwarm = tourists_0.getRowCount();
-  numSwarm = 79;
+  numNodes = _numNodes;
+  numEdges = numNodes*(numNodes-1);
+  numSwarm = numEdges;
   
+  nodes = new PVector[numNodes];
   origin = new PVector[numSwarm];
   destination = new PVector[numSwarm];
   weight = new float[numSwarm];
   swarmSize = new int[numSwarm];
-  swarms = new Swarm[numSwarm];
   
-  for (int i=0; i<numSwarm; i++) {
-    origin[i] = mercatorMap.getScreenLocation(new PVector(tourists_0.getFloat(i, "origin_lat"), tourists_0.getFloat(i, "origin_lon")));
-    destination[i] = mercatorMap.getScreenLocation(new PVector(tourists_0.getFloat(i, "destination_lat"), tourists_0.getFloat(i, "destination_lon")));
-    
-    weight[i] = tourists_0.getFloat(i, "amount");
-    
-    if (tourists_0.getString(i, "country").equals("sp")) {
-      col = spanish;
-    } else if (tourists_0.getString(i, "country").equals("fr")) {
-      col = french;
-    } else {
-      col = other;
-    }
-    
-    // delay, origin, destination, speed, color
-    swarms[i] = new Swarm(weight[i], origin[i], destination[i], 1, col);
+  for (int i=0; i<numNodes; i++) {
+    nodes[i] = new PVector(random(10, canvasWidth-10), random(10, canvasHeight-10));
   }
   
-  // rate, life, origin, destination
+  for (int i=0; i<numNodes; i++) {
+    for (int j=0; j<numNodes-1; j++) {
+      
+      origin[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
+      
+      destination[i*(numNodes-1)+j] = new PVector(nodes[(i+j+1)%(numNodes)].x, nodes[(i+j+1)%(numNodes)].y);
+      
+      weight[i*(numNodes-1)+j] = random(2.0);
+      
+      //println("swarm:" + (i*(numNodes-1)+j) + "; (" + i + ", " + (i+j+1)%(numNodes) + ")");
+    }
+  }
   
+    // rate, life, origin, destination
+  swarms = new Swarm[numSwarm];
   colorMode(HSB);
   for (int i=0; i<numSwarm; i++) {
-    
+    // delay, origin, destination, speed, color
+    swarms[i] = new Swarm(weight[i], origin[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
   }
   colorMode(RGB);
+  
+  maxAgents = agentCap;
 }
 
 
@@ -454,29 +453,23 @@ void touristNetwork() {
 
 boolean showObstacles = false;
 boolean editObstacles = false;
-boolean testObstacles = false;
+boolean testObstacles = true;
 
-Obstacle[] testWall;
-ObstacleCourse boundaries;
-ObstacleCourse container;
+ObstacleCourse boundaries, grid, topoBoundary;
+PVector[] obPts;
 
 void initObstacles() {
+  // Single Obstacle that describes table
+  topoBoundary = new ObstacleCourse();
+  setObstacleTopo(marginWidthPix-10, marginWidthPix-10, topoWidthPix+20, topoHeightPix+20);
+  
+  // Gridded Obstacles for testing
+  grid = new ObstacleCourse();
   testObstacles(testObstacles);
-  boundaries = new ObstacleCourse();
-  container = new ObstacleCourse();
   
   // Obstacles for agents generates within Andorra le Vella
+  boundaries = new ObstacleCourse();
   boundaries.loadCourse("data/course.tsv");
-  
-  // Obstacles for agents generated outside of Andorra le Vella (i.e. margins of table)
-  //container.loadCourse("data/container.tsv");
-  container.loadCourse("data/course.tsv");
-  
-//  container.addObstacle();
-//  container.addVertex(new PVector(0.75*marginWidthPix, 0.75*marginWidthPix));
-//  container.addVertex(new PVector(1.25*marginWidthPix + topoWidthPix, 0.75*marginWidthPix));
-//  container.addVertex(new PVector(1.25*marginWidthPix + topoWidthPix, 1.25*marginWidthPix + topoHeightPix));
-//  container.addVertex(new PVector(0.75*marginWidthPix, 1.25*marginWidthPix + topoHeightPix));
 }
 
 void testObstacles(boolean place) {
@@ -487,7 +480,27 @@ void testObstacles(boolean place) {
   }
 }
 
+void setObstacleTopo(int x, int y, int w, int h) {
+  
+  topoBoundary.clearCourse();
+  
+  obPts = new PVector[4];
+  
+  for (int i=0; i<obPts.length; i++) {
+    obPts[i] = new PVector(0,0);
+  }
+  
+  obPts[0].x = x;     obPts[0].y = y;
+  obPts[1].x = x+w;   obPts[1].y = y;
+  obPts[2].x = x+w;   obPts[2].y = y+h;
+  obPts[3].x = x;     obPts[3].y = y+h;
+  
+  topoBoundary.addObstacle(new Obstacle(obPts));
+}
+
 void setObstacleGrid(int u, int v) {
+  
+  grid.clearCourse();
   
   float w = 0.75*float(canvasWidth)/(u+1);
   float h = 0.75*float(canvasHeight)/(v+1);
@@ -497,7 +510,6 @@ void setObstacleGrid(int u, int v) {
     obPts[i] = new PVector(0,0);
   }
   
-  testWall = new Obstacle[u*v];
   for (int i=0; i<u; i++) {
     for (int j=0; j<v; j++) {
       
@@ -508,10 +520,7 @@ void setObstacleGrid(int u, int v) {
       obPts[2].x = x+w;   obPts[2].y = y+h;
       obPts[3].x = x;     obPts[3].y = y+h;
       
-      testWall[i*v + j] = new Obstacle(obPts);
-      //testWall[i*v + j].addVertex(new PVector(x+w/2, y+h/2));
-      //testWall[i*v + j].removeVertex();
-      
+      grid.addObstacle(new Obstacle(obPts));
     }
   }
 }
@@ -521,36 +530,141 @@ void setObstacleGrid(int u, int v) {
 
 //------------- Initialize Pathfinding Objects
 
-Pathfinder finderTopo, finderMargin;
+Pathfinder pFinder;
+int finderMode = 2;
+// 0 = Random Noise Test
+// 1 = Grid Test
+// 2 = Custom
 
 // Pathfinder test and debugging Objects
-Pathfinder finderTest;
+Pathfinder finderRandom, finderGrid, finderCustom;
 PVector A, B;
 ArrayList<PVector> testPath, testVisited;
 
+// PGraphic for holding pFinder Viz info so we don't have to re-write it every frame
+PGraphics pFinderPaths, pFinderGrid;
+
 void initPathfinder(PGraphics p, int res) {
-  finderTopo = new Pathfinder(p.width, p.height, res, boundaries);
-  finderMargin = new Pathfinder(p.width, p.height, res, container);
   
+  // Initializes a Custom Pathfinding network Based off of user-drawn Obstacle Course
+  initCustomFinder(p, res);
+  
+  // Initializes a Pathfinding network Based off of standard Grid-based Obstacle Course
+  initGridFinder(p, res);
+  
+  // Initializes a Pathfinding network Based off of Random Noise
+  initRandomFinder(p, res);
+  
+  // Initializes an origin-destination coordinate for testing
   initOD(p);
-  initNetwork(p, 10, 0.55);
-  initPath(finderTest, A, B);
   
-  // Ensures that a valid path is always initialized upon start
-  while (testPath.size() < 2) {
-    println("Generating new origin-destination pair ...");
-    initOD(p);
-    initPath(finderTest, A, B);
+  // sets 'pFinder' to one of above network presets
+  setFinder(p, finderMode);
+  initPath(pFinder, A, B);
+  
+  // Initializes a PGraphic of the paths found
+  pFinderGrid_Viz(p);
+  
+  // Ensures that a valid path is always initialized upon start, to an extent...
+  forcePath(p);
+}
+
+void initCustomFinder(PGraphics p, int res) {
+  finderCustom = new Pathfinder(p.width, p.height, res, 0.0); // 4th float object is a number 0-1 that represents how much of the network you would like to randomly cull, 0 being none
+  finderCustom.applyObstacleCourse(boundaries);
+}
+
+void initGridFinder(PGraphics p, int res) {
+  finderGrid = new Pathfinder(p.width, p.height, res, 0.0); // 4th float object is a number 0-1 that represents how much of the network you would like to randomly cull, 0 being none
+  finderGrid.applyObstacleCourse(grid);  
+}
+
+void initRandomFinder(PGraphics p, int res) {
+  finderRandom = new Pathfinder(p.width, p.height, res, 0.55);
+}
+
+// Refresh Paths and visualization; Use for key commands and dynamic changes
+void refreshFinder(PGraphics p) {
+  setFinder(p, finderMode);
+  initPath(pFinder, A, B);
+  pathSwarms(p);
+  pFinderGrid_Viz(p);
+}
+
+// Completely rebuilds a selected Pathfinder Network
+void resetFinder(PGraphics p, int res, int _finderMode) {
+  switch(_finderMode) {
+    case 0:
+      initRandomFinder(p, res);
+      break;
+    case 1:
+      initGridFinder(p, res);
+      break;
+    case 2:
+      initCustomFinder(p, res);
+      break;
+  }
+  setFinder(p, _finderMode);
+}
+
+void setFinder(PGraphics p, int _finderMode) {
+  switch(_finderMode) {
+    case 0:
+      pFinder = finderRandom;
+      break;
+    case 1:
+      pFinder = finderGrid;
+      break;
+    case 2:
+      pFinder = finderCustom;
+      break;
   }
 }
 
-void initNetwork(PGraphics p, int res, float cullRatio) {
-  finderTest = new Pathfinder(p.width, p.height, res, cullRatio);
+void pFinderPaths_Viz(PGraphics p) {
+  
+  // Write Path Results to PGraphics
+  pFinderPaths = createGraphics(p.width, p.height);
+  pFinderPaths.beginDraw();
+  for (Swarm s : swarms) {
+    s.solvePath(pFinder);
+    s.displayPath(pFinderPaths);
+  }
+  pFinderPaths.endDraw();
+  
 }
 
-void initPath(Pathfinder finder, PVector A, PVector B) {
-  testPath = finder.findPath(A, B);
-  testVisited = finder.getVisited();
+void pFinderGrid_Viz(PGraphics p) {
+  
+  // Write Netowork Results to PGraphics
+  pFinderGrid = createGraphics(p.width, p.height);
+  pFinderGrid.beginDraw();
+  if (dataMode == 0) {
+    drawTestFinder(pFinderGrid, pFinder, testPath, testVisited);
+  } else {
+    pFinder.display(pFinderGrid);
+  }
+  pFinderGrid.endDraw();
+}
+
+// Ensures that a valid path is always initialized upon start, to an extent...
+void forcePath(PGraphics p) {
+  int counter = 0;
+  while (testPath.size() < 2) {
+    println("Generating new origin-destination pair ...");
+    initOD(p);
+    initPath(pFinder, A, B);
+    
+    counter++;
+    if (counter > 1000) {
+      break;
+    }
+  }
+}
+
+void initPath(Pathfinder f, PVector A, PVector B) {
+  testPath = f.findPath(A, B);
+  testVisited = f.getVisited();
 }
 
 void initOD(PGraphics p) {

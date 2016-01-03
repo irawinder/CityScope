@@ -4,12 +4,11 @@
 // Ira Winder, MIT Media Lab, jiw@mit.edu, Fall 2015
 
 // To Do:
-// Merge 'container' and 'boundary' ObstacleCourses
-// Have speed of agent depend on region, not swarm identity
+// Callibrate Agent Lifespans
+// Make a Horde Class for Swarms
+// Get Rid of Flickering Sources and Sinks
 
-// Allow Dynamic Editing of Pathfinder Routes
-// Allow finer control of visualizing pathfinder network data
-// In general, migrate glabal "void drawFoo()" methods into class-specific "display()" methods
+// In general, migrate global "void drawFoo()" methods into class-specific "display()" methods
 // Consolidate Agents, Obstacles, and Pathfinder classes to libraries and/or standalone applets and/or libraries?
 
 // Need Libaries:
@@ -43,7 +42,11 @@
 //     'g' - Toggle debug
 //
 //   Data Navigation
-//     'D' = Load/Unload non essential data
+//     'D' = Next Data Mode
+//         dataMode = 3 for Andorra CDR Network (circa Dec 2015)
+//         dataMode = 2 for basic network of Andorra Tower Locations
+//         dataMode = 1 for random network
+//         dataMode = 0 for empty network and Pathfinder Test OD
 //     'I' - Next OD Data Set
 //     ']' - Go forward an hour in OD dataset
 //     '[' - Go backward an hour in OD dataset 
@@ -96,6 +99,7 @@
 // also enables some visualizations for debugging
 boolean debug = true;
 boolean showFrameRate = false;
+boolean printFrames = false;
 
 // Only set this to true if projectors display output is 4k
 // Also set to false if developing on your machine in 1080p
@@ -119,13 +123,7 @@ void setup() {
   }
   
   initCanvas();
-  
-  // Loads MercatorMap projecetion for canvas, csv files referenced in 'DATA' tab, etc
-  initData();
-  
-  initObstacles();
-  initPathfinder(tableCanvas, 10);
-  initAgents();
+  initContent();
   
   tableCanvas.beginDraw();
   tableCanvas.background(background);
@@ -134,32 +132,61 @@ void setup() {
 }
 
 void draw() {
-  
-  // Renders frame onto 'tableCanvas' PGraphic
-  drawTableCanvas();
 
-  // Renders Agent 'dots' and corresponding obstacles and heatmaps
-  drawAgents(tableCanvas); 
+  // Draw Functions Located hear should exclusively be draw onto 'tableCanvas',
+  // a PGraphics set up to hold all information that will eventually be 
+  // projection-mapped onto a big giant table
   
-  // draws Table Canvas onto projection map or on screen
-  drawTable();
+      // Renders frame onto 'tableCanvas' PGraphic (Margins, basemap, and sample Geo-Data)
+      drawTableCanvas(tableCanvas);
   
-  // draws a line graph of all data for given OD matrix
+  // -----------------------------------------------------------------------------
+  // -----------------------------------------------------------------------------
+  
+  
+  
+  
+  
+  // Renders the finished tableCanvas onto main canvas as a projection map or screen
+  renderTableCanvas();
+  
+  // Draws a line graph of all data for given OD matrix
   if (load_non_essential_data) {
     drawLineGraph();
   }
   
-  
-  
+  // Print Framerate of animation to console
   if (showFrameRate) {
     println(frameRate);
   }
   
+  // If true, saves every frame of the main canvas to a PNG
   if (printFrames) {
     //tableCanvas.save("videoFrames/" + millis() + ".png");
     save("videoFrames/" + millis() + ".png");
   }
   
+}
+
+void renderTableCanvas() {
+  // most likely, you'll want a black background to minimize
+  // bleeding around your projection area
+  background(0);
+  
+  // Renders the tableCanvas as either a projection map or on-screen 
+  switch (drawMode) {
+    case 0: // On-Screen Rendering
+      //image(tableCanvas, 0, (height-tableCanvas.height)/2, tableCanvas.width, tableCanvas.height);
+      image(tableCanvas, 0, 0, tableCanvas.width, tableCanvas.height);
+      break;
+    case 1: // Projection-Mapping Rendering
+      // render the scene, transformed using the corner pin surface
+      for (int i=0; i<surface.length; i++) {
+        chopScreen(i);
+        surface[i].render(offscreen);
+      }
+      break;
+  }
 }
 
 void chopScreen(int projector) {

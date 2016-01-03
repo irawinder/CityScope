@@ -353,8 +353,6 @@ class Obstacle {
     
 // A class for assembling courses of obstacles
 
-boolean mainCourse = true;
-
 class ObstacleCourse {
   
   ArrayList<Obstacle> course;
@@ -410,6 +408,14 @@ class ObstacleCourse {
     }
   }
   
+  void addObstacle(Obstacle o) {
+    course.add(o);
+    numObstacles++;
+    if (index == numObstacles-2) {
+      index++;
+    }
+  }
+  
   void removeObstacle() {
     if (numObstacles > 0) {
       course.remove(index);
@@ -420,6 +426,12 @@ class ObstacleCourse {
     }
   }
   
+  void clearCourse() {
+    course.clear();
+    numObstacles = 0;
+    index = 0;
+  }
+  
   boolean testForCollision(Agent v) {
     
     boolean collision = false;
@@ -428,8 +440,6 @@ class ObstacleCourse {
     for (int i=0; i<numObstacles; i++) {
       if (course.get(i).pointInPolygon(v.location.x, v.location.y) ) {
         collision = true;
-        // Applies unique forcevector if collision detected....not so great
-        //v.roll(course.get(i).normalOfEdge(v.location.x, v.location.y, v.velocity.x, v.velocity.y));
         break;
       }
     }
@@ -455,12 +465,13 @@ class ObstacleCourse {
   void display(PGraphics p, color stroke, int alpha) {
     for (int i=0; i<course.size(); i++) {
       if (i == index && editObstacles) {
-        p.strokeWeight(2);
+        p.strokeWeight(4);
         course.get(i).display(p, #FFFF00, alpha, true);
-        p.strokeWeight(1);
       } else {
+        p.strokeWeight(1);
         course.get(i).display(p, stroke, alpha, false);
       }
+      p.strokeWeight(1);
     }
   }
   

@@ -3,7 +3,7 @@
 boolean frameStep = true;
 
 float time_0 = 0;
-float speed = 0.4444444;
+float speed = 1.5;
 
 class Agent {
   
@@ -76,7 +76,7 @@ class Agent {
   }
   
   PVector separate(ArrayList<Agent> agents){
-    float desiredseparation = r*1.5;
+    float desiredseparation = r*1.1;
     //float desiredseparation = r*0.5;
     PVector sum = new PVector();
     int count = 0;
@@ -177,11 +177,13 @@ void updateSpeed(int dir) {
 class Swarm {
   
   boolean generateAgent = true;
-  boolean cropAgents = true;
+  boolean cropAgents = false;
+  int cropDir = 0; // 0 to crop to inside of TOPO, 1 to crop to Margins
   
   ArrayList<Agent> swarm;
   
-  float agentLife = canvasWidth+canvasHeight;
+//  float agentLife = canvasWidth+canvasHeight;
+  float agentLife = Float.MAX_VALUE;
   float agentDelay;
   float maxSpeed;
   float counter = 0;
@@ -194,7 +196,6 @@ class Swarm {
   Obstacle sink;
   
   ArrayList<PVector> path;
-//  ArrayList<Obstacle> pathBoxes;
   
   Swarm (float delay, int life) {
     agentLife = life;
@@ -217,10 +218,10 @@ class Swarm {
     }
     
     maxSpeed = maxS;
-    if (a != b) {
-      agentLife *= 1 + (abs(a.x - b.x) + abs(a.y - b.y)) / (canvasWidth+canvasHeight);
-      agentLife *= 40.0/maxSpeed;
-    }
+//    if (a != b) {
+//      agentLife *= 1 + (abs(a.x - b.x) + abs(a.y - b.y)) / (canvasWidth+canvasHeight);
+//      agentLife *= 40.0/maxSpeed;
+//    }
     //println(agentLife);
     agentDelay = delay;
     swarm = new ArrayList<Agent>();
@@ -255,12 +256,14 @@ class Swarm {
     
   
   void solvePath(Pathfinder f) {
+    
+    // Remove all existing agents from swarms since they will be following wrong path
+    while (swarm.size() > 0) {
+      swarm.remove(swarm.size()-1);
+    }
+    
     path = f.findPath(origin, destination);
     finderResolution = f.getResolution();
-//    pathBoxes = new ArrayList<Obstacle>();
-//    for (int i=0; i<path.size(); i++) {
-//      pathBoxes.add(hitBox(path.get(i), hitbox, true));
-//    }
   }
   
   void update() {
@@ -298,41 +301,17 @@ class Swarm {
       
       for (Agent v : swarm){
         
-        boolean collision = false;
-        
-        // Tests for Collision with Test Objects
-        for (int i=0; i<testWall.length; i++) {
-          if (testWall[i].pointInPolygon(v.location.x, v.location.y) ) {
-            collision = true;
-            //v.reverseCourse();
-            v.roll(testWall[i].normalOfEdge(v.location.x, v.location.y, v.velocity.x, v.velocity.y));
-            break;
-          }
-        }
-        
-        // Tests for Collision with obstacleCourse boundaries
-        if (cropAgents) {
-          // agents internal to table
-          collision = boundaries.testForCollision(v);
+        // Slows Agent Down if Exists in Margin, Outside of Topography
+        if (!topoBoundary.testForCollision(v)) {
+          v.maxspeed = maxSpeed/2;
         } else {
-          // agents on margins of table
-          collision = container.testForCollision(v);
+          // Speeds agent up to natural swarm rate
+          v.maxspeed = maxSpeed;
         }
-        
-        
-//        // Applies unique forcevector if collision detected....not so great
-//        if (collision) {
-//          v.update(int(agentLife/speed), sink);
-//          collision = false;
-//        } else {
-//          v.applyBehaviors(swarm, destination);
-//          v.update(int(agentLife/speed), sink);
-//        }
         
         // Updates agent behavior
         v.applyBehaviors(swarm, path.get(v.pathIndex));
         v.update(int(agentLife/speed), sink, path.get(v.pathIndex), finderResolution);
-        
       }
     }
   }
@@ -340,30 +319,52 @@ class Swarm {
   void display(PGraphics p, String colorMode) {
     if (swarm.size() > 0) {
       for (Agent v : swarm){
-        if (showSwarm) {
-          if (!cropAgents) {
-              if (v.location.y > marginWidthPix) {
-//            if (v.location.x < 0.75*marginWidthPix || v.location.x > (p.width - 0.75*marginWidthPix) || 
-//                v.location.y < 0 || v.location.y > (p.height - 0.75*marginWidthPix) ) {
-                  if(colorMode.equals("color")) {
-                      v.display(p, fill, 255);
-                  } else if(colorMode.equals("grayscale")) {
-                      v.display(p, #333333, 100);
-                  } else {
-                      v.display(p, fill, 100);
-                  }
-                }
+        
+        if (!cropAgents) {
+          
+          if(colorMode.equals("color")) {
+            // Draws colored agents
+            v.display(p, fill, 255);
+          } else if(colorMode.equals("grayscale")) {
+            // Draws grayscaled agents
+            v.display(p, #333333, 100);
           } else {
-            if (v.location.x > 1.25*marginWidthPix && v.location.x < (p.width - 1.25*marginWidthPix) && 
-                v.location.y > 1.25*marginWidthPix && v.location.y < (p.height - 1.25*marginWidthPix) ) {
-                  if(colorMode.equals("color")) {
-                      v.display(p, fill, 255);
-                  } else if(colorMode.equals("grayscale")) {
-                      v.display(p, #333333, 100);
-                  } else {
-                      v.display(p, fill, 100);
-                  }
-                }
+            v.display(p, fill, 100);
+          }
+              
+        } else {
+          
+          if (cropDir == 0) {
+            
+            // Crops Agent if Exists in Margin, Outside of Topography
+            if (topoBoundary.testForCollision(v)) {
+  
+              if(colorMode.equals("color")) {
+                // Draws colored agents
+                v.display(p, fill, 255);
+              } else if(colorMode.equals("grayscale")) {
+                // Draws grayscaled agents
+                v.display(p, #333333, 100);
+              } else {
+                v.display(p, fill, 100);
+              }
+                  
+            }
+          } else if (cropDir == 1) {
+            
+            // Crops Agent if Exists in Margin, Outside of Topography
+            if (!topoBoundary.testForCollision(v)) {
+  
+              if(colorMode.equals("color")) {
+                // Draws colored agents
+                v.display(p, fill, 255);
+              } else if(colorMode.equals("grayscale")) {
+                // Draws grayscaled agents
+                v.display(p, #333333, 100);
+              } else {
+                v.display(p, fill, 100);
+              }
+            }
           }
         }
       }
@@ -372,20 +373,17 @@ class Swarm {
   
   // Draw Sources and Sinks
   void displaySource(PGraphics p) {
+    p.noFill();
+    p.stroke(textColor, 100);
     
-    if (swarm.size() > 0) {
-      p.noFill();
-      p.stroke(fill, 100);
-      
-      //Draw Source
-      p.strokeWeight(2);
-      p.line(origin.x - swarm.get(0).r, origin.y - swarm.get(0).r, origin.x + swarm.get(0).r, origin.y + swarm.get(0).r);
-      p.line(origin.x - swarm.get(0).r, origin.y + swarm.get(0).r, origin.x + swarm.get(0).r, origin.y - swarm.get(0).r);
-      
-      //Draw Sink
-      p.strokeWeight(3);
-      p.ellipse(destination.x, destination.y, 30, 30);
-    }
+    //Draw Source
+    p.strokeWeight(2);
+    p.line(origin.x - 5, origin.y - 5, origin.x + 5, origin.y + 5);
+    p.line(origin.x - 5, origin.y + 5, origin.x + 5, origin.y - 5);
+    
+    //Draw Sink
+    p.strokeWeight(3);
+    p.ellipse(destination.x, destination.y, 30, 30);
   }
   
   void displayEdges(PGraphics p) {

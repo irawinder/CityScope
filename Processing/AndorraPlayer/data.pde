@@ -24,12 +24,16 @@ boolean load_non_essential_data = true;
 
 // Tables of CDR and other point-based data
 
+  int dataMode = 3;
+  // dataMode = 3 for Andorra CDR Network (circa Dec 2015)
+  // dataMode = 2 for basic network of Andorra Tower Locations
+  // dataMode = 1 for random network
+  // dataMode = 0 for empty network and Pathfinder Test OD
+  
   // Sample Geolocated Data
-  Table sampleOutput;
   Table tripAdvisor;
   Table frenchWifi;
   Table localTowers;
-  Table tourists_0;
   
   // OD Matrix Information
   Table network;
@@ -43,6 +47,12 @@ boolean load_non_essential_data = true;
                      "mtb",
                      "cirq",
                      "volta" };
+  
+  // for dataMode = 3:
+  int hourIndex = 71;
+  int maxHour = 23;
+  Table summary;
+  String date = "no data";
 
 // Names and locations of areas outside of table to be represented on margins
           
@@ -66,22 +76,29 @@ boolean load_non_essential_data = true;
   
 void initData() {
   
+  if (dataMode == 2 || dataMode == 3) {
+    load_non_essential_data = true;
+    showTopo = true;
+  } else {
+    load_non_essential_data = false;
+    showTopo = false;
+  }
+  println("Load Non-Essential Data = " + load_non_essential_data);
+  
   // Creates projection environment to convert latitude and longitude into pixel locations on the canvas
-  //mercatorMap = new MercatorMap(lg_width, lg_height, lat1, lat2, lon1, lon2, rotation);
   mercatorMap = new MercatorMap(topoWidthPix, topoHeightPix, lat1, lat2, lon1, lon2, rotation);
-    
+  
+  // Used as sample data set
+  localTowers = loadTable("data/localTowers.tsv", "header");
+  frenchWifi = loadTable("data/network_edges_french.csv", "header");
+  
+  // loads baseimage for topographic model
+  topo = loadImage("crop.png");
+  
   if (load_non_essential_data) {
     
     network = loadTable("data/CDR_OD/" + dates[dateIndex] + "_network.tsv", "header");
     OD =      loadTable("data/CDR_OD/" + dates[dateIndex] + "_OD.tsv", "header");
-    
-    // loads baseimage for topographic model
-    topo = loadImage("crop.png");
-    
-    localTowers = loadTable("data/localTowers.tsv", "header");
-    sampleOutput = new Table();
-    frenchWifi = loadTable("data/network_edges_french.csv", "header");
-    tourists_0 = loadTable("data/OD_1225/17_1225.csv", "header");
     
     tripAdvisor = loadTable("data/Tripadvisor_andorra_la_vella.csv", "header");
     for (int i=tripAdvisor.getRowCount()-1; i >= 0; i--) {
@@ -90,18 +107,10 @@ void initData() {
         tripAdvisor.removeRow(i);
       }
     }
-  } else {
-    
+  } else { // Initializes empty objects to prevent null pointer error
     network = new Table();
     OD = new Table();
-    localTowers = new Table();
-    sampleOutput = new Table();
     tripAdvisor = new Table();
-    frenchWifi = new Table();
-    tourists_0 = new Table();
-    topo = createGraphics(10,10);
-    
   }
-  
 }
   

@@ -7,8 +7,9 @@ void keyPressed() {
       showSource = toggle(showSource);
       break;
     case 'r': //reset agents and simulation
-      testMode = nextMode(testMode, 1);
-      initAgents();
+      initAgents(tableCanvas);
+      scrollX = 0;
+      scrollY = 0;
       break;
     case 'f': //print framerate to console
       showFrameRate = toggle(showFrameRate);
@@ -28,6 +29,9 @@ void keyPressed() {
     case 'p': //makes a grid of obstacles
       testObstacles = toggle(testObstacles);
       testObstacles(testObstacles);
+      // Resets the network for gridded mode
+      resetFinder(tableCanvas, 10, 1); // '1' for gridded mode
+      refreshFinder(tableCanvas);
       break;
     case 't': //shows thermal/traces of where agents have been 
       showTraces = toggle(showTraces);
@@ -47,11 +51,7 @@ void keyPressed() {
       break;
     case 'l': //loads course
       if (editObstacles) {
-        if (mainCourse) {
-          boundaries.loadCourse("data/course.tsv");
-        } else {
-          container.loadCourse("data/container.tsv");
-        }
+        boundaries.loadCourse("data/course.tsv");
       } else {
         // loads the saved layout
         ks.load();
@@ -59,11 +59,7 @@ void keyPressed() {
       break;
     case 's'://save course
       if (editObstacles) {
-        if (mainCourse) {
-          boundaries.saveCourse("data/course.tsv");
-        } else {
-          container.saveCourse("data/container.tsv");
-        }
+        boundaries.saveCourse("data/course.tsv");
       } else {
         // saves the layout
         ks.save();
@@ -82,23 +78,19 @@ void keyPressed() {
     case 'd': //shows still data, makes it slow
       if (!showData && !load_non_essential_data) {
         load_non_essential_data = toggle(load_non_essential_data);
-        
-        initData();
-        initObstacles();
-        initPathfinder(tableCanvas, 10);
-        initAgents();
+        dataMode = 3;
+        initContent();
       }
       showData = toggle(showData);
       println("showData = " + showData);
       break;
     case 'D': //shows still data, makes it slow
-      load_non_essential_data = toggle(load_non_essential_data);
-      
-      initData();
-      initObstacles();
-      initPathfinder(tableCanvas, 10);
-      initAgents();
-      println("Load Data = " + load_non_essential_data);
+      dataMode = nextMode(dataMode, 3);
+      if (dataMode == 0) {
+        showGrid = true;
+        finderMode = 0;
+      }
+      initContent();
       break;
     case 'T': // show topography 
       showTopo = toggle(showTopo);
@@ -106,50 +98,39 @@ void keyPressed() {
     case 'E': // shows or hides obstale editor 
       editObstacles = toggle(editObstacles);
       println("editObstacles = " + editObstacles);
+      if (!editObstacles) { //if deactivating editor, reinitializes custom network
+        // Resets the network for custom mode
+        resetFinder(tableCanvas, 10, 2); // '2' for custom mode
+        refreshFinder(tableCanvas);
+      } else { // If activating editor, sets finder mode to custom
+        finderMode = 2;
+        refreshFinder(tableCanvas);
+        showObstacles = true;
+      }
       break;
     case '': //hit the delete key 
       if (editObstacles) {
-        if (mainCourse) {
-          boundaries.removeVertex();
-        } else {
-          container.removeVertex();
-        }
+        boundaries.removeVertex();
       }
       break;
     case 'A': //lets you add obstcles
       if (editObstacles) {
-        if (mainCourse) {
-          boundaries.addObstacle();
-        } else {
-          container.addObstacle();
-        }
+        boundaries.addObstacle();
       }
       break;
     case 'R': //lets you remove obstacles 
       if (editObstacles) {
-        if (mainCourse) {
-          boundaries.removeObstacle();
-        } else {
-          container.removeObstacle();
-        }
+        boundaries.removeObstacle();
       }
       break;
     case ' ': //switch between the two obstacles to edit them 
       if (editObstacles) {
-        if (mainCourse) {
-          boundaries.nextIndex(); 
-        } else {
-          container.nextIndex();
-        }
+        boundaries.nextIndex();
       }
       break;
     case 'N': //hops to next vertice 
       if (editObstacles) {
-        if (mainCourse) {
-          boundaries.nextVert();
-        } else {
-          container.nextVert();
-        }
+        boundaries.nextVert();
       }
       break;
     case 'V': //starts printing frames to file
@@ -175,18 +156,26 @@ void keyPressed() {
       }
       dateIndex = nextMode(dateIndex, dates.length-1);
       initData();
-      initAgents();
+      initAgents(tableCanvas);
       break;
-    case 'P': //toggle display of pathfinding grid
+    case 'P': //toggle display of shortest paths
       showPaths = toggle(showPaths);
+      break;
+    case 'G': //toggle display for pathing grip
+      showGrid = toggle(showGrid);
       break;
     case 'X': // randomize locations of origin and destination paths
       initOD(tableCanvas);
-      initPath(finderTest, A, B);
+      initPath(pFinder, A, B);
+      pFinderGrid_Viz(tableCanvas);
       break;
-    case 'n': // randomize a new test network for pathfinding
-      initNetwork(tableCanvas, 10, 0.55);
-      initPath(finderTest, A, B);
+    case 'n': // randomize/reset current network for pathfinding
+      resetFinder(tableCanvas, 10, finderMode);
+      refreshFinder(tableCanvas);
+      break;
+    case '>': // Toggle network for pathfinding
+      finderMode = nextMode(finderMode, 2);
+      refreshFinder(tableCanvas);
       break;
   }
   
@@ -194,38 +183,22 @@ void keyPressed() {
   if (key == CODED) { 
     if (keyCode == LEFT) {
       if (editObstacles) {
-        if (mainCourse) {
-          boundaries.nudgeVertex(-1, 0);
-        } else {
-          container.nudgeVertex(-1, 0);
-        }
+        boundaries.nudgeVertex(-1, 0);
       }
     }  
     if (keyCode == RIGHT) {
       if (editObstacles) {
-        if (mainCourse) {
-          boundaries.nudgeVertex(+1, 0);
-        } else {
-          container.nudgeVertex(+1, 0);
-        }
+        boundaries.nudgeVertex(+1, 0);
       }
     }  
     if (keyCode == DOWN) {
       if (editObstacles) {
-        if (mainCourse) {
-          boundaries.nudgeVertex(0, +1);
-        } else {
-          container.nudgeVertex(0, +1);
-        }
+        boundaries.nudgeVertex(0, +1);
       }
     }  
     if (keyCode == UP) {
       if (editObstacles) {
-        if (mainCourse) {
-          boundaries.nudgeVertex(0, -1);
-        } else {
-          container.nudgeVertex(0, -1);
-        }
+        boundaries.nudgeVertex(0, -1);
       }
     }
   }
@@ -298,19 +271,6 @@ void mouseReleased() {
 
 void mouseClicked() {
   if (editObstacles) {
-    if (mainCourse) {
-      boundaries.addVertex(new PVector(mouseX, mouseY));
-    } else {
-      container.addVertex(new PVector(mouseX, mouseY));
-    }
-    
-//    initPathfinder();
-//    for (Swarm s : swarms) {
-//      if (s.cropAgents == false) {
-//        s.solvePath(finderMargin);
-//      } else {
-//        s.solvePath(finderTopo);
-//      }
-//    }
+    boundaries.addVertex(new PVector(mouseX, mouseY));
   }
 }
