@@ -160,7 +160,7 @@ void initAgents(PGraphics p) {
       testNetwork_Random(0);
       break;
     case 1:
-      testNetwork_Random(8);
+      testNetwork_Random(16);
       break;
     case 2:
       testNetwork_CDRWifi();
@@ -428,7 +428,7 @@ void testNetwork_Random(int _numNodes) {
       
       destination[i*(numNodes-1)+j] = new PVector(nodes[(i+j+1)%(numNodes)].x, nodes[(i+j+1)%(numNodes)].y);
       
-      weight[i*(numNodes-1)+j] = random(2.0);
+      weight[i*(numNodes-1)+j] = random(0.1, 2.0);
       
       //println("swarm:" + (i*(numNodes-1)+j) + "; (" + i + ", " + (i+j+1)%(numNodes) + ")");
     }

@@ -4,9 +4,7 @@
 // Ira Winder, MIT Media Lab, jiw@mit.edu, Fall 2015
 
 // To Do:
-// Callibrate Agent Lifespans
 // Make a Horde Class for Swarms
-// Get Rid of Flickering Sources and Sinks
 
 // In general, migrate global "void drawFoo()" methods into class-specific "display()" methods
 // Consolidate Agents, Obstacles, and Pathfinder classes to libraries and/or standalone applets and/or libraries?
@@ -89,10 +87,12 @@
 //      'l' load CSV file of boundary locations (if editor is on)
 //
 //    Pathfinding Tools:
-//      'P': show/hide pathfinder network
+//      'P': show/hide pathfinder Paths
+//      'G': show/hide pathfinder Grids
 //      'h': show/hide additional info about pathfinder network
 //      'X': regenerate a random origin and destination
 //      'n': regenerate a random network for testing
+//      '>': Next Pathfinder Network (Random, Gridded, and Custom)
 
 
 // set to true when running app to prevent fullScreen Mode
@@ -151,7 +151,7 @@ void draw() {
   renderTableCanvas();
   
   // Draws a line graph of all data for given OD matrix
-  if (load_non_essential_data) {
+  if (load_non_essential_data && drawMode == 0) {
     drawLineGraph();
   }
   
