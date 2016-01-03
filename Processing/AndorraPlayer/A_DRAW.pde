@@ -68,9 +68,9 @@ void drawTableCanvas(PGraphics p) {
       // Draws pathfinding nodes onto Canvas
       if (showPaths) {
         if (dataMode == 0) {
-          drawTestFinder(p, finderTest, testPath, testVisited);
+          drawTestFinder(p, pFinder, testPath, testVisited);
         } else {
-          finder.display(p);
+          pFinder.display(p);
         }
       }
       

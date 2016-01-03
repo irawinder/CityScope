@@ -29,6 +29,9 @@ void keyPressed() {
     case 'p': //makes a grid of obstacles
       testObstacles = toggle(testObstacles);
       testObstacles(testObstacles);
+      // Resets the network for gridded mode
+      resetFinder(tableCanvas, 10, 1); // '1' for gridded mode
+      refreshFinder();
       break;
     case 't': //shows thermal/traces of where agents have been 
       showTraces = toggle(showTraces);
@@ -85,6 +88,7 @@ void keyPressed() {
       dataMode = nextMode(dataMode, 3);
       if (dataMode == 0) {
         showPaths = true;
+        finderMode = 0;
       }
       initContent();
       break;
@@ -150,11 +154,15 @@ void keyPressed() {
       break;
     case 'X': // randomize locations of origin and destination paths
       initOD(tableCanvas);
-      initPath(finderTest, A, B);
+      initPath(pFinder, A, B);
       break;
-    case 'n': // randomize a new test network for pathfinding
-      initNetwork(tableCanvas, 10, 0.55);
-      initPath(finderTest, A, B);
+    case 'n': // randomize/reset current network for pathfinding
+      resetFinder(tableCanvas, 10, finderMode);
+      refreshFinder();
+      break;
+    case '>': // Toggle network for pathfinding
+      finderMode = nextMode(finderMode, 2);
+      refreshFinder();
       break;
   }
   

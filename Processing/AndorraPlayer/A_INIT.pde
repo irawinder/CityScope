@@ -181,7 +181,7 @@ void initAgents() {
   
   // Applyies pathfinding network to swarms
   for (Swarm s : swarms) {
-    s.solvePath(finder);
+    s.solvePath(pFinder);
   }
   
   traces = new HeatMap(canvasWidth/5, canvasHeight/5, canvasWidth, canvasHeight);
@@ -495,7 +495,7 @@ void setObstacleGrid(int u, int v) {
 
 //------------- Initialize Pathfinding Objects
 
-Pathfinder finder;
+Pathfinder pFinder;
 int finderMode = 2;
 // 0 = Random Noise Test
 // 1 = Grid Test
@@ -509,51 +509,89 @@ ArrayList<PVector> testPath, testVisited;
 void initPathfinder(PGraphics p, int res) {
   
   // Initializes a Custom Pathfinding network Based off of user-drawn Obstacle Course
-  finder = new Pathfinder(p.width, p.height, res, 0.0); // 4th float object is a number 0-1 that represents how much of the network you would like to randomly cull, 0 being none
-  finder.applyObstacleCourse(boundaries);
+  initCustomFinder(p, res);
   
   // Initializes a Pathfinding network Based off of standard Grid-based Obstacle Course
-//  finderGrid = new Pathfinder(p.width, p.height, res, 0.0); // 4th float object is a number 0-1 that represents how much of the network you would like to randomly cull, 0 being none
-//  finderGrid.applyObstacleCourse(boundaries);
+  initGridFinder(p, res);
   
   // Initializes a Pathfinding network Based off of Random Noise
-  initNetwork(p, 10, 0.55);
+  initRandomFinder(p, res);
+  
+  // Initializes an origin-destination coordinate for testing
   initOD(p);
-  initPath(finderTest, A, B);
+  
+  // sets 'pFinder' to one of above network presets
+  setFinder(finderMode);
+  initPath(pFinder, A, B);
   
   // Ensures that a valid path is always initialized upon start, to an extent...
+  forcePath(p);
+}
+
+void initCustomFinder(PGraphics p, int res) {
+  finderCustom = new Pathfinder(p.width, p.height, res, 0.0); // 4th float object is a number 0-1 that represents how much of the network you would like to randomly cull, 0 being none
+  finderCustom.applyObstacleCourse(boundaries);
+}
+
+void initGridFinder(PGraphics p, int res) {
+  finderGrid = new Pathfinder(p.width, p.height, res, 0.0); // 4th float object is a number 0-1 that represents how much of the network you would like to randomly cull, 0 being none
+  finderGrid.applyObstacleCourse(grid);  
+}
+
+void initRandomFinder(PGraphics p, int res) {
+  finderTest = new Pathfinder(p.width, p.height, res, 0.55);
+}
+
+// Refresh Paths and visualization; Use for key commands and dynamic changes
+void refreshFinder() {
+  setFinder(finderMode);
+  initPath(pFinder, A, B);
+  initAgents();
+}
+
+// Completely rebuilds a selected Pathfinder Network
+void resetFinder(PGraphics p, int res, int _finderMode) {
+  switch(_finderMode) {
+    case 0:
+      initRandomFinder(p, res);
+      break;
+    case 1:
+      initGridFinder(p, res);
+      break;
+    case 2:
+      initCustomFinder(p, res);
+      break;
+  }
+  setFinder(_finderMode);
+}
+
+void setFinder(int _finderMode) {
+  switch(_finderMode) {
+    case 0:
+      pFinder = finderTest;
+      break;
+    case 1:
+      pFinder = finderGrid;
+      break;
+    case 2:
+      pFinder = finderCustom;
+      break;
+  }
+}
+
+// Ensures that a valid path is always initialized upon start, to an extent...
+void forcePath(PGraphics p) {
   int counter = 0;
   while (testPath.size() < 2) {
     println("Generating new origin-destination pair ...");
     initOD(p);
-    initPath(finderTest, A, B);
+    initPath(pFinder, A, B);
     
     counter++;
     if (counter > 1000) {
       break;
     }
   }
-  
-  //toggleFinder(finder);
-}
-
-void toggleFinder(Pathfinder f) {
-  switch(finderMode) {
-    case 0:
-      f = finderTest;
-      break;
-    case 1:
-      f = finderGrid;
-      break;
-    case 2:
-      f = finderCustom;
-      break;
-  }
-}
-    
-
-void initNetwork(PGraphics p, int res, float cullRatio) {
-  finderTest = new Pathfinder(p.width, p.height, res, cullRatio);
 }
 
 void initPath(Pathfinder f, PVector A, PVector B) {
