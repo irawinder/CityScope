@@ -49,7 +49,7 @@ boolean load_non_essential_data = true;
                      "volta" };
   
   // for dataMode = 3:
-  int hourIndex = 16;
+  int hourIndex = 71;
   int maxHour = 23;
   Table summary;
   String date = "no data";
@@ -111,7 +111,6 @@ void initData() {
     network = new Table();
     OD = new Table();
     tripAdvisor = new Table();
-    topo = createGraphics(10,10);
   }
 }
   

@@ -87,7 +87,7 @@ void keyPressed() {
     case 'D': //shows still data, makes it slow
       dataMode = nextMode(dataMode, 3);
       if (dataMode == 0) {
-        showPaths = true;
+        showGrid = true;
         finderMode = 0;
       }
       initContent();
@@ -98,6 +98,15 @@ void keyPressed() {
     case 'E': // shows or hides obstale editor 
       editObstacles = toggle(editObstacles);
       println("editObstacles = " + editObstacles);
+      if (!editObstacles) { //if deactivating editor, reinitializes custom network
+        // Resets the network for custom mode
+        resetFinder(tableCanvas, 10, 2); // '2' for custom mode
+        refreshFinder();
+      } else { // If activating editor, sets finder mode to custom
+        finderMode = 2;
+        refreshFinder();
+        showObstacles = true;
+      }
       break;
     case '': //hit the delete key 
       if (editObstacles) {
@@ -149,8 +158,11 @@ void keyPressed() {
       initData();
       initAgents();
       break;
-    case 'P': //toggle display of pathfinding grid
+    case 'P': //toggle display of shortest paths
       showPaths = toggle(showPaths);
+      break;
+    case 'G': //toggle display for pathing grip
+      showGrid = toggle(showGrid);
       break;
     case 'X': // randomize locations of origin and destination paths
       initOD(tableCanvas);
@@ -259,10 +271,5 @@ void mouseReleased() {
 void mouseClicked() {
   if (editObstacles) {
     boundaries.addVertex(new PVector(mouseX, mouseY));
-    
-//    initPathfinder();
-//    for (Swarm s : swarms) {
-//      s.solvePath(finder);
-//    }
   }
 }

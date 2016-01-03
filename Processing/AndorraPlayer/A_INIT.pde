@@ -121,6 +121,8 @@ void initContent() {
   initObstacles();
   initPathfinder(tableCanvas, 10);
   initAgents();
+  
+  //hurrySwarms(tableCanvas);
 }
 
 
@@ -128,12 +130,6 @@ void initContent() {
 
 
 // ---------------------Initialize Agent-based Objects---
-
-boolean showSource = true;
-boolean showEdges = false;
-boolean showSwarm = true;
-boolean showInfo = false;
-boolean showTraces = false;
 
 Swarm[] swarms;
 
@@ -177,7 +173,6 @@ void initAgents() {
   pathSwarms();
   
   traces = new HeatMap(canvasWidth/5, canvasHeight/5, canvasWidth, canvasHeight);
-  
 }
 
 void pathSwarms() {
@@ -185,6 +180,22 @@ void pathSwarms() {
   for (Swarm s : swarms) {
     s.solvePath(pFinder);
   }
+}
+
+void hurrySwarms(PGraphics p) {
+  speed = 20;
+  showSwarm = false;
+  showEdges = false;
+  showSource = false;
+  showPaths = false;
+  showTraces = false;
+  for (int i=0; i<100; i++) {
+    p.beginDraw();
+    drawSwarms(p);
+    p.endDraw();
+  }
+  showSwarm = true;
+  speed = 1.5;
 }
 
 void resetSummary() {
@@ -238,6 +249,20 @@ void CDRNetwork() {
     
     // delay, origin, destination, speed, color
     swarms[i] = new Swarm(weight[i], origin[i], destination[i], 1, col);
+    
+    // Makes sure that agents 'staying put' eventually die; 
+    // also that they don't blead into the margin or topo
+    if (origin[i] == destination[i]) {
+      if (external) {
+        swarms[i].cropAgents = true;
+        swarms[i].cropDir = 1;
+        swarms[i].agentLife = 2000;
+      } else {
+        swarms[i].cropAgents = true;
+        swarms[i].cropDir = 0;
+        swarms[i].agentLife = 2000;
+      }
+    }
     
   }
   
@@ -434,7 +459,7 @@ PVector[] obPts;
 void initObstacles() {
   // Single Obstacle that describes table
   topoBoundary = new ObstacleCourse();
-  setObstacleTopo(marginWidthPix, marginWidthPix, topoWidthPix, topoHeightPix);
+  setObstacleTopo(marginWidthPix-10, marginWidthPix-10, topoWidthPix+20, topoHeightPix+20);
   
   // Gridded Obstacles for testing
   grid = new ObstacleCourse();
@@ -513,6 +538,9 @@ int finderMode = 2;
 Pathfinder finderRandom, finderGrid, finderCustom;
 PVector A, B;
 ArrayList<PVector> testPath, testVisited;
+
+// PGraphic for holding pFinder Viz info so we don't have to re-write it every frame
+PGraphics pFinderViz;
 
 void initPathfinder(PGraphics p, int res) {
   

@@ -4,7 +4,7 @@
 // Ira Winder, MIT Media Lab, jiw@mit.edu, Fall 2015
 
 // To Do:
-// Allow Dynamic Editing of Pathfinder Routes
+// Callibrate Agent Lifespans
 // Make a Horde Class for Swarms
 // Get Rid of Flickering Sources and Sinks
 

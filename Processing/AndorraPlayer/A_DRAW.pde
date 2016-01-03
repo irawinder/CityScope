@@ -1,7 +1,13 @@
 boolean showData = false;
 boolean showTopo = true;
 boolean showPaths = false;
+boolean showGrid = false;
 boolean showPathInfo = true;
+boolean showSource = true;
+boolean showEdges = false;
+boolean showSwarm = true;
+boolean showInfo = false;
+boolean showTraces = false;
 
 int background = 0;
 int textColor = 255;
@@ -60,13 +66,20 @@ void drawTableCanvas(PGraphics p) {
   
       // Displays ObstacleCourses
       if (showObstacles) {
-        grid.display(p, textColor, 100);
-        boundaries.display(p, textColor, 100);
-        topoBoundary.display(p, textColor, 100);
+        
+        if (finderMode == 1) { 
+          // Obstacles for gridded Pathfinder Network
+          grid.display(p, textColor, 100);
+        } else if (finderMode == 2) { 
+          // Obstacles for custom Pathfinder Network
+          boundaries.display(p, textColor, 100);
+        }
+        
+        //topoBoundary.display(p, textColor, 100);
       }
       
       // Draws pathfinding nodes onto Canvas
-      if (showPaths) {
+      if (showGrid) {
         if (dataMode == 0) {
           drawTestFinder(p, pFinder, testPath, testVisited);
         } else {
@@ -484,13 +497,9 @@ void drawTestFinder(PGraphics p, Pathfinder f, ArrayList<PVector> path, ArrayLis
   p.beginDraw();
 }
 
-
-
 void drawSwarms(PGraphics p) {
   
   numAgents = 0;
-  
-  println("boomA");
   
   for (Swarm s : swarms) {
     s.update();
@@ -498,23 +507,35 @@ void drawSwarms(PGraphics p) {
   }
   
   for (Swarm s : swarms) {
+    
+    // Show Pathfinding Netowrk for Agents
+    if (showPaths) {
+      s.displayPath(p);
+    }
+    
+    // Show Markers for Sources and Sinks of Angents
     if (showSource) {
       s.displaySource(p);
     }
     
+    // Show OD Network for Agents
     if (showEdges) {
       s.displayEdges(p);
     }
     
-    if (showPaths) {
-      s.displayPath(p);
-    }
+  }
+  
+  for (Swarm s : swarms) {
       
     if (showTraces) {
       traces.update(s);
-      s.display(p, "grayscale");
+      if (showSwarm) {
+        s.display(p, "grayscale");
+      }
     } else {
-      s.display(p, "color");
+      if (showSwarm) {
+        s.display(p, "color");
+      }
     }
   }
   
