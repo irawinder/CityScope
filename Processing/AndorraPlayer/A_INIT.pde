@@ -134,31 +134,18 @@ boolean showEdges = false;
 boolean showSwarm = true;
 boolean showInfo = false;
 boolean showTraces = false;
-boolean printFrames = false;
-
-  int dataMode = 2;
-  // dataMode = 0 for random network
-  // dataMode = 1 for basic network of Andorra Tower Locations
-  // dataMode = 2 for Andorra CDR Network (circa Dec 2015)
 
 Swarm[] swarms;
 
-PVector[] origin;
-PVector[] destination;
-PVector[] nodes;
+PVector[] origin, destination, nodes;
 float[] weight;
-
-PVector[] obPts;
 
 int textSize = 8;
 int numAgents, maxAgents, maxFlow, agentCap;
 int[] swarmSize;
 float adjust; // dynamic scalar used to nomralize agent generation rate
 
-int hourIndex = 16;
-int maxHour = 23;
-Table summary;
-String date = "no data";
+
 
 HeatMap traces;
 
@@ -188,8 +175,11 @@ void initAgents() {
       CDRNetwork();
       break;
   }
-      
-  //touristNetwork();
+  
+  // Applyies pathfinding network to swarms
+  for (Swarm s : swarms) {
+    s.solvePath(finder);
+  }
   
   traces = new HeatMap(canvasWidth/5, canvasHeight/5, canvasWidth, canvasHeight);
   
@@ -224,8 +214,6 @@ void CDRNetwork() {
       destination[i] = container_Locations[network.getInt(i, "CON_D")];
       external = true;
     }
-    
-
       
     weight[i] = 20;
     
@@ -239,12 +227,11 @@ void CDRNetwork() {
     
     // delay, origin, destination, speed, color
     swarms[i] = new Swarm(weight[i], origin[i], destination[i], 1, col);
-    swarms[i].solvePath(finder);
     
-    if (external) {
-      swarms[i].cropAgents = false;
-      swarms[i].maxSpeed = 0.2;
-    }
+//    if (external) {
+//      swarms[i].cropAgents = false;
+//      swarms[i].maxSpeed = 0.2;
+//    }
     
   }
   
@@ -435,10 +422,14 @@ boolean showObstacles = false;
 boolean editObstacles = false;
 boolean testObstacles = true;
 
-ObstacleCourse boundaries;
-ObstacleCourse grid;
+ObstacleCourse boundaries, grid, topoBoundary;
+PVector[] obPts;
 
 void initObstacles() {
+  // Single Obstacle that describes table
+  topoBoundary = new ObstacleCourse();
+  setObstacleTopo(marginWidthPix, marginWidthPix, topoWidthPix, topoHeightPix);
+  
   // Gridded Obstacles for testing
   grid = new ObstacleCourse();
   testObstacles(testObstacles);
@@ -454,6 +445,24 @@ void testObstacles(boolean place) {
   } else {
     setObstacleGrid(0, 0);
   }
+}
+
+void setObstacleTopo(int x, int y, int w, int h) {
+  
+  topoBoundary.clearCourse();
+  
+  obPts = new PVector[4];
+  
+  for (int i=0; i<obPts.length; i++) {
+    obPts[i] = new PVector(0,0);
+  }
+  
+  obPts[0].x = x;     obPts[0].y = y;
+  obPts[1].x = x+w;   obPts[1].y = y;
+  obPts[2].x = x+w;   obPts[2].y = y+h;
+  obPts[3].x = x;     obPts[3].y = y+h;
+  
+  topoBoundary.addObstacle(new Obstacle(obPts));
 }
 
 void setObstacleGrid(int u, int v) {

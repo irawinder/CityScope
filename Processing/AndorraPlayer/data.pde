@@ -24,6 +24,11 @@ boolean load_non_essential_data = true;
 
 // Tables of CDR and other point-based data
 
+  int dataMode = 2;
+  // dataMode = 0 for random network
+  // dataMode = 1 for basic network of Andorra Tower Locations
+  // dataMode = 2 for Andorra CDR Network (circa Dec 2015)
+  
   // Sample Geolocated Data
   Table tripAdvisor;
   Table frenchWifi;
@@ -41,6 +46,12 @@ boolean load_non_essential_data = true;
                      "mtb",
                      "cirq",
                      "volta" };
+  
+  // for dataMode = 2:
+  int hourIndex = 16;
+  int maxHour = 23;
+  Table summary;
+  String date = "no data";
 
 // Names and locations of areas outside of table to be represented on margins
           

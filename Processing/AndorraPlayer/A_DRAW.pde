@@ -63,6 +63,7 @@ void drawTableCanvas(PGraphics p) {
       if (showObstacles) {
         grid.display(p, textColor, 100);
         boundaries.display(p, textColor, 100);
+        topoBoundary.display(p, textColor, 100);
       }
 
       // Draws pathfinding nodes onto Canvas

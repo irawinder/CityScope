@@ -4,11 +4,12 @@
 // Ira Winder, MIT Media Lab, jiw@mit.edu, Fall 2015
 
 // To Do:
-// Merge 'container' and 'boundary' ObstacleCourses
-// Have speed of agent depend on region, not swarm identity
-
-// Allow Dynamic Editing of Pathfinder Routes
 // Allow finer control of visualizing pathfinder network data
+// Allow Dynamic Editing of Pathfinder Routes
+// Have speed of agent depend on region, not swarm identity
+// Make a Horde Class for Swarms
+// Get Rid of Flickering Sources and Sinks
+
 // In general, migrate global "void drawFoo()" methods into class-specific "display()" methods
 // Consolidate Agents, Obstacles, and Pathfinder classes to libraries and/or standalone applets and/or libraries?
 
@@ -96,6 +97,7 @@
 // also enables some visualizations for debugging
 boolean debug = true;
 boolean showFrameRate = false;
+boolean printFrames = false;
 
 // Only set this to true if projectors display output is 4k
 // Also set to false if developing on your machine in 1080p

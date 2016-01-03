@@ -177,7 +177,7 @@ void updateSpeed(int dir) {
 class Swarm {
   
   boolean generateAgent = true;
-  boolean cropAgents = true;
+  boolean cropAgents = false;
   
   ArrayList<Agent> swarm;
   
@@ -194,7 +194,6 @@ class Swarm {
   Obstacle sink;
   
   ArrayList<PVector> path;
-//  ArrayList<Obstacle> pathBoxes;
   
   Swarm (float delay, int life) {
     agentLife = life;
@@ -257,10 +256,6 @@ class Swarm {
   void solvePath(Pathfinder f) {
     path = f.findPath(origin, destination);
     finderResolution = f.getResolution();
-//    pathBoxes = new ArrayList<Obstacle>();
-//    for (int i=0; i<path.size(); i++) {
-//      pathBoxes.add(hitBox(path.get(i), hitbox, true));
-//    }
   }
   
   void update() {
@@ -311,28 +306,41 @@ class Swarm {
       for (Agent v : swarm){
         if (showSwarm) {
           if (!cropAgents) {
-              if (v.location.y > marginWidthPix) {
-//            if (v.location.x < 0.75*marginWidthPix || v.location.x > (p.width - 0.75*marginWidthPix) || 
-//                v.location.y < 0 || v.location.y > (p.height - 0.75*marginWidthPix) ) {
-                  if(colorMode.equals("color")) {
-                      v.display(p, fill, 255);
-                  } else if(colorMode.equals("grayscale")) {
-                      v.display(p, #333333, 100);
-                  } else {
-                      v.display(p, fill, 100);
-                  }
-                }
+            
+            // Slows Agent Down if Exists in Margin, Outside of Topography
+            if (!topoBoundary.testForCollision(v)) {
+              v.maxspeed = maxSpeed/4;
+            } else {
+              // Speeds agent up to natural swarm rate
+              v.maxspeed = maxSpeed;
+            }
+            
+            if(colorMode.equals("color")) {
+              // Draws colored agents
+              v.display(p, fill, 255);
+            } else if(colorMode.equals("grayscale")) {
+              // Draws grayscaled agents
+              v.display(p, #333333, 100);
+            } else {
+              v.display(p, fill, 100);
+            }
+                
           } else {
-            if (v.location.x > 1.25*marginWidthPix && v.location.x < (p.width - 1.25*marginWidthPix) && 
-                v.location.y > 1.25*marginWidthPix && v.location.y < (p.height - 1.25*marginWidthPix) ) {
-                  if(colorMode.equals("color")) {
-                      v.display(p, fill, 255);
-                  } else if(colorMode.equals("grayscale")) {
-                      v.display(p, #333333, 100);
-                  } else {
-                      v.display(p, fill, 100);
-                  }
-                }
+            
+            // Crops Agent if Exists in Margin, Outside of Topography
+            if (topoBoundary.testForCollision(v)) {
+
+              if(colorMode.equals("color")) {
+                // Draws colored agents
+                v.display(p, fill, 255);
+              } else if(colorMode.equals("grayscale")) {
+                // Draws grayscaled agents
+                v.display(p, #333333, 100);
+              } else {
+                v.display(p, fill, 100);
+              }
+                  
+            }
           }
         }
       }
