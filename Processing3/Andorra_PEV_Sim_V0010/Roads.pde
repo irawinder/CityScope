@@ -1,8 +1,8 @@
-//Andorra PEV Simulation v0010 
-//for MIT Media Lab, Changing Place Group, CityScope Project
+// Andorra PEV Simulation v0010
+// for MIT Media Lab, Changing Place Group, CityScope Project
 
-//by Yan Zhang (Ryan) <ryanz@mit.edu>
-//Dec.8th.2015
+// by Yan Zhang (Ryan) <ryanz@mit.edu>
+// Dec.8th.2015
 
 
 class Roads {
@@ -32,31 +32,47 @@ class Roads {
         endLineID.append(i);
       }
     }
-    println("total road count = " + roadCount);
     println(startLineID);
     println(endLineID);
+    int roadCountOneWay = 0;
     for (int i = 0; i < roadCount; i ++) {
       int ptNum = endLineID.get(i) - startLineID.get(i) - 2;
       String[] roadLines = subset(allLines, startLineID.get(i) + 2, ptNum);
-      int directionType;
       if (allLines[startLineID.get(i)+1].indexOf("one way") != -1) {
-        directionType = 0;
+        // one way
+
+        // add a road object
+        Road road = new Road();
+        road.getData(roadLines);
+        roads.add(road);
+        roadCountOneWay ++;
       } else {
-        directionType = 1;
+        // two way, duplicate and reverse
+
+        // add a road object
+        Road road1 = new Road();
+        road1.getData(roadLines);
+        roads.add(road1);
+        roadCountOneWay ++;
+
+        // add another rivised road object
+        roadLines = reverse(roadLines);
+        Road road2 = new Road();
+        road2.getData(roadLines);
+        roads.add(road2);
+        roadCountOneWay ++;
       }
-      // add a road object
-      Road road = new Road(); 
-      road.getData(roadLines, directionType);
-      roads.add(road);
     }
+    totalRoadNum = roadCountOneWay;
+    println("total road number (oneway) = " + totalRoadNum);
   }
 
   void addRoad(Road road) {
     roads.add(road);
   }
-  
+
   void drawRoads() {
-    for(Road road:roads) {
+    for (Road road : roads) {
       road.drawRoad();
     }
   }

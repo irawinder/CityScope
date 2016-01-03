@@ -1,25 +1,25 @@
-// Andorra PEV Simulation v0010 
+// Andorra PEV Simulation v0010
 // for MIT Media Lab, Changing Place Group, CityScope Project
 
 // by Yan Zhang (Ryan) <ryanz@mit.edu>
 // Dec.8th.2015
 
 
-float stepLength = 0.2F; //for the road pts generated in rhino/gh; units: km
+float stepLength = 0.2; //for the road pts generated in rhino/gh; units: km
 
 class Road {
 
   PVector[] roadPts;
   int ptNum;
   String roadPtFilePath;
-  int directionType; // 0 = one way(start pt to end pt); 1 = two way 
+  //int directionType; // 0 = one way(start pt to end pt); 1 = two way 
 
   Road() {
   }
 
   // class functions
-  void getData(String[] _roadLines, int _directionType) {
-    directionType = _directionType;
+  void getData(String[] _roadLines) {
+    //directionType = _directionType;
     String[] lines = _roadLines;
     //println("there are " + lines.length + " lines");
     ptNum = lines.length;
@@ -37,8 +37,8 @@ class Road {
   PVector getPt(float _t) {
     float t = _t;
     int l = roadPts.length;
-    if ( t < 0.0F || t > 1.0F ) {
-      println("\"t\" out of range! \"t\" must be between 0.0F and 1.0F. Now t = " + t);
+    if ( t < 0.0 || t > 1.0 ) {
+      println("\"t\" out of range! \"t\" must be between 0.0 and 1.0. Now t = " + t);
       return null;
     } else {
       int n = int((l-1)*t);
@@ -49,8 +49,8 @@ class Road {
   //PVector getNextPt(float _t) {
   //  float t = _t;
   //  int l = roadPts.length;
-  //  if ( t < 0.0F || t > 1.0F ) {
-  //    println("\"t\" out of range! \"t\" must be between 0.0F and 1.0F. Now t = " + t);
+  //  if ( t < 0.0 || t > 1.0 ) {
+  //    println("\"t\" out of range! \"t\" must be between 0.0 and 1.0. Now t = " + t);
   //    return null;
   //  } else {
   //    int n = int((l-1)*t);
@@ -61,10 +61,10 @@ class Road {
   PVector getTangentVector(float _t) {
     float t = _t;
     int l = roadPts.length;
-    if ( t < 0.0F || t > 1.0F ) {
-      println("\"t\" out of range! \"t\" must be between 0.0F and 1.0F. Now t = " + t);
+    if ( t < 0.0 || t > 1.0 ) {
+      println("\"t\" out of range! \"t\" must be between 0.0 and 1.0. Now t = " + t);
       return null;
-    } else if (t == 1.0F) {
+    } else if (t == 1.0) {
       int n = int((l-1)*t);
       PVector v1 = roadPts[n-1];
       PVector v2 = roadPts[n];
@@ -84,12 +84,13 @@ class Road {
 
   void drawRoad() {
     for (int i = 0; i < ptNum - 1; i ++) {
-      if (directionType == 0) {
-        stroke(0, 255, 255); //one way = cyan
-      } else {
-        stroke(0, 0, 255); //two way = blue
-      }
-      strokeWeight(1.0F); 
+      //if (directionType == 0) {
+      //  stroke(0, 255, 255); //one way = cyan
+      //} else {
+      //  stroke(0, 0, 255); //two way = blue
+      //}
+      stroke(0, 255, 255); //cyan
+      strokeWeight(1.0); 
       line(roadPts[i].x, roadPts[i].y, roadPts[i+1].x, roadPts[i+1].y);
     }
   }

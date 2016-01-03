@@ -1,45 +1,50 @@
-// Andorra PEV Simulation v0010  //<>//
+// Andorra PEV Simulation v0010 //<>// //<>// //<>//
 // for MIT Media Lab, Changing Place Group, CityScope Project
 
 // by Yan Zhang (Ryan) <ryanz@mit.edu>
 // Dec.8th.2015
 
 
-float maxSpeed = 30.0F; //units: kph
-
+float maxSpeed = 30.0; //units: kph
+float roadConnectionTolerance = 1.0; //pxl; smaller than 1.0 will cause error
 
 class PEV {
 
-  int id; //PEV agent id
+  //int id; //PEV agent id
   int status; //0 - empty; 1 - psg; 2 - pkg; 3 - psg & pkg
-  int roadID; //the road the PEV is currently on
+  //int roadID; //the road the PEV is currently on
+  Road road; //current road object
   float t; //t location of the current road;
   PVector locationPt; //location coordination on the canvas
   PVector locationTangent;
   float rotation; //rotation in radius on the canvas
   float speed; //current speed; units: kph
 
-  PEV(int _id, int _roadID, float _t) {
-    id = _id;
-    roadID = _roadID;
+  PEV(Road _road, float _t) {
+    //id = _id;
+    //roadID = _roadID;
+    //road = roads.roads.get(roadID);
+    road = _road;
     t = _t;
     status = 0;
-    locationPt = roads.roads.get(roadID).getPt(t);
-    speed = 0.01F;
+    locationPt = road.getPt(t);
+    speed = 0.02; // 0.01
   }
 
   void run() {
+
     move();
+
     getDirection();
+
     render();
   }
 
   void getDirection() {
     // get rotation
-    Road road = roads.roads.get(roadID);
     locationPt = road.getPt(t);
     locationTangent = road.getTangentVector(t);
-    rotation = PVector.angleBetween(new PVector(1.0F, 0.0F, 0.0F), locationTangent);
+    rotation = PVector.angleBetween(new PVector(1.0, 0.0, 0.0), locationTangent);
     if (locationTangent.y < 0) {
       rotation = -rotation;
     }
@@ -66,22 +71,61 @@ class PEV {
 
     // draw direction line
     stroke(0, 255, 0); 
-    strokeWeight(0.5F); 
-    line(0.0F, 0.0F, 25.0F, 0.0F);
+    strokeWeight(0.5); 
+    line(0.0, 0.0, 25.0, 0.0);
 
     // draw PEV img
-    scale(0.3F);
+    scale(0.3);
     translate(-img_PEV_PSG.width/2, -img_PEV_PSG.height/2);
     image(img_PEV_PSG, 0, 0);
     popMatrix();
   }
 
   void move() {
-    if (t + speed > 1.0F) {
-      speed = -speed;
-    } else if (t + speed < 0.0F) {
-      speed = -speed;
+    // at end of road
+
+    if (t + speed > 1.0) {
+      // simple test on one road
+      //speed = -speed;
+
+      // looking for all next road connected
+      ArrayList<Road> nextRoads = new ArrayList<Road>();
+      PVector roadEndPt = road.roadPts[road.ptNum-1];
+      PVector roadStartPt = road.roadPts[0];
+      int i = 0;
+      for (Road tmpRoad : roads.roads) {
+        PVector tmpRoadStartPt = tmpRoad.roadPts[0];
+        PVector tmpRoadEndPt = tmpRoad.roadPts[tmpRoad.ptNum-1];
+        //println("tmpRoad ["+i+"]: ");
+        //println("PVector.dist(roadEndPt, tmpRoadStartPt) = "+PVector.dist(roadEndPt, tmpRoadStartPt));
+        //println("PVector.dist(roadStartPt, tmpRoadEndPt) = "+PVector.dist(roadStartPt, tmpRoadEndPt));
+          if (PVector.dist(roadEndPt, tmpRoadStartPt) <= roadConnectionTolerance) {
+          //println("pass if 01");
+          if (PVector.dist(roadStartPt, tmpRoadEndPt) > roadConnectionTolerance) {
+            //println("pass if 02");
+            nextRoads.add(tmpRoad);
+          }
+        }
+        i ++;
+      }
+      //println("find: "+nextRoads.size());
+
+      // pick one next road
+      if (nextRoads.size() <= 0) {
+        println("ERROR: CAN NOT FIND NEXT ROAD!" + 
+          "THERE MUST BE DEADEND ROAD! CHECK ROAD RHINO FILE OR ROAD PT DATA TXT");
+      }
+      int n = int(random(0, nextRoads.size()-1)+0.5); //int(0.7) = 0, so need +0.5
+      //println("n = "+n+"; nextRoads.size()-1 = "+str(nextRoads.size()-1)
+      //  +"; random(0, nextRoads.size()-1) = "+str(random(0, nextRoads.size()-1)));
+      //println("t = "+t);
+      Road nextRoad = nextRoads.get(n);
+
+      // switch current road to next road
+      road = nextRoad; 
+      t = 0.0;
     }
+
     t = t + speed;
   }
 }

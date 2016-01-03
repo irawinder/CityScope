@@ -1,4 +1,4 @@
-// Andorra PEV Simulation v0010 
+// Andorra PEV Simulation v0010
 // for MIT Media Lab, Changing Place Group, CityScope Project
 
 // by Yan Zhang (Ryan) <ryanz@mit.edu>
@@ -8,21 +8,23 @@
 class PEVs {
 
   ArrayList<PEV> PEVs;
-  int currentPEVID;
+  //int currentPEVID;
 
   PEVs() {
     PEVs = new ArrayList<PEV>();
-    currentPEVID = 0;
+    //currentPEVID = 0;
   }
-  
-  void initiateRandom(int _maxPEVNum){
-    int maxPEVNum = _maxPEVNum;
-    for (int i = 0; i < maxPEVNum; i ++) {
-      int tmpRoadID = int(random(0.0F, 12.0F));
-      float t = random(0.0F, 1.0F);
-      PEV tmpPEV = new PEV(currentPEVID, tmpRoadID, t);
+
+  void initiateRandom(int _totalPEVNum) {
+    int totalPEVNum = _totalPEVNum;
+    for (int i = 0; i < totalPEVNum; i ++) {
+      int tmpRoadID = int(random(0.0, 12.0)+0.5);
+      Road tmpRoad = roads.roads.get(tmpRoadID);
+      float t = random(0.0, 0.75);
+      //PEV tmpPEV = new PEV(currentPEVID, tmpRoadID, t);
+      PEV tmpPEV = new PEV(tmpRoad, t);
       PEVs.add(tmpPEV);
-      currentPEVID ++;
+      //currentPEVID ++;
     }
   }
 
@@ -35,5 +37,4 @@ class PEVs {
   void addPEV(PEV _PEV) {
     PEVs.add(_PEV);
   }
-  
 }
