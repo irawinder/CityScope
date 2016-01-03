@@ -24,10 +24,11 @@ boolean load_non_essential_data = true;
 
 // Tables of CDR and other point-based data
 
-  int dataMode = 2;
-  // dataMode = 0 for random network
-  // dataMode = 1 for basic network of Andorra Tower Locations
-  // dataMode = 2 for Andorra CDR Network (circa Dec 2015)
+  int dataMode = 3;
+  // dataMode = 3 for Andorra CDR Network (circa Dec 2015)
+  // dataMode = 2 for basic network of Andorra Tower Locations
+  // dataMode = 1 for random network
+  // dataMode = 0 for empty network and Pathfinder Test OD
   
   // Sample Geolocated Data
   Table tripAdvisor;
@@ -47,7 +48,7 @@ boolean load_non_essential_data = true;
                      "cirq",
                      "volta" };
   
-  // for dataMode = 2:
+  // for dataMode = 3:
   int hourIndex = 16;
   int maxHour = 23;
   Table summary;
@@ -75,7 +76,7 @@ boolean load_non_essential_data = true;
   
 void initData() {
   
-  if (dataMode == 1 || dataMode == 2) {
+  if (dataMode == 2 || dataMode == 3) {
     load_non_essential_data = true;
     showTopo = true;
   } else {

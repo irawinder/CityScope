@@ -166,12 +166,15 @@ void initAgents() {
   
   switch(dataMode) {
     case 0:
-      testNetwork_Random();
+      testNetwork_Random(0);
       break;
     case 1:
-      testNetwork_CDRWifi();
+      testNetwork_Random(8);
       break;
     case 2:
+      testNetwork_CDRWifi();
+      break;
+    case 3:
       CDRNetwork();
       break;
   }
@@ -227,11 +230,6 @@ void CDRNetwork() {
     
     // delay, origin, destination, speed, color
     swarms[i] = new Swarm(weight[i], origin[i], destination[i], 1, col);
-    
-//    if (external) {
-//      swarms[i].cropAgents = false;
-//      swarms[i].maxSpeed = 0.2;
-//    }
     
   }
   
@@ -370,11 +368,11 @@ void testNetwork_CDRWifi() {
 }
 
 // dataMode for random network
-void testNetwork_Random() {
+void testNetwork_Random(int _numNodes) {
   
   int numNodes, numEdges, numSwarm;
   
-  numNodes = 8;
+  numNodes = _numNodes;
   numEdges = numNodes*(numNodes-1);
   numSwarm = numEdges;
   
@@ -498,20 +496,29 @@ void setObstacleGrid(int u, int v) {
 //------------- Initialize Pathfinding Objects
 
 Pathfinder finder;
+int finderMode = 2;
+// 0 = Random Noise Test
+// 1 = Grid Test
+// 2 = Custom
 
 // Pathfinder test and debugging Objects
-Pathfinder finderTest, finderGrid;
+Pathfinder finderTest, finderGrid, finderCustom;
 PVector A, B;
 ArrayList<PVector> testPath, testVisited;
 
 void initPathfinder(PGraphics p, int res) {
   
-  // Initializes a Pathfinding network
+  // Initializes a Custom Pathfinding network Based off of user-drawn Obstacle Course
   finder = new Pathfinder(p.width, p.height, res, 0.0); // 4th float object is a number 0-1 that represents how much of the network you would like to randomly cull, 0 being none
   finder.applyObstacleCourse(boundaries);
   
-  initOD(p);
+  // Initializes a Pathfinding network Based off of standard Grid-based Obstacle Course
+//  finderGrid = new Pathfinder(p.width, p.height, res, 0.0); // 4th float object is a number 0-1 that represents how much of the network you would like to randomly cull, 0 being none
+//  finderGrid.applyObstacleCourse(boundaries);
+  
+  // Initializes a Pathfinding network Based off of Random Noise
   initNetwork(p, 10, 0.55);
+  initOD(p);
   initPath(finderTest, A, B);
   
   // Ensures that a valid path is always initialized upon start, to an extent...
@@ -526,15 +533,32 @@ void initPathfinder(PGraphics p, int res) {
       break;
     }
   }
+  
+  //toggleFinder(finder);
 }
+
+void toggleFinder(Pathfinder f) {
+  switch(finderMode) {
+    case 0:
+      f = finderTest;
+      break;
+    case 1:
+      f = finderGrid;
+      break;
+    case 2:
+      f = finderCustom;
+      break;
+  }
+}
+    
 
 void initNetwork(PGraphics p, int res, float cullRatio) {
   finderTest = new Pathfinder(p.width, p.height, res, cullRatio);
 }
 
-void initPath(Pathfinder finder, PVector A, PVector B) {
-  testPath = finder.findPath(A, B);
-  testVisited = finder.getVisited();
+void initPath(Pathfinder f, PVector A, PVector B) {
+  testPath = f.findPath(A, B);
+  testVisited = f.getVisited();
 }
 
 void initOD(PGraphics p) {

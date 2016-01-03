@@ -8,6 +8,8 @@ void keyPressed() {
       break;
     case 'r': //reset agents and simulation
       initAgents();
+      scrollX = 0;
+      scrollY = 0;
       break;
     case 'f': //print framerate to console
       showFrameRate = toggle(showFrameRate);
@@ -73,14 +75,17 @@ void keyPressed() {
     case 'd': //shows still data, makes it slow
       if (!showData && !load_non_essential_data) {
         load_non_essential_data = toggle(load_non_essential_data);
-        dataMode = 2;
+        dataMode = 3;
         initContent();
       }
       showData = toggle(showData);
       println("showData = " + showData);
       break;
     case 'D': //shows still data, makes it slow
-      dataMode = nextMode(dataMode, 2);
+      dataMode = nextMode(dataMode, 3);
+      if (dataMode == 0) {
+        showPaths = true;
+      }
       initContent();
       break;
     case 'T': // show topography 

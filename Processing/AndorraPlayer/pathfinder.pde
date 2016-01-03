@@ -21,6 +21,7 @@ class Pathfinder {
   
   Pathfinder(int w, int h, float res, float cullRatio) {
     network = new Graph(w, h, res);
+    network.cullRandom(cullRatio);
     refresh();
   }
   

@@ -6,7 +6,6 @@
 // To Do:
 // Allow finer control of visualizing pathfinder network data
 // Allow Dynamic Editing of Pathfinder Routes
-// Have speed of agent depend on region, not swarm identity
 // Make a Horde Class for Swarms
 // Get Rid of Flickering Sources and Sinks
 
@@ -45,6 +44,10 @@
 //
 //   Data Navigation
 //     'D' = Next Data Mode
+//         dataMode = 3 for Andorra CDR Network (circa Dec 2015)
+//         dataMode = 2 for basic network of Andorra Tower Locations
+//         dataMode = 1 for random network
+//         dataMode = 0 for empty network and Pathfinder Test OD
 //     'I' - Next OD Data Set
 //     ']' - Go forward an hour in OD dataset
 //     '[' - Go backward an hour in OD dataset 

@@ -53,7 +53,6 @@ void drawTableCanvas(PGraphics p) {
       // Reverses margin offset
       p.translate(-marginWidthPix, -marginWidthPix);
 
-      
       // Displays Heatmap
       if(showTraces) {
         traces.display();
@@ -68,7 +67,11 @@ void drawTableCanvas(PGraphics p) {
 
       // Draws pathfinding nodes onto Canvas
       if (showPaths) {
-        drawPathfinder(p);
+        if (dataMode == 0) {
+          drawTestFinder(p, finderTest, testPath, testVisited);
+        } else {
+          finder.display(p);
+        }
       }
       
       // Renders Agent 'dots' and corresponding obstacles and heatmaps
@@ -400,44 +403,47 @@ void drawLineGraph() {
 
 
 
-void drawPathfinder(PGraphics p) {
+void drawTestFinder(PGraphics p, Pathfinder f, ArrayList<PVector> path, ArrayList<PVector> visited) {
   
-  finderTest.display(p);
+  f.display(p);
   
   // Draw Nodes Visited in order to find path solution
   p.strokeWeight(1);
   p.stroke(abs(textColor-125));
-  for (int i=0; i<testVisited.size(); i++) {
-    p.ellipse(testVisited.get(i).x, testVisited.get(i).y, finderTest.getResolution(), finderTest.getResolution());
+  for (int i=0; i<visited.size(); i++) {
+    p.ellipse(visited.get(i).x, visited.get(i).y, f.getResolution(), f.getResolution());
   }
   
   // Draw Path Edges
   p.strokeWeight(2);
   p.stroke(#007D00);
-  for (int i=0; i<testPath.size()-1; i++) {
-    p.line(testPath.get(i).x, testPath.get(i).y, testPath.get(i+1).x, testPath.get(i+1).y);
+  for (int i=0; i<path.size()-1; i++) {
+    p.line(path.get(i).x, path.get(i).y, path.get(i+1).x, path.get(i+1).y);
   }
+  
+  p.endDraw();
+  p.beginDraw();
   
   //Draw Origin
   p.strokeWeight(2);
   p.stroke(#FF0000);
   p.noFill();
-  p.ellipse(A.x, A.y, finderTest.getResolution(), finderTest.getResolution());
+  p.ellipse(A.x, A.y, f.getResolution(), f.getResolution());
   
   p.fill(textColor);
-  p.text("origin", A.x + finderTest.getResolution(), A.y);
+  p.text("origin", A.x + f.getResolution(), A.y);
   
   //Draw Destination
   p.strokeWeight(2);
   p.stroke(#0000FF);
   p.noFill();
-  p.ellipse(B.x, B.y, finderTest.getResolution(), finderTest.getResolution());
+  p.ellipse(B.x, B.y, f.getResolution(), f.getResolution());
   
 //  p.fill(textColor);
-//  p.text("destination", B.x + finderTest.getResolution(), B.y);
+//  p.text("destination", B.x +finderTest f.getResolution(), B.y);
   
   //Draw Path not Found Message
-  if (testPath.size() < 2) {
+  if (path.size() < 2) {
     p.textAlign(CENTER);
     p.fill(textColor);
     p.text("Path not found. Try a new origin and destination", p.width/2, p.height/2);
@@ -462,7 +468,7 @@ void drawPathfinder(PGraphics p) {
     p.text("Nodes are highlighted when visited by the pathfinding algorithm.", 20, 80);
     
     p.text("Directions:", 20, 120);
-    p.text("Press 'r' to generate a new origin-destination pair", 20, 140);
+    p.text("Press 'X' to generate a new origin-destination pair", 20, 140);
     p.text("Press 'n' to generate a new network", 20, 160);
     p.text("Press 'b' to invert colors", 20, 180);
     p.text("Press 'h' to hide these directions", 20, 200);
@@ -473,6 +479,9 @@ void drawPathfinder(PGraphics p) {
   p.fill(textColor);
   p.text("Pathfinder v1.0", 20, p.height - 40);
   p.text("Ira Winder, MIT Media Lab 2015", 20, p.height - 20);
+  
+  p.endDraw();
+  p.beginDraw();
 }
 
 
@@ -552,9 +561,11 @@ void drawSwarms(PGraphics p) {
   
   p.fill(textColor);
   p.textSize(1.5*textSize);
-  p.text("Total Agents Rendered: " + numAgents, marginWidthPix, 0.4*marginWidthPix);
-  p.text("Adjust: " + int(adjust), marginWidthPix, 0.7*marginWidthPix);
-  p.text("Total Agents in OD: " + summary.getInt(hourIndex, "TOTAL"), 7*marginWidthPix, 0.4*marginWidthPix);
+  if (dataMode != 0) {
+    p.text("Total Agents Rendered: " + numAgents, marginWidthPix, 0.4*marginWidthPix);
+    p.text("Adjust: " + int(adjust), marginWidthPix, 0.7*marginWidthPix);
+    p.text("Total Agents in OD: " + summary.getInt(hourIndex, "TOTAL"), 7*marginWidthPix, 0.4*marginWidthPix);
+  }
   
   textSize = 8;
   
