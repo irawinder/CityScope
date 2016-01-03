@@ -4,6 +4,7 @@
 // Ira Winder, MIT Media Lab, jiw@mit.edu, Fall 2015
 
 // To Do:
+// Make Agent LifeSpan some sort of sense
 // Make a Horde Class for Swarms
 
 // In general, migrate global "void drawFoo()" methods into class-specific "display()" methods

@@ -254,7 +254,7 @@ void CDRNetwork() {
     
     // Makes sure that agents 'staying put' eventually die; 
     // also that they don't blead into the margin or topo
-    if (origin[i] == destination[i]) {
+    if (origin[i] == destination[i] || swarms[i].path.size() < 2) {
       if (external) {
         swarms[i].cropAgents = true;
         swarms[i].cropDir = 1;
