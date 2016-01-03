@@ -7,7 +7,7 @@ void keyPressed() {
       showSource = toggle(showSource);
       break;
     case 'r': //reset agents and simulation
-      initAgents();
+      initAgents(tableCanvas);
       scrollX = 0;
       scrollY = 0;
       break;
@@ -31,7 +31,7 @@ void keyPressed() {
       testObstacles(testObstacles);
       // Resets the network for gridded mode
       resetFinder(tableCanvas, 10, 1); // '1' for gridded mode
-      refreshFinder();
+      refreshFinder(tableCanvas);
       break;
     case 't': //shows thermal/traces of where agents have been 
       showTraces = toggle(showTraces);
@@ -101,10 +101,10 @@ void keyPressed() {
       if (!editObstacles) { //if deactivating editor, reinitializes custom network
         // Resets the network for custom mode
         resetFinder(tableCanvas, 10, 2); // '2' for custom mode
-        refreshFinder();
+        refreshFinder(tableCanvas);
       } else { // If activating editor, sets finder mode to custom
         finderMode = 2;
-        refreshFinder();
+        refreshFinder(tableCanvas);
         showObstacles = true;
       }
       break;
@@ -156,7 +156,7 @@ void keyPressed() {
       }
       dateIndex = nextMode(dateIndex, dates.length-1);
       initData();
-      initAgents();
+      initAgents(tableCanvas);
       break;
     case 'P': //toggle display of shortest paths
       showPaths = toggle(showPaths);
@@ -167,14 +167,15 @@ void keyPressed() {
     case 'X': // randomize locations of origin and destination paths
       initOD(tableCanvas);
       initPath(pFinder, A, B);
+      pFinderGrid_Viz(tableCanvas);
       break;
     case 'n': // randomize/reset current network for pathfinding
       resetFinder(tableCanvas, 10, finderMode);
-      refreshFinder();
+      refreshFinder(tableCanvas);
       break;
     case '>': // Toggle network for pathfinding
       finderMode = nextMode(finderMode, 2);
-      refreshFinder();
+      refreshFinder(tableCanvas);
       break;
   }
   

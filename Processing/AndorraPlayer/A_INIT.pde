@@ -120,7 +120,7 @@ void initContent() {
   
   initObstacles();
   initPathfinder(tableCanvas, 10);
-  initAgents();
+  initAgents(tableCanvas);
   
   //hurrySwarms(tableCanvas);
 }
@@ -145,7 +145,7 @@ float adjust; // dynamic scalar used to nomralize agent generation rate
 
 HeatMap traces;
 
-void initAgents() {
+void initAgents(PGraphics p) {
   
   agentCap = 2000;
   adjust = 1;
@@ -170,16 +170,18 @@ void initAgents() {
       break;
   }
   
-  pathSwarms();
+  pathSwarms(p);
   
   traces = new HeatMap(canvasWidth/5, canvasHeight/5, canvasWidth, canvasHeight);
 }
 
-void pathSwarms() {
+void pathSwarms(PGraphics p) {
   // Applyies pathfinding network to swarms
   for (Swarm s : swarms) {
     s.solvePath(pFinder);
   }
+  
+  pFinderPaths_Viz(p);
 }
 
 void hurrySwarms(PGraphics p) {
@@ -540,7 +542,7 @@ PVector A, B;
 ArrayList<PVector> testPath, testVisited;
 
 // PGraphic for holding pFinder Viz info so we don't have to re-write it every frame
-PGraphics pFinderViz;
+PGraphics pFinderPaths, pFinderGrid;
 
 void initPathfinder(PGraphics p, int res) {
   
@@ -557,8 +559,11 @@ void initPathfinder(PGraphics p, int res) {
   initOD(p);
   
   // sets 'pFinder' to one of above network presets
-  setFinder(finderMode);
+  setFinder(p, finderMode);
   initPath(pFinder, A, B);
+  
+  // Initializes a PGraphic of the paths found
+  pFinderGrid_Viz(p);
   
   // Ensures that a valid path is always initialized upon start, to an extent...
   forcePath(p);
@@ -579,12 +584,11 @@ void initRandomFinder(PGraphics p, int res) {
 }
 
 // Refresh Paths and visualization; Use for key commands and dynamic changes
-void refreshFinder() {
-  setFinder(finderMode);
+void refreshFinder(PGraphics p) {
+  setFinder(p, finderMode);
   initPath(pFinder, A, B);
-  pathSwarms();
-  
-  //initAgents();
+  pathSwarms(p);
+  pFinderGrid_Viz(p);
 }
 
 // Completely rebuilds a selected Pathfinder Network
@@ -600,10 +604,10 @@ void resetFinder(PGraphics p, int res, int _finderMode) {
       initCustomFinder(p, res);
       break;
   }
-  setFinder(_finderMode);
+  setFinder(p, _finderMode);
 }
 
-void setFinder(int _finderMode) {
+void setFinder(PGraphics p, int _finderMode) {
   switch(_finderMode) {
     case 0:
       pFinder = finderRandom;
@@ -615,6 +619,32 @@ void setFinder(int _finderMode) {
       pFinder = finderCustom;
       break;
   }
+}
+
+void pFinderPaths_Viz(PGraphics p) {
+  
+  // Write Path Results to PGraphics
+  pFinderPaths = createGraphics(p.width, p.height);
+  pFinderPaths.beginDraw();
+  for (Swarm s : swarms) {
+    s.solvePath(pFinder);
+    s.displayPath(pFinderPaths);
+  }
+  pFinderPaths.endDraw();
+  
+}
+
+void pFinderGrid_Viz(PGraphics p) {
+  
+  // Write Netowork Results to PGraphics
+  pFinderGrid = createGraphics(p.width, p.height);
+  pFinderGrid.beginDraw();
+  if (dataMode == 0) {
+    drawTestFinder(pFinderGrid, pFinder, testPath, testVisited);
+  } else {
+    pFinder.display(pFinderGrid);
+  }
+  pFinderGrid.endDraw();
 }
 
 // Ensures that a valid path is always initialized upon start, to an extent...

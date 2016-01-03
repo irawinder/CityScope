@@ -80,11 +80,12 @@ void drawTableCanvas(PGraphics p) {
       
       // Draws pathfinding nodes onto Canvas
       if (showGrid) {
-        if (dataMode == 0) {
-          drawTestFinder(p, pFinder, testPath, testVisited);
-        } else {
-          pFinder.display(p);
-        }
+        p.image(pFinderGrid, 0, 0);
+      }
+      
+      // Draws shortest paths for OD nodes
+      if (showPaths) {
+        p.image(pFinderPaths, 0, 0);
       }
       
       // Renders Agent 'dots' and corresponding obstacles and heatmaps
@@ -508,10 +509,10 @@ void drawSwarms(PGraphics p) {
   
   for (Swarm s : swarms) {
     
-    // Show Pathfinding Netowrk for Agents
-    if (showPaths) {
-      s.displayPath(p);
-    }
+//    // Show Pathfinding Netowrk for Agents
+//    if (showPaths) {
+//      s.displayPath(p);
+//    }
     
     // Show Markers for Sources and Sinks of Angents
     if (showSource) {
