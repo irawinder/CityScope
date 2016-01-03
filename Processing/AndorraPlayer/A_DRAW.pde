@@ -64,7 +64,7 @@ void drawTableCanvas(PGraphics p) {
         boundaries.display(p, textColor, 100);
         topoBoundary.display(p, textColor, 100);
       }
-
+      
       // Draws pathfinding nodes onto Canvas
       if (showPaths) {
         if (dataMode == 0) {
@@ -490,6 +490,8 @@ void drawSwarms(PGraphics p) {
   
   numAgents = 0;
   
+  println("boomA");
+  
   for (Swarm s : swarms) {
     s.update();
     numAgents += s.swarm.size();
@@ -563,8 +565,8 @@ void drawSwarms(PGraphics p) {
   p.textSize(1.5*textSize);
   if (dataMode != 0) {
     p.text("Total Agents Rendered: " + numAgents, marginWidthPix, 0.4*marginWidthPix);
-    p.text("Adjust: " + int(adjust), marginWidthPix, 0.7*marginWidthPix);
-    p.text("Total Agents in OD: " + summary.getInt(hourIndex, "TOTAL"), 7*marginWidthPix, 0.4*marginWidthPix);
+    //p.text("Adjust: " + int(adjust), marginWidthPix, 0.7*marginWidthPix);
+    //p.text("Total Agents in OD: " + summary.getInt(hourIndex, "TOTAL"), 7*marginWidthPix, 0.4*marginWidthPix);
   }
   
   textSize = 8;

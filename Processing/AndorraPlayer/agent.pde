@@ -254,6 +254,12 @@ class Swarm {
     
   
   void solvePath(Pathfinder f) {
+    
+    // Remove all existing agents from swarms since they will be following wrong path
+    while (swarm.size() > 0) {
+      swarm.remove(swarm.size()-1);
+    }
+    
     path = f.findPath(origin, destination);
     finderResolution = f.getResolution();
   }

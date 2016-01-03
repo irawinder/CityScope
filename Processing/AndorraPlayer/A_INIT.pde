@@ -155,12 +155,7 @@ void initAgents() {
   adjust = 1;
   maxFlow = 0;
   
-  summary = new Table();
-  summary.addColumn("HOUR");
-  summary.addColumn("TOTAL");
-  summary.addColumn("SPANISH");
-  summary.addColumn("FRENCH");
-  summary.addColumn("OTHER");
+  resetSummary();
   
   CDRNetwork();
   
@@ -179,13 +174,26 @@ void initAgents() {
       break;
   }
   
+  pathSwarms();
+  
+  traces = new HeatMap(canvasWidth/5, canvasHeight/5, canvasWidth, canvasHeight);
+  
+}
+
+void pathSwarms() {
   // Applyies pathfinding network to swarms
   for (Swarm s : swarms) {
     s.solvePath(pFinder);
   }
-  
-  traces = new HeatMap(canvasWidth/5, canvasHeight/5, canvasWidth, canvasHeight);
-  
+}
+
+void resetSummary() {
+  summary = new Table();
+  summary.addColumn("HOUR");
+  summary.addColumn("TOTAL");
+  summary.addColumn("SPANISH");
+  summary.addColumn("FRENCH");
+  summary.addColumn("OTHER");
 }
 
 void CDRNetwork() {
@@ -502,7 +510,7 @@ int finderMode = 2;
 // 2 = Custom
 
 // Pathfinder test and debugging Objects
-Pathfinder finderTest, finderGrid, finderCustom;
+Pathfinder finderRandom, finderGrid, finderCustom;
 PVector A, B;
 ArrayList<PVector> testPath, testVisited;
 
@@ -539,14 +547,16 @@ void initGridFinder(PGraphics p, int res) {
 }
 
 void initRandomFinder(PGraphics p, int res) {
-  finderTest = new Pathfinder(p.width, p.height, res, 0.55);
+  finderRandom = new Pathfinder(p.width, p.height, res, 0.55);
 }
 
 // Refresh Paths and visualization; Use for key commands and dynamic changes
 void refreshFinder() {
   setFinder(finderMode);
   initPath(pFinder, A, B);
-  initAgents();
+  pathSwarms();
+  
+  //initAgents();
 }
 
 // Completely rebuilds a selected Pathfinder Network
@@ -568,7 +578,7 @@ void resetFinder(PGraphics p, int res, int _finderMode) {
 void setFinder(int _finderMode) {
   switch(_finderMode) {
     case 0:
-      pFinder = finderTest;
+      pFinder = finderRandom;
       break;
     case 1:
       pFinder = finderGrid;

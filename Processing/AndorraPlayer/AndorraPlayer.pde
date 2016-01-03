@@ -4,7 +4,6 @@
 // Ira Winder, MIT Media Lab, jiw@mit.edu, Fall 2015
 
 // To Do:
-// Allow finer control of visualizing pathfinder network data
 // Allow Dynamic Editing of Pathfinder Routes
 // Make a Horde Class for Swarms
 // Get Rid of Flickering Sources and Sinks
