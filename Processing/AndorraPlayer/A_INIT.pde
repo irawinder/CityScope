@@ -205,8 +205,8 @@ void initAgents(PGraphics p) {
       testNetwork_Random(16);
       break;
     case 2:
-      agentCap = 500;
-      testNetwork_CDRWifi(false, true);
+      agentCap = 2000;
+      testNetwork_CDRWifi(true, true);
       break;
     case 3:
       agentCap = 2000;
