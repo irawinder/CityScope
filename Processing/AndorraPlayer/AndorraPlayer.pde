@@ -4,6 +4,7 @@
 // Ira Winder, MIT Media Lab, jiw@mit.edu, Fall 2015
 
 // To Do:
+// Make it possible to disable Pathfinding for swarms
 // Make Agent LifeSpan some sort of sense
 // Make a Horde Class for Swarms
 
@@ -94,6 +95,7 @@
 //      'X': regenerate a random origin and destination
 //      'n': regenerate a random network for testing
 //      '>': Next Pathfinder Network (Random, Gridded, and Custom)
+//      '<': Enable/Disable Pathfinding
 
 
 // set to true when running app to prevent fullScreen Mode

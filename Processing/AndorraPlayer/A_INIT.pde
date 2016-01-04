@@ -141,7 +141,7 @@ int numAgents, maxAgents, maxFlow, agentCap;
 int[] swarmSize;
 float adjust; // dynamic scalar used to nomralize agent generation rate
 
-
+boolean enablePathfinding = true;
 
 HeatMap traces;
 
@@ -170,18 +170,18 @@ void initAgents(PGraphics p) {
       break;
   }
   
-  pathSwarms(p);
+  swarmPaths(p, enablePathfinding);
   
   traces = new HeatMap(canvasWidth/5, canvasHeight/5, canvasWidth, canvasHeight);
 }
 
-void pathSwarms(PGraphics p) {
+void swarmPaths(PGraphics p, boolean enable) {
+  
   // Applyies pathfinding network to swarms
   for (Swarm s : swarms) {
-    s.solvePath(pFinder);
+    s.solvePath(pFinder, enable);
   }
-  
-  pFinderPaths_Viz(p);
+  pFinderPaths_Viz(p, enablePathfinding);
 }
 
 void hurrySwarms(PGraphics p) {
@@ -587,7 +587,7 @@ void initRandomFinder(PGraphics p, int res) {
 void refreshFinder(PGraphics p) {
   setFinder(p, finderMode);
   initPath(pFinder, A, B);
-  pathSwarms(p);
+  swarmPaths(p, enablePathfinding);
   pFinderGrid_Viz(p);
 }
 
@@ -621,13 +621,13 @@ void setFinder(PGraphics p, int _finderMode) {
   }
 }
 
-void pFinderPaths_Viz(PGraphics p) {
+void pFinderPaths_Viz(PGraphics p, boolean enable) {
   
   // Write Path Results to PGraphics
   pFinderPaths = createGraphics(p.width, p.height);
   pFinderPaths.beginDraw();
   for (Swarm s : swarms) {
-    s.solvePath(pFinder);
+    s.solvePath(pFinder, enable);
     s.displayPath(pFinderPaths);
   }
   pFinderPaths.endDraw();
@@ -663,7 +663,7 @@ void forcePath(PGraphics p) {
 }
 
 void initPath(Pathfinder f, PVector A, PVector B) {
-  testPath = f.findPath(A, B);
+  testPath = f.findPath(A, B, enablePathfinding);
   testVisited = f.getVisited();
 }
 

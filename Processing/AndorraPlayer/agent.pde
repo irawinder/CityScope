@@ -254,15 +254,20 @@ class Swarm {
     return new Obstacle(hitBox);
   }
     
+  void defaultPath() {
+    path.clear();
+    path.add(origin);
+    path.add(destination);
+  }
   
-  void solvePath(Pathfinder f) {
+  void solvePath(Pathfinder f, boolean enable) {
     
     // Remove all existing agents from swarms since they will be following wrong path
     while (swarm.size() > 0) {
       swarm.remove(swarm.size()-1);
     }
     
-    path = f.findPath(origin, destination);
+    path = f.findPath(origin, destination, enable);
     finderResolution = f.getResolution();
   }
   

@@ -177,6 +177,10 @@ void keyPressed() {
       finderMode = nextMode(finderMode, 2);
       refreshFinder(tableCanvas);
       break;
+    case '<': // Enable/Disable Pathfinding
+      enablePathfinding = toggle(enablePathfinding);
+      refreshFinder(tableCanvas);
+      break;
   }
   
   //------arrow keys and how to code keys that aren't characters exactly----- 
