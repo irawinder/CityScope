@@ -76,6 +76,8 @@ boolean load_non_essential_data = true;
   
 void initData() {
   
+  println("Loading Data ...");
+  
   if (dataMode == 2 || dataMode == 3) {
     load_non_essential_data = true;
     showTopo = true;
@@ -112,5 +114,7 @@ void initData() {
     OD = new Table();
     tripAdvisor = new Table();
   }
+  
+  println("Data loaded.");
 }
   

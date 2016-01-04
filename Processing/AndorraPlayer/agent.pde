@@ -396,8 +396,15 @@ class Swarm {
     // Draws weighted lines from origin to destinations
     p.stroke(fill, 50);
     p.fill(fill, 50);
+    
+    float w = 5.0/agentDelay;
+   
+    if (w > 0.2*p.height) {
+      w = 0.2*p.height;
+    }
+    
     if (agentDelay > 0) {
-      p.strokeWeight(5.0/agentDelay);
+      p.strokeWeight(w);
     } else {
       p.noStroke();
     }
@@ -408,7 +415,7 @@ class Swarm {
       p.line(origin.x, origin.y, destination.x, destination.y);
     } else {
       p.noStroke();
-      p.ellipse(origin.x, origin.y, 1.0/agentDelay, 1.0/agentDelay);
+      p.ellipse(origin.x, origin.y, w, w);
     }
     p.strokeWeight(1);
     p.noStroke();

@@ -88,6 +88,16 @@ void drawTableCanvas(PGraphics p) {
         p.image(pFinderPaths, 0, 0);
       }
       
+      // Show Markers for Sources and Sinks of Angents
+      if (showSource) {
+        p.image(sources_Viz, 0, 0);
+      }
+      
+      // Show OD Network for Agents
+      if (showEdges) {
+        p.image(edges_Viz, 0, 0);
+      }
+      
       // Renders Agent 'dots' and corresponding obstacles and heatmaps
       drawSwarms(p);
      
@@ -508,25 +518,6 @@ void drawSwarms(PGraphics p) {
   }
   
   for (Swarm s : swarms) {
-    
-//    // Show Pathfinding Netowrk for Agents
-//    if (showPaths) {
-//      s.displayPath(p);
-//    }
-    
-    // Show Markers for Sources and Sinks of Angents
-    if (showSource) {
-      s.displaySource(p);
-    }
-    
-    // Show OD Network for Agents
-    if (showEdges) {
-      s.displayEdges(p);
-    }
-    
-  }
-  
-  for (Swarm s : swarms) {
       
     if (showTraces) {
       traces.update(s);
@@ -620,4 +611,44 @@ void drawSwarms(PGraphics p) {
   }
   
   time_0 = millis();
+}
+
+
+
+void loading(PGraphics p, String item) {
+  
+  p.beginDraw();
+  
+  int w, h;
+  boolean showName;
+  
+  // Draw Background Rectangle
+  p.fill(abs(textColor-25), 200);
+  p.stroke(textColor);
+  p.strokeWeight(2);
+  
+  if (!initialized) {
+    p.background(0);
+    w = 400;
+    h = 50;
+    showName = true;
+    p.rect(p.width/2 - w/2 , p.height/2 - h/2 + 12/2 , w, h , 12, 12, 12, 12);
+  } else {
+    w = 400;
+    h = 25;
+    showName = false;
+    p.rect(p.width/2 - w/2 , p.height/2 - h + 3*12/4 , w, h , 12, 12, 12, 12);
+  }
+  p.noStroke();
+  
+  // Text
+  p.textAlign(CENTER);
+  p.fill(abs(textColor-225), 255);
+  p.textSize(12);
+  p.text("Loading " + item + "...", p.width/2, p.height/2);
+  if (showName) {
+    p.text("Ira Winder, MIT Media Lab", p.width/2, p.height/2 + 20);
+  }
+  
+  p.endDraw();
 }
