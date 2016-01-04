@@ -437,7 +437,7 @@ void drawTestFinder(PGraphics p, Pathfinder f, ArrayList<PVector> path, ArrayLis
   
   // Draw Nodes Visited in order to find path solution
   p.strokeWeight(1);
-  int base = 200;
+  int base = 255;
   p.stroke(abs( background - base*schemeScaler));
   for (int i=0; i<visited.size(); i++) {
     p.ellipse(visited.get(i).x, visited.get(i).y, f.getResolution(), f.getResolution());
@@ -677,11 +677,11 @@ void setScheme(int dMode) {
   switch (dMode) {
     case 0: // On-Screen Rendering
       masterAlpha = 25;
-      schemeScaler = 0.5;
+      schemeScaler = 0.4;
       break;
     case 1: // Projection-Mapping Rendering
-      masterAlpha = 55;
-      schemeScaler = 0.8;
+      masterAlpha = 100;
+      schemeScaler = 1.0;
       break;
   }
   

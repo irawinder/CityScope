@@ -28,12 +28,6 @@
     
     int numProjectors = 4;
     
-//    int projectorWidth = 1920;
-//    int projectorHeight = 1080;
-
-    int projectorWidth = 1500;
-    int projectorHeight = 1000;
-    
 // Model and Table Dimensions in Centimeters
 
     // Dimensions of Topographic Model
@@ -81,14 +75,16 @@ void initCanvas() {
   println("Initializing Canvas and Projection Mapping Objects ... ");
   
   if (!use4k && !initialized) {
-    canvasWidth    /= 2;
-    canvasHeight   /= 2;
-    topoWidthPix   /= 2;
-    topoHeightPix  /= 2;
-    marginWidthPix /= 2;
+    float reduce = 0.5;
+    
+    canvasWidth    *= reduce;
+    canvasHeight   *= reduce;
+    topoWidthPix   *= reduce;
+    topoHeightPix  *= reduce;
+    marginWidthPix *= reduce;
     
     for (int i=0; i<container_Locations.length; i++) {
-      container_Locations[i].mult(.5);
+      container_Locations[i].mult(reduce);
     }
   }
   
@@ -114,6 +110,11 @@ void initCanvas() {
   
   // loads the saved projection-mapping layout
   ks.load();
+  
+  if (!debug) {
+    // Opens Projection-mapping when debug is off
+    drawMode = 1;
+  }
   
   // Adjusts Colors and Transparency depending on whether visualization is on screen or projected
   setScheme(drawMode);

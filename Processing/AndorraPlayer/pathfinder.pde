@@ -309,7 +309,7 @@ class Graph {
     
     // Formatting
     p.noFill();
-    int base = 100;
+    int base = 155;
     p.stroke(abs( background - base*schemeScaler ));
     p.strokeWeight(1);
     

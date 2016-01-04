@@ -37,6 +37,15 @@
 //  |                  |                 |
 //  |------------------------------------|
 
+// set to true when running app to prevent fullScreen Mode
+// also enables some visualizations for debugging
+boolean debug = false;
+
+int projectorWidth = 1920;
+int projectorHeight = 1080;
+//int projectorWidth = 1500;
+//int projectorHeight = 1000;
+    
 // Key Commands:
 //
 //     'g' - Toggle debug
@@ -101,10 +110,6 @@
 
 float version = 1.1;
 String loadText = "Andorra Player | Version " + version;
-
-// set to true when running app to prevent fullScreen Mode
-// also enables some visualizations for debugging
-boolean debug = true;
 
 boolean showFrameRate = false;
 boolean printFrames = false;
