@@ -77,7 +77,10 @@ boolean sketchFullScreen() {
 }
   
 void initCanvas() {
-  if (!use4k) {
+  
+  println("Initializing Canvas and Projection Mapping Objects ... ");
+  
+  if (!use4k && !initialized) {
     canvasWidth    /= 2;
     canvasHeight   /= 2;
     topoWidthPix   /= 2;
@@ -112,9 +115,42 @@ void initCanvas() {
   // loads the saved projection-mapping layout
   ks.load();
 
+  println("Canvas and Projection Mapping complete.");
 }
 
 void initContent() {
+  
+  switch(dataMode) {
+    case 0:
+      showGrid = true;
+      finderMode = 0;
+      showEdges = false;
+      showSource = false;
+      showPaths = false;
+      break;
+    case 1:
+      showGrid = true;
+      finderMode = 0;
+      showEdges = false;
+      showSource = false;
+      showPaths = false;
+      break;
+    case 2:
+      showGrid = false;
+      finderMode = 2;
+      showEdges = false;
+      showSource = false;
+      showPaths = false;
+      break;
+    case 3:
+      showGrid = false;
+      finderMode = 2;
+      showEdges = false;
+      showSource = true;
+      showPaths = false;
+      break;
+  }
+  
   // Loads MercatorMap projecetion for canvas, csv files referenced in 'DATA' tab, etc
   initData();
   
@@ -123,6 +159,7 @@ void initContent() {
   initAgents(tableCanvas);
   
   //hurrySwarms(tableCanvas);
+  println("Initialization Complete.");
 }
 
 
@@ -141,47 +178,77 @@ int numAgents, maxAgents, maxFlow, agentCap;
 int[] swarmSize;
 float adjust; // dynamic scalar used to nomralize agent generation rate
 
-
+boolean enablePathfinding = true;
 
 HeatMap traces;
 
+PGraphics sources_Viz, edges_Viz;
+
 void initAgents(PGraphics p) {
   
-  agentCap = 2000;
+  println("Initializing Agent Objects ... ");
+  
+  sources_Viz = createGraphics(p.width, p.height);
+  edges_Viz = createGraphics(p.width, p.height);
   adjust = 1;
   maxFlow = 0;
-  
   resetSummary();
-  
   CDRNetwork();
   
   switch(dataMode) {
     case 0:
+      agentCap = 2000;
       testNetwork_Random(0);
       break;
     case 1:
+      agentCap = 2000;
       testNetwork_Random(16);
       break;
     case 2:
-      testNetwork_CDRWifi();
+      agentCap = 500;
+      testNetwork_CDRWifi(false, true);
       break;
     case 3:
+      agentCap = 2000;
       CDRNetwork();
       break;
   }
   
-  pathSwarms(p);
-  
+  swarmPaths(p, enablePathfinding);
+  sources_Viz(p);
+  edges_Viz(p);
   traces = new HeatMap(canvasWidth/5, canvasHeight/5, canvasWidth, canvasHeight);
+  
+  println("Agents initialized.");
 }
 
-void pathSwarms(PGraphics p) {
+void swarmPaths(PGraphics p, boolean enable) {
+  
   // Applyies pathfinding network to swarms
   for (Swarm s : swarms) {
-    s.solvePath(pFinder);
+    s.solvePath(pFinder, enable);
   }
-  
-  pFinderPaths_Viz(p);
+  pFinderPaths_Viz(p, enablePathfinding);
+}
+
+void sources_Viz(PGraphics p) {
+  sources_Viz = createGraphics(p.width, p.height);
+  sources_Viz.beginDraw();
+  // Draws Sources and Sinks to canvas
+  for (Swarm s : swarms) {
+    s.displaySource(sources_Viz);
+  }
+  sources_Viz.endDraw(); 
+}
+
+void edges_Viz(PGraphics p) {
+  edges_Viz = createGraphics(p.width, p.height);
+  edges_Viz.beginDraw();
+  // Draws Sources and Sinks to canvas
+  for (Swarm s : swarms) {
+    s.displayEdges(edges_Viz);
+  }
+  edges_Viz.endDraw(); 
 }
 
 void hurrySwarms(PGraphics p) {
@@ -254,7 +321,7 @@ void CDRNetwork() {
     
     // Makes sure that agents 'staying put' eventually die; 
     // also that they don't blead into the margin or topo
-    if (origin[i] == destination[i]) {
+    if (origin[i] == destination[i] || swarms[i].path.size() < 2) {
       if (external) {
         swarms[i].cropAgents = true;
         swarms[i].cropDir = 1;
@@ -353,10 +420,18 @@ int prevHour(int hr){
 }
 
 // dataMode for basic network of Andorra Tower Locations
-void testNetwork_CDRWifi() {
+void testNetwork_CDRWifi(boolean CDR, boolean Wifi) {
   
   int numNodes, numEdges, numSwarm;
-  numNodes = frenchWifi.getRowCount() + localTowers.getRowCount();
+  
+  numNodes = 0;
+  if (CDR) {
+    numNodes += localTowers.getRowCount();
+  }
+  if (Wifi) {
+    numNodes += frenchWifi.getRowCount();
+  }
+  
   numEdges = numNodes*(numNodes-1);
   numSwarm = numEdges;
   
@@ -459,6 +534,9 @@ ObstacleCourse boundaries, grid, topoBoundary;
 PVector[] obPts;
 
 void initObstacles() {
+  
+  println("Initializing Obstacle Objects ...");
+  
   // Single Obstacle that describes table
   topoBoundary = new ObstacleCourse();
   setObstacleTopo(marginWidthPix-10, marginWidthPix-10, topoWidthPix+20, topoHeightPix+20);
@@ -470,6 +548,8 @@ void initObstacles() {
   // Obstacles for agents generates within Andorra le Vella
   boundaries = new ObstacleCourse();
   boundaries.loadCourse("data/course.tsv");
+  
+  println("Obstacles initialized.");
 }
 
 void testObstacles(boolean place) {
@@ -546,6 +626,8 @@ PGraphics pFinderPaths, pFinderGrid;
 
 void initPathfinder(PGraphics p, int res) {
   
+  println("Initializing Pathfinder Objects ... ");
+  
   // Initializes a Custom Pathfinding network Based off of user-drawn Obstacle Course
   initCustomFinder(p, res);
   
@@ -562,11 +644,13 @@ void initPathfinder(PGraphics p, int res) {
   setFinder(p, finderMode);
   initPath(pFinder, A, B);
   
+  // Ensures that a valid path is always initialized upon start, to an extent...
+  forcePath(p);
+  
   // Initializes a PGraphic of the paths found
   pFinderGrid_Viz(p);
   
-  // Ensures that a valid path is always initialized upon start, to an extent...
-  forcePath(p);
+  println("Pathfinders initialized.");
 }
 
 void initCustomFinder(PGraphics p, int res) {
@@ -587,7 +671,7 @@ void initRandomFinder(PGraphics p, int res) {
 void refreshFinder(PGraphics p) {
   setFinder(p, finderMode);
   initPath(pFinder, A, B);
-  pathSwarms(p);
+  swarmPaths(p, enablePathfinding);
   pFinderGrid_Viz(p);
 }
 
@@ -621,13 +705,13 @@ void setFinder(PGraphics p, int _finderMode) {
   }
 }
 
-void pFinderPaths_Viz(PGraphics p) {
+void pFinderPaths_Viz(PGraphics p, boolean enable) {
   
   // Write Path Results to PGraphics
   pFinderPaths = createGraphics(p.width, p.height);
   pFinderPaths.beginDraw();
   for (Swarm s : swarms) {
-    s.solvePath(pFinder);
+    s.solvePath(pFinder, enable);
     s.displayPath(pFinderPaths);
   }
   pFinderPaths.endDraw();
@@ -636,7 +720,7 @@ void pFinderPaths_Viz(PGraphics p) {
 
 void pFinderGrid_Viz(PGraphics p) {
   
-  // Write Netowork Results to PGraphics
+  // Write Network Results to PGraphics
   pFinderGrid = createGraphics(p.width, p.height);
   pFinderGrid.beginDraw();
   if (dataMode == 0) {
@@ -663,7 +747,7 @@ void forcePath(PGraphics p) {
 }
 
 void initPath(Pathfinder f, PVector A, PVector B) {
-  testPath = f.findPath(A, B);
+  testPath = f.findPath(A, B, enablePathfinding);
   testVisited = f.getVisited();
 }
 

@@ -4,7 +4,9 @@
 // Ira Winder, MIT Media Lab, jiw@mit.edu, Fall 2015
 
 // To Do:
+// Make Custom Editor for Swarm Attributes
 // Make a Horde Class for Swarms
+// Make Agent LifeSpan some sort of sense
 
 // In general, migrate global "void drawFoo()" methods into class-specific "display()" methods
 // Consolidate Agents, Obstacles, and Pathfinder classes to libraries and/or standalone applets and/or libraries?
@@ -93,13 +95,25 @@
 //      'X': regenerate a random origin and destination
 //      'n': regenerate a random network for testing
 //      '>': Next Pathfinder Network (Random, Gridded, and Custom)
+//      '<': Enable/Disable Pathfinding
 
+float version = 1.1;
+String loadText = "Andorra Player | Version " + version;
 
 // set to true when running app to prevent fullScreen Mode
 // also enables some visualizations for debugging
 boolean debug = true;
+
 boolean showFrameRate = false;
 boolean printFrames = false;
+
+// used to initialize objects when application is first run or reInitialized
+boolean initialized = false;
+
+// Number of frames for draw function to run before
+// running setup functions. Setting to greater than 0 
+// allows you to draw a loading screen
+int drawDelay = 10;
 
 // Only set this to true if projectors display output is 4k
 // Also set to false if developing on your machine in 1080p
@@ -123,49 +137,82 @@ void setup() {
   }
   
   initCanvas();
-  initContent();
   
-  tableCanvas.beginDraw();
-  tableCanvas.background(background);
-  tableCanvas.endDraw();
-  
+//  //Call this method if data folder ever needs to be selected by a user
+//  selectFolder("Please select the a folder and click 'Open'", "folderSelected");
+}
+
+
+void mainDraw() {
+    // Draw Functions Located here should exclusively be drawn onto 'tableCanvas',
+    // a PGraphics set up to hold all information that will eventually be 
+    // projection-mapped onto a big giant table:
+    drawTableCanvas(tableCanvas);
+    
+    if (!keyLoaded) {
+      // Draws loading screen
+      loading(tableCanvas, loadText);
+    }
+    
+    // Renders the finished tableCanvas onto main canvas as a projection map or screen
+    renderTableCanvas();
+    
+    // Draws a line graph of all data for given OD matrix onto the main canvas
+    if (load_non_essential_data && dataMode == 3 && drawMode == 0) {
+      drawLineGraph();
+    }
 }
 
 void draw() {
-
-  // Draw Functions Located hear should exclusively be draw onto 'tableCanvas',
-  // a PGraphics set up to hold all information that will eventually be 
-  // projection-mapped onto a big giant table
   
-      // Renders frame onto 'tableCanvas' PGraphic (Margins, basemap, and sample Geo-Data)
-      drawTableCanvas(tableCanvas);
-  
-  // -----------------------------------------------------------------------------
-  // -----------------------------------------------------------------------------
-  
-  
-  
-  
-  
-  // Renders the finished tableCanvas onto main canvas as a projection map or screen
-  renderTableCanvas();
-  
-  // Draws a line graph of all data for given OD matrix
-  if (load_non_essential_data && drawMode == 0) {
-    drawLineGraph();
+  if (drawDelay > 0) {
+    
+    if (initialized) {
+      mainDraw();
+    } else {
+      // Draws loading screen
+      loading(tableCanvas, loadText);
+      renderTableCanvas();
+    }
+    
+    drawDelay--;
   }
   
-  // Print Framerate of animation to console
-  if (showFrameRate) {
-    println(frameRate);
+  // These are usually run in setup() but we put them here so that 
+  // the 'loading' screen successfully runs for the user
+  else if (!initialized) {
+    
+    initContent();
+    
+//    tableCanvas.beginDraw();
+//    tableCanvas.background(background);
+//    tableCanvas.endDraw();
+    
+    initialized = true;
   }
   
-  // If true, saves every frame of the main canvas to a PNG
-  if (printFrames) {
-    //tableCanvas.save("videoFrames/" + millis() + ".png");
-    save("videoFrames/" + millis() + ".png");
+  // Methods run every frame (i.e. 'draw()' functions) go here
+  else {
+    
+    // These are initialization functions that may be called while the app is running
+    if (!keyLoaded) {
+      keyInit();
+      keyLoaded = true;  
+    }
+    
+    mainDraw();
+    
+    // Print Framerate of animation to console
+    if (showFrameRate) {
+      println(frameRate);
+    }
+    
+    // If true, saves every frame of the main canvas to a PNG
+    if (printFrames) {
+      //tableCanvas.save("videoFrames/" + millis() + ".png");
+      save("videoFrames/" + millis() + ".png");
+    }
   }
-  
 }
 
 void renderTableCanvas() {
@@ -208,4 +255,16 @@ void chopScreen(int projector) {
   offscreen.endDraw();
 }
 
+// Method that opens a folder
+String folderPath;
+void folderSelected(File selection) {
+  if (selection == null) { // Notifies console and closes program
+    println("User did not select a folder");
+    exit();
+  } else { // intitates the rest of the software
+    println("User selected " + selection.getAbsolutePath());
+    folderPath = selection.getAbsolutePath() + "/";
+    // some other startup function
+  }
+}
 

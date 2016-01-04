@@ -153,7 +153,7 @@ class Obstacle {
       //println("Fill Size: " + fill.width + ", " + fill.height);
     } else {
       createGraphics(1,1);
-      println("object has no area");
+      //println("object has no area");
     }
   }
   

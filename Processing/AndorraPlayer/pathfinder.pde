@@ -40,91 +40,95 @@ class Pathfinder {
   }
   
   // a, b, represent respective index for start and end nodes in pathfinding network
-  ArrayList<PVector> findPath(PVector A, PVector B) {
-    
-    int a = getClosestNode(A);
-    int b = getClosestNode(B);
+  ArrayList<PVector> findPath(PVector A, PVector B, boolean enable) {
     
     ArrayList<PVector> path = new ArrayList<PVector>();
-    ArrayList<Integer> toVisit = new ArrayList<Integer>();
+    allVisited.clear();
     
-    // Clears last list of visited nodes
-    for (int i=allVisited.size()-1; i>=0; i--) {
-      allVisited.remove(i);
-    }
-    
-    for (int i=0; i<networkSize; i++) {
-      totalDist[i] = Float.MAX_VALUE;
-      visited[i] = false;
-    }
-    totalDist[a] = 0;
-    parentNode[a] = a;
-    int current = a;
-    toVisit.add(current);
-    allVisited.add(current);
-    
-    // Loop runs until path is found or ruled out
-    boolean complete = false;
-    while(!complete) {
+    // If method is passed a false boolean, merely returns the origin and destinate as a eclidean path
+    if (!enable) {
       
-      // Cycles through all neighbors in current node
-      for(int i=0; i<network.getNeighborCount(current); i++) { 
-        
-        // Resets the cumulative distance if shorter path is found
-        float currentDist = totalDist[current] + getNeighborDistance(current, i);
-        if (totalDist[getNeighbor(current, i)] > currentDist) {
-          totalDist[getNeighbor(current, i)] = currentDist;
-          parentNode[getNeighbor(current, i)] = current;
-        }
-        
-        // Adds non-visited neighbors of current node to queue
-        if (!visited[getNeighbor(current, i)]) {
-          toVisit.add(getNeighbor(current, i));
-          allVisited.add(getNeighbor(current, i));
-          visited[getNeighbor(current, i)] = true;
-        }
+      path.add(A);
+      path.add(B);
+      
+    } else {
+      
+      ArrayList<Integer> toVisit = new ArrayList<Integer>();
+      
+      int a = getClosestNode(A);
+      int b = getClosestNode(B);
+      
+      for (int i=0; i<networkSize; i++) {
+        totalDist[i] = Float.MAX_VALUE;
+        visited[i] = false;
       }
+      totalDist[a] = 0;
+      parentNode[a] = a;
+      int current = a;
+      toVisit.add(current);
+      allVisited.add(current);
       
-      // Marks current node as visited and removes from queue
-      visited[current] = true;
-      toVisit.remove(0);
-      
-      // If there are still nodes in the queue, goes to the next.  
-      if (toVisit.size() > 0) {
+      // Loop runs until path is found or ruled out
+      boolean complete = false;
+      while(!complete) {
         
-        current = toVisit.get(0);
-        
-        // Terminates loop if destination is reached
-        if (current == b) {
-          //println("Total Distance to Distination: " + totalDist[current]);
+        // Cycles through all neighbors in current node
+        for(int i=0; i<network.getNeighborCount(current); i++) { 
           
-          // Working backward from destination, rebuilds optimal path to origin from parentNode data
-          path.add(0, B); //Canvas Coordinate of destination
-          path.add(0, getNode(b) ); //PAthfinding node closest to destination
-          current = b;
-          while (!complete) {
-            path.add(0, getNode(parentNode[current]) );
-            current = parentNode[current];
-            
-            if (current == a) {
-              complete = true;
-              path.add(0, A); //Canvas Coordinate of origin
-            }
+          // Resets the cumulative distance if shorter path is found
+          float currentDist = totalDist[current] + getNeighborDistance(current, i);
+          if (totalDist[getNeighbor(current, i)] > currentDist) {
+            totalDist[getNeighbor(current, i)] = currentDist;
+            parentNode[getNeighbor(current, i)] = current;
+          }
+          
+          // Adds non-visited neighbors of current node to queue
+          if (!visited[getNeighbor(current, i)]) {
+            toVisit.add(getNeighbor(current, i));
+            allVisited.add(getNeighbor(current, i));
+            visited[getNeighbor(current, i)] = true;
           }
         }
-      
-      // If no more nodes left in queue, path is returned as unsolved
-      } else {
         
-        // Returns path-not-found
-        complete = true;
-        //println("Path Not Found");
+        // Marks current node as visited and removes from queue
+        visited[current] = true;
+        toVisit.remove(0);
         
-        // only returns the origin as path
-        path.add(0, A);
+        // If there are still nodes in the queue, goes to the next.  
+        if (toVisit.size() > 0) {
+          
+          current = toVisit.get(0);
+          
+          // Terminates loop if destination is reached
+          if (current == b) {
+            //println("Total Distance to Distination: " + totalDist[current]);
+            
+            // Working backward from destination, rebuilds optimal path to origin from parentNode data
+            path.add(0, B); //Canvas Coordinate of destination
+            path.add(0, getNode(b) ); //PAthfinding node closest to destination
+            current = b;
+            while (!complete) {
+              path.add(0, getNode(parentNode[current]) );
+              current = parentNode[current];
+              
+              if (current == a) {
+                complete = true;
+                path.add(0, A); //Canvas Coordinate of origin
+              }
+            }
+          }
+        
+        // If no more nodes left in queue, path is returned as unsolved
+        } else {
+          
+          // Returns path-not-found
+          complete = true;
+          //println("Path Not Found");
+          
+          // only returns the origin as path
+          path.add(0, A);
+        }
       }
-      
-      
     }
     
     return path;
