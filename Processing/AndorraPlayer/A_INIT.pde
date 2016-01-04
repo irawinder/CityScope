@@ -119,6 +119,38 @@ void initCanvas() {
 }
 
 void initContent() {
+  
+  switch(dataMode) {
+    case 0:
+      showGrid = true;
+      finderMode = 0;
+      showEdges = false;
+      showSource = false;
+      showPaths = false;
+      break;
+    case 1:
+      showGrid = true;
+      finderMode = 0;
+      showEdges = false;
+      showSource = false;
+      showPaths = false;
+      break;
+    case 2:
+      showGrid = false;
+      finderMode = 2;
+      showEdges = false;
+      showSource = false;
+      showPaths = false;
+      break;
+    case 3:
+      showGrid = false;
+      finderMode = 2;
+      showEdges = false;
+      showSource = true;
+      showPaths = false;
+      break;
+  }
+  
   // Loads MercatorMap projecetion for canvas, csv files referenced in 'DATA' tab, etc
   initData();
   
@@ -612,11 +644,11 @@ void initPathfinder(PGraphics p, int res) {
   setFinder(p, finderMode);
   initPath(pFinder, A, B);
   
-  // Initializes a PGraphic of the paths found
-  pFinderGrid_Viz(p);
-  
   // Ensures that a valid path is always initialized upon start, to an extent...
   forcePath(p);
+  
+  // Initializes a PGraphic of the paths found
+  pFinderGrid_Viz(p);
   
   println("Pathfinders initialized.");
 }

@@ -576,7 +576,7 @@ void drawSwarms(PGraphics p) {
   
   p.fill(textColor);
   p.textSize(1.5*textSize);
-  if (dataMode != 0) {
+  if (dataMode == 2 || dataMode == 3) {
     p.text("Total Agents Rendered: " + numAgents, marginWidthPix, 0.4*marginWidthPix);
     //p.text("Adjust: " + int(adjust), marginWidthPix, 0.7*marginWidthPix);
     //p.text("Total Agents in OD: " + summary.getInt(hourIndex, "TOTAL"), 7*marginWidthPix, 0.4*marginWidthPix);

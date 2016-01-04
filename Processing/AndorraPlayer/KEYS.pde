@@ -31,6 +31,7 @@ void keyPressed() {
       break;
     case 'h': //shows info about paths
       showPathInfo = toggle(showPathInfo);
+      pFinderGrid_Viz(tableCanvas);
       break;
     case 'p': //makes a grid of obstacles
       setLoader("Gridded Obstacles");
@@ -124,6 +125,7 @@ void keyPressed() {
     case 'b': //toggle background between black and white
       background = toggleBW(background);
       textColor = toggleBW(textColor);
+      pFinderGrid_Viz(tableCanvas);
       break;
     case ']': //manually iterate to next Hour in data
       setLoader("CDR Data Hour: " + hourIndex);
@@ -289,6 +291,9 @@ void keyInit() {
     case '<':
       key_LeftCarrot();
       break;
+    case 'n':
+      key_n();
+      break;
     case 'E':
       key_E();
       break;
@@ -328,12 +333,7 @@ void key_0() {
 void key_D() {
   //Toggles various data and visualization modes
   dataMode = nextMode(dataMode, 3);
-  if (dataMode == 0) {
-    showGrid = true;
-    finderMode = 0;
-  } else if (dataMode == 2 || dataMode == 3) {
-    finderMode = 2;
-  }
+
   initContent();
 }
 
