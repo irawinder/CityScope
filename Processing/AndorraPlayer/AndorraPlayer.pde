@@ -60,6 +60,8 @@
 //     'c' - Toggle callibration mode for projection mapping
 //     's' - Save callibration
 //     'l' - Load callibration
+//     '{' - decrease alpha for translucent graphics
+//     '}' - increase alpha for translucent graphics
 //
 //   Agent-based Modeling:
 //      case 'i': Show Swarm Index

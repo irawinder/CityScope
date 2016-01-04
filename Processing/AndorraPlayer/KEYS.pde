@@ -70,11 +70,11 @@ void keyPressed() {
       }
       break;
     case 'm': // changes draw mode
-      if (drawMode < 1) {
-        drawMode++;
-      } else {
-        drawMode = 0;
-      }
+      drawMode = nextMode(drawMode, 1);
+      // Adjusts Colors and Transparency depending on whether visualization is on screen or projected
+      setScheme(drawMode);
+      // Reinitialize any PGraphics that use masterAlpha and schemaScaler
+      refreshGraphicScheme(tableCanvas);
       break;
     case 'g': // changes debug mode
       debug = toggle(debug);
@@ -165,6 +165,18 @@ void keyPressed() {
     case '<': // Enable/Disable Pathfinding
       setLoader("Pathfinder: " + toggle(enablePathfinding));
       // runs key_LeftCarrot() next frame
+      break;
+    case '{': // Decrease Alpha
+      adjustAlpha(-10);
+      pFinderGrid_Viz(tableCanvas);
+      println("schemeScaler: " + schemeScaler);
+      println("masterAlpha: " + masterAlpha);
+      break;
+    case '}': // Increase Alpha
+      adjustAlpha(+10);
+      pFinderGrid_Viz(tableCanvas);
+      println("schemeScaler: " + schemeScaler);
+      println("masterAlpha: " + masterAlpha);
       break;
   }
   

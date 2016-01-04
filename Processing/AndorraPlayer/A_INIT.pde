@@ -114,7 +114,10 @@ void initCanvas() {
   
   // loads the saved projection-mapping layout
   ks.load();
-
+  
+  // Adjusts Colors and Transparency depending on whether visualization is on screen or projected
+  setScheme(drawMode);
+  
   println("Canvas and Projection Mapping complete.");
 }
 
