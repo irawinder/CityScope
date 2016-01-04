@@ -125,28 +125,28 @@ void initCanvas() {
 void initContent() {
   
   switch(dataMode) {
-    case 0:
+    case 0: // Pathfinder Demo
       showGrid = true;
       finderMode = 0;
       showEdges = false;
       showSource = false;
       showPaths = false;
       break;
-    case 1:
+    case 1: // Random Demo
       showGrid = true;
       finderMode = 0;
       showEdges = false;
       showSource = false;
       showPaths = false;
       break;
-    case 2:
+    case 2: // Wifi and Towers Demo
       showGrid = false;
       finderMode = 2;
       showEdges = false;
       showSource = false;
       showPaths = false;
       break;
-    case 3:
+    case 3: // Andorra Demo
       showGrid = false;
       finderMode = 2;
       showEdges = false;
@@ -232,7 +232,7 @@ void swarmPaths(PGraphics p, boolean enable) {
   for (Swarm s : swarms) {
     s.solvePath(pFinder, enable);
   }
-  pFinderPaths_Viz(p, enablePathfinding);
+  pFinderPaths_Viz(p, enable);
 }
 
 void sources_Viz(PGraphics p) {
@@ -323,19 +323,9 @@ void CDRNetwork() {
     // delay, origin, destination, speed, color
     swarms[i] = new Swarm(weight[i], origin[i], destination[i], 1, col);
     
-    // Makes sure that agents 'staying put' eventually die; 
+    // Makes sure that agents 'staying put' eventually die
     // also that they don't blead into the margin or topo
-    if (origin[i] == destination[i] || swarms[i].path.size() < 2) {
-      if (external) {
-        swarms[i].cropAgents = true;
-        swarms[i].cropDir = 1;
-        swarms[i].agentLife = 2000;
-      } else {
-        swarms[i].cropAgents = true;
-        swarms[i].cropDir = 0;
-        swarms[i].agentLife = 2000;
-      }
-    }
+    swarms[i].temperStandingAgents(external);
     
   }
   
@@ -473,8 +463,15 @@ void testNetwork_CDRWifi(boolean CDR, boolean Wifi) {
   swarms = new Swarm[numSwarm];
   colorMode(HSB);
   for (int i=0; i<numSwarm; i++) {
+    
+    boolean external = topoBoundary.testForCollision(origin[i]) || topoBoundary.testForCollision(destination[i]);
+    
     // delay, origin, destination, speed, color
     swarms[i] = new Swarm(weight[i], origin[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+    
+    // Makes sure that agents 'staying put' eventually die
+    // also that they don't blead into the margin or topo
+    swarms[i].temperStandingAgents(external);
   }
   colorMode(RGB);
   
@@ -519,6 +516,9 @@ void testNetwork_Random(int _numNodes) {
   for (int i=0; i<numSwarm; i++) {
     // delay, origin, destination, speed, color
     swarms[i] = new Swarm(weight[i], origin[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+    
+    // Makes sure that agents 'staying put' eventually die
+    swarms[i].temperStandingAgents();
   }
   colorMode(RGB);
   

@@ -11,7 +11,7 @@ boolean showTraces = false;
 
 int background = 0;
 int textColor = 255;
-int grayColor = int(255.0/4);
+int grayColor = int(255.0/2);
 
 // Makes darker colors more visible when projecting
 int masterAlpha = 15;
@@ -646,17 +646,27 @@ void loading(PGraphics p, String item) {
   p.stroke(textColor);
   p.strokeWeight(2);
   
+  int x, y;
+  
+  if (numProjectors == 4 && drawMode == 1) {
+    x = p.width/4;
+    y = 3*p.height/4;
+  } else {
+    x = p.width/2;
+    y = p.height/2;
+  }
+  
   if (!initialized) {
     p.background(0);
     w = 400;
     h = 50;
     showName = true;
-    p.rect(p.width/2 - w/2 , p.height/2 - h/2 + 12/2 , w, h , 12, 12, 12, 12);
+    p.rect(x - w/2 , y - h/2 + 12/2 , w, h , 12, 12, 12, 12);
   } else {
     w = 400;
     h = 25;
     showName = false;
-    p.rect(p.width/2 - w/2 , p.height/2 - h + 3*12/4 , w, h , 12, 12, 12, 12);
+    p.rect(x - w/2 , y - h + 3*12/4 , w, h , 12, 12, 12, 12);
   }
   p.noStroke();
   
@@ -664,9 +674,9 @@ void loading(PGraphics p, String item) {
   p.textAlign(CENTER);
   p.fill(abs(textColor-225), 255);
   p.textSize(12);
-  p.text("Loading " + item + "...", p.width/2, p.height/2);
+  p.text("Loading " + item + "...", x, y);
   if (showName) {
-    p.text("Ira Winder, MIT Media Lab", p.width/2, p.height/2 + 20);
+    p.text("Ira Winder, MIT Media Lab", x, y + 20);
   }
   
   p.endDraw();

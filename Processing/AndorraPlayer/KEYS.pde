@@ -74,6 +74,7 @@ void keyPressed() {
       // Adjusts Colors and Transparency depending on whether visualization is on screen or projected
       setScheme(drawMode);
       // Reinitialize any PGraphics that use masterAlpha and schemaScaler
+      grayColor = int(abs(background - (255.0/2)*schemeScaler));
       refreshGraphicScheme(tableCanvas);
       break;
     case 'g': // changes debug mode
@@ -125,6 +126,7 @@ void keyPressed() {
     case 'b': //toggle background between black and white
       background = toggleBW(background);
       textColor = toggleBW(textColor);
+      grayColor = int(abs(background - (255.0/2)*schemeScaler));
       pFinderGrid_Viz(tableCanvas);
       break;
     case ']': //manually iterate to next Hour in data
