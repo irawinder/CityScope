@@ -141,7 +141,7 @@ void keyPressed() {
       edges_Viz(tableCanvas);
       break;
     case 'I': //next data index
-      setLoader("CDR Data: " + dates[dateIndex]);
+      setLoader("CDR Data: " + dates[nextMode(dateIndex, dates.length-1)]);
       // runs key_I() next frame
       break;
     case 'P': //toggle display of shortest paths
