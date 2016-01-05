@@ -9,13 +9,12 @@ boolean showSwarm = true;
 boolean showInfo = false;
 boolean showTraces = false;
 
-int background = 0;
-int textColor = 255;
-int grayColor = int(255.0/2);
-
 // Makes darker colors more visible when projecting
 int masterAlpha = 15;
 float schemeScaler = 0.5;
+int background = 0;
+int textColor = 255;
+int grayColor = int(abs(background - (255.0/2)*schemeScaler));
 
 // temp variable that holds coordinate location for a point to render
 PVector coord;
@@ -695,7 +694,7 @@ void setScheme(int dMode) {
       break;
   }
   
-  
+  grayColor = int(abs(background - (255.0/2)*schemeScaler));
 }
 
 // Reinitialize any PGraphics that use masterAlpha and schemaScaler

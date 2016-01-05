@@ -41,10 +41,10 @@
 // also enables some visualizations for debugging
 boolean debug = true;
 
-int projectorWidth = 1920;
-int projectorHeight = 1080;
-//int projectorWidth = 1500;
-//int projectorHeight = 1000;
+//int projectorWidth = 1920;
+//int projectorHeight = 1080;
+int projectorWidth = 1500;
+int projectorHeight = 1000;
     
 // Key Commands:
 //

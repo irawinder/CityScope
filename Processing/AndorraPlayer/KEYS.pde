@@ -74,7 +74,6 @@ void keyPressed() {
       // Adjusts Colors and Transparency depending on whether visualization is on screen or projected
       setScheme(drawMode);
       // Reinitialize any PGraphics that use masterAlpha and schemaScaler
-      grayColor = int(abs(background - (255.0/2)*schemeScaler));
       refreshGraphicScheme(tableCanvas);
       break;
     case 'g': // changes debug mode
@@ -171,12 +170,14 @@ void keyPressed() {
     case '{': // Decrease Alpha
       adjustAlpha(-10);
       pFinderGrid_Viz(tableCanvas);
+      grayColor = int(abs(background - (255.0/2)*schemeScaler));
       println("schemeScaler: " + schemeScaler);
       println("masterAlpha: " + masterAlpha);
       break;
     case '}': // Increase Alpha
       adjustAlpha(+10);
       pFinderGrid_Viz(tableCanvas);
+      grayColor = int(abs(background - (255.0/2)*schemeScaler));
       println("schemeScaler: " + schemeScaler);
       println("masterAlpha: " + masterAlpha);
       break;
