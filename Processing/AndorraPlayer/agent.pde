@@ -37,8 +37,6 @@ class Agent {
     fade = maxFade;
   }
   
-  
-  
   void applyForce(PVector force){
     acceleration.add(force);
 
@@ -183,6 +181,7 @@ class Swarm {
   boolean generateAgent = true;
   boolean cropAgents = false;
   boolean detectCollisions = true;
+  boolean immortal = false;
   int cropDir = 0; // 0 to crop to inside of TOPO, 1 to crop to Margins
   
   ArrayList<Agent> swarm;
@@ -230,19 +229,21 @@ class Swarm {
   }
   
   void temperStandingAgents(boolean _external) {   
-    // Makes sure that agents 'staying put' eventually die; 
+    // Makes sure that agents 'staying put' generate only enough to represent their numbers then stop
     // also that they don't blead into the margin or topo
     if (origin == destination || path.size() < 2) {
-      agentLife = agentDelay*1000;
+      //immortal = true;
+      agentLife = 1000;
       cropAgents(_external);
     }
     
   }
   
   void temperStandingAgents() {   
-    // Makes sure that agents 'staying put' eventually die;
+    // Makes sure that agents 'staying put' generate only enough to represent their numbers then stop
     if (origin == destination || path.size() < 2) {
-      agentLife = agentDelay*1000;
+      agentLife = 1000;
+      //immortal = true;
     }
   }
   
@@ -288,17 +289,27 @@ class Swarm {
   void solvePath(Pathfinder f, boolean enable) {
     
     // Remove all existing agents from swarms since they will be following wrong path
-    while (swarm.size() > 0) {
-      swarm.remove(swarm.size()-1);
-    }
+    swarm.clear();
     
     path = f.findPath(origin, destination, enable);
     finderResolution = f.getResolution();
+
+//    // Agent generation slowed down to constant rate if path not found
+//    if (path.size() == 1) {
+//      agentDelay = 1;
+//    }
     
 //    // Agents cull themselves at origin if path not found
 //    if (path.size() == 1) {
 //      sink = hitBox(origin, hitbox, true);
 //    }
+    
+    if (dataMode == 1) {
+      // Generates only 10 agents
+      if (path.size() == 1) {
+        immortal = true;
+      }
+    }
   }
   
   void update() {
@@ -306,9 +317,20 @@ class Swarm {
     counter ++ ;
     
     // Determines if a new agent is needed
-    if (counter > adjust*agentDelay/speed) {
+    if (counter > adjust*agentDelay/speed && !immortal) {
       generateAgent = true;
       counter = 0;
+    }
+    
+    if (immortal) {
+      int staticNum = 4;
+      
+      while (swarm.size() < staticNum) {
+        swarm.add(new Agent(origin.x, origin.y, 6, maxSpeed, path.size()));
+      }
+      while (swarm.size() > staticNum) {
+        swarm.remove(0);
+      }
     }
     
     // Adds an agent
