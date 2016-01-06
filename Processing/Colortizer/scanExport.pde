@@ -4,7 +4,7 @@
  *
  * REPORT ALL CHANGES WITH DATE AND USER IN THIS AREA:
  * - Updated to include location array "locArray" that passes x, y, width, and height values for scanGrids
- * -
+ * - 2016/01/04 Yasushi Connect to a meteor app via DDP and send 
  * -
  * -
  */
@@ -16,6 +16,18 @@ boolean karthikPrototype = false;
 // import UDP library
 import hypermedia.net.*;
 UDP udp;  // define the UDP object
+
+
+/**
+* importing the DDP library and dependencies (2016/01/05 Y.S.)
+* 
+*/
+import com.google.gson.Gson; // you don't need this if your just using DDPclient
+import ddpclient.*;
+
+DDPClient ddp;
+Gson gson; // handy to have one gson converter...
+int[][] state_data; // because this object is ment to be json-ized
 
 void startUDP(){
   
@@ -29,12 +41,26 @@ void startUDP(){
     udp.listen( true );
   }
   
+  /**
+  * DDP initiation (2016/01/04 Y.S.)
+  * 
+  * assuming that this function is called in init 
+  * initiating will automatically connect
+  */
+  //ddp = new DDPClient(this,"localhost",3000);
+  ddp = new DDPClient(this,"104.131.183.20",80);
+  gson = new Gson();
+  
 }
 
 void sendData() {
   
   if (viaUDP && updateReceived) {
     String dataToSend = "";
+    /**
+    * state_data
+    */
+    state_data=new int[0][0];
     
     for (int u=0; u<tagDecoder[0].U; u++) {
       for (int v=0; v<tagDecoder[0].V; v++) {
@@ -63,6 +89,12 @@ void sendData() {
           dataToSend += "\n" ;
         //}
         
+        /**
+        * storing data for web (2016/01/05 Y.S.)
+        * simplified the data for the sake of example
+        */
+        state_data = (int[][])append(state_data,new int[]{tagDecoder[0].id[u][v],tagDecoder[0].rotation[u][v]});
+      
       }
     } 
     
@@ -70,7 +102,7 @@ void sendData() {
     dataToSend += tagDecoder[0].U;
     dataToSend += "\t" ;
     dataToSend += tagDecoder[0].V;
-    dataToSend += "\n" ;
+    dataToSend += "\n" ; 
     
     /*
     // Slider and Toggle Values
@@ -107,6 +139,11 @@ void sendData() {
     saveStrings("data.txt", split(dataToSend, "\n"));
     //udp.send( dataToSend, "18.85.55.241", 6152 );
     udp.send( dataToSend, "localhost", 6152 );
+    
+    /**
+    * sending data via DDP (2016/01/04 Y.S.)
+    */
+    ddp.call("sendCapture",new Object[]{gson.toJson(state_data)});
     
     // Karthik's IP Address
     if(karthikPrototype) {
