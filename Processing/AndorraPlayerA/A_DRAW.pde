@@ -28,6 +28,7 @@ PVector[] line = new PVector[2];
 color french = #2D34EA;
 color spanish = #E5953F;
 color other = #666666;
+//colors for the travelocity data 
 color best = #00ff00;
 color good = #ffff00; 
 color medium = #ffcc00;
@@ -129,9 +130,6 @@ void drawTableCanvas(PGraphics p) {
   
   p.endDraw();
 }
-
-
-
 
 
 void drawMargin(PGraphics p) {
@@ -263,6 +261,7 @@ void drawTopo(PGraphics p) {
   
 }
 
+//draws the stagnant hotel data color coded by amount of stars 
 void drawHotelStars(PGraphics p) { 
   p.noStroke();
   int j = 0; 
@@ -290,7 +289,7 @@ void drawHotelStars(PGraphics p) {
       tableCanvas.fill(#ffffff);
     }
     }
-    // Draw a circle 30 pixels in diameter at geolocation
+    // Draw a circle 7 pixels in diameter at geolocation
     p.ellipse(coord.x, coord.y, 7, 7);
 
   PVector geo;
@@ -304,6 +303,7 @@ void drawHotelStars(PGraphics p) {
   
 }
 
+//draws stagnant hotel data color coded by price 
 void drawHotelPrice(PGraphics p) { 
   p.noStroke();
   p.fill(#ff0000, 150);
@@ -330,7 +330,7 @@ void drawHotelPrice(PGraphics p) {
       tableCanvas.fill(#ffffff);
     }
     }
-    // Draw a circle 30 pixels in diameter at geolocation
+    // Draw a circle 7 pixels in diameter at geolocation
     p.ellipse(coord.x, coord.y, 7, 7);
     int j = i;    
   PVector geo;
@@ -344,6 +344,7 @@ void drawHotelPrice(PGraphics p) {
   
 }
 
+//draws a selector circle to show what hotel you're on (displaying info below) and initiates j and d to go through hotels (still a little buggy) 
 int j = 0; 
 
 void drawHotelJ(PGraphics p) { 
@@ -353,9 +354,9 @@ void drawHotelJ(PGraphics p) {
     // turns latitude and longitude of a point into canvas location within PGraphic topo
     coord = mercatorMap.getScreenLocation(new PVector(tripAdvisor.getFloat(d, "Lat"), tripAdvisor.getFloat(d, "Long")));
     }
+// Draw a circle 30 pixels in diameter at geolocation 
     p.ellipse(coord.x, coord.y, 30, 30);
     fill(255);
-    // Draw a circle 30 pixels in diameter at geolocation
   }
   
 
@@ -520,12 +521,13 @@ void drawLineGraph() {
   
   noStroke();
   
-  
+
   translate(float(0+2)/(maxHour+6)*width, -1.5*graphHeight);
   
   fill(#FFFFFF);
   textSize(24*(projectorWidth/1920.0));
   textAlign(LEFT);
+  //gives info for the hotels
   if(hotelstars == true){ 
   text("Hotels by Star Rating (1-5)", 0, -65);
   fill(best);

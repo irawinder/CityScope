@@ -151,14 +151,14 @@ void keyPressed() {
       // Reinitializes Network Edges
       edges_Viz(tableCanvas);
       break;
-    case '(': 
+    case '(': //selects back a row in the hotel data
       if (d>0)
       {d -= 1;
       }
       else{
         d = 15;} 
       break; 
-    case ')':
+    case ')': //selects forward a row in the hotel data 
       if (d <47){
       d += 1;
       }
