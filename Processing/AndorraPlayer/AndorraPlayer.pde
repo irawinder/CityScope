@@ -1,12 +1,21 @@
 // This is the staging script to allow splitting 4k projection mapping across 4 projectors
+// It's also the staging area for the AI of some agent-based modeling
 // For Andorra Data Stories
 // Ira Winder, MIT Media Lab, jiw@mit.edu, Fall 2015
+
+// To Do:
+// Make Custom Editor for Swarm Attributes
+// Make a Horde Class for Swarms
+// Make Agent LifeSpan some sort of sense
+
+// In general, migrate global "void drawFoo()" methods into class-specific "display()" methods
+// Consolidate Agents, Obstacles, and Pathfinder classes to libraries and/or standalone applets and/or libraries?
 
 // Need Libaries:
 // Keystone for Processing
 
 // Table SetUp with Margin:
-
+//
 //  |------------------------------------|      ^ North
 //  | |--------------------------------| |
 //  | |                                | |
@@ -28,9 +37,29 @@
 //  |                  |                 |
 //  |------------------------------------|
 
+// set to true when running app to prevent fullScreen Mode
+// also enables some visualizations for debugging
+boolean debug = true;
+
+//int projectorWidth = 1920;
+//int projectorHeight = 1080;
+int projectorWidth = 1500;
+int projectorHeight = 1000;
+    
 // Key Commands:
 //
 //     'g' - Toggle debug
+//
+//   Data Navigation
+//     'D' = Next Data Mode
+//         dataMode = 3 for Andorra CDR Network (circa Dec 2015)
+//         dataMode = 2 for basic network of Andorra Tower Locations
+//         dataMode = 1 for random network
+//         dataMode = 0 for empty network and Pathfinder Test OD
+//     'I' - Next OD Data Set
+//     ']' - Go forward an hour in OD dataset
+//     '[' - Go backward an hour in OD dataset 
+//     'd' - Show/hide test geodata
 //
 //   View Mode:
 //     'm' - Toggle On-Screen mode or Projection-mapping mode
@@ -40,8 +69,11 @@
 //     'c' - Toggle callibration mode for projection mapping
 //     's' - Save callibration
 //     'l' - Load callibration
+//     '{' - decrease alpha for translucent graphics
+//     '}' - increase alpha for translucent graphics
 //
 //   Agent-based Modeling:
+//      case 'i': Show Swarm Index
 //      case 'o': Show Obstacle Outlines
 //      case 'k': Show Sources and Sinks for Agents
 //      case 'r': Reset Agent Sinks and Sources
@@ -55,10 +87,8 @@
 //      case '+': Increase Agent Speed
 //      case '-': Decrease Agent Speed
 //      case 'b': Toggle Background color black/white
-//      case 'H': Go forward an hour in dataset
-//      case 'h': Go backward an hour in dataset 
 //
-//    ObStacle Editor:
+//    Obstacle Editor:
 //      'E': toggle editing
 //      'A': Add Obstacle
 //      'R': Remove Obstacle
@@ -68,11 +98,29 @@
 //       Arrow Keys - fine movement of seleted vertex in obstacle
 //      's' save CSV file of boundary locations (if editor is on)
 //      'l' load CSV file of boundary locations (if editor is on)
+//
+//    Pathfinding Tools:
+//      'P': show/hide pathfinder Paths
+//      'G': show/hide pathfinder Grids
+//      'h': show/hide additional info about pathfinder network
+//      'X': regenerate a random origin and destination
+//      'n': regenerate a random network for testing
+//      '>': Next Pathfinder Network (Random, Gridded, and Custom)
+//      '<': Enable/Disable Pathfinding
 
+float version = 1.1;
+String loadText = "Andorra Player | Version " + version;
 
-// set to true when running app to prevent fullScreen Mode
-// also enables some visualizations for debugging
-boolean debug = true;
+boolean showFrameRate = false;
+boolean printFrames = false;
+
+// used to initialize objects when application is first run or reInitialized
+boolean initialized = false;
+
+// Number of frames for draw function to run before
+// running setup functions. Setting to greater than 0 
+// allows you to draw a loading screen
+int drawDelay = 10;
 
 // Only set this to true if projectors display output is 4k
 // Also set to false if developing on your machine in 1080p
@@ -95,131 +143,104 @@ void setup() {
     size(projectorWidth, projectorHeight, P3D);
   }
   
-  if (loadData) {
-    // Loads csv files referenced in data tab
-    initData();
-  }
+  initCanvas();
   
-  initPlayer();
-  initAgents();
-  initObstacles();
-  
-  tableCanvas.beginDraw();
-  tableCanvas.background(background);
-  tableCanvas.endDraw();
-  
+//  //Call this method if data folder ever needs to be selected by a user
+//  selectFolder("Please select the a folder and click 'Open'", "folderSelected");
+}
+
+
+void mainDraw() {
+    // Draw Functions Located here should exclusively be drawn onto 'tableCanvas',
+    // a PGraphics set up to hold all information that will eventually be 
+    // projection-mapped onto a big giant table:
+    drawTableCanvas(tableCanvas);
+    
+    if (!keyLoaded) {
+      // Draws loading screen
+      loading(tableCanvas, loadText);
+    }
+    
+    // Renders the finished tableCanvas onto main canvas as a projection map or screen
+    renderTableCanvas();
+    
+    // Draws a line graph of all data for given OD matrix onto the main canvas
+    if (load_non_essential_data && dataMode == 3 && drawMode == 0) {
+      drawLineGraph();
+    }
 }
 
 void draw() {
   
-  // Renders frame onto 'tableCanvas' PGraphic
-  drawTableCanvas();
+  if (drawDelay > 0) {
+    
+    if (initialized) {
+      mainDraw();
+    } else {
+      // Draws loading screen
+      loading(tableCanvas, loadText);
+      renderTableCanvas();
+    }
+    
+    drawDelay--;
+  }
   
-  // Renders Agent 'dots' and corresponding obstacles and heatmaps
-  drawAgents(); 
+  // These are usually run in setup() but we put them here so that 
+  // the 'loading' screen successfully runs for the user
+  else if (!initialized) {
+    
+    initContent();
+    
+//    tableCanvas.beginDraw();
+//    tableCanvas.background(background);
+//    tableCanvas.endDraw();
+    
+    initialized = true;
+  }
+  
+  // Methods run every frame (i.e. 'draw()' functions) go here
+  else {
+    
+    // These are initialization functions that may be called while the app is running
+    if (!keyLoaded) {
+      keyInit();
+      keyLoaded = true;  
+    }
+    
+    mainDraw();
+    
+    // Print Framerate of animation to console
+    if (showFrameRate) {
+      println(frameRate);
+    }
+    
+    // If true, saves every frame of the main canvas to a PNG
+    if (printFrames) {
+      //tableCanvas.save("videoFrames/" + millis() + ".png");
+      save("videoFrames/" + millis() + ".png");
+    }
+  }
+}
 
-  // draws Table Canvas onto projection map or on screen
-  drawTable();
-
-  if (showFrameRate) {
-    println(frameRate);
+void renderTableCanvas() {
+  // most likely, you'll want a black background to minimize
+  // bleeding around your projection area
+  background(0);
+  
+  // Renders the tableCanvas as either a projection map or on-screen 
+  switch (drawMode) {
+    case 0: // On-Screen Rendering
+      //image(tableCanvas, 0, (height-tableCanvas.height)/2, tableCanvas.width, tableCanvas.height);
+      image(tableCanvas, 0, 0, tableCanvas.width, tableCanvas.height);
+      break;
+    case 1: // Projection-Mapping Rendering
+      // render the scene, transformed using the corner pin surface
+      for (int i=0; i<surface.length; i++) {
+        chopScreen(i);
+        surface[i].render(offscreen);
+      }
+      break;
   }
-  
-  // Temporary Graph //
-  
-  fill(#FFFFFF);
-  translate(float(1)/(maxHour+6)*width, 1.45*canvasHeight);
-  text("Hr", 0, textSize);
-  
-  int graphHeight = 2*marginWidthPix;
-  
-  textAlign(CENTER);
-  for (int i=0; i<=maxHour; i+=3) {
-    float hor = float(i+2)/(maxHour+6)*width;
-    text(i%24, hor, textSize);
-  }
-  
-  
-  noStroke();
-  fill(french, 200);
-  beginShape();
-  vertex(float(0+2)/(maxHour+6)*width, 0 - 2*textSize);
-  for (int i=0; i<=maxHour; i++) {
-    float hor = float(i+2)/(maxHour+6)*width;
-    vertex(hor, -graphHeight*summary.getFloat(i, "TOTAL")/maxFlow - 2*textSize);
-  }
-  vertex(float(maxHour+2)/(maxHour+6)*width, 0 - 2*textSize);
-  endShape();
-  
-  noStroke();
-  fill(spanish, 200);
-  beginShape();
-  vertex(float(0+2)/(maxHour+6)*width, 0 - 2*textSize);
-  for (int i=0; i<=maxHour; i++) {
-    float hor = float(i+2)/(maxHour+6)*width;
-    vertex(hor, -graphHeight*(summary.getFloat(i, "TOTAL")-summary.getFloat(i, "FRENCH"))/maxFlow - 2*textSize);
-  }
-  vertex(float(maxHour+2)/(maxHour+6)*width, 0 - 2*textSize);
-  endShape();
-  
-  noStroke();
-  fill(other, 200);
-  beginShape();
-  vertex(float(0+2)/(maxHour+6)*width, 0 - 2*textSize);
-  for (int i=0; i<=maxHour; i++) {
-    float hor = float(i+2)/(maxHour+6)*width;
-    vertex(hor, -graphHeight*(summary.getFloat(i, "TOTAL")-summary.getFloat(i, "FRENCH")-summary.getFloat(i, "SPANISH"))/maxFlow - 2*textSize);
-  }
-  vertex(float(maxHour+2)/(maxHour+6)*width, 0 - 2*textSize);
-  endShape();
-  
-  textAlign(LEFT);
-  textSize(18*(projectorWidth/1920.0));
-  
-  float hor = float(hourIndex+2)/(maxHour+6)*width;
-  stroke(#00FF00, 150);
-  fill(#00FF00);
-  strokeWeight(2);
-  line(hor, -graphHeight - 4*textSize, hor, -1.75*textSize);
-  text(hourIndex%24 + ":00 - " + (hourIndex%24+1) + ":00", 
-                   hor + 0.5*textSize, -graphHeight - 3*textSize);
-  text(date, 
-                   hor + 0.5*textSize, -graphHeight - 3*textSize + 2.5*textSize);
-  
-//  fill(french);
-//  text(int(100*summary.getFloat(hourIndex, "FRENCH") / summary.getFloat(hourIndex, "TOTAL")) + "%", 
-//                   hor + 0.5*textSize, -graphHeight - 3*textSize);
-//  fill(spanish);
-//  text(int(100*summary.getFloat(hourIndex, "SPANISH") / summary.getFloat(hourIndex, "TOTAL")) + "%", 
-//                   hor + 0.5*textSize, -graphHeight - 3*textSize + 2*textSize);
-//  fill(other);
-//  text(int(100*summary.getFloat(hourIndex, "OTHER") / summary.getFloat(hourIndex, "TOTAL")) + "%", 
-//                   hor + 0.5*textSize, -graphHeight - 3*textSize + 4*textSize);
-  
-  
-  noStroke();
-  
-  translate(float(0+2)/(maxHour+6)*width, -1.5*graphHeight);
-  
-  fill(#FFFFFF);
-  textSize(24*(projectorWidth/1920.0));
-  textAlign(LEFT);
-  text("Tourists |", 0, 0);
-  
-  fill(spanish);
-  text("Spanish", 3.5*marginWidthPix, 0);
-  
-  fill(french);
-  text("French", 2.0*marginWidthPix, 0);
-  
-  fill(other);
-  text("Other", 5.0*marginWidthPix, 0);
-  
-  if (printFrames) {
-    //tableCanvas.save("videoFrames/" + millis() + ".png");
-    save("videoFrames/" + millis() + ".png");
-  }
-  
 }
 
 void chopScreen(int projector) {
@@ -241,4 +262,16 @@ void chopScreen(int projector) {
   offscreen.endDraw();
 }
 
+// Method that opens a folder
+String folderPath;
+void folderSelected(File selection) {
+  if (selection == null) { // Notifies console and closes program
+    println("User did not select a folder");
+    exit();
+  } else { // intitates the rest of the software
+    println("User selected " + selection.getAbsolutePath());
+    folderPath = selection.getAbsolutePath() + "/";
+    // some other startup function
+  }
+}
 
