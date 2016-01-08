@@ -76,7 +76,9 @@ void drawPlan(int x, int y, int w, int h) {
   if (displayDynamic) {
     drawPlanDynamic();
   }
-    
+  
+  //plan.fill(0, 100);
+  //plan.rect(0,0,plan.width, plan.height);  
   plan.endDraw();
   
   if (drawPlan) {
@@ -353,8 +355,8 @@ void drawPlan4x4Nodes(int i, int j, int k) {
       
       if (siteInfo.getInt(i,j) == 1 || (codeArray[i][j][0] >= 0 && codeArray[i][j][0] < NPieces)) { //has peice
       
-        float dU = (k*LU_H) * (j - projU) / projH;
-        float dV = (k*LU_H) * (i - projV) / projH;
+        float dU = 1.5*(k*LU_H) * (j - projU) / projH;
+        float dV = 1.5*(k*LU_H) * (i - projV) / projH;
         
         for (int u=0; u<4; u++) {
           for (int v=0; v<4; v++) {
