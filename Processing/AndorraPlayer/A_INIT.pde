@@ -28,12 +28,6 @@
     
     int numProjectors = 4;
     
-//    int projectorWidth = 1920;
-//    int projectorHeight = 1080;
-
-    int projectorWidth = 1500;
-    int projectorHeight = 1000;
-    
 // Model and Table Dimensions in Centimeters
 
     // Dimensions of Topographic Model
@@ -81,14 +75,16 @@ void initCanvas() {
   println("Initializing Canvas and Projection Mapping Objects ... ");
   
   if (!use4k && !initialized) {
-    canvasWidth    /= 2;
-    canvasHeight   /= 2;
-    topoWidthPix   /= 2;
-    topoHeightPix  /= 2;
-    marginWidthPix /= 2;
+    float reduce = 0.5;
+    
+    canvasWidth    *= reduce;
+    canvasHeight   *= reduce;
+    topoWidthPix   *= reduce;
+    topoHeightPix  *= reduce;
+    marginWidthPix *= reduce;
     
     for (int i=0; i<container_Locations.length; i++) {
-      container_Locations[i].mult(.5);
+      container_Locations[i].mult(reduce);
     }
   }
   
@@ -114,35 +110,43 @@ void initCanvas() {
   
   // loads the saved projection-mapping layout
   ks.load();
-
+  
+  if (!debug) {
+    // Opens Projection-mapping when debug is off
+    drawMode = 1;
+  }
+  
+  // Adjusts Colors and Transparency depending on whether visualization is on screen or projected
+  setScheme(drawMode);
+  
   println("Canvas and Projection Mapping complete.");
 }
 
 void initContent() {
   
   switch(dataMode) {
-    case 0:
+    case 0: // Pathfinder Demo
       showGrid = true;
       finderMode = 0;
       showEdges = false;
       showSource = false;
       showPaths = false;
       break;
-    case 1:
+    case 1: // Random Demo
       showGrid = true;
       finderMode = 0;
       showEdges = false;
       showSource = false;
       showPaths = false;
       break;
-    case 2:
+    case 2: // Wifi and Towers Demo
       showGrid = false;
       finderMode = 2;
       showEdges = false;
       showSource = false;
       showPaths = false;
       break;
-    case 3:
+    case 3: // Andorra Demo
       showGrid = false;
       finderMode = 2;
       showEdges = false;
@@ -228,7 +232,7 @@ void swarmPaths(PGraphics p, boolean enable) {
   for (Swarm s : swarms) {
     s.solvePath(pFinder, enable);
   }
-  pFinderPaths_Viz(p, enablePathfinding);
+  pFinderPaths_Viz(p, enable);
 }
 
 void sources_Viz(PGraphics p) {
@@ -319,19 +323,9 @@ void CDRNetwork() {
     // delay, origin, destination, speed, color
     swarms[i] = new Swarm(weight[i], origin[i], destination[i], 1, col);
     
-    // Makes sure that agents 'staying put' eventually die; 
+    // Makes sure that agents 'staying put' eventually die
     // also that they don't blead into the margin or topo
-    if (origin[i] == destination[i] || swarms[i].path.size() < 2) {
-      if (external) {
-        swarms[i].cropAgents = true;
-        swarms[i].cropDir = 1;
-        swarms[i].agentLife = 2000;
-      } else {
-        swarms[i].cropAgents = true;
-        swarms[i].cropDir = 0;
-        swarms[i].agentLife = 2000;
-      }
-    }
+    swarms[i].temperStandingAgents(external);
     
   }
   
@@ -469,8 +463,15 @@ void testNetwork_CDRWifi(boolean CDR, boolean Wifi) {
   swarms = new Swarm[numSwarm];
   colorMode(HSB);
   for (int i=0; i<numSwarm; i++) {
+    
+    boolean external = topoBoundary.testForCollision(origin[i]) || topoBoundary.testForCollision(destination[i]);
+    
     // delay, origin, destination, speed, color
     swarms[i] = new Swarm(weight[i], origin[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+    
+    // Makes sure that agents 'staying put' eventually die
+    // also that they don't blead into the margin or topo
+    swarms[i].temperStandingAgents(external);
   }
   colorMode(RGB);
   
@@ -515,6 +516,9 @@ void testNetwork_Random(int _numNodes) {
   for (int i=0; i<numSwarm; i++) {
     // delay, origin, destination, speed, color
     swarms[i] = new Swarm(weight[i], origin[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+    
+    // Makes sure that agents 'staying put' eventually die
+    swarms[i].temperStandingAgents();
   }
   colorMode(RGB);
   

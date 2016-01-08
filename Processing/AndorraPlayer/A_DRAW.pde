@@ -9,9 +9,12 @@ boolean showSwarm = true;
 boolean showInfo = false;
 boolean showTraces = false;
 
+// Makes darker colors more visible when projecting
+int masterAlpha = 15;
+float schemeScaler = 0.5;
 int background = 0;
 int textColor = 255;
-int grayColor = int(255.0/4);
+int grayColor = int(abs(background - (255.0/2)*schemeScaler));
 
 // temp variable that holds coordinate location for a point to render
 PVector coord;
@@ -24,6 +27,7 @@ color spanish = #E5953F;
 color other = #666666;
 
 void drawTableCanvas(PGraphics p) {
+  
   p.beginDraw();
   
       // Instead of solid background draws a translucent overlay every frame.
@@ -233,14 +237,12 @@ void drawMargin(PGraphics p) {
 void drawTopo(PGraphics p) {
  
   // Draws Satellite images
-  p.tint(255, 15);
+  p.tint(255, masterAlpha);
   //p.filter(GRAY);
   p.image(topo, 0, 0, topoWidthPix, topoHeightPix);
   p.tint(255, 255);
   
 }
-
-
 
 void drawData(PGraphics p) {
   
@@ -429,18 +431,34 @@ void drawLineGraph() {
 
 void drawTestFinder(PGraphics p, Pathfinder f, ArrayList<PVector> path, ArrayList<PVector> visited) {
   
+  // Draw Base Network
   f.display(p);
   
   // Draw Nodes Visited in order to find path solution
   p.strokeWeight(1);
-  p.stroke(abs(textColor-125));
+  int base = 255;
+  p.stroke(abs( background - base*schemeScaler));
   for (int i=0; i<visited.size(); i++) {
     p.ellipse(visited.get(i).x, visited.get(i).y, f.getResolution(), f.getResolution());
   }
   
+  // Draws Edges that Connect Nodes Visited to Parent Nodes
+  int neighbor;
+  for (int i=0; i<f.allVisited.size(); i++) {
+    for (int j=0; j<f.network.nodes.get(f.allVisited.get(i)).neighbors.size(); j++) {
+      neighbor = f.network.nodes.get(f.allVisited.get(i)).neighbors.get(j);
+      //println(neighbor);
+      p.line(f.network.nodes.get(f.allVisited.get(i)).node.x, f.network.nodes.get(f.allVisited.get(i)).node.y, f.network.nodes.get(neighbor).node.x, f.network.nodes.get(neighbor).node.y);
+    }
+  }
+  
   // Draw Path Edges
   p.strokeWeight(2);
-  p.stroke(#007D00);
+  if (drawMode == 0) {
+    p.stroke(#007D00);
+  } else {
+    p.stroke(#00FF00);
+  }
   for (int i=0; i<path.size()-1; i++) {
     p.line(path.get(i).x, path.get(i).y, path.get(i+1).x, path.get(i+1).y);
   }
@@ -627,17 +645,27 @@ void loading(PGraphics p, String item) {
   p.stroke(textColor);
   p.strokeWeight(2);
   
+  int x, y;
+  
+  if (numProjectors == 4 && drawMode == 1) {
+    x = p.width/4;
+    y = 3*p.height/4;
+  } else {
+    x = p.width/2;
+    y = p.height/2;
+  }
+  
   if (!initialized) {
     p.background(0);
     w = 400;
     h = 50;
     showName = true;
-    p.rect(p.width/2 - w/2 , p.height/2 - h/2 + 12/2 , w, h , 12, 12, 12, 12);
+    p.rect(x - w/2 , y - h/2 + 12/2 , w, h , 12, 12, 12, 12);
   } else {
     w = 400;
     h = 25;
     showName = false;
-    p.rect(p.width/2 - w/2 , p.height/2 - h + 3*12/4 , w, h , 12, 12, 12, 12);
+    p.rect(x - w/2 , y - h + 3*12/4 , w, h , 12, 12, 12, 12);
   }
   p.noStroke();
   
@@ -645,10 +673,53 @@ void loading(PGraphics p, String item) {
   p.textAlign(CENTER);
   p.fill(abs(textColor-225), 255);
   p.textSize(12);
-  p.text("Loading " + item + "...", p.width/2, p.height/2);
+  p.text("Loading " + item + "...", x, y);
   if (showName) {
-    p.text("Ira Winder, MIT Media Lab", p.width/2, p.height/2 + 20);
+    p.text("Ira Winder, MIT Media Lab", x, y + 20);
   }
   
   p.endDraw();
+}
+
+void setScheme(int dMode) {
+  // Adjusts Colors and Transparency depending on whether visualization is on screen or projected
+  switch (dMode) {
+    case 0: // On-Screen Rendering
+      masterAlpha = 25;
+      schemeScaler = 0.4;
+      break;
+    case 1: // Projection-Mapping Rendering
+      masterAlpha = 100;
+      schemeScaler = 1.0;
+      break;
+  }
+  
+  grayColor = int(abs(background - (255.0/2)*schemeScaler));
+}
+
+// Reinitialize any PGraphics that use masterAlpha and schemaScaler
+void refreshGraphicScheme(PGraphics p) {
+  pFinderGrid_Viz(p);
+}
+
+void adjustAlpha(int a) {
+   masterAlpha += a;
+      if (a > 0) {
+     schemeScaler += 0.05;
+   } else {
+     schemeScaler -= 0.05;
+   }
+   
+   if (masterAlpha < 0) {
+     masterAlpha = 0;
+   }
+   if (masterAlpha > 255) {
+     masterAlpha = 255;
+   }
+   if (schemeScaler < 0) {
+     schemeScaler = 0;
+   }
+   if (schemeScaler > 1) {
+     schemeScaler = 1;
+   }
 }

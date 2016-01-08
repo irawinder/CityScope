@@ -15,7 +15,8 @@ class Agent {
   float maxspeed;
   int age;
   float tolerance = 1;
-  float fade = 1;
+  float fade;
+  float maxFade = 2;
   
   boolean finished = false;
   boolean dead = false;
@@ -33,9 +34,8 @@ class Agent {
     age = 0;
     pathIndex = 0;
     pathLength = pLength;
+    fade = maxFade;
   }
-  
-  
   
   void applyForce(PVector force){
     acceleration.add(force);
@@ -56,12 +56,14 @@ class Agent {
     applyForce(normalForce);
   }
   
-  void applyBehaviors(ArrayList<Agent> agents, PVector waypoint) {
+  void applyBehaviors(ArrayList<Agent> agents, PVector waypoint, boolean collision) {
      PVector separateForce = separate(agents);
      PVector seekForce = seek(new PVector(waypoint.x + random(-tolerance, tolerance),waypoint.y + random(-tolerance, tolerance)));
-     separateForce.mult(3);
+     if (collision) {
+       separateForce.mult(3);
+       applyForce(separateForce);
+     }
      seekForce.mult(1);
-     applyForce(separateForce);
      applyForce(seekForce);
   }
   
@@ -151,7 +153,7 @@ class Agent {
   }
   
   void display(PGraphics p, color fill, int alpha) {
-    p.fill(fill, fade*alpha);
+    p.fill(fill, (fade/maxFade)*alpha);
     p.noStroke();
     p.pushMatrix();
     p.translate(location.x, location.y);
@@ -178,6 +180,8 @@ class Swarm {
   
   boolean generateAgent = true;
   boolean cropAgents = false;
+  boolean detectCollisions = true;
+  boolean immortal = false;
   int cropDir = 0; // 0 to crop to inside of TOPO, 1 to crop to Margins
   
   ArrayList<Agent> swarm;
@@ -211,24 +215,46 @@ class Swarm {
     path.add(origin);
     path.add(destination);
     
-    if (a == b) { // No sink created
-      sink = hitBox(destination, hitbox, false);
-    } else {
-      sink = hitBox(destination, hitbox, true);
-    }
+    sink = hitBox(destination, hitbox, true);
     
     maxSpeed = maxS;
-//    if (a != b) {
-//      agentLife *= 1 + (abs(a.x - b.x) + abs(a.y - b.y)) / (canvasWidth+canvasHeight);
-//      agentLife *= 40.0/maxSpeed;
-//    }
-    //println(agentLife);
     agentDelay = delay;
     swarm = new ArrayList<Agent>();
     fill = f;
     
     //All Agents do not spawn on first frame
     counter += -int(random(40));
+    
+    temperStandingAgents();
+  }
+  
+  void temperStandingAgents(boolean _external) {   
+    // Makes sure that agents 'staying put' generate only enough to represent their numbers then stop
+    // also that they don't blead into the margin or topo
+    if (origin == destination || path.size() < 2) {
+      //immortal = true;
+      agentLife = 1000;
+      cropAgents(_external);
+    }
+    
+  }
+  
+  void temperStandingAgents() {   
+    // Makes sure that agents 'staying put' generate only enough to represent their numbers then stop
+    if (origin == destination || path.size() < 2) {
+      agentLife = 1000;
+      //immortal = true;
+    }
+  }
+  
+  void cropAgents(boolean _external) {
+    if (_external) {
+      cropAgents = true;
+      cropDir = 1;
+    } else {
+      cropAgents = true;
+      cropDir = 0;
+    }
   }
   
   Obstacle hitBox(PVector coord, int r, boolean make) {
@@ -263,12 +289,27 @@ class Swarm {
   void solvePath(Pathfinder f, boolean enable) {
     
     // Remove all existing agents from swarms since they will be following wrong path
-    while (swarm.size() > 0) {
-      swarm.remove(swarm.size()-1);
-    }
+    swarm.clear();
     
     path = f.findPath(origin, destination, enable);
     finderResolution = f.getResolution();
+
+//    // Agent generation slowed down to constant rate if path not found
+//    if (path.size() == 1) {
+//      agentDelay = 1;
+//    }
+    
+//    // Agents cull themselves at origin if path not found
+//    if (path.size() == 1) {
+//      sink = hitBox(origin, hitbox, true);
+//    }
+    
+    if (dataMode == 1) {
+      // Generates only 10 agents
+      if (path.size() == 1) {
+        immortal = true;
+      }
+    }
   }
   
   void update() {
@@ -276,9 +317,20 @@ class Swarm {
     counter ++ ;
     
     // Determines if a new agent is needed
-    if (counter > adjust*agentDelay/speed) {
+    if (counter > adjust*agentDelay/speed && !immortal) {
       generateAgent = true;
       counter = 0;
+    }
+    
+    if (immortal) {
+      int staticNum = 4;
+      
+      while (swarm.size() < staticNum) {
+        swarm.add(new Agent(origin.x, origin.y, 6, maxSpeed, path.size()));
+      }
+      while (swarm.size() > staticNum) {
+        swarm.remove(0);
+      }
     }
     
     // Adds an agent
@@ -315,7 +367,7 @@ class Swarm {
         }
         
         // Updates agent behavior
-        v.applyBehaviors(swarm, path.get(v.pathIndex));
+        v.applyBehaviors(swarm, path.get(v.pathIndex), detectCollisions);
         v.update(int(agentLife/speed), sink, path.get(v.pathIndex), finderResolution);
       }
     }
@@ -329,7 +381,7 @@ class Swarm {
           
           if(colorMode.equals("color")) {
             // Draws colored agents
-            v.display(p, fill, 255);
+            v.display(p, fill, 150);
           } else if(colorMode.equals("grayscale")) {
             // Draws grayscaled agents
             v.display(p, #333333, 100);
@@ -346,7 +398,7 @@ class Swarm {
   
               if(colorMode.equals("color")) {
                 // Draws colored agents
-                v.display(p, fill, 255);
+                v.display(p, fill, 150);
               } else if(colorMode.equals("grayscale")) {
                 // Draws grayscaled agents
                 v.display(p, #333333, 100);
