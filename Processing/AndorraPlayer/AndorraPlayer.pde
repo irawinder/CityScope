@@ -4,8 +4,8 @@
 // Ira Winder, MIT Media Lab, jiw@mit.edu, Fall 2015
 
 // To Do:
-// Make Custom Editor for Swarm Attributes
 // Make a Horde Class for Swarms
+// Make Custom Editor for Swarm Attributes
 // Make Agent LifeSpan some sort of sense
 
 // In general, migrate global "void drawFoo()" methods into class-specific "display()" methods

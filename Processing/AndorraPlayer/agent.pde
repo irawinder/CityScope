@@ -201,6 +201,12 @@ class Swarm {
   
   ArrayList<PVector> path;
   
+  Swarm () {
+    agentLife = 0;
+    agentDelay = 10000;
+    swarm = new ArrayList<Agent>();
+  }
+  
   Swarm (float delay, int life) {
     agentLife = life;
     agentDelay = delay;
@@ -502,6 +508,166 @@ class Swarm {
 
 // A class for managing multiple Swarms
 class Horde {
+  
+  ArrayList<Swarm> horde;
+  
+  int agentCount;
+  
+  Horde() {
+    horde = new ArrayList<Swarm>();
+    agentCount = 0;
+  }
+  
+  void addSwarm(float freq, PVector a, PVector b, float maxS, color f) {
+    horde.add(new Swarm(freq, a, b, maxS, f));
+  }
+  
+  void clearHorde() {
+    horde.clear();
+    agentCount = 0;
+  }
+  
+  Swarm getSwarm(int i) {
+    if ( i > horde.size() - 1 ) {
+      return new Swarm();
+    } else {
+      return horde.get(i);
+    }
+  }
+  
+  int getSwarmCount() {
+    return horde.size();
+  }
+  
+  void setFrequency(int i, float freq) {
+    horde.get(i).agentDelay = freq;
+  }
+  
+  void setFrequency(float freq) {
+    for (int i=0; i<horde.size(); i++) {
+      horde.get(i).agentDelay = freq;
+    }
+  }
+  
+  void solvePaths(Pathfinder p, boolean enablePathfinding) {
+    for (int i=0; i<horde.size(); i++) {
+      getSwarm(i).solvePath(p, enablePathfinding);
+    }
+  }
+  
+  void update() {
+    agentCount = 0;
+    
+    for (int i=0; i<horde.size(); i++) {
+      getSwarm(i).update();
+      agentCount += horde.get(i).swarm.size();
+    }
+    
+  }
+  
+//  void display(PGraphics p) {
+//    numAgents = 0;
+//    
+//    for (Swarm s : swarms) {
+//      s.update();
+//      numAgents += s.swarm.size();
+//    }
+//    
+//    for (Swarm s : swarms) {
+//        
+//      if (showTraces) {
+//        traces.update(s);
+//        if (showSwarm) {
+//          s.display(p, "grayscale");
+//        }
+//      } else {
+//        if (showSwarm) {
+//          s.display(p, "color");
+//        }
+//      }
+//    }
+//    
+//    if (showTraces) {
+//      traces.decay();
+//    }
+//    
+//    for(int i=0; i<swarms.length; i++) {
+//      swarmSize[i] = swarms[i].swarm.size();
+//    }
+//    
+//    if (numAgents > maxAgents) {
+//      int rand;
+//      int counter;
+//      while(numAgents > maxAgents) {
+//        
+//        // Picks a random agent from one of the swarms.  Larger swarms are more likely to be selected
+//        rand = int(random(0, numAgents));
+//        counter = 0;
+//        for (int i=0; i<swarms.length; i++) {
+//          counter += swarmSize[i];
+//          if (rand < counter) {
+//            rand = i;
+//            //println("random: " + rand);
+//            break;
+//          }
+//        }
+//        
+//        //kills a random agent in the selected swarm
+//        if (swarms[rand].swarm.size() > 0) {
+//          swarms[rand].swarm.get(int(random(swarms[rand].swarm.size()))).finished = true;
+//          numAgents--;
+//          //text("TWEAK", 20,20);
+//          
+//        }
+//      }
+//      adjust /= 0.9;
+//    } else {
+//      adjust *= 0.99;
+//    }
+//    
+//    // Ensures that hourIndex doesn't null point
+//    if (hourIndex > summary.getRowCount()) {
+//       hourIndex = summary.getRowCount()-1;
+//    }
+//    
+//    p.fill(textColor);
+//    p.textSize(1.5*textSize);
+//    if (dataMode == 2 || dataMode == 3) {
+//      p.text("Total Agents Rendered: " + numAgents, marginWidthPix, 0.4*marginWidthPix);
+//      //p.text("Adjust: " + int(adjust), marginWidthPix, 0.7*marginWidthPix);
+//      //p.text("Total Agents in OD: " + summary.getInt(hourIndex, "TOTAL"), 7*marginWidthPix, 0.4*marginWidthPix);
+//    }
+//    
+//    textSize = 8;
+//    
+//    if (showInfo) {
+//      p.pushMatrix();
+//      p.translate(2*textSize, 2*textSize + scroll);
+//      
+//      // Background rectangle
+//      p.fill(#555555, 50);
+//      p.noStroke();
+//      p.rect(0, 0, 32*textSize, (swarms.length+4)*1.5*textSize, textSize, textSize, textSize, textSize);
+//      
+//      // Text
+//      p.translate(2*textSize, 2*textSize);
+//      for (int i=0; i<swarms.length; i++) {
+//        p.fill(swarms[i].fill);
+//        p.textSize(textSize);
+//        p.text("Swarm[" + i + "]: ", 0,0);
+//        p.text("Weight: " + int(1000.0/swarms[i].agentDelay) + "/sec", 10*textSize,0);
+//        p.text("Size: " + swarms[i].swarm.size() + " agents", 20*textSize,0);
+//        p.translate(0, 1.5*textSize);
+//      }
+//      p.translate(0, 1.5*textSize);
+//      p.text("Total Swarms: " + swarms.length,0,0);
+//      p.translate(0, 1.5*textSize);
+//      p.text("Total Agents: " + numAgents,0,0);
+//      p.popMatrix();
+//    }
+//    
+//    time_0 = millis();
+//  }
   
 }
 

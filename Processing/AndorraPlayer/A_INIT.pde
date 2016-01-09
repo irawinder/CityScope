@@ -173,6 +173,7 @@ void initContent() {
 // ---------------------Initialize Agent-based Objects---
 
 Swarm[] swarms;
+Horde swarmHorde;
 
 PVector[] origin, destination, nodes;
 float[] weight;
@@ -191,6 +192,8 @@ PGraphics sources_Viz, edges_Viz;
 void initAgents(PGraphics p) {
   
   println("Initializing Agent Objects ... ");
+  
+  swarmHorde = new Horde();
   
   sources_Viz = createGraphics(p.width, p.height);
   edges_Viz = createGraphics(p.width, p.height);
@@ -232,6 +235,7 @@ void swarmPaths(PGraphics p, boolean enable) {
   for (Swarm s : swarms) {
     s.solvePath(pFinder, enable);
   }
+  swarmHorde.solvePaths(pFinder, enable);
   pFinderPaths_Viz(p, enable);
 }
 
@@ -280,6 +284,54 @@ void resetSummary() {
   summary.addColumn("OTHER");
 }
 
+// Sets to rates at specific hour ...
+void setSwarmFlow(int hr) {
+  
+  for (int i=0; i<swarms.length; i++) {
+    swarms[i].agentDelay = 100000;
+  }
+  
+  swarmHorde.setFrequency(100000);
+  
+  for (int i=0; i<OD.getRowCount(); i++) {
+    if (OD.getInt(i, "HOUR") == hr) {
+      swarms[OD.getInt(i, "EDGE_ID")].agentDelay = 1.0/OD.getInt(i, "AMOUNT");
+      swarmHorde.setFrequency( OD.getInt(i, "EDGE_ID"), 1.0/OD.getInt(i, "AMOUNT") );
+      //println(1.0/OD.getInt(i, "AMOUNT"));
+      date = OD.getString(i, "DATE");
+    }
+  }
+  
+  if (hr < summary.getRowCount()) {
+    maxAgents = int(agentCap * summary.getFloat(hr, "TOTAL")/maxFlow);
+  } else {
+    maxAgents = agentCap;
+  }
+}
+
+int nextHour(int hr) {
+  if (hr < maxHour) {
+    hr++;
+  } else {
+    hr = 0;
+  }
+  println("Hour: " + hr + ":00 - " + (hr+1) + ":00");
+  return hr;
+}
+
+//introducing new prevHour function for back button 
+int prevHour(int hr){ 
+  if (hr < maxHour && hr != 0) { 
+    hr--; 
+  } else{ 
+    hr = maxHour;
+    if (hr == maxHour){
+    hr--;
+    }
+  } 
+  return hr;
+}
+
 void CDRNetwork() {
   
   int numSwarm;
@@ -292,6 +344,7 @@ void CDRNetwork() {
   weight = new float[numSwarm];
   swarmSize = new int[numSwarm];
   swarms = new Swarm[numSwarm];
+  swarmHorde.clearHorde();
   
   for (int i=0; i<numSwarm; i++) {
     
@@ -326,6 +379,13 @@ void CDRNetwork() {
     // Makes sure that agents 'staying put' eventually die
     // also that they don't blead into the margin or topo
     swarms[i].temperStandingAgents(external);
+    
+    // delay, origin, destination, speed, color
+    swarmHorde.addSwarm(weight[i], origin[i], destination[i], 1, col);
+    
+    // Makes sure that agents 'staying put' eventually die
+    // also that they don't blead into the margin or topo
+    swarmHorde.getSwarm(i).temperStandingAgents(external);
     
   }
   
@@ -368,51 +428,6 @@ void CDRNetwork() {
   setSwarmFlow(hourIndex);
 }
 
-// Sets to rates at specific hour ...
-void setSwarmFlow(int hr) {
-  
-  for (int i=0; i<swarms.length; i++) {
-    swarms[i].agentDelay = 100000;
-  }
-  
-  for (int i=0; i<OD.getRowCount(); i++) {
-    if (OD.getInt(i, "HOUR") == hr) {
-      swarms[OD.getInt(i, "EDGE_ID")].agentDelay = 1.0/OD.getInt(i, "AMOUNT");
-      //println(1.0/OD.getInt(i, "AMOUNT"));
-      date = OD.getString(i, "DATE");
-    }
-  }
-  
-  if (hr < summary.getRowCount()) {
-    maxAgents = int(agentCap * summary.getFloat(hr, "TOTAL")/maxFlow);
-  } else {
-    maxAgents = agentCap;
-  }
-}
-
-int nextHour(int hr) {
-  if (hr < maxHour) {
-    hr++;
-  } else {
-    hr = 0;
-  }
-  println("Hour: " + hr + ":00 - " + (hr+1) + ":00");
-  return hr;
-}
-
-//introducing new prevHour function for back button 
-int prevHour(int hr){ 
-  if (hr < maxHour && hr != 0) { 
-    hr--; 
-  } else{ 
-    hr = maxHour;
-    if (hr == maxHour){
-    hr--;
-    }
-  } 
-  return hr;
-}
-
 // dataMode for basic network of Andorra Tower Locations
 void testNetwork_CDRWifi(boolean CDR, boolean Wifi) {
   
@@ -434,6 +449,7 @@ void testNetwork_CDRWifi(boolean CDR, boolean Wifi) {
   destination = new PVector[numSwarm];
   weight = new float[numSwarm];
   swarmSize = new int[numSwarm];
+  swarmHorde.clearHorde();
   
   for (int i=0; i<numNodes; i++) {
     
@@ -472,6 +488,13 @@ void testNetwork_CDRWifi(boolean CDR, boolean Wifi) {
     // Makes sure that agents 'staying put' eventually die
     // also that they don't blead into the margin or topo
     swarms[i].temperStandingAgents(external);
+    
+    // delay, origin, destination, speed, color
+    swarmHorde.addSwarm(weight[i], origin[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+    
+    // Makes sure that agents 'staying put' eventually die
+    // also that they don't blead into the margin or topo
+    swarmHorde.getSwarm(i).temperStandingAgents(external);
   }
   colorMode(RGB);
   
@@ -519,6 +542,12 @@ void testNetwork_Random(int _numNodes) {
     
     // Makes sure that agents 'staying put' eventually die
     swarms[i].temperStandingAgents();
+    
+    // delay, origin, destination, speed, color
+    swarmHorde.addSwarm(weight[i], origin[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+    
+    // Makes sure that agents 'staying put' eventually die
+    swarmHorde.getSwarm(i).temperStandingAgents();
   }
   colorMode(RGB);
   
