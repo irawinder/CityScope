@@ -155,15 +155,17 @@ void keyPressed() {
       if (d>0)
       {d -= 1;
       }
-      else{
-        d = 15;} 
+      if (d == 0)
+      {d = 42;
+      }
       break; 
     case ')': //selects forward a row in the hotel data 
-      if (d <47){
+      if (d < 42){
       d += 1;
       }
-      else{ 
-        d = 0;}
+      if (d == 42){
+        d = 0;
+      }
       break;
     case 'I': //next data index
       setLoader("CDR Data: " + dates[nextMode(dateIndex, dates.length-1)]);
