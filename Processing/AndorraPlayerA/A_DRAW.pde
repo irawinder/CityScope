@@ -541,7 +541,7 @@ void drawLineGraph() {
   fill(bad);
   text("1", 5.0*marginWidthPix, -40);
   fill(#ffffff);
-  text("Current Selection: " + tripAdvisor.getString(d, "Hotel"), 7.0*marginWidthPix, -40);
+  text("Current Selection: " + tripAdvisor.getString(d, "Hotel"), 6.0*marginWidthPix, -40);
   text(tripAdvisor.getFloat(d, "Stars") + " Stars", 13.5*marginWidthPix, -40);
   text(tripAdvisor.getFloat(d, "USD") + " USD", 15.5*marginWidthPix, -40);
   text(tripAdvisor.getInt(d, "Review") + " Reviews", 17.5*marginWidthPix, -40);
