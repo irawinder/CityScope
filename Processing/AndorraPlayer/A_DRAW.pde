@@ -253,8 +253,6 @@ void drawMargin(PGraphics p) {
   p.beginDraw();
 
 }
-
-void update() {
   
 
 void drawTopo(PGraphics p) {
