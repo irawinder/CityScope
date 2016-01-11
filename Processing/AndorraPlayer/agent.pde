@@ -201,6 +201,12 @@ class Swarm {
   
   ArrayList<PVector> path;
   
+  Swarm () {
+    agentLife = 0;
+    agentDelay = 10000;
+    swarm = new ArrayList<Agent>();
+  }
+  
   Swarm (float delay, int life) {
     agentLife = life;
     agentDelay = delay;
@@ -312,12 +318,12 @@ class Swarm {
     }
   }
   
-  void update() {
+  void update(float _rateScaler) {
     
     counter ++ ;
     
     // Determines if a new agent is needed
-    if (counter > adjust*agentDelay/speed && !immortal) {
+    if (counter > _rateScaler*agentDelay/speed && !immortal) {
       generateAgent = true;
       counter = 0;
     }
@@ -503,5 +509,175 @@ class Swarm {
 // A class for managing multiple Swarms
 class Horde {
   
+  ArrayList<Swarm> horde;
+  ArrayList<Integer> agentCounts;
+ 
+  int agentCount;
+  int hordeIndex;
+  int maxAgents;
+  float rateScaler;  // dynamic scalar used to nomralize agent generation rate
+  float popScaler; // number between 0 and 1 to describe how much of 'maxAgents' to utilize
+  
+  Horde(int _maxAgents) {
+    horde = new ArrayList<Swarm>();
+    agentCounts = new ArrayList<Integer>();
+    agentCount = 0;
+    hordeIndex = 0;
+    rateScaler = 1.0;
+    popScaler = 1.0;
+    maxAgents = _maxAgents;
+  }
+  
+  void popScaler(float _popScaler) {
+    popScaler = _popScaler;
+  }
+  
+  void addSwarm(float freq, PVector a, PVector b, float maxS, color f) {
+    horde.add(new Swarm(freq, a, b, maxS, f));
+    agentCounts.add(0);
+  }
+  
+  void clearHorde() {
+    horde.clear();
+    agentCounts.clear();
+    agentCount = 0;
+  }
+  
+  void cullRandomAgent() {
+    int rand, counter;
+    while(agentCount > popScaler*maxAgents) {
+      // Picks a random swarm.  Likelihood a specific swarm is selected is proportional to its size
+      rand = int(random(0, agentCount));
+      counter = 0;
+      for (int i=0; i<getSwarmCount(); i++) {
+        counter += agentCounts.get(i);
+        if (rand < counter) {
+          rand = i;
+          break;
+        }
+      }
+      //kills a random agent in the selected swarm
+      if (agentCounts.get(rand) > 0) {
+        getSwarm(rand).swarm.get(int(random(agentCounts.get(rand)))).finished = true;
+        agentCount--;
+      }
+    }
+  }
+  
+  Swarm getSwarm(int i) {
+    if ( i > horde.size() - 1 ) {
+      return new Swarm();
+    } else {
+      return horde.get(i);
+    }
+  }
+  
+  int getSwarmCount() {
+    return horde.size();
+  }
+  
+  void setFrequency(int i, float freq) {
+    horde.get(i).agentDelay = freq;
+  }
+  
+  void setFrequency(float freq) {
+    for (int i=0; i<horde.size(); i++) {
+      horde.get(i).agentDelay = freq;
+    }
+  }
+  
+  void solvePaths(Pathfinder p, boolean enablePathfinding) {
+    for (int i=0; i<horde.size(); i++) {
+      getSwarm(i).solvePath(p, enablePathfinding);
+    }
+  }
+  
+  void displayPaths(PGraphics p) {
+    for (int i=0; i<horde.size(); i++) {
+      getSwarm(i).displayPath(p);
+    }
+  }
+  
+  void displaySource(PGraphics p) {
+    for (int i=0; i<horde.size(); i++) {
+      getSwarm(i).displaySource(p);
+    }
+  }
+  
+  void displayEdges(PGraphics p) {
+    for (int i=0; i<horde.size(); i++) {
+      getSwarm(i).displayEdges(p);
+    }
+  }
+  
+  void update() {
+    agentCount = 0;
+    
+    for (int i=0; i<horde.size(); i++) {
+      getSwarm(i).update(rateScaler);
+      agentCounts.set(i, horde.get(i).swarm.size() );
+      agentCount += agentCounts.get(i);
+    }
+    
+    // Agent Culling to Ensure Horde Stays Below Threshold
+    if (agentCount > popScaler*maxAgents) {
+      cullRandomAgent();
+      rateScaler /= 0.9;
+    } else {
+      rateScaler *= 0.99;
+    }
+  }
+  
+  void display(PGraphics p, boolean _grayscale) {
+    for (int i=0; i<horde.size(); i++) {
+      if (_grayscale) {
+        horde.get(i).display(p, "grayscale");
+      } else {
+        horde.get(i).display(p, "color");
+      }
+    }
+  }
+  
+  void displaySummary(PGraphics p) {
+    p.fill(textColor);
+    p.textSize(1.5*textSize);
+    textSize = 8;
+    p.textAlign(LEFT);
+
+    p.text("Total Agents Rendered: " + agentCount, marginWidthPix, 0.4*marginWidthPix);
+    p.text("rateScaler: " + int(rateScaler), marginWidthPix, 0.7*marginWidthPix);
+  }
+  
+  void displaySwarmList(PGraphics p) {
+    p.fill(textColor);
+    p.textSize(1.5*textSize);
+    textSize = 8;
+    p.pushMatrix();
+    p.translate(2*textSize, 2*textSize + scroll);
+    p.textAlign(LEFT);
+    
+    // Background rectangle
+    p.fill(#555555, 50);
+    p.noStroke();
+    p.rect(0, 0, 32*textSize, (getSwarmCount()+4)*1.5*textSize, textSize, textSize, textSize, textSize);
+    
+    // Text
+    p.translate(2*textSize, 2*textSize);
+    for (int i=0; i<getSwarmCount(); i++) {
+      p.fill(getSwarm(i).fill);
+      p.textSize(textSize);
+      p.text("Swarm<" + i + ">: ", 0,0);
+      p.text("Weight: " + int(1000.0/getSwarm(i).agentDelay) + "/sec", 10*textSize,0);
+      p.text("Size: " + agentCounts.get(i) + " agents", 20*textSize,0);
+      p.translate(0, 1.5*textSize);
+    }
+    p.translate(0, 1.5*textSize);
+    p.text("Total Swarms: " + getSwarmCount(),0,0);
+    p.translate(0, 1.5*textSize);
+    p.text("Total Agents: " + agentCount,0,0);
+    p.popMatrix();
+  }
+  
 }
+
 
