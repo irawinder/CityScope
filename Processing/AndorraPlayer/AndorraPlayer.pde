@@ -151,27 +151,28 @@ void setup() {
 
 
 void mainDraw() {
-    // Draw Functions Located here should exclusively be drawn onto 'tableCanvas',
-    // a PGraphics set up to hold all information that will eventually be 
-    // projection-mapped onto a big giant table:
-    drawTableCanvas(tableCanvas);
-    
-    if (!keyLoaded) {
-      // Draws loading screen
-      loading(tableCanvas, loadText);
-    }
-    
-    // Renders the finished tableCanvas onto main canvas as a projection map or screen
-    renderTableCanvas();
-    
-    // Draws a line graph of all data for given OD matrix onto the main canvas
-    if (load_non_essential_data && dataMode == 3 && drawMode == 0) {
-      drawLineGraph();
-    }
+  // Draw Functions Located here should exclusively be drawn onto 'tableCanvas',
+  // a PGraphics set up to hold all information that will eventually be 
+  // projection-mapped onto a big giant table:
+  drawTableCanvas(tableCanvas);
+  
+  if (!keyLoaded) {
+    // Draws loading screen on top of last drawn content if keypressed while drawing
+    loading(tableCanvas, loadText);
+  }
+  
+  // Renders the finished tableCanvas onto main canvas as a projection map or screen
+  renderTableCanvas();
+  
+  // Draws a line graph of all data for given OD matrix onto the main canvas
+  if (load_non_essential_data && dataMode == 3 && drawMode == 0) {
+    drawLineGraph();
+  }
 }
 
 void draw() {
   
+  // If certain key commands are pressed, it causes a <0 delay which counts down in this section
   if (drawDelay > 0) {
     
     if (initialized) {
@@ -188,13 +189,7 @@ void draw() {
   // These are usually run in setup() but we put them here so that 
   // the 'loading' screen successfully runs for the user
   else if (!initialized) {
-    
     initContent();
-    
-//    tableCanvas.beginDraw();
-//    tableCanvas.background(background);
-//    tableCanvas.endDraw();
-    
     initialized = true;
   }
   

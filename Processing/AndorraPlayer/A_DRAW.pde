@@ -28,6 +28,21 @@ color other = #666666;
 
 void drawTableCanvas(PGraphics p) {
   
+  //Updates Agent Data to Display
+  if (showSwarm) {
+    swarmHorde.update();
+  }
+  
+  //Updates Heatmap Data to Display
+  if (showTraces) {
+    traces.update(swarmHorde);
+    traces.decay();
+  }
+  
+  // holds time from last frame
+  time_0 = millis();
+  
+  // Begin Draw Functions
   p.beginDraw();
   
       // Instead of solid background draws a translucent overlay every frame.
@@ -101,16 +116,6 @@ void drawTableCanvas(PGraphics p) {
       if (showEdges) {
         p.image(edges_Viz, 0, 0);
       }
-      
-      //Updates Agent Data to Display
-      if (showSwarm) {
-        swarmHorde.update();
-      }
-      
-      if (showTraces) {
-        traces.update(swarmHorde);
-        traces.decay();
-      }
     
       // Renders Agent 'dots' and corresponding obstacles and heatmaps
       if (showSwarm) {
@@ -129,9 +134,6 @@ void drawTableCanvas(PGraphics p) {
       p.translate(-scrollX, -scrollY); 
   
   p.endDraw();
-  
-  // records time from last frame
-  time_0 = millis();
 }
 
 
@@ -252,7 +254,8 @@ void drawMargin(PGraphics p) {
 
 }
 
-
+void update() {
+  
 
 void drawTopo(PGraphics p) {
  
