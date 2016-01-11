@@ -156,14 +156,14 @@ void keyPressed() {
       {d -= 1;
       }
       if (d == 0)
-      {d = 42;
+      {d = (tripAdvisor.getRowCount () -1);
       }
       break; 
     case ')': //selects forward a row in the hotel data 
-      if (d < 42){
+      if (d < (tripAdvisor.getRowCount () - 1)){
       d += 1;
       }
-      if (d == 42){
+      if (d == (tripAdvisor.getRowCount () - 1)){
         d = 0;
       }
       break;
