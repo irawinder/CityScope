@@ -51,6 +51,7 @@ boolean load_non_essential_data = true;
   // for dataMode = 3:
   int hourIndex = 71;
   int maxHour = 23;
+  int maxFlow = 0; // For a given date and hour, defines upper bound for flow between any two points based on data
   Table summary;
   String date = "no data";
 

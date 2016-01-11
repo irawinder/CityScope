@@ -65,7 +65,7 @@ void drawTableCanvas(PGraphics p) {
 
       // Displays Heatmap
       if(showTraces) {
-        traces.display();
+        traces.display(p);
       }
   
       // Displays ObstacleCourses
@@ -102,17 +102,37 @@ void drawTableCanvas(PGraphics p) {
         p.image(edges_Viz, 0, 0);
       }
       
+      //Updates Agent Data to Display
+      if (showSwarm) {
+        swarmHorde.update();
+      }
+      
+      if (showTraces) {
+        traces.update(swarmHorde);
+        traces.decay();
+      }
+    
       // Renders Agent 'dots' and corresponding obstacles and heatmaps
-      drawSwarms(p);
-     
+      if (showSwarm) {
+        swarmHorde.display(p, showTraces);
+      }
+      
+      if (dataMode != 0) {
+        swarmHorde.displaySummary(p);
+      }
+      
+      if (showInfo) {
+        swarmHorde.displaySwarmList(p);
+      }
+      
       // Revereses dragging of Table Area Info
       p.translate(-scrollX, -scrollY); 
   
   p.endDraw();
+  
+  // records time from last frame
+  time_0 = millis();
 }
-
-
-
 
 
 void drawMargin(PGraphics p) {
@@ -525,112 +545,6 @@ void drawTestFinder(PGraphics p, Pathfinder f, ArrayList<PVector> path, ArrayLis
   p.endDraw();
   p.beginDraw();
 }
-
-void drawSwarms(PGraphics p) {
-  
-  numAgents = 0;
-  
-  for (Swarm s : swarms) {
-    s.update();
-    numAgents += s.swarm.size();
-  }
-  
-  for (Swarm s : swarms) {
-      
-    if (showTraces) {
-      traces.update(s);
-      if (showSwarm) {
-        s.display(p, "grayscale");
-      }
-    } else {
-      if (showSwarm) {
-        s.display(p, "color");
-      }
-    }
-  }
-  
-  if (showTraces) {
-    traces.decay();
-  }
-  
-  for(int i=0; i<swarms.length; i++) {
-    swarmSize[i] = swarms[i].swarm.size();
-  }
-  
-  if (numAgents > maxAgents) {
-    int rand;
-    int counter;
-    while(numAgents > maxAgents) {
-      
-      // Picks a random agent from one of the swarms.  Larger swarms are more likely to be selected
-      rand = int(random(0, numAgents));
-      counter = 0;
-      for (int i=0; i<swarms.length; i++) {
-        counter += swarmSize[i];
-        if (rand < counter) {
-          rand = i;
-          //println("random: " + rand);
-          break;
-        }
-      }
-      
-      //kills a random agent in the selected swarm
-      if (swarms[rand].swarm.size() > 0) {
-        swarms[rand].swarm.get(int(random(swarms[rand].swarm.size()))).finished = true;
-        numAgents--;
-        //text("TWEAK", 20,20);
-        
-      }
-    }
-    adjust /= 0.9;
-  } else {
-    adjust *= 0.99;
-  }
-  
-  // Ensures that hourIndex doesn't null point
-  if (hourIndex > summary.getRowCount()) {
-     hourIndex = summary.getRowCount()-1;
-  }
-  
-  p.fill(textColor);
-  p.textSize(1.5*textSize);
-  if (dataMode == 2 || dataMode == 3) {
-    p.text("Total Agents Rendered: " + numAgents, marginWidthPix, 0.4*marginWidthPix);
-    //p.text("Adjust: " + int(adjust), marginWidthPix, 0.7*marginWidthPix);
-    //p.text("Total Agents in OD: " + summary.getInt(hourIndex, "TOTAL"), 7*marginWidthPix, 0.4*marginWidthPix);
-  }
-  
-  textSize = 8;
-  
-  if (showInfo) {
-    p.pushMatrix();
-    p.translate(2*textSize, 2*textSize + scroll);
-    
-    // Background rectangle
-    p.fill(#555555, 50);
-    p.noStroke();
-    p.rect(0, 0, 32*textSize, (swarms.length+4)*1.5*textSize, textSize, textSize, textSize, textSize);
-    
-    // Text
-    p.translate(2*textSize, 2*textSize);
-    for (int i=0; i<swarms.length; i++) {
-      p.fill(swarms[i].fill);
-      p.textSize(textSize);
-      p.text("Swarm[" + i + "]: ", 0,0);
-      p.text("Weight: " + int(1000.0/swarms[i].agentDelay) + "/sec", 10*textSize,0);
-      p.text("Size: " + swarms[i].swarm.size() + " agents", 20*textSize,0);
-      p.translate(0, 1.5*textSize);
-    }
-    p.translate(0, 1.5*textSize);
-    p.text("Total Swarms: " + swarms.length,0,0);
-    p.translate(0, 1.5*textSize);
-    p.text("Total Agents: " + numAgents,0,0);
-    p.popMatrix();
-  }
-  
-  time_0 = millis();
-}
-
 
 
 void loading(PGraphics p, String item) {
