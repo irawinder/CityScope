@@ -37,7 +37,7 @@ void keyPressed() {
       setLoader("Gridded Obstacles");
       // runs key_p() next frame
       break;
-    case 't': //shows thermal/traces of where agents have been 
+    case 't': //shows thermal/traces of where agents have been
       showTraces = toggle(showTraces);
       break;
     case 'F': //toggles frameStep
@@ -50,7 +50,7 @@ void keyPressed() {
     case '-': //slow it down
       updateSpeed(-1);
       break;
-    case 'c': //enter calibration mode 
+    case 'c': //enter calibration mode
       ks.toggleCalibration();
       break;
     case 'l': //loads course
@@ -87,14 +87,14 @@ void keyPressed() {
       setLoader("Data Mode " + nextMode(dataMode, 3));
       // runs key_D() next frame
       break;
-    case 'T': // show topography 
+    case 'T': // show topography
       showTopo = toggle(showTopo);
       break;
-    case 'E': // shows or hides obstale editor 
+    case 'E': // shows or hides obstale editor
       setLoader("Obstacles Editor");
       // runs key_E() next frame
       break;
-    case '': //hit the delete key 
+    case '': //hit the delete key
       if (editObstacles) {
         boundaries.removeVertex();
       }
@@ -104,17 +104,17 @@ void keyPressed() {
         boundaries.addObstacle();
       }
       break;
-    case 'R': //lets you remove obstacles 
+    case 'R': //lets you remove obstacles
       if (editObstacles) {
         boundaries.removeObstacle();
       }
       break;
-    case ' ': //switch between the two obstacles to edit them 
+    case ' ': //switch between the two obstacles to edit them
       if (editObstacles) {
         boundaries.nextIndex();
       }
       break;
-    case 'N': //hops to next vertice 
+    case 'N': //hops to next vertice
       if (editObstacles) {
         boundaries.nextVert();
       }
@@ -132,10 +132,10 @@ void keyPressed() {
       setLoader("CDR Data Hour: " + hourIndex);
       // runs key_RightBracket() next frame
       break;
-    case '[': //go to previous hour in data and wrap around like forward 
+    case '[': //go to previous hour in data and wrap around like forward
       setLoader("CDR Data Hour: " + hourIndex);
       // runs key_LeftBracket() next frame
-      //go to previous hour in data and wrap around like forward 
+      //go to previous hour in data and wrap around like forward
       hourIndex = prevHour(hourIndex);
       setSwarmFlow(hourIndex);
       // Reinitializes Network Edges
@@ -151,7 +151,7 @@ void keyPressed() {
     case 'G': //toggle display for pathing grip
       showGrid = toggle(showGrid);
       break;
-    case 'X': 
+    case 'X':
       setLoader("New Origin-Destination Pair");
       // runs key_X() next frame
       break;
@@ -182,24 +182,24 @@ void keyPressed() {
       println("masterAlpha: " + masterAlpha);
       break;
   }
-  
-  //------arrow keys and how to code keys that aren't characters exactly----- 
-  if (key == CODED) { 
+
+  //------arrow keys and how to code keys that aren't characters exactly-----
+  if (key == CODED) {
     if (keyCode == LEFT) {
       if (editObstacles) {
         boundaries.nudgeVertex(-1, 0);
       }
-    }  
+    }
     if (keyCode == RIGHT) {
       if (editObstacles) {
         boundaries.nudgeVertex(+1, 0);
       }
-    }  
+    }
     if (keyCode == DOWN) {
       if (editObstacles) {
         boundaries.nudgeVertex(0, +1);
       }
-    }  
+    }
     if (keyCode == UP) {
       if (editObstacles) {
         boundaries.nudgeVertex(0, -1);
@@ -208,7 +208,7 @@ void keyPressed() {
   }
 }
 
-// Running this method will display a loading screen when 
+// Running this method will display a loading screen when
 // running a method placed in "initKey()".
 // Useful for laggy commands
 void setLoader(String txt) {
@@ -335,7 +335,7 @@ void keyInit() {
       break;
   }
 }
-  
+
 void key_0() {
   // Restarts the whole sh'bang
   initCanvas();
@@ -371,7 +371,7 @@ void key_n() {
 }
 
 void key_E() {
-  // shows or hides obstale editor 
+  // shows or hides obstale editor
   editObstacles = toggle(editObstacles);
   println("editObstacles = " + editObstacles);
   if (!editObstacles) { //if deactivating editor, reinitializes custom network
@@ -414,6 +414,11 @@ void key_d() {
 
 void key_I() {
   //next data index
+  if (hourIndex == 24) {
+    hourIndex = 0;
+  } else {
+    hourIndex = hourIndex%24;
+  }
   dateIndex = nextMode(dateIndex, dates.length-1);
   initData();
   initAgents(tableCanvas);
