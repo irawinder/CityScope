@@ -55,6 +55,12 @@ void keyPressed() {
     case 'r': 
       rotateCamera();
       break;
+    /**
+    * case 'R' (01/12/16 YS)
+    */
+    case 'R':
+      toggleDDP();
+      break;
     case 'v': 
       changeDemo();
       break;
