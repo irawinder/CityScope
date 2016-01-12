@@ -6,10 +6,12 @@ void keyPressed() {
     case '$': //shows hotels by price when in data mode
       hotelprice = true;
       hotelstars = false;
+      showData = false;
       break;
     case '*':  //shows hotel stars when in data mode
       hotelstars = true;
       hotelprice = false;
+      showData = false;
       break;
     case '0': //ReBoots App
       setLoader("Andorra Player | Version " + version);
@@ -94,7 +96,7 @@ void keyPressed() {
       // runs key_d() next frame
       break;
     case 'D': //Toggles various data and visualization modes
-      setLoader("Data Mode " + nextMode(dataMode, 3));
+      setLoader("Data Mode " + nextMode(dataMode, 5));
       // runs key_D() next frame
       break;
     case 'T': // show topography 

@@ -152,6 +152,24 @@ void initContent() {
       showEdges = false;
       showSource = true;
       showPaths = false;
+      hotelprice = false; 
+      hotelstars = false;
+      break;
+    case 4: //hotels with stars
+      showGrid = false;
+      finderMode = 2;
+      showEdges = false;
+      showSource = true;
+      showPaths = false;
+      hotelprice = true;
+      break;
+    case 5: //hotels with price
+      showGrid = false;
+      finderMode = 2;
+      showEdges = false;
+      showSource = true;
+      showPaths = false;
+      hotelprice = true;
       break;
   }
   
@@ -213,6 +231,14 @@ void initAgents(PGraphics p) {
       testNetwork_CDRWifi(true, true);
       break;
     case 3:
+      agentCap = 2000;
+      CDRNetwork();
+      break;
+    case 4: 
+      agentCap = 2000;
+      CDRNetwork();
+      break;
+    case 5: 
       agentCap = 2000;
       CDRNetwork();
       break;

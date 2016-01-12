@@ -66,17 +66,13 @@ void drawTableCanvas(PGraphics p) {
             // Draw Sample Geographic data (debugging purposes)
             if (load_non_essential_data) {
             if (hotelstars == true) { 
-              if (showData){ 
                 drawHotelStars(p);
-                drawHotelJ(p);
+                drawHotelSelector(p);
               }
-            }
             if (hotelprice == true) { 
-              if(showData){
                 drawHotelPrice(p);
-                drawHotelJ(p);
+                drawHotelSelector(p);
               }
-            }
             }
             
       
@@ -347,7 +343,7 @@ void drawHotelPrice(PGraphics p) {
 //draws a selector circle to show what hotel you're on (displaying info below) and initiates j and d to go through hotels (still a little buggy) 
 int j = 0; 
 
-void drawHotelJ(PGraphics p) { 
+void drawHotelSelector(PGraphics p) { 
   p.noStroke();
   p.fill(#ffffff, 70);
   for (j = d; j<tripAdvisor.getRowCount (); j++) {
@@ -355,12 +351,12 @@ void drawHotelJ(PGraphics p) {
     coord = mercatorMap.getScreenLocation(new PVector(tripAdvisor.getFloat(d, "Lat"), tripAdvisor.getFloat(d, "Long")));
     }
 // Draw a circle 30 pixels in diameter at geolocation 
-    p.ellipse(coord.x, coord.y, 30, 30);
+    p.ellipse(coord.x, coord.y, 50, 50);
     fill(255);
   }
   
 
-/*void drawData(PGraphics p) {
+void drawData(PGraphics p) {
   
   // Currently renders 3 sets of sample data (Local Cell Towers, Wifi, and TripAdvisor)
   // CDR Data:
@@ -444,7 +440,7 @@ void drawHotelJ(PGraphics p) {
   p.ellipse(coord.x, coord.y, 10, 10);
   
 }
-*/
+
 
 
 
@@ -745,7 +741,7 @@ void drawSwarms(PGraphics p) {
   
   p.fill(textColor);
   p.textSize(1.5*textSize);
-  if (dataMode == 2 || dataMode == 3) {
+  if (dataMode == 2 || dataMode == 3 || dataMode == 4 || dataMode ==5) {
     p.text("Total Agents Rendered: " + numAgents, marginWidthPix, 0.4*marginWidthPix);
     //p.text("Adjust: " + int(adjust), marginWidthPix, 0.7*marginWidthPix);
     //p.text("Total Agents in OD: " + summary.getInt(hourIndex, "TOTAL"), 7*marginWidthPix, 0.4*marginWidthPix);

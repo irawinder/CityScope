@@ -53,6 +53,8 @@ int projectorHeight = 1000;
 //
 //   Data Navigation
 //     'D' = Next Data Mode
+//         dataMode = 5 for hotels with price
+//         dataMode = 4 for hotels with stars
 //         dataMode = 3 for Andorra CDR Network (circa Dec 2015)
 //         dataMode = 2 for basic network of Andorra Tower Locations
 //         dataMode = 1 for random network
