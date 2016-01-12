@@ -36,7 +36,7 @@ void drawPlan(int x, int y, int w, int h) {
   plan.beginDraw();
   plan.background(0);
   plan.noStroke();
-  
+
   if (drawPlanSat) {
     switch(satMode) {
       case 0:
@@ -57,32 +57,32 @@ void drawPlan(int x, int y, int w, int h) {
         break;
     }
   }
-  
+
   // Rotate Plan
   lTranslate(boardWidth/2, boardLength/2);
   plan.rotate(0);
   lTranslate(-boardWidth/2, -boardLength/2);
-  
+
   if (faux3D) {
     k_height = useCloud.nodes[0][0].length;
   } else {
     k_height = 2;
   }
-  
+
   if (drawPlanStatic) {
     drawPlanStatic();
   }
-  
+
   if (displayDynamic) {
     drawPlanDynamic();
   }
-    
+
   plan.endDraw();
-  
+
   if (drawPlan) {
     image(plan, x, y, w, h);
   }
-  
+
   // Creates plan image for use in projection mapping
   planImage = plan.get();
 }
@@ -90,55 +90,55 @@ void drawPlan(int x, int y, int w, int h) {
 void drawPlanDynamic() {
   // Indroduces a small gap just after 0,0 that acounts for half the width of a plexiglas grid width
   lTranslate(dynamicSpacer*gridGap/2, dynamicSpacer*gridGap/2);
-  
+
   for (int k = 0; k<k_height; k++) {
     for (int i = 0; i<UMax; i++) {
       for (int j = 0; j<VMax; j++) {
-        
+
         plan.noFill();
-        
+
         if (structureMode == 0) {
           drawPlan1x1Nodes(i, j, k);
         } else if (structureMode == 1) {
           drawPlan4x4Nodes(i, j, k);
         }
-        
+
         // iterates along j axis
-        lTranslate((boxW + dynamicSpacer*gridGap), 0); 
+        lTranslate((boxW + dynamicSpacer*gridGap), 0);
       }
       // iterates along i axis AND resets j axis
-      lTranslate(-(boxW + dynamicSpacer*gridGap)*VMax, (boxW + dynamicSpacer*gridGap)); 
+      lTranslate(-(boxW + dynamicSpacer*gridGap)*VMax, (boxW + dynamicSpacer*gridGap));
     }
-  
+
   //reset i axis
-  lTranslate(0, -(boxW + dynamicSpacer*gridGap)*UMax); 
+  lTranslate(0, -(boxW + dynamicSpacer*gridGap)*UMax);
   }
-  
+
   // reverses small gap just after 0,0 that acounts o half the width of a plexiglas grid width
   lTranslate(dynamicSpacer*(-gridGap)/2, dynamicSpacer*(-gridGap)/2);
-  
+
 }
 
 void drawPlanStatic() {
   noStroke();
-    
+
   // Indroduces a small gap just after 0,0 that acounts for half the width of a plexiglas grid width
   lTranslate(staticSpacer*gridGap/2, staticSpacer*gridGap/2);
-  
+
   for (int i = 0; i < staticU; i++) {
-    
+
     // Indroduces a small gap between 4x4 LU grids
     if (i % 4 == 0 && i > 0) {
       lTranslate(0, gridGap*staticSpacer);
     }
-    
-    for (int j = 0; j < staticV; j++) {  
-      
+
+    for (int j = 0; j < staticV; j++) {
+
       // Indroduces a small gap between 4x4 LU grids
       if (j % 4 == 0 && j > 0) {
         lTranslate(gridGap*staticSpacer, 0);
-      }   
-      
+      }
+
       if (staticStructures.getInt(i,j) == -3) { // Is River
         if (colorMode == 2) {
           plan.fill(offColor);
@@ -170,19 +170,19 @@ void drawPlanStatic() {
           plan.fill(bldgColor);
         }
       }
-      
+
       if (staticStructures.getInt(i,j) != -10) { // Is Structure
-        lRect(0, 0, LU_W, LU_W);        
+        lRect(0, 0, LU_W, LU_W);
       }
-      // iterates along j axis  
-      lTranslate(LU_W, 0);        
-    }  
+      // iterates along j axis
+      lTranslate(LU_W, 0);
+    }
     // iterates along i axis AND resets j axis
-    lTranslate(-LU_W*staticV - gridGap*(staticV/4-1)*staticSpacer, LU_W); 
+    lTranslate(-LU_W*staticV - gridGap*(staticV/4-1)*staticSpacer, LU_W);
   }
   //resets i axis
-  lTranslate(0, -LU_W*staticU - gridGap*(staticU/4-1)*staticSpacer); 
-  
+  lTranslate(0, -LU_W*staticU - gridGap*(staticU/4-1)*staticSpacer);
+
   // Reverses a small gap just after 0,0 that acounts for half the width of a plexiglas grid width
   lTranslate(-staticSpacer*gridGap/2, -staticSpacer*gridGap/2);
 }
@@ -252,12 +252,12 @@ void pickPlanFill(int c0, int c1, int c2) {
 }
 
 void drawPlan1x1Nodes(int i, int j, int k) {
-  
+
   if  (siteInfo.getInt(i,j) == 1 || overrideStatic) { //is site
-        
+
     if (!drawNodes) {
       if (colorMode == 0 || colorMode == 1) { //renders dynamic pieces
-            
+
         if  (siteInfo.getInt(i,j) == 1 || overrideStatic) { //is site
           if (codeArray[i][j][0] >= 0 && codeArray[i][j][0] < NPieces) { //has peice
             if ((vizMode == 0 && codeArray[i][j][0] == 1) || (vizMode == 1 && codeArray[i][j][0] == 8) || (vizMode == 2 && codeArray[i][j][0] == 2)) { //is Park
@@ -270,9 +270,9 @@ void drawPlan1x1Nodes(int i, int j, int k) {
             plan.fill(openColor);
           }
         }
-          
+
       } else if (colorMode == 2) { //renders heatmap
-      
+
         if  (siteInfo.getInt(i,j) == 1 || overrideStatic) { //is site
           if (codeArray[i][j][0] >= 0 && codeArray[i][j][0] < NPieces) { //has peice
             if (heatMapActive[i][j] == 1) {
@@ -289,7 +289,7 @@ void drawPlan1x1Nodes(int i, int j, int k) {
         }
       }
     } else {
-      
+
       if (siteInfo.getInt(i,j) == 1 || (codeArray[i][j][0] >= 0 && codeArray[i][j][0] < NPieces)) { //has peice
         if (nodeMode == 0) {
           findPlanFill(i, j, useCloud.nodes[i][j][k]);
@@ -300,22 +300,22 @@ void drawPlan1x1Nodes(int i, int j, int k) {
             plan.fill(255*(1-solutionCloud[i][j][k]), 255*solutionCloud[i][j][k], 0);
           }
         }
-        
+
       }
-       
+
       lRect(0, 0, boxW, boxW);
     }
   }
 }
 
 void drawPlan4x4Nodes(int i, int j, int k) {
-  
+
   if  (siteInfo.getInt(i,j) == 1 || overrideStatic) { //is site
-    
+
     if (!drawNodes) {
-    
+
       if (colorMode == 0 || colorMode == 1) { //renders dynamic pieces
-            
+
         if  (siteInfo.getInt(i,j) == 1 || overrideStatic) { //is site
           if (codeArray[i][j][0] >= 0 && codeArray[i][j][0] < NPieces) { //has peice
             if ((vizMode == 0 && codeArray[i][j][0] == 1) || (vizMode == 1 && codeArray[i][j][0] == 8) || (vizMode == 2 && codeArray[i][j][0] == 2)) { //is Park
@@ -328,9 +328,9 @@ void drawPlan4x4Nodes(int i, int j, int k) {
             plan.fill(openColor);
           }
         }
-          
+
       } else if (colorMode == 2) { //renders heatmap
-      
+
         if  (siteInfo.getInt(i,j) == 1 || overrideStatic) { //is site
           if (codeArray[i][j][0] >= 0 && codeArray[i][j][0] < NPieces) { //has peice
             if (heatMapActive[i][j] == 1) {
@@ -346,19 +346,20 @@ void drawPlan4x4Nodes(int i, int j, int k) {
           }
         }
       }
-        
+
       lRect(0, 0, boxW, boxW);
-      
+
     } else {
-      
+
       if (siteInfo.getInt(i,j) == 1 || (codeArray[i][j][0] >= 0 && codeArray[i][j][0] < NPieces)) { //has peice
-      
+
         float dU = (k*LU_H) * (j - projU) / projH;
         float dV = (k*LU_H) * (i - projV) / projH;
-        
+
+
         for (int u=0; u<4; u++) {
           for (int v=0; v<4; v++) {
-            
+
             if (useCloud.nodes[i*4+u][j*4+v][k] != -1) {
               if (nodeMode == 0) {
                 findPlanFill(i, j, useCloud.nodes[i*4+u][j*4+v][k]);
@@ -373,10 +374,10 @@ void drawPlan4x4Nodes(int i, int j, int k) {
                   plan.fill(255*(1-solutionCloud[i*4+u][j*4+v][k]), 255*solutionCloud[i*4+u][j*4+v][k], 0);
                 }
               }
-              
+
               lRect(v*LU_W+dU, u*LU_W+dV, LU_W, LU_W);
             }
-          
+
           } // end for v
         } // end for u
       } // end if site
@@ -442,4 +443,3 @@ void findPlanFill(int u, int v, int value) {
       break;
   }
 }
-

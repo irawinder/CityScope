@@ -37,7 +37,7 @@ void keyPressed() {
       setLoader("Gridded Obstacles");
       // runs key_p() next frame
       break;
-    case 't': //shows thermal/traces of where agents have been
+    case 't': //shows thermal/traces of where agents have been 
       showTraces = toggle(showTraces);
       break;
     case 'F': //toggles frameStep
@@ -50,51 +50,25 @@ void keyPressed() {
     case '-': //slow it down
       updateSpeed(-1);
       break;
-    case 'c': //enter calibration mode
-      ks.toggleCalibration();
-      break;
     case 'l': //loads course
       if (editObstacles) {
         boundaries.loadCourse("data/course.tsv");
-      } else {
-        // loads the saved layout
-        ks.load();
       }
       break;
     case 's'://save course
       if (editObstacles) {
         boundaries.saveCourse("data/course.tsv");
-      } else {
-        // saves the layout
-        ks.save();
       }
-      break;
-    case 'm': // changes draw mode
-      drawMode = nextMode(drawMode, 1);
-      // Adjusts Colors and Transparency depending on whether visualization is on screen or projected
-      setScheme(drawMode);
-      // Reinitialize any PGraphics that use masterAlpha and schemaScaler
-      refreshGraphicScheme(tableCanvas);
-      break;
-    case 'g': // changes debug mode
-      debug = toggle(debug);
-      break;
-    case 'd': //shows test geospatial data
-      setLoader("Geo-located Test Data");
-      // runs key_d() next frame
       break;
     case 'D': //Toggles various data and visualization modes
       setLoader("Data Mode " + nextMode(dataMode, 3));
       // runs key_D() next frame
       break;
-    case 'T': // show topography
-      showTopo = toggle(showTopo);
-      break;
-    case 'E': // shows or hides obstale editor
+    case 'E': // shows or hides obsticale editor 
       setLoader("Obstacles Editor");
       // runs key_E() next frame
       break;
-    case '': //hit the delete key
+    case '': //hit the delete key 
       if (editObstacles) {
         boundaries.removeVertex();
       }
@@ -104,17 +78,17 @@ void keyPressed() {
         boundaries.addObstacle();
       }
       break;
-    case 'R': //lets you remove obstacles
+    case 'R': //lets you remove obstacles 
       if (editObstacles) {
         boundaries.removeObstacle();
       }
       break;
-    case ' ': //switch between the two obstacles to edit them
+    case ' ': //switch between the two obstacles to edit them 
       if (editObstacles) {
         boundaries.nextIndex();
       }
       break;
-    case 'N': //hops to next vertice
+    case 'N': //hops to next vertice 
       if (editObstacles) {
         boundaries.nextVert();
       }
@@ -128,30 +102,13 @@ void keyPressed() {
       grayColor = int(abs(background - (255.0/2)*schemeScaler));
       pFinderGrid_Viz(tableCanvas);
       break;
-    case ']': //manually iterate to next Hour in data
-      setLoader("CDR Data Hour: " + hourIndex);
-      // runs key_RightBracket() next frame
-      break;
-    case '[': //go to previous hour in data and wrap around like forward
-      setLoader("CDR Data Hour: " + hourIndex);
-      // runs key_LeftBracket() next frame
-      //go to previous hour in data and wrap around like forward
-      hourIndex = prevHour(hourIndex);
-      setSwarmFlow(hourIndex);
-      // Reinitializes Network Edges
-      edges_Viz(tableCanvas);
-      break;
-    case 'I': //next data index
-      setLoader("CDR Data: " + dates[nextMode(dateIndex, dates.length-1)]);
-      // runs key_I() next frame
-      break;
     case 'P': //toggle display of shortest paths
       showPaths = toggle(showPaths);
       break;
     case 'G': //toggle display for pathing grip
       showGrid = toggle(showGrid);
       break;
-    case 'X':
+    case 'X': 
       setLoader("New Origin-Destination Pair");
       // runs key_X() next frame
       break;
@@ -182,24 +139,24 @@ void keyPressed() {
       println("masterAlpha: " + masterAlpha);
       break;
   }
-
-  //------arrow keys and how to code keys that aren't characters exactly-----
-  if (key == CODED) {
+  
+  //------arrow keys and how to code keys that aren't characters exactly----- 
+  if (key == CODED) { 
     if (keyCode == LEFT) {
       if (editObstacles) {
         boundaries.nudgeVertex(-1, 0);
       }
-    }
+    }  
     if (keyCode == RIGHT) {
       if (editObstacles) {
         boundaries.nudgeVertex(+1, 0);
       }
-    }
+    }  
     if (keyCode == DOWN) {
       if (editObstacles) {
         boundaries.nudgeVertex(0, +1);
       }
-    }
+    }  
     if (keyCode == UP) {
       if (editObstacles) {
         boundaries.nudgeVertex(0, -1);
@@ -208,7 +165,7 @@ void keyPressed() {
   }
 }
 
-// Running this method will display a loading screen when
+// Running this method will display a loading screen when 
 // running a method placed in "initKey()".
 // Useful for laggy commands
 void setLoader(String txt) {
@@ -251,38 +208,16 @@ int y_0;
 int scroll = 0;
 int scroll_0 = 0;
 
-//Move Variables for Network
-int X_0, Y_0;
-int scrollX = 0;
-int scrollY = 0;
-int scrollX_0 = 0;
-int scrollY_0 = 0;
-
 void mousePressed() {
-  if (showInfo) {
-    y_0 = mouseY;
-  } else {
-    X_0 = mouseX;
-    Y_0 = mouseY;
-  }
+  y_0 = mouseY;
 }
 
 void mouseDragged() {
-  if (showInfo) {
-    scroll = scroll_0 + mouseY - y_0;
-  } else {
-    scrollX = scrollX_0 + mouseX - X_0;
-    scrollY = scrollY_0 + mouseY - Y_0;
-  }
+  scroll = scroll_0 + mouseY - y_0;
 }
 
 void mouseReleased() {
-  if (showInfo) {
-    scroll_0 = scroll;
-  } else {
-    scrollX_0 = scrollX;
-    scrollY_0 = scrollY;
-  }
+  scroll_0 = scroll;
 }
 
 void mouseClicked() {
@@ -318,28 +253,16 @@ void keyInit() {
     case 'r':
       key_r();
       break;
-    case 'd':
-      key_d();
-      break;
-    case 'I':
-      key_I();
-      break;
-    case '[':
-      key_LeftBracket();
-      break;
-    case ']':
-      key_RightBracket();
-      break;
     case 'X':
       key_X();
       break;
   }
 }
-
+  
 void key_0() {
   // Restarts the whole sh'bang
   initCanvas();
-  initContent();
+  initContent(tableCanvas);
   tableCanvas.beginDraw();
   tableCanvas.background(background);
   tableCanvas.endDraw();
@@ -347,9 +270,9 @@ void key_0() {
 
 void key_D() {
   //Toggles various data and visualization modes
-  dataMode = nextMode(dataMode, 3);
+  dataMode = nextMode(dataMode, 1);
 
-  initContent();
+  initContent(tableCanvas);
 }
 
 void key_RightCarrot() {
@@ -371,10 +294,10 @@ void key_n() {
 }
 
 void key_E() {
-  // shows or hides obstale editor
+  // shows or hides obstale editor 
   editObstacles = toggle(editObstacles);
   println("editObstacles = " + editObstacles);
-  if (!editObstacles) { //if deactivating editor, reinitializes custom network
+  if (!editObstacles) { //if deactivapting editor, reinitializes custom network
     // Resets the network for custom mode
     resetFinder(tableCanvas, 10, 2); // '2' for custom mode
     refreshFinder(tableCanvas);
@@ -388,7 +311,7 @@ void key_E() {
 void key_p() {
   //makes a grid of obstacles
   testObstacles = toggle(testObstacles);
-  testObstacles(testObstacles);
+  testObstacles(tableCanvas, testObstacles);
   // Resets the network for gridded mode
   resetFinder(tableCanvas, 10, 1); // '1' for gridded mode
   refreshFinder(tableCanvas);
@@ -397,49 +320,6 @@ void key_p() {
 void key_r() {
   //reset agents and simulation
   initAgents(tableCanvas);
-  scrollX = 0;
-  scrollY = 0;
-}
-
-void key_d() {
-  //shows test geospatial data
-  if (!showData && !load_non_essential_data) {
-    load_non_essential_data = toggle(load_non_essential_data);
-    dataMode = 3;
-    initContent();
-  }
-  showData = toggle(showData);
-  println("showData = " + showData);
-}
-
-void key_I() {
-  //next data index
-  if (hourIndex == 24) {
-    hourIndex = 0;
-  } else {
-    hourIndex = hourIndex%24;
-  }
-  dateIndex = nextMode(dateIndex, dates.length-1);
-  initData();
-  initAgents(tableCanvas);
-}
-
-void key_LeftBracket() {
-  //manually iterate to next Hour in data
-  hourIndex = prevHour(hourIndex);
-  checkValidHour(hourIndex);
-  setSwarmFlow(hourIndex);
-  // Reinitializes Network Edges
-  edges_Viz(tableCanvas);
-}
-
-void key_RightBracket() {
-  //manually iterate to next Hour in data
-  hourIndex = nextHour(hourIndex);
-  checkValidHour(hourIndex);
-  setSwarmFlow(hourIndex);
-  // Reinitializes Network Edges
-  edges_Viz(tableCanvas);
 }
 
 void key_X() {

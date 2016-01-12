@@ -4,8 +4,8 @@
 // Ira Winder, MIT Media Lab, jiw@mit.edu, Fall 2015
 
 // To Do:
-// Make Custom Editor for Swarm Attributes
 // Make a Horde Class for Swarms
+// Make Custom Editor for Swarm Attributes
 // Make Agent LifeSpan some sort of sense
 
 // In general, migrate global "void drawFoo()" methods into class-specific "display()" methods
@@ -45,7 +45,7 @@ boolean debug = true;
 //int projectorHeight = 1080;
 int projectorWidth = 1500;
 int projectorHeight = 1000;
-    
+
 // Key Commands:
 //
 //     'g' - Toggle debug
@@ -58,7 +58,7 @@ int projectorHeight = 1000;
 //         dataMode = 0 for empty network and Pathfinder Test OD
 //     'I' - Next OD Data Set
 //     ']' - Go forward an hour in OD dataset
-//     '[' - Go backward an hour in OD dataset 
+//     '[' - Go backward an hour in OD dataset
 //     'd' - Show/hide test geodata
 //
 //   View Mode:
@@ -118,7 +118,7 @@ boolean printFrames = false;
 boolean initialized = false;
 
 // Number of frames for draw function to run before
-// running setup functions. Setting to greater than 0 
+// running setup functions. Setting to greater than 0
 // allows you to draw a loading screen
 int drawDelay = 10;
 
@@ -133,18 +133,18 @@ int drawMode = 0;
 
 void setup() {
   //size(2*projectorWidth, 2*projectorHeight, P3D);
-  
-  // Keystone will only work with P3D or OPENGL renderers, 
+
+  // Keystone will only work with P3D or OPENGL renderers,
   // since it relies on texture mapping to deform
-  
+
   if (use4k) {
     size(2*projectorWidth, 2*projectorHeight, P3D);
   } else {
     size(projectorWidth, projectorHeight, P3D);
   }
-  
+
   initCanvas();
-  
+
 //  //Call this method if data folder ever needs to be selected by a user
 //  selectFolder("Please select the a folder and click 'Open'", "folderSelected");
 }
@@ -152,18 +152,18 @@ void setup() {
 
 void mainDraw() {
     // Draw Functions Located here should exclusively be drawn onto 'tableCanvas',
-    // a PGraphics set up to hold all information that will eventually be 
+    // a PGraphics set up to hold all information that will eventually be
     // projection-mapped onto a big giant table:
     drawTableCanvas(tableCanvas);
-    
+
     if (!keyLoaded) {
       // Draws loading screen
       loading(tableCanvas, loadText);
     }
-    
+
     // Renders the finished tableCanvas onto main canvas as a projection map or screen
     renderTableCanvas();
-    
+
     // Draws a line graph of all data for given OD matrix onto the main canvas
     if (load_non_essential_data && dataMode == 3 && drawMode == 0) {
       drawLineGraph();
@@ -171,9 +171,10 @@ void mainDraw() {
 }
 
 void draw() {
-  
+
+  // If certain key commands are pressed, it causes a <0 delay which counts down in this section
   if (drawDelay > 0) {
-    
+
     if (initialized) {
       mainDraw();
     } else {
@@ -181,39 +182,33 @@ void draw() {
       loading(tableCanvas, loadText);
       renderTableCanvas();
     }
-    
+
     drawDelay--;
   }
-  
-  // These are usually run in setup() but we put them here so that 
+
+  // These are usually run in setup() but we put them here so that
   // the 'loading' screen successfully runs for the user
   else if (!initialized) {
-    
     initContent();
-    
-//    tableCanvas.beginDraw();
-//    tableCanvas.background(background);
-//    tableCanvas.endDraw();
-    
     initialized = true;
   }
-  
+
   // Methods run every frame (i.e. 'draw()' functions) go here
   else {
-    
+
     // These are initialization functions that may be called while the app is running
     if (!keyLoaded) {
       keyInit();
-      keyLoaded = true;  
+      keyLoaded = true;
     }
-    
+
     mainDraw();
-    
+
     // Print Framerate of animation to console
     if (showFrameRate) {
       println(frameRate);
     }
-    
+
     // If true, saves every frame of the main canvas to a PNG
     if (printFrames) {
       //tableCanvas.save("videoFrames/" + millis() + ".png");
@@ -226,8 +221,8 @@ void renderTableCanvas() {
   // most likely, you'll want a black background to minimize
   // bleeding around your projection area
   background(0);
-  
-  // Renders the tableCanvas as either a projection map or on-screen 
+
+  // Renders the tableCanvas as either a projection map or on-screen
   switch (drawMode) {
     case 0: // On-Screen Rendering
       //image(tableCanvas, 0, (height-tableCanvas.height)/2, tableCanvas.width, tableCanvas.height);
@@ -274,4 +269,3 @@ void folderSelected(File selection) {
     // some other startup function
   }
 }
-
