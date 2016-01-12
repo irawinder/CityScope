@@ -11,6 +11,15 @@ int simCounter= 0;
 String[] scoreNames;
 int scoreIndex = 0;
 
+/*
+* DDP declaration (01/12/16 YS)
+* DDPClient is initialized in main setup function. (Legotizer tab)
+*/
+boolean enableDDP = true;
+String DDPAddress = "104.131.183.20";
+import ddpclient.*;
+DDPClient ddp;
+
 void initializeNodesJSON() {
 
   nodesJSON = new JSONArray();
@@ -122,9 +131,58 @@ void checkSendNodesJSON(String filename) {
       } else {
         simCounter--;
       }
+      /**
+      * Sending DDP (01/12/16 YS)
+      */
+      if(enableDDP){  
+        ddp.setProcessing_delay(50);
+        // record 172ms good-enough
+        ddp.call("sendCapture",new Object[]{smashNodes(nodesJSON).toString()}); 
+        //ddp.call("sendCapture",new Object[]{nodesJSON.toString()});
+      } 
+      
+    }
+  }
+}
+
+/**
+* smashNodes (01/12/16 YS)
+* This function Conpresses the 'nodesJSON'
+* {"v1u1":"123000000","v1u2":"32423440","String keyaddress":"String blocktype",,"v64u90":"333300000"}
+* 
+*/
+JSONObject smashNodes(JSONArray _nodesJSON){
+  int maxZ = 10;
+  JSONObject smashed = new JSONObject();
+  for(int i=0;i<_nodesJSON.size();i++){
+    JSONObject block = _nodesJSON.getJSONObject(i);
+    String uvkey = "v"+block.getInt("v")+"u"+block.getInt("u");
+    
+    int use = block.getInt("use");
+    int z = block.getInt("z");
+    String use_levels;
+    
+    try{
+      use_levels = smashed.getString(uvkey);
+    }catch(RuntimeException e){
+      use_levels = new String(new char[maxZ]).replace("\0","0");
     }
     
+    use_levels = use_levels.substring(0,z)+use+use_levels.substring(z+1);
+
+    smashed.setString(uvkey,use_levels);
+    
   }
+  
+  return smashed;
+}
+
+/**
+* toggleDDP (01/12/16 YS)
+* 
+*/
+void toggleDDP(){
+  enableDDP = !enableDDP;
 }
 
 void loadSolutionJSON(JSONArray solution, String filename, String names, int viz) {

@@ -19,8 +19,10 @@ UDP udp;  // define the UDP object
 
 /**
 * importing the DDP library and dependencies (2016/01/05 Y.S.)
-*
+* 
 */
+boolean enableDDP = false;
+String DDPAddress = "104.131.183.20";
 import com.google.gson.Gson; // you don't need this if your just using DDPclient
 import ddpclient.*;
 
@@ -42,13 +44,14 @@ void startUDP(){
 
   /**
   * DDP initiation (2016/01/04 Y.S.)
-  *
-  * assuming that this function is called in init
+  * 
+  * assuming that this function is called in init 
   * initiating will automatically connect
   */
   //ddp = new DDPClient(this,"localhost",3000);
-  ddp = new DDPClient(this,"104.131.183.20",80);
+  ddp = new DDPClient(this,DDPAddress,80);
   gson = new Gson();
+  ddp.setProcessing_delay(100);
 
 }
 
@@ -92,8 +95,9 @@ void sendData() {
         * storing data for web (2016/01/05 Y.S.)
         * simplified the data for the sake of example
         */
-        state_data = (int[][])append(state_data,new int[]{tagDecoder[0].id[u][v],tagDecoder[0].rotation[u][v]});
-
+        if(enableDDP){
+          state_data = (int[][])append(state_data,new int[]{tagDecoder[0].id[u][v],tagDecoder[0].rotation[u][v]});
+        }
       }
     }
 
@@ -143,7 +147,7 @@ void sendData() {
     /**
     * sending data via DDP (2016/01/04 Y.S.)
     */
-    ddp.call("sendCapture",new Object[]{gson.toJson(state_data)});
+    if(enableDDP)  ddp.call("sendCapture",new Object[]{gson.toJson(state_data)});
 
     // Karthik's IP Address
     if(karthikPrototype) {
