@@ -7,6 +7,7 @@
 // Make a Horde Class for Swarms
 // Make Custom Editor for Swarm Attributes
 // Make Agent LifeSpan some sort of sense
+// Hi Yasushi
 
 // In general, migrate global "void drawFoo()" methods into class-specific "display()" methods
 // Consolidate Agents, Obstacles, and Pathfinder classes to libraries and/or standalone applets and/or libraries?
