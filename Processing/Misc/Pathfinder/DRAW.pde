@@ -1,3 +1,0 @@
-void drawFrame() {
-  background(bg);
-}
