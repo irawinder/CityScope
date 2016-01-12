@@ -20,6 +20,7 @@ String help[] = {
  "'c' Toggle different test piece configurations (does not render if connection to Colortizer is Active)",
  "'d' Toggle Dynamic Model [On/Off]",
  "'r' Rotate Screen Camera 90degrees",
+ "'R' Toggle data transfer to Remote via DDP",
  "'v' Change Demo Being Visualized (Kendall, Riyadh, etc)",
  "'a' Toggle Grid Axes [On/Off]",
  "'t' Toggle Statistics (not finished)",

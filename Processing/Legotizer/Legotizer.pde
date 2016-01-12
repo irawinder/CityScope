@@ -117,6 +117,14 @@ void setup() {
   
   //Displays Loading Text
   loading("Legotizer | Version " + version);
+  
+  /*
+  * initiates connection to ddp client (01/12/16 YS)
+  * DDP doesn't want to be in the first frame of draw :(
+  */
+  //ddp = new DDPClient(this,"localhost",3000);
+  ddp= new DDPClient(this,DDPAddress,80);
+  ddp.setProcessing_delay(100);
 }
 
 // Infinite draw loop
