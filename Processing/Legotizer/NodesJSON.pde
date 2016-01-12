@@ -15,7 +15,7 @@ int scoreIndex = 0;
 * DDP declaration (01/12/16 YS)
 * DDPClient is initialized in main setup function. (Legotizer tab)
 */
-boolean enableDDP = true;
+boolean enableDDP = false;
 String DDPAddress = "104.131.183.20";
 import ddpclient.*;
 DDPClient ddp;
