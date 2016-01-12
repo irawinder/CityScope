@@ -162,6 +162,7 @@ public void scanDisplay() {
   // Draws status of IDs supported, gridLocked status, and UMI client state
   translate(imgW+margLeft+margInputs, margTop+imgH);
   drawVRMode();
+  drawDDPMode();
   drawIDMode(scanGrid[numGAforLoop[imageIndex] + gridIndex].IDMode);
   drawGridLock();
   drawUMIStatus();
@@ -468,6 +469,17 @@ void drawVRMode() {
   textAlign(LEFT);
   text("Export to IPs for Karthik's VR Prototype: " + karthikPrototype + " [Press 'V' to toggle on/off]", 
        24+scanGrid[numGAforLoop[imageIndex] + gridIndex].getQuadWidth()+10, -6.0*tsize);
+}
+
+/**
+* DDP connection mode (Y.S 01/12/16)
+*/
+void drawDDPMode(){
+  fill(#FFFFFF);
+  textAlign(LEFT);
+  text("Export to Web App ("+DDPAddress+"): "+enableDDP + "[Press 'N'] to toggle.",
+    24+scanGrid[numGAforLoop[imageIndex] + gridIndex].getQuadWidth()+10, -7.5*tsize);
+  
 }
 
 void printGridTitle(int i) {
@@ -783,6 +795,9 @@ void keyPressed() {
       } else {
         karthikPrototype = true;
       }
+      break;
+    case 'N':
+      enableDDP = !enableDDP;
       break;
   }
   

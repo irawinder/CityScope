@@ -414,11 +414,6 @@ void key_d() {
 
 void key_I() {
   //next data index
-  if (hourIndex == 24) {
-    hourIndex = 0;
-  } else {
-    hourIndex = hourIndex%24;
-  }
   dateIndex = nextMode(dateIndex, dates.length-1);
   initData();
   initAgents(tableCanvas);
@@ -427,6 +422,7 @@ void key_I() {
 void key_LeftBracket() {
   //manually iterate to next Hour in data
   hourIndex = prevHour(hourIndex);
+  checkValidHour(hourIndex);
   setSwarmFlow(hourIndex);
   // Reinitializes Network Edges
   edges_Viz(tableCanvas);
@@ -435,6 +431,7 @@ void key_LeftBracket() {
 void key_RightBracket() {
   //manually iterate to next Hour in data
   hourIndex = nextHour(hourIndex);
+  checkValidHour(hourIndex);
   setSwarmFlow(hourIndex);
   // Reinitializes Network Edges
   edges_Viz(tableCanvas);
