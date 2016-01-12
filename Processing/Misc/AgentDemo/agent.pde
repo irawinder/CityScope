@@ -3,7 +3,7 @@
 boolean frameStep = true;
 
 float time_0 = 0;
-float speed = 1.5;
+float speed = 0.666666;
 
 class Agent {
   
