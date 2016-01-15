@@ -5,7 +5,9 @@
 // Dec.8th.2015
 
 
-float maxSpeed = 30.0; //units: kph
+float maxSpeedKPH = 100.0; //units: kph  20.0 kph
+float maxSpeedMPS = maxSpeedKPH * 1000.0 / 60.0 / 60.0; //20.0 KPH = 5.55556 MPS
+float maxSpeedPPS = maxSpeedMPS / scaleMeterPerPixel; 
 float roadConnectionTolerance = 1.0; //pxl; smaller than 1.0 will cause error
 
 class PEV {
@@ -18,7 +20,7 @@ class PEV {
   PVector locationPt; //location coordination on the canvas
   PVector locationTangent;
   float rotation; //rotation in radius on the canvas
-  float speed; //current speed; units: kph
+  float speedT; //current speed; units: t per frame
 
   PEV(Road _road, float _t) {
     //id = _id;
@@ -28,7 +30,7 @@ class PEV {
     t = _t;
     status = 0;
     locationPt = road.getPt(t);
-    speed = 0.02; // 0.01
+    speedT = maxSpeedMPS / road.roadLengthMeter / float(frameRate); //speedT unit: t per frame
   }
 
   void run() {
@@ -69,10 +71,10 @@ class PEV {
     translate(locationPt.x, locationPt.y);
     rotate(rotation);
 
-    // draw direction line
-    stroke(0, 255, 0); 
-    strokeWeight(0.5); 
-    line(0.0, 0.0, 25.0, 0.0);
+    //// draw direction line
+    //stroke(0, 255, 0); 
+    //strokeWeight(0.5); 
+    //line(0.0, 0.0, 25.0, 0.0);
 
     // draw PEV img
     scale(0.3);
@@ -84,9 +86,9 @@ class PEV {
   void move() {
     // at end of road
 
-    if (t + speed > 1.0) {
+    if (t + speedT > 1.0) {
       // simple test on one road
-      //speed = -speed;
+      //speedT = -speedT;
 
       // looking for all next road connected
       ArrayList<Road> nextRoads = new ArrayList<Road>();
@@ -124,8 +126,10 @@ class PEV {
       // switch current road to next road
       road = nextRoad; 
       t = 0.0;
+      
+      speedT = maxSpeedMPS / road.roadLengthMeter / frameRate; //speedT unit: t per frame
     }
 
-    t = t + speed;
+    t = t + speedT;
   }
 }

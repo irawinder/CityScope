@@ -31,6 +31,7 @@ String roadPtFile;
 float screenScale;  //1.0F(for normal res or OS UHD)  2.0F(for WIN UHD)
 int totalPEVNum = 10;
 int totalRoadNum;
+float scaleMeterPerPixel = 2.15952; //meter per pixel in processing; meter per mm in rhino
 
 Roads roads;
 PEVs PEVs; 

@@ -5,13 +5,27 @@
 // Dec.8th.2015
 
 
-float stepLength = 0.2; //for the road pts generated in rhino/gh; units: km
+//1 mm(pxl)
+//= 2.15952 meter
+
+//currently, 
+//road step length
+//= 0.50 mm(pxl)/pt
+//>>
+//road length (meter)
+//= road pt number * 0.5 * 2.15952
+//= road pt number * 1.07976
+
+
+float stepLengthPixel = 0.5; //for the road pts generated in rhino/gh; units: mm(pxl)/pt
+float stepLengthMeter = stepLengthPixel * scaleMeterPerPixel; //units: meter/pt
 
 class Road {
 
   PVector[] roadPts;
   int ptNum;
   String roadPtFilePath;
+  float roadLengthMeter;
   //int directionType; // 0 = one way(start pt to end pt); 1 = two way 
 
   Road() {
@@ -23,6 +37,7 @@ class Road {
     String[] lines = _roadLines;
     //println("there are " + lines.length + " lines");
     ptNum = lines.length;
+    roadLengthMeter = ptNum * stepLengthMeter;
     roadPts = new PVector[ptNum];
     for (int i = 0; i < ptNum; i++) {
       //println(lines[i]);
