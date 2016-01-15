@@ -1,11 +1,11 @@
-// Andorra PEV Simulation v0010 //<>// //<>// //<>//
+// Andorra PEV Simulation v0010 //<>//
 // for MIT Media Lab, Changing Place Group, CityScope Project
 
 // by Yan Zhang (Ryan) <ryanz@mit.edu>
 // Dec.8th.2015
 
 
-float maxSpeedKPH = 100.0; //units: kph  20.0 kph
+float maxSpeedKPH = 200.0; //units: kph  20.0 kph
 float maxSpeedMPS = maxSpeedKPH * 1000.0 / 60.0 / 60.0; //20.0 KPH = 5.55556 MPS
 float maxSpeedPPS = maxSpeedMPS / scaleMeterPerPixel; 
 float roadConnectionTolerance = 1.0; //pxl; smaller than 1.0 will cause error
@@ -30,7 +30,7 @@ class PEV {
     t = _t;
     status = 0;
     locationPt = road.getPt(t);
-    speedT = maxSpeedMPS / road.roadLengthMeter / float(frameRate); //speedT unit: t per frame
+    speedT = maxSpeedMPS / road.roadLengthMeter / frameRate; //speedT unit: t per frame
   }
 
   void run() {
