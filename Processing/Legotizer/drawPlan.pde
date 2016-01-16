@@ -1,7 +1,5 @@
 PGraphics plan;
-
-PImage planImage;
-PImage plan3DImage;
+PImage[] plan3DImage;
 
 float planScaler = .5; //fraction of canvas width to make planGraphic
 boolean drawPlan = true;
@@ -30,66 +28,68 @@ void toggleFaux3D() {
 
 void initializePlan() {
   plan = createGraphics(int(planScaler*width), int(planScaler*width*boardLength/boardWidth), P2D);
+  plan3DImage = new PImage[numProj];
 }
 
 void drawPlan(int x, int y, int w, int h) {
-  plan.beginDraw();
-  plan.background(0);
-  plan.noStroke();
-  
-  if (drawPlanSat) {
-    switch(satMode) {
-      case 0:
-        if (vizMode == 1) { //for riyadhMode only
+  for (int n=0; n<numProj; n++) {
+    plan.beginDraw();
+    plan.background(0);
+    plan.noStroke();
+    
+    if (drawPlanSat) {
+      switch(satMode) {
+        case 0:
+          if (vizMode == 1) { //for riyadhMode only
+            plan.image(satellite_nosite, 0, 0, plan.width, plan.height);
+          }
+          break;
+        case 1:
           plan.image(satellite_nosite, 0, 0, plan.width, plan.height);
-        }
-        break;
-      case 1:
-        plan.image(satellite_nosite, 0, 0, plan.width, plan.height);
-        break;
-      case 2:
-        plan.image(satellite, 0, 0, plan.width, plan.height);
-        break;
-      case 3:
-        if (numBasemaps > 0) { //Only shows basemaps if they're present in "/basemaps" folder
-          plan.image(basemap[basemap_indexPlan], 0, 0, plan.width, plan.height);
-        }
-        break;
+          break;
+        case 2:
+          plan.image(satellite, 0, 0, plan.width, plan.height);
+          break;
+        case 3:
+          if (numBasemaps > 0) { //Only shows basemaps if they're present in "/basemaps" folder
+            plan.image(basemap[basemap_indexPlan], 0, 0, plan.width, plan.height);
+          }
+          break;
+      }
     }
+    
+    // Rotate Plan
+    lTranslate(boardWidth/2, boardLength/2);
+    plan.rotate(0);
+    lTranslate(-boardWidth/2, -boardLength/2);
+    
+    if (faux3D) {
+      k_height = useCloud.nodes[0][0].length;
+    } else {
+      k_height = 2;
+    }
+    
+    if (drawPlanStatic) {
+      drawPlanStatic();
+    }
+    
+    if (displayDynamic) {
+      drawPlanDynamic(n);
+    }
+    
+    //plan.fill(0, 100);
+    //plan.rect(0,0,plan.width, plan.height);  
+    plan.endDraw();
+    
+    plan3DImage[n] = plan.get();
   }
-  
-  // Rotate Plan
-  lTranslate(boardWidth/2, boardLength/2);
-  plan.rotate(0);
-  lTranslate(-boardWidth/2, -boardLength/2);
-  
-  if (faux3D) {
-    k_height = useCloud.nodes[0][0].length;
-  } else {
-    k_height = 2;
-  }
-  
-  if (drawPlanStatic) {
-    drawPlanStatic();
-  }
-  
-  if (displayDynamic) {
-    drawPlanDynamic();
-  }
-  
-  //plan.fill(0, 100);
-  //plan.rect(0,0,plan.width, plan.height);  
-  plan.endDraw();
   
   if (drawPlan) {
-    image(plan, x, y, w, h);
+    image(plan3DImage[canvasIndex], x, y, w, h);
   }
-  
-  // Creates plan image for use in projection mapping
-  planImage = plan.get();
 }
 
-void drawPlanDynamic() {
+void drawPlanDynamic(int n) {
   // Indroduces a small gap just after 0,0 that acounts for half the width of a plexiglas grid width
   lTranslate(dynamicSpacer*gridGap/2, dynamicSpacer*gridGap/2);
   
@@ -102,7 +102,7 @@ void drawPlanDynamic() {
         if (structureMode == 0) {
           drawPlan1x1Nodes(i, j, k);
         } else if (structureMode == 1) {
-          drawPlan4x4Nodes(i, j, k);
+          drawPlan4x4Nodes(i, j, k, n);
         }
         
         // iterates along j axis
@@ -310,7 +310,7 @@ void drawPlan1x1Nodes(int i, int j, int k) {
   }
 }
 
-void drawPlan4x4Nodes(int i, int j, int k) {
+void drawPlan4x4Nodes(int i, int j, int k, int n) {
   
   if  (siteInfo.getInt(i,j) == 1 || overrideStatic) { //is site
     
@@ -354,9 +354,9 @@ void drawPlan4x4Nodes(int i, int j, int k) {
     } else {
       
       if (siteInfo.getInt(i,j) == 1 || (codeArray[i][j][0] >= 0 && codeArray[i][j][0] < NPieces)) { //has peice
-      
-        float dU = 1.5*(k*LU_H) * (j - projU[canvasIndex]) / projH[canvasIndex];
-        float dV = 1.5*(k*LU_H) * (i - projV[canvasIndex]) / projH[canvasIndex];
+        
+        float dU = 1.5*(k*LU_H) * (j - projU[n]) / projH[n];
+        float dV = 1.5*(k*LU_H) * (i - projV[n]) / projH[n];
         
         for (int u=0; u<4; u++) {
           for (int v=0; v<4; v++) {

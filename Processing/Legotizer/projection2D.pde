@@ -74,6 +74,7 @@ void initializeProjection2D() {
   projectorOffset = projector.getInt(0, "offset");  // If multiple screens stacked horizontally, 'offset' specifies number of, pixels to the right before projector screen begins
   numProj = projector.getInt(0, "numProj");
   
+  plan3DImage = new PImage[numProj];
   projU = new float[numProj];
   projV = new float[numProj];
   projH = new float[numProj];
@@ -183,7 +184,7 @@ public class projApplet extends PApplet {
     // If 1 projector
     if (numProj == 1) {
       // Draw the scene, offscreen
-      renderCrop(offscreen[0], 0);
+      renderCrop(offscreen[0], 0, 0);
       surface[0].render(offscreen[0]);
     }
     
@@ -192,24 +193,24 @@ public class projApplet extends PApplet {
       // render the scene, transformed using the corner pin surface
         
       // Draw the scene, offscreen
-      renderCrop(offscreen[0], 0);
+      renderCrop(offscreen[0], 0, 0);
       surface[0].render(offscreen[0]);
       
       // Draw the scene, offscreen
-      renderCrop(offscreen[1], -plan.width/2);
+      renderCrop(offscreen[1], -plan.width/2, 1);
       surface[1].render(offscreen[1]);
     } 
   
   }
   
-  void renderCrop(PGraphics p, int x_offset) {
+  void renderCrop(PGraphics p, int x_offset, int _canvasIndex) {
     // Draw the scene, offscreen
     p.beginDraw();
     p.background(#0000FF);
     //p.blendMode(MULTIPLY);
     p.fill(0, 255, 0);
     p.translate(x_offset, 0);
-    p.image(planImage, 0, 0);
+    p.image(plan3DImage[_canvasIndex], 0, 0);
     p.endDraw();
   }
   
