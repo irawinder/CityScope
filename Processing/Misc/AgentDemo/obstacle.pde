@@ -27,7 +27,7 @@ class Obstacle {
   boolean drawFill;
   
   
-  int    polyCorners; //  =  how many corners the polygon has (no repeats)
+  int polyCorners; //  =  how many corners the polygon has (no repeats)
   int index;
   float minX, minY, maxX, maxY;
   

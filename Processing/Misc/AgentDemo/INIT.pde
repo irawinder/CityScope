@@ -40,6 +40,7 @@ void initContent(PGraphics p) {
   initObstacles(p);
   initPathfinder(p, p.width/100);
   initAgents(p);
+  initButtons(p);
   
   //hurrySwarms(1000);
   println("Initialization Complete.");
@@ -231,7 +232,10 @@ void setObstacleGrid(PGraphics p, int u, int v) {
   }
 }
 
-
+//-------Initialize Buttons
+void initButtons(PGraphics p){
+  button = new Button(70, 70, "refresh");
+}
 
 
 //------------- Initialize Pathfinding Objects
