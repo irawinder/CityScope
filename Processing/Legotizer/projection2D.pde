@@ -39,7 +39,7 @@ Keystone ks;
 
 // defines various drawing surfaces, all pre-calibrated, to project
 CornerPinSurface[] surface;
-PGraphics offscreen;
+PGraphics[] offscreen;
 int numProj;
 int canvasIndex = 0;
 
@@ -77,6 +77,7 @@ void initializeProjection2D() {
   projU = new float[numProj];
   projV = new float[numProj];
   projH = new float[numProj];
+  offscreen = new PGraphics[numProj];
   
   loadProjectorLocation();
   
@@ -115,6 +116,7 @@ public void closeProjection2D() {
 }
 
 public void resetProjection2D() {
+  initializeProjection2D();
   if (proj2D != null) {
     proj2D.dispose();
     proj2D = new PFrame();
@@ -138,14 +140,14 @@ public class projApplet extends PApplet {
     // If 1 projector
     if (numProj == 1) {
       surface[0] = ks.createCornerPinSurface(plan.width, plan.height, 20);
-      offscreen = createGraphics(plan.width, plan.height);
+      offscreen[0] = createGraphics(plan.width, plan.height);
     } 
     
     // If 2 projectors
     else if (numProj == 2) {
       for (int i=0; i<numProj; i++) {
         surface[i] = ks.createCornerPinSurface(plan.width/2, plan.height, 20);
-        offscreen = createGraphics(plan.width/2, plan.height);
+        offscreen[i] = createGraphics(plan.width/2, plan.height);
       }
     } 
     
@@ -153,8 +155,9 @@ public class projApplet extends PApplet {
     else {
       for (int i=0; i<numProj; i++) {
         surface[i] = ks.createCornerPinSurface(plan.width, plan.height, 20);
-        offscreen = createGraphics(plan.width, plan.height);
+        offscreen[i] = createGraphics(plan.width, plan.height);
       }
+      
     }
     
     try{
@@ -162,6 +165,8 @@ public class projApplet extends PApplet {
     } catch(RuntimeException e){
       println("No Keystone.xml.  Save one first if you want to load one.");
     }
+    
+    println("numProj = " + numProj);
   }
   
   public void draw() {
@@ -171,65 +176,41 @@ public class projApplet extends PApplet {
     // surface from your screen. 
     PVector surfaceMouse = surface[0].getTransformedMouse();
     
+    // most likely, you'll want a black background to minimize
+    // bleeding around your projection area
+    background(0);
+      
     // If 1 projector
     if (numProj == 1) {
       // Draw the scene, offscreen
-      offscreen.beginDraw();
-      offscreen.background(#0000FF);
-      //offscreen.blendMode(MULTIPLY);
-      offscreen.fill(0, 255, 0);
-      offscreen.ellipse(surfaceMouse.x, surfaceMouse.y, 75, 75);
-      offscreen.image(planImage, 0, 0);
-      offscreen.endDraw();
-      
-      // most likely, you'll want a black background to minimize
-      // bleeding around your projection area
-      background(0);
-      
-      // render the scene, transformed using the corner pin surface
-      surface[0].render(offscreen);
+      renderCrop(offscreen[0], 0);
+      surface[0].render(offscreen[0]);
     }
     
     // If 2 projectors
     else if (numProj == 2) {
       // render the scene, transformed using the corner pin surface
-      for (int i=0; i<numProj; i++) {
         
-        // Draw the scene, offscreen
-        offscreen.beginDraw();
-        offscreen.background(#0000FF);
-        //offscreen.blendMode(MULTIPLY);
-        offscreen.fill(0, 255, 0);
-        offscreen.ellipse(surfaceMouse.x, surfaceMouse.y, 75, 75);
-        offscreen.image(planImage, 0, 0);
-        offscreen.endDraw();
-        
-        // most likely, you'll want a black background to minimize
-        // bleeding around your projection area
-        background(0);
-        
-        // render the scene, transformed using the corner pin surface
-        surface[0].render(offscreen);
-        
-        // Draw the scene, offscreen
-        offscreen.beginDraw();
-        offscreen.background(#0000FF);
-        //offscreen.blendMode(MULTIPLY);
-        offscreen.fill(0, 255, 0);
-        offscreen.ellipse(surfaceMouse.x, surfaceMouse.y, 75, 75);
-        offscreen.image(planImage, -plan.width/2, 0);
-        offscreen.endDraw();
-        
-        // most likely, you'll want a black background to minimize
-        // bleeding around your projection area
-        background(0);
-        
-        // render the scene, transformed using the corner pin surface
-        surface[1].render(offscreen);
-        
-      }
+      // Draw the scene, offscreen
+      renderCrop(offscreen[0], 0);
+      surface[0].render(offscreen[0]);
+      
+      // Draw the scene, offscreen
+      renderCrop(offscreen[1], -plan.width/2);
+      surface[1].render(offscreen[1]);
     } 
   
+  }
+  
+  void renderCrop(PGraphics p, int x_offset) {
+    // Draw the scene, offscreen
+    p.beginDraw();
+    p.background(#0000FF);
+    //p.blendMode(MULTIPLY);
+    p.fill(0, 255, 0);
+    p.translate(x_offset, 0);
+    p.image(planImage, 0, 0);
+    p.endDraw();
   }
   
   void keyPressed() {
