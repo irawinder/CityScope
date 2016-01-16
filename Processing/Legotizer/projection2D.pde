@@ -103,12 +103,14 @@ public void closeProjection2D() {
 }
 
 public void resetProjection2D() {
-  proj2D.dispose();
-  proj2D = new PFrame();
-  if (displayProjection2D) {
-    showProjection2D();
-  } else {
-    closeProjection2D();
+  if (proj2D != null) {
+    proj2D.dispose();
+    proj2D = new PFrame();
+    if (displayProjection2D) {
+      showProjection2D();
+    } else {
+      closeProjection2D();
+    }
   }
 }
 
