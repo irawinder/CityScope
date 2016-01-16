@@ -5,7 +5,7 @@
 // Dec.8th.2015
 
 
-float maxSpeedKPH = 200.0; //units: kph  20.0 kph
+float maxSpeedKPH = 400.0; //units: kph  20.0 kph
 float maxSpeedMPS = maxSpeedKPH * 1000.0 / 60.0 / 60.0; //20.0 KPH = 5.55556 MPS
 float maxSpeedPPS = maxSpeedMPS / scaleMeterPerPixel; 
 float roadConnectionTolerance = 1.0; //pxl; smaller than 1.0 will cause error
@@ -84,8 +84,11 @@ class PEV {
   }
 
   void move() {
+    
+    // update speedT according to frameRate
+    speedT = maxSpeedMPS / road.roadLengthMeter / frameRate; //speedT unit: t per frame
+    
     // at end of road
-
     if (t + speedT > 1.0) {
       // simple test on one road
       //speedT = -speedT;
@@ -127,7 +130,6 @@ class PEV {
       road = nextRoad; 
       t = 0.0;
       
-      speedT = maxSpeedMPS / road.roadLengthMeter / frameRate; //speedT unit: t per frame
     }
 
     t = t + speedT;

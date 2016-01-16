@@ -41,9 +41,9 @@ PEVs PEVs;
 void setup() {
 
   //size(1620, 825); //image original; screenScale = 1.0(for normal res or OS UHD)
-  //size(3240, 1650); //screenScale = 2.0(for WIN UHD)
+  size(3240, 1650); //screenScale = 2.0(for WIN UHD)
   //size(800, 408); //screenScale is about 0.5
-  size(2400, 1222); //screenScale is about 1.5
+  //size(2400, 1222); //screenScale is about 1.5
   //fullScreen();
   screenScale = width / 1620.0; //fit everything with screen size
   scale(screenScale);
