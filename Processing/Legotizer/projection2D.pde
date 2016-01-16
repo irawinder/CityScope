@@ -38,7 +38,7 @@ boolean displayProjection2D = false;
 Keystone ks;
 
 // defines various drawing surfaces, all pre-calibrated, to project
-CornerPinSurface surface;
+CornerPinSurface[] surface;
 PGraphics offscreen;
 
 // New Application Window Parameters
@@ -121,7 +121,8 @@ public class projApplet extends PApplet {
     size(projectorWidth, projectorHeight, P2D);
     
     ks = new Keystone(this);
-    surface = ks.createCornerPinSurface(plan.width, plan.height, 20);
+    surface = new CornerPinSurface[1];
+    surface[0] = ks.createCornerPinSurface(plan.width, plan.height, 20);
     
     // We need an offscreen buffer to draw the surface we
     // want projected
@@ -142,7 +143,7 @@ public class projApplet extends PApplet {
     // Convert the mouse coordinate into surface coordinates
     // this will allow you to use mouse events inside the 
     // surface from your screen. 
-    PVector surfaceMouse = surface.getTransformedMouse();
+    PVector surfaceMouse = surface[0].getTransformedMouse();
     
     // Draw the scene, offscreen
     offscreen.beginDraw();
@@ -158,7 +159,7 @@ public class projApplet extends PApplet {
     background(0);
    
     // render the scene, transformed using the corner pin surface
-    surface.render(offscreen);
+    surface[0].render(offscreen);
   }
   
   void keyPressed() {
