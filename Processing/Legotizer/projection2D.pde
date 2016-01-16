@@ -102,6 +102,16 @@ public void closeProjection2D() {
   proj2D.setVisible(false);
 }
 
+public void resetProjection2D() {
+  proj2D.dispose();
+  proj2D = new PFrame();
+  if (displayProjection2D) {
+    showProjection2D();
+  } else {
+    closeProjection2D();
+  }
+}
+
 public class projApplet extends PApplet {
   public void setup() {
     // Keystone will only work with P3D or OPENGL renderers, 

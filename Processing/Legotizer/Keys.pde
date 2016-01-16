@@ -90,8 +90,11 @@ void keyPressed() {
     case 'f': 
       flip();
       break;
-    case '`': 
+    case '`':
       toggle2DProjection();
+      break;
+    case 'P': 
+      resetProjection2D();
       break;
     case 'e': 
       toggleImageDraw();
