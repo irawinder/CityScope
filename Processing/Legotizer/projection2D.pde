@@ -66,7 +66,7 @@ Table projector;
 int projectorWidth, projectorHeight, projectorOffset; 
 
 void initializeProjection2D() {
-  projector = loadTable(projectorPath, "header");
+  projector = loadTable(legotizer_data + demoPrefix + demos[vizMode] + projectorPath, "header");
   projectorWidth  = projector.getInt(0, "width");   // Projector Width in Pixels
   projectorHeight = projector.getInt(0, "height");  // Projector Height in Pixels
   projectorOffset = projector.getInt(0, "offset");  // If multiple screens stacked horizontally, 'offset' specifies number of, pixels to the right before projector screen begins
@@ -88,7 +88,7 @@ void saveProjectorLocation(){
   projector.setInt(0, "V", (int)projV);  // Projector V Location (4LU units)
   projector.setInt(0, "H", (int)projH);  // Projector Height (4LU units)
   
-  saveTable(projector, "projector.tsv");
+  saveTable(projector, legotizer_data + demoPrefix + demos[vizMode] + "projector.tsv");
 }
 
 public void showProjection2D() {
