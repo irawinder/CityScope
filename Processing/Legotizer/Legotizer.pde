@@ -188,6 +188,7 @@ void draw() {
     // Checks if there's been a request to change the visualization
     if (vizChange) {
       setMode();
+      resetProjection2D();
       vizChange = false;
     }
   
