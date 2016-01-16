@@ -29,6 +29,7 @@ String help[] = {
  "'l' Display Plan in Upper Left Corner",
  "'k' Rotate pieces 90 degrees",
  "'f' flip model upside down",
+ "'P' Refresh Projection Mapping Cancas",
  "'`' turn on secondary canvas for projection mapping",
  "   'c' [secondary canvas only] turns on calibration mode",
  "   's' [secondary canvas only] save calibration state",
@@ -51,6 +52,7 @@ String help[] = {
  "'5' Sends '5' String to colortizer (i.e. 'displaymode daylighting' in SDL RhinoScript)",
  "'6' Sends '6' String to colortizer (i.e. (re)initiates SDL RhinoScript server)",
  "'UP', 'DOWN', 'LEFT', 'RIGHT', '-', and '+' adjust the projector's location in 3D space.",
+ "'C' Change Canvas for adjusting projector's locationin 3D space",
  "",
  "Press 'h' key to return to Legotizer"
 };
