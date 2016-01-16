@@ -25,8 +25,8 @@ void setupVoronoi() {
 
 void drawVoronoi() {
 rect(0,0,width,height);
-  stroke(0);
-  strokeWeight(3);
+  stroke(100);
+  strokeWeight(2);
   noFill();
   // draw polygons, clip them if needed...
   for (Polygon2D poly : voronoi.getRegions()) {
