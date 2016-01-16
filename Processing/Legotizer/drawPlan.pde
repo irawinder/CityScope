@@ -16,9 +16,9 @@ int basemap_indexPlan = 0;
 
 //Projector location (relative to table grid origin)
 // These default values are overridden by projector.txt if initializeProjection2D() is run
-float projU =  14;
-float projV =  -16;
-float projH =  64;
+float[] projU;
+float[] projV;
+float[] projH;
 
 void toggleFaux3D() {
   if (faux3D) {
@@ -355,8 +355,8 @@ void drawPlan4x4Nodes(int i, int j, int k) {
       
       if (siteInfo.getInt(i,j) == 1 || (codeArray[i][j][0] >= 0 && codeArray[i][j][0] < NPieces)) { //has peice
       
-        float dU = 1.5*(k*LU_H) * (j - projU) / projH;
-        float dV = 1.5*(k*LU_H) * (i - projV) / projH;
+        float dU = 1.5*(k*LU_H) * (j - projU[canvasIndex]) / projH[canvasIndex];
+        float dV = 1.5*(k*LU_H) * (i - projV[canvasIndex]) / projH[canvasIndex];
         
         for (int u=0; u<4; u++) {
           for (int v=0; v<4; v++) {

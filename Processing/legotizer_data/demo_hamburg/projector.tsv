@@ -1,2 +1,2 @@
-width	height	offset	U	V	H
-3840	1200	1824	51	-36	186
+width	height	offset	numProj	U1	V1	H1	U2	V2	H2	U3	V3	H3	U4	V4	H4
+1920	1080	1920	2	69	-36	186	51	-36	186	51	-36	186	51	-36	186

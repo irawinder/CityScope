@@ -142,32 +142,43 @@ void keyPressed() {
       sendCommand("6", 6669);
       break;
     case '-':
-      projH--;
+      projH[canvasIndex]--;
       saveProjectorLocation();
       break;
     case '+':
-      projH++;
+      projH[canvasIndex]++;
       saveProjectorLocation();
+      break;
+    case 'C':
+      canvasIndex = nextMode(canvasIndex, numProj-1);
       break;
   }
   
   if (key == CODED) { 
     if (keyCode == LEFT) {
-      projU--;
+      projU[canvasIndex]--;
       saveProjectorLocation();
     }  
     if (keyCode == RIGHT) {
-      projU++;
+      projU[canvasIndex]++;
       saveProjectorLocation();
     }  
     if (keyCode == DOWN) {
-      projV++;
+      projV[canvasIndex]++;
       saveProjectorLocation();
     }  
     if (keyCode == UP) {
-      projV--;
+      projV[canvasIndex]--;
       saveProjectorLocation();
     }
+  }
+}
+
+int nextMode(int mode, int maxMode) {
+  if (mode < maxMode) {
+    return mode + 1;
+  } else {
+    return 0;
   }
 }
 
