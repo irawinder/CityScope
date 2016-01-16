@@ -61,6 +61,7 @@
  * v1.30: August 10, 2015- Allow 3 separate Heatmaps for Housing, Jobs, OpenSpace
  *                       - Display Assumptions, split working population from total residential population, highlight selected heatmap on score web
  * v1.31: August 27, 2015- Allow view of 3D model from 4 additional, orthogonal angles * v1.31: August 27, 2015- Allow view of 3D model from 4 additional, orthogonal angles
+ * v1.32: Sep 6, 2015    - Added New Demomode for Hamburg (legotizer_library folders updated with basemaps!)
  * v1.33: Jan 16, 2016   - Update Hamburg visualization for 2 projectors, not 1.  Concatenate Multiple Tables
  * 
  * TO DO: 
