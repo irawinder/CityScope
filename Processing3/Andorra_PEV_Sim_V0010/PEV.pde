@@ -84,8 +84,10 @@ class PEV {
   }
 
   void move() {
+    // update the speed according to frameRate
+    speedT = maxSpeedMPS / road.roadLengthMeter / frameRate; //speedT unit: t per frame
+    
     // at end of road
-
     if (t + speedT > 1.0) {
       // simple test on one road
       //speedT = -speedT;
@@ -127,7 +129,7 @@ class PEV {
       road = nextRoad; 
       t = 0.0;
       
-      speedT = maxSpeedMPS / road.roadLengthMeter / frameRate; //speedT unit: t per frame
+      
     }
 
     t = t + speedT;
