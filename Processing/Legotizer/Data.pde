@@ -388,6 +388,7 @@ void init4x4Structures() {
   // 4 = Building: Work
   // 5 = Building: Ammenities
   // 6 = Parking
+  // 7 = Education
   // -1 = Open air (allows voids)
   // -2 = Water
   

@@ -622,6 +622,19 @@ void findFill(int u, int v, int value) {
     case 6:
       checkFill(lightGray); //Parking Lot
       break;
+    case 7:
+      if (colorMode == 0) { // Academic Land Use Mode
+        fill(academicColor);
+      } else if (colorMode == 1) { // Generic Building Form Mode
+        fill(bldgColor);
+      } else if (colorMode == 2) { // Heatmap
+        if (heatMapActive[u][v] == 1) {
+          fill(255*(1 - heatMap[u][v]), 255*heatMap[u][v], 0);
+        } else {
+          fill(lightGray);
+        }
+      }
+      break;
   }
 }
 

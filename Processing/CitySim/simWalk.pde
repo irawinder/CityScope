@@ -193,6 +193,9 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
   // Converts any "Ammenities" Use to equivalent jobs
   mergeUse(points, 5, 4);
   
+  // Converts any "Education" Use to equivalent to jobs
+  mergeUse(points, 7, 4);
+  
   // Calculates area of a node
   nodeArea = sq(nodeW);
   
