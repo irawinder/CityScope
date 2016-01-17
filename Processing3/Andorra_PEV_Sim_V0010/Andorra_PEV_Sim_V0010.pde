@@ -1,4 +1,4 @@
-// Andorra PEV Simulation v0010 //<>//
+// Andorra PEV Simulation v0010 //<>// //<>//
 // for MIT Media Lab, Changing Place Group, CityScope Project
 
 // by Yan Zhang (Ryan) <ryanz@mit.edu>
@@ -8,7 +8,6 @@
 // 160101 - road structure: all one way, two way = one way + reverse. 
 //        - object structure: PEVs and Roads don't have ID or GUID in objects, 
 //          pass or find the object directly!
-// 160110 - speed: from curve parameter to meter per second
 
 
 //import processing.opengl.*;
