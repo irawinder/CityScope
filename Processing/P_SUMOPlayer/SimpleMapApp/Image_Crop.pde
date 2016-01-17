@@ -35,14 +35,32 @@ float C = 2*PI*6372798.2; // Circumference of Earth
 //        float modelWidth  = 3100; // width of model in meters
 //        float modelHeight = 1100; // height of model in meters
 //        float modelRotation = -25.218*(180/PI); // rotation of model in radians clockwise from north
+//
+//        // Ira's Numbers
+//        float lat = 42.506596;
+//        float lon = 1.5299543;
+//        int zoom = 17;
+//        float modelWidth  = 3100; // width of model in meters
+//        float modelHeight = 1100; // height of model in meters
+//        float modelRotation = 25.5/180*PI; // rotation of model in radians clockwise from north
+        
+// Hampburg Location
+        
+//        // Ira's Numbers
+//        float lat = 53.537388;
+//        float lon = 10.035539;
+//        int zoom = 17;
+//        float modelWidth  = 7.99125*192; // width of model in meters
+//        float modelHeight = 7.99125*192; // height of model in meters
+//        float modelRotation = -26.0/180*PI; // rotation of model in radians clockwise from north
 
-        // Ira's Numbers
-        float lat = 42.506596;
-        float lon = 1.5299543;
-        int zoom = 17;
-        float modelWidth  = 3100; // width of model in meters
-        float modelHeight = 1100; // height of model in meters
-        float modelRotation = 25.5/180*PI; // rotation of model in radians clockwise from north
+        
+float lat = 53.537388;
+float lon = 10.035539;
+int zoom = 17;
+float modelWidth  = 7.99125*192; // width of model in meters
+float modelHeight = 7.99125*192; // height of model in meters
+float modelRotation = -26.0/180*PI; // rotation of model in radians clockwise from north
 
 float scale; // distance represented by one pixel
 
