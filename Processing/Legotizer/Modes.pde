@@ -136,7 +136,7 @@ void hamburgMode() {
   
   structureMode = 1;
   useCloud.wipeNodes();
-  setBarcelonaPieces();
+  setHamburgPieces();
   displaySatellite = true;
   satMode = 3;
   drawPlanSat = true;
