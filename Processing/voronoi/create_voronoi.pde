@@ -7,7 +7,7 @@ import toxi.processing.*;
 
 //logics for showPoints and doClip
 boolean showPoints = true;
-boolean doClip;
+//boolean doClip;
 
 // helper class for rendering
 ToxiclibsSupport gfx;
@@ -16,7 +16,7 @@ ToxiclibsSupport gfx;
 Voronoi voronoi = new Voronoi();
 
 // optional polygon clipper
-PolygonClipper2D clip;
+//PolygonClipper2D clip;
 
 void setupVoronoi() {
   smooth();
@@ -30,20 +30,24 @@ void drawVoronoi() {
   noFill();
   // draw polygons, clip them if needed...
   for (Polygon2D poly : voronoi.getRegions()) {
-    if (doClip) {
+    /*if (doClip) {
      gfx.polygon2D(clip.clipPolygon(poly));
     } 
     else {
       gfx.polygon2D(poly);
     }
+    */
+    gfx.polygon2D(poly);
   }
 
+int i = 0;
   // draw original points added to voronoi
   if (showPoints) {
     noStroke();
     for (Vec2D c : voronoi.getSites()) {
+      i++;
       ellipse(c.x, c.y, 20, 20);
-      fill(random(255), random(255), random(255));
+      fill(i*10, 200, i*5);
     }
 
   }
