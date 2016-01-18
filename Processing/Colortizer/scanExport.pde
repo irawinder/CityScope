@@ -72,7 +72,7 @@ void sendData() {
         dataToSend += "\t" ;
 
         // U Position
-        dataToSend += tagDecoder[0].U-u-1 + exportOffsets[numGAforLoop[imageIndex] + gridIndex][1];
+        dataToSend += tagDecoder[0].U-u-1 + exportOffsets[numGAforLoop[imageIndex] + gridIndex][0];
         dataToSend += "\t" ;
 
         // V Position
