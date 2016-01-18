@@ -33,6 +33,7 @@ void drawTableCanvas(PGraphics p) {
     traces.decay();
   }
   
+  
   // holds time from last frame
   time_0 = millis();
   
@@ -97,6 +98,67 @@ void drawTableCanvas(PGraphics p) {
       
       drawCredit(p);
       
+      /*
+      Button button; //refresh visualization
+      Button button2; //Show info
+      Button button3; //Show/hide sinks
+      Button button4; //show/hide edges
+      Button button5; //print framerate
+      Button button6; //show/hide agents
+      Button button7; //toggle obstacles on/off
+      Button button8; //heatmap
+      Button button9; //frame based acceleration
+      Button button10; //time based acceleration
+      Button button11; //increase agent speed
+      Button button12; //decrease agent speed
+      Button button13; //obstacle editor
+      Button button14; //add obstacle
+      Button button15; //remove obstacle
+      Button button16; //select new obstacle
+      Button button17; //remove vertex
+      Button button18; //save locations
+      Button button19; //load obstacles
+      */
+      button = new Button(10, 30, "Refresh Visualization");
+      button2 = new Button(10, 60, "Show/Hide Info");
+      button3 = new Button(10, 90, "Show/Hide Sinks");
+      button4 = new Button(10, 120, "Show/Hide Edges");
+      button5 = new Button(10, 150, "Print Framerate to Console");
+      button6 = new Button(10, 180, "Show/Hide Info");
+      button7 = new Button(10, 210, "Show/Hide Sinks");
+      button8 = new Button(10, 240, "Show/Hide Edges");
+      button9 = new Button(10, 270, "Refresh Visualization");
+      button10 = new Button(10, 300, "Show/Hide Info");
+      button11 = new Button(10, 330, "Show/Hide Sinks");
+      button12 = new Button(10, 360, "Show/Hide Edges");
+      button13 = new Button(10, 390, "Refresh Visualization");
+      button14 = new Button(10, 60, "Show/Hide Info");
+      button15 = new Button(10, 90, "Show/Hide Sinks");
+      button16 = new Button(10, 120, "Show/Hide Edges");
+      button17 = new Button(10, 30, "Refresh Visualization");
+      button18 = new Button(10, 60, "Show/Hide Info");
+      button19 = new Button(10, 90, "Show/Hide Sinks");
+      
+      button.draw(p);
+      button2.draw(p);
+      button3.draw(p);
+      button4.draw(p);
+      button5.draw(p);
+      button6.draw(p);
+      button7.draw(p);
+      button8.draw(p);
+      button9.draw(p);
+      button10.draw(p);
+      button11.draw(p);
+      button12.draw(p);
+      button13.draw(p);
+      button14.draw(p);
+      button15.draw(p);
+      button16.draw(p);
+      button17.draw(p);
+      button18.draw(p);
+      button19.draw(p);
+      
   p.endDraw();
 }
 
@@ -160,7 +222,6 @@ void drawTestFinder(PGraphics p, Pathfinder f, ArrayList<PVector> path, ArrayLis
   }
   
   if (showPathInfo) {
-    
     p.pushMatrix();
     p.translate(0, 10);
     

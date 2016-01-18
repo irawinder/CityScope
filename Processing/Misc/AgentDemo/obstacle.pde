@@ -18,6 +18,7 @@ class Obstacle {
   
   //vertices and of a polygon obstacles
   ArrayList<PVector> v;
+  
   //lengths of side of a polygon obstacle
   ArrayList<Float> l;
   

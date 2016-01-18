@@ -67,7 +67,6 @@ int drawDelay = 10;
 
 void setup() {
   size(canvasWidth, canvasHeight, P3D);
-  button = new Button(70, 70, "refresh");
   initCanvas();
   
 //  //Call this method if data folder ever needs to be selected by a user
