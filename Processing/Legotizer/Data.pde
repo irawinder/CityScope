@@ -437,41 +437,31 @@ void init4x4Structures() {
   
   // The following Typologies were designed for use in Hamburg Demo by HCU Jan 2016
   // Translateded into 4x4 Schema by Ira Winder, Jan 2016
-  
   // Initial 8 Structures: 1, 5, 7, 10, 12, 15, 17, 20
-  
   Ham1 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham1.tsv");    // 0, Ham1
+  Ham2 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham2.tsv");    // 1, Ham2
+  Ham3 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham3.tsv");    // 2, Ham3
+  Ham4 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham4.tsv");    // 3, Ham4
   Ham5 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham5.tsv");    // 4, Ham5
+  Ham6 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham6.tsv");    // 5, Ham6
   Ham7 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham7.tsv");    // 6, Ham7
+  Ham8 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham8.tsv");    // 7, Ham8
+  Ham9 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham9.tsv");    // 8, Ham9
   Ham10 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham10.tsv");  // 9, Ham10
+  Ham11 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham11.tsv");  // 10, Ham11
   Ham12 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham12.tsv");  // 11, Ham12
+  Ham13 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham13.tsv");  // 12, Ham13
+  Ham14 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham14.tsv");  // 13, Ham14
   Ham15 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham15.tsv");  // 14, Ham15
+  Ham16 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham16.tsv");  // 15, Ham16
   Ham17 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham17.tsv");  // 16, Ham17
+  Ham18 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham18.tsv");  // 17, Ham18
+  Ham19 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham19.tsv");  // 18, Ham19
   Ham20 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham20.tsv");  // 19, Ham20
-  
-//  Ham2 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham2.tsv");    // 1, Ham2
-//  Ham3 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham3.tsv");    // 2, Ham3
-//  Ham4 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham4.tsv");    // 3, Ham4
-//  
-//  Ham6 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham6.tsv");    // 5, Ham6
-//  
-//  Ham8 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham8.tsv");    // 7, Ham8
-//  Ham9 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham9.tsv");    // 8, Ham9
-//  
-//  Ham11 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham11.tsv");  // 10, Ham11
-//  
-//  Ham13 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham13.tsv");  // 12, Ham13
-//  Ham14 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham14.tsv");  // 13, Ham14
-//  
-//  Ham16 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham16.tsv");  // 15, Ham16
-//  
-//  Ham18 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham18.tsv");  // 17, Ham18
-//  Ham19 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham19.tsv");  // 18, Ham19
-//  
-//  Ham21 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham21.tsv");  // 20, Ham21
-//  Ham22 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham22.tsv");  // 21, Ham22
-//  Ham23 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham23.tsv");  // 23, Ham23
-//  Ham24 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham24.tsv");  // 24, Ham24
+  Ham21 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham21.tsv");  // 20, Ham21
+  Ham22 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham22.tsv");  // 21, Ham22
+  Ham23 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham23.tsv");  // 22, Ham23
+  Ham24 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham24.tsv");  // 23, Ham24
   
   if (vizMode == 1) {
     setRiyadhPieces();
@@ -539,38 +529,29 @@ void setHamburgPieces() {
   
   structures4x4.clear();
   structures4x4.add(Ham1);
+  structures4x4.add(Ham2);
+  structures4x4.add(Ham3);
+  structures4x4.add(Ham4);
   structures4x4.add(Ham5);
+  structures4x4.add(Ham6);
   structures4x4.add(Ham7);
+  structures4x4.add(Ham8);
+  structures4x4.add(Ham9);
   structures4x4.add(Ham10);
+  structures4x4.add(Ham11);
   structures4x4.add(Ham12);
+  structures4x4.add(Ham13);
+  structures4x4.add(Ham14);
   structures4x4.add(Ham15);
+  structures4x4.add(Ham16);
   structures4x4.add(Ham17);
+  structures4x4.add(Ham18);
+  structures4x4.add(Ham19);
   structures4x4.add(Ham20);
-  
-//  
-//  structures4x4.add(Ham2);
-//  structures4x4.add(Ham3);
-//  structures4x4.add(Ham4);
-//  
-//  structures4x4.add(Ham6);
-//  
-//  structures4x4.add(Ham8);
-//  structures4x4.add(Ham9);
-//  
-//  structures4x4.add(Ham11);
-//  
-//  structures4x4.add(Ham13);
-//  structures4x4.add(Ham14);
-//  
-//  structures4x4.add(Ham16);
-//  
-//  structures4x4.add(Ham18);
-//  structures4x4.add(Ham19);
-//  
-//  structures4x4.add(Ham21);
-//  structures4x4.add(Ham22);
-//  structures4x4.add(Ham23);
-//  structures4x4.add(Ham24);
+  structures4x4.add(Ham21);
+  structures4x4.add(Ham22);
+  structures4x4.add(Ham23);
+  structures4x4.add(Ham24);
   
   NPieces = structures4x4.size();
 }
