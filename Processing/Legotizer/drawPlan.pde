@@ -441,7 +441,8 @@ void findPlanFill(int u, int v, int value) {
           plan.fill(lightGray);
         }
       }
-      case 6:
+      break;
+    case 6:
       if (colorMode == 0) { // Building and Land Use Mode
         plan.fill(lightGray);
       } else if (colorMode == 1) { // Generic Building Form Mode
@@ -454,7 +455,7 @@ void findPlanFill(int u, int v, int value) {
         }
       }
       break;
-      case 7:
+    case 7:
       if (colorMode == 0) { // Building and Land Use Mode
         plan.fill(academicColor);
       } else if (colorMode == 1) { // Generic Building Form Mode
