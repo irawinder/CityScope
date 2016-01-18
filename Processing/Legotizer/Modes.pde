@@ -67,6 +67,7 @@ void riyadhMode() {
   overrideStatic = true;
   displayStatic = false;
   displayDynamic = true;
+  dimensionOverRide = true;
   
   pieceW_LU = 4;
   pieceH_LU = 1; 
@@ -106,6 +107,7 @@ void barcelonaMode() {
   overrideStatic = true;
   displayStatic = false;
   displayDynamic = true;
+  dimensionOverRide = true;
   
   pieceW_LU = 4;
   pieceH_LU = 3; 
@@ -145,6 +147,7 @@ void hamburgMode() {
   overrideStatic = false;
   displayStatic = true;
   displayDynamic = true;
+  dimensionOverRide = false;
   
   pieceW_LU = 4;
   pieceH_LU = 3; 
@@ -183,6 +186,7 @@ void kendallMode() {
   overrideStatic = false;
   displayStatic = true;
   displayDynamic = true;
+  dimensionOverRide = false;
   
   pieceW_LU = 4;
   pieceH_LU = 3;
@@ -221,6 +225,7 @@ void flindersMode() {
   overrideStatic = false;
   displayStatic = true;
   displayDynamic = true;
+  dimensionOverRide = true;
   
   pieceW_LU = 1;
   pieceH_LU = 1;
