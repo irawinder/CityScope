@@ -2,12 +2,13 @@
 Draws a voronoi diagram with points from a dummy spreadsheet 
 Utilizes toxiclibs library to render voronoi and clip polygons off screen as needed 
 
+Have...
+ArrayList of Polygons
+ArrayList of Towers
 
 TO DO 
--Be less dependent on library
 -Enhance so it can work with real data and return regions
 -Give regions IDs
--Arraylists with data and voronoi, etc
 -Implement in Agent Demo 
 */
 

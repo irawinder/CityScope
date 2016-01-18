@@ -22,7 +22,8 @@ void setupVoronoi() {
   smooth();
   gfx = new ToxiclibsSupport(this);
 }
- 
+
+int j = 0;
 void drawVoronoi() {
   //rect(0,0,width,height);
   stroke(100);
@@ -39,15 +40,15 @@ void drawVoronoi() {
     */
     gfx.polygon2D(poly);
   }
-
+  
 int i = 0;
   // draw original points added to voronoi
   if (showPoints) {
     noStroke();
-    for (Vec2D c : voronoi.getSites()) {
+    for (Vec2D towers : voronoi.getSites()) {
       i++;
-      ellipse(c.x, c.y, 20, 20);
-      fill(i*10, 200, i*5);
+      ellipse(towers.x, towers.y, 20, 20);
+      fill(i*80, i*20, i*5);
     }
 
   }

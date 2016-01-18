@@ -1,9 +1,11 @@
+PVector coord; 
+
 void drawData(){ 
     Table hotels = loadTable("data/hotels.csv", "header");
-    for (int i=0;i<hotels.getRowCount();i++) {
-    float lat = hotels.getFloat(i, "x");
-    float lon = hotels.getFloat(i, "y");
-    ellipse(lat, lon, 7, 7);
+    for (int j=0;j<hotels.getRowCount();j++) {
+    coord = (new PVector(hotels.getFloat(j, "x"), hotels.getFloat(j, "y")));
+    ellipse(coord.x, coord.y, 7, 7);
     fill(0);
+    }
   }
-}
+
