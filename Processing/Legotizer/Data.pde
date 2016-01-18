@@ -62,7 +62,7 @@ Table P1, R1, R2, R3, C1, C2, C3, ST1, ST2, ST3, M1, M2, M3, M4, M5, M6;
 Table Bar1, Bar2, Bar3, Bar4, Bar5, Bar6, Bar7, Bar8, Bar9, Bar10, Bar11, Bar12, Bar13, Bar14, Bar15, Bar16, Bar17, Bar18, Bar19, Bar20;
 
 // Hamburg Structures for Import (4x4 Piece Type)
-Table Ham1, Ham2, Ham3, Ham4, Ham5, Ham6, Ham7, Ham8, Ham9, Ham10, Ham11, Ham12, Ham13, Ham14, Ham15, Ham16, Ham17, Ham18, Ham19, Ham20;
+Table Ham1, Ham2, Ham3, Ham4, Ham5, Ham6, Ham7, Ham8, Ham9, Ham10, Ham11, Ham12, Ham13, Ham14, Ham15, Ham16, Ham17, Ham18, Ham19, Ham20, Ham21, Ham22, Ham23, Ham24;
 
 // Kendall Structures for Import (4x4 extruded Piece Type)
 Table kendallStructures;
