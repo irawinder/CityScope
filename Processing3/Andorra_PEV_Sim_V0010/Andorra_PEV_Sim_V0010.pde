@@ -1,4 +1,4 @@
-// Andorra PEV Simulation v0010 //<>// //<>//
+// Andorra PEV Simulation v0010 //<>//
 // for MIT Media Lab, Changing Place Group, CityScope Project
 
 // by Yan Zhang (Ryan) <ryanz@mit.edu>
@@ -8,6 +8,7 @@
 // 160101 - road structure: all one way, two way = one way + reverse. 
 //        - object structure: PEVs and Roads don't have ID or GUID in objects, 
 //          pass or find the object directly!
+// 160118 - update curve parameter speed t to absolute speed kmps according frameRate
 
 
 //import processing.opengl.*;
@@ -40,9 +41,9 @@ PEVs PEVs;
 void setup() {
 
   //size(1620, 825); //image original; screenScale = 1.0(for normal res or OS UHD)
-  //size(3240, 1650); //screenScale = 2.0(for WIN UHD)
+  size(3240, 1650); //screenScale = 2.0(for WIN UHD)
   //size(800, 408); //screenScale is about 0.5
-  size(2400, 1222); //screenScale is about 1.5
+  //size(2400, 1222); //screenScale is about 1.5
   //fullScreen();
   screenScale = width / 1620.0; //fit everything with screen size
   scale(screenScale);
