@@ -34,7 +34,7 @@ int heatMapActive[][] = new int[maxPieces][maxPieces];
 // Default Dimensions of Board in Cell Units (before any data is recieved)
 int UMax = 1;
 int VMax = 1;
-boolean dimensionOverRide = true; // Allows Colortizer input to reset Board
+boolean dimensionOverRide = false; // Allows Colortizer input to reset Board
 
 // Board Dimensions (in cm)
 float boardLength, boardWidth;
