@@ -74,6 +74,7 @@ void riyadhMode() {
   staticBaseH_LU = 3;  // [LU] number of lego units high for base
   staticBasePlate = 0; // 0 has thin gray lego baseplate; 1 does have thin gray lego baseplate
   dynamicBaseH_LU = 3; // [LU] number of lego units high for base
+  pieceRotation = 1;
   calcDimensions();
   
   staticH_LU = 1;
@@ -114,6 +115,7 @@ void barcelonaMode() {
   staticBaseH_LU = 3;  // [LU] number of lego units high for base
   staticBasePlate = 0; // 0 has thin gray lego baseplate; 1 does have thin gray lego baseplate
   dynamicBaseH_LU = 3; // [LU] number of lego units high for base
+  pieceRotation = 1;
   calcDimensions();
   
   staticH_LU = 1;
@@ -154,6 +156,7 @@ void hamburgMode() {
   staticBaseH_LU = 3;  // [LU] number of lego units high for base
   staticBasePlate = 0; // 0 has thin gray lego baseplate; 1 does have thin gray lego baseplate
   dynamicBaseH_LU = 3; // [LU] number of lego units high for base
+  pieceRotation = 3;
   calcDimensions();
   
   staticH_LU = 1;
@@ -193,6 +196,7 @@ void kendallMode() {
   staticBaseH_LU = 3;  // [LU] number of lego units high for base
   staticBasePlate = 1; // 0 has thin gray lego baseplate; 1 does have thin gray lego baseplate
   dynamicBaseH_LU = 4; // [LU] number of lego units high for base
+  pieceRotation = 1;
   calcDimensions();
   
   staticH_LU = 3;
@@ -232,6 +236,7 @@ void flindersMode() {
   staticBaseH_LU = 1;  // [LU] number of lego units high for base
   staticBasePlate = 0; // 0 has thin gray lego baseplate; 1 does have thin gray lego baseplate
   dynamicBaseH_LU = 1; // [LU] number of lego units high for base
+  pieceRotation = 1;
   calcDimensions();
   
   staticH_LU = 1;
