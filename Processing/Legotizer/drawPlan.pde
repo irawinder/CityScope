@@ -441,6 +441,31 @@ void findPlanFill(int u, int v, int value) {
           plan.fill(lightGray);
         }
       }
+      case 6:
+      if (colorMode == 0) { // Building and Land Use Mode
+        plan.fill(lightGray);
+      } else if (colorMode == 1) { // Generic Building Form Mode
+        plan.fill(bldgColor);
+      } else if (colorMode == 2) { // Heatmap
+        if (heatMapActive[u][v] == 1) {
+          plan.fill(255*(1 - heatMap[u][v]), 255*heatMap[u][v], 0);
+        } else {
+          plan.fill(lightGray);
+        }
+      }
+      break;
+      case 7:
+      if (colorMode == 0) { // Building and Land Use Mode
+        plan.fill(academicColor);
+      } else if (colorMode == 1) { // Generic Building Form Mode
+        plan.fill(bldgColor);
+      } else if (colorMode == 2) { // Heatmap
+        if (heatMapActive[u][v] == 1) {
+          plan.fill(255*(1 - heatMap[u][v]), 255*heatMap[u][v], 0);
+        } else {
+          plan.fill(lightGray);
+        }
+      }
       break;
   }
 }
