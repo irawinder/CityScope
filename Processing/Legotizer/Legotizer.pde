@@ -87,7 +87,7 @@ int canvasWidth, canvasHeight;
 
 // Set to true to automatically open in present mode
 boolean sketchFullScreen() {
-  return true;
+  return false;
 }
 
 // Visualization is usually customized to a particular demo configuration.

@@ -48,6 +48,9 @@ int gS_numCol = 10; //Number of columns per grid in gridSettings.tsv
 Table colorSettings;
 Table gridLocations;
 Table numGridAreasTSV;
+Table exportOffsetsTSV;
+
+int[][] exportOffsets = new int[imgMax*gridMax][2];
 int[] location;
 
 PVector[][] cornerSettings;
@@ -60,11 +63,16 @@ void setupScan() {
   gridSettings = loadTable("gridSettings.tsv");
   gridLocations = loadTable("gridLocations.tsv");
   numGridAreasTSV = loadTable("numGridAreas.tsv");
+  exportOffsetsTSV = loadTable("exportOffsets.tsv");
   
   numGridAreas = new int[numGridAreasTSV.getColumnCount()];
-  
   for (int i=0; i<numGridAreas.length; i++) {
     numGridAreas[i] = numGridAreasTSV.getInt(0, i);
+  }
+  
+  for(int i=0; i<exportOffsets.length; i++) {
+    exportOffsets[i][0] = exportOffsetsTSV.getInt(i, 0);
+    exportOffsets[i][1] = exportOffsetsTSV.getInt(i, 1);
   }
   
   numImages = numGridAreas.length;
