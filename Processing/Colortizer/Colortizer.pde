@@ -39,7 +39,8 @@ int camera = 0;
 // {1,1,1,1} creates 4 scan grids, each on their own, separately programmed, distorted image
 // {4} creates 4 scan grids, all sharing the same distorted image
 // Max Spec: {20,20,20,20,20,20,20,20,20,20} <-- will probably run terribly, though
-int[] numGridAreas = {1}; // 1 grid for 1 distortion area
+int[] numGridAreas = {1,1,1}; // 1 grid for 1 distortion area
+int imageIndex = 0; //Selection of scanImage
 
 // Dimensions of surface being scanned
 float vizRatio = float(16)/(16); //Must match measurements in reality, i.e. a table surface
