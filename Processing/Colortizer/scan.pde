@@ -31,6 +31,7 @@ ScanGrid[] scanGrid;
 int numImages; // Number of Warped Images created
 int numGrids; // Number of "ScanGrids" created
 int[] numGAforLoop;
+int imageIndex = 0; //Selection of scanImage to start
 int gridIndex = 0; //Selection of scanGrid
 int cornerIndex = 0; //Selection of corner point (1 of 4)
 
@@ -46,6 +47,7 @@ int gS_numCol = 10; //Number of columns per grid in gridSettings.tsv
 
 Table colorSettings;
 Table gridLocations;
+Table numGridAreasTSV;
 int[] location;
 
 PVector[][] cornerSettings;
@@ -57,6 +59,13 @@ void setupScan() {
   colorSettings = loadTable("colorSettings.tsv");
   gridSettings = loadTable("gridSettings.tsv");
   gridLocations = loadTable("gridLocations.tsv");
+  numGridAreasTSV = loadTable("numGridAreas.tsv");
+  
+  numGridAreas = new int[numGridAreasTSV.getColumnCount()];
+  
+  for (int i=0; i<numGridAreas.length; i++) {
+    numGridAreas[i] = numGridAreasTSV.getInt(0, i);
+  }
   
   numImages = numGridAreas.length;
   numGAforLoop = new int[numGridAreas.length];
