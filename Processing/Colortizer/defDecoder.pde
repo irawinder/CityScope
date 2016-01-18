@@ -41,7 +41,7 @@ void updateDecoders() {
   if (decode) {
     
     //Decodes grid that we will assign color codes
-    tagDecoder[0].decoder(scanGrid[0].getQuadCode(), scanGrid[0].IDMode);
+    tagDecoder[0].decoder(scanGrid[numGAforLoop[imageIndex] + gridIndex].getQuadCode(), scanGrid[numGAforLoop[imageIndex] + gridIndex].IDMode);
     
     /*
     
