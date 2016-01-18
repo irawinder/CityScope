@@ -118,8 +118,10 @@ void initCamera() {
   } else {
     println("Available cameras:");
     for (int i = 0; i < cameras.length; i++) {
-      println(cameras[i]);
+      println(i + ": " + cameras[i]);
     }
+    
+    println("Number of Cameras: " + cameras.length);
     
     // The camera can be initialized directly using an 
     // element from the array returned by list():
