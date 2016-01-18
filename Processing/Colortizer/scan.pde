@@ -31,7 +31,6 @@ ScanGrid[] scanGrid;
 int numImages; // Number of Warped Images created
 int numGrids; // Number of "ScanGrids" created
 int[] numGAforLoop;
-int imageIndex = 0; //Selection of scanImage to start
 int gridIndex = 0; //Selection of scanGrid
 int cornerIndex = 0; //Selection of corner point (1 of 4)
 
