@@ -31,11 +31,15 @@ void initUDP() {
 }
 
 void ImportData(String inputStr[]) {
-  
-  for (int i=0 ; i<inputStr.length;i++) {
+  parseCodeStrings(inputStr);
+  busyImporting = false;
+}
 
-    String tempS = inputStr[i];
-    String[] split = split(tempS, "\t");
+void parseCodeStrings(String data[]) {
+  
+  for (int i=0 ; i<data.length;i++) {
+    
+    String[] split = split(data[i], "\t");
     
     if(split.length == 1) {
       if (split[0].equals("receipt")) {
@@ -44,7 +48,7 @@ void ImportData(String inputStr[]) {
         receipt = true;
         readSolution = true;
       } else if (split[0].equals("")) {
-
+  
       } else {
         // println("'" + split[0] + "' received by Legotizer");
         // heatMapName = split[0];      
@@ -90,15 +94,11 @@ void ImportData(String inputStr[]) {
           
           changeDetected = true;
           simCounter = simTime;
-          
         }
-
       }
+      
     } 
   }
-
-  
-  busyImporting = false;
 }
 
 void receive( byte[] data, String ip, int port ) {  // <-- extended handler

@@ -34,7 +34,7 @@ int heatMapActive[][] = new int[maxPieces][maxPieces];
 // Default Dimensions of Board in Cell Units (before any data is recieved)
 int UMax = 1;
 int VMax = 1;
-boolean dimensionOverRide = false; // Allows Colortizer input to reset Board
+boolean dimensionOverRide = true; // Allows Colortizer input to reset Board
 
 // Board Dimensions (in cm)
 float boardLength, boardWidth;
@@ -574,6 +574,40 @@ void rotatePieces() {
   }
 }
 
+void saveCodeArray() {
+  String arrayString = "";
+  
+  for (int u=0; u<UMax; u++) {
+    for (int v=0; v<VMax; v++) {
+      
+      if (codeArray[u][v][0] >= 0 && codeArray[u][v][0] < NPieces && (siteInfo.getInt(u,v) == 1 || overrideStatic) ) { //is site
+      
+        // Object ID
+        arrayString += codeArray[u][v][0];
+        arrayString += "\t" ;
+  
+        // V Position
+        arrayString += v;
+        arrayString += "\t" ;
+        
+        // U Position
+        arrayString += u;
+        arrayString += "\t" ;
+  
+        // Rotation
+        arrayString += codeArray[u][v][1];
+        arrayString += "\n" ;
+      
+      }
+    }
+  }
+  saveStrings(legotizer_data + demoPrefix + demos[vizMode] + "codeArraySaves/codeArray.tsv", split(arrayString, "\n"));
+}
+
+void loadCodeArray() {
+  parseCodeStrings(loadStrings(legotizer_data + demoPrefix + demos[vizMode] + "codeArraySaves/codeArray.tsv"));
+}
+
 void saveMetaJSON(String filename) {
   metaData.setFloat("scaler", scaler);
   metaData.setFloat("latitude", lat);
@@ -701,4 +735,3 @@ void toggleStructureMode() {
     structureMode = 0;
   }
 }
-

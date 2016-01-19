@@ -42,6 +42,12 @@ void keyPressed() {
     case 's': 
       toggleStaticDraw();
       break;
+    case 'S':
+      saveCodeArray();
+      break;
+    case 'L':
+      loadCodeArray();
+      break;
     case 'c': 
       changeTestCodes();
       updateAllNodes();

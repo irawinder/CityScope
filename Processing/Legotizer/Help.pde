@@ -11,6 +11,7 @@ String help[] = {
  "",
  "Developer Keycodes specified in 'keyPressed()' (these are for troubleshooting and debugging, not meant to be final UI):",
  "'h' Displays advanced developer functions and help",
+ "'S/L' Save/Load Table State",
  "'p' Toggle plexiglas grid gap for static model [On/Off]",
  "';' Toggle plexiglas grid gap for dynamic model [On/Off]",
  "'q' Toggle 1x1 or 4x4 piece type",
