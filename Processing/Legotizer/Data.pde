@@ -595,7 +595,7 @@ void saveCodeArray() {
         arrayString += "\t" ;
   
         // Rotation
-        arrayString += codeArray[u][v][1];
+        arrayString += codeArray[u][v][1]*90;
         arrayString += "\n" ;
       
       }

@@ -31,8 +31,7 @@ Step 5: Run application
 
 */
 
-// Position within array that describes available cameras
-int camera = 0;
+// Change this number to change which Area is scanned (i.e. 0, 1, or 2)
 int imageIndex = 0; //Selection of scanImage to start
 
 //Number of scan grids to be created on each warped image
@@ -41,6 +40,9 @@ int imageIndex = 0; //Selection of scanImage to start
 // {4} creates 4 scan grids, all sharing the same distorted image
 // Max Spec: {20,20,20,20,20,20,20,20,20,20} <-- will probably run terribly, though
 int[] numGridAreas; // 1 grid for 1 distortion area; loads from "numGridAreas.TSV"
+
+// Position within array that describes available cameras
+int camera = 0;
 
 // Dimensions of surface being scanned
 float vizRatio = float(16)/(16); //Must match measurements in reality, i.e. a table surface
