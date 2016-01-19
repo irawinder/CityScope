@@ -230,11 +230,19 @@ void togglePlanStat() {
   }
 }
 
-void changeBasemapPlan() {
+void nextBasemapPlan() {
   if (basemap_indexPlan < numBasemaps-1) {
     basemap_indexPlan ++;
   } else {
     basemap_indexPlan = 0;
+  }
+}
+
+void prevBasemapPlan() {
+  if (basemap_indexPlan > 0) {
+    basemap_indexPlan --;
+  } else {
+    basemap_indexPlan = numBasemaps-1;
   }
 }
 

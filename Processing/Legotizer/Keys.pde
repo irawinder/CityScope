@@ -28,10 +28,16 @@ void keyPressed() {
       updateAllNodes();
       break;
     case 'o': 
-      changeBasemap();
+      nextBasemap();
+      break;
+    case 'i': 
+      prevBasemap();
       break;
     case 'O': 
-      changeBasemapPlan();
+      nextBasemapPlan();
+      break;
+    case 'I': 
+      prevBasemapPlan();
       break;
     case ' ':
       toggleColorMode();

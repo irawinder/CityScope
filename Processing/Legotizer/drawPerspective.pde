@@ -664,11 +664,19 @@ void changeImageMode() {
   }
 }
 
-void changeBasemap() {
+void nextBasemap() {
   if (basemap_index < numBasemaps-1) {
     basemap_index ++;
   } else {
     basemap_index = 0;
+  }
+}
+
+void prevBasemap() {
+  if (basemap_index > 0) {
+    basemap_index --;
+  } else {
+    basemap_index = numBasemaps-1;
   }
 }
 
