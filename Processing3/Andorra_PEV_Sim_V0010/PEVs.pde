@@ -18,7 +18,7 @@ class PEVs {
   void initiateRandom(int _totalPEVNum) {
     int totalPEVNum = _totalPEVNum;
     for (int i = 0; i < totalPEVNum; i ++) {
-      int tmpRoadID = int(random(0.0, 12.0)+0.5);
+      int tmpRoadID = int(random(0.0, totalRoadNum-1)+0.5);
       Road tmpRoad = roads.roads.get(tmpRoadID);
       float t = random(0.0, 0.75);
       //PEV tmpPEV = new PEV(currentPEVID, tmpRoadID, t);
@@ -36,5 +36,28 @@ class PEVs {
 
   void addPEV(PEV _PEV) {
     PEVs.add(_PEV);
+  }
+  
+  void addRandomly() {
+    int tmpRoadID = int(random(0.0, totalRoadNum-1)+0.5);
+    Road tmpRoad = roads.roads.get(tmpRoadID);
+    float t = random(0.0, 0.75);
+    PEV tmpPEV = new PEV(tmpRoad, t);
+    PEVs.add(tmpPEV);
+  }
+  
+  void removeRandomly() {
+    int n = int(random(0,PEVs.size()-1));
+    PEVs.remove(n);
+  }
+  
+  void changeToTargetNum(int _targetNum) {
+    int tn = _targetNum;
+    int cn = PEVs.size();
+    if (cn>tn) {
+      removeRandomly();
+    }else if (cn<tn) {
+      addRandomly();
+    }
   }
 }

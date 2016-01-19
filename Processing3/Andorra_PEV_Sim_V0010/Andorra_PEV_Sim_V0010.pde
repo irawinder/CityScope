@@ -128,6 +128,7 @@ void draw() {
   // draw scollbars
   drawScrollbars();
   targetPEVNum = int(ScrollbarRatioPEVNum*45+5); //5 to 50
+  PEVs.changeToTargetNum(targetPEVNum);
   maxSpeedKPH = (ScrollbarRatioPEVSpeed*20+10)*10; //units: kph  10.0 to 50.0 kph
   maxSpeedMPS = maxSpeedKPH * 1000.0 / 60.0 / 60.0; //20.0 KPH = 5.55556 MPS
   maxSpeedPPS = maxSpeedMPS / scaleMeterPerPixel; 
