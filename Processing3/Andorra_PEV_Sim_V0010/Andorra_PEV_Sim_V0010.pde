@@ -11,9 +11,7 @@
 // 160115 - update curve parameter speed t to absolute speed kmps according frameRate
 // 160118 - add PEV speed control
 //        - add PEV number control
-//
-// Todo:
-//        - change PEV states randomly
+// 160118 - change PEV states randomly
 
 
 //import processing.opengl.*;
@@ -27,9 +25,7 @@ PFont myFont;
 PImage img_BG;
 //PImage img_RD;
 //PImage img_LEGEND;
-//PImage img_TMP_PEV;
 //PImage img_TMP_PATH;
-PImage img_PEV_PSG;
 
 String roadPtFile;
 //int tmpRoadID = int(random(0, 12)+0.5F);
@@ -48,15 +44,15 @@ PEVs PEVs;
 void setup() {
 
   //size(1620, 825); //image original; screenScale = 1.0(for normal res or OS UHD)
-  //size(3240, 1650); //screenScale = 2.0(for WIN UHD)
+  size(3240, 1650); //screenScale = 2.0(for WIN UHD)
   //size(800, 408); //screenScale is about 0.5
-  size(2400, 1222); //screenScale is about 1.5
+  //size(2400, 1222); //screenScale is about 1.5
   //fullScreen();
   screenScale = width / 1620.0; //fit everything with screen size
   scale(screenScale);
   println("width = "+width);
   println("screenScale = "+screenScale);
-  
+
   setupScrollbars();
   //colorMode(RGB,255,255,255,100);
 
@@ -68,12 +64,8 @@ void setup() {
 
   //img_BG = loadImage("BG_300DPI.png");
   //img_RD = loadImage("RD_300DPI-01.png");
-  //img_LEGEND = loadImage("LEGEND_300DPI.png");
-  //img_TMP_PEV = loadImage("TMP_PEVS_300DPI-01.png");
   img_BG = loadImage("BG_ALL_75DPI.png");
-  //img_TMP_PEV = loadImage("TMP_PEVS_75DPI-01.png");
   //img_TMP_PATH = loadImage("TMP_START_END_PATH_75DPI-01.png");
-  img_PEV_PSG = loadImage("PEV_PSG_300DPI.png");
 
   // add roads
   roadPtFile = "RD_CRV_PTS_151231.txt";
@@ -82,7 +74,7 @@ void setup() {
 
   // add PEVs
   PEVs = new PEVs();
-  PEVs.initiateRandom(totalPEVNum);
+  PEVs.initiate(totalPEVNum);
 }
 
 void draw() {
@@ -124,7 +116,7 @@ void draw() {
   textSize(10*2/screenScale);
   fill(200);
   text("frameRate: "+str(int(frameRate)), 1620 - 50, 50);
-  
+
   // draw scollbars
   drawScrollbars();
   targetPEVNum = int(ScrollbarRatioPEVNum*45+5); //5 to 50
@@ -141,11 +133,11 @@ void draw() {
   fill(200);
   //text("Score Filters: ",10,20);
   //text("Framerate: " + round(frameRate) + "\nDrag mouse to rotate camera\nPress SPACEBAR to show/hide labels on points\nPress ENTER to show/hide sliders and texts",10,100);
-  text("mouseX: "+mouseX/screenScale+", mouseY: "+mouseY/screenScale,10,20);
+  text("mouseX: "+mouseX/screenScale+", mouseY: "+mouseY/screenScale, 10, 20);
   fill(0);
   text(targetPEVNum, 263, 712);
   text(int(maxSpeedKPH/10), 263, 736);
-  
+
   // copy right
   textAlign(RIGHT);
   textSize(10);

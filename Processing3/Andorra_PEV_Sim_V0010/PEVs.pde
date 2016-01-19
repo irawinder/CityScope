@@ -5,6 +5,11 @@
 // Dec.8th.2015
 
 
+PImage img_PEV_EMPTY;
+PImage img_PEV_PSG;
+PImage img_PEV_PKG;
+PImage img_PEV_FULL;
+
 class PEVs {
 
   ArrayList<PEV> PEVs;
@@ -15,7 +20,13 @@ class PEVs {
     //currentPEVID = 0;
   }
 
-  void initiateRandom(int _totalPEVNum) {
+  void initiate(int _totalPEVNum) {
+
+    img_PEV_EMPTY = loadImage("PEV_EMPTY_300DPI.png");
+    img_PEV_PSG = loadImage("PEV_PSG_300DPI.png");
+    img_PEV_PKG = loadImage("PEV_PKG_300DPI.png");
+    img_PEV_FULL = loadImage("PEV_PSG AND PKG_300DPI.png");
+
     int totalPEVNum = _totalPEVNum;
     for (int i = 0; i < totalPEVNum; i ++) {
       int tmpRoadID = int(random(0.0, totalRoadNum-1)+0.5);
@@ -37,7 +48,7 @@ class PEVs {
   void addPEV(PEV _PEV) {
     PEVs.add(_PEV);
   }
-  
+
   void addRandomly() {
     int tmpRoadID = int(random(0.0, totalRoadNum-1)+0.5);
     Road tmpRoad = roads.roads.get(tmpRoadID);
@@ -45,18 +56,18 @@ class PEVs {
     PEV tmpPEV = new PEV(tmpRoad, t);
     PEVs.add(tmpPEV);
   }
-  
+
   void removeRandomly() {
-    int n = int(random(0,PEVs.size()-1));
+    int n = int(random(0, PEVs.size()-1));
     PEVs.remove(n);
   }
-  
+
   void changeToTargetNum(int _targetNum) {
     int tn = _targetNum;
     int cn = PEVs.size();
     if (cn>tn) {
       removeRandomly();
-    }else if (cn<tn) {
+    } else if (cn<tn) {
       addRandomly();
     }
   }
