@@ -43,6 +43,10 @@ void ImportData(String inputStr[]) {
     
     if(split.length == 2) {
       println("'" + split[0] + " " + split[1] + "' received by CitySim");
+      if ( int(split[1]) != demoIndex) {
+        demoIndex = int(split[1]);
+        initWalk(maxPieces*maxLU_W, maxPieces*maxLU_W, maxLU_H, nodesJSON);
+      }
       if (split[0].equals("resimulate_user")) {
         // Loads new JSON Inputs from file and runs simulation
         updateArrayJSON("userNodes.json", int(split[1]));

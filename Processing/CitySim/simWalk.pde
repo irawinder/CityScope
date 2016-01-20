@@ -25,6 +25,7 @@
   
   Table walkSummary;
   Table walkAssumptions;
+  Table walkParam;
   
   // Simulation Options
   
@@ -90,28 +91,32 @@
   int u, v, z, use;
   JSONObject pt, pt2, solution;
 
-void initWalk(int maxU, int maxV, int maxZ, JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float cnt_rt) {
+void initWalk(int maxU, int maxV, int maxZ, JSONArray points) {
+  
+  walkParam = loadTable(legotizer_data + demoPrefix + demos[demoIndex] + "simWalk.tsv", "header");
+  
   //Employment Rate [% of population]
-  employmentRate = 0.48545;
+  employmentRate = walkParam.getFloat(0, "employmentRate");
 
   //Household Size [ppl/HH]
-  householdSize = 2.5;
+  householdSize = walkParam.getFloat(0, "householdSize");
   
   //Max Walking Distance [m]
-  walkDistance = 250.0;
+  walkDistance = walkParam.getFloat(0, "walkDistance");
   
   //Minimum Park Area Needed
-  parkMin = 80*160;
+  parkMin = walkParam.getInt(0, "parkMin");
   
   // Live/Work density [m^2/person]
   // NYC Values - Src: http://oldurbanist.blogspot.com/2011/12/living-space-working-space-and.html
+  // Work:20.7 m^2/person  Live:66.3 m^2/person
   // Let's assume people in our City need 150% more space than a NYC'r (coefficient of 1.5)
 
-  workDensity = 1.5*20.7;
-  liveDensity = 1.5*66.3*employmentRate;
+  workDensity = 1.5*walkParam.getFloat(0, "workDensity");
+  liveDensity = 1.5*walkParam.getFloat(0, "liveDensity")*employmentRate;
   
   //Containment Rate (fraction of people willing to work in site)
-  containmentRate = 1.0;
+  containmentRate = walkParam.getFloat(0, "containmentRate");
   
   //Sample size used to run simulations
   sampleSize = sampleSize95/2;

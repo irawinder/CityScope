@@ -2,7 +2,7 @@
 boolean dataSelected = false;
 boolean dataLoaded   = false;
 
-int defaultIndex = 1; // 1 = Riyadh Index
+int demoIndex = 1; // 1 = Riyadh Index
 
 // filepath segments for constructing data references
 Table index;

@@ -55,11 +55,11 @@ void draw() {
     dataLoaded = true;
     
     // Loads new JSON Inputs from file
-    loadInput("userNodes.json", defaultIndex);
-    initWalk(maxPieces*maxLU_W, maxPieces*maxLU_W, maxLU_H, nodesJSON, walkDistance, employmentRate, householdSize, containmentRate);
+    loadInput("userNodes.json", demoIndex);
+    initWalk(maxPieces*maxLU_W, maxPieces*maxLU_W, maxLU_H, nodesJSON);
      
     // Runs simulation
-    runSimulation(defaultIndex);
+    runSimulation(demoIndex);
     
     // If Legotizer was opened before simulator, this creates a handshake between the two applications
     sendCommand("receipt", 6152);
@@ -70,8 +70,8 @@ void draw() {
     
     // Uncomment below functions to test speed of simulation loops
     
-    //loadInput("userNodes.json", defaultIndex);
-    //runSimulation(defaultIndex);
+    //loadInput("userNodes.json", demoIndex);
+    //runSimulation(demoIndex);
     
     background(0);
     if (!showSim) {
