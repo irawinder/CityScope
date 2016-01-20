@@ -55,11 +55,72 @@ void drawPerspective() {
   
   if (displayStatic) {
     drawStaticModel();         //Draws Static 3D Model
+    drawContext();
   }
   
   if (displayDynamic) {
     drawDynamicModel();        //Draws Dynamic 3D Model
   }
+}
+
+void drawContext() {
+  noStroke();
+  
+  // Indroduces a small gap just after 0,0 that acounts or half the width of a plexiglas grid width
+  pTranslate(dynamicSpacer*gridGap/2, 0, dynamicSpacer*gridGap/2);
+  
+  for (int i = 0; i<UMax; i++) {
+    for (int j = 0; j<VMax; j++) {  
+      pTranslate(boxW/2, 0, boxW/2);
+      
+      if (gridOnly) { //Shows only plexiglas grid template w/out rendered pieces
+        fill(offColor);
+        drawBox(0, 0.0, boxW);
+        
+      } else { //renders dynamic pieces 
+        
+        if (!drawNodes) {
+          pRotateY((-codeArray[i][j][1]+pieceRotation)%4*PI/2);
+        }
+        
+        if  (siteInfo.getInt(i,j) == 0) { //is site
+          if (structureMode == 0) { // 1x1 pieces used
+          
+            if (!drawNodes) {
+              draw1x1Structure(i, j);
+            } else {
+              draw1x1Nodes(i, j, pieceH_LU*boxH, 0);
+            }
+            
+          } else if (structureMode == 1) { // 4x4 pieces used
+          
+            if (!drawNodes) {
+              draw4x4Structure(i, j, pieceH_LU*boxH, boxH*(dynamicBaseH_LU-1), LU_W, structures4x4.get(codeArray[i][j][0]));
+            } else {
+              draw4x4Nodes(i, j, pieceH_LU*boxH, 0, LU_W);
+            }
+            
+          }
+        }
+        
+        if (!drawNodes) {
+          pRotateY(-(-codeArray[i][j][1]+pieceRotation)%4*PI/2);
+        }
+      }
+      
+      pTranslate(-boxW/2, 0, -boxW/2);
+        
+      // iterates along j axis
+      pTranslate(0, 0, boxW + dynamicSpacer*gridGap); 
+    }
+    // iterates along i axis AND resets j axis
+    pTranslate(boxW + dynamicSpacer*gridGap, 0, -(boxW + dynamicSpacer*gridGap)*VMax); 
+  }
+  //reset i axis
+  pTranslate(-(boxW + dynamicSpacer*gridGap)*UMax, 0, 0); 
+  
+  // reverses small gap just after 0,0 that acounts or half the width of a plexiglas grid width
+  pTranslate(dynamicSpacer*(-gridGap)/2, 0, dynamicSpacer*(-gridGap)/2);
 }
 
 //Draws Static Model

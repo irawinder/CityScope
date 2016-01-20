@@ -1,6 +1,7 @@
 // Created to test feasibility of passing JSON strings
 
 JSONArray nodesJSON;
+JSONArray contextBuildings;
 JSONObject[][][] obj;
 
 JSONArray solutionJSON;
@@ -19,6 +20,19 @@ boolean enableDDP = false;
 String DDPAddress = "104.131.183.20";
 import ddpclient.*;
 DDPClient ddp;
+
+void loadContext() {
+  contextBuildings = loadJSONArray(legotizer_data + demoPrefix + demos[vizMode] + "context/contextBuildings.json");
+  setContext();
+}
+
+void setContext() {
+  JSONObject voxel;
+  for (int i=0; i<contextBuildings.size(); i++) {
+    voxel = contextBuildings.getJSONObject(i); 
+    useCloud.setNode(voxel);
+  }
+}
 
 void initializeNodesJSON() {
 
@@ -42,6 +56,8 @@ void clearJSONArray(JSONArray json) {
    json.remove(0);
  }
 }
+
+
 
 void saveNodesJSON(String filename) {
   

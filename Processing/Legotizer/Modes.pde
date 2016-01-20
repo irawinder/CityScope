@@ -48,6 +48,7 @@ void riyadhMode() {
   vizMode = 1;
   loadSite();
   loadStaticStructures();
+  loadContext();
   initializeProjection2D();
   
   staticSpacer = 1;        // Plastic Spacer Needed for Static buildings
@@ -89,6 +90,7 @@ void barcelonaMode() {
   vizMode = 3;
   loadSite();
   loadStaticStructures();
+  loadContext();
   initializeProjection2D();
   
   staticSpacer = 1;        // Plastic Spacer Needed for Static buildings
@@ -130,6 +132,7 @@ void hamburgMode() {
   vizMode = 4;
   loadSite();
   loadStaticStructures();
+  loadContext();
   initializeProjection2D();
   
   staticSpacer = 0;        // Plastic Spacer Needed for Static buildings
@@ -171,6 +174,7 @@ void kendallMode() {
   vizMode = 0;
   loadSite();
   loadStaticStructures();  
+  loadContext();
   initializeProjection2D();
   
   staticSpacer = 0;        // Plastic Spacer NOT Needed for Static buildings
@@ -211,7 +215,8 @@ void flindersMode() {
   vizMode = 2;
   loadSite();
   loadStaticStructures(); 
- initializeProjection2D(); 
+  loadContext();
+  initializeProjection2D(); 
   
   staticSpacer = 0;        // Plastic Spacer NOT Needed for Static buildings
   dynamicSpacer = 0;       // Plastic Spacer NOT Needed for Dynamic buildings

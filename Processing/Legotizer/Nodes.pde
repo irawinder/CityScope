@@ -64,6 +64,10 @@ public class Nodes {
     }
   }
   
+  private void setNode(JSONObject _voxel) {
+    nodes[191-_voxel.getInt("u")][_voxel.getInt("v")][_voxel.getInt("z")] = _voxel.getInt("use");
+  }
+  
   // updates nodes if NxN piece type is used, where N is greater than 1
   private void updateNodes(int u, int v, int LU, Table type, int rot) {
     
@@ -167,7 +171,13 @@ void updateAllNodes() {
 
   for (int u=0; u<UMax; u++) {
     for (int v=0; v<VMax; v++) {
-      
+
+//      if (structureMode == 0) { //1x1 pieces
+//        useCloud.updateNodes(u,v, structures1x1.getRow(codeArray[u][v][0]));
+//      } else if (structureMode == 1) { //4x4 pieces
+//        useCloud.updateNodes(u,v,4, structures4x4.get(codeArray[u][v][0]), codeArray[u][v][1]);
+//      }
+        
         if (structureMode == 0) { //1x1 pieces
           if (codeArray[u][v][0] >= 0 && codeArray[u][v][0] < NPieces && (siteInfo.getInt(u,v) == 1 || overrideStatic) ) { //is site
             useCloud.updateNodes(u,v, structures1x1.getRow(codeArray[u][v][0]));
@@ -180,6 +190,10 @@ void updateAllNodes() {
           } else {
             useCloud.deleteNodes(u,v,4);
           }
+        }
+        
+        if (overrideStatic == false && siteInfo.getInt(u,v) == 0) {
+          loadContext();
         }
 
     }
