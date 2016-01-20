@@ -55,12 +55,12 @@ void parseCodeStrings(String data[]) {
       }
     }
     
-    // Checks if row formatted for UMax and VMax
-    if (split.length == 2 && dimensionOverRide) {
-      UMax = int(split[1]);
-      VMax = int(split[0]);
-      updateBoard();
-    }
+//    // Checks if row formatted for UMax and VMax
+//    if (split.length == 2 && dimensionOverRide) {
+//      UMax = int(split[1]);
+//      VMax = int(split[0]);
+//      updateBoard();
+//    }
     
     // Checks if row format is compatible with piece recognition.  3 columns for ID, U, V; 4 columns for ID, U, V, rotation
     if (split.length == 3 || split.length == 4) { 
