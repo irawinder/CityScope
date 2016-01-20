@@ -584,7 +584,7 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
     walkSummary.setInt(0, walkWebNames[4], workPop);
     walkSummary.setInt(0, walkWebNames[5], jobsPop);
     
-    walkAssumptions.setFloat(0, assumptionNames[0], liveDensity);
+    walkAssumptions.setFloat(0, assumptionNames[0], liveDensity/employmentRate);
     walkAssumptions.setFloat(0, assumptionNames[1], workDensity);
     walkAssumptions.setFloat(0, assumptionNames[2], employmentRate*100);
     walkAssumptions.setFloat(0, assumptionNames[3], walkDistance);
