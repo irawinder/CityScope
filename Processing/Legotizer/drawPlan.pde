@@ -73,9 +73,9 @@ void drawPlan(int x, int y, int w, int h) {
       drawPlanStatic();
     }
     
-    if (displayDynamic) {
+//    if (displayDynamic) {
       drawPlanDynamic(n);
-    }
+//    }
     
     //plan.fill(0, 100);
     //plan.rect(0,0,plan.width, plan.height);  
@@ -102,7 +102,7 @@ void drawPlanDynamic(int n) {
         if (structureMode == 0) {
           drawPlan1x1Nodes(i, j, k);
         } else if (structureMode == 1) {
-          drawPlan4x4Nodes(i, j, k, n);
+          drawPlan4x4Nodes(i, j, k, n, siteInfo.getInt(i,j));
         }
         
         // iterates along j axis
@@ -318,15 +318,15 @@ void drawPlan1x1Nodes(int i, int j, int k) {
   }
 }
 
-void drawPlan4x4Nodes(int i, int j, int k, int n) {
+void drawPlan4x4Nodes(int i, int j, int k, int n, int isSite) {
   
-  if  (siteInfo.getInt(i,j) == 1 || overrideStatic) { //is site
+//  if  (siteInfo.getInt(i,j) == 1 || overrideStatic) { //is site
     
     if (!drawNodes) {
     
       if (colorMode == 0 || colorMode == 1) { //renders dynamic pieces
             
-        if  (siteInfo.getInt(i,j) == 1 || overrideStatic) { //is site
+//        if  (siteInfo.getInt(i,j) == 1 || overrideStatic) { //is site
           if (codeArray[i][j][0] >= 0 && codeArray[i][j][0] < NPieces) { //has peice
             if ((vizMode == 0 && codeArray[i][j][0] == 1) || (vizMode == 1 && codeArray[i][j][0] == 8) || (vizMode == 2 && codeArray[i][j][0] == 2)) { //is Park
               plan.fill(parkColor);
@@ -337,11 +337,11 @@ void drawPlan4x4Nodes(int i, int j, int k, int n) {
             //has no discernable piece on open "cell"; has no dicernable piece on closed "cell," and otherwise unobstructed by static layers
             plan.fill(openColor);
           }
-        }
+//        }
           
       } else if (colorMode == 2) { //renders heatmap
       
-        if  (siteInfo.getInt(i,j) == 1 || overrideStatic) { //is site
+//        if  (siteInfo.getInt(i,j) == 1 || overrideStatic) { //is site
           if (codeArray[i][j][0] >= 0 && codeArray[i][j][0] < NPieces) { //has peice
             if (heatMapActive[i][j] == 1) {
               plan.fill(255*(1 - heatMap[i][j]), 255*heatMap[i][j], 0);
@@ -354,14 +354,14 @@ void drawPlan4x4Nodes(int i, int j, int k, int n) {
             //has no discernable piece on open "cell"; has no dicernable piece on closed "cell," and otherwise unobstructed by static layers
             plan.fill(offColor);
           }
-        }
+//        }
       }
         
       lRect(0, 0, boxW, boxW);
       
     } else {
       
-      if (siteInfo.getInt(i,j) == 1 || (codeArray[i][j][0] >= 0 && codeArray[i][j][0] < NPieces)) { //has peice
+      //if (siteInfo.getInt(i,j) == 1 || (codeArray[i][j][0] >= 0 && codeArray[i][j][0] < NPieces)) { //has peice
         
         float dU = 1.5*(k*LU_H) * (j - projU[n]) / projH[n];
         float dV = 1.5*(k*LU_H) * (i - projV[n]) / projH[n];
@@ -384,14 +384,21 @@ void drawPlan4x4Nodes(int i, int j, int k, int n) {
                 }
               }
               
-              lRect(v*LU_W+dU, u*LU_W+dV, LU_W, LU_W);
+              
+              if (useCloud.nodes[i*4+u][j*4+v][k] > 0 && ( ( isSite == 1 && displayDynamic ) || ( isSite == 0 && displayStatic ) ) ) {
+                lRect(v*LU_W+dU, u*LU_W+dV, LU_W, LU_W);
+              } else if (useCloud.nodes[i*4+u][j*4+v][k] > 0 && ((!displayDynamic && displayStatic) && isSite == 1) ){
+                lRect(v*LU_W+dU, u*LU_W+dV, LU_W, LU_W);
+              } else if (isSite == 1 && displayDynamic) {
+                lRect(v*LU_W+dU, u*LU_W+dV, LU_W, LU_W);
+              }
             }
           
           } // end for v
         } // end for u
-      } // end if site
+//      } // end if has piece
     } // end else
-  } // end if Site
+//  } // end if Site
 }
 
 void findPlanFill(int u, int v, int value) {

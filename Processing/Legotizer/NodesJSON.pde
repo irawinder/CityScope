@@ -1,7 +1,7 @@
 // Created to test feasibility of passing JSON strings
 
 JSONArray nodesJSON;
-JSONArray contextBuildings;
+JSONArray context;
 JSONObject[][][] obj;
 
 JSONArray solutionJSON;
@@ -22,7 +22,16 @@ import ddpclient.*;
 DDPClient ddp;
 
 void loadContext() {
-  contextBuildings = loadJSONArray(legotizer_data + demoPrefix + demos[vizMode] + "context/contextBuildings.json");
+  context = loadJSONArray(legotizer_data + demoPrefix + demos[vizMode] + "context/context.json");
+  
+  //Hamburg Data, created by Ryan Zhang (had to hack it around a bit to fit to model)
+  if (vizMode == 4) {
+    JSONObject voxel;
+    for (int i=0; i<context.size(); i++) {
+      voxel = context.getJSONObject(i);
+      voxel.setInt("u", 175-voxel.getInt("u"));
+    }
+  }
 }
 
 void initializeNodesJSON() {

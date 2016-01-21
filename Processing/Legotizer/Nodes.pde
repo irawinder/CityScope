@@ -65,11 +65,11 @@ public class Nodes {
   }
   
   private void setNode(JSONObject _voxel) {
-    if (vizMode == 4) { //Hamburg Data, created by Ryan Zhang (had to hack it around a bit to fit to model)
-      nodes[int( (176.0/192)*(191-_voxel.getInt("u")) )][int( (176.0/192)*(_voxel.getInt("v")) )][_voxel.getInt("z")] = _voxel.getInt("use");
-    } else {
+//    if (vizMode == 4) { //Hamburg Data, created by Ryan Zhang (had to hack it around a bit to fit to model)
+//      nodes[175 - _voxel.getInt("u")][_voxel.getInt("v")][_voxel.getInt("z")] = _voxel.getInt("use");
+//    } else {
       nodes[_voxel.getInt("u")][_voxel.getInt("v")][_voxel.getInt("z")] = _voxel.getInt("use");
-    }
+//    }
   }
   
   // updates nodes if NxN piece type is used, where N is greater than 1
@@ -175,12 +175,6 @@ void updateAllNodes() {
 
   for (int u=0; u<UMax; u++) {
     for (int v=0; v<VMax; v++) {
-
-//      if (structureMode == 0) { //1x1 pieces
-//        useCloud.updateNodes(u,v, structures1x1.getRow(codeArray[u][v][0]));
-//      } else if (structureMode == 1) { //4x4 pieces
-//        useCloud.updateNodes(u,v,4, structures4x4.get(codeArray[u][v][0]), codeArray[u][v][1]);
-//      }
         
       if (structureMode == 0) { //1x1 pieces
         if (codeArray[u][v][0] >= 0 && codeArray[u][v][0] < NPieces && (siteInfo.getInt(u,v) == 1 || overrideStatic) ) { //is site
@@ -205,18 +199,17 @@ void updateAllNodes() {
 void setContextNodes() {
   
   JSONObject voxel;
-  int U, V, z;
+  int U, V, z, use;
   
-  for (int i=0; i<contextBuildings.size(); i++) {
-    voxel = contextBuildings.getJSONObject(i); 
+  for (int i=0; i<context.size(); i++) {
+    voxel = context.getJSONObject(i); 
     U = voxel.getInt("u") / pieceW_LU;
     V = voxel.getInt("v") / pieceW_LU;
     z = voxel.getInt("z");
-    if (U < UMax && V < VMax) { // If within grid bounds
-      if (siteInfo.getInt(U, V) == 0) { // If not a dydnamic site area
-//        if (voxel.getInt("z") <= 1 ) { // Ground Floor only
-          useCloud.setNode(voxel);
-//        }
+    use = voxel.getInt("use");
+    if (U < UMax && V < VMax && use != 0) { // If within grid bounds
+      if (!displayDynamic  || siteInfo.getInt(U, V) == 0) { // If not a dydnamic site area
+        useCloud.setNode(voxel);
       }
     }
   }

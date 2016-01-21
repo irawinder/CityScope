@@ -55,11 +55,11 @@ void drawPerspective() {
   
   if (displayStatic) {
     drawStaticModel();         //Draws Static 3D Model
+    drawContext();             //Draws Static 3D Model from JSON
   }
   
   if (displayDynamic) {
     drawDynamicModel();        //Draws Dynamic 3D Model
-    drawContext();
   }
 }
 
@@ -83,7 +83,7 @@ void drawContext() {
           pRotateY((-codeArray[i][j][1]+pieceRotation)%4*PI/2);
         }
         
-        if  (siteInfo.getInt(i,j) == 0) { //is site
+//        if  (siteInfo.getInt(i,j) == 0) { //is site
           if (structureMode == 0) { // 1x1 pieces used
           
             if (!drawNodes) {
@@ -101,7 +101,7 @@ void drawContext() {
             }
             
           }
-        }
+//        }
         
         if (!drawNodes) {
           pRotateY(-(-codeArray[i][j][1]+pieceRotation)%4*PI/2);
@@ -791,8 +791,10 @@ void toggleStaticOverride() {
 void toggleDynamicDraw() {
   if (displayDynamic == false) {
     displayDynamic = true;
+    updateAllNodes();
   } else {
     displayDynamic = false;
+    updateAllNodes();
   }
 }
 
