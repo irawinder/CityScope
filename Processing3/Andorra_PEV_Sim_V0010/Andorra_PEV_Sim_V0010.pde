@@ -11,7 +11,7 @@
 // 160115 - update curve parameter speed t to absolute speed kmps according frameRate
 // 160118 - add PEV speed control
 //        - add PEV number control
-// 160118 - change PEV states randomly
+// 160121 - change PEV states randomly
 
 
 //import processing.opengl.*;
@@ -38,15 +38,15 @@ float scaleMeterPerPixel = 2.15952; //meter per pixel in processing; meter per m
 float ScrollbarRatioPEVNum = 0.12;
 float ScrollbarRatioPEVSpeed = 0.5;
 Roads roads;
-PEVs PEVs; 
+PEVs PEVs;
 
 
 void setup() {
 
   //size(1620, 825); //image original; screenScale = 1.0(for normal res or OS UHD)
-  size(3240, 1650); //screenScale = 2.0(for WIN UHD)
+  //size(3240, 1650); //screenScale = 2.0(for WIN UHD)
   //size(800, 408); //screenScale is about 0.5
-  //size(2400, 1222); //screenScale is about 1.5
+  size(2400, 1222); //screenScale is about 1.5
   //fullScreen();
   screenScale = width / 1620.0; //fit everything with screen size
   scale(screenScale);
@@ -62,10 +62,7 @@ void setup() {
   //frameRate(60); //default frameRate is 60
   frameRate(10000); //never can be reach
 
-  //img_BG = loadImage("BG_300DPI.png");
-  //img_RD = loadImage("RD_300DPI-01.png");
   img_BG = loadImage("BG_ALL_75DPI.png");
-  //img_TMP_PATH = loadImage("TMP_START_END_PATH_75DPI-01.png");
 
   // add roads
   roadPtFile = "RD_CRV_PTS_151231.txt";
@@ -90,19 +87,6 @@ void draw() {
   //image(img_RD, 0, 0, width, height);
   //image(img_LEGEND, 0, 0, width, height);
   //image(img_TMP_PEV, 0, 0, width, height);
-
-  //// test draw a pt on a road
-  //float speed = 0.5F; //whole run per second;
-  //float t = sin(((frameCount / 60.0F * speed) - 0.5F) * PI) / 2.0F + 0.5F;
-  //if (t == 0) {
-  //  tmpRoadID = int(random(0, 12)+0.5F);
-  //}
-  //Road tmpRoad = roads.roads.get(tmpRoadID);
-  //PVector tmpPt = tmpRoad.getPt(t);
-  //stroke(255, 0, 0); 
-  //strokeWeight(14.0F); 
-  //point(tmpPt.x, tmpPt.y);
-  ////println("t = "+t+", x = "+tmpPt.x+", y = "+tmpPt.y);
 
   // draw roads
   //roads.drawRoads();

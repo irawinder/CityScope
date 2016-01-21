@@ -9,6 +9,7 @@ float maxSpeedKPH = 200.0; //units: kph  20.0 kph
 float maxSpeedMPS = maxSpeedKPH * 1000.0 / 60.0 / 60.0; //20.0 KPH = 5.55556 MPS
 float maxSpeedPPS = maxSpeedMPS / scaleMeterPerPixel; 
 float roadConnectionTolerance = 1.0; //pxl; smaller than 1.0 will cause error
+float stateChangeOdd = 0.0075;
 
 class PEV {
 
@@ -21,6 +22,7 @@ class PEV {
   PVector locationTangent;
   float rotation; //rotation in radius on the canvas
   float speedT; //current speed; units: t per frame
+  PImage img_PEV;
 
   PEV(Road _road, float _t) {
     //id = _id;
@@ -31,6 +33,7 @@ class PEV {
     status = 0;
     locationPt = road.getPt(t);
     speedT = maxSpeedMPS / road.roadLengthMeter / frameRate; //speedT unit: t per frame
+    img_PEV = imgs_PEV.get(int(random(0, imgs_PEV.size()-1)+0.5));
   }
 
   void run() {
@@ -38,6 +41,8 @@ class PEV {
     move();
 
     getDirection();
+    
+    changeState();
 
     render();
   }
@@ -58,7 +63,7 @@ class PEV {
       ArrayList<Road> nextRoads = new ArrayList<Road>();
       PVector roadEndPt = road.roadPts[road.ptNum-1];
       PVector roadStartPt = road.roadPts[0];
-      int i = 0;
+      //int i = 0;
       for (Road tmpRoad : roads.roads) {
         PVector tmpRoadStartPt = tmpRoad.roadPts[0];
         PVector tmpRoadEndPt = tmpRoad.roadPts[tmpRoad.ptNum-1];
@@ -72,7 +77,7 @@ class PEV {
             nextRoads.add(tmpRoad);
           }
         }
-        i ++;
+        //i ++;
       }
       //println("find: "+nextRoads.size());
 
@@ -116,6 +121,14 @@ class PEV {
     //println("subPVector: " + subPVector);
     //println("rotation: " + rotation);
   }
+  
+  void changeState(){
+    float rnd = random(0.0, 1.0);
+    if (rnd <= stateChangeOdd) {
+      int n = int(random(0, imgs_PEV.size()-1)+0.5);
+      img_PEV = imgs_PEV.get(n);
+    }
+  }
 
   void render() {
     pushMatrix();
@@ -129,8 +142,8 @@ class PEV {
 
     // draw PEV img
     scale(0.2);
-    translate(-img_PEV_PSG.width/2, -img_PEV_PSG.height/2);
-    image(img_PEV_PSG, 0, 0);
+    translate(-img_PEV.width/2, -img_PEV.height/2);
+    image(img_PEV, 0, 0);
     popMatrix();
   }
 }

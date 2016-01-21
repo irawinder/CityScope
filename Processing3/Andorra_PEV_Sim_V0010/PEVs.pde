@@ -9,6 +9,7 @@ PImage img_PEV_EMPTY;
 PImage img_PEV_PSG;
 PImage img_PEV_PKG;
 PImage img_PEV_FULL;
+ArrayList<PImage> imgs_PEV;
 
 class PEVs {
 
@@ -26,6 +27,11 @@ class PEVs {
     img_PEV_PSG = loadImage("PEV_PSG_300DPI.png");
     img_PEV_PKG = loadImage("PEV_PKG_300DPI.png");
     img_PEV_FULL = loadImage("PEV_PSG AND PKG_300DPI.png");
+    imgs_PEV = new ArrayList<PImage>();
+    imgs_PEV.add(img_PEV_EMPTY);
+    imgs_PEV.add(img_PEV_PSG);
+    imgs_PEV.add(img_PEV_PKG);
+    imgs_PEV.add(img_PEV_FULL);
 
     int totalPEVNum = _totalPEVNum;
     for (int i = 0; i < totalPEVNum; i ++) {
@@ -35,8 +41,9 @@ class PEVs {
       //PEV tmpPEV = new PEV(currentPEVID, tmpRoadID, t);
       PEV tmpPEV = new PEV(tmpRoad, t);
       PEVs.add(tmpPEV);
-      //currentPEVID ++;
+
     }
+
   }
 
   void run() {
