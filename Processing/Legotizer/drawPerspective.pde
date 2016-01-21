@@ -55,11 +55,11 @@ void drawPerspective() {
   
   if (displayStatic) {
     drawStaticModel();         //Draws Static 3D Model
-    drawContext();
   }
   
   if (displayDynamic) {
     drawDynamicModel();        //Draws Dynamic 3D Model
+    drawContext();
   }
 }
 

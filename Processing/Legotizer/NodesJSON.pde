@@ -23,15 +23,6 @@ DDPClient ddp;
 
 void loadContext() {
   contextBuildings = loadJSONArray(legotizer_data + demoPrefix + demos[vizMode] + "context/contextBuildings.json");
-  setContext();
-}
-
-void setContext() {
-  JSONObject voxel;
-  for (int i=0; i<contextBuildings.size(); i++) {
-    voxel = contextBuildings.getJSONObject(i); 
-    useCloud.setNode(voxel);
-  }
 }
 
 void initializeNodesJSON() {
