@@ -150,6 +150,8 @@ void draw() {
     initializeHeatMap();         // Initializes Array that holds heatmap values
     initializeScoreWeb();        // Initialized PGraphics for Score Web Vizualization
     
+//    setupPEV();
+    
     dataLoaded = true;
     
     setMode();                  // Sets First Visualization to Default Demo
@@ -223,6 +225,11 @@ void draw() {
         
         // Draws small Plan in upper corner 
         drawPlan(10, 10, int(0.3*height), int(0.3*height));  
+        
+//        //Draw's Ryan's PEV
+//        if (drawPEV) {
+//          drawPEV();
+//        }
         
         // Draws Web Representing Scores
         if (displayScoreWeb) {
