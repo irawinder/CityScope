@@ -526,7 +526,9 @@ void setBarcelonaPieces() {
 
 void setHamburgPieces() {
   
-  // Initial 8 Structures: 1, 5, 7, 10, 12, 15, 17, 20
+  // Initial 8 Structures: 1, 5, 7, 10, 12, 16, 18, 20
+  // Additional 14 Student Structures: 2, 3, 4, 6, 8, 9, 11, 13, 14, 15, 17, 22, 23, 24
+  // Still Remaining to use: 19, 21
   
   structures4x4.clear();
   structures4x4.add(Ham1);
