@@ -4,6 +4,7 @@
 
 PImage get;
 PGraphics g, crop;
+PImage template;
 
 float counter;
 
@@ -56,22 +57,33 @@ float C = 2*PI*6372798.2; // Circumference of Earth
 
 // Tongzhou Location
         
-//        // Ira's Numbers
-//        float lat = 39.896750;
-//        float lon = 116.700129;
-//        int zoom = 17;
-//        float modelWidth  =                     7.99125*96*4; // width of model in meters
-//        float modelHeight = (1 + 286.0*2/768.0)*7.99125*96;   // height of model in meters
-//        float modelRotation = 45.0/180*PI; // rotation of model in radians clockwise from north
+//        Latitude and Longitude at Center of Model
+//          // Microsoft Lat-Lon
+//          float lat = 39.895565;
+//          float lon = 116.69402;
+//          // Google Lat-Lon
+//          float lat = 39.89675
+//          float lon = 116.700035
+//        int zoom = 16;
+//        float modelWidth  =                     6.68612*96*4; // width of model in meters
+//        float modelHeight = (1 + 284.0*2/768.0)*6.68812*96;   // height of model in meters
+//        float modelRotation = -(43.69+1.7068)/180*PI; // rotation of model in radians clockwise from north
+//        boolean useTemplate = true;
+//        String templateFile = "TongzhouPlanTemplate.png";
 
-        
-        // Ira's Numbers
-        float lat = 39.89499;
-        float lon = 116.693756;
-        int zoom = 15;
+        // Latitude and Longitude at Center of Model
+          // Microsoft Lat-Lon
+//          float lat = 39.895565;
+//          float lon = 116.69402;
+          // Google Lat-Lon
+          float lat = 39.89675;
+          float lon = 116.700035;
+        int zoom = 17;
         float modelWidth  =                     6.68612*96*4; // width of model in meters
         float modelHeight = (1 + 284.0*2/768.0)*6.68812*96;   // height of model in meters
         float modelRotation = -(43.69+1.7068)/180*PI; // rotation of model in radians clockwise from north
+        boolean useTemplate = true;
+        String templateFile = "TongzhouPlanTemplate.png";
 
 float scale; // distance represented by one pixel
 
@@ -82,6 +94,10 @@ public void setupCrop() {
   g = createGraphics(width, height);
   
   setScale();
+  
+  if (useTemplate) {
+    template = loadImage(templateFile);
+  }
 }
 
 public void setScale() {
@@ -118,4 +134,8 @@ public void Crop() {
   crop.endDraw();
   
   image(crop,0,0);
+  
+  if (useTemplate) {
+    image(template, 0, 0, crop.width, crop.height);
+  }
 }
