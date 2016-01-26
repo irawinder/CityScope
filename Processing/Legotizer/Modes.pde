@@ -182,13 +182,15 @@ void tongzhouMode() {
   
   staticSpacer = 0;        // Plastic Spacer Needed for Static buildings
   dynamicSpacer = 1;       // Plastic Spacer Needed for Dynamic buildings
-  UMax = 38;
-  VMax = 88;
+//  UMax = 38;
+//  VMax = 88;
+  UMax = 22;
+  VMax = 44;
   updateBoard();
   
   structureMode = 1;
   useCloud.wipeNodes();
-  setHamburgPieces();
+  setRiyadhPieces();
   displaySatellite = true;
   satMode = 3;
   drawPlanSat = true;
@@ -200,7 +202,7 @@ void tongzhouMode() {
   dimensionOverRide = false;
   
   pieceW_LU = 4;
-  pieceH_LU = 3; 
+  pieceH_LU = 1; 
   staticBaseH_LU = 3;  // [LU] number of lego units high for base
   staticBasePlate = 0; // 0 has thin gray lego baseplate; 1 does have thin gray lego baseplate
   dynamicBaseH_LU = 3; // [LU] number of lego units high for base
