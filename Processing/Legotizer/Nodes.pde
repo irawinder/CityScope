@@ -175,15 +175,15 @@ void updateAllNodes() {
 
   for (int u=0; u<UMax; u++) {
     for (int v=0; v<VMax; v++) {
-        
+      
       if (structureMode == 0) { //1x1 pieces
-        if (codeArray[u][v][0] >= 0 && codeArray[u][v][0] < NPieces && (siteInfo.getInt(u,v) == 1 || overrideStatic) ) { //is site
+        if (codeArray[u][v][0] >= 0 && codeArray[u][v][0] < NPieces && (siteInfo.getInt(u,v) == 1 || overrideStatic) && displayDynamic) { //is site
           useCloud.updateNodes(u,v, structures1x1.getRow(codeArray[u][v][0]));
         } else {
           useCloud.deleteNodes(u,v,1);
         }
       } else if (structureMode == 1) { //4x4 pieces
-        if (codeArray[u][v][0] >= 0 && codeArray[u][v][0] < NPieces && (siteInfo.getInt(u,v) == 1 || overrideStatic) ) { //is site
+        if (codeArray[u][v][0] >= 0 && codeArray[u][v][0] < NPieces && (siteInfo.getInt(u,v) == 1 || overrideStatic) && displayDynamic) { //is site
           useCloud.updateNodes(u,v,4, structures4x4.get(codeArray[u][v][0]), codeArray[u][v][1]);
         } else {
           useCloud.deleteNodes(u,v,4);

@@ -84,7 +84,7 @@ void drawContext() {
           pRotateY((-codeArray[i][j][1]+pieceRotation)%4*PI/2);
         }
         
-        if  ( (siteInfo.getInt(i,j) == 0 || displayDynamic) ) { //has peice
+//        if  ( (siteInfo.getInt(i,j) == 0 || displayDynamic) ) { //has peice
           if (structureMode == 0) { // 1x1 pieces used
           
             if (!drawNodes) {
@@ -98,11 +98,11 @@ void drawContext() {
             if (!drawNodes) {
               draw4x4Structure(i, j, pieceH_LU*boxH, boxH*(dynamicBaseH_LU-1), LU_W, structures4x4.get(codeArray[i][j][0]));
             } else {
-                draw4x4Nodes(i, j, pieceH_LU*boxH, 0, LU_W);
+              draw4x4Nodes(i, j, pieceH_LU*boxH, 0, LU_W);
             }
             
           }
-        }
+//        }
         
         if (!drawNodes) {
           pRotateY(-(-codeArray[i][j][1]+pieceRotation)%4*PI/2);
@@ -238,22 +238,22 @@ void drawDynamicModel() {
             }
             
           } 
-//          else if (siteInfo.getInt(i,j) == 1 || (overrideStatic && !displayStatic) ) { //Has no dicernable Piece
-//            checkFill(openColor);
-//            
-//            if (!drawNodes) { 
-//              //Draws Base
-//              drawBox(dynamicBaseH_LU*boxH, 0.0, boxW);
-//              
-//            } else {
-//              if (structureMode == 0) { // 1x1 pieces used
-//                draw1x1Nodes(i, j, pieceH_LU*boxH, 0);
-//              } else if (structureMode == 1) { // 4x4 pieces used
-//                draw4x4Nodes(i, j, LU_H*pieceH_LU, 0, LU_W);
-//              }
-//            }
-//            
-//          }
+          else if (siteInfo.getInt(i,j) == 1 || (overrideStatic && !displayStatic) ) { //Has no dicernable Piece
+            checkFill(openColor);
+            
+            if (!drawNodes) { 
+              //Draws Base
+              drawBox(dynamicBaseH_LU*boxH, 0.0, boxW);
+              
+            } else {
+              if (structureMode == 0) { // 1x1 pieces used
+                draw1x1Nodes(i, j, pieceH_LU*boxH, 0);
+              } else if (structureMode == 1) { // 4x4 pieces used
+                draw4x4Nodes(i, j, LU_H*pieceH_LU, 0, LU_W);
+              }
+            }
+            
+          }
         }
         
         if (!drawNodes) {

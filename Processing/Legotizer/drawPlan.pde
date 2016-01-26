@@ -385,13 +385,14 @@ void drawPlan4x4Nodes(int i, int j, int k, int n, int isSite) {
               }
               
               
-              if (useCloud.nodes[i*4+u][j*4+v][k] > 0 && ( ( isSite == 1 && displayDynamic ) || ( isSite == 0 && displayStatic ) ) ) {
+              if (useCloud.nodes[i*4+u][j*4+v][k] > 0 && ( ( isSite == 0 && displayStatic ) || ( isSite == 1 ) ) ) {
                 lRect(v*LU_W+dU, u*LU_W+dV, LU_W, LU_W);
-              } else if (useCloud.nodes[i*4+u][j*4+v][k] > 0 && ((!displayDynamic && displayStatic) && isSite == 1) ){
-                lRect(v*LU_W+dU, u*LU_W+dV, LU_W, LU_W);
-              } else if (isSite == 1 && displayDynamic) {
-                lRect(v*LU_W+dU, u*LU_W+dV, LU_W, LU_W);
-              }
+              } 
+//              else if (useCloud.nodes[i*4+u][j*4+v][k] > 0 && ((!displayDynamic && displayStatic) && isSite == 1) ){
+//                lRect(v*LU_W+dU, u*LU_W+dV, LU_W, LU_W);
+//              } else if (isSite == 1 && displayDynamic) {
+//                lRect(v*LU_W+dU, u*LU_W+dV, LU_W, LU_W);
+//              }
             }
           
           } // end for v
