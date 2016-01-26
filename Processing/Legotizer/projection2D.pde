@@ -210,11 +210,7 @@ public class projApplet extends PApplet {
     //p.blendMode(MULTIPLY);
     p.fill(0, 255, 0);
     p.translate(x_offset, 0);
-//    if (drawPEV) {
-//      p.image(pg, 0, 0);
-//    } else {
-      p.image(plan3DImage[_canvasIndex], 0, 0);
-//    }
+    p.image(plan3DImage[_canvasIndex], 0, 0);
     p.endDraw();
   }
   

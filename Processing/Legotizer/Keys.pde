@@ -164,14 +164,6 @@ void keyPressed() {
     case 'C':
       canvasIndex = nextMode(canvasIndex, numProj-1);
       break;
-//    case 'V':
-//      if (drawPEV == true) {
-//        drawPEV = false;
-//      } else {
-//        drawPEV = true;
-//      }
-//      println("PEV: " + drawPEV);
-//      break;
   }
   
   if (key == CODED) { 
