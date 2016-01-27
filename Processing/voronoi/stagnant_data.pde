@@ -15,10 +15,10 @@ void drawData(){
     }
     */
     
-    //if(containsPoint(coord) == true){
+    if(poly.containsPoint(coord) == true){
     fill(255, 0, 0);
     }
     }
   }
-//}
+}
 
