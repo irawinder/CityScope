@@ -68,7 +68,6 @@ void sendData() {
     dataToSend += "gridIndex";
     dataToSend += "\t" ;
     dataToSend += numGAforLoop[imageIndex] + gridIndex;
-    dataToSend += "\t" ;
 
     dataToSend += "\n" ;
     
