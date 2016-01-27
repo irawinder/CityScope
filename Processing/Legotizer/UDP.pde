@@ -54,46 +54,59 @@ void parseCodeStrings(String data[]) {
         // heatMapName = split[0];      
       }
     }
-    
+
+//    As of Jan 2016 Colortizer no longer exports UMax and VMax
 //    // Checks if row formatted for UMax and VMax
 //    if (split.length == 2 && dimensionOverRide) {
 //      UMax = int(split[1]);
 //      VMax = int(split[0]);
 //      updateBoard();
 //    }
+
+    // Checks if row formatted for UMax and VMax
+    if (split.length == 2 && split[0].equals("gridIndex")) {
+      siteOffsetU = siteOffsets.getInt(int(split[1]), 0);
+      siteOffsetV = siteOffsets.getInt(int(split[1]), 1);
+    }
     
     // Checks if row format is compatible with piece recognition.  3 columns for ID, U, V; 4 columns for ID, U, V, rotation
     if (split.length == 3 || split.length == 4) { 
       
       //Finds UV values of Lego Grid:
+      int u_temp = int(split[1]) + siteOffsetU;
+      int v_temp = int(split[2]) + siteOffsetV;
       
       if (split.length == 3) { // If 3 columns
         
         // detects if different from previous value
-        if ( codeArray[int(split[2])][int(split[1])][0] != int(split[0]) ) {
-          // Sets ID
-          codeArray[int(split[2])][int(split[1])][0] = int(split[0]);
-          
-          //sendCommand(inputStr[i], 6667);
-          
-          changeDetected = true;
-          simCounter = simTime;
+        if ( v_temp < codeArray.length && u_temp < codeArray[0].length ) {
+          if ( codeArray[v_temp][u_temp][0] != int(split[0]) ) {
+            // Sets ID
+            codeArray[v_temp][u_temp][0] = int(split[0]);
+            
+            //sendCommand(inputStr[i], 6667);
+            
+            changeDetected = true;
+            simCounter = simTime;
+          }
         }
         
       } else if (split.length == 4) {   // If 4 columns
         
         // detects if different from previous value
-        if ( codeArray[int(split[2])][int(split[1])][0] != int(split[0]) || codeArray[int(split[2])][int(split[1])][1] != int(split[3])/90 ) {
-          // Sets ID
-          codeArray[int(split[2])][int(split[1])][0] = int(split[0]); 
-          
-          //Identifies rotation vector of piece [WARNING: Colortizer supplies rotation in degrees (0, 90, 180, and 270)]
-          codeArray[int(split[2])][int(split[1])][1] = int(split[3])/90; 
-          
-          //sendCommand(inputStr[i], 6667);
-          
-          changeDetected = true;
-          simCounter = simTime;
+        if ( v_temp < codeArray.length && u_temp < codeArray[0].length ) {
+          if ( codeArray[v_temp][u_temp][0] != int(split[0]) || codeArray[v_temp][u_temp][1] != int(split[3])/90 ) {
+            // Sets ID
+            codeArray[v_temp][u_temp][0] = int(split[0]); 
+            
+            //Identifies rotation vector of piece [WARNING: Colortizer supplies rotation in degrees (0, 90, 180, and 270)]
+            codeArray[v_temp][v_temp][1] = int(split[3])/90; 
+            
+            //sendCommand(inputStr[i], 6667);
+            
+            changeDetected = true;
+            simCounter = simTime;
+          }
         }
       }
       

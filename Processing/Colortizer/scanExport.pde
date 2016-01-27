@@ -63,7 +63,15 @@ void sendData() {
     * state_data
     */
     state_data=new int[0][0];
+    
+    // Scan Grid Location (for referencing grid offset file)
+    dataToSend += "gridIndex";
+    dataToSend += "\t" ;
+    dataToSend += numGAforLoop[imageIndex] + gridIndex;
+    dataToSend += "\t" ;
 
+    dataToSend += "\n" ;
+    
     for (int u=0; u<tagDecoder[0].U; u++) {
       for (int v=0; v<tagDecoder[0].V; v++) {
 
@@ -71,12 +79,19 @@ void sendData() {
         dataToSend += tagDecoder[0].id[u][v] ;
         dataToSend += "\t" ;
 
+//        // U Position
+//        dataToSend += tagDecoder[0].U-u-1 + exportOffsets[numGAforLoop[imageIndex] + gridIndex][0];
+//        dataToSend += "\t" ;
+//
+//        // V Position
+//        dataToSend += v + exportOffsets[numGAforLoop[imageIndex] + gridIndex][1];
+        
         // U Position
-        dataToSend += tagDecoder[0].U-u-1 + exportOffsets[numGAforLoop[imageIndex] + gridIndex][0];
+        dataToSend += tagDecoder[0].U-u-1;
         dataToSend += "\t" ;
 
         // V Position
-        dataToSend += v + exportOffsets[numGAforLoop[imageIndex] + gridIndex][1];
+        dataToSend += v;
 
         ////// BEGIN Added March 3, 2015 by Ira Winder ///////
 
@@ -101,12 +116,11 @@ void sendData() {
       }
     }
 
-    // UMax and VMax Values
-    dataToSend += tagDecoder[0].U;
-    dataToSend += "\t" ;
-    dataToSend += tagDecoder[0].V;
-
-    dataToSend += "\n" ;
+//    // UMax and VMax Values
+//    dataToSend += tagDecoder[0].U;
+//    dataToSend += "\t" ;
+//    dataToSend += tagDecoder[0].V;
+//    dataToSend += "\t" ;
 
     /*
     // Slider and Toggle Values

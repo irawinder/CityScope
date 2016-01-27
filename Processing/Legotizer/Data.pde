@@ -71,7 +71,8 @@ Table kendallStructures;
 Table flindersStructures;
 
 // Standard Structures for visualization
-Table structures1x1, siteInfo, scaleInfo, staticStructures;
+Table structures1x1, siteInfo, siteOffsets, scaleInfo, staticStructures;
+int siteOffsetU, siteOffsetV;
 float scaler, lat, lon, geoRot;
 ArrayList<Table> structures4x4;
 PImage satellite, satellite_nosite, satelliteLG;
@@ -192,6 +193,9 @@ void loadSite() {
   
   
   siteInfo = loadTable(legotizer_data + demoPrefix + demos[vizMode] + "siteinfo.tsv");
+  siteOffsets = loadTable(legotizer_data + demoPrefix + demos[vizMode] + "siteOffsets.tsv");
+  siteOffsetU =siteOffsets.getInt(0, 0);
+  siteOffsetV =siteOffsets.getInt(0, 1);
   satellite_nosite = loadImage(legotizer_data + demoPrefix + demos[vizMode] + "satellite_nosite.png");
   satellite = loadImage(legotizer_data + demoPrefix + demos[vizMode] + "satellite.jpg");
   if (vizMode == 1) { //Riyadh Viz Mode larger satellite
