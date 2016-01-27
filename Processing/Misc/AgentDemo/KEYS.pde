@@ -214,6 +214,9 @@ void mousePressed() {
     setLoader("New Agents");
     key_r();
   }
+  if(button2.over()){
+    showInfo = toggle(showInfo);
+  }
 }
 
 void mouseDragged() {

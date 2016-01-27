@@ -119,6 +119,7 @@ void drawTableCanvas(PGraphics p) {
       Button button18; //save locations
       Button button19; //load obstacles
       */
+      /*
       button = new Button(10, 30, "Refresh Visualization");
       button2 = new Button(10, 60, "Show/Hide Info");
       button3 = new Button(10, 90, "Show/Hide Sinks");
@@ -158,6 +159,7 @@ void drawTableCanvas(PGraphics p) {
       button17.draw(p);
       button18.draw(p);
       button19.draw(p);
+      */
       
   p.endDraw();
 }

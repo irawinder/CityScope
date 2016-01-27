@@ -39,14 +39,15 @@ class Button{
     this.y = y;
     this.label = label;
   }
-  void draw(PGraphics p){
-    p.fill(200);
+  void draw(){
+    fill(200);
+    noStroke();
     if(over()){
-    p.fill(255);
+    fill(255);
     }
-    p.rect(x, y, textWidth(label) + 10, 25);
-    p.fill(0);
-    p.text(label, x + 5, y + 15);
+    rect(x, y, textWidth(label) + 10, 25);
+    fill(0);
+    text(label, x + 5, y + 15);
   }
   boolean over(){
     if(mouseX >= x && mouseY >= y && mouseX <= x + textWidth(label) && mouseY <= y + 22){

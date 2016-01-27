@@ -66,7 +66,7 @@ boolean initialized = false;
 int drawDelay = 10;
 
 void setup() {
-  size(canvasWidth, canvasHeight, P3D);
+  size(canvasWidth + 200, canvasHeight, P3D);
   initCanvas();
   
 //  //Call this method if data folder ever needs to be selected by a user
@@ -122,6 +122,48 @@ void draw() {
     }
     
     mainDraw();
+    
+       button = new Button(canvasWidth+10, 10, "Refresh Visualization");
+      button2 = new Button(canvasWidth+10, 40, "Show/Hide Info");
+      button3 = new Button(canvasWidth+10, 70, "Show/Hide Sinks");
+      button4 = new Button(canvasWidth+10, 100, "Show/Hide Edges");
+      button5 = new Button(canvasWidth+10, 130, "Print Framerate to Console");
+      button6 = new Button(canvasWidth+10, 160, "Show/Hide Info");
+      button7 = new Button(canvasWidth+10, 190, "Show/Hide Sinks");
+      button8 = new Button(canvasWidth+10, 220, "Show/Hide Edges");
+      button9 = new Button(canvasWidth+10, 250, "Refresh Visualization");
+      button10 = new Button(canvasWidth+10, 280, "Show/Hide Info");
+      button11 = new Button(canvasWidth+10, 310, "Show/Hide Sinks");
+      button12 = new Button(canvasWidth+10, 340, "Show/Hide Edges");
+      button13 = new Button(canvasWidth+10, 370, "Refresh Visualization");
+      button14 = new Button(canvasWidth+10, 400, "Show/Hide Info");
+      button15 = new Button(canvasWidth+10, 430, "Show/Hide Sinks");
+      button16 = new Button(canvasWidth+10, 460, "Show/Hide Edges");
+      button17 = new Button(canvasWidth+10, 490, "Refresh Visualization");
+      button18 = new Button(canvasWidth+10, 520, "Show/Hide Info");
+      button19 = new Button(canvasWidth+10, 550, "Show/Hide Sinks");
+      
+      button.draw();
+      button2.draw();
+      button3.draw();
+      button4.draw();
+      button5.draw();
+      button6.draw();
+      button7.draw();
+      button8.draw();
+      button9.draw();
+      button10.draw();
+      button11.draw();
+      button12.draw();
+      button13.draw();
+      button14.draw();
+      button15.draw();
+      button16.draw();
+      button17.draw();
+      button18.draw();
+      button19.draw();
+      
+      
     
     // Print Framerate of animation to console
     if (showFrameRate) {
