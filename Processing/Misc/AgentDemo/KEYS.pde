@@ -211,11 +211,23 @@ int scroll_0 = 0;
 void mousePressed() {
   y_0 = mouseY;
   if(button.over()){
+    if(dataMode == 1){
     setLoader("New Agents");
     key_r();
+    } 
+    if(dataMode == 0){
+       setLoader("New Origin-Destination Pair");
+       key_X();
+    }
   }
   if(button2.over()){
-    showInfo = toggle(showInfo);
+    if(dataMode == 1){ 
+      showInfo = toggle(showInfo);
+    }
+    if(dataMode == 0){
+      showPathInfo = toggle(showPathInfo);
+      pFinderGrid_Viz(tableCanvas);
+    }
   }
 }
 
