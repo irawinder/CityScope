@@ -194,8 +194,8 @@ void loadSite() {
   
   siteInfo = loadTable(legotizer_data + demoPrefix + demos[vizMode] + "siteinfo.tsv");
   siteOffsets = loadTable(legotizer_data + demoPrefix + demos[vizMode] + "siteOffsets.tsv");
-  siteOffsetU =siteOffsets.getInt(0, 0);
-  siteOffsetV =siteOffsets.getInt(0, 1);
+  siteOffsetU = siteOffsets.getInt(0, 0);
+  siteOffsetV = siteOffsets.getInt(0, 1);
   satellite_nosite = loadImage(legotizer_data + demoPrefix + demos[vizMode] + "satellite_nosite.png");
   satellite = loadImage(legotizer_data + demoPrefix + demos[vizMode] + "satellite.jpg");
   if (vizMode == 1) { //Riyadh Viz Mode larger satellite
@@ -204,6 +204,9 @@ void loadSite() {
   
   // Loads any other images deposited into ".../basemaps/" folder. Should be cropped to area
   loadBasemaps();
+  
+  // Clears offsets from last visualization
+  noOffset();
 }
 
 // Loads any other images deposited into ".../basemaps/" folder. Should be cropped to area
@@ -741,4 +744,9 @@ void toggleStructureMode() {
   } else {
     structureMode = 0;
   }
+}
+
+void noOffset() {
+  siteOffsetU = 0;
+  siteOffsetV = 0;
 }
