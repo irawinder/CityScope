@@ -6,6 +6,8 @@ Have...
 ArrayList of Polygons
 ArrayList of Towers
 
+
+
 TO DO 
 -Enhance so it can work with real data and return regions
 -Give regions IDs
@@ -16,6 +18,7 @@ Table towers;
 Table hotels;
 int width = 1200;
 int height = 900;
+Vec2D tower;
 
 void setup() {
  Table towers = loadTable("data/towers.csv", "header");
@@ -27,10 +30,9 @@ void setup() {
    for (int i=0;i<pointNum;i++){
       float x = towers.getFloat(i, "x");//random(0,width);
       float y= towers.getFloat(i, "y");//random(0,height);
+      tower = (new Vec2D(towers.getFloat(i, "x"), towers.getFloat(i, "y")));
       voronoi.addPoint(new Vec2D(x,y));
   }
    drawVoronoi();
-   drawData();
-//going to have to get points here for stagnant data
+   //drawData();
 }
-

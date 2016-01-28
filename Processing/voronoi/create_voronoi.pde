@@ -41,6 +41,7 @@ void drawVoronoi() {
     gfx.polygon2D(poly);
   }
   
+  
 int i = 0;
   // draw original points added to voronoi
   if (showPoints) {
@@ -50,7 +51,26 @@ int i = 0;
       ellipse(towers.x, towers.y, 20, 20);
       fill(i*80, i*20, i*5);
     }
-
   }
 
+
+Table hotels = loadTable("data/hotels.csv", "header");
+    for (int j=0;j<hotels.getRowCount();j++) {
+    coord = (new Vec2D(hotels.getFloat(j, "x"), hotels.getFloat(j, "y")));
+    ellipse(coord.x, coord.y, 7, 7);
+    for (Polygon2D poly : voronoi.getRegions()) {
+    /*if (doClip) {
+     gfx.polygon2D(clip.clipPolygon(poly));
+    } 
+    else {
+      gfx.polygon2D(poly);
+    }
+    */
+    if((poly.containsPoint(coord) == true)){
+      fill(80, 0, 255); 
+    }
+      }
+    }
+
 }
+
