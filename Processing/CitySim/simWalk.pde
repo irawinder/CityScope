@@ -119,7 +119,7 @@ void initWalk(int maxU, int maxV, int maxZ, JSONArray points) {
   containmentRate = walkParam.getFloat(0, "containmentRate");
   
   //Sample size used to run simulations
-  sampleSize = sampleSize95/2;
+  sampleSize = sampleSize90;
   
   workAccess = new int[maxU][maxV][maxZ][numSamples+1];
   liveAccess = new int[maxU][maxV][maxZ][numSamples+1];

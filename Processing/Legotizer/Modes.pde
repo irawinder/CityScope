@@ -4,6 +4,7 @@ String[] name = {
   "CityScope: Flinders",
   "CityScope: Barcelona",
   "CityScope: Hamburg Rothenburgsort",
+  "CityScope: Tongzhou",
   "CityScope: Tongzhou"
 };
 
@@ -22,6 +23,8 @@ void setMode() {
   } else if (vizMode == 4) {
     hamburgMode();
   } else if (vizMode == 5) {
+    tongzhouMode_sm();
+  } else if (vizMode == 6) {
     tongzhouMode();
   }
 } 
@@ -174,6 +177,48 @@ void hamburgMode() {
 }
 
 void tongzhouMode() {
+  vizMode = 6;
+  loadSite();
+  loadStaticStructures();
+  loadContext();
+  initializeProjection2D();
+  
+  staticSpacer = 0;        // Plastic Spacer Needed for Static buildings
+  dynamicSpacer = 1;       // Plastic Spacer Needed for Dynamic buildings
+  UMax = 38;
+  VMax = 88;
+  updateBoard();
+  
+  structureMode = 1;
+  useCloud.wipeNodes();
+  setRiyadhPieces();
+  displaySatellite = true;
+  satMode = 3;
+  drawPlanSat = true;
+  drawPlanStatic = false;
+  displayScoreWeb = true;
+  overrideStatic = false;
+  displayStatic = true;
+  displayDynamic = true;
+  dimensionOverRide = false;
+  
+  pieceW_LU = 4;
+  pieceH_LU = 1; 
+  staticBaseH_LU = 3;  // [LU] number of lego units high for base
+  staticBasePlate = 0; // 0 has thin gray lego baseplate; 1 does have thin gray lego baseplate
+  dynamicBaseH_LU = 3; // [LU] number of lego units high for base
+  pieceRotation = 3;
+  calcDimensions();
+  
+  staticH_LU = 1;
+  staticW_LU = 1;
+  
+  useCloud.wipeNodes();
+  updateAllNodes();
+  saveMetaJSON("metadata.json");
+}
+
+void tongzhouMode_sm() {
   vizMode = 5;
   loadSite();
   loadStaticStructures();
@@ -182,8 +227,6 @@ void tongzhouMode() {
   
   staticSpacer = 0;        // Plastic Spacer Needed for Static buildings
   dynamicSpacer = 1;       // Plastic Spacer Needed for Dynamic buildings
-//  UMax = 38;
-//  VMax = 88;
   UMax = 22;
   VMax = 44;
   updateBoard();
