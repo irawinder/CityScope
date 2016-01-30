@@ -294,8 +294,8 @@ void drawHotels(PGraphics p) {
   for (int i=0; i<tripAdvisor.getRowCount (); i++) {
      coord = mercatorMap.getScreenLocation(new PVector(tripAdvisor.getFloat(i, "Lat"), tripAdvisor.getFloat(i, "Long")));
      j+=1;
-     p.ellipse(coord.x, coord.y, 7, 7);
-     fill(#e5e5e5);
+     p.ellipse(coord.x, coord.y, 5.5, 5.5);
+     p.fill(#ffffff);
   }
 
   PVector geo;
@@ -307,6 +307,21 @@ void drawHotels(PGraphics p) {
   p.ellipse(coord.x, coord.y, 10, 10);
 
 }
+
+//draws a selector circle to show what hotel you're on (displaying info below) and initiates j and d to go through hotels (still a little buggy) 
+int j = 0; 
+
+void drawHotelSelector(PGraphics p) { 
+  p.noStroke();
+  p.fill(#ff00ff);
+  for (j = d; j<tripAdvisor.getRowCount (); j++) {
+    // turns latitude and longitude of a point into canvas location within PGraphic topo
+    coord = mercatorMap.getScreenLocation(new PVector(tripAdvisor.getFloat(d, "Lat"), tripAdvisor.getFloat(d, "Long")));
+    }
+// Draw a circle 50 pixels in diameter at geolocation 
+    p.ellipse(coord.x, coord.y, 10, 10);
+    fill(255);
+  }
 
 void drawHotelStars(PGraphics p) { 
   p.noStroke();
@@ -390,20 +405,7 @@ void drawHotelPrice(PGraphics p) {
   
 }
 
-//draws a selector circle to show what hotel you're on (displaying info below) and initiates j and d to go through hotels (still a little buggy) 
-int j = 0; 
 
-void drawHotelSelector(PGraphics p) { 
-  p.noStroke();
-  p.fill(#ffffff, 70);
-  for (j = d; j<tripAdvisor.getRowCount (); j++) {
-    // turns latitude and longitude of a point into canvas location within PGraphic topo
-    coord = mercatorMap.getScreenLocation(new PVector(tripAdvisor.getFloat(d, "Lat"), tripAdvisor.getFloat(d, "Long")));
-    }
-// Draw a circle 30 pixels in diameter at geolocation 
-    p.ellipse(coord.x, coord.y, 50, 50);
-    fill(255);
-  }
 
 void drawData(PGraphics p) {
   
@@ -570,20 +572,20 @@ void drawLineGraph() {
   
   
   noStroke();
-  
-  translate(float(0+2)/(maxHour+6)*width, -1.5*graphHeight);
-  
-  fill(#FFFFFF);
-  textSize(24*(projectorWidth/1920.0));
-  
-   noStroke();
-  
 
   translate(float(0+2)/(maxHour+6)*width, -1.5*graphHeight);
+  fill(#ffffff);
   
   textSize(24*(projectorWidth/1920.0));
   textAlign(LEFT);
   //gives info for the hotels
+  if(dataMode == 4){
+  fill(#ffffff);
+  text("Current Selection: " + tripAdvisor.getString(d, "Hotel"), 6.0*marginWidthPix, -40);
+  text(tripAdvisor.getFloat(d, "Stars") + " Stars", 13.5*marginWidthPix, -40);
+  text(tripAdvisor.getFloat(d, "USD") + " USD", 15.5*marginWidthPix, -40);
+  text(tripAdvisor.getInt(d, "Review") + " Reviews", 17.5*marginWidthPix, -40);
+  }
   if(hotelstars == true){ 
   text("Hotels by Star Rating (1-5)", 0, -65);
   fill(best);
@@ -596,11 +598,6 @@ void drawLineGraph() {
   text("2", 4.0*marginWidthPix, -40);
   fill(bad);
   text("1", 5.0*marginWidthPix, -40);
-  fill(#ffffff);
-  text("Current Selection: " + tripAdvisor.getString(d, "Hotel"), 6.0*marginWidthPix, -40);
-  text(tripAdvisor.getFloat(d, "Stars") + " Stars", 13.5*marginWidthPix, -40);
-  text(tripAdvisor.getFloat(d, "USD") + " USD", 15.5*marginWidthPix, -40);
-  text(tripAdvisor.getInt(d, "Review") + " Reviews", 17.5*marginWidthPix, -40);
   }
   if(hotelprice == true){ 
   text("Hotels by Price (1-5), 5 being the most", 0, -65);
@@ -614,11 +611,6 @@ void drawLineGraph() {
   text("2", 4.0*marginWidthPix, -40);
   fill(best);
   text("1", 5.0*marginWidthPix, -40);
-  fill(#ffffff);
-  text("Current Selection: " + tripAdvisor.getString(d, "Hotel"), 7.0*marginWidthPix, -40);
-  text(tripAdvisor.getFloat(d, "Stars") + " Stars", 13.5*marginWidthPix, -40);
-  text(tripAdvisor.getFloat(d, "USD") + " USD", 15.5*marginWidthPix, -40);
-  text(tripAdvisor.getInt(d, "Review") + " Reviews", 17.5*marginWidthPix, -40);
   }
   
   fill(#FFFFFF);
