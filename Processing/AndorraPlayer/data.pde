@@ -79,7 +79,7 @@ void initData() {
   
   println("Loading Data ...");
   
-  if (dataMode == 2 || dataMode == 3) {
+  if (dataMode == 2 || dataMode == 3 || dataMode == 4) {
     load_non_essential_data = true;
     showTopo = true;
   } else {

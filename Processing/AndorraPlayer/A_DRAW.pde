@@ -8,6 +8,9 @@ boolean showEdges = false;
 boolean showSwarm = true;
 boolean showInfo = false;
 boolean showTraces = false;
+boolean hotelprice = false;
+boolean hotelstars = false;
+int d = 0; 
 
 // Makes darker colors more visible when projecting
 int masterAlpha = 15;
@@ -25,6 +28,12 @@ PVector[] line = new PVector[2];
 color french = #2D34EA;
 color spanish = #E5953F;
 color other = #666666;
+//colors for the travelocity data 
+color best = #00ff00;
+color good = #ffff00; 
+color medium = #ffcc00;
+color poor = #ff751a;
+color bad = #ff0000;
 
 void drawTableCanvas(PGraphics p) {
   
@@ -55,6 +64,20 @@ void drawTableCanvas(PGraphics p) {
       if (load_non_essential_data) {
         drawMargin(p);
       }
+      
+      //Draws if dataMode =4 
+       if (dataMode == 4) { 
+             drawHotels(p);
+             drawHotelSelector(p);
+      if (hotelprice == true) { 
+          drawHotelPrice(p);
+          drawHotelSelector(p);
+              }
+      if (hotelstars == true) { 
+          drawHotelStars(p);
+          drawHotelSelector(p);
+      }
+              }
       
       // Allows dragging of Table Area Info
       p.translate(scrollX, scrollY);
@@ -265,6 +288,123 @@ void drawTopo(PGraphics p) {
   
 }
 
+void drawHotels(PGraphics p) {
+  p.noStroke();
+  int j = 0; 
+  for (int i=0; i<tripAdvisor.getRowCount (); i++) {
+     coord = mercatorMap.getScreenLocation(new PVector(tripAdvisor.getFloat(i, "Lat"), tripAdvisor.getFloat(i, "Long")));
+     j+=1;
+     p.ellipse(coord.x, coord.y, 7, 7);
+     fill(#e5e5e5);
+  }
+
+  PVector geo;
+  geo = mercatorMap.getGeo(new PVector( mouseX-marginWidthPix, mouseY-marginWidthPix));
+  //println(geo.x + ", " + geo.y);
+  coord = mercatorMap.getScreenLocation(geo);
+  p.fill(#00FF00);
+  p.noStroke();
+  p.ellipse(coord.x, coord.y, 10, 10);
+
+}
+
+void drawHotelStars(PGraphics p) { 
+  p.noStroke();
+  int j = 0; 
+  for (int i=0; i<tripAdvisor.getRowCount (); i++) {
+    // turns latitude and longitude of a point into canvas location within PGraphic topo
+    coord = mercatorMap.getScreenLocation(new PVector(tripAdvisor.getFloat(i, "Lat"), tripAdvisor.getFloat(i, "Long")));
+    j+=1;
+    {
+    if ((tripAdvisor.getFloat(i, "Stars") == 5)) {
+      tableCanvas.fill(best);
+    }
+    if ((tripAdvisor.getFloat(i, "Stars") == 4)) {
+      tableCanvas.fill(good);
+    }
+    if ((tripAdvisor.getFloat(i, "Stars") == 3)) {
+      tableCanvas.fill(medium);
+    }
+    if ((tripAdvisor.getFloat(i, "Stars") == 2)) {
+      tableCanvas.fill(poor);
+    }
+    if ((tripAdvisor.getFloat(i, "Stars") == 1)) {
+      tableCanvas.fill(bad);
+    }
+    if ((tripAdvisor.getFloat(i, "Stars") == 5) && (tripAdvisor.getFloat(i, "Price") == 1)){
+      tableCanvas.fill(#ffffff);
+    }
+    }
+    // Draw a circle 7 pixels in diameter at geolocation
+    p.ellipse(coord.x, coord.y, 7, 7);
+
+  PVector geo;
+  geo = mercatorMap.getGeo(new PVector( mouseX-marginWidthPix, mouseY-marginWidthPix));
+  //println(geo.x + ", " + geo.y);
+  coord = mercatorMap.getScreenLocation(geo);
+  p.fill(#00FF00);
+  p.noStroke();
+  p.ellipse(coord.x, coord.y, 10, 10);
+  }
+  
+}
+
+//draws stagnant hotel data color coded by price 
+void drawHotelPrice(PGraphics p) { 
+  p.noStroke();
+  p.fill(#ff0000, 150);
+  for (int i=0; i<tripAdvisor.getRowCount (); i++) {
+    // turns latitude and longitude of a point into canvas location within PGraphic topo
+    coord = mercatorMap.getScreenLocation(new PVector(tripAdvisor.getFloat(i, "Lat"), tripAdvisor.getFloat(i, "Long")));
+    {
+    if ((tripAdvisor.getFloat(i, "Price") == 1)) {
+      tableCanvas.fill(best);
+    }
+    if ((tripAdvisor.getFloat(i, "Price") == 2)) {
+      tableCanvas.fill(good);
+    }
+    if ((tripAdvisor.getFloat(i, "Price") == 3)) {
+      tableCanvas.fill(medium);
+    }
+    if ((tripAdvisor.getFloat(i, "Price") == 4)) {
+      tableCanvas.fill(poor);
+    }
+    if ((tripAdvisor.getFloat(i, "Price") == 5)) {
+      tableCanvas.fill(bad);
+    }
+     if ((tripAdvisor.getFloat(i, "Stars") == 5) && (tripAdvisor.getFloat(i, "Price") == 1)){
+      tableCanvas.fill(#ffffff);
+    }
+    }
+    // Draw a circle 7 pixels in diameter at geolocation
+    p.ellipse(coord.x, coord.y, 7, 7);
+    int j = i;    
+  PVector geo;
+  geo = mercatorMap.getGeo(new PVector( mouseX-marginWidthPix, mouseY-marginWidthPix));
+  //println(geo.x + ", " + geo.y);
+  coord = mercatorMap.getScreenLocation(geo);
+  p.fill(#00FF00);
+  p.noStroke();
+  p.ellipse(coord.x, coord.y, 10, 10);
+  }
+  
+}
+
+//draws a selector circle to show what hotel you're on (displaying info below) and initiates j and d to go through hotels (still a little buggy) 
+int j = 0; 
+
+void drawHotelSelector(PGraphics p) { 
+  p.noStroke();
+  p.fill(#ffffff, 70);
+  for (j = d; j<tripAdvisor.getRowCount (); j++) {
+    // turns latitude and longitude of a point into canvas location within PGraphic topo
+    coord = mercatorMap.getScreenLocation(new PVector(tripAdvisor.getFloat(d, "Lat"), tripAdvisor.getFloat(d, "Long")));
+    }
+// Draw a circle 30 pixels in diameter at geolocation 
+    p.ellipse(coord.x, coord.y, 50, 50);
+    fill(255);
+  }
+
 void drawData(PGraphics p) {
   
   // Currently renders 3 sets of sample data (Local Cell Towers, Wifi, and TripAdvisor)
@@ -435,6 +575,54 @@ void drawLineGraph() {
   
   fill(#FFFFFF);
   textSize(24*(projectorWidth/1920.0));
+  
+   noStroke();
+  
+
+  translate(float(0+2)/(maxHour+6)*width, -1.5*graphHeight);
+  
+  textSize(24*(projectorWidth/1920.0));
+  textAlign(LEFT);
+  //gives info for the hotels
+  if(hotelstars == true){ 
+  text("Hotels by Star Rating (1-5)", 0, -65);
+  fill(best);
+  text("5", 1.0*marginWidthPix, -40);
+  fill(good);
+  text("4", 2.0*marginWidthPix, -40);
+  fill(medium);
+  text("3", 3.0*marginWidthPix, -40);
+  fill(poor);
+  text("2", 4.0*marginWidthPix, -40);
+  fill(bad);
+  text("1", 5.0*marginWidthPix, -40);
+  fill(#ffffff);
+  text("Current Selection: " + tripAdvisor.getString(d, "Hotel"), 6.0*marginWidthPix, -40);
+  text(tripAdvisor.getFloat(d, "Stars") + " Stars", 13.5*marginWidthPix, -40);
+  text(tripAdvisor.getFloat(d, "USD") + " USD", 15.5*marginWidthPix, -40);
+  text(tripAdvisor.getInt(d, "Review") + " Reviews", 17.5*marginWidthPix, -40);
+  }
+  if(hotelprice == true){ 
+  text("Hotels by Price (1-5), 5 being the most", 0, -65);
+  fill(bad);
+  text("5", 1.0*marginWidthPix, -40);
+  fill(poor);
+  text("4", 2.0*marginWidthPix, -40);
+  fill(medium);
+  text("3", 3.0*marginWidthPix, -40);
+  fill(good);
+  text("2", 4.0*marginWidthPix, -40);
+  fill(best);
+  text("1", 5.0*marginWidthPix, -40);
+  fill(#ffffff);
+  text("Current Selection: " + tripAdvisor.getString(d, "Hotel"), 7.0*marginWidthPix, -40);
+  text(tripAdvisor.getFloat(d, "Stars") + " Stars", 13.5*marginWidthPix, -40);
+  text(tripAdvisor.getFloat(d, "USD") + " USD", 15.5*marginWidthPix, -40);
+  text(tripAdvisor.getInt(d, "Review") + " Reviews", 17.5*marginWidthPix, -40);
+  }
+  
+  fill(#FFFFFF);
+  
   textAlign(LEFT);
   text("Tourists |", 0, 0);
   

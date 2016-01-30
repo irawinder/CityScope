@@ -3,6 +3,30 @@ char initKey;
 
 void keyPressed() {
   switch (key) {
+     case '$': //shows hotels by price when in data mode
+      hotelprice = true;
+      hotelstars = false;
+      break;
+    case '*':  //shows hotel stars when in data mode
+      hotelstars = true;
+      hotelprice = false;
+      break;
+     case '(': //selects back a row in the hotel data
+      if (d>0)
+      {d -= 1;
+      }
+      if (d == 0)
+      {d = (tripAdvisor.getRowCount () -1);
+      }
+      break; 
+    case ')': //selects forward a row in the hotel data 
+      if (d < (tripAdvisor.getRowCount () - 1)){
+      d += 1;
+      }
+      if (d == (tripAdvisor.getRowCount () - 1)){
+        d = 0;
+      }
+      break;
     case '0': //ReBoots App
       setLoader("Andorra Player | Version " + version);
       // runs key_0() next frame
@@ -80,11 +104,15 @@ void keyPressed() {
       debug = toggle(debug);
       break;
     case 'd': //shows test geospatial data
-      setLoader("Geo-located Test Data");
+      if(dataMode != 4){
+        setLoader("Geo-located Test Data");
+      }
+      if(dataMode == 4){ 
+      }
       // runs key_d() next frame
       break;
     case 'D': //Toggles various data and visualization modes
-      setLoader("Data Mode " + nextMode(dataMode, 3));
+      setLoader("Data Mode " + nextMode(dataMode, 4));
       // runs key_D() next frame
       break;
     case 'T': // show topography 
@@ -347,7 +375,7 @@ void key_0() {
 
 void key_D() {
   //Toggles various data and visualization modes
-  dataMode = nextMode(dataMode, 3);
+  dataMode = nextMode(dataMode, 4);
 
   initContent();
 }
@@ -405,7 +433,7 @@ void key_d() {
   //shows test geospatial data
   if (!showData && !load_non_essential_data) {
     load_non_essential_data = toggle(load_non_essential_data);
-    dataMode = 3;
+    dataMode = 4;
     initContent();
   }
   showData = toggle(showData);

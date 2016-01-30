@@ -166,7 +166,7 @@ void mainDraw() {
   renderTableCanvas();
   
   // Draws a line graph of all data for given OD matrix onto the main canvas
-  if (load_non_essential_data && dataMode == 3 && drawMode == 0) {
+  if (load_non_essential_data && dataMode == 3 && drawMode == 0 || dataMode == 4) {
     drawLineGraph();
   }
 }

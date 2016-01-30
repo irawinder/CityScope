@@ -65,7 +65,7 @@ void drawTableCanvas(PGraphics p) {
             
             // Draw Sample Geographic data (debugging purposes)
             if (load_non_essential_data) {
-            if (hotelstars == true) { 
+            if (dataMode == 4) { 
                 drawHotelStars(p);
                 drawHotelSelector(p);
               }
