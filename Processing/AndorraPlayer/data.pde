@@ -34,6 +34,8 @@ boolean load_non_essential_data = true;
   Table tripAdvisor;
   Table frenchWifi;
   Table localTowers;
+  Table restaurants;
+  Table attractions;
   
   // OD Matrix Information
   Table network;
@@ -102,6 +104,23 @@ void initData() {
     
     network = loadTable("data/CDR_OD/" + dates[dateIndex] + "_network.tsv", "header");
     OD =      loadTable("data/CDR_OD/" + dates[dateIndex] + "_OD.tsv", "header");
+ 
+   restaurants = loadTable("data/restaurants.csv", "header");
+   for (int i=restaurants.getRowCount() - 1; i >= 0; i--) {
+     if (restaurants.getFloat(i, "Lat") < lat2 || restaurants.getFloat(i, "Lat") > lat1 ||
+          restaurants.getFloat(i, "Long") < lon1 || restaurants.getFloat(i, "Long") > lon2) {
+        restaurants.removeRow(i);
+      }
+    }
+    
+   attractions = loadTable("data/attractions.csv", "header");
+   for (int i=attractions.getRowCount() - 1; i >= 0; i--) {
+     if (attractions.getFloat(i, "Lat") < lat2 || attractions.getFloat(i, "Lat") > lat1 ||
+          attractions.getFloat(i, "Long") < lon1 || attractions.getFloat(i, "Long") > lon2) {
+        attractions.removeRow(i);
+      }
+    }
+    
     
     tripAdvisor = loadTable("data/Tripadvisor_andorra_la_vella.csv", "header");
     for (int i=tripAdvisor.getRowCount()-1; i >= 0; i--) {
@@ -114,6 +133,8 @@ void initData() {
     network = new Table();
     OD = new Table();
     tripAdvisor = new Table();
+    restaurants = new Table();
+    attractions = new Table();
   }
   
   println("Data loaded.");

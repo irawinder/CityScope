@@ -27,6 +27,38 @@ void keyPressed() {
         d = 0;
       }
       break;
+    case '6': //selects back a row in the hotel data
+      if (q>0)
+      {q -= 1;
+      }
+      if (q == 0)
+      {q = (attractions.getRowCount () -1);
+      }
+      break; 
+    case '7': //selects forward a row in the hotel data 
+      if (q < (attractions.getRowCount () - 1)){
+      q += 1;
+      }
+      if (q == (attractions.getRowCount () - 1)){
+        q = 0;
+      }
+      break;
+   case '8': //selects back a row in the hotel data
+      if (t>0)
+      {t -= 1;
+      }
+      if (t == 0)
+      {t = (restaurants.getRowCount () -1);
+      }
+      break; 
+    case '9': //selects forward a row in the hotel data 
+      if (t < (restaurants.getRowCount () - 1)){
+      t += 1;
+      }
+      if (t == (restaurants.getRowCount () - 1)){
+        t = 0;
+      }
+      break;
     case '0': //ReBoots App
       setLoader("Andorra Player | Version " + version);
       // runs key_0() next frame
