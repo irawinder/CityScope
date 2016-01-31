@@ -159,6 +159,7 @@ void initContent() {
       showEdges = false;
       showSource = false;
       showPaths = false;
+      showSwarm = false;
       break;
   }
   

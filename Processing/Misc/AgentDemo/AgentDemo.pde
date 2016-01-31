@@ -3,7 +3,9 @@
 
 int canvasWidth = 1000;
 int canvasHeight = 500;
-    
+String refresh; 
+String grid_sources; 
+
 // Key Commands:
 //
 //   Data Navigation
@@ -121,27 +123,49 @@ void draw() {
       keyLoaded = true;  
     }
     
-    mainDraw();
     
-       button = new Button(canvasWidth+10, 10, "Refresh Visualization");
+    mainDraw();
+      if(dataMode == 1){
+      refresh = "Refresh Visualization";
+        }
+      if(dataMode == 0) {
+      refresh = "New Origin Destination Pair";
+      }
+      
+      if(dataMode == 1){
+      grid_sources = "Show/Hide Sources";
+    }
+      if(dataMode == 0){
+      grid_sources = "New Grid";
+    }
+    
+     
+      
+      button = new Button(canvasWidth+10, 10, refresh);
       button2 = new Button(canvasWidth+10, 40, "Show/Hide Info");
-      button3 = new Button(canvasWidth+10, 70, "Show/Hide Sinks");
-      button4 = new Button(canvasWidth+10, 100, "Show/Hide Edges");
-      button5 = new Button(canvasWidth+10, 130, "Print Framerate to Console");
-      button6 = new Button(canvasWidth+10, 160, "Show/Hide Info");
-      button7 = new Button(canvasWidth+10, 190, "Show/Hide Sinks");
-      button8 = new Button(canvasWidth+10, 220, "Show/Hide Edges");
-      button9 = new Button(canvasWidth+10, 250, "Refresh Visualization");
-      button10 = new Button(canvasWidth+10, 280, "Show/Hide Info");
-      button11 = new Button(canvasWidth+10, 310, "Show/Hide Sinks");
-      button12 = new Button(canvasWidth+10, 340, "Show/Hide Edges");
-      button13 = new Button(canvasWidth+10, 370, "Refresh Visualization");
-      button14 = new Button(canvasWidth+10, 400, "Show/Hide Info");
-      button15 = new Button(canvasWidth+10, 430, "Show/Hide Sinks");
-      button16 = new Button(canvasWidth+10, 460, "Show/Hide Edges");
-      button17 = new Button(canvasWidth+10, 490, "Refresh Visualization");
-      button18 = new Button(canvasWidth+10, 520, "Show/Hide Info");
-      button19 = new Button(canvasWidth+10, 550, "Show/Hide Sinks");
+      button3 = new Button(canvasWidth+10, 70, "Invert Colors");
+      button4 = new Button(canvasWidth+10, 100, grid_sources);
+      button5 = new Button(canvasWidth+10, 130, "Enable/Disable PathFinding");
+      button6 = new Button(canvasWidth+10, 160, "Next Data Mode");
+      
+      button7 = new Button(canvasWidth+10, 190, "+");
+      fill(255);
+      text("Transparency", canvasWidth + 40, 207);
+      button8 = new Button(canvasWidth+130, 190, "-");
+      
+      if(dataMode != 0){
+      button9 = new Button(canvasWidth+10, 220, "+");
+      fill(255);
+      text("Speed", canvasWidth + 40, 235);
+      button10 = new Button(canvasWidth+90, 220, "-");
+      button11 = new Button(canvasWidth+10, 250, "Print Framerate to Console");
+      button12 = new Button(canvasWidth+10, 280, "Show/Hide Agents");
+      button13 = new Button(canvasWidth+10, 310, "Show/Hide Traces");
+      button14 = new Button(canvasWidth+10, 340, "Show/Hide Edges");
+      button15 = new Button(canvasWidth+10, 370, "Show/Hide Paths");
+      button16 = new Button(canvasWidth+10, 400, "Enter Obstacle Editor");
+      button17 = new Button(canvasWidth+10, 400, "Exit Obstacle Editor");
+      }
       
       button.draw();
       button2.draw();
@@ -151,6 +175,9 @@ void draw() {
       button6.draw();
       button7.draw();
       button8.draw();
+
+      
+      if(dataMode == 1 && editObstacles == false){ //&& showObstacles == false){
       button9.draw();
       button10.draw();
       button11.draw();
@@ -159,10 +186,11 @@ void draw() {
       button14.draw();
       button15.draw();
       button16.draw();
-      button17.draw();
-      button18.draw();
-      button19.draw();
+      }
       
+      if(editObstacles == true){
+        button17.draw();
+      }
       
     
     // Print Framerate of animation to console

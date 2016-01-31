@@ -10,6 +10,7 @@ boolean showInfo = false;
 boolean showTraces = false;
 boolean hotelprice = false;
 boolean hotelstars = false;
+boolean reststars = false;
 int d = 0; 
 int q = 0;
 int t = 0;
@@ -91,6 +92,33 @@ void drawTableCanvas(PGraphics p) {
           drawRestaurants(p);
           drawAttractions(p);
       }
+      if (reststars == true){
+          drawHotels(p);
+          drawHotelSelector(p);
+          drawAttractionSelector(p);
+          drawRestaurantSelector(p);
+          drawRestStars(p);
+          drawAttractions(p);
+        }
+       if ((reststars == true) && (hotelstars == true)){
+          drawHotelStars(p);
+          drawHotelSelector(p);
+          drawAttractionSelector(p);
+          drawRestaurantSelector(p);
+          //drawRestaurants(p);
+          drawAttractions(p);
+          drawRestStars(p);
+       }
+       if ((reststars == true) && (hotelprice == true)){
+          drawHotelPrice(p);
+          //drawHotelStars(p);
+          drawHotelSelector(p);
+          drawAttractionSelector(p);
+          drawRestaurantSelector(p);
+          //drawRestaurants(p);
+          drawAttractions(p);
+          drawRestStars(p);
+       }
               }
       
       // Allows dragging of Table Area Info
@@ -317,6 +345,44 @@ void drawRestaurants(PGraphics p) {
   p.fill(#00FF00);
   p.noStroke();
   p.ellipse(coord.x, coord.y, 10, 10);
+}
+
+void drawRestStars(PGraphics p) { 
+  p.noStroke();
+  //int j = 0; 
+  for (int i=0; i<restaurants.getRowCount (); i++) {
+    // turns latitude and longitude of a point into canvas location within PGraphic topo
+    coord = mercatorMap.getScreenLocation(new PVector(restaurants.getFloat(i, "Lat"), restaurants.getFloat(i, "Long")));
+    //j+=1;
+    {
+    if ((restaurants.getFloat(i, "Stars") == 5)) {
+      tableCanvas.fill(best);
+    }
+    if ((restaurants.getFloat(i, "Stars") == 4)) {
+      tableCanvas.fill(good);
+    }
+    if ((restaurants.getFloat(i, "Stars") == 3)) {
+      tableCanvas.fill(medium);
+    }
+    if ((restaurants.getFloat(i, "Stars") == 2)) {
+      tableCanvas.fill(poor);
+    }
+    if ((restaurants.getFloat(i, "Stars") == 1)) {
+      tableCanvas.fill(bad);
+    }
+    }
+    // Draw a circle 7 pixels in diameter at geolocation
+    p.ellipse(coord.x, coord.y, 7, 7);
+
+  PVector geo;
+  geo = mercatorMap.getGeo(new PVector( mouseX-marginWidthPix, mouseY-marginWidthPix));
+  //println(geo.x + ", " + geo.y);
+  coord = mercatorMap.getScreenLocation(geo);
+  p.fill(#00FF00);
+  p.noStroke();
+  p.ellipse(coord.x, coord.y, 10, 10);
+  }
+  
 }
 
 void drawAttractions(PGraphics p){
@@ -579,13 +645,16 @@ void drawData(PGraphics p) {
 }
 
 
-
-
 void drawLineGraph() {
   
   fill(#FFFFFF);
   translate(float(1)/(maxHour+6)*width, 1.45*canvasHeight);
   text("Hr", 0, textSize);
+  
+  if(dataMode == 4){
+  fill(0);
+  rect(0, -30, width, width);
+  }
   
   int graphHeight = 2*marginWidthPix;
   
@@ -632,9 +701,11 @@ void drawLineGraph() {
   textSize(18*(projectorWidth/1920.0));
   
   float hor = float(hourIndex+2)/(maxHour+6)*width;
+  if(dataMode != 4){
   stroke(#00FF00, 150);
   fill(#00FF00);
   strokeWeight(2);
+  }
   line(hor, -graphHeight - 4*textSize, hor, -1.75*textSize);
   text(hourIndex%24 + ":00 - " + (hourIndex%24+1) + ":00", 
                    hor + 0.5*textSize, -graphHeight - 3*textSize);
@@ -661,13 +732,26 @@ void drawLineGraph() {
   textAlign(LEFT);
   //gives info for the hotels
   if(dataMode == 4){
-  fill(#ffffff);
-  text("Current Selection: " + tripAdvisor.getString(d, "Hotel"), 6.0*marginWidthPix, -40);
+  fill(0);
+  rect(-10, -30, width + 100, width + 100);
+  fill(255);
+  text("Current Hotel: " + tripAdvisor.getString(d, "Hotel"), 6.0*marginWidthPix, -40);
   text(tripAdvisor.getFloat(d, "Stars") + " Stars", 13.5*marginWidthPix, -40);
   text(tripAdvisor.getFloat(d, "USD") + " USD", 15.5*marginWidthPix, -40);
   text(tripAdvisor.getInt(d, "Review") + " Reviews", 17.5*marginWidthPix, -40);
+  fill(#33d6ff);
+  text("Restaurant: " + restaurants.getString(t, "Restaurant"), 6.0*marginWidthPix, -10);
+  fill(255);
+  text(restaurants.getFloat(t, "Stars") + " Stars", 13.5*marginWidthPix, -10);
+  text(restaurants.getInt(t, "Reviews") + " Reviews", 17.5*marginWidthPix, -10);
+  fill(#ae33ff);
+  text("Attraction: " + attractions.getString(q, "Name"), 6.0*marginWidthPix, 20);
+  fill(255);
+  text(attractions.getString(q, "Type"), 13.5*marginWidthPix, 20);
+  text(attractions.getInt(q, "Reviews") + " Reviews", 17.5*marginWidthPix, 20);
   }
   if(hotelstars == true){ 
+  fill(255);
   text("Hotels by Star Rating (1-5)", 0, -65);
   fill(best);
   text("5", 1.0*marginWidthPix, -40);
@@ -694,6 +778,7 @@ void drawLineGraph() {
   text("1", 5.0*marginWidthPix, -40);
   }
   
+  if(dataMode != 4){
   fill(#FFFFFF);
   
   textAlign(LEFT);
@@ -707,6 +792,7 @@ void drawLineGraph() {
   
   fill(other);
   text("Other", 5.0*marginWidthPix, 0);
+  }
 }
 
 

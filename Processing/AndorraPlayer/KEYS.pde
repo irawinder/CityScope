@@ -59,6 +59,16 @@ void keyPressed() {
         t = 0;
       }
       break;
+    case '^': 
+      reststars = true;
+      break;
+    case 'H':
+      hotelstars = false;
+      hotelprice = false; 
+      break;
+    case 'J': 
+      reststars = false;
+      break;
     case '0': //ReBoots App
       setLoader("Andorra Player | Version " + version);
       // runs key_0() next frame

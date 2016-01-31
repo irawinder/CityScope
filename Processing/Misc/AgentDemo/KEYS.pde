@@ -224,12 +224,94 @@ void mousePressed() {
     if(dataMode == 1){ 
       showInfo = toggle(showInfo);
     }
-    if(dataMode == 0){
+    if(dataMode != 1){
       showPathInfo = toggle(showPathInfo);
       pFinderGrid_Viz(tableCanvas);
     }
   }
+  if(button3.over()){
+    background = toggleBW(background);
+      textColor = toggleBW(textColor);
+      grayColor = int(abs(background - (255.0/2)*schemeScaler));
+      pFinderGrid_Viz(tableCanvas);
+  }
+  if(button4.over()){
+    if(dataMode == 0 || dataMode == 2){
+       setLoader("Pathfinder Mode " + nextMode(finderMode, 2));
+       key_RightCarrot();
+    }
+    if(dataMode == 1){
+       showSource = toggle(showSource);
+    }
+  }
+  if(button5.over()){
+       setLoader("Pathfinder: " + toggle(enablePathfinding));
+       key_LeftCarrot();
+  }
+  
+  if(button6.over()){
+    setLoader("Data Mode " + nextMode(dataMode, 3));
+    key_D();
+  }
+  if(button7.over()){
+    adjustAlpha(-10);
+      pFinderGrid_Viz(tableCanvas);
+      grayColor = int(abs(background - (255.0/2)*schemeScaler));
+      println("schemeScaler: " + schemeScaler);
+      println("masterAlpha: " + masterAlpha);
+  }
+  if(button8.over()){
+    adjustAlpha(+10);
+      pFinderGrid_Viz(tableCanvas);
+      grayColor = int(abs(background - (255.0/2)*schemeScaler));
+      println("schemeScaler: " + schemeScaler);
+      println("masterAlpha: " + masterAlpha);
+  }
+  if(button9.over()){
+   if(dataMode == 1){
+   updateSpeed(1);
+   }
+  }
+  if(button10.over()){
+   if(dataMode == 1){
+    updateSpeed(-1);
+   }
+  }
+  if(button11.over()){
+    if(dataMode == 1){
+     showFrameRate = toggle(showFrameRate);
+    }
+  }
+  if(button12.over()){
+    if(dataMode == 1) {
+       showSwarm = toggle(showSwarm);
+    }
+  }
+ if(button13.over()){
+    if(dataMode == 1) {
+      showTraces = toggle(showTraces);
+    }
+ }
+ 
+ if(button14.over()){
+    if(dataMode == 1) {
+      showEdges = toggle(showEdges);
+    }
+ }
+      
+ if(button15.over()){
+    if(dataMode == 1) {
+      showPaths = toggle(showPaths);
+    }
+ }
+      
+ if(button16.over()){
+    if(dataMode == 1) {
+       setLoader("Obstacles Editor");
+       key_E();
 }
+ }
+    }
 
 void mouseDragged() {
   scroll = scroll_0 + mouseY - y_0;
