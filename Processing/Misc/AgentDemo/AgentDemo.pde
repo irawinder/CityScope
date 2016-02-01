@@ -177,7 +177,7 @@ void draw() {
       button8.draw();
 
       
-      if(dataMode == 1 && editObstacles == false){ //&& showObstacles == false){
+      if(dataMode == 1){ //&& showObstacles == false){
       button9.draw();
       button10.draw();
       button11.draw();

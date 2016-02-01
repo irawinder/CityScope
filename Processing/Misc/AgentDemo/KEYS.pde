@@ -305,12 +305,6 @@ void mousePressed() {
     }
  }
       
- if(button16.over()){
-    if(dataMode == 1) {
-       setLoader("Obstacles Editor");
-       key_E();
-}
- }
  if(button17.over()){
    if(dataMode == 1) {
    showGrid = true;
@@ -334,6 +328,10 @@ void mouseClicked() {
   if (editObstacles) {
     boundaries.addVertex(new PVector(mouseX, mouseY));
   }
+  if(button16.over()){
+   key_E();
+ }
+ 
 }
 
 // Runs on a delay
