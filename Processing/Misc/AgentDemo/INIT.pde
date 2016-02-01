@@ -1,7 +1,7 @@
 // Graphics object in memory that holds visualization
 PGraphics tableCanvas;
 
-int dataMode = 0;
+int dataMode = 1;
 // dataMode = 1 for random network
 // dataMode = 0 for empty network and Pathfinder Test OD
 

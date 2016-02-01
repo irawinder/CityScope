@@ -215,7 +215,7 @@ void mousePressed() {
     setLoader("New Agents");
     key_r();
     } 
-    if(dataMode == 0){
+    if(dataMode != 1){
        setLoader("New Origin-Destination Pair");
        key_X();
     }
