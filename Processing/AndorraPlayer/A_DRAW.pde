@@ -34,7 +34,7 @@ color other = #666666;
 //colors for the travelocity data 
 color best = #00ff00;
 color good = #ffff00; 
-color medium = #ffcc00;
+color medium = #ffa31a;
 color poor = #ff751a;
 color bad = #ff0000;
 
@@ -398,7 +398,7 @@ void drawAttractions(PGraphics p){
   geo = mercatorMap.getGeo(new PVector( mouseX-marginWidthPix, mouseY-marginWidthPix));
   //println(geo.x + ", " + geo.y);
   coord = mercatorMap.getScreenLocation(geo);
-  p.fill(#00FF00);
+  p.fill(#00ff00);
   p.noStroke();
   p.ellipse(coord.x, coord.y, 10, 10);
 }
@@ -749,6 +749,22 @@ void drawLineGraph() {
   fill(255);
   text(attractions.getString(q, "Type"), 13.5*marginWidthPix, 20);
   text(attractions.getInt(q, "Reviews") + " Reviews", 17.5*marginWidthPix, 20);
+  text("Within 1 Mile of Current Hotel", 0, 50);
+  text("Stars vs. Cost of Hotels", 8.0*marginWidthPix, 50);
+  }
+  if(reststars == true){
+  fill(255);
+  text("Restaurants by Star Rating (1-5)", 0, -5);
+  fill(best);
+  text("5", 1.0*marginWidthPix, 20);
+  fill(good);
+  text("4", 2.0*marginWidthPix, 20);
+  fill(medium);
+  text("3", 3.0*marginWidthPix, 20);
+  fill(poor);
+  text("2", 4.0*marginWidthPix, 20);
+  fill(bad);
+  text("1", 5.0*marginWidthPix, 20);
   }
   if(hotelstars == true){ 
   fill(255);
