@@ -185,7 +185,9 @@ void draw() {
       button13.draw();
       button14.draw();
       button15.draw();
+      if(editObstacles == false){
       button16.draw();
+      }
       }
       
       if(editObstacles == true){

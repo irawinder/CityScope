@@ -653,6 +653,7 @@ void drawLineGraph() {
   
   if(dataMode == 4){
   fill(0);
+  noStroke();
   rect(0, -30, width, width);
   }
   
@@ -749,9 +750,43 @@ void drawLineGraph() {
   fill(255);
   text(attractions.getString(q, "Type"), 13.5*marginWidthPix, 20);
   text(attractions.getInt(q, "Reviews") + " Reviews", 17.5*marginWidthPix, 20);
+  
+  
+  //--------Graph and 1 mile radius thing 
   text("Within 1 Mile of Current Hotel", 0, 50);
   text("Stars vs. Cost of Hotels", 8.0*marginWidthPix, 50);
+  stroke(255);
+  line(9.0*marginWidthPix, 70, 9.0*marginWidthPix, 250);
+  line(9.0*marginWidthPix, 250, 20.0*marginWidthPix, 250);
+  float stars = 0; 
+  float price = 0; 
+  fill(#ff00ff);
+  for (int i=0; i<tripAdvisor.getRowCount (); i++) {
+    // turns latitude and longitude of a point into canvas location within PGraphic topo
+    {
+      //stars coordinate
+    if ((tripAdvisor.getFloat(i, "Stars") == 5)) {
+     stars = 110;
+    }
+    if ((tripAdvisor.getFloat(i, "Stars") == 4)) {
+     stars = 140;
+    }
+    if ((tripAdvisor.getFloat(i, "Stars") == 3)) {
+    stars = 170;
+    }
+    if ((tripAdvisor.getFloat(i, "Stars") == 2)) {
+    stars = 200;
+    }
+    if ((tripAdvisor.getFloat(i, "Stars") == 1)) {
+    stars = 230;
+    }
+
+    }
+    // Draw a circle 7 pixels in diameter at geolocation
+   ellipse(7.0*marginWidthPix + (tripAdvisor.getFloat(i, "USD"))*5, stars, .5, 5);
   }
+  
+  
   if(reststars == true){
   fill(255);
   text("Restaurants by Star Rating (1-5)", 0, -5);
@@ -766,6 +801,8 @@ void drawLineGraph() {
   fill(bad);
   text("1", 5.0*marginWidthPix, 20);
   }
+  
+  
   if(hotelstars == true){ 
   fill(255);
   text("Hotels by Star Rating (1-5)", 0, -65);
@@ -809,6 +846,7 @@ void drawLineGraph() {
   fill(other);
   text("Other", 5.0*marginWidthPix, 0);
   }
+}
 }
 
 

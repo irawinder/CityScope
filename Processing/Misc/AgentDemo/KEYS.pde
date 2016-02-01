@@ -210,6 +210,20 @@ int scroll_0 = 0;
 
 void mousePressed() {
   y_0 = mouseY;
+    }
+
+void mouseDragged() {
+  scroll = scroll_0 + mouseY - y_0;
+}
+
+void mouseReleased() {
+  scroll_0 = scroll;
+}
+
+void mouseClicked() {
+  if (editObstacles) {
+    boundaries.addVertex(new PVector(mouseX, mouseY));
+  }
   if(button.over()){
     if(dataMode == 1){
     setLoader("New Agents");
@@ -314,20 +328,6 @@ void mousePressed() {
    showPaths = true;
    }
  }
-    }
-
-void mouseDragged() {
-  scroll = scroll_0 + mouseY - y_0;
-}
-
-void mouseReleased() {
-  scroll_0 = scroll;
-}
-
-void mouseClicked() {
-  if (editObstacles) {
-    boundaries.addVertex(new PVector(mouseX, mouseY));
-  }
   if(button16.over()){
    key_E();
  }
