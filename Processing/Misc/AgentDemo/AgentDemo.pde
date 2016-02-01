@@ -139,8 +139,6 @@ void draw() {
       grid_sources = "New Grid";
     }
     
-     
-      
       button = new Button(canvasWidth+10, 10, refresh);
       button2 = new Button(canvasWidth+10, 40, "Show/Hide Info");
       button3 = new Button(canvasWidth+10, 70, "Invert Colors");
@@ -166,12 +164,19 @@ void draw() {
       button16 = new Button(canvasWidth+10, 400, "Enter Obstacle Editor");
       button17 = new Button(canvasWidth+10, 400, "Exit Obstacle Editor");
       }
-      
-      button.draw();
+    
+    if(editObstacles == false){
       button2.draw();
       button3.draw();
       button4.draw();
       button5.draw();
+      button12.draw();
+      button13.draw();
+      button14.draw();
+      button15.draw();
+    }
+      
+      button.draw();
       button6.draw();
       button7.draw();
       button8.draw();
@@ -181,10 +186,6 @@ void draw() {
       button9.draw();
       button10.draw();
       button11.draw();
-      button12.draw();
-      button13.draw();
-      button14.draw();
-      button15.draw();
       if(editObstacles == false){
       button16.draw();
       }
