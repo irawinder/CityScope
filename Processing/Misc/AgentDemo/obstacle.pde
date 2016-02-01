@@ -306,6 +306,7 @@ class Obstacle {
     
   }
   
+  
   void display(PGraphics p, color stroke, int alpha, boolean editing) {
     
     if (drawOutline && polyCorners > 1) {

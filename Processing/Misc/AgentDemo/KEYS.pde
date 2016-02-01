@@ -311,6 +311,15 @@ void mousePressed() {
        key_E();
 }
  }
+ if(button17.over()){
+   if(dataMode == 1) {
+   showGrid = true;
+   finderMode = 0;
+   showEdges = false;
+   showSource = true;
+   showPaths = true;
+   }
+ }
     }
 
 void mouseDragged() {
