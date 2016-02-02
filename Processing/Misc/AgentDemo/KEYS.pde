@@ -332,6 +332,14 @@ void mouseClicked() {
    key_E();
  }
  
+ if(button19.over()){
+   background = toggleBW(background);
+   textColor = toggleBW(textColor);
+   grayColor = int(abs(background - (255.0/2)*schemeScaler));
+   pFinderGrid_Viz(tableCanvas);
+ }
+ 
+ 
 }
 
 // Runs on a delay

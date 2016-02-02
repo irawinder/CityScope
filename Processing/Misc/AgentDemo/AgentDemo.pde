@@ -151,6 +151,21 @@ void draw() {
       text("Transparency", canvasWidth + 40, 207);
       button8 = new Button(canvasWidth+130, 190, "-");
       
+      button18 = new Button(canvasWidth+10, 40, "Info");
+      button19 = new Button(canvasWidth+50, 40, "Invert Colors");
+      /*button20 = new Button(canvasWidth+10, 40, "Sources");
+      button21  = new Button(canvasWidth+40, 40, "Agents");
+      button22 = new Button(canvasWidth+10, 70, "Traces");
+      button23 = new Button(canvasWidth+40, 70, "Edges");
+      button24 = new Button(canvasWidth+10, 100, "Paths");
+      button25 = new Button(canvasWidth+40, 100, "Parthfinding");
+      button26 = new Button(canvasWidth+10, 130, "Save");
+      button27 = new Button(canvasWidth+40, 130, "Load");
+      button28 = new Button(canvasWidth+10, 160, "Add Obstacle");
+      button29 = new Button(canvasWidth+40, 160, "Remove");
+      button30 = new Button(canvasWidth+10, 190, "Jump");
+      */
+      
       if(dataMode != 0){
       button9 = new Button(canvasWidth+10, 220, "+");
       fill(255);
@@ -193,6 +208,20 @@ void draw() {
       
       if(editObstacles == true){
         button17.draw();
+        button18.draw();
+        button19.draw();
+        /*button20.draw();
+        button21.draw();
+        button22.draw();
+        button23.draw();
+        button24.draw();
+        button25.draw();
+        button26.draw();
+        button27.draw();
+        button28.draw();
+        button29.draw();
+        button30.draw();
+        */
       }
       
     
