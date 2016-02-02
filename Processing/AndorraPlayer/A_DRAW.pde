@@ -818,6 +818,7 @@ void drawLineGraph() {
   text("1", 5.0*marginWidthPix, -40);
   }
   if(hotelprice == true){ 
+  fill(255);
   text("Hotels by Price (1-5), 5 being the most", 0, -65);
   fill(bad);
   text("5", 1.0*marginWidthPix, -40);
