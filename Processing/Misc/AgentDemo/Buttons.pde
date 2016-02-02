@@ -10,7 +10,7 @@
 //     '}' - increase alpha for translucent graphics
 //    case 'b': Toggle Background color black/white
 //----AGENT MODE 
-Button button; //refresh visualization
+Button button; 
 Button button2; //Show info
 Button button3; //Show/hide sinks
 Button button4; //show/hide edges
@@ -29,6 +29,19 @@ Button button16; //select new obstacle
 Button button17; //remove vertex
 Button button18; //save locations
 Button button19; //load obstacles
+Button button20;
+Button button21;
+Button button22;
+Button button23;
+Button button24;
+Button button25;
+Button button26;
+Button button27;
+Button button28;
+Button button29;
+Button button30;
+Button button31;
+Button button32;
 
 
 class Button{

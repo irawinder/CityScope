@@ -140,33 +140,39 @@ void draw() {
     }
     
       button = new Button(canvasWidth+10, 10, refresh);
+      
+      button4 = new Button(canvasWidth+10, 100, grid_sources);
+      
+      if(editObstacles == false){
       button2 = new Button(canvasWidth+10, 40, "Show/Hide Info");
       button3 = new Button(canvasWidth+10, 70, "Invert Colors");
-      button4 = new Button(canvasWidth+10, 100, grid_sources);
       button5 = new Button(canvasWidth+10, 130, "Enable/Disable PathFinding");
-      button6 = new Button(canvasWidth+10, 160, "Next Data Mode");
+      }
       
+      button6 = new Button(canvasWidth+10, 160, "Next Data Mode");
       button7 = new Button(canvasWidth+10, 190, "+");
       fill(255);
       text("Transparency", canvasWidth + 40, 207);
       button8 = new Button(canvasWidth+130, 190, "-");
+      button31 = new Button(canvasWidth+10, 400, "New Grid");
       
       button18 = new Button(canvasWidth+10, 40, "Info");
       button19 = new Button(canvasWidth+50, 40, "Invert Colors");
-      /*button20 = new Button(canvasWidth+10, 40, "Sources");
-      button21  = new Button(canvasWidth+40, 40, "Agents");
-      button22 = new Button(canvasWidth+10, 70, "Traces");
-      button23 = new Button(canvasWidth+40, 70, "Edges");
-      button24 = new Button(canvasWidth+10, 100, "Paths");
-      button25 = new Button(canvasWidth+40, 100, "Parthfinding");
-      button26 = new Button(canvasWidth+10, 130, "Save");
-      button27 = new Button(canvasWidth+40, 130, "Load");
-      button28 = new Button(canvasWidth+10, 160, "Add Obstacle");
-      button29 = new Button(canvasWidth+40, 160, "Remove");
-      button30 = new Button(canvasWidth+10, 190, "Jump");
-      */
+      button20 = new Button(canvasWidth+10, 70, "Sources");
+      button21  = new Button(canvasWidth+80, 70, "Agents");
+      button22 = new Button(canvasWidth+10, 100, "Traces");
+      button23 = new Button(canvasWidth+80, 100, "Edges");
+      button24 = new Button(canvasWidth+10, 280, "Paths");
+      button25 = new Button(canvasWidth+10, 130, "Pathfinding");
+      button26 = new Button(canvasWidth+10, 310, "Save");
+      button27 = new Button(canvasWidth+60, 310, "Load");
+      button28 = new Button(canvasWidth+10, 340, "Add");
+      button29 = new Button(canvasWidth+60, 340, "Remove");
+      button30 = new Button(canvasWidth+10, 370, "Jump");
+      button32 = new Button(canvasWidth+60, 370, "Remove Vertex");
       
-      if(dataMode != 0){
+      
+      if(dataMode == 1){
       button9 = new Button(canvasWidth+10, 220, "+");
       fill(255);
       text("Speed", canvasWidth + 40, 235);
@@ -176,8 +182,8 @@ void draw() {
       button13 = new Button(canvasWidth+10, 310, "Show/Hide Traces");
       button14 = new Button(canvasWidth+10, 340, "Show/Hide Edges");
       button15 = new Button(canvasWidth+10, 370, "Show/Hide Paths");
-      button16 = new Button(canvasWidth+10, 400, "Enter Obstacle Editor");
-      button17 = new Button(canvasWidth+10, 400, "Exit Obstacle Editor");
+      button16 = new Button(canvasWidth+10, 430, "Enter Obstacle Editor");
+      button17 = new Button(canvasWidth+10, 430, "Exit Obstacle Editor");
       }
     
     if(editObstacles == false){
@@ -185,10 +191,12 @@ void draw() {
       button3.draw();
       button4.draw();
       button5.draw();
+      if(dataMode == 1){
       button12.draw();
       button13.draw();
       button14.draw();
       button15.draw();
+      }
     }
       
       button.draw();
@@ -197,10 +205,12 @@ void draw() {
       button8.draw();
 
       
-      if(dataMode == 1){ //&& showObstacles == false){
+      if(dataMode ==1){ //&& showObstacles == false){
       button9.draw();
       button10.draw();
       button11.draw();
+      button31.draw();
+      
       if(editObstacles == false){
       button16.draw();
       }
@@ -210,7 +220,7 @@ void draw() {
         button17.draw();
         button18.draw();
         button19.draw();
-        /*button20.draw();
+        button20.draw();
         button21.draw();
         button22.draw();
         button23.draw();
@@ -221,7 +231,7 @@ void draw() {
         button28.draw();
         button29.draw();
         button30.draw();
-        */
+        button32.draw();
       }
       
     

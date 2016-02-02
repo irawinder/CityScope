@@ -235,7 +235,7 @@ void mouseClicked() {
     }
   }
   if(button2.over()){
-    if(dataMode == 1){ 
+    if(dataMode == 1 && editObstacles == false){ 
       showInfo = toggle(showInfo);
     }
     if(dataMode != 1){
@@ -243,7 +243,7 @@ void mouseClicked() {
       pFinderGrid_Viz(tableCanvas);
     }
   }
-  if(button3.over()){
+  if(button3.over() && editObstacles == false){
     background = toggleBW(background);
       textColor = toggleBW(textColor);
       grayColor = int(abs(background - (255.0/2)*schemeScaler));
@@ -254,7 +254,7 @@ void mouseClicked() {
        setLoader("Pathfinder Mode " + nextMode(finderMode, 2));
        key_RightCarrot();
     }
-    if(dataMode == 1){
+    if(dataMode == 1 && editObstacles == false){
        showSource = toggle(showSource);
     }
   }
@@ -266,6 +266,7 @@ void mouseClicked() {
   if(button6.over()){
     setLoader("Data Mode " + nextMode(dataMode, 3));
     key_D();
+    editObstacles = false;
   }
   if(button7.over()){
     adjustAlpha(-10);
@@ -297,24 +298,24 @@ void mouseClicked() {
     }
   }
   if(button12.over()){
-    if(dataMode == 1) {
+    if(dataMode == 1 && editObstacles == false) {
        showSwarm = toggle(showSwarm);
     }
   }
- if(button13.over()){
+ if(button13.over() && editObstacles == false){
     if(dataMode == 1) {
       showTraces = toggle(showTraces);
     }
  }
  
- if(button14.over()){
+ if(button14.over() && editObstacles == false){
     if(dataMode == 1) {
       showEdges = toggle(showEdges);
     }
  }
       
  if(button15.over()){
-    if(dataMode == 1) {
+    if(dataMode == 1 && editObstacles == false) {
       showPaths = toggle(showPaths);
     }
  }
@@ -328,17 +329,73 @@ void mouseClicked() {
    showPaths = true;
    }
  }
-  if(button16.over()){
+  if(button16.over() && editObstacles == false){
    key_E();
  }
  
- if(button19.over()){
+ if(button18.over() && editObstacles == true){
+    showInfo = toggle(showInfo);
+ }
+ 
+ if(button19.over() && editObstacles == true){
    background = toggleBW(background);
    textColor = toggleBW(textColor);
    grayColor = int(abs(background - (255.0/2)*schemeScaler));
    pFinderGrid_Viz(tableCanvas);
  }
  
+ if(button20.over() && editObstacles == true){
+   showSource = toggle(showSource);
+ }
+ 
+ if(button21.over() && editObstacles == true){
+   showSwarm = toggle(showSwarm);
+ }
+ 
+ if(button22.over() && editObstacles == true){
+   if(dataMode == 1) {
+      showTraces = toggle(showTraces);
+    }
+ }
+ 
+ if(button23.over() && editObstacles == true){
+ showEdges = toggle(showEdges);
+ }
+ 
+ 
+ if(button24.over() && editObstacles == true){
+      showPaths = toggle(showPaths);
+ }
+ 
+  if(button26.over() && editObstacles == true){
+    boundaries.saveCourse("data/course.tsv");
+  }
+ 
+ if(button27.over() && editObstacles == true){
+   boundaries.loadCourse("data/course.tsv");
+ }
+ 
+ 
+ if(button28.over() && editObstacles == true){
+        boundaries.addObstacle();
+ }
+ 
+ if(button29.over() && editObstacles == true){
+   boundaries.removeObstacle();
+ }
+ 
+ if(button30.over() && editObstacles == true){
+    boundaries.nextVert();
+ }
+ 
+ if(button31.over()){
+   setLoader("Pathfinder Mode " + nextMode(finderMode, 2));
+       key_RightCarrot();
+ }
+ 
+ if(button32.over() && editObstacles == true){
+ boundaries.removeVertex();
+ }
  
 }
 
