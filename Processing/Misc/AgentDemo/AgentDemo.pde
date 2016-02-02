@@ -1,5 +1,8 @@
+
+
 // This is the staging script for the Pathfinding for agent-based modeling
 // Ira Winder, MIT Media Lab, jiw@mit.edu, Fall 2015
+
 
 int canvasWidth = 1000;
 int canvasHeight = 500;
@@ -156,6 +159,13 @@ void draw() {
       button8 = new Button(canvasWidth+130, 190, "-");
       button31 = new Button(canvasWidth+10, 400, "New Grid");
       
+      button11 = new Button(canvasWidth+10, 250, "Print Framerate to Console");
+      button12 = new Button(canvasWidth+10, 280, "Show/Hide Agents");
+      button13 = new Button(canvasWidth+10, 310, "Show/Hide Traces");
+      button14 = new Button(canvasWidth+10, 340, "Show/Hide Edges");
+      button15 = new Button(canvasWidth+10, 370, "Show/Hide Paths");
+      button16 = new Button(canvasWidth+10, 430, "Enter Obstacle Editor");
+      button17 = new Button(canvasWidth+10, 430, "Exit Obstacle Editor");   
       button18 = new Button(canvasWidth+10, 40, "Info");
       button19 = new Button(canvasWidth+50, 40, "Invert Colors");
       button20 = new Button(canvasWidth+10, 70, "Sources");
@@ -177,13 +187,6 @@ void draw() {
       fill(255);
       text("Speed", canvasWidth + 40, 235);
       button10 = new Button(canvasWidth+90, 220, "-");
-      button11 = new Button(canvasWidth+10, 250, "Print Framerate to Console");
-      button12 = new Button(canvasWidth+10, 280, "Show/Hide Agents");
-      button13 = new Button(canvasWidth+10, 310, "Show/Hide Traces");
-      button14 = new Button(canvasWidth+10, 340, "Show/Hide Edges");
-      button15 = new Button(canvasWidth+10, 370, "Show/Hide Paths");
-      button16 = new Button(canvasWidth+10, 430, "Enter Obstacle Editor");
-      button17 = new Button(canvasWidth+10, 430, "Exit Obstacle Editor");
       }
     
     if(editObstacles == false){
@@ -210,14 +213,14 @@ void draw() {
       button10.draw();
       button11.draw();
       button31.draw();
-      
+      button17.draw();
       if(editObstacles == false){
       button16.draw();
       }
       }
       
+      
       if(editObstacles == true){
-        button17.draw();
         button18.draw();
         button19.draw();
         button20.draw();

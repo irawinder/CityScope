@@ -321,16 +321,12 @@ void mouseClicked() {
  }
       
  if(button17.over()){
-   if(dataMode == 1) {
-   showGrid = true;
-   finderMode = 0;
-   showEdges = false;
-   showSource = true;
-   showPaths = true;
-   }
- }
-  if(button16.over() && editObstacles == false){
    key_E();
+   editObstacles = false;
+ }
+  if(button16.over()){
+   key_E();
+   editObstacles = true;
  }
  
  if(button18.over() && editObstacles == true){
