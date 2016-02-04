@@ -224,7 +224,11 @@ void mouseClicked() {
   if (editObstacles) {
     boundaries.addVertex(new PVector(mouseX, mouseY));
   }
-  if(button.over()){
+   if(button16.over()){
+   key_E();
+ }
+  
+  if(button.over()){ //refreshes visualization in both data modes 
     if(dataMode == 1){
     setLoader("New Agents");
     key_r();
@@ -234,8 +238,14 @@ void mouseClicked() {
        key_X();
     }
   }
-  if(button2.over()){
-    if(dataMode == 1 && editObstacles == false){ 
+  
+  if(button2.over()){ //new grid 
+   setLoader("Pathfinder Mode " + nextMode(finderMode, 2));
+   key_RightCarrot();
+  }
+  
+  if(button3.over()){ //toggles info display
+    if(dataMode == 1){ 
       showInfo = toggle(showInfo);
     }
     if(dataMode != 1){
@@ -243,155 +253,133 @@ void mouseClicked() {
       pFinderGrid_Viz(tableCanvas);
     }
   }
-  if(button3.over() && editObstacles == false){
+  
+  if(button4.over()){ //inverts colors
     background = toggleBW(background);
       textColor = toggleBW(textColor);
       grayColor = int(abs(background - (255.0/2)*schemeScaler));
       pFinderGrid_Viz(tableCanvas);
   }
-  if(button4.over()){
-    if(dataMode == 0 || dataMode == 2){
-       setLoader("Pathfinder Mode " + nextMode(finderMode, 2));
-       key_RightCarrot();
-    }
-    if(dataMode == 1 && editObstacles == false){
-       showSource = toggle(showSource);
-    }
-  }
-  if(button5.over()){
-       setLoader("Pathfinder: " + toggle(enablePathfinding));
-       key_LeftCarrot();
+
+  if(button5.over()){ //bumps up transparency
+      adjustAlpha(+10);
+      pFinderGrid_Viz(tableCanvas);
+      grayColor = int(abs(background - (255.0/2)*schemeScaler));
+      println("schemeScaler: " + schemeScaler);
+      println("masterAlpha: " + masterAlpha);
   }
   
-  if(button6.over()){
-    setLoader("Data Mode " + nextMode(dataMode, 3));
-    key_D();
-    editObstacles = false;
-  }
-  if(button7.over()){
+  if(button6.over()){ //bumps down transparency
     adjustAlpha(-10);
       pFinderGrid_Viz(tableCanvas);
       grayColor = int(abs(background - (255.0/2)*schemeScaler));
       println("schemeScaler: " + schemeScaler);
       println("masterAlpha: " + masterAlpha);
   }
-  if(button8.over()){
-    adjustAlpha(+10);
-      pFinderGrid_Viz(tableCanvas);
-      grayColor = int(abs(background - (255.0/2)*schemeScaler));
-      println("schemeScaler: " + schemeScaler);
-      println("masterAlpha: " + masterAlpha);
+  
+  if(button7.over()){ //enable/disable pathfinding
+    enablePathfinding = toggle(enablePathfinding);
+    refreshFinder(tableCanvas);
   }
-  if(button9.over()){
-   if(dataMode == 1){
+  
+  if(button8.over()){ //next datamode
+    setLoader("Data Mode " + nextMode(dataMode, 3));
+    key_D();
+  }
+  
+  
+ if(dataMode == 1){
+ if(editObstacles==false){ 
+  if(button9.over()){ //speed up
    updateSpeed(1);
-   }
   }
-  if(button10.over()){
-   if(dataMode == 1){
+  
+  if(button10.over()){ //slow down
     updateSpeed(-1);
    }
-  }
-  if(button11.over()){
-    if(dataMode == 1){
+  
+  if(button11.over()){ //prints framerate 
      showFrameRate = toggle(showFrameRate);
-    }
   }
-  if(button12.over()){
-    if(dataMode == 1 && editObstacles == false) {
+  
+  if(button12.over()){ //shows/hides agents
        showSwarm = toggle(showSwarm);
-    }
   }
- if(button13.over() && editObstacles == false){
-    if(dataMode == 1) {
+  
+  if(button30.over()){ //show/hide sources
+    showSource = toggle(showSource);
+  }
+  
+ if(button13.over()){ //show/hide traces
       showTraces = toggle(showTraces);
     }
- }
  
- if(button14.over() && editObstacles == false){
-    if(dataMode == 1) {
-      showEdges = toggle(showEdges);
-    }
+ if(button14.over()){ //show/hide edges
+      showEdges = toggle(showEdges); 
  }
       
- if(button15.over()){
-    if(dataMode == 1 && editObstacles == false) {
-      showPaths = toggle(showPaths);
-    }
- }
-      
- if(button17.over()){
-   key_E();
-   editObstacles = false;
- }
-  if(button16.over()){
-   key_E();
-   editObstacles = true;
- }
- 
- if(button18.over() && editObstacles == true){
-    showInfo = toggle(showInfo);
- }
- 
- if(button19.over() && editObstacles == true){
-   background = toggleBW(background);
-   textColor = toggleBW(textColor);
-   grayColor = int(abs(background - (255.0/2)*schemeScaler));
-   pFinderGrid_Viz(tableCanvas);
- }
- 
- if(button20.over() && editObstacles == true){
-   showSource = toggle(showSource);
- }
- 
- if(button21.over() && editObstacles == true){
-   showSwarm = toggle(showSwarm);
- }
- 
- if(button22.over() && editObstacles == true){
-   if(dataMode == 1) {
-      showTraces = toggle(showTraces);
-    }
- }
- 
- if(button23.over() && editObstacles == true){
- showEdges = toggle(showEdges);
- }
- 
- 
- if(button24.over() && editObstacles == true){
+ if(button15.over()){ //show/hide paths
       showPaths = toggle(showPaths);
  }
- 
-  if(button26.over() && editObstacles == true){
-    boundaries.saveCourse("data/course.tsv");
-  }
- 
- if(button27.over() && editObstacles == true){
-   boundaries.loadCourse("data/course.tsv");
+ }
+  
  }
  
- 
- if(button28.over() && editObstacles == true){
-        boundaries.addObstacle();
- }
- 
- if(button29.over() && editObstacles == true){
+ if(editObstacles == true){
+   if(button17.over()){//sources
+     showSource = toggle(showSource);
+   }
+   
+   if(button18.over()){//agents
+     showSwarm = toggle(showSwarm);
+   }
+   
+   if(button19.over()){//traces
+     showTraces = toggle(showTraces);
+   }
+   
+   if(button20.over()){//edges
+     showEdges = toggle(showEdges); 
+   }
+   
+   if(button21.over()){//speed up
+     updateSpeed(1);
+   }
+   
+   if(button22.over()){//slow down
+     updateSpeed(1);
+   }
+   
+   if(button23.over()){//print framerate
+     showFrameRate = toggle(showFrameRate);
+   }
+   
+   if(button24.over()){//save
+   boundaries.saveCourse("data/course.tsv");
+   }
+   
+   if(button25.over()){//load
+    boundaries.loadCourse("data/course.tsv");
+   }
+   
+   if(button26.over()){//add
+   boundaries.addObstacle();
+   }
+   
+   if(button27.over()){//remove
    boundaries.removeObstacle();
+   }
+   
+   if(button28.over()){//jump
+   boundaries.nextVert();
+   }
+   
+   if(button29.over()){//remove vertex
+   boundaries.removeVertex();
+   }
  }
  
- if(button30.over() && editObstacles == true){
-    boundaries.nextVert();
- }
- 
- if(button31.over()){
-   setLoader("Pathfinder Mode " + nextMode(finderMode, 2));
-       key_RightCarrot();
- }
- 
- if(button32.over() && editObstacles == true){
- boundaries.removeVertex();
- }
+
  
 }
 
@@ -440,7 +428,6 @@ void key_0() {
 void key_D() {
   //Toggles various data and visualization modes
   dataMode = nextMode(dataMode, 1);
-
   initContent(tableCanvas);
 }
 

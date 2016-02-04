@@ -7,7 +7,7 @@
 int canvasWidth = 1000;
 int canvasHeight = 500;
 String refresh; 
-String grid_sources; 
+String editor;
 
 // Key Commands:
 //
@@ -128,6 +128,8 @@ void draw() {
     
     
     mainDraw();
+    
+    //strings for shared button placements
       if(dataMode == 1){
       refresh = "Refresh Visualization";
         }
@@ -135,109 +137,99 @@ void draw() {
       refresh = "New Origin Destination Pair";
       }
       
-      if(dataMode == 1){
-      grid_sources = "Show/Hide Sources";
-    }
-      if(dataMode == 0){
-      grid_sources = "New Grid";
-    }
-    
-      button = new Button(canvasWidth+10, 10, refresh);
-      
-      button4 = new Button(canvasWidth+10, 100, grid_sources);
-      
-      if(editObstacles == false){
-      button2 = new Button(canvasWidth+10, 40, "Show/Hide Info");
-      button3 = new Button(canvasWidth+10, 70, "Invert Colors");
-      button5 = new Button(canvasWidth+10, 130, "Enable/Disable PathFinding");
+      if(editObstacles == true){
+      editor = "Exit Editor";
       }
+      if(editObstacles == false){
+      editor = "Enter Editor";
+    }
       
-      button6 = new Button(canvasWidth+10, 160, "Next Data Mode");
-      button7 = new Button(canvasWidth+10, 190, "+");
+//global buttons    
+      button = new Button(canvasWidth+10, 10, refresh);
+      button2 = new Button(canvasWidth+10, 40, "New Grid");
+      button3 = new Button(canvasWidth+10, 70, "Info");
+      button4 = new Button(canvasWidth+10, 100, "Invert Colors");
+      button5 = new Button(canvasWidth+10, 190, "-");
       fill(255);
       text("Transparency", canvasWidth + 40, 207);
-      button8 = new Button(canvasWidth+130, 190, "-");
-      button31 = new Button(canvasWidth+10, 400, "New Grid");
-      
-      button11 = new Button(canvasWidth+10, 250, "Print Framerate to Console");
-      button12 = new Button(canvasWidth+10, 280, "Show/Hide Agents");
-      button13 = new Button(canvasWidth+10, 310, "Show/Hide Traces");
-      button14 = new Button(canvasWidth+10, 340, "Show/Hide Edges");
-      button15 = new Button(canvasWidth+10, 370, "Show/Hide Paths");
-      button16 = new Button(canvasWidth+10, 430, "Enter Obstacle Editor");
-      button17 = new Button(canvasWidth+10, 430, "Exit Obstacle Editor");   
-      button18 = new Button(canvasWidth+10, 40, "Info");
-      button19 = new Button(canvasWidth+50, 40, "Invert Colors");
-      button20 = new Button(canvasWidth+10, 70, "Sources");
-      button21  = new Button(canvasWidth+80, 70, "Agents");
-      button22 = new Button(canvasWidth+10, 100, "Traces");
-      button23 = new Button(canvasWidth+80, 100, "Edges");
-      button24 = new Button(canvasWidth+10, 280, "Paths");
-      button25 = new Button(canvasWidth+10, 130, "Pathfinding");
-      button26 = new Button(canvasWidth+10, 310, "Save");
-      button27 = new Button(canvasWidth+60, 310, "Load");
-      button28 = new Button(canvasWidth+10, 340, "Add");
-      button29 = new Button(canvasWidth+60, 340, "Remove");
-      button30 = new Button(canvasWidth+10, 370, "Jump");
-      button32 = new Button(canvasWidth+60, 370, "Remove Vertex");
+      button6 = new Button(canvasWidth+130, 190, "+");
+      button7 = new Button(canvasWidth+10, 130, "Enable/Disable PathFinding");
+      button8 = new Button(canvasWidth+10, 160, "Next Data Mode");
       
       
-      if(dataMode == 1){
-      button9 = new Button(canvasWidth+10, 220, "+");
-      fill(255);
-      text("Speed", canvasWidth + 40, 235);
-      button10 = new Button(canvasWidth+90, 220, "-");
-      }
-    
-    if(editObstacles == false){
+      button.draw();
       button2.draw();
       button3.draw();
       button4.draw();
       button5.draw();
-      if(dataMode == 1){
+      button6.draw();
+      button7.draw();
+      button8.draw();
+      
+      
+//buttons for not in obstacle editor
+      if(editObstacles == false && dataMode == 1){
+      button9 = new Button(canvasWidth+10, 220, "+");
+      fill(255);
+      text("Speed", canvasWidth + 40, 235);
+      button10 = new Button(canvasWidth+90, 220, "-");
+    
+      button11 = new Button(canvasWidth+10, 250, "Print Framerate to Console");
+      button12 = new Button(canvasWidth+10, 280, "Show/Hide Agents");
+      button30 = new Button(canvasWidth+10, 310, "Show/Hide Sources");
+      button13 = new Button(canvasWidth+10, 340, "Show/Hide Traces");
+      button14 = new Button(canvasWidth+10, 370, "Show/Hide Edges");
+      button15 = new Button(canvasWidth+10, 400, "Show/Hide Paths");
+      
+      button9.draw();
+      button10.draw();
+      button11.draw();
       button12.draw();
       button13.draw();
       button14.draw();
       button15.draw();
+      button30.draw();
       }
-    }
-      
-      button.draw();
-      button6.draw();
-      button7.draw();
-      button8.draw();
 
+//enter/exit obstacle editor
+      if(dataMode == 1){
+        button16 = new Button(canvasWidth+10, 430, editor);
+        button16.draw();
+      }
+
+//buttons for obstacle editor       
+      if(editObstacles == true && dataMode == 1){
+      button17 = new Button(canvasWidth+10, 250, "Sources");
+      button18 = new Button(canvasWidth+60, 250, "Agents");
+      button19 = new Button(canvasWidth+10, 280, "Traces");
+      button20 = new Button(canvasWidth+70, 280, "Edges");
+      button21 = new Button(canvasWidth+10, 220, "+");
+      fill(255);
+      text("Speed", canvasWidth + 40, 235);
+      button22 = new Button(canvasWidth+90, 220, "-");
+      button23 = new Button(canvasWidth+10, 310, "Print Framerate to Console");
+      button24 = new Button(canvasWidth+10, 340, "Save");
+      button25 = new Button(canvasWidth+60, 340, "Load");
+      button26 = new Button(canvasWidth+10, 370, "Add");
+      button27 = new Button(canvasWidth+60, 370, "Remove");
+      button28 = new Button(canvasWidth+10, 400, "Jump");
+      button29 = new Button(canvasWidth+60, 400, "Remove Vertex");
       
-      if(dataMode ==1){ //&& showObstacles == false){
-      button9.draw();
-      button10.draw();
-      button11.draw();
-      button31.draw();
       button17.draw();
-      if(editObstacles == false){
-      button16.draw();
+      button18.draw();
+      button19.draw();
+      button20.draw();
+      button21.draw();
+      button22.draw();
+      button23.draw();
+      button24.draw();
+      button25.draw();
+      button26.draw();
+      button27.draw();
+      button28.draw();
+      button29.draw();
       }
-      }
-      
-      
-      if(editObstacles == true){
-        button18.draw();
-        button19.draw();
-        button20.draw();
-        button21.draw();
-        button22.draw();
-        button23.draw();
-        button24.draw();
-        button25.draw();
-        button26.draw();
-        button27.draw();
-        button28.draw();
-        button29.draw();
-        button30.draw();
-        button32.draw();
-      }
-      
-    
+     
     // Print Framerate of animation to console
     if (showFrameRate) {
       println(frameRate);

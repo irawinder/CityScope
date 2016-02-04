@@ -11,24 +11,24 @@
 //    case 'b': Toggle Background color black/white
 //----AGENT MODE 
 Button button; 
-Button button2; //Show info
-Button button3; //Show/hide sinks
-Button button4; //show/hide edges
-Button button5; //print framerate
-Button button6; //show/hide agents
-Button button7; //toggle obstacles on/off
-Button button8; //heatmap
-Button button9; //frame based acceleration
-Button button10; //time based acceleration
-Button button11; //increase agent speed
-Button button12; //decrease agent speed
-Button button13; //obstacle editor
-Button button14; //add obstacle
-Button button15; //remove obstacle
-Button button16; //select new obstacle
-Button button17; //remove vertex
-Button button18; //save locations
-Button button19; //load obstacles
+Button button2; 
+Button button3; 
+Button button4;
+Button button5; 
+Button button6; 
+Button button7;
+Button button8;
+Button button9; 
+Button button10; 
+Button button11; 
+Button button12; 
+Button button13; 
+Button button14; 
+Button button15; 
+Button button16;
+Button button17; 
+Button button18; 
+Button button19;
 Button button20;
 Button button21;
 Button button22;
@@ -40,9 +40,6 @@ Button button27;
 Button button28;
 Button button29;
 Button button30;
-Button button31;
-Button button32;
-
 
 class Button{
   int x,y;
