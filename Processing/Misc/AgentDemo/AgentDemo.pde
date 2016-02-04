@@ -1,4 +1,16 @@
+import toxi.processing.*;
 
+import toxi.math.conversion.*;
+import toxi.geom.*;
+import toxi.math.*;
+import toxi.geom.mesh2d.*;
+import toxi.util.datatypes.*;
+import toxi.util.events.*;
+import toxi.geom.mesh.subdiv.*;
+import toxi.geom.mesh.*;
+import toxi.math.waves.*;
+import toxi.util.*;
+import toxi.math.noise.*;
 
 // This is the staging script for the Pathfinding for agent-based modeling
 // Ira Winder, MIT Media Lab, jiw@mit.edu, Fall 2015
@@ -73,6 +85,7 @@ int drawDelay = 10;
 void setup() {
   size(canvasWidth + 200, canvasHeight, P3D);
   initCanvas();
+  //drawVoronoi();
   
 //  //Call this method if data folder ever needs to be selected by a user
 //  selectFolder("Please select the a folder and click 'Open'", "folderSelected");
@@ -143,7 +156,8 @@ void draw() {
       if(editObstacles == false){
       editor = "Enter Editor";
     }
-      
+
+
 //global buttons    
       button = new Button(canvasWidth+10, 10, refresh);
       button2 = new Button(canvasWidth+10, 40, "New Grid");

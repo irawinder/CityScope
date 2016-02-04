@@ -5,6 +5,8 @@ boolean frameStep = true;
 float time_0 = 0;
 float speed = 0.666666;
 
+int num = 0;
+
 class Agent {
   
   PVector location;
@@ -395,6 +397,16 @@ class Swarm {
     p.ellipse(destination.x, destination.y, 30, 30);
   }
   
+//draw voronoi
+  
+  void displayVoronoi(){
+     setupVoronoi();
+     for(int i = 0; i<16; i++){
+       voronoi.addPoint(new Vec2D(origin.x, origin.y));
+     }
+  }
+  
+  
   void displayEdges(PGraphics p) {
     
     // Draws weighted lines from origin to destinations
@@ -413,8 +425,7 @@ class Swarm {
       p.noStroke();
     }
     
-    
-      
+   
     if (origin != destination) {
       p.line(origin.x, origin.y, destination.x, destination.y);
     } else {

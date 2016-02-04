@@ -7,15 +7,13 @@ ArrayList of Polygons
 ArrayList of Towers
 
 
-
 TO DO 
 -Enhance so it can work with real data and return regions
--Give regions IDs
 -Implement in Agent Demo 
 */
 
 Table towers;
-Table hotels;
+Table hotels
 int width = 1200;
 int height = 900;
 Vec2D tower;
@@ -24,10 +22,10 @@ void setup() {
  Table towers = loadTable("data/towers.csv", "header");
  size(width, height);
  setupVoronoi(); 
- int pointNum = towers.getRowCount(); //number of total points
+ int num = towers.getRowCount(); //number of total points
  background(255);
 //gets points for voronoi  
-   for (int i=0;i<pointNum;i++){
+   for (int i=0;i<num;i++){
       float x = towers.getFloat(i, "x");//random(0,width);
       float y= towers.getFloat(i, "y");//random(0,height);
       tower = (new Vec2D(towers.getFloat(i, "x"), towers.getFloat(i, "y")));

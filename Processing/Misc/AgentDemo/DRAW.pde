@@ -6,6 +6,7 @@ boolean showEdges = false;
 boolean showSwarm = true;
 boolean showInfo = false;
 boolean showTraces = false;
+boolean showVoronoi = true;
 
 // Makes darker colors more visible when projecting
 int masterAlpha = 15;

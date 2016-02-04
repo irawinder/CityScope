@@ -7,7 +7,6 @@ import toxi.processing.*;
 
 //logics for showPoints and doClip
 boolean showPoints = true;
-//boolean doClip;
 
 // helper class for rendering
 ToxiclibsSupport gfx;

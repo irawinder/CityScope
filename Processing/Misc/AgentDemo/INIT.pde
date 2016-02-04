@@ -16,6 +16,7 @@ void initCanvas() {
   setScheme();
   
   println("Canvas and Projection Mapping complete.");
+
 }
 
 void initContent(PGraphics p) {
@@ -35,6 +36,8 @@ void initContent(PGraphics p) {
       showEdges = false;
       showSource = true;
       showPaths = true;
+      //displayVoronoi();
+      drawVoronoi();
       break;
   }
   
