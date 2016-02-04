@@ -85,6 +85,7 @@ int drawDelay = 10;
 void setup() {
   size(canvasWidth + 200, canvasHeight, P3D);
   initCanvas();
+   drawVoronoi();
   //drawVoronoi();
   
 //  //Call this method if data folder ever needs to be selected by a user
@@ -160,7 +161,7 @@ void draw() {
 
 //global buttons    
       button = new Button(canvasWidth+10, 10, refresh);
-      button2 = new Button(canvasWidth+10, 40, "New Grid");
+      button2 = new Button(canvasWidth+10, 40, "Next Network"); //random, grid, custom (MIT)
       button3 = new Button(canvasWidth+10, 70, "Info");
       button4 = new Button(canvasWidth+10, 100, "Invert Colors");
       button5 = new Button(canvasWidth+10, 190, "-");

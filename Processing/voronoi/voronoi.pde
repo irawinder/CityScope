@@ -13,7 +13,7 @@ TO DO
 */
 
 Table towers;
-Table hotels
+;
 int width = 1200;
 int height = 900;
 Vec2D tower;

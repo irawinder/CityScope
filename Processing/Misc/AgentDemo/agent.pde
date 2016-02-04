@@ -397,14 +397,14 @@ class Swarm {
     p.ellipse(destination.x, destination.y, 30, 30);
   }
   
-//draw voronoi
-  
+  //draw voronoi
   void displayVoronoi(){
      setupVoronoi();
      for(int i = 0; i<16; i++){
        voronoi.addPoint(new Vec2D(origin.x, origin.y));
      }
   }
+  
   
   
   void displayEdges(PGraphics p) {

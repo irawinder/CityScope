@@ -177,6 +177,15 @@ void setLoader(String txt) {
   loading(tableCanvas, loadText);
 }
 
+void setLoader(String txt, char k) {
+  drawDelay = 2;
+  keyLoaded = false;
+  loadText = txt;
+  initKey = k;
+  println(initKey);
+  loading(tableCanvas, loadText);
+}
+
 boolean toggle(boolean bool) {
   if (bool) {
     return false;
@@ -221,11 +230,13 @@ void mouseReleased() {
 }
 
 void mouseClicked() {
-  if (editObstacles) {
+  if (editObstacles && mouseX <= canvasWidth && mouseY <= canvasHeight) {
     boundaries.addVertex(new PVector(mouseX, mouseY));
   }
+  String k; //use this string k every time there's a button that runs setloader
    if(button16.over()){
-   key_E();
+     k = "E";
+   setLoader("Obstacles Editor", k.charAt(0));
  }
   
   if(button.over()){ //refreshes visualization in both data modes 
