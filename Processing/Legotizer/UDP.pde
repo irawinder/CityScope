@@ -100,7 +100,7 @@ void parseCodeStrings(String data[]) {
             codeArray[v_temp][u_temp][0] = int(split[0]); 
             
             //Identifies rotation vector of piece [WARNING: Colortizer supplies rotation in degrees (0, 90, 180, and 270)]
-            codeArray[v_temp][v_temp][1] = int(split[3])/90; 
+            codeArray[v_temp][u_temp][1] = int(split[3])/90; 
             
             //sendCommand(inputStr[i], 6667);
             

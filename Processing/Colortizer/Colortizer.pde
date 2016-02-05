@@ -32,7 +32,7 @@ Step 5: Run application
 */
 
 // Change this number to change which Area is scanned (i.e. 0, 1, or 2)
-int imageIndex = 1; //Selection of scanImage to start
+int imageIndex = 0; //Selection of scanImage to start
 
 //Number of scan grids to be created on each warped image
 // For example:
