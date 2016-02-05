@@ -1,2 +1,3 @@
-
-Processing/Colortizer/data.txt
+*.txt
+*.tsv
+*.json
