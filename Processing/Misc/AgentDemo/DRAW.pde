@@ -168,7 +168,7 @@ void drawTestFinder(PGraphics p, Pathfinder f, ArrayList<PVector> path, ArrayLis
     //Draw Background Rectangle
     p.fill(abs(textColor-25), 200);
     p.noStroke();
-    p.rect(10, 4, 0.4*p.width, 10*20+10 , 12, 12, 12, 12);
+    p.rect(10, 4, 0.4*p.width, 10*10+10 , 12, 12, 12, 12);
     
     //Draw Directions
     p.fill(abs(textColor-225), 255);
@@ -176,12 +176,6 @@ void drawTestFinder(PGraphics p, Pathfinder f, ArrayList<PVector> path, ArrayLis
     p.text("A network, origin, and destination has been randomly generated.", 20, 40);
     p.text("A green line represents the shortest path.", 20, 60);
     p.text("Nodes are highlighted when visited by the pathfinding algorithm.", 20, 80);
-    
-    p.text("Directions:", 20, 120);
-    p.text("Press 'X' to generate a new origin-destination pair", 20, 140);
-    p.text("Press 'n' to generate a new network", 20, 160);
-    p.text("Press 'b' to invert colors", 20, 180);
-    p.text("Press 'h' to hide these directions", 20, 200);
     
     p.popMatrix();
   }

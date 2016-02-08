@@ -1,25 +1,10 @@
-// Key Commands:
-//
-//   Data Navigation
-//     'D' = Next Data Mode
-//         dataMode = 1 for random network
-//         dataMode = 0 for empty network and Pathfinder Test OD
-//
-//   Rendering:
-//     '{' - decrease alpha for translucent graphics
-//     '}' - increase alpha for translucent graphics
-//    case 'b': Toggle Background color black/white
-//----AGENT MODE 
 Button button; 
 Button button2; 
 Button button3; 
 Button button4;
-Button button5; 
-Button button6; 
 Button button7;
 Button button8;
-Button button9; 
-Button button10; 
+Button button10;
 Button button11; 
 Button button12; 
 Button button13; 
@@ -30,8 +15,6 @@ Button button17;
 Button button18; 
 Button button19;
 Button button20;
-Button button21;
-Button button22;
 Button button23;
 Button button24;
 Button button25;
@@ -50,17 +33,18 @@ class Button{
     this.label = label;
   }
   void draw(){
-    fill(200);
+    smooth();
+    fill(textColor, 150);
     noStroke();
     if(over()){
-    fill(255);
+    fill(textColor, 170);
     }
-    rect(x, y, textWidth(label) + 10, 25);
-    fill(0);
-    text(label, x + 5, y + 15);
+    rect(x, y, 170, 25, 5);
+    fill(background);
+    text(label, x + (85-textWidth(label)/2), y + 15); //text(str, x1, y1, x2, y2) text(label, x + 5, y + 15)
   }
   boolean over(){
-    if(mouseX >= x && mouseY >= y && mouseX <= x + textWidth(label) && mouseY <= y + 22){
+    if(mouseX >= x  && mouseY >= y && mouseX <= x + 170 && mouseY <= y + 22){
   return true;
     }
     return false;

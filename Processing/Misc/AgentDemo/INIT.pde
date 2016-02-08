@@ -39,6 +39,9 @@ void initContent(PGraphics p) {
       //displayVoronoi();
       drawVoronoi();
       break;
+    case 2: //gridded demo 
+      key_p();
+      break;
   }
   
   initObstacles(p);
@@ -83,6 +86,10 @@ void initAgents(PGraphics p) {
       break;
     case 1:
       testNetwork_Random(p, 16);
+      break;
+    case 2: 
+      testNetwork_Random(p, 16);
+      key_p();
       break;
   }
   

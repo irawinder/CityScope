@@ -230,15 +230,35 @@ void mouseReleased() {
 }
 
 void mouseClicked() {
-  if (editObstacles && mouseX <= canvasWidth && mouseY <= canvasHeight) {
+  if (editObstacles && (button24.over() == false)&&(button25.over() == false)&&(button26.over() == false)&&(button27.over() == false)&&(button28.over() == false)&&(button29.over() == false) && (button16.over() == false)) {
     boundaries.addVertex(new PVector(mouseX, mouseY));
   }
+  
+  if (menu.over()){
+    show_menu = true;
+    println(show_menu);
+  }
+  
+  if (menu2.over()){
+    show_menu = false;
+    println(show_menu);
+  }
+  
+  if(show_menu == true){
+  
   String k; //use this string k every time there's a button that runs setloader
    if(button16.over()){
      k = "E";
    setLoader("Obstacles Editor", k.charAt(0));
  }
-  
+   
+    /*if(button10.over()){
+    setLoader("New Pathfinder Network");
+    key_n();
+    }
+    */
+ 
+  if(editObstacles == false){
   if(button.over()){ //refreshes visualization in both data modes 
     if(dataMode == 1){
     setLoader("New Agents");
@@ -249,6 +269,11 @@ void mouseClicked() {
        key_X();
     }
   }
+  
+  if(button10.over()){
+     k = "n";
+     setLoader("New Pathfinder Network", k.charAt(0));
+   }
   
   if(button2.over()){ //new grid 
    setLoader("Pathfinder Mode " + nextMode(finderMode, 2));
@@ -272,7 +297,7 @@ void mouseClicked() {
       pFinderGrid_Viz(tableCanvas);
   }
 
-  if(button5.over()){ //bumps up transparency
+  if(menu5.over()){ //bumps up transparency
       adjustAlpha(+10);
       pFinderGrid_Viz(tableCanvas);
       grayColor = int(abs(background - (255.0/2)*schemeScaler));
@@ -280,7 +305,7 @@ void mouseClicked() {
       println("masterAlpha: " + masterAlpha);
   }
   
-  if(button6.over()){ //bumps down transparency
+  if(menu6.over()){ //bumps down transparency
     adjustAlpha(-10);
       pFinderGrid_Viz(tableCanvas);
       grayColor = int(abs(background - (255.0/2)*schemeScaler));
@@ -298,14 +323,16 @@ void mouseClicked() {
     key_D();
   }
   
+  }
+  
   
  if(dataMode == 1){
  if(editObstacles==false){ 
-  if(button9.over()){ //speed up
+  if(menu9.over()){ //speed up
    updateSpeed(1);
   }
   
-  if(button10.over()){ //slow down
+  if(menu10.over()){ //slow down
     updateSpeed(-1);
    }
   
@@ -349,16 +376,16 @@ void mouseClicked() {
      showTraces = toggle(showTraces);
    }
    
-   if(button20.over()){//edges
+   if(button20.over()){ //edges
      showEdges = toggle(showEdges); 
    }
    
-   if(button21.over()){//speed up
+   if(menu21.over()){ //speed up
      updateSpeed(1);
    }
    
-   if(button22.over()){//slow down
-     updateSpeed(1);
+   if(menu22.over()){//slow down
+     updateSpeed(-1);
    }
    
    if(button23.over()){//print framerate
@@ -389,7 +416,8 @@ void mouseClicked() {
    boundaries.removeVertex();
    }
  }
- 
+  
+  }
 
  
 }
