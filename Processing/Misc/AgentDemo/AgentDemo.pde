@@ -166,7 +166,7 @@ void draw() {
 
 //global buttons    
       button = new Button(canvasWidth - 180, 40, refresh);
-      button2 = new Button(canvasWidth - 180, 70, "Next Network"); //random, grid, custom (MIT)
+      button2 = new Button(canvasWidth - 180, 70, "Next Network"); //random, grid, custom (MIT), gridded obstacles 
       button3 = new Button(canvasWidth-180, 100, "Info");
       button4 = new Button(canvasWidth-180, 130, "Invert Colors");
       menu5 = new MenuButton(canvasWidth-180, 220, "-");

@@ -39,9 +39,6 @@ void initContent(PGraphics p) {
       //displayVoronoi();
       drawVoronoi();
       break;
-    case 2: //gridded demo 
-      key_p();
-      break;
   }
   
   initObstacles(p);
@@ -89,7 +86,6 @@ void initAgents(PGraphics p) {
       break;
     case 2: 
       testNetwork_Random(p, 16);
-      key_p();
       break;
   }
   
@@ -328,6 +324,9 @@ void resetFinder(PGraphics p, int res, int _finderMode) {
     case 2:
       initCustomFinder(p, res);
       break;
+    case 3: 
+      initGridFinder(p, res);
+      break;
   }
   setFinder(p, _finderMode);
 }
@@ -342,6 +341,9 @@ void setFinder(PGraphics p, int _finderMode) {
       break;
     case 2:
       pFinder = finderCustom;
+      break;
+    case 3: 
+      pFinder = finderGrid;
       break;
   }
 }

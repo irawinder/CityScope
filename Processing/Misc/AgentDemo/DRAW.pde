@@ -62,6 +62,9 @@ void drawTableCanvas(PGraphics p) {
           // Obstacles for custom Pathfinder Network
           boundaries.display(p, textColor, 100);
         }
+          else if (finderMode == 3) {
+          grid.display(p, textColor, 100);
+        }
       }
       
       // Draws pathfinding nodes onto Canvas

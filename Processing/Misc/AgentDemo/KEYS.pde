@@ -117,7 +117,7 @@ void keyPressed() {
       // runs key_n() next frame
       break;
     case '>': // Toggle network for pathfinding
-      setLoader("Pathfinder Mode " + nextMode(finderMode, 2));
+      setLoader("Pathfinder Mode " + nextMode(finderMode, 3));
       // runs key_RightCarrot() next frame
       break;
     case '<': // Enable/Disable Pathfinding
@@ -276,8 +276,13 @@ void mouseClicked() {
    }
   
   if(button2.over()){ //new grid 
-   setLoader("Pathfinder Mode " + nextMode(finderMode, 2));
+   setLoader("Pathfinder Mode " + nextMode(finderMode, 3));
    key_RightCarrot();
+   println(finderMode);
+     if(finderMode == 3){
+       k = "p"; 
+        setLoader("Gridded Obstacles", k.charAt(0));
+     }
   }
   
   if(button3.over()){ //toggles info display
@@ -472,7 +477,7 @@ void key_D() {
 
 void key_RightCarrot() {
   // Toggle network for pathfinding
-  finderMode = nextMode(finderMode, 2);
+  finderMode = nextMode(finderMode, 3);
   refreshFinder(tableCanvas);
 }
 
