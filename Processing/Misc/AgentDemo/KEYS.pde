@@ -334,11 +334,11 @@ void mouseClicked() {
  if(dataMode == 1){
  if(editObstacles==false){ 
   if(menu9.over()){ //speed up
-   updateSpeed(1);
+   updateSpeed(-1);
   }
   
   if(menu10.over()){ //slow down
-    updateSpeed(-1);
+    updateSpeed(1);
    }
   
   if(button11.over()){ //prints framerate 

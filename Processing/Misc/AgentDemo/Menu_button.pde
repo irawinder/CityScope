@@ -18,7 +18,7 @@ class MenuButton{
   }
   boolean over(){
     if(mouseX >= x - 20 && mouseY >= y && mouseX <= x + textWidth(label) + 20 && mouseY <= y + 22){
-  return true;
+  return true;  
     }
     return false;
   }

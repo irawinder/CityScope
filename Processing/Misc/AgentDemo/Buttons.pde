@@ -6,10 +6,10 @@ Button button7;
 Button button8;
 Button button10;
 Button button11; 
-Button button12; 
-Button button13; 
-Button button14; 
-Button button15; 
+//Button button12; 
+//Button button13; 
+//Button button14; 
+//Button button15; 
 Button button16;
 Button button17; 
 Button button18; 
@@ -22,7 +22,7 @@ Button button26;
 Button button27;
 Button button28;
 Button button29;
-Button button30;
+//Button button30;
 
 class Button{
   int x,y;
