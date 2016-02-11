@@ -286,13 +286,20 @@ void mouseClicked() {
   }
   
   if(button3.over()){ //toggles info display
-    if(dataMode == 1){ 
+      showPathInfo = toggle(showPathInfo);
+      pFinderGrid_Viz(tableCanvas);
+    /*if(dataMode == 1){ 
       showInfo = toggle(showInfo);
     }
     if(dataMode != 1){
       showPathInfo = toggle(showPathInfo);
       pFinderGrid_Viz(tableCanvas);
     }
+    */
+  }
+  
+  if(button31.over()){
+    showInfo = toggle(showInfo);
   }
   
   if(button4.over()){ //inverts colors
