@@ -279,9 +279,9 @@ void mouseClicked() {
    setLoader("Pathfinder Mode " + nextMode(finderMode, 3));
    key_RightCarrot();
    println(finderMode);
-     if(finderMode == 3){
+     if(finderMode == 2){
        k = "p"; 
-        setLoader("Gridded Obstacles", k.charAt(0));
+       setLoader("Gridded Obstacles", k.charAt(0));
      }
   }
   
