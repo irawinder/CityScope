@@ -602,6 +602,9 @@ class Horde {
     p.textAlign(LEFT);
 
     p.text("Total Agents Rendered: " + agentCount, 20, 20);
+    if(showFrameRate == true){
+    p.text("Framerate:  " + frameRate, textWidth("Total Agents Rendered   : 5000" +  190), 20);
+    }
     //p.text("rateScaler: " + int(rateScaler), 20, 20 + 3*textSize);
   }
   

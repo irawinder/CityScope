@@ -34,7 +34,7 @@ class Button{
   }
   void draw(){
     smooth();
-    fill(textColor, 150);
+    fill(textColor, 190);
     noStroke();
     if(over()){
     fill(textColor, 170);
@@ -42,12 +42,13 @@ class Button{
     rect(x, y, 170, 25, 5);
     fill(background);
     text(label, x + (85-textWidth(label)/2), y + 15); //text(str, x1, y1, x2, y2) text(label, x + 5, y + 15)
-  }
+  } 
   boolean over(){
     if(mouseX >= x  && mouseY >= y && mouseX <= x + 170 && mouseY <= y + 22){
   return true;
     }
     return false;
   }
+  
 }
 

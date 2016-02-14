@@ -7,7 +7,7 @@ class MenuButton{
     this.label = label;
   }
   void draw(){
-    fill(textColor, 150);
+    fill(textColor, 190);
     noStroke();
     if(over()){
     fill(textColor, 170);

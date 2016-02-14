@@ -1,6 +1,6 @@
 boolean showPaths = false;
 boolean showGrid = false;
-boolean showPathInfo = true;
+boolean showPathInfo = false;
 boolean showSource = true;
 boolean showEdges = false;
 boolean showSwarm = true;
@@ -22,7 +22,6 @@ PVector coord;
 PVector[] line = new PVector[2];
 
 void drawTableCanvas(PGraphics p) {
-  
   //Updates Agent Data to Display
   if (showSwarm) {
     swarmHorde.update();
@@ -101,6 +100,18 @@ void drawTableCanvas(PGraphics p) {
       }
       
       drawCredit(p);
+    if (showPathInfo && dataMode != 0) {
+    //Draw Background Rectangle
+    p.fill(abs(textColor-25), 200);
+    p.noStroke();
+    p.rect(10, 40, 0.3*p.width, 10*10+10-20, 12, 12, 12, 12);
+    
+    //Draw Directions
+    p.fill(abs(textColor-225), 255);
+    p.textSize(12);
+    p.text("Explanation:", 20, 60);
+    p.text("Agent based modeling.", 20, 80);
+    }
       
   p.endDraw();
 }

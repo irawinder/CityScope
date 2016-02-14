@@ -219,21 +219,21 @@ if(initialized){
       
 //buttons for not in obstacle editor
       if(editObstacles == false && dataMode == 1){
-      menu9 = new MenuButton(canvasWidth-180, 250, "-");
-      menu10 = new MenuButton(canvasWidth-30, 250, "+");
-      button10 = new Button(canvasWidth-180, 280, "New Random Network");
-      button11 = new Button(canvasWidth-180, 310, "Print Framerate");
-      button12 = new HalfButton(canvasWidth-180, 340, "Agents");
-      button30 = new HalfButton(canvasWidth-90, 340, "Sources");
-      button13 = new HalfButton(canvasWidth-90, 370, "Traces");
-      button14 = new HalfButton(canvasWidth-180, 370, "Edges");
-      button15 = new HalfButton(canvasWidth-180, 400, "Paths");
-      button31 = new HalfButton(canvasWidth-90, 400, "Swarm Info");
+      menu9 = new MenuButton(canvasWidth-180, 280, "-");
+      menu10 = new MenuButton(canvasWidth-30, 280, "+");
+      button10 = new Button(canvasWidth-180, 310, "New Random Network");
+      button11 = new Button(canvasWidth-180, 340, "Print Framerate");
+      button12 = new HalfButton(canvasWidth-180, 370, "Agents");
+      button30 = new HalfButton(canvasWidth-90, 370, "Sources");
+      button13 = new HalfButton(canvasWidth-90, 400, "Traces");
+      button14 = new HalfButton(canvasWidth-180, 400, "Edges");
+      button15 = new HalfButton(canvasWidth-180, 430, "Paths");
+      button31 = new HalfButton(canvasWidth-90, 430, "Swarm Info");
       
       if(show_menu == true){
       menu9.draw();
       fill(textColor);
-      text("Speed", canvasWidth - 120, 265);
+      text("Speed", canvasWidth - 120, 295);
       menu10.draw();
       button10.draw();
       button11.draw();
@@ -252,7 +252,7 @@ if(editObstacles == false){
 }
 
 if(editObstacles == true){
-  y = 220;
+  y = 490;
 }
 
 //enter/exit obstacle editor
