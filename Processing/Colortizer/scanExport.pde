@@ -178,6 +178,7 @@ void sendData() {
   }
 }
 
+// Implemented for SDL Rhino Interface (deprecated)
 void ImportData(String inputStr[]) {
 
   for (int i=0 ; i<inputStr.length;i++) {

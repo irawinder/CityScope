@@ -63,7 +63,7 @@ void parseCodeStrings(String data[]) {
 //      updateBoard();
 //    }
 
-    // Checks if row formatted for UMax and VMax
+    // If row has two elements identifying the gridIndex being used in Colortizer (usually reports 0)
     if (split.length == 2 && split[0].equals("gridIndex")) {
       siteOffsetU = siteOffsets.getInt(int(split[1]), 0);
       siteOffsetV = siteOffsets.getInt(int(split[1]), 1);

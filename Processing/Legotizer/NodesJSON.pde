@@ -48,7 +48,7 @@ void initializeNodesJSON() {
   }
   
   scoreNames = loadStrings(legotizer_data + demoPrefix + demos[vizMode] + "scoreNames.tsv");
-  println(scoreNames + "simulation layers loaded.");
+  println(scoreNames.length + " simulation layers loaded.");
 }
 
 void clearJSONArray(JSONArray json) {
