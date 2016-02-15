@@ -65,8 +65,15 @@ void parseCodeStrings(String data[]) {
 
     // If row has two elements identifying the gridIndex being used in Colortizer (usually reports 0)
     if (split.length == 2 && split[0].equals("gridIndex")) {
-      siteOffsetU = siteOffsets.getInt(int(split[1]), 0);
-      siteOffsetV = siteOffsets.getInt(int(split[1]), 1);
+      // When first running, Table siteOffsets not always loaded, creating a crash...
+      try {
+        siteOffsetU = siteOffsets.getInt(int(split[1]), 0);
+        siteOffsetV = siteOffsets.getInt(int(split[1]), 1);
+      } catch(RuntimeException e){
+        siteOffsetU = 0;
+        siteOffsetV = 0;
+      }
+      //println("Site Offset for Grid " + split[1] + ": " + siteOffsetU + ", " + siteOffsetV);
     }
     
     // Checks if row format is compatible with piece recognition.  3 columns for ID, U, V; 4 columns for ID, U, V, rotation
@@ -77,7 +84,7 @@ void parseCodeStrings(String data[]) {
       int v_temp = int(split[2]) + siteOffsetV;
       
       if (split.length == 3) { // If 3 columns
-        
+          
         // detects if different from previous value
         if ( v_temp < codeArray.length && u_temp < codeArray[0].length ) {
           if ( codeArray[v_temp][u_temp][0] != int(split[0]) ) {
@@ -121,8 +128,9 @@ void receive( byte[] data, String ip, int port ) {  // <-- extended handler
   //println(message);
   //saveStrings("data.txt", split(message, "\n"));
   String[] split = split(message, "\n");
-
+  
   if (!busyImporting) {
+    //println("import!");
     busyImporting = true;
     ImportData(split);
   }

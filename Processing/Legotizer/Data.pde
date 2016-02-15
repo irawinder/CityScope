@@ -196,6 +196,7 @@ void loadSite() {
   siteOffsets = loadTable(legotizer_data + demoPrefix + demos[vizMode] + "siteOffsets.tsv");
   siteOffsetU = siteOffsets.getInt(0, 0);
   siteOffsetV = siteOffsets.getInt(0, 1);
+  println("Base Site Offset = (" + siteOffsetU + ", " + siteOffsetV + ")");
   satellite_nosite = loadImage(legotizer_data + demoPrefix + demos[vizMode] + "satellite_nosite.png");
   satellite = loadImage(legotizer_data + demoPrefix + demos[vizMode] + "satellite.jpg");
   if (vizMode == 1) { //Riyadh Viz Mode larger satellite
