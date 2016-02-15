@@ -18,10 +18,10 @@ class HalfButton{
   }
   void draw(){
     smooth();
-    fill(textColor, 190);
+    fill(textColor, 180);
     noStroke();
     if(over()){
-    fill(textColor, 170);
+    fill(textColor, 160);
     }
     rect(x, y, 82, 25, 5);
     fill(background);

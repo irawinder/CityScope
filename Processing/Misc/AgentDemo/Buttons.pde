@@ -24,6 +24,7 @@ Button button28;
 Button button29;
 //Button button30;
 
+
 class Button{
   int x,y;
   String label;
@@ -34,11 +35,13 @@ class Button{
   }
   void draw(){
     smooth();
-    fill(textColor, 190);
+    fill(textColor, 180);
     noStroke();
     if(over()){
-    fill(textColor, 170);
+    fill(textColor, 160);
     }
+    //if(click){
+    //fill(#ff00ff);}
     rect(x, y, 170, 25, 5);
     fill(background);
     text(label, x + (85-textWidth(label)/2), y + 15); //text(str, x1, y1, x2, y2) text(label, x + 5, y + 15)

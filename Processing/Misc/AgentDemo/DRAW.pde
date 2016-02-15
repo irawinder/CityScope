@@ -8,6 +8,19 @@ boolean showInfo = false;
 boolean showTraces = false;
 boolean showVoronoi = true;
 
+boolean button3_down = false;
+boolean button4_down = false;
+boolean button7_down = false;
+boolean button11_down = false;
+boolean button12_down = false;
+boolean button13_down = false;
+boolean button14_down = false;
+boolean button15_down = false;
+boolean button30_down = false;
+boolean button31_down = false;
+
+
+
 // Makes darker colors more visible when projecting
 int masterAlpha = 15;
 float schemeScaler = 0.5;
@@ -39,6 +52,7 @@ void drawTableCanvas(PGraphics p) {
   
   // Begin Draw Functions
   p.beginDraw();
+ 
   
       // Instead of solid background draws a translucent overlay every frame.
       // Provides the effect of giving animated elements "tails"

@@ -175,6 +175,58 @@ void draw() {
   
 //global drawings here
 
+//lightboxes
+if(editObstacles == false){
+if(button3_down && show_menu == true){
+  fill(textColor, 180);
+  rect(canvasWidth - 180, 40, 170, 25, 5);
+}
+if(button4_down && show_menu == true){
+  fill(textColor, 180);
+  rect(canvasWidth - 180, 130, 170, 25, 5);
+}
+if(button7_down && show_menu == true){
+  fill(textColor, 200);
+  rect(canvasWidth - 180, 160, 170, 25, 5);
+}
+if(button11_down && show_menu == true){
+  fill(textColor, 180);
+  rect(canvasWidth - 180, 340, 170, 25, 5);
+}
+
+if(button12_down && show_menu == true){
+  fill(textColor, 200);
+  rect(canvasWidth - 180, 370, 82, 25, 5);
+}
+
+if(button13_down && show_menu == true){
+  fill(textColor, 180);
+  rect(canvasWidth - 90, 400, 82, 25, 5);
+}
+
+if(button14_down && show_menu == true){
+  fill(textColor, 180);
+  rect(canvasWidth - 180, 400, 82, 25, 5);
+}
+
+if(button15_down && show_menu == true){
+  fill(textColor, 180);
+  rect(canvasWidth - 180, 430, 82, 25, 5);
+}
+
+if(button30_down && show_menu == true){
+  fill(textColor, 170);
+  rect(canvasWidth - 90, 370, 82, 25, 5);
+}
+
+if(button31_down && show_menu == true){
+  fill(textColor, 180);
+  rect(canvasWidth - 90, 430, 82, 25, 5);
+}
+}
+
+
+
 if(initialized){
 //master button 
       menu = new MenuButton(canvasWidth - 100, 10, "Show Menu");
@@ -187,7 +239,7 @@ if(initialized){
       button4 = new Button(canvasWidth-180, 130, "Invert Colors");
       menu5 = new MenuButton(canvasWidth-180, 220, "-");
       menu6 = new MenuButton(canvasWidth-30, 220, "+");
-      button7 = new Button(canvasWidth-180, 160, "Enable/Disable PathFinding");
+      button7 = new Button(canvasWidth-180, 160, "PathFinding");
       button8 = new Button(canvasWidth-180, 190, "Next Data Mode");
       
       if(show_menu == false){
@@ -222,7 +274,7 @@ if(initialized){
       menu9 = new MenuButton(canvasWidth-180, 280, "-");
       menu10 = new MenuButton(canvasWidth-30, 280, "+");
       button10 = new Button(canvasWidth-180, 310, "New Random Network");
-      button11 = new Button(canvasWidth-180, 340, "Print Framerate");
+      button11 = new Button(canvasWidth-180, 340, "Framerate");
       button12 = new HalfButton(canvasWidth-180, 370, "Agents");
       button30 = new HalfButton(canvasWidth-90, 370, "Sources");
       button13 = new HalfButton(canvasWidth-90, 400, "Traces");
@@ -308,7 +360,7 @@ void renderTableCanvas() {
   
   // Renders the tableCanvas as either a projection map or on-screen 
   image(tableCanvas, 0, 0, tableCanvas.width, tableCanvas.height);
-}
+}  
 
 // Method that opens a folder
 String folderPath;

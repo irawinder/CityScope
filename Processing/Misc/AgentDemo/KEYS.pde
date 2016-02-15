@@ -286,6 +286,7 @@ void mouseClicked() {
   }
   
   if(button3.over()){ //toggles info display
+      button3_down = toggle(button3_down);
       showPathInfo = toggle(showPathInfo);
       pFinderGrid_Viz(tableCanvas);
     /*if(dataMode == 1){ 
@@ -300,9 +301,11 @@ void mouseClicked() {
   
   if(button31.over()){
     showInfo = toggle(showInfo);
+    button31_down = toggle(button31_down);
   }
   
   if(button4.over()){ //inverts colors
+    button4_down = toggle(button4_down);
     background = toggleBW(background);
       textColor = toggleBW(textColor);
       grayColor = int(abs(background - (255.0/2)*schemeScaler));
@@ -326,6 +329,7 @@ void mouseClicked() {
   }
   
   if(button7.over()){ //enable/disable pathfinding
+    button7_down = toggle(button7_down);
     enablePathfinding = toggle(enablePathfinding);
     refreshFinder(tableCanvas);
   }
@@ -350,26 +354,32 @@ void mouseClicked() {
   
   if(button11.over()){ //prints framerate 
      showFrameRate = toggle(showFrameRate);
+     button11_down = toggle(button11_down);
   }
   
   if(button12.over()){ //shows/hides agents
        showSwarm = toggle(showSwarm);
+       button12_down = toggle(button12_down);
   }
   
   if(button30.over()){ //show/hide sources
     showSource = toggle(showSource);
+    button30_down = toggle(button30_down);
   }
   
  if(button13.over()){ //show/hide traces
       showTraces = toggle(showTraces);
+      button13_down = toggle(button13_down);
     }
  
  if(button14.over()){ //show/hide edges
       showEdges = toggle(showEdges); 
+      button14_down = toggle(button14_down);
  }
       
  if(button15.over()){ //show/hide paths
       showPaths = toggle(showPaths);
+      button15_down = toggle(button15_down);
  }
  }
   
