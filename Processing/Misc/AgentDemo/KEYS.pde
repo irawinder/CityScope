@@ -1,9 +1,14 @@
 boolean keyLoaded = true;
 char initKey;
 boolean show_directions = false;
+boolean show_voronoi = false;
 
 void keyPressed() {
   switch (key) {
+    case 'v':
+      show_voronoi = toggle(show_voronoi);
+      println(show_voronoi);
+      break;
     case '0': //ReBoots App
       setLoader("Andorra Player | Version " + version);
       // runs key_0() next frame

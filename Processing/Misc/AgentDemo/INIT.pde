@@ -37,8 +37,6 @@ void initContent(PGraphics p) {
       showEdges = false;
       showSource = true;
       showPaths = true;
-      //displayVoronoi();
-      drawVoronoi();
       break;
   }
   
@@ -148,6 +146,8 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
   destination = new PVector[numSwarm];
   weight = new float[numSwarm];
   swarmHorde.clearHorde();
+  
+
   
   for (int i=0; i<numNodes; i++) {
     nodes[i] = new PVector(random(10, p.width-10), random(10, p.height-10));

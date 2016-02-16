@@ -1,7 +1,7 @@
 
-ThirdButton button34;
-ThirdButton button35;
-ThirdButton button36; 
+ThirdButton button34; //apply
+ThirdButton button35; //ok
+ThirdButton button36; //cancel
 
 class ThirdButton{
   int x,y;

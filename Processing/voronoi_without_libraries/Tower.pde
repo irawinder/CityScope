@@ -7,8 +7,8 @@ class Tower
   {
     x = random(width);
     y = random(height);
+    
     c = color(random(255), random(255), random(255));
   }
-   
 
 }

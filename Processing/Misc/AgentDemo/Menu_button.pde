@@ -24,15 +24,15 @@ class MenuButton{
   }
 }
 
-MenuButton menu;
-MenuButton menu2;
+MenuButton menu; //show menu
+MenuButton menu2; //hide menu
 
-MenuButton menu5;
-MenuButton menu6; 
+MenuButton menu5; //transparency up
+MenuButton menu6; //transparency down
 
-MenuButton menu9; 
-MenuButton menu10; 
+MenuButton menu9; //speed up 
+MenuButton menu10; //slow down
 
-MenuButton menu21;
-MenuButton menu22;
+MenuButton menu21; //speed up
+MenuButton menu22; //slow down
 

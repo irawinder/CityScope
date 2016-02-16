@@ -7,7 +7,8 @@ void setup()
   size(1100,700);
    
   smooth();
-  towers = new Tower[10];
+  
+  towers = new Tower[9];
   for(int i=0; i<towers.length; i++)
   {
     towers[i] = new Tower();

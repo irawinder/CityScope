@@ -35,6 +35,7 @@ PVector coord;
 PVector[] line = new PVector[2];
 
 void drawTableCanvas(PGraphics p) {
+  
   //Updates Agent Data to Display
   if (showSwarm) {
     swarmHorde.update();
@@ -174,7 +175,7 @@ void drawTestFinder(PGraphics p, Pathfinder f, ArrayList<PVector> path, ArrayLis
   
   //Draw Destination
   p.strokeWeight(2);
-  p.stroke(#0000FF);
+  p.stroke(#FF00FF);
   p.noFill();
   p.ellipse(B.x, B.y, f.getResolution(), f.getResolution());
   
@@ -224,7 +225,7 @@ void drawCredit(PGraphics p) {
 
 
 void loading(PGraphics p, String item) {
-  
+
   p.beginDraw();
   
   int w, h;

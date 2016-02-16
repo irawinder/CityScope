@@ -1,15 +1,11 @@
-Button button; 
-Button button2; 
+Button button; //refresh
+Button button2; //
 Button button3; 
 Button button4;
 Button button7;
 Button button8;
 Button button10;
 Button button11; 
-//Button button12; 
-//Button button13; 
-//Button button14; 
-//Button button15; 
 Button button16;
 Button button17; 
 Button button18; 
@@ -24,7 +20,6 @@ Button button28;
 Button button29;
 Button button32;
 Button button33;
-//Button button30;
 
 
 class Button{

@@ -1,12 +1,11 @@
 
-//HalfButton button11; 
-HalfButton button12;
-HalfButton button13; 
-HalfButton button14; 
-HalfButton button15; 
+HalfButton button12; //agents
+HalfButton button13; //traces
+HalfButton button14; //edges
+HalfButton button15; //paths
 
-HalfButton button30;
-HalfButton button31;
+HalfButton button30; //sources
+HalfButton button31; //swarminfo
 
 class HalfButton{
   int x,y;

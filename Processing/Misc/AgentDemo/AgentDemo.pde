@@ -1,17 +1,3 @@
-import toxi.processing.*;
-
-import toxi.math.conversion.*;
-import toxi.geom.*;
-import toxi.math.*;
-import toxi.geom.mesh2d.*;
-import toxi.util.datatypes.*;
-import toxi.util.events.*;
-import toxi.geom.mesh.subdiv.*;
-import toxi.geom.mesh.*;
-import toxi.math.waves.*;
-import toxi.util.*;
-import toxi.math.noise.*;
-
 // This is the staging script for the Pathfinding for agent-based modeling
 // Ira Winder, MIT Media Lab, jiw@mit.edu, Fall 2015
 
@@ -87,9 +73,7 @@ int drawDelay = 10;
 void setup() {
   size(canvasWidth, canvasHeight, P3D);
   initCanvas();
-   drawVoronoi();
-  //drawVoronoi();
-  
+
 //  //Call this method if data folder ever needs to be selected by a user
 //  selectFolder("Please select the a folder and click 'Open'", "folderSelected");
 }
@@ -174,8 +158,6 @@ void draw() {
   }
   
 
-//global drawings here
-
 //directions
 if(show_directions == true && dataMode != 2){
 fill(abs(textColor-25), 200);
@@ -186,7 +168,7 @@ fill(abs(textColor-25), 200);
   text("Click to add vertices. Use arrows to fine tune.", 20, 70);
 }
 
-//lightboxes version 2
+//lightboxes for button
 if(show_menu == true && editObstacles == false && dataMode != 2){
   if(showPaths){
   fill(textColor, 180);
@@ -235,65 +217,12 @@ if(show_menu == true && editObstacles == false && dataMode != 2){
   
 }
 
-//lightboxes version 1
-/*
-if(editObstacles == false){
-if(button3_down && show_menu == true){
-  fill(textColor, 180);
-  rect(canvasWidth - 180, 40, 170, 25, 5);
-}
-if(button4_down && show_menu == true){
-  fill(textColor, 180);
-  rect(canvasWidth - 180, 130, 170, 25, 5);
-}
-if(button7_down && show_menu == true){
-  fill(textColor, 200);
-  rect(canvasWidth - 180, 160, 170, 25, 5);
-}
-if(button11_down && show_menu == true){
-  fill(textColor, 180);
-  rect(canvasWidth - 180, 340, 170, 25, 5);
-}
-
-if(button12_down && show_menu == true){
-  fill(textColor, 200);
-  rect(canvasWidth - 180, 370, 82, 25, 5);
-}
-
-if(button13_down && show_menu == true){
-  fill(textColor, 180);
-  rect(canvasWidth - 90, 400, 82, 25, 5);
-}
-
-if(button14_down && show_menu == true){
-  fill(textColor, 180);
-  rect(canvasWidth - 180, 400, 82, 25, 5);
-}
-
-if(button15_down && show_menu == true){
-  fill(textColor, 180);
-  rect(canvasWidth - 180, 430, 82, 25, 5);
-}
-
-if(button30_down && show_menu == true){
-  fill(textColor, 170);
-  rect(canvasWidth - 90, 370, 82, 25, 5);
-}
-
-if(button31_down && show_menu == true){
-  fill(textColor, 180);
-  rect(canvasWidth - 90, 430, 82, 25, 5);
-}
-}
-*/
-
-
 
 if(initialized){
-//master button 
+//master button to toggle menu display
       menu = new MenuButton(canvasWidth - 100, 10, "Show Menu");
       menu2 = new MenuButton(canvasWidth - 180, 10, "Hide Menu");
-
+     
 //global buttons    
       button = new Button(canvasWidth - 180, 70, refresh);
       button2 = new Button(canvasWidth - 180, 100, "Next Network"); //random, grid, custom (MIT), gridded obstacles 
@@ -359,7 +288,8 @@ if(initialized){
       button31.draw();
       }
       }
-
+      
+//enter/exit obstacle editor button placement 
 int y = 0; 
 if(editObstacles == false){
   y = 490;
@@ -402,13 +332,6 @@ if(editObstacles == true){
       
       
       if(show_menu == true){
-//      button17.draw();
-//      button18.draw();
-//      button19.draw();
-//      button20.draw();
-//      button21.draw();
-//      button22.draw();
-//      button23.draw();
       button24.draw();
       button25.draw();
       button26.draw();
@@ -423,7 +346,7 @@ if(editObstacles == true){
       }
       }
 }
-      
+     
 
 }
 
