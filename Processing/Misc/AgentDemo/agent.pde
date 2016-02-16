@@ -5,6 +5,8 @@ boolean frameStep = true;
 float time_0 = 0;
 float speed = 0.666666;
 
+int num = 0;
+
 class Agent {
   
   PVector location;
@@ -395,6 +397,9 @@ class Swarm {
     p.ellipse(destination.x, destination.y, 30, 30);
   }
   
+  
+  
+  
   void displayEdges(PGraphics p) {
     
     // Draws weighted lines from origin to destinations
@@ -413,8 +418,7 @@ class Swarm {
       p.noStroke();
     }
     
-    
-      
+   
     if (origin != destination) {
       p.line(origin.x, origin.y, destination.x, destination.y);
     } else {
@@ -591,6 +595,9 @@ class Horde {
     p.textAlign(LEFT);
 
     p.text("Total Agents Rendered: " + agentCount, 20, 20);
+    if(showFrameRate == true){
+    p.text("Framerate:  " + frameRate, textWidth("Total Agents Rendered   : 5000" +  190), 20);
+    }
     //p.text("rateScaler: " + int(rateScaler), 20, 20 + 3*textSize);
   }
   

@@ -1,9 +1,14 @@
 // This is the staging script for the Pathfinding for agent-based modeling
 // Ira Winder, MIT Media Lab, jiw@mit.edu, Fall 2015
 
+
 int canvasWidth = 1000;
-int canvasHeight = 500;
-    
+int canvasHeight = 540;
+String refresh; 
+String editor;
+boolean show_menu = false;
+boolean bw = true;
+
 // Key Commands:
 //
 //   Data Navigation
@@ -67,9 +72,8 @@ int drawDelay = 10;
 
 void setup() {
   size(canvasWidth, canvasHeight, P3D);
-
   initCanvas();
-  
+
 //  //Call this method if data folder ever needs to be selected by a user
 //  selectFolder("Please select the a folder and click 'Open'", "folderSelected");
 }
@@ -88,10 +92,11 @@ void mainDraw() {
   
   // Renders the finished tableCanvas onto main canvas as a projection map or screen
   renderTableCanvas();
+  
+  
 }
 
 void draw() {
-  
   // If certain key commands are pressed, it causes a <0 delay which counts down in this section
   if (drawDelay > 0) {
     
@@ -121,9 +126,25 @@ void draw() {
       keyInit();
       keyLoaded = true;  
     }
-    
+//    
+//    
     mainDraw();
     
+    //strings for shared button placements
+      if(dataMode == 1){
+      refresh = "Refresh Visualization";
+        }
+      if(dataMode == 0) {
+      refresh = "New Origin Destination Pair";
+      }
+      
+      if(editObstacles == true){
+      editor = "Exit Editor";
+      }
+      if(editObstacles == false){
+      editor = "Enter Editor";
+    }
+     
     // Print Framerate of animation to console
     if (showFrameRate) {
       println(frameRate);
@@ -135,6 +156,198 @@ void draw() {
       save("videoFrames/" + millis() + ".png");
     }
   }
+  
+
+//directions
+if(show_directions == true && dataMode != 2){
+fill(abs(textColor-25), 200);
+  noStroke();
+  rect(10, 30, 0.4*width, 10*10+10-20, 12, 12, 12, 12);
+  fill(background);
+  text("Directions:", 20, 50);
+  text("Click to add vertices. Use arrows to fine tune.", 20, 70);
+}
+
+//lightboxes for button
+if(show_menu == true && editObstacles == false && dataMode != 2){
+  if(showPaths){
+  fill(textColor, 180);
+  rect(canvasWidth - 180, 430, 82, 25, 5);
+  }
+  
+  if(showSwarm && dataMode == 1){
+  fill(textColor, 200);
+  rect(canvasWidth - 180, 370, 82, 25, 5);}
+  
+  if(showTraces){
+    fill(textColor, 180);
+  rect(canvasWidth - 90, 400, 82, 25, 5);
+  }
+  
+  if(showEdges){
+   fill(textColor, 180);
+  rect(canvasWidth - 180, 400, 82, 25, 5);
+}
+  
+  if(showSource){
+    fill(textColor, 170);
+  rect(canvasWidth - 90, 370, 82, 25, 5);
+}
+  if(showPathInfo){
+    fill(textColor, 180);
+  rect(canvasWidth - 180, 40, 170, 25, 5);
+}
+  if(showInfo && dataMode == 1){
+    fill(textColor, 180);
+  rect(canvasWidth - 90, 430, 82, 25, 5);}
+  
+  if(button4_down){
+  fill(textColor, 180);
+  rect(canvasWidth - 180, 130, 170, 25, 5);
+}
+
+  if(showFrameRate && dataMode == 1){
+     fill(textColor, 180);
+  rect(canvasWidth - 180, 340, 170, 25, 5);
+  }
+
+  if(enablePathfinding){
+  fill(textColor, 200);
+  rect(canvasWidth - 180, 160, 170, 25, 5);}
+  
+}
+
+
+if(initialized){
+//master button to toggle menu display
+      menu = new MenuButton(canvasWidth - 100, 10, "Show Menu");
+      menu2 = new MenuButton(canvasWidth - 180, 10, "Hide Menu");
+     
+//global buttons    
+      button = new Button(canvasWidth - 180, 70, refresh);
+      button2 = new Button(canvasWidth - 180, 100, "Next Network"); //random, grid, custom (MIT), gridded obstacles 
+      button3 = new Button(canvasWidth-180, 40, "Overview");
+      button4 = new Button(canvasWidth-180, 130, "Invert Colors");
+      menu5 = new MenuButton(canvasWidth-180, 220, "-");
+      menu6 = new MenuButton(canvasWidth-30, 220, "+");
+      button7 = new Button(canvasWidth-180, 160, "Path Finding");
+      button8 = new Button(canvasWidth-180, 190, "Next Data Mode");
+      
+      if(show_menu == false){
+      menu.draw();
+    }
+      
+      if(show_menu == true && editObstacles == false && (finderMode == 0 || finderMode == 1 || finderMode == 2 | finderMode == 3)){
+         fill(0, 70);
+        rect(canvasWidth - 200, 0, 200, canvasHeight);
+      menu2.draw();
+      button.draw();
+      button2.draw();
+      button3.draw();
+      button4.draw();
+      fill(textColor);
+      text("Transparency", canvasWidth -137, 237);
+      menu5.draw();
+      menu6.draw();
+      button7.draw();
+      button8.draw();
+      }
+      
+      if(show_menu == true && editObstacles == true){
+      fill(background, 50);
+        rect(canvasWidth - 200, 0, 200, canvasHeight);
+        menu2.draw();
+      }
+      
+      
+//buttons for not in obstacle editor
+      if(editObstacles == false && dataMode == 1){
+      menu9 = new MenuButton(canvasWidth-180, 280, "-");
+      menu10 = new MenuButton(canvasWidth-30, 280, "+");
+      button10 = new Button(canvasWidth-180, 310, "New Random Network");
+      button11 = new Button(canvasWidth-180, 340, "Framerate");
+      button12 = new HalfButton(canvasWidth-180, 370, "Agents");
+      button30 = new HalfButton(canvasWidth-90, 370, "Sources");
+      button13 = new HalfButton(canvasWidth-90, 400, "Traces");
+      button14 = new HalfButton(canvasWidth-180, 400, "Edges");
+      button15 = new HalfButton(canvasWidth-180, 430, "Paths");
+      button31 = new HalfButton(canvasWidth-90, 430, "Swarm Info");
+      
+      if(show_menu == true){
+      menu9.draw();
+      fill(textColor);
+      text("Speed", canvasWidth - 120, 295);
+      menu10.draw();
+      button10.draw();
+      button11.draw();
+      button12.draw();
+      button13.draw();
+      button14.draw();
+      button15.draw();
+      button30.draw();
+      button31.draw();
+      }
+      }
+      
+//enter/exit obstacle editor button placement 
+int y = 0; 
+if(editObstacles == false){
+  y = 490;
+}
+
+if(editObstacles == true){
+  y = 490;
+}
+
+//enter/exit obstacle editor
+      if(dataMode == 1){
+        button16 = new Button(canvasWidth-180, y, editor);
+        if(show_menu == true){
+        button16.draw();
+        }
+      }
+
+//buttons for obstacle editor       
+      if(editObstacles == true && dataMode == 1){
+      button17 = new Button(canvasWidth+10, 250, "Sources");
+      button18 = new Button(canvasWidth+60, 250, "Agents");
+      button19 = new Button(canvasWidth+10, 280, "Traces");
+      button20 = new Button(canvasWidth+70, 280, "Edges");
+      menu21 = new MenuButton(canvasWidth+10, 220, "+");
+      fill(255);
+      //text("Speed", canvasWidth + 40, 235);
+      menu22 = new MenuButton(canvasWidth+90, 220, "-");
+      button23 = new Button(canvasWidth+10, 310, "Print Framerate to Console");
+      button32 = new Button(canvasWidth-180, 40, "Directions");
+      button24 = new Button(canvasWidth-180, 250, "Save Layout");
+      button25 = new Button(canvasWidth-180, 70, "Load Saved Layout");
+      button26 = new Button(canvasWidth-180, 100, "Add Obstacle");
+      button33 = new Button(canvasWidth-180, 130, "Next Obstacle");
+      button27 = new Button(canvasWidth-180, 160, "Remove Obstacle");
+      button28 = new Button(canvasWidth-180, 190, "Jump Vertex");
+      button29 = new Button(canvasWidth-180, 220, "Remove Vertex");
+      button34 = new ThirdButton(canvasWidth-180, 310, "Apply");
+      button35 = new ThirdButton(canvasWidth-120, 310, "OK");
+      button36 = new ThirdButton(canvasWidth-60, 310, "Cancel");
+      
+      
+      if(show_menu == true){
+      button24.draw();
+      button25.draw();
+      button26.draw();
+      button27.draw();
+      button28.draw();
+      button29.draw();
+      button32.draw();
+      button33.draw();
+      button34.draw();
+      button35.draw();
+      button36.draw();
+      }
+      }
+}
+     
+
 }
 
 void renderTableCanvas() {
@@ -143,7 +356,7 @@ void renderTableCanvas() {
   
   // Renders the tableCanvas as either a projection map or on-screen 
   image(tableCanvas, 0, 0, tableCanvas.width, tableCanvas.height);
-}
+}  
 
 // Method that opens a folder
 String folderPath;
