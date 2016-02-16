@@ -1,5 +1,7 @@
 Tower[] towers;
- 
+
+PVector coord;
+
 void setup()
 {
   size(1100,700);
@@ -14,9 +16,11 @@ void setup()
  
 void draw()
 {
+  println(frameRate);
+ 
   drawRegions();
-  stroke(0);
   drawTowers();
+  drawData();
 }
  
 void drawRegions()
@@ -52,23 +56,17 @@ void drawTowers()
   {
     Tower t = towers[i];
     fill(255, 100); 
-    ellipse(t.x, t.y, 6, 6);
+    ellipse(t.x, t.y, 15, 15);
   }
 }
  
- 
-class Tower
+void drawData()
 {
-  float x, y;
-  color c;
-   
-  Tower()
-  {
-    x = random(width);
-    y = random(height);
-    c = color(random(255), random(255), random(255));
-  }
-   
-
+Table hotels = loadTable("data/hotels.csv", "header");
+    for (int j=0;j<hotels.getRowCount();j++) {
+    coord = (new PVector(hotels.getFloat(j, "x"), hotels.getFloat(j, "y")));
+    ellipse(coord.x, coord.y, 7, 7);
+    }
 }
+
 

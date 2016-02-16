@@ -12,6 +12,7 @@ TO DO
 -Implement in Agent Demo 
 */
 
+
 Table towers;
 ;
 int width = 1200;
@@ -22,6 +23,7 @@ void setup() {
  Table towers = loadTable("data/towers.csv", "header");
  size(width, height);
  setupVoronoi(); 
+ println(frameRate);
  int num = towers.getRowCount(); //number of total points
  background(255);
 //gets points for voronoi  
