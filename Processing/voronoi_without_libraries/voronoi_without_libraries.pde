@@ -21,7 +21,7 @@ void draw()
   drawRegions();
   drawTowers();
   drawData();
-  drawTowers2();
+  //drawTowers2();
 }
  
 void drawRegions()
