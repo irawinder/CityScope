@@ -1,11 +1,11 @@
 Tower[] towers;
 
 PVector coord;
+PVector location;
 
 void setup()
 {
   size(1100,700);
-   
   smooth();
   
   towers = new Tower[9];
@@ -18,10 +18,10 @@ void setup()
 void draw()
 {
   println(frameRate);
- 
   drawRegions();
   drawTowers();
   drawData();
+  drawTowers2();
 }
  
 void drawRegions()
@@ -59,6 +59,16 @@ void drawTowers()
     fill(255, 100); 
     ellipse(t.x, t.y, 15, 15);
   }
+}
+
+void drawTowers2()
+{
+  Table bigs = loadTable("data/bigs.csv", "header");
+    for (int j=0;j<bigs.getRowCount();j++) {
+    location = (new PVector(bigs.getFloat(j, "x"), bigs.getFloat(j, "y")));
+    fill(0);
+    ellipse(location.x, location.y, 7, 7);
+    }
 }
  
 void drawData()
