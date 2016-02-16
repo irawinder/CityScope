@@ -173,9 +173,70 @@ void draw() {
     }
   }
   
+
 //global drawings here
 
-//lightboxes
+//directions
+if(show_directions == true){
+fill(abs(textColor-25), 200);
+  noStroke();
+  rect(10, 30, 0.4*width, 10*10+10-20, 12, 12, 12, 12);
+  fill(background);
+  text("Directions:", 20, 50);
+  text("Click to add vertices. Use arrows to fine tune.", 20, 70);
+}
+
+//lightboxes version 2
+if(show_menu == true && editObstacles == false){
+  if(showPaths){
+  fill(textColor, 180);
+  rect(canvasWidth - 180, 430, 82, 25, 5);
+  }
+  
+  if(showSwarm){
+  fill(textColor, 200);
+  rect(canvasWidth - 180, 370, 82, 25, 5);}
+  
+  if(showTraces){
+    fill(textColor, 180);
+  rect(canvasWidth - 90, 400, 82, 25, 5);
+  }
+  
+  if(showEdges){
+   fill(textColor, 180);
+  rect(canvasWidth - 180, 400, 82, 25, 5);
+}
+  
+  if(showSource){
+    fill(textColor, 170);
+  rect(canvasWidth - 90, 370, 82, 25, 5);
+}
+  if(showPathInfo){
+    fill(textColor, 180);
+  rect(canvasWidth - 180, 40, 170, 25, 5);
+}
+  if(showInfo){
+    fill(textColor, 180);
+  rect(canvasWidth - 90, 430, 82, 25, 5);}
+  
+  if(button4_down){
+  fill(textColor, 180);
+  rect(canvasWidth - 180, 130, 170, 25, 5);
+}
+
+  if(showFrameRate){
+     fill(textColor, 180);
+  rect(canvasWidth - 180, 340, 170, 25, 5);
+  }
+
+  if(enablePathfinding){
+  fill(textColor, 200);
+  rect(canvasWidth - 180, 160, 170, 25, 5);}
+  
+}
+
+//lightboxes version 1
+/*
 if(editObstacles == false){
 if(button3_down && show_menu == true){
   fill(textColor, 180);
@@ -224,6 +285,7 @@ if(button31_down && show_menu == true){
   rect(canvasWidth - 90, 430, 82, 25, 5);
 }
 }
+*/
 
 
 
@@ -239,7 +301,7 @@ if(initialized){
       button4 = new Button(canvasWidth-180, 130, "Invert Colors");
       menu5 = new MenuButton(canvasWidth-180, 220, "-");
       menu6 = new MenuButton(canvasWidth-30, 220, "+");
-      button7 = new Button(canvasWidth-180, 160, "PathFinding");
+      button7 = new Button(canvasWidth-180, 160, "Path Finding");
       button8 = new Button(canvasWidth-180, 190, "Next Data Mode");
       
       if(show_menu == false){
@@ -326,12 +388,18 @@ if(editObstacles == true){
       //text("Speed", canvasWidth + 40, 235);
       menu22 = new MenuButton(canvasWidth+90, 220, "-");
       button23 = new Button(canvasWidth+10, 310, "Print Framerate to Console");
-      button24 = new Button(canvasWidth-180, 40, "Save Layout");
+      button32 = new Button(canvasWidth-180, 40, "Directions");
+      button24 = new Button(canvasWidth-180, 250, "Save Layout");
       button25 = new Button(canvasWidth-180, 70, "Load Saved Layout");
       button26 = new Button(canvasWidth-180, 100, "Add Obstacle");
-      button27 = new Button(canvasWidth-180, 130, "Remove");
-      button28 = new Button(canvasWidth-180, 160, "Jump");
-      button29 = new Button(canvasWidth-180, 190, "Remove Vertex");
+      button33 = new Button(canvasWidth-180, 130, "Next Obstacle");
+      button27 = new Button(canvasWidth-180, 160, "Remove Obstacle");
+      button28 = new Button(canvasWidth-180, 190, "Jump Vertex");
+      button29 = new Button(canvasWidth-180, 220, "Remove Vertex");
+      button34 = new ThirdButton(canvasWidth-180, 310, "Apply");
+      button35 = new ThirdButton(canvasWidth-120, 310, "OK");
+      button36 = new ThirdButton(canvasWidth-60, 310, "Cancel");
+      
       
       if(show_menu == true){
 //      button17.draw();
@@ -347,11 +415,16 @@ if(editObstacles == true){
       button27.draw();
       button28.draw();
       button29.draw();
+      button32.draw();
+      button33.draw();
+      button34.draw();
+      button35.draw();
+      button36.draw();
       }
       }
 }
       
-  
+
 }
 
 void renderTableCanvas() {

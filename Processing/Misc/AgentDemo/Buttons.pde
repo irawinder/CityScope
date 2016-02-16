@@ -22,6 +22,8 @@ Button button26;
 Button button27;
 Button button28;
 Button button29;
+Button button32;
+Button button33;
 //Button button30;
 
 

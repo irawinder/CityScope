@@ -1,5 +1,6 @@
 boolean keyLoaded = true;
 char initKey;
+boolean show_directions = false;
 
 void keyPressed() {
   switch (key) {
@@ -230,7 +231,9 @@ void mouseReleased() {
 }
 
 void mouseClicked() {
-  if (editObstacles && (button24.over() == false)&&(button25.over() == false)&&(button26.over() == false)&&(button27.over() == false)&&(button28.over() == false)&&(button29.over() == false) && (button16.over() == false)) {
+  if (editObstacles && (button24.over() == false)&&(button25.over() == false)&&(button26.over() == false)&&
+  (button27.over() == false) && (button28.over() == false) && (button29.over() == false) && (button16.over() == false) && (button32.over() == false) && (button33.over() == false)
+  && (button34.over() == false) && (button35.over() == false) && (button36.over() == false) ) {
     boundaries.addVertex(new PVector(mouseX, mouseY));
   }
   
@@ -251,13 +254,8 @@ void mouseClicked() {
      k = "E";
    setLoader("Obstacles Editor", k.charAt(0));
  }
-   
-    /*if(button10.over()){
-    setLoader("New Pathfinder Network");
-    key_n();
-    }
-    */
- 
+  
+
   if(editObstacles == false){
   if(button.over()){ //refreshes visualization in both data modes 
     if(dataMode == 1){
@@ -303,6 +301,7 @@ void mouseClicked() {
     showInfo = toggle(showInfo);
     button31_down = toggle(button31_down);
   }
+  
   
   if(button4.over()){ //inverts colors
     button4_down = toggle(button4_down);
@@ -386,6 +385,29 @@ void mouseClicked() {
  }
  
  if(editObstacles == true){
+   
+   if(button34.over()){
+   boundaries.addObstacle();
+   }
+   
+   if(button35.over()){
+    boundaries.saveCourse("data/course.tsv");
+    editObstacles = toggle(editObstacles);
+   }
+   
+     if(button36.over()){
+   boundaries.loadCourse("data/course.tsv");
+   editObstacles = toggle(editObstacles);
+   }
+   
+   if(button33.over()){
+    if (editObstacles) {
+        boundaries.nextIndex();
+      }
+   }
+     if(button32.over()){
+    show_directions = toggle(show_directions);
+  }
    if(button17.over()){//sources
      showSource = toggle(showSource);
    }

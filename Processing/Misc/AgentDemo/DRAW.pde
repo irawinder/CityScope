@@ -206,10 +206,7 @@ void drawTestFinder(PGraphics p, Pathfinder f, ArrayList<PVector> path, ArrayLis
     p.text("A green line represents the shortest path.", 20, 60);
     p.text("Nodes are highlighted when visited by the pathfinding algorithm.", 20, 80);
     }
-    if(dataMode == 1){
-    p.text("Explanation:", 20, 20);
-    p.text("Agent based modeling.", 20, 40);
-    }
+    
     
     p.popMatrix();
   }
