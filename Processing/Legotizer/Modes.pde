@@ -66,13 +66,13 @@ void riyadhMode() {
   structureMode = 1;
   useCloud.wipeNodes();
   setRiyadhPieces();
-  displaySatellite = true;
+  displaySatellite = false;
   satMode = 1;
-  drawPlanSat = true;
-  drawPlanStatic = false;
+  drawPlanSat = false;
+  drawPlanStatic = true;
   displayScoreWeb = true;
   overrideStatic = true;
-  displayStatic = false;
+  displayStatic = true;
   displayDynamic = true;
   dimensionOverRide = true;
   
