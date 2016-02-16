@@ -322,7 +322,7 @@ void drawPlan4x4Nodes(int i, int j, int k, int n, int isSite) {
   
 //  if  (siteInfo.getInt(i,j) == 1 || overrideStatic) { //is site
     
-    if (!drawNodes) {
+    if (!drawNodes) { // No longer common... Mos
     
       if (colorMode == 0 || colorMode == 1) { //renders dynamic pieces
             
@@ -359,7 +359,7 @@ void drawPlan4x4Nodes(int i, int j, int k, int n, int isSite) {
         
       lRect(0, 0, boxW, boxW);
       
-    } else {
+    } else { // Draws for "NodeMode" (Most Common)
       
       //if (siteInfo.getInt(i,j) == 1 || (codeArray[i][j][0] >= 0 && codeArray[i][j][0] < NPieces)) { //has peice
         
@@ -383,9 +383,8 @@ void drawPlan4x4Nodes(int i, int j, int k, int n, int isSite) {
                   plan.fill(255*(1-solutionCloud[i*4+u][j*4+v][k]), 255*solutionCloud[i*4+u][j*4+v][k], 0);
                 }
               }
-              
-              
-              if (useCloud.nodes[i*4+u][j*4+v][k] > 0 && ( ( isSite == 0 && displayStatic ) || ( isSite == 1 ) ) ) {
+
+              if (useCloud.nodes[i*4+u][j*4+v][k] > 0 && ( ( isSite == 0 && displayStatic ) || ( isSite == 1 ) || ( overrideStatic )) ) {
                 lRect(v*LU_W+dU, u*LU_W+dV, LU_W, LU_W);
               } 
 //              else if (useCloud.nodes[i*4+u][j*4+v][k] > 0 && ((!displayDynamic && displayStatic) && isSite == 1) ){
