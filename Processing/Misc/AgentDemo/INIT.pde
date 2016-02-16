@@ -29,6 +29,7 @@ void initContent(PGraphics p) {
       showSource = false;
       showPaths = false;
       showTraces = false;
+      showInfo = false;
       break;
     case 1: // Random Demo
       showGrid = true;

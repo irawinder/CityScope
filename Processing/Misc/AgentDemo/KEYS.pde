@@ -302,7 +302,6 @@ void mouseClicked() {
     button31_down = toggle(button31_down);
   }
   
-  
   if(button4.over()){ //inverts colors
     button4_down = toggle(button4_down);
     background = toggleBW(background);

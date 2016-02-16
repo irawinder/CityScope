@@ -177,7 +177,7 @@ void draw() {
 //global drawings here
 
 //directions
-if(show_directions == true){
+if(show_directions == true && dataMode != 2){
 fill(abs(textColor-25), 200);
   noStroke();
   rect(10, 30, 0.4*width, 10*10+10-20, 12, 12, 12, 12);
@@ -187,13 +187,13 @@ fill(abs(textColor-25), 200);
 }
 
 //lightboxes version 2
-if(show_menu == true && editObstacles == false){
+if(show_menu == true && editObstacles == false && dataMode != 2){
   if(showPaths){
   fill(textColor, 180);
   rect(canvasWidth - 180, 430, 82, 25, 5);
   }
   
-  if(showSwarm){
+  if(showSwarm && dataMode == 1){
   fill(textColor, 200);
   rect(canvasWidth - 180, 370, 82, 25, 5);}
   
@@ -215,7 +215,7 @@ if(show_menu == true && editObstacles == false){
     fill(textColor, 180);
   rect(canvasWidth - 180, 40, 170, 25, 5);
 }
-  if(showInfo){
+  if(showInfo && dataMode == 1){
     fill(textColor, 180);
   rect(canvasWidth - 90, 430, 82, 25, 5);}
   
@@ -224,7 +224,7 @@ if(show_menu == true && editObstacles == false){
   rect(canvasWidth - 180, 130, 170, 25, 5);
 }
 
-  if(showFrameRate){
+  if(showFrameRate && dataMode == 1){
      fill(textColor, 180);
   rect(canvasWidth - 180, 340, 170, 25, 5);
   }
@@ -308,7 +308,7 @@ if(initialized){
       menu.draw();
     }
       
-      if(show_menu == true && editObstacles == false && (finderMode == 0 | finderMode == 1 || finderMode == 2 | finderMode == 3)){
+      if(show_menu == true && editObstacles == false && (finderMode == 0 || finderMode == 1 || finderMode == 2 | finderMode == 3)){
          fill(0, 70);
         rect(canvasWidth - 200, 0, 200, canvasHeight);
       menu2.draw();
