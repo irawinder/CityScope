@@ -1,7 +1,7 @@
 // Camera Settings //
 
 int camMode = 0; //0 is normal cam, 1 is openGL cam
-int camRotation = 4; // 0,1,2,3,4,5,6, or 7 that describes ortho rotation
+int camRotation = 0; // 0,1,2,3,4,5,6, or 7 that describes ortho rotation
 
 void initCam() {
   initializeNormalCam();
