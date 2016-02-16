@@ -51,6 +51,12 @@ void drawRegions()
   updatePixels(); // must call after using pixels[]
 }
  
+ //dealing with not testing pixels
+ //polygons instead of regions
+ //piggyback off Obstacle code 
+   //Obstacle --> polygon/regions 
+ //no running every frame 
+ 
 void drawTowers()
 {
   for(int i=0; i<towers.length; i++)
