@@ -396,7 +396,7 @@ void drawPlan4x4Nodes(int i, int j, int k, int n, int isSite, int code) {
               lRect(v*LU_W+dU, u*LU_W+dV, LU_W, LU_W);
               
               // Draws a translucent overlay that has the effect of making a dynamic piece "pulse"
-              if (code != -1 && k > 0) {
+              if (code != -1) {
                 plan.fill(#000000, 255.0*pulseAlpha);
                 lRect(v*LU_W+dU, u*LU_W+dV, LU_W, LU_W);
               } else {
