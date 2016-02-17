@@ -370,7 +370,7 @@ void drawPlan4x4Nodes(int i, int j, int k, int n, int isSite) {
           for (int v=0; v<4; v++) {
             
             if ( ( useCloud.nodes[i*4+u][j*4+v][k] != -1 ) || ( k == 0 ) ) {
-            if ( !drawPlanSat || (drawPlanSat && ( isSite == 1 || (isSite == 0 && k>0) ) ) ) {
+            if ( !drawPlanSat || (drawPlanSat && ( isSite == 1 || (isSite != 1 && k>0) ) ) ) {
               
               if (nodeMode == 0) {
                 findPlanFill(i, j, useCloud.nodes[i*4+u][j*4+v][k]);
