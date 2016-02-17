@@ -38,7 +38,11 @@ public class Nodes {
     for (int i=0; i<nodes.length; i++) {
       for (int j=0; j<nodes[0].length; j++) {
         for (int k=0; k<nodes[0][0].length; k++) {
-          nodes[i][j][k] = -1;
+          if (k == 0) {
+            nodes[i][j][k] = 0;
+          } else {
+            nodes[i][j][k] = -1;
+          }
         }
       }
     }
@@ -171,29 +175,17 @@ void initializeNodes() {
 
 void updateAllNodes() {
   
-  int LU;
-
-  for (int u=0; u<UMax; u++) {
-    for (int v=0; v<VMax; v++) {
-      
-      if (structureMode == 0) { //1x1 pieces
-        if (codeArray[u][v][0] >= 0 && codeArray[u][v][0] < NPieces && (siteInfo.getInt(u,v) == 1 || overrideStatic) && displayDynamic) { //is site
-          useCloud.updateNodes(u,v, structures1x1.getRow(codeArray[u][v][0]));
-        } else {
-          useCloud.deleteNodes(u,v,1);
-        }
-      } else if (structureMode == 1) { //4x4 pieces
-        if (codeArray[u][v][0] >= 0 && codeArray[u][v][0] < NPieces && (siteInfo.getInt(u,v) == 1 || overrideStatic) && displayDynamic) { //is site
-          useCloud.updateNodes(u,v,4, structures4x4.get(codeArray[u][v][0]), codeArray[u][v][1]);
-        } else {
-          useCloud.deleteNodes(u,v,4);
-        }
-      }
-
-    }
+  useCloud.wipeNodes();
+  
+  if (displayDynamic) {
+    setDynamicNodes();
   }
   
-  setContextNodes();
+  if (displayStatic) {
+    setContextNodes();
+  }
+  
+
 }
 
 void setContextNodes() {
@@ -208,8 +200,29 @@ void setContextNodes() {
     z = voxel.getInt("z");
     use = voxel.getInt("use");
     if (U < UMax && V < VMax && use != 0) { // If within grid bounds
-      if (!displayDynamic  || siteInfo.getInt(U, V) == 0) { // If not a dydnamic site area
+      if (siteInfo.getInt(U, V) != 1 || overrideStatic) { // If not a dydnamic site area
         useCloud.setNode(voxel);
+      }
+    }
+  }
+}
+
+void setDynamicNodes() {
+  for (int u=0; u<UMax; u++) {
+    for (int v=0; v<VMax; v++) {
+      
+      if (structureMode == 0) { //1x1 pieces
+        if (codeArray[u][v][0] >= 0 && codeArray[u][v][0] < NPieces && (siteInfo.getInt(u,v) == 1 || overrideStatic) ) { //is site
+          useCloud.updateNodes(u,v, structures1x1.getRow(codeArray[u][v][0]));
+        } else {
+          useCloud.deleteNodes(u,v,1);
+        }
+      } else if (structureMode == 1) { //4x4 pieces
+        if (codeArray[u][v][0] >= 0 && codeArray[u][v][0] < NPieces && (siteInfo.getInt(u,v) == 1 || overrideStatic) ) { //is site
+          useCloud.updateNodes(u,v,4, structures4x4.get(codeArray[u][v][0]), codeArray[u][v][1]);
+        } else {
+          useCloud.deleteNodes(u,v,4);
+        }
       }
     }
   }

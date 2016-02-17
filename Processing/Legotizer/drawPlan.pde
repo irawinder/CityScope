@@ -322,7 +322,7 @@ void drawPlan4x4Nodes(int i, int j, int k, int n, int isSite) {
   
 //  if  (siteInfo.getInt(i,j) == 1 || overrideStatic) { //is site
     
-    if (!drawNodes) { // No longer common... Mos
+    if (!drawNodes) { // No longer common... 
     
       if (colorMode == 0 || colorMode == 1) { //renders dynamic pieces
             
@@ -360,16 +360,16 @@ void drawPlan4x4Nodes(int i, int j, int k, int n, int isSite) {
       lRect(0, 0, boxW, boxW);
       
     } else { // Draws for "NodeMode" (Most Common)
-      
-      //if (siteInfo.getInt(i,j) == 1 || (codeArray[i][j][0] >= 0 && codeArray[i][j][0] < NPieces)) { //has peice
         
+        // calculates offsets for faux 3D projection mapping
         float dU = 1.5*(k*LU_H) * (j - projU[n]) / projH[n];
         float dV = 1.5*(k*LU_H) * (i - projV[n]) / projH[n];
         
         for (int u=0; u<4; u++) {
           for (int v=0; v<4; v++) {
             
-            if (useCloud.nodes[i*4+u][j*4+v][k] != -1) {
+            if ( ( useCloud.nodes[i*4+u][j*4+v][k] != -1 ) || ( k == 0) ) {
+              
               if (nodeMode == 0) {
                 findPlanFill(i, j, useCloud.nodes[i*4+u][j*4+v][k]);
               } else if (nodeMode == 1) {
@@ -384,14 +384,7 @@ void drawPlan4x4Nodes(int i, int j, int k, int n, int isSite) {
                 }
               }
 
-              if (useCloud.nodes[i*4+u][j*4+v][k] > 0 && ( ( isSite == 0 && displayStatic ) || ( isSite == 1 ) || ( overrideStatic )) ) {
-                lRect(v*LU_W+dU, u*LU_W+dV, LU_W, LU_W);
-              } 
-//              else if (useCloud.nodes[i*4+u][j*4+v][k] > 0 && ((!displayDynamic && displayStatic) && isSite == 1) ){
-//                lRect(v*LU_W+dU, u*LU_W+dV, LU_W, LU_W);
-//              } else if (isSite == 1 && displayDynamic) {
-//                lRect(v*LU_W+dU, u*LU_W+dV, LU_W, LU_W);
-//              }
+              lRect(v*LU_W+dU, u*LU_W+dV, LU_W, LU_W);
             }
           
           } // end for v

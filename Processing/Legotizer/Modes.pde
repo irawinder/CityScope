@@ -74,7 +74,6 @@ void riyadhMode() {
   overrideStatic = true;
   displayStatic = true;
   displayDynamic = true;
-  dimensionOverRide = true;
   
   pieceW_LU = 4;
   pieceH_LU = 1; 
@@ -116,7 +115,6 @@ void barcelonaMode() {
   overrideStatic = true;
   displayStatic = false;
   displayDynamic = true;
-  dimensionOverRide = true;
   
   pieceW_LU = 4;
   pieceH_LU = 3; 
@@ -158,7 +156,6 @@ void hamburgMode() {
   overrideStatic = false;
   displayStatic = true;
   displayDynamic = true;
-  dimensionOverRide = false;
   
   pieceW_LU = 4;
   pieceH_LU = 3; 
@@ -200,7 +197,6 @@ void tongzhouMode() {
   overrideStatic = false;
   displayStatic = true;
   displayDynamic = true;
-  dimensionOverRide = false;
   
   pieceW_LU = 4;
   pieceH_LU = 1; 
@@ -242,7 +238,6 @@ void tongzhouMode_sm() {
   overrideStatic = false;
   displayStatic = true;
   displayDynamic = true;
-  dimensionOverRide = false;
   
   pieceW_LU = 4;
   pieceH_LU = 1; 
@@ -273,8 +268,8 @@ void kendallMode() {
   VMax = 44;
   updateBoard();
   
-  structureMode = 0;
-  setKendallPieces();
+  structureMode = 1;
+  setBarcelonaPieces();
   displaySatellite = true;
   satMode = 3;
   drawPlanSat = false;
@@ -283,7 +278,6 @@ void kendallMode() {
   overrideStatic = false;
   displayStatic = true;
   displayDynamic = true;
-  dimensionOverRide = false;
   
   pieceW_LU = 4;
   pieceH_LU = 3;
@@ -324,7 +318,6 @@ void flindersMode() {
   overrideStatic = false;
   displayStatic = true;
   displayDynamic = true;
-  dimensionOverRide = true;
   
   pieceW_LU = 1;
   pieceH_LU = 1;
