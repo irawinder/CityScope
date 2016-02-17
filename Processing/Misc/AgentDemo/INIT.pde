@@ -1,9 +1,13 @@
 // Graphics object in memory that holds visualization
 PGraphics tableCanvas;
 
+<<<<<<< HEAD
 PImage demoMap;
 
 int dataMode = 0;
+=======
+int dataMode = 1;
+>>>>>>> master
 // dataMode = 1 for random network
 // dataMode = 0 for empty network and Pathfinder Test OD
 
@@ -18,6 +22,7 @@ void initCanvas() {
   setScheme();
   
   println("Canvas and Projection Mapping complete.");
+
 }
 
 void initContent(PGraphics p) {
@@ -29,6 +34,8 @@ void initContent(PGraphics p) {
       showEdges = false;
       showSource = false;
       showPaths = false;
+      showTraces = false;
+      showInfo = false;
       break;
     case 1: // Random Demo
       showGrid = true;
@@ -42,6 +49,7 @@ void initContent(PGraphics p) {
   initObstacles(p);
   initPathfinder(p, p.width/100);
   initAgents(p);
+  //initButtons(p);
   
   demoMap = loadImage("data/demoMap.png");
   
@@ -81,6 +89,9 @@ void initAgents(PGraphics p) {
       testNetwork_Random(p, 0);
       break;
     case 1:
+      testNetwork_Random(p, 16);
+      break;
+    case 2: 
       testNetwork_Random(p, 16);
       break;
   }
@@ -143,6 +154,8 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
   destination = new PVector[numSwarm];
   weight = new float[numSwarm];
   swarmHorde.clearHorde();
+  
+
   
   for (int i=0; i<numNodes; i++) {
     nodes[i] = new PVector(random(10, p.width-10), random(10, p.height-10));
@@ -235,8 +248,11 @@ void setObstacleGrid(PGraphics p, int u, int v) {
   }
 }
 
-
-
+//-------Initialize Buttons
+/*void initButtons(PGraphics p){
+  button = new Button(70, 70, "refresh");
+}
+*/
 
 //------------- Initialize Pathfinding Objects
 
@@ -317,6 +333,9 @@ void resetFinder(PGraphics p, int res, int _finderMode) {
     case 2:
       initCustomFinder(p, res);
       break;
+    case 3: 
+      initGridFinder(p, res);
+      break;
   }
   setFinder(p, _finderMode);
 }
@@ -331,6 +350,9 @@ void setFinder(PGraphics p, int _finderMode) {
       break;
     case 2:
       pFinder = finderCustom;
+      break;
+    case 3: 
+      pFinder = finderGrid;
       break;
   }
 }

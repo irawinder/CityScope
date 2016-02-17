@@ -1,12 +1,29 @@
 boolean showPaths = false;
 boolean showGrid = false;
-boolean showPathInfo = true;
+boolean showPathInfo = false;
 boolean showSource = true;
 boolean showEdges = false;
 boolean showSwarm = true;
 boolean showInfo = false;
 boolean showTraces = false;
+<<<<<<< HEAD
 boolean showDemoMap = false;
+=======
+boolean showVoronoi = true;
+
+boolean button3_down = false;
+boolean button4_down = false;
+boolean button7_down = false;
+boolean button11_down = false;
+boolean button12_down = false;
+boolean button13_down = false;
+boolean button14_down = false;
+boolean button15_down = false;
+boolean button30_down = false;
+boolean button31_down = false;
+
+
+>>>>>>> master
 
 // Makes darker colors more visible when projecting
 int masterAlpha = 15;
@@ -34,11 +51,13 @@ void drawTableCanvas(PGraphics p) {
     traces.decay();
   }
   
+  
   // holds time from last frame
   time_0 = millis();
   
   // Begin Draw Functions
   p.beginDraw();
+ 
   
       // Instead of solid background draws a translucent overlay every frame.
       // Provides the effect of giving animated elements "tails"
@@ -65,6 +84,9 @@ void drawTableCanvas(PGraphics p) {
         } else if (finderMode == 2) { 
           // Obstacles for custom Pathfinder Network
           boundaries.display(p, textColor, 100);
+        }
+          else if (finderMode == 3) {
+          grid.display(p, textColor, 100);
         }
       }
       
@@ -102,6 +124,18 @@ void drawTableCanvas(PGraphics p) {
       }
       
       drawCredit(p);
+    if (showPathInfo && dataMode != 0) {
+    //Draw Background Rectangle
+    p.fill(abs(textColor-25), 200);
+    p.noStroke();
+    p.rect(10, 40, 0.3*p.width, 10*10+10-20, 12, 12, 12, 12);
+    
+    //Draw Directions
+    p.fill(abs(textColor-225), 255);
+    p.textSize(12);
+    p.text("Explanation:", 20, 60);
+    p.text("Agent based modeling.", 20, 80);
+    }
       
   p.endDraw();
 }
@@ -150,7 +184,7 @@ void drawTestFinder(PGraphics p, Pathfinder f, ArrayList<PVector> path, ArrayLis
   
   //Draw Destination
   p.strokeWeight(2);
-  p.stroke(#0000FF);
+  p.stroke(#FF00FF);
   p.noFill();
   p.ellipse(B.x, B.y, f.getResolution(), f.getResolution());
   
@@ -166,27 +200,23 @@ void drawTestFinder(PGraphics p, Pathfinder f, ArrayList<PVector> path, ArrayLis
   }
   
   if (showPathInfo) {
-    
     p.pushMatrix();
     p.translate(0, 10);
     
     //Draw Background Rectangle
     p.fill(abs(textColor-25), 200);
     p.noStroke();
-    p.rect(10, 4, 0.4*p.width, 10*20+10 , 12, 12, 12, 12);
+    p.rect(10, 4, 0.4*p.width, 10*10+10-20, 12, 12, 12, 12);
     
     //Draw Directions
     p.fill(abs(textColor-225), 255);
+    if(dataMode == 0){
     p.text("Explanation:", 20, 20);
     p.text("A network, origin, and destination has been randomly generated.", 20, 40);
     p.text("A green line represents the shortest path.", 20, 60);
     p.text("Nodes are highlighted when visited by the pathfinding algorithm.", 20, 80);
+    }
     
-    p.text("Directions:", 20, 120);
-    p.text("Press 'X' to generate a new origin-destination pair", 20, 140);
-    p.text("Press 'n' to generate a new network", 20, 160);
-    p.text("Press 'b' to invert colors", 20, 180);
-    p.text("Press 'h' to hide these directions", 20, 200);
     
     p.popMatrix();
   }
@@ -204,7 +234,7 @@ void drawCredit(PGraphics p) {
 
 
 void loading(PGraphics p, String item) {
-  
+
   p.beginDraw();
   
   int w, h;

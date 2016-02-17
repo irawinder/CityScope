@@ -18,6 +18,7 @@ class Obstacle {
   
   //vertices and of a polygon obstacles
   ArrayList<PVector> v;
+  
   //lengths of side of a polygon obstacle
   ArrayList<Float> l;
   
@@ -27,7 +28,7 @@ class Obstacle {
   boolean drawFill;
   
   
-  int    polyCorners; //  =  how many corners the polygon has (no repeats)
+  int polyCorners; //  =  how many corners the polygon has (no repeats)
   int index;
   float minX, minY, maxX, maxY;
   
@@ -304,6 +305,7 @@ class Obstacle {
     }
     
   }
+  
   
   void display(PGraphics p, color stroke, int alpha, boolean editing) {
     
