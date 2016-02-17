@@ -1,7 +1,5 @@
 PGraphics plan;
-
-PImage planImage;
-PImage plan3DImage;
+PImage[] plan3DImage;
 
 float planScaler = .5; //fraction of canvas width to make planGraphic
 boolean drawPlan = true;
@@ -16,9 +14,9 @@ int basemap_indexPlan = 0;
 
 //Projector location (relative to table grid origin)
 // These default values are overridden by projector.txt if initializeProjection2D() is run
-float projU =  14;
-float projV =  -16;
-float projH =  64;
+float[] projU;
+float[] projV;
+float[] projH;
 
 void toggleFaux3D() {
   if (faux3D) {
@@ -30,66 +28,69 @@ void toggleFaux3D() {
 
 void initializePlan() {
   plan = createGraphics(int(planScaler*width), int(planScaler*width*boardLength/boardWidth), P2D);
+  plan3DImage = new PImage[numProj];
 }
 
 void drawPlan(int x, int y, int w, int h) {
-  plan.beginDraw();
-  plan.background(0);
-  plan.noStroke();
-  
-  if (drawPlanSat) {
-    switch(satMode) {
-      case 0:
-        if (vizMode == 1) { //for riyadhMode only
+  for (int n=0; n<numProj; n++) {
+    plan.beginDraw();
+    plan.background(0);
+    plan.noStroke();
+
+    if (drawPlanSat) {
+      switch(satMode) {
+        case 0:
+          if (vizMode == 1) { //for riyadhMode only
+            plan.image(satellite_nosite, 0, 0, plan.width, plan.height);
+          }
+          break;
+        case 1:
           plan.image(satellite_nosite, 0, 0, plan.width, plan.height);
-        }
-        break;
-      case 1:
-        plan.image(satellite_nosite, 0, 0, plan.width, plan.height);
-        break;
-      case 2:
-        plan.image(satellite, 0, 0, plan.width, plan.height);
-        break;
-      case 3:
-        if (numBasemaps > 0) { //Only shows basemaps if they're present in "/basemaps" folder
-          plan.image(basemap[basemap_indexPlan], 0, 0, plan.width, plan.height);
-        }
-        break;
+          break;
+        case 2:
+          plan.image(satellite, 0, 0, plan.width, plan.height);
+          break;
+        case 3:
+          if (numBasemaps > 0) { //Only shows basemaps if they're present in "/basemaps" folder
+            plan.image(basemap[basemap_indexPlan], 0, 0, plan.width, plan.height);
+          }
+          break;
+      }
     }
+    
+    // Rotate Plan
+    lTranslate(boardWidth/2, boardLength/2);
+    plan.rotate(0);
+    lTranslate(-boardWidth/2, -boardLength/2);
+    
+    if (faux3D) {
+      k_height = useCloud.nodes[0][0].length;
+    } else {
+      k_height = 2;
+    }
+    
+    if (drawPlanStatic) {
+      drawPlanStatic();
+    }
+    
+//    if (displayDynamic) {
+      drawPlanDynamic(n);
+//    }
+    
+    //plan.fill(0, 100);
+    //plan.rect(0,0,plan.width, plan.height);  
+    
+    plan.endDraw();
+    
+    plan3DImage[n] = plan.get();
   }
-  
-  // Rotate Plan
-  lTranslate(boardWidth/2, boardLength/2);
-  plan.rotate(0);
-  lTranslate(-boardWidth/2, -boardLength/2);
-  
-  if (faux3D) {
-    k_height = useCloud.nodes[0][0].length;
-  } else {
-    k_height = 2;
-  }
-  
-  if (drawPlanStatic) {
-    drawPlanStatic();
-  }
-  
-  if (displayDynamic) {
-    drawPlanDynamic();
-  }
-  
-  //plan.fill(0, 100);
-  //plan.rect(0,0,plan.width, plan.height);  
-  plan.endDraw();
   
   if (drawPlan) {
-    image(plan, x, y, w, h);
+    image(plan3DImage[canvasIndex], x, y, w, h);
   }
-  
-  // Creates plan image for use in projection mapping
-  planImage = plan.get();
 }
 
-void drawPlanDynamic() {
+void drawPlanDynamic(int n) {
   // Indroduces a small gap just after 0,0 that acounts for half the width of a plexiglas grid width
   lTranslate(dynamicSpacer*gridGap/2, dynamicSpacer*gridGap/2);
   
@@ -102,7 +103,7 @@ void drawPlanDynamic() {
         if (structureMode == 0) {
           drawPlan1x1Nodes(i, j, k);
         } else if (structureMode == 1) {
-          drawPlan4x4Nodes(i, j, k);
+          drawPlan4x4Nodes(i, j, k, n, siteInfo.getInt(i,j));
         }
         
         // iterates along j axis
@@ -230,11 +231,19 @@ void togglePlanStat() {
   }
 }
 
-void changeBasemapPlan() {
+void nextBasemapPlan() {
   if (basemap_indexPlan < numBasemaps-1) {
     basemap_indexPlan ++;
   } else {
     basemap_indexPlan = 0;
+  }
+}
+
+void prevBasemapPlan() {
+  if (basemap_indexPlan > 0) {
+    basemap_indexPlan --;
+  } else {
+    basemap_indexPlan = numBasemaps-1;
   }
 }
 
@@ -310,15 +319,15 @@ void drawPlan1x1Nodes(int i, int j, int k) {
   }
 }
 
-void drawPlan4x4Nodes(int i, int j, int k) {
+void drawPlan4x4Nodes(int i, int j, int k, int n, int isSite) {
   
-  if  (siteInfo.getInt(i,j) == 1 || overrideStatic) { //is site
+//  if  (siteInfo.getInt(i,j) == 1 || overrideStatic) { //is site
     
-    if (!drawNodes) {
+    if (!drawNodes) { // No longer common... 
     
       if (colorMode == 0 || colorMode == 1) { //renders dynamic pieces
             
-        if  (siteInfo.getInt(i,j) == 1 || overrideStatic) { //is site
+//        if  (siteInfo.getInt(i,j) == 1 || overrideStatic) { //is site
           if (codeArray[i][j][0] >= 0 && codeArray[i][j][0] < NPieces) { //has peice
             if ((vizMode == 0 && codeArray[i][j][0] == 1) || (vizMode == 1 && codeArray[i][j][0] == 8) || (vizMode == 2 && codeArray[i][j][0] == 2)) { //is Park
               plan.fill(parkColor);
@@ -329,11 +338,11 @@ void drawPlan4x4Nodes(int i, int j, int k) {
             //has no discernable piece on open "cell"; has no dicernable piece on closed "cell," and otherwise unobstructed by static layers
             plan.fill(openColor);
           }
-        }
+//        }
           
       } else if (colorMode == 2) { //renders heatmap
       
-        if  (siteInfo.getInt(i,j) == 1 || overrideStatic) { //is site
+//        if  (siteInfo.getInt(i,j) == 1 || overrideStatic) { //is site
           if (codeArray[i][j][0] >= 0 && codeArray[i][j][0] < NPieces) { //has peice
             if (heatMapActive[i][j] == 1) {
               plan.fill(255*(1 - heatMap[i][j]), 255*heatMap[i][j], 0);
@@ -346,22 +355,23 @@ void drawPlan4x4Nodes(int i, int j, int k) {
             //has no discernable piece on open "cell"; has no dicernable piece on closed "cell," and otherwise unobstructed by static layers
             plan.fill(offColor);
           }
-        }
+//        }
       }
         
       lRect(0, 0, boxW, boxW);
       
-    } else {
-      
-      if (siteInfo.getInt(i,j) == 1 || (codeArray[i][j][0] >= 0 && codeArray[i][j][0] < NPieces)) { //has peice
-      
-        float dU = 1.5*(k*LU_H) * (j - projU) / projH;
-        float dV = 1.5*(k*LU_H) * (i - projV) / projH;
+    } else { // Draws for "NodeMode" (Most Common)
+        
+        // calculates offsets for faux 3D projection mapping
+        float dU = 1.5*(k*LU_H) * (j - projU[n]) / projH[n];
+        float dV = 1.5*(k*LU_H) * (i - projV[n]) / projH[n];
         
         for (int u=0; u<4; u++) {
           for (int v=0; v<4; v++) {
             
-            if (useCloud.nodes[i*4+u][j*4+v][k] != -1) {
+            if ( ( useCloud.nodes[i*4+u][j*4+v][k] != -1 ) || ( k == 0 ) ) {
+            if ( !drawPlanSat || (drawPlanSat && ( isSite == 1 || (isSite != 1 && k>0) ) ) ) {
+              
               if (nodeMode == 0) {
                 findPlanFill(i, j, useCloud.nodes[i*4+u][j*4+v][k]);
               } else if (nodeMode == 1) {
@@ -375,15 +385,17 @@ void drawPlan4x4Nodes(int i, int j, int k) {
                   plan.fill(255*(1-solutionCloud[i*4+u][j*4+v][k]), 255*solutionCloud[i*4+u][j*4+v][k], 0);
                 }
               }
-              
+
               lRect(v*LU_W+dU, u*LU_W+dV, LU_W, LU_W);
+              
+            }
             }
           
           } // end for v
         } // end for u
-      } // end if site
+//      } // end if has piece
     } // end else
-  } // end if Site
+//  } // end if Site
 }
 
 void findPlanFill(int u, int v, int value) {
@@ -432,6 +444,32 @@ void findPlanFill(int u, int v, int value) {
     case 5:
       if (colorMode == 0) { // Building and Land Use Mode
         plan.fill(retailColor);
+      } else if (colorMode == 1) { // Generic Building Form Mode
+        plan.fill(bldgColor);
+      } else if (colorMode == 2) { // Heatmap
+        if (heatMapActive[u][v] == 1) {
+          plan.fill(255*(1 - heatMap[u][v]), 255*heatMap[u][v], 0);
+        } else {
+          plan.fill(lightGray);
+        }
+      }
+      break;
+    case 6:
+      if (colorMode == 0) { // Building and Land Use Mode
+        plan.fill(lightGray);
+      } else if (colorMode == 1) { // Generic Building Form Mode
+        plan.fill(bldgColor);
+      } else if (colorMode == 2) { // Heatmap
+        if (heatMapActive[u][v] == 1) {
+          plan.fill(255*(1 - heatMap[u][v]), 255*heatMap[u][v], 0);
+        } else {
+          plan.fill(lightGray);
+        }
+      }
+      break;
+    case 7:
+      if (colorMode == 0) { // Building and Land Use Mode
+        plan.fill(academicColor);
       } else if (colorMode == 1) { // Generic Building Form Mode
         plan.fill(bldgColor);
       } else if (colorMode == 2) { // Heatmap

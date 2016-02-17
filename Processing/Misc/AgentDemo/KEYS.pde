@@ -144,6 +144,9 @@ void keyPressed() {
       println("schemeScaler: " + schemeScaler);
       println("masterAlpha: " + masterAlpha);
       break;
+    case 'T': // Turns demo background image on or off
+      showDemoMap = toggle(showDemoMap);
+      break;
   }
   
   //------arrow keys and how to code keys that aren't characters exactly----- 
@@ -556,7 +559,7 @@ void key_p() {
   testObstacles = toggle(testObstacles);
   testObstacles(tableCanvas, testObstacles);
   // Resets the network for gridded mode
-  resetFinder(tableCanvas, 10, 1); // '1' for gridded mode
+  resetFinder(tableCanvas, 10, finderMode); // '1' for gridded mode
   refreshFinder(tableCanvas);
 }
 

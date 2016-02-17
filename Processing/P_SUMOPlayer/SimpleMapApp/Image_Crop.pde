@@ -35,14 +35,43 @@ float C = 2*PI*6372798.2; // Circumference of Earth
 //        float modelWidth  = 3100; // width of model in meters
 //        float modelHeight = 1100; // height of model in meters
 //        float modelRotation = -25.218*(180/PI); // rotation of model in radians clockwise from north
+//
+//        // Ira's Numbers
+//        float lat = 42.506596;
+//        float lon = 1.5299543;
+//        int zoom = 17;
+//        float modelWidth  = 3100; // width of model in meters
+//        float modelHeight = 1100; // height of model in meters
+//        float modelRotation = 25.5/180*PI; // rotation of model in radians clockwise from north
+        
+// Hamburg Location
+        
+//        // Ira's Numbers
+//        float lat = 53.537388;
+//        float lon = 10.035539;
+//        int zoom = 17;
+//        float modelWidth  = 7.99125*192; // width of model in meters
+//        float modelHeight = 7.99125*192; // height of model in meters
+//        float modelRotation = -26.0/180*PI; // rotation of model in radians clockwise from north
 
+// Tongzhou Location
+        
+//        // Ira's Numbers
+//        float lat = 39.896750;
+//        float lon = 116.700129;
+//        int zoom = 17;
+//        float modelWidth  =                     7.99125*96*4; // width of model in meters
+//        float modelHeight = (1 + 286.0*2/768.0)*7.99125*96;   // height of model in meters
+//        float modelRotation = 45.0/180*PI; // rotation of model in radians clockwise from north
+
+        
         // Ira's Numbers
-        float lat = 42.506596;
-        float lon = 1.5299543;
-        int zoom = 17;
-        float modelWidth  = 3100; // width of model in meters
-        float modelHeight = 1100; // height of model in meters
-        float modelRotation = 25.5/180*PI; // rotation of model in radians clockwise from north
+        float lat = 39.89499;
+        float lon = 116.693756;
+        int zoom = 15;
+        float modelWidth  =                     6.68612*96*4; // width of model in meters
+        float modelHeight = (1 + 284.0*2/768.0)*6.68812*96;   // height of model in meters
+        float modelRotation = -(43.69+1.7068)/180*PI; // rotation of model in radians clockwise from north
 
 float scale; // distance represented by one pixel
 

@@ -63,7 +63,14 @@ void sendData() {
     * state_data
     */
     state_data=new int[0][0];
+    
+    // Scan Grid Location (for referencing grid offset file)
+    dataToSend += "gridIndex";
+    dataToSend += "\t" ;
+    dataToSend += numGAforLoop[imageIndex] + gridIndex;
 
+    dataToSend += "\n" ;
+    
     for (int u=0; u<tagDecoder[0].U; u++) {
       for (int v=0; v<tagDecoder[0].V; v++) {
 
@@ -71,6 +78,13 @@ void sendData() {
         dataToSend += tagDecoder[0].id[u][v] ;
         dataToSend += "\t" ;
 
+//        // U Position
+//        dataToSend += tagDecoder[0].U-u-1 + exportOffsets[numGAforLoop[imageIndex] + gridIndex][0];
+//        dataToSend += "\t" ;
+//
+//        // V Position
+//        dataToSend += v + exportOffsets[numGAforLoop[imageIndex] + gridIndex][1];
+        
         // U Position
         dataToSend += tagDecoder[0].U-u-1;
         dataToSend += "\t" ;
@@ -101,12 +115,11 @@ void sendData() {
       }
     }
 
-    // UMax and VMax Values
-    dataToSend += tagDecoder[0].U;
-    dataToSend += "\t" ;
-    dataToSend += tagDecoder[0].V;
-
-    dataToSend += "\n" ;
+//    // UMax and VMax Values
+//    dataToSend += tagDecoder[0].U;
+//    dataToSend += "\t" ;
+//    dataToSend += tagDecoder[0].V;
+//    dataToSend += "\t" ;
 
     /*
     // Slider and Toggle Values
@@ -140,7 +153,7 @@ void sendData() {
     dataToSend += "\n" ;
     */
 
-    saveStrings("data.txt", split(dataToSend, "\n"));
+    //saveStrings("data.txt", split(dataToSend, "\n"));
     //udp.send( dataToSend, "18.85.55.241", 6152 );
     udp.send( dataToSend, "localhost", 6152 );
 
@@ -165,6 +178,7 @@ void sendData() {
   }
 }
 
+// Implemented for SDL Rhino Interface (deprecated)
 void ImportData(String inputStr[]) {
 
   for (int i=0 ; i<inputStr.length;i++) {

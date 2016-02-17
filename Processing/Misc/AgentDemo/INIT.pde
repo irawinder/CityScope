@@ -1,6 +1,9 @@
 // Graphics object in memory that holds visualization
 PGraphics tableCanvas;
 
+
+PImage demoMap;
+
 int dataMode = 1;
 // dataMode = 1 for random network
 // dataMode = 0 for empty network and Pathfinder Test OD
@@ -44,6 +47,8 @@ void initContent(PGraphics p) {
   initPathfinder(p, p.width/100);
   initAgents(p);
   //initButtons(p);
+  
+  demoMap = loadImage("data/demoMap.png");
   
   //hurrySwarms(1000);
   println("Initialization Complete.");

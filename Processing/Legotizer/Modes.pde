@@ -3,7 +3,9 @@ String[] name = {
   "CityScope: Riyadh",
   "CityScope: Flinders",
   "CityScope: Barcelona",
-  "CityScope: Hamburg Rothenburgsort"
+  "CityScope: Hamburg Rothenburgsort",
+  "CityScope: Tongzhou",
+  "CityScope: Tongzhou"
 };
 
 int numDemos = name.length;
@@ -20,6 +22,10 @@ void setMode() {
     barcelonaMode();
   } else if (vizMode == 4) {
     hamburgMode();
+  } else if (vizMode == 5) {
+    tongzhouMode_sm();
+  } else if (vizMode == 6) {
+    tongzhouMode();
   }
 } 
 
@@ -48,6 +54,8 @@ void riyadhMode() {
   vizMode = 1;
   loadSite();
   loadStaticStructures();
+  loadContext();
+  initializeProjection2D();
   
   staticSpacer = 1;        // Plastic Spacer Needed for Static buildings
   dynamicSpacer = 1;       // Plastic Spacer Needed for Dynamic buildings
@@ -61,7 +69,7 @@ void riyadhMode() {
   displaySatellite = false;
   satMode = 1;
   drawPlanSat = false;
-  drawPlanStatic = true;
+  drawPlanStatic = false;
   displayScoreWeb = true;
   overrideStatic = true;
   displayStatic = true;
@@ -72,6 +80,7 @@ void riyadhMode() {
   staticBaseH_LU = 3;  // [LU] number of lego units high for base
   staticBasePlate = 0; // 0 has thin gray lego baseplate; 1 does have thin gray lego baseplate
   dynamicBaseH_LU = 3; // [LU] number of lego units high for base
+  pieceRotation = 1;
   calcDimensions();
   
   staticH_LU = 1;
@@ -86,6 +95,8 @@ void barcelonaMode() {
   vizMode = 3;
   loadSite();
   loadStaticStructures();
+  loadContext();
+  initializeProjection2D();
   
   staticSpacer = 1;        // Plastic Spacer Needed for Static buildings
   dynamicSpacer = 1;       // Plastic Spacer Needed for Dynamic buildings
@@ -110,6 +121,7 @@ void barcelonaMode() {
   staticBaseH_LU = 3;  // [LU] number of lego units high for base
   staticBasePlate = 0; // 0 has thin gray lego baseplate; 1 does have thin gray lego baseplate
   dynamicBaseH_LU = 3; // [LU] number of lego units high for base
+  pieceRotation = 1;
   calcDimensions();
   
   staticH_LU = 1;
@@ -124,6 +136,8 @@ void hamburgMode() {
   vizMode = 4;
   loadSite();
   loadStaticStructures();
+  loadContext();
+  initializeProjection2D();
   
   staticSpacer = 0;        // Plastic Spacer Needed for Static buildings
   dynamicSpacer = 1;       // Plastic Spacer Needed for Dynamic buildings
@@ -133,7 +147,7 @@ void hamburgMode() {
   
   structureMode = 1;
   useCloud.wipeNodes();
-  setBarcelonaPieces();
+  setHamburgPieces();
   displaySatellite = true;
   satMode = 3;
   drawPlanSat = true;
@@ -148,6 +162,89 @@ void hamburgMode() {
   staticBaseH_LU = 3;  // [LU] number of lego units high for base
   staticBasePlate = 0; // 0 has thin gray lego baseplate; 1 does have thin gray lego baseplate
   dynamicBaseH_LU = 3; // [LU] number of lego units high for base
+  pieceRotation = 3;
+  calcDimensions();
+  
+  staticH_LU = 1;
+  staticW_LU = 1;
+  
+  useCloud.wipeNodes();
+  updateAllNodes();
+  saveMetaJSON("metadata.json");
+}
+
+void tongzhouMode() {
+  vizMode = 6;
+  loadSite();
+  loadStaticStructures();
+  loadContext();
+  initializeProjection2D();
+  
+  staticSpacer = 0;        // Plastic Spacer Needed for Static buildings
+  dynamicSpacer = 1;       // Plastic Spacer Needed for Dynamic buildings
+  UMax = 38;
+  VMax = 88;
+  updateBoard();
+  
+  structureMode = 1;
+  useCloud.wipeNodes();
+  setRiyadhPieces();
+  displaySatellite = true;
+  satMode = 3;
+  drawPlanSat = true;
+  drawPlanStatic = false;
+  displayScoreWeb = true;
+  overrideStatic = false;
+  displayStatic = true;
+  displayDynamic = true;
+  
+  pieceW_LU = 4;
+  pieceH_LU = 1; 
+  staticBaseH_LU = 3;  // [LU] number of lego units high for base
+  staticBasePlate = 0; // 0 has thin gray lego baseplate; 1 does have thin gray lego baseplate
+  dynamicBaseH_LU = 3; // [LU] number of lego units high for base
+  pieceRotation = 3;
+  calcDimensions();
+  
+  staticH_LU = 1;
+  staticW_LU = 1;
+  
+  useCloud.wipeNodes();
+  updateAllNodes();
+  saveMetaJSON("metadata.json");
+}
+
+void tongzhouMode_sm() {
+  vizMode = 5;
+  loadSite();
+  loadStaticStructures();
+  loadContext();
+  initializeProjection2D();
+  
+  staticSpacer = 0;        // Plastic Spacer Needed for Static buildings
+  dynamicSpacer = 1;       // Plastic Spacer Needed for Dynamic buildings
+  UMax = 22;
+  VMax = 44;
+  updateBoard();
+  
+  structureMode = 1;
+  useCloud.wipeNodes();
+  setRiyadhPieces();
+  displaySatellite = true;
+  satMode = 3;
+  drawPlanSat = true;
+  drawPlanStatic = false;
+  displayScoreWeb = true;
+  overrideStatic = false;
+  displayStatic = true;
+  displayDynamic = true;
+  
+  pieceW_LU = 4;
+  pieceH_LU = 1; 
+  staticBaseH_LU = 3;  // [LU] number of lego units high for base
+  staticBasePlate = 0; // 0 has thin gray lego baseplate; 1 does have thin gray lego baseplate
+  dynamicBaseH_LU = 3; // [LU] number of lego units high for base
+  pieceRotation = 3;
   calcDimensions();
   
   staticH_LU = 1;
@@ -162,6 +259,8 @@ void kendallMode() {
   vizMode = 0;
   loadSite();
   loadStaticStructures();  
+  loadContext();
+  initializeProjection2D();
   
   staticSpacer = 0;        // Plastic Spacer NOT Needed for Static buildings
   dynamicSpacer = 1;       // Plastic Spacer Needed for Dynamic buildings
@@ -169,8 +268,8 @@ void kendallMode() {
   VMax = 44;
   updateBoard();
   
-  structureMode = 0;
-  setKendallPieces();
+  structureMode = 1;
+  setBarcelonaPieces();
   displaySatellite = true;
   satMode = 3;
   drawPlanSat = false;
@@ -185,6 +284,7 @@ void kendallMode() {
   staticBaseH_LU = 3;  // [LU] number of lego units high for base
   staticBasePlate = 1; // 0 has thin gray lego baseplate; 1 does have thin gray lego baseplate
   dynamicBaseH_LU = 4; // [LU] number of lego units high for base
+  pieceRotation = 1;
   calcDimensions();
   
   staticH_LU = 3;
@@ -198,7 +298,9 @@ void kendallMode() {
 void flindersMode() {
   vizMode = 2;
   loadSite();
-  loadStaticStructures();  
+  loadStaticStructures(); 
+  loadContext();
+  initializeProjection2D(); 
   
   staticSpacer = 0;        // Plastic Spacer NOT Needed for Static buildings
   dynamicSpacer = 0;       // Plastic Spacer NOT Needed for Dynamic buildings
@@ -222,6 +324,7 @@ void flindersMode() {
   staticBaseH_LU = 1;  // [LU] number of lego units high for base
   staticBasePlate = 0; // 0 has thin gray lego baseplate; 1 does have thin gray lego baseplate
   dynamicBaseH_LU = 1; // [LU] number of lego units high for base
+  pieceRotation = 1;
   calcDimensions();
   
   staticH_LU = 1;

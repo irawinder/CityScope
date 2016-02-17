@@ -31,7 +31,6 @@ ScanGrid[] scanGrid;
 int numImages; // Number of Warped Images created
 int numGrids; // Number of "ScanGrids" created
 int[] numGAforLoop;
-int imageIndex = 0; //Selection of scanImage
 int gridIndex = 0; //Selection of scanGrid
 int cornerIndex = 0; //Selection of corner point (1 of 4)
 
@@ -47,6 +46,10 @@ int gS_numCol = 10; //Number of columns per grid in gridSettings.tsv
 
 Table colorSettings;
 Table gridLocations;
+Table numGridAreasTSV;
+Table exportOffsetsTSV;
+
+int[][] exportOffsets = new int[imgMax*gridMax][2];
 int[] location;
 
 PVector[][] cornerSettings;
@@ -58,6 +61,18 @@ void setupScan() {
   colorSettings = loadTable("colorSettings.tsv");
   gridSettings = loadTable("gridSettings.tsv");
   gridLocations = loadTable("gridLocations.tsv");
+  numGridAreasTSV = loadTable("numGridAreas.tsv");
+  exportOffsetsTSV = loadTable("exportOffsets.tsv");
+  
+  numGridAreas = new int[numGridAreasTSV.getColumnCount()];
+  for (int i=0; i<numGridAreas.length; i++) {
+    numGridAreas[i] = numGridAreasTSV.getInt(0, i);
+  }
+  
+  for(int i=0; i<exportOffsets.length; i++) {
+    exportOffsets[i][0] = exportOffsetsTSV.getInt(i, 0);
+    exportOffsets[i][1] = exportOffsetsTSV.getInt(i, 1);
+  }
   
   numImages = numGridAreas.length;
   numGAforLoop = new int[numGridAreas.length];
@@ -118,8 +133,10 @@ void initCamera() {
   } else {
     println("Available cameras:");
     for (int i = 0; i < cameras.length; i++) {
-      println(cameras[i]);
+      println(i + ": " + cameras[i]);
     }
+    
+    println("Number of Cameras: " + cameras.length);
     
     // The camera can be initialized directly using an 
     // element from the array returned by list():

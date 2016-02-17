@@ -19,6 +19,7 @@ boolean bw = true;
 //   Rendering:
 //     '{' - decrease alpha for translucent graphics
 //     '}' - increase alpha for translucent graphics
+//     'T' - toggle demoMap underlay
 //
 //   Agent-based Modeling:
 //      case 'i': Show Swarm Index

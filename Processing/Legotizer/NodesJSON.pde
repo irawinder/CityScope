@@ -1,6 +1,7 @@
 // Created to test feasibility of passing JSON strings
 
 JSONArray nodesJSON;
+JSONArray context;
 JSONObject[][][] obj;
 
 JSONArray solutionJSON;
@@ -20,6 +21,19 @@ String DDPAddress = "104.131.183.20";
 import ddpclient.*;
 DDPClient ddp;
 
+void loadContext() {
+  context = loadJSONArray(legotizer_data + demoPrefix + demos[vizMode] + "context/context.json");
+  
+  //Hamburg Data, created by Ryan Zhang (had to hack it around a bit to fit to model)
+  if (vizMode == 4) {
+    JSONObject voxel;
+    for (int i=0; i<context.size(); i++) {
+      voxel = context.getJSONObject(i);
+      voxel.setInt("u", 175-voxel.getInt("u"));
+    }
+  }
+}
+
 void initializeNodesJSON() {
 
   nodesJSON = new JSONArray();
@@ -34,7 +48,7 @@ void initializeNodesJSON() {
   }
   
   scoreNames = loadStrings(legotizer_data + demoPrefix + demos[vizMode] + "scoreNames.tsv");
-  println(scoreNames + "simulation layers loaded.");
+  println(scoreNames.length + " simulation layers loaded.");
 }
 
 void clearJSONArray(JSONArray json) {
@@ -42,6 +56,8 @@ void clearJSONArray(JSONArray json) {
    json.remove(0);
  }
 }
+
+
 
 void saveNodesJSON(String filename) {
   

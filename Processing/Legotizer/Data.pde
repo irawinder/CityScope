@@ -34,6 +34,7 @@ int heatMapActive[][] = new int[maxPieces][maxPieces];
 // Default Dimensions of Board in Cell Units (before any data is recieved)
 int UMax = 1;
 int VMax = 1;
+boolean dimensionOverRide = true; // Allows Colortizer input to reset Board
 
 // Board Dimensions (in cm)
 float boardLength, boardWidth;
@@ -60,6 +61,9 @@ Table P1, R1, R2, R3, C1, C2, C3, ST1, ST2, ST3, M1, M2, M3, M4, M5, M6;
 // Barcelona Structures for Import (4x4 Piece Type)
 Table Bar1, Bar2, Bar3, Bar4, Bar5, Bar6, Bar7, Bar8, Bar9, Bar10, Bar11, Bar12, Bar13, Bar14, Bar15, Bar16, Bar17, Bar18, Bar19, Bar20;
 
+// Hamburg Structures for Import (4x4 Piece Type)
+Table Ham1, Ham2, Ham3, Ham4, Ham5, Ham6, Ham7, Ham8, Ham9, Ham10, Ham11, Ham12, Ham13, Ham14, Ham15, Ham16, Ham17, Ham18, Ham19, Ham20, Ham21, Ham22, Ham23, Ham24;
+
 // Kendall Structures for Import (4x4 extruded Piece Type)
 Table kendallStructures;
 
@@ -67,7 +71,8 @@ Table kendallStructures;
 Table flindersStructures;
 
 // Standard Structures for visualization
-Table structures1x1, siteInfo, scaleInfo, staticStructures;
+Table structures1x1, siteInfo, siteOffsets, scaleInfo, staticStructures;
+int siteOffsetU, siteOffsetV;
 float scaler, lat, lon, geoRot;
 ArrayList<Table> structures4x4;
 PImage satellite, satellite_nosite, satelliteLG;
@@ -82,7 +87,8 @@ int riverColor  = 0xCC1d2757; // dark blue
 int parkColor   = 0xCCa2d938; // green
 int roadColor   = 0xCC333333; // gray
 //int openColor   = 0xCC3a4d14; // green
-int openColor   = 0xCC7e7f3e; // green
+//int openColor   = 0xCC7e7f3e; // green
+int openColor   = 0xCC7C7C7A; //gray
 int bldgColor   = 0xCCe5c46b; // beige
 
 int lightGray   = 0xCC999999; // light gray
@@ -187,6 +193,10 @@ void loadSite() {
   
   
   siteInfo = loadTable(legotizer_data + demoPrefix + demos[vizMode] + "siteinfo.tsv");
+  siteOffsets = loadTable(legotizer_data + demoPrefix + demos[vizMode] + "siteOffsets.tsv");
+  siteOffsetU = siteOffsets.getInt(0, 0);
+  siteOffsetV = siteOffsets.getInt(0, 1);
+  println("Base Site Offset = (" + siteOffsetU + ", " + siteOffsetV + ")");
   satellite_nosite = loadImage(legotizer_data + demoPrefix + demos[vizMode] + "satellite_nosite.png");
   satellite = loadImage(legotizer_data + demoPrefix + demos[vizMode] + "satellite.jpg");
   if (vizMode == 1) { //Riyadh Viz Mode larger satellite
@@ -195,6 +205,9 @@ void loadSite() {
   
   // Loads any other images deposited into ".../basemaps/" folder. Should be cropped to area
   loadBasemaps();
+  
+  // Clears offsets from last visualization
+  noOffset();
 }
 
 // Loads any other images deposited into ".../basemaps/" folder. Should be cropped to area
@@ -385,6 +398,7 @@ void init4x4Structures() {
   // 4 = Building: Work
   // 5 = Building: Ammenities
   // 6 = Parking
+  // 7 = Education
   // -1 = Open air (allows voids)
   // -2 = Water
   
@@ -430,10 +444,40 @@ void init4x4Structures() {
   Bar19 = loadTable(legotizer_data + demoPrefix + demos[3] + "4x4structures/Bar19.tsv");  // 18, Bar9
   Bar20 = loadTable(legotizer_data + demoPrefix + demos[3] + "4x4structures/Bar20.tsv");  // 19, Bar10
   
+  // The following Typologies were designed for use in Hamburg Demo by HCU Jan 2016
+  // Translateded into 4x4 Schema by Ira Winder, Jan 2016
+  // Initial 8 Structures: 1, 5, 7, 10, 12, 15, 17, 20
+  Ham1 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham1.tsv");    // 0, Ham1
+  Ham2 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham2.tsv");    // 1, Ham2
+  Ham3 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham3.tsv");    // 2, Ham3
+  Ham4 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham4.tsv");    // 3, Ham4
+  Ham5 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham5.tsv");    // 4, Ham5
+  Ham6 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham6.tsv");    // 5, Ham6
+  Ham7 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham7.tsv");    // 6, Ham7
+  Ham8 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham8.tsv");    // 7, Ham8
+  Ham9 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham9.tsv");    // 8, Ham9
+  Ham10 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham10.tsv");  // 9, Ham10
+  Ham11 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham11.tsv");  // 10, Ham11
+  Ham12 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham12.tsv");  // 11, Ham12
+  Ham13 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham13.tsv");  // 12, Ham13
+  Ham14 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham14.tsv");  // 13, Ham14
+  Ham15 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham15.tsv");  // 14, Ham15
+  Ham16 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham16.tsv");  // 15, Ham16
+  Ham17 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham17.tsv");  // 16, Ham17
+  Ham18 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham18.tsv");  // 17, Ham18
+  Ham19 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham19.tsv");  // 18, Ham19
+  Ham20 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham20.tsv");  // 19, Ham20
+  Ham21 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham21.tsv");  // 20, Ham21
+  Ham22 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham22.tsv");  // 21, Ham22
+  Ham23 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham23.tsv");  // 22, Ham23
+  Ham24 = loadTable(legotizer_data + demoPrefix + demos[4] + "4x4structures/Ham24.tsv");  // 23, Ham24
+  
   if (vizMode == 1) {
     setRiyadhPieces();
   } else if (vizMode == 3) {
     setBarcelonaPieces();
+  } else if (vizMode == 4) {
+    setHamburgPieces();
   }
   
 }
@@ -488,6 +532,41 @@ void setBarcelonaPieces() {
   NPieces = structures4x4.size();
 }
 
+void setHamburgPieces() {
+  
+  // Initial 8 Structures: 1, 5, 7, 10, 12, 16, 18, 20
+  // Additional 14 Student Structures: 2, 3, 4, 6, 8, 9, 11, 13, 14, 15, 17, 22, 23, 24
+  // Still Remaining to use: 19, 21
+  
+  structures4x4.clear();
+  structures4x4.add(Ham1);
+  structures4x4.add(Ham2);
+  structures4x4.add(Ham3);
+  structures4x4.add(Ham4);
+  structures4x4.add(Ham5);
+  structures4x4.add(Ham6);
+  structures4x4.add(Ham7);
+  structures4x4.add(Ham8);
+  structures4x4.add(Ham9);
+  structures4x4.add(Ham10);
+  structures4x4.add(Ham11);
+  structures4x4.add(Ham12);
+  structures4x4.add(Ham13);
+  structures4x4.add(Ham14);
+  structures4x4.add(Ham15);
+  structures4x4.add(Ham16);
+  structures4x4.add(Ham17);
+  structures4x4.add(Ham18);
+  structures4x4.add(Ham19);
+  structures4x4.add(Ham20);
+  structures4x4.add(Ham21);
+  structures4x4.add(Ham22);
+  structures4x4.add(Ham23);
+  structures4x4.add(Ham24);
+  
+  NPieces = structures4x4.size();
+}
+
 void setKendallPieces() {
   structures1x1 = kendallStructures;
   NPieces = structures1x1.getRowCount();
@@ -504,6 +583,40 @@ void rotatePieces() {
   } else {
     pieceRotation = 0;
   }
+}
+
+void saveCodeArray() {
+  String arrayString = "";
+  
+  for (int u=0; u<UMax; u++) {
+    for (int v=0; v<VMax; v++) {
+      
+      if (codeArray[u][v][0] >= 0 && codeArray[u][v][0] < NPieces && (siteInfo.getInt(u,v) == 1 || overrideStatic) ) { //is site
+      
+        // Object ID
+        arrayString += codeArray[u][v][0];
+        arrayString += "\t" ;
+  
+        // V Position
+        arrayString += v;
+        arrayString += "\t" ;
+        
+        // U Position
+        arrayString += u;
+        arrayString += "\t" ;
+  
+        // Rotation
+        arrayString += codeArray[u][v][1]*90;
+        arrayString += "\n" ;
+      
+      }
+    }
+  }
+  saveStrings(legotizer_data + demoPrefix + demos[vizMode] + "codeArraySaves/codeArray.tsv", split(arrayString, "\n"));
+}
+
+void loadCodeArray() {
+  parseCodeStrings(loadStrings(legotizer_data + demoPrefix + demos[vizMode] + "codeArraySaves/codeArray.tsv"));
 }
 
 void saveMetaJSON(String filename) {
@@ -634,3 +747,7 @@ void toggleStructureMode() {
   }
 }
 
+void noOffset() {
+  siteOffsetU = 0;
+  siteOffsetV = 0;
+}

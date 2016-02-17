@@ -1,5 +1,5 @@
-// Colortizer v4.0
-String version = "Colortizer, V4.0";
+// Colortizer v4.1
+String version = "Colortizer, V4.1";
 
 // This software distorts webcam feeds into rectilinear matrices of color data.
 // Run software to see key definitions
@@ -31,15 +31,18 @@ Step 5: Run application
 
 */
 
-// Position within array that describes available cameras
-int camera = 0;
+// Change this number to change which Area is scanned (i.e. 0, 1, or 2)
+int imageIndex = 0; //Selection of scanImage to start
 
 //Number of scan grids to be created on each warped image
 // For example:
 // {1,1,1,1} creates 4 scan grids, each on their own, separately programmed, distorted image
 // {4} creates 4 scan grids, all sharing the same distorted image
 // Max Spec: {20,20,20,20,20,20,20,20,20,20} <-- will probably run terribly, though
-int[] numGridAreas = {1}; // 1 grid for 1 distortion area
+int[] numGridAreas; // 1 grid for 1 distortion area; loads from "numGridAreas.TSV"
+
+// Position within array that describes available cameras
+int camera = 0;
 
 // Dimensions of surface being scanned
 float vizRatio = float(16)/(16); //Must match measurements in reality, i.e. a table surface
