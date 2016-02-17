@@ -69,7 +69,7 @@ void riyadhMode() {
   displaySatellite = false;
   satMode = 1;
   drawPlanSat = false;
-  drawPlanStatic = true;
+  drawPlanStatic = false;
   displayScoreWeb = true;
   overrideStatic = true;
   displayStatic = true;

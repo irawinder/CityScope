@@ -237,6 +237,13 @@ void updateSolution(JSONArray solution) {
   println(solution.size() + " solution nodes loaded");
 }
 
+void forceSimUpdate() {
+  changeDetected = true;
+  simCounter = simTime;
+  saveMetaJSON("metadata.json");
+  checkSendNodesJSON("user");
+}
+
 void wipeCloud(float[][][] array) {
   for (int i=0; i<array.length; i++) {
     for (int j=0; j<array[0].length; j++) {

@@ -36,7 +36,7 @@ void drawPlan(int x, int y, int w, int h) {
     plan.beginDraw();
     plan.background(0);
     plan.noStroke();
-    
+
     if (drawPlanSat) {
       switch(satMode) {
         case 0:
@@ -79,6 +79,7 @@ void drawPlan(int x, int y, int w, int h) {
     
     //plan.fill(0, 100);
     //plan.rect(0,0,plan.width, plan.height);  
+    
     plan.endDraw();
     
     plan3DImage[n] = plan.get();
@@ -368,7 +369,8 @@ void drawPlan4x4Nodes(int i, int j, int k, int n, int isSite) {
         for (int u=0; u<4; u++) {
           for (int v=0; v<4; v++) {
             
-            if ( ( useCloud.nodes[i*4+u][j*4+v][k] != -1 ) || ( k == 0) ) {
+            if ( ( useCloud.nodes[i*4+u][j*4+v][k] != -1 ) || ( k == 0 ) ) {
+            if ( !drawPlanSat || (drawPlanSat && ( isSite == 1 || (isSite == 0 && k>0) ) ) ) {
               
               if (nodeMode == 0) {
                 findPlanFill(i, j, useCloud.nodes[i*4+u][j*4+v][k]);
@@ -385,6 +387,8 @@ void drawPlan4x4Nodes(int i, int j, int k, int n, int isSite) {
               }
 
               lRect(v*LU_W+dU, u*LU_W+dV, LU_W, LU_W);
+              
+            }
             }
           
           } // end for v

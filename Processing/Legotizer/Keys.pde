@@ -47,6 +47,7 @@ void keyPressed() {
       break;
     case 's': 
       toggleStaticDraw();
+      forceSimUpdate();
       break;
     case 'S':
       saveCodeArray();
@@ -60,6 +61,7 @@ void keyPressed() {
       break;
     case 'd': 
       toggleDynamicDraw();
+      forceSimUpdate();
       break;
     case 't': 
       toggleStatsDraw();
@@ -127,10 +129,7 @@ void keyPressed() {
       changeNodes();
       break;
     case '=':
-      changeDetected = true;
-      simCounter = simTime;
-      saveMetaJSON("metadata.json");
-      checkSendNodesJSON("user");
+      forceSimUpdate();
       break;
     case 'F':
       toggleFaux3D();
