@@ -18,6 +18,10 @@ float[] projU;
 float[] projV;
 float[] projH;
 
+// Value between 0 and 1 that describes Saturation/Brightness
+float pulseAlpha;
+float pulseAngle = 0;
+
 void toggleFaux3D() {
   if (faux3D) {
     faux3D = false;
@@ -32,6 +36,9 @@ void initializePlan() {
 }
 
 void drawPlan(int x, int y, int w, int h) {
+  
+  iteratePulse();
+  
   for (int n=0; n<numProj; n++) {
     plan.beginDraw();
     plan.background(0);
@@ -103,7 +110,7 @@ void drawPlanDynamic(int n) {
         if (structureMode == 0) {
           drawPlan1x1Nodes(i, j, k);
         } else if (structureMode == 1) {
-          drawPlan4x4Nodes(i, j, k, n, siteInfo.getInt(i,j));
+          drawPlan4x4Nodes(i, j, k, n, siteInfo.getInt(i,j), codeArray[i][j][0]);
         }
         
         // iterates along j axis
@@ -319,7 +326,7 @@ void drawPlan1x1Nodes(int i, int j, int k) {
   }
 }
 
-void drawPlan4x4Nodes(int i, int j, int k, int n, int isSite) {
+void drawPlan4x4Nodes(int i, int j, int k, int n, int isSite, int code) {
   
 //  if  (siteInfo.getInt(i,j) == 1 || overrideStatic) { //is site
     
@@ -388,6 +395,14 @@ void drawPlan4x4Nodes(int i, int j, int k, int n, int isSite) {
 
               lRect(v*LU_W+dU, u*LU_W+dV, LU_W, LU_W);
               
+              // Draws a translucent overlay that has the effect of making a dynamic piece "pulse"
+              if (code != -1 && k > 0) {
+                plan.fill(#000000, 255.0*pulseAlpha);
+                lRect(v*LU_W+dU, u*LU_W+dV, LU_W, LU_W);
+              } else {
+                plan.fill(#000000, 255.0/2);
+                lRect(v*LU_W+dU, u*LU_W+dV, LU_W, LU_W);
+              }
             }
             }
           
@@ -396,6 +411,16 @@ void drawPlan4x4Nodes(int i, int j, int k, int n, int isSite) {
 //      } // end if has piece
     } // end else
 //  } // end if Site
+}
+
+void iteratePulse() {
+  pulseAlpha = 1.0 - (3+cos(pulseAngle))/4;
+  pulseAngle += 0.25;
+  
+  // Makes sure pulse Angle doesn't blow up to 1 google...
+  if (pulseAngle >= 2*PI) {
+    pulseAngle -= 2*PI;
+  }
 }
 
 void findPlanFill(int u, int v, int value) {
