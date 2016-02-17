@@ -6,9 +6,7 @@ boolean showEdges = false;
 boolean showSwarm = true;
 boolean showInfo = false;
 boolean showTraces = false;
-<<<<<<< HEAD
 boolean showDemoMap = false;
-=======
 boolean showVoronoi = true;
 
 boolean button3_down = false;
@@ -21,9 +19,6 @@ boolean button14_down = false;
 boolean button15_down = false;
 boolean button30_down = false;
 boolean button31_down = false;
-
-
->>>>>>> master
 
 // Makes darker colors more visible when projecting
 int masterAlpha = 15;
