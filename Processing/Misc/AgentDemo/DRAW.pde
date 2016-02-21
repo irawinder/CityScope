@@ -6,6 +6,7 @@ boolean showEdges = false;
 boolean showSwarm = true;
 boolean showInfo = false;
 boolean showTraces = false;
+boolean showDemoMap = false;
 boolean showVoronoi = true;
 
 boolean button3_down = false;
@@ -18,8 +19,6 @@ boolean button14_down = false;
 boolean button15_down = false;
 boolean button30_down = false;
 boolean button31_down = false;
-
-
 
 // Makes darker colors more visible when projecting
 int masterAlpha = 15;
@@ -39,6 +38,7 @@ void drawTableCanvas(PGraphics p) {
   //Updates Agent Data to Display
   if (showSwarm) {
     swarmHorde.update();
+    swarmHorde2.update();
   }
   
   //Updates Heatmap Data to Display
@@ -60,7 +60,12 @@ void drawTableCanvas(PGraphics p) {
       p.noStroke();
       p.fill(background, 75);
       p.rect(0,0,p.width,p.height);
-
+      
+      // Displays demoMap
+      if(showDemoMap) {
+        p.image(demoMap, 0, 0, width, height);
+      }
+      
       // Displays Heatmap
       if(showTraces) {
         traces.display(p);
@@ -104,6 +109,7 @@ void drawTableCanvas(PGraphics p) {
       // Renders Agent 'dots' and corresponding obstacles and heatmaps
       if (showSwarm) {
         swarmHorde.display(p, showTraces);
+        swarmHorde2.display(p, showTraces);
       }
       
       if (dataMode != 0) {

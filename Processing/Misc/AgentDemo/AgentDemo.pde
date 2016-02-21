@@ -1,6 +1,6 @@
 // This is the staging script for the Pathfinding for agent-based modeling
 // Ira Winder, MIT Media Lab, jiw@mit.edu, Fall 2015
-
+//local copy
 
 int canvasWidth = 1000;
 int canvasHeight = 540;
@@ -19,6 +19,7 @@ boolean bw = true;
 //   Rendering:
 //     '{' - decrease alpha for translucent graphics
 //     '}' - increase alpha for translucent graphics
+//     'T' - toggle demoMap underlay
 //
 //   Agent-based Modeling:
 //      case 'i': Show Swarm Index

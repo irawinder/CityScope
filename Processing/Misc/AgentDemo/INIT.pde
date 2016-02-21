@@ -1,6 +1,9 @@
 // Graphics object in memory that holds visualization
 PGraphics tableCanvas;
 
+
+PImage demoMap;
+
 int dataMode = 1;
 // dataMode = 1 for random network
 // dataMode = 0 for empty network and Pathfinder Test OD
@@ -45,6 +48,8 @@ void initContent(PGraphics p) {
   initAgents(p);
   //initButtons(p);
   
+  demoMap = loadImage("data/demoMap.png");
+  
   //hurrySwarms(1000);
   println("Initialization Complete.");
 }
@@ -56,8 +61,9 @@ void initContent(PGraphics p) {
 // ---------------------Initialize Agent-based Objects---
 
 Horde swarmHorde;
+Horde swarmHorde2;
 
-PVector[] origin, destination, nodes;
+PVector[] origin, origin2, destination, nodes;
 float[] weight;
 
 int textSize = 8;
@@ -72,7 +78,8 @@ void initAgents(PGraphics p) {
   
   println("Initializing Agent Objects ... ");
   
-  swarmHorde = new Horde(2000);
+  swarmHorde = new Horde(1000);
+  swarmHorde2 = new Horde(1000);
   sources_Viz = createGraphics(p.width, p.height);
   edges_Viz = createGraphics(p.width, p.height);
   
@@ -99,6 +106,7 @@ void initAgents(PGraphics p) {
 void swarmPaths(PGraphics p, boolean enable) {
   // Applyies pathfinding network to swarms
   swarmHorde.solvePaths(pFinder, enable);
+  swarmHorde2.solvePaths(pFinder, enable);
   pFinderPaths_Viz(p, enable);
 }
 
@@ -107,6 +115,7 @@ void sources_Viz(PGraphics p) {
   sources_Viz.beginDraw();
   // Draws Sources and Sinks to canvas
   swarmHorde.displaySource(sources_Viz);
+  swarmHorde2.displaySource(sources_Viz);
   sources_Viz.endDraw(); 
 }
 
@@ -115,6 +124,7 @@ void edges_Viz(PGraphics p) {
   edges_Viz.beginDraw();
   // Draws Sources and Sinks to canvas
   swarmHorde.displayEdges(edges_Viz);
+  swarmHorde2.displayEdges(edges_Viz);
   edges_Viz.endDraw(); 
 }
 
@@ -143,6 +153,7 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
   
   nodes = new PVector[numNodes];
   origin = new PVector[numSwarm];
+  origin2 = new PVector[numSwarm];
   destination = new PVector[numSwarm];
   weight = new float[numSwarm];
   swarmHorde.clearHorde();
@@ -158,6 +169,8 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
       
       origin[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
       
+      origin2[i*(numNodes-1)+j] = new PVector(nodes[i].x + 5, nodes[i].y);
+      
       destination[i*(numNodes-1)+j] = new PVector(nodes[(i+j+1)%(numNodes)].x, nodes[(i+j+1)%(numNodes)].y);
       
       weight[i*(numNodes-1)+j] = random(0.1, 2.0);
@@ -171,10 +184,12 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
   for (int i=0; i<numSwarm; i++) {
     
     // delay, origin, destination, speed, color
-    swarmHorde.addSwarm(weight[i], origin[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+    swarmHorde.addSwarm(weight[i], origin[i], destination[i], 1, color(#ff00ff)); //255.0*i/numSwarm, 255, 255
+    swarmHorde2.addSwarm(weight[i], origin2[i], destination[i], 1, color(#00ff00));
     
     // Makes sure that agents 'staying put' eventually die
     swarmHorde.getSwarm(i).temperStandingAgents();
+    swarmHorde2.getSwarm(i).temperStandingAgents();
   }
   colorMode(RGB);
   

@@ -21,7 +21,6 @@ void draw()
   drawRegions();
   drawTowers();
   drawData();
-  //drawTowers2();
 }
  
 void drawRegions()
@@ -67,16 +66,6 @@ void drawTowers()
   }
 }
 
-void drawTowers2()
-{
-  Table bigs = loadTable("data/bigs.csv", "header");
-    for (int j=0;j<bigs.getRowCount();j++) {
-    location = (new PVector(bigs.getFloat(j, "x"), bigs.getFloat(j, "y")));
-    fill(0);
-    ellipse(location.x, location.y, 7, 7);
-    }
-}
- 
 void drawData()
 {
 Table hotels = loadTable("data/hotels.csv", "header");
@@ -85,5 +74,3 @@ Table hotels = loadTable("data/hotels.csv", "header");
     ellipse(coord.x, coord.y, 7, 7);
     }
 }
-
-
