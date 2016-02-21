@@ -62,8 +62,11 @@ void initContent(PGraphics p) {
 
 Horde swarmHorde;
 Horde swarmHorde2;
+Horde swarmHorde3;
+Horde swarmHorde4;
+Horde swarmHorde5;
 
-PVector[] origin, origin2, destination, nodes;
+PVector[] origin, origin2, origin3, origin4, origin5, destination, nodes;
 float[] weight;
 
 int textSize = 8;
@@ -78,8 +81,11 @@ void initAgents(PGraphics p) {
   
   println("Initializing Agent Objects ... ");
   
-  swarmHorde = new Horde(1000);
-  swarmHorde2 = new Horde(1000);
+  swarmHorde = new Horde(800);
+  swarmHorde2 = new Horde(800);
+  swarmHorde3 = new Horde(800);
+  swarmHorde4 = new Horde(800);
+  swarmHorde5 = new Horde(800);
   sources_Viz = createGraphics(p.width, p.height);
   edges_Viz = createGraphics(p.width, p.height);
   
@@ -107,6 +113,9 @@ void swarmPaths(PGraphics p, boolean enable) {
   // Applyies pathfinding network to swarms
   swarmHorde.solvePaths(pFinder, enable);
   swarmHorde2.solvePaths(pFinder, enable);
+  swarmHorde3.solvePaths(pFinder, enable);
+  swarmHorde4.solvePaths(pFinder, enable);
+  swarmHorde5.solvePaths(pFinder, enable);
   pFinderPaths_Viz(p, enable);
 }
 
@@ -116,6 +125,9 @@ void sources_Viz(PGraphics p) {
   // Draws Sources and Sinks to canvas
   swarmHorde.displaySource(sources_Viz);
   swarmHorde2.displaySource(sources_Viz);
+  swarmHorde3.displaySource(sources_Viz);
+  swarmHorde4.displaySource(sources_Viz);
+  swarmHorde5.displaySource(sources_Viz);
   sources_Viz.endDraw(); 
 }
 
@@ -125,6 +137,9 @@ void edges_Viz(PGraphics p) {
   // Draws Sources and Sinks to canvas
   swarmHorde.displayEdges(edges_Viz);
   swarmHorde2.displayEdges(edges_Viz);
+  swarmHorde3.displayEdges(edges_Viz);
+  swarmHorde4.displayEdges(edges_Viz);
+  swarmHorde5.displayEdges(edges_Viz);
   edges_Viz.endDraw(); 
 }
 
@@ -154,6 +169,9 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
   nodes = new PVector[numNodes];
   origin = new PVector[numSwarm];
   origin2 = new PVector[numSwarm];
+  origin3 = new PVector[numSwarm];
+  origin4 = new PVector[numSwarm];
+  origin5 = new PVector[numSwarm];
   destination = new PVector[numSwarm];
   weight = new float[numSwarm];
   swarmHorde.clearHorde();
@@ -169,7 +187,13 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
       
       origin[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
       
-      origin2[i*(numNodes-1)+j] = new PVector(nodes[i].x + 5, nodes[i].y);
+      origin2[i*(numNodes-1)+j] = new PVector(nodes[i].x + 15, nodes[i].y + 6);
+      
+      origin3[i*(numNodes-1)+j] = new PVector(nodes[i].x - 15, nodes[i].y - 6);
+      
+      origin4[i*(numNodes-1)+j] = new PVector(nodes[i].x - 15, nodes[i].y + 6);
+      
+      origin5[i*(numNodes-1)+j] = new PVector(nodes[i].x + 15, nodes[i].y - 6);
       
       destination[i*(numNodes-1)+j] = new PVector(nodes[(i+j+1)%(numNodes)].x, nodes[(i+j+1)%(numNodes)].y);
       
@@ -181,15 +205,22 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
   
     // rate, life, origin, destination
   colorMode(HSB);
+  
   for (int i=0; i<numSwarm; i++) {
     
     // delay, origin, destination, speed, color
-    swarmHorde.addSwarm(weight[i], origin[i], destination[i], 1, color(#ff00ff)); //255.0*i/numSwarm, 255, 255
-    swarmHorde2.addSwarm(weight[i], origin2[i], destination[i], 1, color(#00ff00));
+    swarmHorde.addSwarm(weight[i], origin[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+    swarmHorde2.addSwarm(weight[i], origin2[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+    swarmHorde3.addSwarm(weight[i], origin3[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+    swarmHorde4.addSwarm(weight[i], origin4[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+    swarmHorde5.addSwarm(weight[i], origin5[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
     
     // Makes sure that agents 'staying put' eventually die
     swarmHorde.getSwarm(i).temperStandingAgents();
     swarmHorde2.getSwarm(i).temperStandingAgents();
+    swarmHorde3.getSwarm(i).temperStandingAgents();
+    swarmHorde4.getSwarm(i).temperStandingAgents();
+    swarmHorde5.getSwarm(i).temperStandingAgents();
   }
   colorMode(RGB);
   

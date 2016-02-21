@@ -39,6 +39,9 @@ void drawTableCanvas(PGraphics p) {
   if (showSwarm) {
     swarmHorde.update();
     swarmHorde2.update();
+    swarmHorde3.update();
+    swarmHorde4.update();
+    swarmHorde5.update();
   }
   
   //Updates Heatmap Data to Display
