@@ -87,15 +87,15 @@ void initAgents(PGraphics p) {
   
   //lots of small hordes instead of one big one 
   
-  swarmHorde = new Horde(int(random(200, 500)));
-  swarmHorde2 = new Horde(int(random(200, 500)));
-  swarmHorde3 = new Horde(int(random(200, 500)));
-  swarmHorde4 = new Horde(int(random(200, 500)));
-  swarmHorde5 = new Horde(int(random(200, 500)));
-  swarmHorde6 = new Horde(int(random(200, 500)));
-  swarmHorde7 = new Horde(int(random(200, 500)));
-  swarmHorde8 = new Horde(int(random(200, 500)));
-  swarmHorde9 = new Horde(int(random(200, 500)));
+  swarmHorde = new Horde(int(random(200, 400)));
+  swarmHorde2 = new Horde(int(random(200, 400)));
+  swarmHorde3 = new Horde(int(random(200, 400)));
+  swarmHorde4 = new Horde(int(random(200, 400)));
+  swarmHorde5 = new Horde(int(random(200, 400)));
+  swarmHorde6 = new Horde(int(random(200, 400)));
+  swarmHorde7 = new Horde(int(random(200, 400)));
+  swarmHorde8 = new Horde(int(random(200, 400)));
+  swarmHorde9 = new Horde(int(random(200, 400)));
   sources_Viz = createGraphics(p.width, p.height);
   edges_Viz = createGraphics(p.width, p.height);
   
