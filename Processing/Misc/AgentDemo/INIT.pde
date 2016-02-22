@@ -65,8 +65,12 @@ Horde swarmHorde2;
 Horde swarmHorde3;
 Horde swarmHorde4;
 Horde swarmHorde5;
+Horde swarmHorde6;
+Horde swarmHorde7;
+Horde swarmHorde8;
+Horde swarmHorde9;
 
-PVector[] origin, origin2, origin3, origin4, origin5, destination, nodes;
+PVector[] origin, origin2, origin3, origin4, origin5, origin6, origin7, origin8, origin9, destination, nodes;
 float[] weight;
 
 int textSize = 8;
@@ -81,11 +85,15 @@ void initAgents(PGraphics p) {
   
   println("Initializing Agent Objects ... ");
   
-  swarmHorde = new Horde(800);
-  swarmHorde2 = new Horde(800);
-  swarmHorde3 = new Horde(800);
-  swarmHorde4 = new Horde(800);
-  swarmHorde5 = new Horde(800);
+  swarmHorde = new Horde(int(random(200, 500)));
+  swarmHorde2 = new Horde(int(random(200, 500)));
+  swarmHorde3 = new Horde(int(random(200, 500)));
+  swarmHorde4 = new Horde(int(random(200, 500)));
+  swarmHorde5 = new Horde(int(random(200, 500)));
+  swarmHorde6 = new Horde(int(random(200, 500)));
+  swarmHorde7 = new Horde(int(random(200, 500)));
+  swarmHorde8 = new Horde(int(random(200, 500)));
+  swarmHorde9 = new Horde(int(random(200, 500)));
   sources_Viz = createGraphics(p.width, p.height);
   edges_Viz = createGraphics(p.width, p.height);
   
@@ -116,6 +124,10 @@ void swarmPaths(PGraphics p, boolean enable) {
   swarmHorde3.solvePaths(pFinder, enable);
   swarmHorde4.solvePaths(pFinder, enable);
   swarmHorde5.solvePaths(pFinder, enable);
+  swarmHorde6.solvePaths(pFinder, enable);
+  swarmHorde7.solvePaths(pFinder, enable);
+  swarmHorde8.solvePaths(pFinder, enable);
+  swarmHorde9.solvePaths(pFinder, enable);
   pFinderPaths_Viz(p, enable);
 }
 
@@ -128,6 +140,10 @@ void sources_Viz(PGraphics p) {
   swarmHorde3.displaySource(sources_Viz);
   swarmHorde4.displaySource(sources_Viz);
   swarmHorde5.displaySource(sources_Viz);
+  swarmHorde6.displaySource(sources_Viz);
+  swarmHorde7.displaySource(sources_Viz);
+  swarmHorde8.displaySource(sources_Viz);
+  swarmHorde9.displaySource(sources_Viz);
   sources_Viz.endDraw(); 
 }
 
@@ -140,6 +156,10 @@ void edges_Viz(PGraphics p) {
   swarmHorde3.displayEdges(edges_Viz);
   swarmHorde4.displayEdges(edges_Viz);
   swarmHorde5.displayEdges(edges_Viz);
+  swarmHorde6.displayEdges(edges_Viz);
+  swarmHorde7.displayEdges(edges_Viz);
+  swarmHorde8.displayEdges(edges_Viz);
+  swarmHorde9.displayEdges(edges_Viz);
   edges_Viz.endDraw(); 
 }
 
@@ -152,6 +172,14 @@ void hurrySwarms(int frames) {
   showTraces = false;
   for (int i=0; i<frames; i++) {
     swarmHorde.update();
+    swarmHorde2.update();
+    swarmHorde3.update();
+    swarmHorde4.update();
+    swarmHorde5.update();
+    swarmHorde6.update();
+    swarmHorde7.update();
+    swarmHorde8.update();
+    swarmHorde9.update();
   }
   showSwarm = true;
   //speed = 1.5;
@@ -172,10 +200,21 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
   origin3 = new PVector[numSwarm];
   origin4 = new PVector[numSwarm];
   origin5 = new PVector[numSwarm];
+  origin6 = new PVector[numSwarm];
+  origin7 = new PVector[numSwarm];
+  origin8 = new PVector[numSwarm];
+  origin9 = new PVector[numSwarm];
   destination = new PVector[numSwarm];
   weight = new float[numSwarm];
   swarmHorde.clearHorde();
-  
+  swarmHorde2.clearHorde();
+  swarmHorde3.clearHorde();
+  swarmHorde4.clearHorde();
+  swarmHorde5.clearHorde();
+  swarmHorde6.clearHorde();
+  swarmHorde7.clearHorde();
+  swarmHorde8.clearHorde();
+  swarmHorde9.clearHorde();
 
   
   for (int i=0; i<numNodes; i++) {
@@ -187,17 +226,50 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
       
       origin[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
       
-      origin2[i*(numNodes-1)+j] = new PVector(nodes[i].x + 15, nodes[i].y + 6);
+      if(i <15){
+      origin2[i*(numNodes-1)+j] = new PVector((nodes[i].x) + (nodes[i+1].x - nodes[i].x)*random(.25, .05), nodes[i].y + (nodes[i+1].y - nodes[i].y)*random(.3, .05));
       
-      origin3[i*(numNodes-1)+j] = new PVector(nodes[i].x - 15, nodes[i].y - 6);
+      origin3[i*(numNodes-1)+j] = new PVector(nodes[i].x - (nodes[i+1].x - nodes[i].x)*random(.2, .05), nodes[i].y - (nodes[i+1].y - nodes[i].y)*random(.2, .05));
       
-      origin4[i*(numNodes-1)+j] = new PVector(nodes[i].x - 15, nodes[i].y + 6);
+      origin4[i*(numNodes-1)+j] = new PVector(nodes[i].x - (nodes[i+1].x - nodes[i].x)*random(.25, .05), nodes[i].y + (nodes[i+1].y - nodes[i].y)*random(.3, .05));
       
-      origin5[i*(numNodes-1)+j] = new PVector(nodes[i].x + 15, nodes[i].y - 6);
+      origin5[i*(numNodes-1)+j] = new PVector(nodes[i].x + (nodes[i+1].x - nodes[i].x)*random(.25, .1), nodes[i].y - (nodes[i+1].y - nodes[i].y)*random(.2, .05));
       
-      destination[i*(numNodes-1)+j] = new PVector(nodes[(i+j+1)%(numNodes)].x, nodes[(i+j+1)%(numNodes)].y);
+      origin6[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y + (nodes[i+1].y - nodes[i].y)*random(.3, .05));
+      
+      origin7[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y - (nodes[i+1].y - nodes[i].y)*random(.2, .05));
+      
+      origin8[i*(numNodes-1)+j] = new PVector(nodes[i].x - (nodes[i+1].x - nodes[i].x)*random(.25, .05), nodes[i].y);
+      
+      origin9[i*(numNodes-1)+j] = new PVector(nodes[i].x + (nodes[i+1].x - nodes[i].x)*random(.25, .1), nodes[i].y);
+      }
+      
+      else{
+      origin2[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
+      
+      origin3[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
+      
+      origin4[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
+      
+      origin5[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
+      
+      origin6[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
+                  
+      origin7[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
+                        
+      origin8[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
+                              
+      origin9[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
+      }
+        
+      
+      destination[i*(numNodes-1)+j] = new PVector(nodes[(i+j+1)%(numNodes)].x, nodes[(i+j+1)%(numNodes)].y);  
+  
+  updatePixels(); // must call after using pixels[]
       
       weight[i*(numNodes-1)+j] = random(0.1, 2.0);
+      
+      line(nodes[3].x, nodes[3].y, nodes[4].x, nodes[4].y);
       
       //println("swarm:" + (i*(numNodes-1)+j) + "; (" + i + ", " + (i+j+1)%(numNodes) + ")");
     }
@@ -214,6 +286,10 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
     swarmHorde3.addSwarm(weight[i], origin3[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
     swarmHorde4.addSwarm(weight[i], origin4[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
     swarmHorde5.addSwarm(weight[i], origin5[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+    swarmHorde6.addSwarm(weight[i], origin5[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+    swarmHorde7.addSwarm(weight[i], origin5[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+    swarmHorde8.addSwarm(weight[i], origin5[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+    swarmHorde9.addSwarm(weight[i], origin5[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
     
     // Makes sure that agents 'staying put' eventually die
     swarmHorde.getSwarm(i).temperStandingAgents();
@@ -221,6 +297,11 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
     swarmHorde3.getSwarm(i).temperStandingAgents();
     swarmHorde4.getSwarm(i).temperStandingAgents();
     swarmHorde5.getSwarm(i).temperStandingAgents();
+    swarmHorde9.getSwarm(i).temperStandingAgents();
+    swarmHorde6.getSwarm(i).temperStandingAgents();
+    swarmHorde7.getSwarm(i).temperStandingAgents();
+    swarmHorde8.getSwarm(i).temperStandingAgents();
+   
   }
   colorMode(RGB);
   
@@ -401,6 +482,14 @@ void pFinderPaths_Viz(PGraphics p, boolean enable) {
   pFinderPaths = createGraphics(p.width, p.height);
   pFinderPaths.beginDraw();
   swarmHorde.solvePaths(pFinder, enable);
+  swarmHorde2.solvePaths(pFinder, enable);
+  swarmHorde3.solvePaths(pFinder, enable);
+  swarmHorde4.solvePaths(pFinder, enable);
+  swarmHorde5.solvePaths(pFinder, enable);
+  swarmHorde6.solvePaths(pFinder, enable);
+  swarmHorde7.solvePaths(pFinder, enable);
+  swarmHorde8.solvePaths(pFinder, enable);
+  swarmHorde9.solvePaths(pFinder, enable);
   swarmHorde.displayPaths(pFinderPaths);
   pFinderPaths.endDraw();
   
