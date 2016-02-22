@@ -38,7 +38,7 @@ void initContent(PGraphics p) {
       showGrid = true;
       finderMode = 0;
       showEdges = false;
-      showSource = true;
+      showSource = false;
       showPaths = true;
       break;
   }
