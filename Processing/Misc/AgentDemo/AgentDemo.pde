@@ -1,6 +1,5 @@
 // This is the staging script for the Pathfinding for agent-based modeling
 // Ira Winder, MIT Media Lab, jiw@mit.edu, Fall 2015
-//local copy
 
 int canvasWidth = 1000;
 int canvasHeight = 540;

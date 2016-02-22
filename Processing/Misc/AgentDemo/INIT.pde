@@ -59,7 +59,7 @@ void initContent(PGraphics p) {
 
 
 // ---------------------Initialize Agent-based Objects---
-
+//call multiple swarmHordes to manipulate into different sub origins 
 Horde swarmHorde;
 Horde swarmHorde2;
 Horde swarmHorde3;
@@ -84,6 +84,8 @@ PGraphics sources_Viz, edges_Viz;
 void initAgents(PGraphics p) {
   
   println("Initializing Agent Objects ... ");
+  
+  //lots of small hordes instead of one big one 
   
   swarmHorde = new Horde(int(random(200, 500)));
   swarmHorde2 = new Horde(int(random(200, 500)));
@@ -118,7 +120,7 @@ void initAgents(PGraphics p) {
 }
 
 void swarmPaths(PGraphics p, boolean enable) {
-  // Applyies pathfinding network to swarms
+  // Applies pathfinding network to swarms
   swarmHorde.solvePaths(pFinder, enable);
   swarmHorde2.solvePaths(pFinder, enable);
   swarmHorde3.solvePaths(pFinder, enable);
@@ -221,6 +223,7 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
     nodes[i] = new PVector(random(10, p.width-10), random(10, p.height-10));
   }
   
+  //origins done with a bit of voronoi geometry
   for (int i=0; i<numNodes; i++) {
     for (int j=0; j<numNodes-1; j++) {
       
