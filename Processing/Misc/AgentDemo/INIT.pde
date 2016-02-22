@@ -230,31 +230,31 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
       
       origin5[i*(numNodes-1)+j] = new PVector(nodes[i].x + (nodes[i+1].x - nodes[i].x)*random(.1, .25), nodes[i].y - (nodes[i+1].y - nodes[i].y)*random(.05, .2));
       
-      origin6[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y + (nodes[i+1].y - nodes[i].y)*.25);
+      origin6[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y + (nodes[i+1].y - nodes[i].y)*random(0, .2));
       
-      origin7[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y - (nodes[i+1].y - nodes[i].y)*.05);
+      origin7[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y - (nodes[i+1].y - nodes[i].y)*random(0, .15));
       
-      origin8[i*(numNodes-1)+j] = new PVector(nodes[i].x - (nodes[i+1].x - nodes[i].x)*.25, nodes[i].y);
+      origin8[i*(numNodes-1)+j] = new PVector(nodes[i].x - (nodes[i+1].x - nodes[i].x)*random(0, .2), nodes[i].y);
       
-      origin9[i*(numNodes-1)+j] = new PVector(nodes[i].x + (nodes[i+1].x - nodes[i].x)*.05, nodes[i].y);
+      origin9[i*(numNodes-1)+j] = new PVector(nodes[i].x + (nodes[i+1].x - nodes[i].x)*random(0, .25), nodes[i].y);
       }
       
       else{
-      origin2[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
+      origin2[i*(numNodes-1)+j] = new PVector(nodes[i].x + (nodes[i].x - nodes[i-1].x)*.1, nodes[i].y +(nodes[i].y - nodes[i-1].y) * random(0, .2));
       
-      origin3[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
+      origin3[i*(numNodes-1)+j] = new PVector(nodes[i].x - (nodes[i].x - nodes[i-1].x)*random(0, .2), nodes[i].y * random(0, .2));
       
-      origin4[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
+      origin4[i*(numNodes-1)+j] = new PVector(nodes[i].x + (nodes[i].x - nodes[i-1].x)*.2, nodes[i].y +(nodes[i].y - nodes[i-1].y)* random(0, .2));
       
-      origin5[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
+      origin5[i*(numNodes-1)+j] = new PVector(nodes[i].x - (nodes[i].x - nodes[i-1].x)* random(0, .2), nodes[i].y - (nodes[i].y - nodes[i-1].y)* random(0, .2));
       
-      origin6[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
+      origin6[i*(numNodes-1)+j] = new PVector(nodes[i].x + (nodes[i].x - nodes[i-1].x)*random(0, .2), nodes[i].y +(nodes[i].y - nodes[i-1].y)* random(0, .2));
                   
-      origin7[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
+      origin7[i*(numNodes-1)+j] = new PVector(nodes[i].x - (nodes[i].x - nodes[i-1].x)*random(0, .2), nodes[i].y -(nodes[i].y - nodes[i-1].y)* random(0, .2));
                         
-      origin8[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
+      origin8[i*(numNodes-1)+j] = new PVector((nodes[i].x) + (nodes[i].x - nodes[i-1].x) * random(0, .2), nodes[i].y +(nodes[i].y - nodes[i-1].y)* random(0, .2));
                               
-      origin9[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
+      origin9[i*(numNodes-1)+j] = new PVector(nodes[i].x - (nodes[i].x - nodes[i-1].x) * random(0, .2), nodes[i].y -(nodes[i].y - nodes[i-1].y)* random(0, .2));
       }
         
       
