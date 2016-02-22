@@ -272,8 +272,6 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
       
       weight[i*(numNodes-1)+j] = random(0.1, 2.0);
       
-      line(nodes[3].x, nodes[3].y, nodes[4].x, nodes[4].y);
-      
       //println("swarm:" + (i*(numNodes-1)+j) + "; (" + i + ", " + (i+j+1)%(numNodes) + ")");
     }
   }
