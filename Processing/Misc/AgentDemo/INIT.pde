@@ -154,14 +154,6 @@ void edges_Viz(PGraphics p) {
   edges_Viz.beginDraw();
   // Draws Sources and Sinks to canvas
   swarmHorde.displayEdges(edges_Viz);
-  swarmHorde2.displayEdges(edges_Viz);
-  swarmHorde3.displayEdges(edges_Viz);
-  swarmHorde4.displayEdges(edges_Viz);
-  swarmHorde5.displayEdges(edges_Viz);
-  swarmHorde6.displayEdges(edges_Viz);
-  swarmHorde7.displayEdges(edges_Viz);
-  swarmHorde8.displayEdges(edges_Viz);
-  swarmHorde9.displayEdges(edges_Viz);
   edges_Viz.endDraw(); 
 }
 
