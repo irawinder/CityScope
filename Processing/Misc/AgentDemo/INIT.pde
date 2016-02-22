@@ -230,21 +230,21 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
       origin[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
       
       if(i <15){
-      origin2[i*(numNodes-1)+j] = new PVector((nodes[i].x) + (nodes[i+1].x - nodes[i].x)*random(.05, .25), nodes[i].y + (nodes[i+1].y - nodes[i].y)*random(.05, .3));
+      origin2[i*(numNodes-1)+j] = new PVector((nodes[i].x) + (nodes[i+1].x - nodes[i].x)*random(.05, .25), nodes[i].y + (nodes[i+1].y - nodes[i].y)*random(.15, .3));
       
-      origin3[i*(numNodes-1)+j] = new PVector(nodes[i].x - (nodes[i+1].x - nodes[i].x)*random(.05, .2), nodes[i].y - (nodes[i+1].y - nodes[i].y)*random(.05, .2));
+      origin3[i*(numNodes-1)+j] = new PVector(nodes[i].x - (nodes[i+1].x - nodes[i].x)*random(.15, .2), nodes[i].y - (nodes[i+1].y - nodes[i].y)*random(.05, .2));
       
-      origin4[i*(numNodes-1)+j] = new PVector(nodes[i].x - (nodes[i+1].x - nodes[i].x)*random(.05, .25), nodes[i].y + (nodes[i+1].y - nodes[i].y)*random(.05, .3));
+      origin4[i*(numNodes-1)+j] = new PVector(nodes[i].x - (nodes[i+1].x - nodes[i].x)*random(.15, .25), nodes[i].y + (nodes[i+1].y - nodes[i].y)*random(.05, .3));
       
       origin5[i*(numNodes-1)+j] = new PVector(nodes[i].x + (nodes[i+1].x - nodes[i].x)*random(.1, .25), nodes[i].y - (nodes[i+1].y - nodes[i].y)*random(.05, .2));
       
-      origin6[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y + (nodes[i+1].y - nodes[i].y)*random(.05, .3));
+      origin6[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y + (nodes[i+1].y - nodes[i].y)*.25);
       
-      origin7[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y - (nodes[i+1].y - nodes[i].y)*random(.05, .2));
+      origin7[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y - (nodes[i+1].y - nodes[i].y)*.05);
       
       origin8[i*(numNodes-1)+j] = new PVector(nodes[i].x - (nodes[i+1].x - nodes[i].x)*.25, nodes[i].y);
       
-      origin9[i*(numNodes-1)+j] = new PVector(nodes[i].x + (nodes[i+1].x - nodes[i].x)*.25, nodes[i].y);
+      origin9[i*(numNodes-1)+j] = new PVector(nodes[i].x + (nodes[i+1].x - nodes[i].x)*.05, nodes[i].y);
       }
       
       else{
