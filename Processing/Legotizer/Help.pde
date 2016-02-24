@@ -29,7 +29,7 @@ String help[] = {
  "'z' Toggle override of Static Buildings [On/Off]",
  "'l' Display Plan in Upper Left Corner",
  "'k' Rotate pieces 90 degrees",
- "'f' flip model upside down",
+ "'f' Show/Hide Framerate",
  "'P' Refresh Projection Mapping Cancas",
  "'`' turn on secondary canvas for projection mapping",
  "   'c' [secondary canvas only] turns on calibration mode",

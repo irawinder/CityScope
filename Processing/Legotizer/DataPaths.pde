@@ -5,7 +5,7 @@ boolean dataLoaded   = false;
 
 // filepath segments for constructing data references
 Table index;
-String legotizer_data, demoPrefix, demos[];
+String legotizer_data, demoPrefix, demos[], demoTemplate;
 
 // Function that opens legotizer_data folder
 void folderSelected(File selection) {
@@ -27,4 +27,5 @@ void initializePaths() {
   for (int i=0; i<demos.length; i++) {
     demos[i] = index.getString(i+1, 0) + "/";
   }
+  demoTemplate = "template/";
 }

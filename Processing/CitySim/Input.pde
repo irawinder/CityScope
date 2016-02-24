@@ -53,7 +53,7 @@ void loadInput(String filename, int viz) {
     println(filename + " incomplete file");
   }
   
-  defaultNode = loadJSONObject(legotizer_data + demoPrefix + demos[viz] + "defaultNode.json"); 
+  defaultNode = loadJSONObject(legotizer_data + demoPrefix + demoTemplate + "defaultNode.json"); 
 
   // Calculate maxU, maxV, maxZ
   maxZ = 0;

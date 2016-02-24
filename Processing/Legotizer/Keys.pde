@@ -102,7 +102,7 @@ void keyPressed() {
       updateAllNodes();
       break;
     case 'f': 
-      flip();
+      displayFramerate = toggle(displayFramerate);
       break;
     case '`':
       toggle2DProjection();
@@ -193,4 +193,11 @@ int nextMode(int mode, int maxMode) {
   }
 }
 
+boolean toggle(boolean bool) {
+  if (bool) {
+    return false;
+  } else {
+    return true;
+  }
+}
 
