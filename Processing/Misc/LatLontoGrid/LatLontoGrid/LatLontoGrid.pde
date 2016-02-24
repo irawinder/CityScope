@@ -3,11 +3,16 @@
 
 //Azimuth in degrees, gridsize in km/stud.
 
-//int untill I know how to return two variables, there is likely a point object I can return
-int LatLontoGrid(float lat, float lon, float centerLat, float centerLon, float azm, float gridsize, int gh, int gw)
+
+//possible issue with y being positive while v needs to be negative
+//possible issue with kmperLon although the geometry seems right
+
+
+int[] LatLontoGrid(float lat, float lon, float centerLat, float centerLon, float azm, float gridsize, int gh, int gw)
 {
   //Create the unit conversion ratios. Earth Radius = 6371km
-  float kmperLon = cos(getRadians(centerLat))*6371/360;
+  //I find the km per Longitude from the center and assume its constant over the region
+  float kmperLon = cos((float)(Math.PI/180*centerLat))*6371/360;
   float kmperLat = 6371/360;
   
   //Convert from lat/lon to grid units (not yet rotated)
@@ -15,15 +20,21 @@ int LatLontoGrid(float lat, float lon, float centerLat, float centerLon, float a
   float y = (lat - centerLat)*kmperLat/gridsize;
   
   //Rotate (Im rotating opposite direction because Im really supposed to rotate the coordinate system)
-  x = -x*cos(getRadians(azm)) + y*sin(getRadians(azm));
-  y = -x*sin(getRadians(azm)) - y*cos(getRadians(azm));
+  x = -x*cos((float)Math.PI/180*(azm)) + y*sin((float)Math.PI/180*(azm));
+  y = -x*sin((float)Math.PI/180*(azm)) - y*cos((float)Math.PI/180*(azm));
   
-  //Translate from center of grid to top left corner (I hope thats the starting spot)
+  //Translate from center of grid to top left corner
   x = x - gw/2;
   y = y + gh/2;
   // x and y are now on the grid, truncating to int will give us its location
   
-  //Return value here with some 2 int object 
+  int[] xy;
+  xy = new int[2];
+  xy[0] = int(x);
+  xy[1] = int(y);
+  
+  //println(xy[0], xy[1]);
+  return xy;
 }
 
 
