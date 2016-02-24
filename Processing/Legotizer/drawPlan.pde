@@ -65,10 +65,10 @@ void drawPlan(int x, int y, int w, int h) {
       }
     }
     
-    // Rotate Plan
-    lTranslate(boardWidth/2, boardLength/2);
-    plan.rotate(0);
-    lTranslate(-boardWidth/2, -boardLength/2);
+//    // Rotate Plan
+//    lTranslate(boardWidth/2, boardLength/2);
+//    plan.rotate(0);
+//    lTranslate(-boardWidth/2, -boardLength/2);
     
     if (faux3D) {
       k_height = useCloud.nodes[0][0].length;

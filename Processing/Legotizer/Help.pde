@@ -24,13 +24,11 @@ String help[] = {
  "'R' Toggle data transfer to Remote via DDP",
  "'v' Change Demo Being Visualized (Kendall, Riyadh, etc)",
  "'a' Toggle Grid Axes [On/Off]",
- "'t' Toggle Statistics (not finished)",
- "'g' Toggle Grid View Mode (turns off everthing else)",
  "'z' Toggle override of Static Buildings [On/Off]",
  "'l' Display Plan in Upper Left Corner",
  "'k' Rotate pieces 90 degrees",
  "'f' Show/Hide Framerate",
- "'P' Refresh Projection Mapping Cancas",
+ "'P' Refresh Projection Mapping Canvas",
  "'`' turn on secondary canvas for projection mapping",
  "   'c' [secondary canvas only] turns on calibration mode",
  "   's' [secondary canvas only] save calibration state",
@@ -42,8 +40,6 @@ String help[] = {
  "'[' draw satellite image in plan",
  "']' draw static buildings in plan",
  "'b' Toggle 'Web' for drawing scores",
- "'x' Change colorweb fill type (constant, average, and binary)",
- "'n' Change 3D visualization to use Nodes as input instead of building files",
  "'/' Toggle dynamic pieces to have width of 1 or 4 Lego units",
  "'.' Toggle dynamic pieces to have hieght of 1 or 3 Lego units",
  "'=' Saves a JSON file of nodes to '../legotizer_data/demo_name/' folder",
@@ -54,7 +50,11 @@ String help[] = {
  "'5' Sends '5' String to colortizer (i.e. 'displaymode daylighting' in SDL RhinoScript)",
  "'6' Sends '6' String to colortizer (i.e. (re)initiates SDL RhinoScript server)",
  "'UP', 'DOWN', 'LEFT', 'RIGHT', '-', and '+' adjust the projector's location in 3D space.",
- "'C' Change Canvas for adjusting projector's locationin 3D space",
+ "'SHIFT + C' Change Canvas for adjusting projector's locationin 3D space",
+ "'x' Toggle Information",
+ "'n' Toggle Plan Rendering",
+ "'g' Toggle Camera Setting",
+ "'t' Toggle Perspective Draw",
  "",
  "Press 'h' key to return to Legotizer"
 };
@@ -66,6 +66,11 @@ void drawHelp() {
   background(0);
   for (int i=0; i<help.length; i++) {
     text(help[i], 10, 13*(i+1));
+  }
+  
+  textAlign(RIGHT);
+  if (displayFramerate) {
+    text("Framerate: " + frameRate, width - 10, 13);
   }
 }
 

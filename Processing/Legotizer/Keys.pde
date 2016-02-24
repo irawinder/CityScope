@@ -64,7 +64,7 @@ void keyPressed() {
       forceSimUpdate();
       break;
     case 't': 
-      toggleStatsDraw();
+      drawPerspective = toggle(drawPerspective);
       break;
     case 'r': 
       rotateCamera();
@@ -82,7 +82,7 @@ void keyPressed() {
       toggleAxes();
       break;
     case 'g': 
-      toggleGridOnly();
+      setCamera = toggle(setCamera);
       break;
     case 'z': 
       toggleStaticOverride();
@@ -120,10 +120,10 @@ void keyPressed() {
       changeImageMode();
       break;
     case 'x': 
-      changeScoreWebMode();
+      drawInfo = toggle(drawInfo);
       break;
     case 'n':
-      toggleNodes();
+      renderPlan = toggle(renderPlan);
       break;
     case 'N':
       changeNodes();
@@ -195,8 +195,10 @@ int nextMode(int mode, int maxMode) {
 
 boolean toggle(boolean bool) {
   if (bool) {
+    println("false");
     return false;
   } else {
+    println("true");
     return true;
   }
 }

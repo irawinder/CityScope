@@ -803,15 +803,6 @@ void toggleDynamicDraw() {
   }
 }
 
-void toggleStatsDraw() {
-  if (drawStats == false) {
-    drawStats = true;
-    println("No Content Yet Supported");
-  } else {
-    drawStats = false;
-  }
-}
-
 void toggleColorMode() {
   switch(colorMode) {
     case 0:

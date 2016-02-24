@@ -110,8 +110,6 @@ boolean sketchFullScreen() {
 int vizMode = 0;
 boolean vizChange = false;
 
-boolean drawStats = false;
-
 // Runs once before any draw function is called
 void setup() {
   initializeCanvas();
@@ -199,57 +197,10 @@ void draw() {
       resetProjection2D();
       vizChange = false;
     }
-  
-    // Visualization Graphics
-    if (displayHelp) {
-      drawHelp();
-    } else { // Puts most typical draw functions here
-      
-      background(0);
-      
-      //---------- Begin 3D Graphics --------------//
-      
-      // Sets Camera View and Lights for Perspective
-      camPerspective(boardLength, boardWidth); 
-      
-      // Renders Axes, Grids, Static Models and/or Dynamic Models
-      drawPerspective();                       
-      
-      // Renders Raster of satellite or drawing image
-      if (displaySatellite) {
-        drawSatellite();
-      }
-      
-      
-      if (displayMode == 0) {
-        
-        //---------- Begin 2D Graphics ------------//
-        
-        // Sets Camera View to 2D, reset fill and alpha values
-        cam2D();                     
-        fill(#FFFFFF, 255);
-        
-        // Draws small Plan in upper corner 
-        drawPlan(10, 10, int(0.3*height), int(0.3*height));  
-        
-        // Draws Web Representing Scores
-        if (displayScoreWeb) {
-          drawScoreWeb(int(0.8*width), int(height - 0.3*width), int(0.2*width), int(0.2*width));
-        }
-        
-        // Draws information about current view
-        drawInfo();
-       
-        // Needs to be reformatted for use in Legotizer
-        //if (vizMode == 0) {              //Calculates and Draws Secondary Analysis
-        //  calcStats();
-        //  drawStats();
-        //}
-      
-      } 
-    }
+    
+    drawScreen();
+    
   }
-  //println(frameRate);
 }
 
 void initializeCanvas() {
@@ -257,4 +208,65 @@ void initializeCanvas() {
   canvasWidth  = canvas.getInt(0, "width");   // Projector Width in Pixels
   canvasHeight = canvas.getInt(0, "height");  // Projector Height in Pixels
   println("Canvas Info: " + canvasWidth + ", " + canvasHeight);
+}
+
+boolean setCamera = true;
+boolean drawPerspective = true;
+boolean renderPlan = true;
+boolean drawInfo = true;
+
+void drawScreen() {
+  
+  // Visualization Graphics
+  if (displayHelp) {
+    drawHelp();
+  } else { // Puts most typical draw functions here
+    
+    background(0);
+    
+    //---------- Begin 3D Graphics --------------//
+    
+    // Sets Camera View and Lights for Perspective
+    if (setCamera) {
+      camPerspective(boardLength, boardWidth); 
+    }
+    
+    // Renders Axes, Grids, Static Models and/or Dynamic Models
+    if (drawPerspective) {
+      drawPerspective();   
+    }      
+    
+    // Renders Raster of satellite or drawing image
+    if (displaySatellite) {
+      drawSatellite();
+    }
+    
+    
+    if (displayMode == 0) {
+      
+      //---------- Begin 2D Graphics ------------//
+      
+      // Sets Camera View to 2D, reset fill and alpha values
+      if (setCamera) {
+        cam2D();                    
+      } 
+      fill(#FFFFFF, 255);
+      
+      // Draws Plan to Projection Canvas and Draws small Plan in upper corner 
+      if (renderPlan) {
+        drawPlan(10, 10, int(0.3*height), int(0.3*height));
+      }  
+      
+      // Draws Web Representing Scores
+      if (displayScoreWeb) {
+        drawScoreWeb(int(0.8*width), int(height - 0.3*width), int(0.2*width), int(0.2*width));
+      }
+      
+      // Draws information about current view
+      if (drawInfo) {
+        drawInfo();
+      }
+    
+    } 
+  }
 }
