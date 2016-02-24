@@ -72,6 +72,7 @@ void parseCodeStrings(String data[]) {
       } catch(RuntimeException e){
         siteOffsetU = 0;
         siteOffsetV = 0;
+        println("Caught at 'void pareseCodeStrings()' in 'if (split.length == 2 ...)'");
       }
       //println("Site Offset for Grid " + split[1] + ": " + siteOffsetU + ", " + siteOffsetV);
     }

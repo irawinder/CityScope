@@ -1,7 +1,10 @@
 /* Legotizer By Ira Winder [jiw@mit.edu], CityScope Project, Changing Places Group, MIT Media Lab
  *
- * This code draws a visualization of a digital, voxelized reconstruction of a physical Lego Model
- * User should have knowledge of "CityScope" Color Scanning Technology by Changing Places Group in MIT Media Lab
+ * This code :
+ *  (1) Draws a visualization of a digital, voxelized reconstruction of a physical Lego Model
+ *  (2) Opens 1 or more Canvases to project a 3D plan onto a physical mode
+ *  (3) Usually works in conjuntion with "Colortizer" and "CitySim" Algorithms that exist in the same Processing folder.
+ * User should have knowledge of "CityScope" Color Scanning Technology, Colortizer, by Changing Places Group in MIT Media Lab
  * Script uses data recieved via UDP from a Lego color/pattern scanning algorithm such as "Colortizer" written by Ira Winder [jiw@mit.edu]
  *
  *
@@ -63,15 +66,19 @@
  * v1.31: August 27, 2015- Allow view of 3D model from 4 additional, orthogonal angles * v1.31: August 27, 2015- Allow view of 3D model from 4 additional, orthogonal angles
  * v1.32: Sep 6, 2015    - Added New Demomode for Hamburg (legotizer_library folders updated with basemaps!)
  * v1.33: Jan 16, 2016   - Update Hamburg visualization for 2 projectors, not 1.  Concatenate Multiple Tables
+ * v1.34: Feb 1, 2016    - Added DemoMode for Tongzhou for iSoftStone & support or receiving multiple webcam inputs
  * 
  * TO DO: 
+ * 0. Make Framerate a lot better
+ * 0. Eliminate Library Dependencies (Keystone) to make export to executable possible
+ * 0. Make Better UI, including continuous camera rotation, better lighting, etc
+ * 0. Fix Table Row 1 error
  * 1. Uniquely color each Heatmap and/or change description to be more intuitive?
- * 2. Include Static Structures in Nodes? Or just have simulator reference original "staticStructures.tsv" file?
  */
 
 
 
-float version = 1.33;
+float version = 1.34;
 
 // For any given setup, please update these dimensions, in pixels
 //
