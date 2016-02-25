@@ -19,7 +19,8 @@ float[] projV;
 float[] projH;
 
 // Value between 0 and 1 that describes Saturation/Brightness
-float pulseAlpha;
+boolean showPulse = false;
+float pulseAlpha = 0;
 float pulseAngle = 0;
 
 void toggleFaux3D() {
@@ -32,12 +33,18 @@ void toggleFaux3D() {
 
 void initializePlan() {
   plan = createGraphics(int(planScaler*width), int(planScaler*width*boardLength/boardWidth), P2D);
+  
   plan3DImage = new PImage[numProj];
+  for (int n=0; n<numProj; n++) {
+    plan3DImage[n] = plan.get();
+  }
 }
 
-void drawPlan(int x, int y, int w, int h) {
+void renderPlan() {
   
-  iteratePulse();
+  if (showPulse) {
+    iteratePulse();
+  }
   
   for (int n=0; n<numProj; n++) {
     plan.beginDraw();
@@ -91,9 +98,13 @@ void drawPlan(int x, int y, int w, int h) {
     
     plan3DImage[n] = plan.get();
   }
-  
-  if (drawPlan) {
+}
+
+void drawPlan(int x, int y, int w, int h) {
+  try {
     image(plan3DImage[canvasIndex], x, y, w, h);
+  } catch(RuntimeException e){
+    //println("No Image Rendered for Plan");
   }
 }
 

@@ -1,3 +1,4 @@
+PGraphics perspective;
 
 int coordMode = 0; //0 is Processing normal, 1 is OPENGL cam callibration
 
@@ -44,6 +45,10 @@ int res, off, ret, ins;
 
 float ht;
 float nodeGap = 0.98;
+
+void initPerspective() {
+  
+}
 
 void drawPerspective() {
   

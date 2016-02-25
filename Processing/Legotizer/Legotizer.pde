@@ -163,6 +163,9 @@ void draw() {
     loadSummary();
     loadAssumptions();
     
+    // Ensures that plan is rendered before any change detected
+    renderPlan();
+    
     //Opens Projection-Mapping Canvas
     toggle2DProjection();
   }
@@ -210,7 +213,6 @@ void initializeCanvas() {
   println("Canvas Info: " + canvasWidth + ", " + canvasHeight);
 }
 
-boolean setCamera = true;
 boolean drawPerspective = true;
 boolean renderPlan = true;
 boolean drawInfo = true;
@@ -227,11 +229,9 @@ void drawScreen() {
     //---------- Begin 3D Graphics --------------//
     
     // Sets Camera View and Lights for Perspective
-    if (setCamera) {
-      camPerspective(boardLength, boardWidth); 
-    }
+    camPerspective(boardLength, boardWidth); 
     
-    // Renders Axes, Grids, Static Models and/or Dynamic Models
+    // Renders Axes, Grids, Static Models and/or Dynamic Models (Very Heavy)
     if (drawPerspective) {
       drawPerspective();   
     }      
@@ -247,15 +247,18 @@ void drawScreen() {
       //---------- Begin 2D Graphics ------------//
       
       // Sets Camera View to 2D, reset fill and alpha values
-      if (setCamera) {
-        cam2D();                    
-      } 
+      cam2D();
       fill(#FFFFFF, 255);
       
-      // Draws Plan to Projection Canvas and Draws small Plan in upper corner 
-      if (renderPlan) {
+      // Renders Plan to Projection Canvas (Very Heavy)
+      if (renderPlan && changeDetected) {
+        renderPlan();
+      }
+      
+      // Draws small Plan in upper corner 
+      if (drawPlan) {
         drawPlan(10, 10, int(0.3*height), int(0.3*height));
-      }  
+      }
       
       // Draws Web Representing Scores
       if (displayScoreWeb) {

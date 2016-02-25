@@ -3,7 +3,7 @@ void keyPressed() {
     case 'h': 
       toggleHelp();
       break;
-    case 'p': 
+    case 'g': 
       toggleStaticSpacer();
       break;
     case ';': 
@@ -57,7 +57,7 @@ void keyPressed() {
       break;
     case 'c': 
       changeTestCodes();
-      updateAllNodes();
+      forceSimUpdate();
       break;
     case 'd': 
       toggleDynamicDraw();
@@ -81,8 +81,8 @@ void keyPressed() {
     case 'a': 
       toggleAxes();
       break;
-    case 'g': 
-      setCamera = toggle(setCamera);
+    case 'p': 
+      showPulse = toggle(showPulse);
       break;
     case 'z': 
       toggleStaticOverride();

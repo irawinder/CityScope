@@ -12,7 +12,7 @@ String help[] = {
  "Developer Keycodes specified in 'keyPressed()' (these are for troubleshooting and debugging, not meant to be final UI):",
  "'h' Displays advanced developer functions and help",
  "'S/L' Save/Load Table State",
- "'p' Toggle plexiglas grid gap for static model [On/Off]",
+ "'p' Toggle pulsing of dynamic pieces",
  "';' Toggle plexiglas grid gap for dynamic model [On/Off]",
  "'q' Toggle 1x1 or 4x4 piece type",
  "'SPACEBAR' Change Color Mode (Use-based, Form-based, or Heatmap)",
@@ -53,8 +53,8 @@ String help[] = {
  "'SHIFT + C' Change Canvas for adjusting projector's locationin 3D space",
  "'x' Toggle Information",
  "'n' Toggle Plan Rendering",
- "'g' Toggle Camera Setting",
  "'t' Toggle Perspective Draw",
+ "'g' Toggle plexiglas grid gap for static model [On/Off]",
  "",
  "Press 'h' key to return to Legotizer"
 };
