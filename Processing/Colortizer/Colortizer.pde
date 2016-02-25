@@ -49,6 +49,8 @@ float vizRatio = float(16)/(16); //Must match measurements in reality, i.e. a ta
 int vizWidth = 400; //Resolution (in pixels)
 int vizHeight = int(vizWidth/vizRatio);
 
+int garbageCount = 0;
+
 void setup() {
   size(vizWidth*2+500, vizHeight*2, P2D);
   setupScan(); //Loads all Scan Objects (coordinates, reference colors, and configuration) into memory with initial conditions and starts camera
@@ -63,7 +65,12 @@ void draw() {
   background(0);
   runScan(vizWidth, vizHeight); //Updates and runs all scan objects
   //runViz();
-  System.gc();
+  
+  if (garbageCount > 300) {
+    System.gc();
+    garbageCount = 0;
+  }
+  garbageCount++;
   
   //println(frameRate);
   
