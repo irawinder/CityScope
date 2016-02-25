@@ -183,6 +183,11 @@ void keyPressed() {
       projV[canvasIndex]--;
       saveProjectorLocation();
     }
+    
+    //Renders Perspective and Plan Despite No forced Simulation Update
+    renderPerspective();
+    renderPlan();
+        
   }
 }
 
