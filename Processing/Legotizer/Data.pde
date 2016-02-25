@@ -648,7 +648,7 @@ void saveMetaJSON(String filename) {
   metaData.setFloat("maxLU_H", maxLU_H);
   
   saveJSONObject(metaData, legotizer_data + demoPrefix + demos[vizMode] + filename);
-  println("Metadata saved to " + legotizer_data + demoPrefix + demos[vizMode] + filename);
+  //println("Metadata saved to " + legotizer_data + demoPrefix + demos[vizMode] + filename);
 }
 
 void loadSummary() {

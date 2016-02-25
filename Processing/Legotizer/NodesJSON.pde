@@ -6,7 +6,7 @@ JSONObject[][][] obj;
 
 JSONArray solutionJSON;
 
-int simTime = 14;
+int simTime = 2;
 int simCounter= 0;
 
 String[] scoreNames;
@@ -120,7 +120,7 @@ void saveNodesJSON(String filename) {
   }
   
   saveJSONArray(nodesJSON, legotizer_data + demoPrefix + demos[vizMode] + filename);
-  println(counter + " nodes saved to " + legotizer_data + demoPrefix + demos[vizMode] + filename);
+  //println(counter + " nodes saved to " + legotizer_data + demoPrefix + demos[vizMode] + filename);
 }
 
 void checkSendNodesJSON(String filename) {

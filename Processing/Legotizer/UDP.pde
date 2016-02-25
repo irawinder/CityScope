@@ -43,7 +43,7 @@ void parseCodeStrings(String data[]) {
     
     if(split.length == 1) {
       if (split[0].equals("receipt")) {
-        println("'" + split[0] + "' received by Legotizer");
+        //println("'" + split[0] + "' received by Legotizer");
         //loadSolutionJSON(solutionJSON, "solutionNodes.json", vizMode);
         receipt = true;
         readSolution = true;
