@@ -43,7 +43,7 @@ void keyPressed() {
       toggleColorMode();
       break;
     case 'm': 
-      changeDisplayMode();
+      drawPerspective = toggle(drawPerspective);
       break;
     case 's': 
       toggleStaticDraw();
@@ -64,10 +64,11 @@ void keyPressed() {
       forceSimUpdate();
       break;
     case 't': 
-      drawPerspective = toggle(drawPerspective);
+      renderPerspective = toggle(renderPerspective);
       break;
     case 'r': 
       rotateCamera();
+      renderPerspective();
       break;
     /**
     * case 'R' (01/12/16 YS)

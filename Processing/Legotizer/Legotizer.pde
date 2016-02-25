@@ -109,6 +109,7 @@ boolean sketchFullScreen() {
 // Sets default visualization Mode
 int vizMode = 0;
 boolean vizChange = false;
+boolean firstFrame = true;
 
 // Runs once before any draw function is called
 void setup() {
@@ -136,7 +137,7 @@ void setup() {
 // Infinite draw loop
 void draw() {
   
-  // These are essentially Setup functions, but they are runi n the first draw frame to allow for the folder selection option
+  // These are essentially Setup functions, but they are run in the first draw frame to allow for the folder selection option
   if (dataSelected && !dataLoaded) {
     
     initializePaths();           // defines filepaths for data from "index.txt"
@@ -152,6 +153,7 @@ void draw() {
     initializePieces();          // Loads Libraries of Piece Typologies
     
     initializePlan();            // Initializes PGraphic that holds plan Information
+    initializePerspective();     // Initializes PGraphic that holds perspective Information
     initializeHeatMap();         // Initializes Array that holds heatmap values
     initializeScoreWeb();        // Initialized PGraphics for Score Web Vizualization
     
@@ -163,11 +165,12 @@ void draw() {
     loadSummary();
     loadAssumptions();
     
-    // Ensures that plan is rendered before any change detected
-    renderPlan();
-    
     //Opens Projection-Mapping Canvas
     toggle2DProjection();
+    
+    // Ensures that plan and perspective is rendered even before any change detected
+    renderPerspective();
+    renderPlan();
   }
   
   //-------- Draw functions enabled -------------- //
@@ -215,6 +218,7 @@ void initializeCanvas() {
 
 boolean drawPerspective = true;
 boolean renderPlan = true;
+boolean renderPerspective = true;
 boolean drawInfo = true;
 
 void drawScreen() {
@@ -224,52 +228,52 @@ void drawScreen() {
     drawHelp();
   } else { // Puts most typical draw functions here
     
-    background(0);
     
-    //---------- Begin 3D Graphics --------------//
+    //---------- Begin rendering Graphics --------------//
     
-    // Sets Camera View and Lights for Perspective
-    camPerspective(boardLength, boardWidth); 
-    
-    // Renders Axes, Grids, Static Models and/or Dynamic Models (Very Heavy)
-    if (drawPerspective) {
-      drawPerspective();   
-    }      
-    
-    // Renders Raster of satellite or drawing image
-    if (displaySatellite) {
-      drawSatellite();
-    }
-    
-    
-    if (displayMode == 0) {
+    if (changeDetected || firstFrame) {
       
-      //---------- Begin 2D Graphics ------------//
-      
-      // Sets Camera View to 2D, reset fill and alpha values
-      cam2D();
-      fill(#FFFFFF, 255);
+      // Renders Axes, Grids, Static Models and/or Dynamic Models (Very Heavy)
+      if (renderPerspective) {
+        renderPerspective();   
+      }
       
       // Renders Plan to Projection Canvas (Very Heavy)
-      if (renderPlan && changeDetected) {
+      if (renderPlan) {
         renderPlan();
       }
       
-      // Draws small Plan in upper corner 
-      if (drawPlan) {
-        drawPlan(10, 10, int(0.3*height), int(0.3*height));
-      }
-      
-      // Draws Web Representing Scores
-      if (displayScoreWeb) {
-        drawScoreWeb(int(0.8*width), int(height - 0.3*width), int(0.2*width), int(0.2*width));
-      }
-      
-      // Draws information about current view
-      if (drawInfo) {
-        drawInfo();
+      if (firstFrame) {
+        firstFrame = false;
       }
     
-    } 
+    }
+    
+      
+    //---------- Draw PGraphics onto main Canvas ------------//
+    
+    // Sets Camera View to 2D, reset fill and alpha values
+    cam2D();
+    background(0);
+    fill(#FFFFFF, 255);
+    
+    if (drawPerspective) {
+      drawPerspective(0, 0, width, height);
+    }
+    
+    // Draws small Plan in upper corner 
+    if (drawPlan) {
+      drawPlan(10, 10, int(0.3*height), int(0.3*height));
+    }
+    
+    // Draws Web Representing Scores
+    if (displayScoreWeb) {
+      drawScoreWeb(int(0.8*width), int(height - 0.3*width), int(0.2*width), int(0.2*width));
+    }
+    
+    // Draws information about current view
+    if (drawInfo) {
+      drawInfo();
+    }
   }
 }

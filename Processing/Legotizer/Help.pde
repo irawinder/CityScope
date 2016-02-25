@@ -16,7 +16,6 @@ String help[] = {
  "';' Toggle plexiglas grid gap for dynamic model [On/Off]",
  "'q' Toggle 1x1 or 4x4 piece type",
  "'SPACEBAR' Change Color Mode (Use-based, Form-based, or Heatmap)",
- "'m' Toggle Camera Mode [Screen or Projector]",
  "'s' Toggle Static Model [On/Off]",
  "'c' Toggle different test piece configurations (does not render if connection to Colortizer is Active)",
  "'d' Toggle Dynamic Model [On/Off]",
@@ -53,8 +52,9 @@ String help[] = {
  "'SHIFT + C' Change Canvas for adjusting projector's locationin 3D space",
  "'x' Toggle Information",
  "'n' Toggle Plan Rendering",
- "'t' Toggle Perspective Draw",
+ "'t' Toggle Perspective Rendering",
  "'g' Toggle plexiglas grid gap for static model [On/Off]",
+ "'m' Toggle 3D Model display",
  "",
  "Press 'h' key to return to Legotizer"
 };
