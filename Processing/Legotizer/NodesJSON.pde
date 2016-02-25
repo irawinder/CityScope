@@ -6,7 +6,7 @@ JSONObject[][][] obj;
 
 JSONArray solutionJSON;
 
-int simTime = 2;
+int simTime = 14;
 int simCounter= 0;
 
 String[] scoreNames;
