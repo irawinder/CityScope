@@ -3,6 +3,7 @@
  * //Ougoing Port:  6152 //YZ
  * Ougoing Port 01: 6152 - for Unity
  * Ougoing Port 02: 6111 - for Legotizer/CitySim
+ * Ougoing Port 03: 7001 - for Rhino/GH
  *
  * REPORT ALL CHANGES WITH DATE AND USER IN THIS AREA:
  * - Updated to include location array "locArray" that passes x, y, width, and height values for scanGrids
@@ -17,7 +18,7 @@ boolean viaUDP = true;
 // import UDP library
 import hypermedia.net.*;
 UDP udp;  // define the UDP object
-UDP udpComp2;  // define the UDP object
+//UDP udpComp2;  // define the UDP object
 
 void startUDP(){
   
@@ -30,9 +31,9 @@ void startUDP(){
     //udp.log( true );     // <-- printout the connection activity
     udp.listen( true );
     
-        udpComp2 = new UDP( this, 6669 );
+    //udpComp2 = new UDP( this, 6669 );
     //udp.log( true );     // <-- printout the connection activity
-    udpComp2.listen( true );
+    //udpComp2.listen( true );
     
   }
   
@@ -115,9 +116,12 @@ void sendData() {
     //udp.send( dataToSend, "18.85.55.241", 6152 );
     udp.send( dataToSend, "localhost", 6152 );
     udp.send( dataToSend, "localhost", 6111 ); //YZ
-    udp.send( dataToSend, "YANs-iMAC", 6152 ); //YZ
-    udp.send( dataToSend, "mkh-ml", 4000 ); //Mo
-    udpComp2.send( dataToSend, "192.168.0.1", 6152 ); //WD-YZ-CS
+    //udp.send( dataToSend, "YANs-iMAC", 6152 ); //YZ
+    udp.send( dataToSend, "RYAN_YOGA_2_PRO", 7001 ); //YZ //for Python
+    udp.send( dataToSend, "192.168.126.1", 7001 ); //YZ //for rhino/gh/gHowl, need send to ip address, all use "localhost" = "127.0.0.1"
+    //udp.send( dataToSend, "RYAN_DELL_XPS_WIN8", 7002 ); //YZ
+    //udp.send( dataToSend, "mkh-ml", 4000 ); //Mo
+    //udpComp2.send( dataToSend, "192.168.0.1", 6152 ); //WD-YZ-CS
 
     //println("update received");
     

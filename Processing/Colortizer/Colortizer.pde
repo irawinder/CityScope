@@ -32,7 +32,7 @@ Step 5: Run application
 */
 
 // Position within array that describes available cameras
-int camera = 0;
+int camera = 11;
 
 //Number of scan grids to be created on each warped image
 // For example:
@@ -60,7 +60,7 @@ void draw() {
   background(0);
   runScan(vizWidth, vizHeight); //Updates and runs all scan objects
   //runViz();
-  System.gc();
+  System.gc(); //YZ
   
   //println(frameRate);
   
