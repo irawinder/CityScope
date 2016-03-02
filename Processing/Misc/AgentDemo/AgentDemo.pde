@@ -346,7 +346,6 @@ if(editObstacles == true){
       }
       }
 }
-     
 
 }
 

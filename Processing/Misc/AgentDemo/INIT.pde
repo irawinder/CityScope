@@ -188,6 +188,9 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
   numEdges = numNodes*(numNodes-1);
   numSwarm = numEdges;
   
+  float[] seeds_x = new float[numNodes];
+  float[] seeds_y = new float[numNodes];
+  
   nodes = new PVector[numNodes];
   origin = new PVector[numSwarm];
   origin2 = new PVector[numSwarm];
@@ -215,53 +218,127 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
     nodes[i] = new PVector(random(10, p.width-10), random(10, p.height-10));
   }
   
+    // Set seeds position, random
+        seeds_x[0] = nodes[0].x;
+        seeds_y[0] = nodes[0].y;
+
+        seeds_x[1] = nodes[1].x;
+        seeds_y[1] = nodes[1].y;
+
+        seeds_x[2] = nodes[2].x;
+        seeds_y[2] = nodes[2].y;
+
+        seeds_x[3] = nodes[3].x;
+        seeds_y[3] = nodes[3].y;
+
+        seeds_x[4] = nodes[4].x;
+        seeds_y[4] = nodes[4].y;
+
+        seeds_x[5] = nodes[5].x;
+        seeds_y[5] = nodes[5].y;
+        
+        seeds_x[6] = nodes[6].x;
+        seeds_y[6] = nodes[6].y;
+        
+        seeds_x[7] = nodes[7].x;
+        seeds_y[7] = nodes[7].y;
+        
+        seeds_x[8] = nodes[8].x;
+        seeds_y[8] = nodes[8].y;
+        
+        seeds_x[9] = nodes[9].x;
+        seeds_y[9] = nodes[9].y;
+        
+        seeds_x[10] = nodes[10].x;
+        seeds_y[10] = nodes[10].y;
+        
+        seeds_x[11] = nodes[11].x;
+        seeds_y[11] = nodes[11].y;
+        
+        seeds_x[12] = nodes[12].x;
+        seeds_y[12] = nodes[12].y;
+        
+        seeds_x[13] = nodes[13].x;
+        seeds_y[13] = nodes[13].y;
+        
+        seeds_x[14] = nodes[14].x;
+        seeds_y[14] = nodes[14].y;
+        
+        seeds_x[15] = nodes[15].x;
+        seeds_y[15] = nodes[15].y;
+        
+
+       float minDistance = 0;
+       float minIndex = 0;
+       color[] seed_colors = new color[16];
+       
+        seed_colors[0] = color(255, 0, 0); //red
+        seed_colors[1] = color(0, 255, 0); //green
+        seed_colors[2] = color(0, 0, 255); //cyan blue
+        seed_colors[3] = color(255, 255, 0); //yellow 
+        seed_colors[4] = color(255, 0, 255); //bright purple
+        seed_colors[5] = color(0, 255, 255); //light bright blue
+        seed_colors[6] = color(127, 0, 255); //medium purple
+        seed_colors[7] = color(225, 128, 0); //orange
+        seed_colors[8] = color(102, 255, 178); //seafoam
+        seed_colors[9] = color(0, 128, 255); //medium blue
+        seed_colors[10] = color(255, 0, 127); //medium pink
+        seed_colors[11] = color(229, 204, 255); //lavendar
+        seed_colors[12] = color(255, 153, 153); //peach
+        seed_colors[13] = color(255, 213, 0); //yellow-orange
+        seed_colors[14] = color(0, 204, 102); //medium green
+        seed_colors[15] = color(128, 255, 0); //yellow green
+       
+     
+       for(int px = 0; px < width; px = px +1)
+    {
+      
+         for(int py = 0; py < height; py = py +1)
+         {
+           
+             // Check distances to colors
+             minDistance = ((px  - seeds_x[0]) * (px - seeds_x[0])) +  ((py  - seeds_y[0]) * (py  - seeds_y[0]));
+             minIndex = 0;
+ 
+             for (int nc = 1; nc < 16; nc++)
+             {
+                 float dist = ((px  - seeds_x[nc]) * (px - seeds_x[nc])) +  ((py  - seeds_y[nc]) * (py  - seeds_y[nc]));
+                  
+                 if (dist <= minDistance)
+                 {
+                     minDistance = dist;
+                     minIndex = nc;
+                }
+            }
+            stroke(seed_colors[int(minIndex)]);
+            point(px, py);
+           
+        }
+        
+    }
+     
+     
+
+ 
+  
   //origins done with a bit of voronoi geometry
   for (int i=0; i<numNodes; i++) {
     for (int j=0; j<numNodes-1; j++) {
       
       origin[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
+      //write voronoi math here to get the other origins to do the thing 
       
-      if(i <15){
-      origin2[i*(numNodes-1)+j] = new PVector((nodes[i].x) + (nodes[i+1].x - nodes[i].x)*random(.05, .25), nodes[i].y + (nodes[i+1].y - nodes[i].y)*random(.15, .3));
-      
-      origin3[i*(numNodes-1)+j] = new PVector(nodes[i].x - (nodes[i+1].x - nodes[i].x)*random(.15, .2), nodes[i].y - (nodes[i+1].y - nodes[i].y)*random(.05, .2));
-      
-      origin4[i*(numNodes-1)+j] = new PVector(nodes[i].x - (nodes[i+1].x - nodes[i].x)*random(.15, .25), nodes[i].y + (nodes[i+1].y - nodes[i].y)*random(.05, .3));
-      
-      origin5[i*(numNodes-1)+j] = new PVector(nodes[i].x + (nodes[i+1].x - nodes[i].x)*random(.1, .25), nodes[i].y - (nodes[i+1].y - nodes[i].y)*random(.05, .2));
-      
-      origin6[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y + (nodes[i+1].y - nodes[i].y)*random(0, .2));
-      
-      origin7[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y - (nodes[i+1].y - nodes[i].y)*random(0, .15));
-      
-      origin8[i*(numNodes-1)+j] = new PVector(nodes[i].x - (nodes[i+1].x - nodes[i].x)*random(0, .2), nodes[i].y);
-      
-      origin9[i*(numNodes-1)+j] = new PVector(nodes[i].x + (nodes[i+1].x - nodes[i].x)*random(0, .25), nodes[i].y);
-      }
-      
-      else{
-      origin2[i*(numNodes-1)+j] = new PVector(nodes[i].x + (nodes[i].x - nodes[i-1].x)*.1, nodes[i].y +(nodes[i].y - nodes[i-1].y) * random(0, .2));
-      
-      origin3[i*(numNodes-1)+j] = new PVector(nodes[i].x - (nodes[i].x - nodes[i-1].x)*random(0, .2), nodes[i].y * random(0, .2));
-      
-      origin4[i*(numNodes-1)+j] = new PVector(nodes[i].x + (nodes[i].x - nodes[i-1].x)*.2, nodes[i].y +(nodes[i].y - nodes[i-1].y)* random(0, .2));
-      
-      origin5[i*(numNodes-1)+j] = new PVector(nodes[i].x - (nodes[i].x - nodes[i-1].x)* random(0, .2), nodes[i].y - (nodes[i].y - nodes[i-1].y)* random(0, .2));
-      
-      origin6[i*(numNodes-1)+j] = new PVector(nodes[i].x + (nodes[i].x - nodes[i-1].x)*random(0, .2), nodes[i].y +(nodes[i].y - nodes[i-1].y)* random(0, .2));
-                  
-      origin7[i*(numNodes-1)+j] = new PVector(nodes[i].x - (nodes[i].x - nodes[i-1].x)*random(0, .2), nodes[i].y -(nodes[i].y - nodes[i-1].y)* random(0, .2));
-                        
-      origin8[i*(numNodes-1)+j] = new PVector((nodes[i].x) + (nodes[i].x - nodes[i-1].x) * random(0, .2), nodes[i].y +(nodes[i].y - nodes[i-1].y)* random(0, .2));
-                              
-      origin9[i*(numNodes-1)+j] = new PVector(nodes[i].x - (nodes[i].x - nodes[i-1].x) * random(0, .2), nodes[i].y -(nodes[i].y - nodes[i-1].y)* random(0, .2));
-      }
-        
+      origin2[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
+      origin3[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
+      origin4[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
+      origin5[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
+      origin6[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
+      origin7[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
+      origin8[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
+      origin9[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
       
       destination[i*(numNodes-1)+j] = new PVector(nodes[(i+j+1)%(numNodes)].x, nodes[(i+j+1)%(numNodes)].y);  
-  
-  updatePixels(); // must call after using pixels[]
-      
+   
       weight[i*(numNodes-1)+j] = random(0.1, 2.0);
       
       //println("swarm:" + (i*(numNodes-1)+j) + "; (" + i + ", " + (i+j+1)%(numNodes) + ")");
