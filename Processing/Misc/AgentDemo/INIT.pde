@@ -290,10 +290,10 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
         seed_colors[15] = color(128, 255, 0); //yellow green
        
      
-       for(int px = 0; px < width; px = px +1)
+       for(int px = 0; px < width; px++)
     {
       
-         for(int py = 0; py < height; py = py +1)
+         for(int py = 0; py < height; py++)
          {
            
              // Check distances to colors
