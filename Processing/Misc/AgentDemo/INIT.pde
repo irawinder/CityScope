@@ -188,8 +188,8 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
   numEdges = numNodes*(numNodes-1);
   numSwarm = numEdges;
   
-  float[] seeds_x = new float[numNodes];
-  float[] seeds_y = new float[numNodes];
+  float[] towers_x = new float[numNodes];
+  float[] towers_y = new float[numNodes];
   
   nodes = new PVector[numNodes];
   origin = new PVector[numSwarm];
@@ -218,76 +218,76 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
     nodes[i] = new PVector(random(10, p.width-10), random(10, p.height-10));
   }
   
-    // Set seeds position, random
-        seeds_x[0] = nodes[0].x;
-        seeds_y[0] = nodes[0].y;
+    // Set towers position, random
+        towers_x[0] = nodes[0].x;
+        towers_y[0] = nodes[0].y;
 
-        seeds_x[1] = nodes[1].x;
-        seeds_y[1] = nodes[1].y;
+        towers_x[1] = nodes[1].x;
+        towers_y[1] = nodes[1].y;
 
-        seeds_x[2] = nodes[2].x;
-        seeds_y[2] = nodes[2].y;
+        towers_x[2] = nodes[2].x;
+        towers_y[2] = nodes[2].y;
 
-        seeds_x[3] = nodes[3].x;
-        seeds_y[3] = nodes[3].y;
+        towers_x[3] = nodes[3].x;
+        towers_y[3] = nodes[3].y;
 
-        seeds_x[4] = nodes[4].x;
-        seeds_y[4] = nodes[4].y;
+        towers_x[4] = nodes[4].x;
+        towers_y[4] = nodes[4].y;
 
-        seeds_x[5] = nodes[5].x;
-        seeds_y[5] = nodes[5].y;
+        towers_x[5] = nodes[5].x;
+        towers_y[5] = nodes[5].y;
         
-        seeds_x[6] = nodes[6].x;
-        seeds_y[6] = nodes[6].y;
+        towers_x[6] = nodes[6].x;
+        towers_y[6] = nodes[6].y;
         
-        seeds_x[7] = nodes[7].x;
-        seeds_y[7] = nodes[7].y;
+        towers_x[7] = nodes[7].x;
+        towers_y[7] = nodes[7].y;
         
-        seeds_x[8] = nodes[8].x;
-        seeds_y[8] = nodes[8].y;
+        towers_x[8] = nodes[8].x;
+        towers_y[8] = nodes[8].y;
         
-        seeds_x[9] = nodes[9].x;
-        seeds_y[9] = nodes[9].y;
+        towers_x[9] = nodes[9].x;
+        towers_y[9] = nodes[9].y;
         
-        seeds_x[10] = nodes[10].x;
-        seeds_y[10] = nodes[10].y;
+        towers_x[10] = nodes[10].x;
+        towers_y[10] = nodes[10].y;
         
-        seeds_x[11] = nodes[11].x;
-        seeds_y[11] = nodes[11].y;
+        towers_x[11] = nodes[11].x;
+        towers_y[11] = nodes[11].y;
         
-        seeds_x[12] = nodes[12].x;
-        seeds_y[12] = nodes[12].y;
+        towers_x[12] = nodes[12].x;
+        towers_y[12] = nodes[12].y;
         
-        seeds_x[13] = nodes[13].x;
-        seeds_y[13] = nodes[13].y;
+        towers_x[13] = nodes[13].x;
+        towers_y[13] = nodes[13].y;
         
-        seeds_x[14] = nodes[14].x;
-        seeds_y[14] = nodes[14].y;
+        towers_x[14] = nodes[14].x;
+        towers_y[14] = nodes[14].y;
         
-        seeds_x[15] = nodes[15].x;
-        seeds_y[15] = nodes[15].y;
+        towers_x[15] = nodes[15].x;
+        towers_y[15] = nodes[15].y;
         
 
        float minDistance = 0;
        float minIndex = 0;
-       color[] seed_colors = new color[16];
+       color[] tower_colors = new color[16];
        
-        seed_colors[0] = color(255, 0, 0); //red
-        seed_colors[1] = color(0, 255, 0); //green
-        seed_colors[2] = color(0, 0, 255); //cyan blue
-        seed_colors[3] = color(255, 255, 0); //yellow 
-        seed_colors[4] = color(255, 0, 255); //bright purple
-        seed_colors[5] = color(0, 255, 255); //light bright blue
-        seed_colors[6] = color(127, 0, 255); //medium purple
-        seed_colors[7] = color(225, 128, 0); //orange
-        seed_colors[8] = color(102, 255, 178); //seafoam
-        seed_colors[9] = color(0, 128, 255); //medium blue
-        seed_colors[10] = color(255, 0, 127); //medium pink
-        seed_colors[11] = color(229, 204, 255); //lavendar
-        seed_colors[12] = color(255, 153, 153); //peach
-        seed_colors[13] = color(255, 213, 0); //yellow-orange
-        seed_colors[14] = color(0, 204, 102); //medium green
-        seed_colors[15] = color(128, 255, 0); //yellow green
+        tower_colors[0] = color(255, 0, 0); //red
+        tower_colors[1] = color(0, 255, 0); //green
+        tower_colors[2] = color(0, 0, 255); //cyan blue
+        tower_colors[3] = color(255, 255, 0); //yellow 
+        tower_colors[4] = color(255, 0, 255); //bright purple
+        tower_colors[5] = color(0, 255, 255); //light bright blue
+        tower_colors[6] = color(127, 0, 255); //medium purple
+        tower_colors[7] = color(225, 128, 0); //orange
+        tower_colors[8] = color(102, 255, 178); //seafoam
+        tower_colors[9] = color(0, 128, 255); //medium blue
+        tower_colors[10] = color(255, 0, 127); //medium pink
+        tower_colors[11] = color(229, 204, 255); //lavendar
+        tower_colors[12] = color(255, 153, 153); //peach
+        tower_colors[13] = color(255, 213, 0); //yellow-orange
+        tower_colors[14] = color(0, 204, 102); //medium green
+        tower_colors[15] = color(128, 255, 0); //yellow green
        
      
        for(int px = 0; px < width; px++)
@@ -297,12 +297,12 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
          {
            
              // Check distances to colors
-             minDistance = ((px  - seeds_x[0]) * (px - seeds_x[0])) +  ((py  - seeds_y[0]) * (py  - seeds_y[0]));
+             minDistance = ((px  - towers_x[0]) * (px - towers_x[0])) +  ((py  - towers_y[0]) * (py  - towers_y[0]));
              minIndex = 0;
  
              for (int nc = 1; nc < 16; nc++)
              {
-                 float dist = ((px  - seeds_x[nc]) * (px - seeds_x[nc])) +  ((py  - seeds_y[nc]) * (py  - seeds_y[nc]));
+                 float dist = ((px  - towers_x[nc]) * (px - towers_x[nc])) +  ((py  - towers_y[nc]) * (py  - towers_y[nc]));
                   
                  if (dist <= minDistance)
                  {
@@ -310,7 +310,7 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
                      minIndex = nc;
                 }
             }
-            stroke(seed_colors[int(minIndex)]);
+            stroke(tower_colors[int(minIndex)]);
             point(px, py);
            
         }
@@ -328,34 +328,34 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
       for(int l = 0; l<10; l++){
       float x = random(width);
       float y = random(height);
-      if( (((x  - seeds_x[7]) * (x - seeds_x[7])) +  ((y  - seeds_y[7]) * (y  - seeds_y[7])) <= ((x  - seeds_x[0]) * (x - seeds_x[0])) +  ((y  - seeds_y[0]) * (y  - seeds_y[0]))) && 
-      ((x  - seeds_x[7]) * (x - seeds_x[7])) +  ((y  - seeds_y[7]) * (y  - seeds_y[7])) <= ((x  - seeds_x[2]) * (x - seeds_x[2])) +  ((y  - seeds_y[2]) * (y  - seeds_y[2]))
+      if( (((x  - towers_x[7]) * (x - towers_x[7])) +  ((y  - towers_y[7]) * (y  - towers_y[7])) <= ((x  - towers_x[0]) * (x - towers_x[0])) +  ((y  - towers_y[0]) * (y  - towers_y[0]))) && 
+      ((x  - towers_x[7]) * (x - towers_x[7])) +  ((y  - towers_y[7]) * (y  - towers_y[7])) <= ((x  - towers_x[2]) * (x - towers_x[2])) +  ((y  - towers_y[2]) * (y  - towers_y[2]))
       &&
-      ((x  - seeds_x[7]) * (x - seeds_x[7])) +  ((y  - seeds_y[7]) * (y  - seeds_y[7])) <= ((x  - seeds_x[3]) * (x - seeds_x[3])) +  ((y  - seeds_y[3]) * (y  - seeds_y[3]))
+      ((x  - towers_x[7]) * (x - towers_x[7])) +  ((y  - towers_y[7]) * (y  - towers_y[7])) <= ((x  - towers_x[3]) * (x - towers_x[3])) +  ((y  - towers_y[3]) * (y  - towers_y[3]))
       &&
-      ((x  - seeds_x[7]) * (x - seeds_x[7])) +  ((y  - seeds_y[7]) * (y  - seeds_y[7])) <= ((x  - seeds_x[4]) * (x - seeds_x[4])) +  ((y  - seeds_y[4]) * (y  - seeds_y[4]))
+      ((x  - towers_x[7]) * (x - towers_x[7])) +  ((y  - towers_y[7]) * (y  - towers_y[7])) <= ((x  - towers_x[4]) * (x - towers_x[4])) +  ((y  - towers_y[4]) * (y  - towers_y[4]))
       &&
-      ((x  - seeds_x[7]) * (x - seeds_x[7])) +  ((y  - seeds_y[7]) * (y  - seeds_y[7])) <= ((x  - seeds_x[5]) * (x - seeds_x[5])) +  ((y  - seeds_y[5]) * (y  - seeds_y[5]))
+      ((x  - towers_x[7]) * (x - towers_x[7])) +  ((y  - towers_y[7]) * (y  - towers_y[7])) <= ((x  - towers_x[5]) * (x - towers_x[5])) +  ((y  - towers_y[5]) * (y  - towers_y[5]))
       &&
-      ((x  - seeds_x[7]) * (x - seeds_x[7])) +  ((y  - seeds_y[7]) * (y  - seeds_y[7])) <= ((x  - seeds_x[6]) * (x - seeds_x[6])) +  ((y  - seeds_y[6]) * (y  - seeds_y[6]))
+      ((x  - towers_x[7]) * (x - towers_x[7])) +  ((y  - towers_y[7]) * (y  - towers_y[7])) <= ((x  - towers_x[6]) * (x - towers_x[6])) +  ((y  - towers_y[6]) * (y  - towers_y[6]))
       &&
-      ((x  - seeds_x[7]) * (x - seeds_x[7])) +  ((y  - seeds_y[7]) * (y  - seeds_y[7])) <= ((x  - seeds_x[1]) * (x - seeds_x[1])) +  ((y  - seeds_y[1]) * (y  - seeds_y[1]))
+      ((x  - towers_x[7]) * (x - towers_x[7])) +  ((y  - towers_y[7]) * (y  - towers_y[7])) <= ((x  - towers_x[1]) * (x - towers_x[1])) +  ((y  - towers_y[1]) * (y  - towers_y[1]))
       &&
-      ((x  - seeds_x[7]) * (x - seeds_x[7])) +  ((y  - seeds_y[7]) * (y  - seeds_y[7])) <= ((x  - seeds_x[8]) * (x - seeds_x[8])) +  ((y  - seeds_y[8]) * (y  - seeds_y[8]))
+      ((x  - towers_x[7]) * (x - towers_x[7])) +  ((y  - towers_y[7]) * (y  - towers_y[7])) <= ((x  - towers_x[8]) * (x - towers_x[8])) +  ((y  - towers_y[8]) * (y  - towers_y[8]))
       &&
-      ((x  - seeds_x[7]) * (x - seeds_x[7])) +  ((y  - seeds_y[7]) * (y  - seeds_y[7])) <=((x  - seeds_x[9]) * (x - seeds_x[9])) +  ((y  - seeds_y[9]) * (y  - seeds_y[9]))
+      ((x  - towers_x[7]) * (x - towers_x[7])) +  ((y  - towers_y[7]) * (y  - towers_y[7])) <=((x  - towers_x[9]) * (x - towers_x[9])) +  ((y  - towers_y[9]) * (y  - towers_y[9]))
       &&
-      ((x  - seeds_x[7]) * (x - seeds_x[7])) +  ((y  - seeds_y[7]) * (y  - seeds_y[7])) <= ((x  - seeds_x[10]) * (x - seeds_x[10])) +  ((y  - seeds_y[10]) * (y  - seeds_y[10]))
+      ((x  - towers_x[7]) * (x - towers_x[7])) +  ((y  - towers_y[7]) * (y  - towers_y[7])) <= ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10]))
       &&
-      ((x  - seeds_x[7]) * (x - seeds_x[7])) +  ((y  - seeds_y[7]) * (y  - seeds_y[7])) <= ((x  - seeds_x[11]) * (x - seeds_x[11])) +  ((y  - seeds_y[11]) * (y  - seeds_y[11]))
+      ((x  - towers_x[7]) * (x - towers_x[7])) +  ((y  - towers_y[7]) * (y  - towers_y[7])) <= ((x  - towers_x[11]) * (x - towers_x[11])) +  ((y  - towers_y[11]) * (y  - towers_y[11]))
       &&
-      ((x  - seeds_x[7]) * (x - seeds_x[7])) +  ((y  - seeds_y[7]) * (y  - seeds_y[7])) <= ((x  - seeds_x[12]) * (x - seeds_x[12])) +  ((y  - seeds_y[12]) * (y  - seeds_y[12]))
+      ((x  - towers_x[7]) * (x - towers_x[7])) +  ((y  - towers_y[7]) * (y  - towers_y[7])) <= ((x  - towers_x[12]) * (x - towers_x[12])) +  ((y  - towers_y[12]) * (y  - towers_y[12]))
       &&
-      ((x  - seeds_x[7]) * (x - seeds_x[7])) +  ((y  - seeds_y[7]) * (y  - seeds_y[7])) <= ((x  - seeds_x[13]) * (x - seeds_x[13])) +  ((y  - seeds_y[13]) * (y  - seeds_y[13]))
+      ((x  - towers_x[7]) * (x - towers_x[7])) +  ((y  - towers_y[7]) * (y  - towers_y[7])) <= ((x  - towers_x[13]) * (x - towers_x[13])) +  ((y  - towers_y[13]) * (y  - towers_y[13]))
       &&
-      ((x  - seeds_x[7]) * (x - seeds_x[7])) +  ((y  - seeds_y[7]) * (y  - seeds_y[7])) <= ((x  - seeds_x[14]) * (x - seeds_x[14])) +  ((y  - seeds_y[14]) * (y  - seeds_y[14]))
+      ((x  - towers_x[7]) * (x - towers_x[7])) +  ((y  - towers_y[7]) * (y  - towers_y[7])) <= ((x  - towers_x[14]) * (x - towers_x[14])) +  ((y  - towers_y[14]) * (y  - towers_y[14]))
       &&
-      ((x  - seeds_x[7]) * (x - seeds_x[7])) +  ((y  - seeds_y[7]) * (y  - seeds_y[7])) <= ((x  - seeds_x[15]) * (x - seeds_x[15])) +  ((y  - seeds_y[15]) * (y  - seeds_y[15])))
+      ((x  - towers_x[7]) * (x - towers_x[7])) +  ((y  - towers_y[7]) * (y  - towers_y[7])) <= ((x  - towers_x[15]) * (x - towers_x[15])) +  ((y  - towers_y[15]) * (y  - towers_y[15])))
       {
       origin2[i*(numNodes-1)+j] = new PVector(x, y);
       }
@@ -369,34 +369,34 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
       for(int l = 0; l<10; l++){
       float x = random(width);
       float y = random(height);
-      if( (((x  - seeds_x[8]) * (x - seeds_x[8])) +  ((y  - seeds_y[8]) * (y  - seeds_y[8])) <= ((x  - seeds_x[0]) * (x - seeds_x[0])) +  ((y  - seeds_y[0]) * (y  - seeds_y[0]))) && 
-      ((x  - seeds_x[8]) * (x - seeds_x[8])) +  ((y  - seeds_y[8]) * (y  - seeds_y[8])) <= ((x  - seeds_x[2]) * (x - seeds_x[2])) +  ((y  - seeds_y[2]) * (y  - seeds_y[2]))
+      if( (((x  - towers_x[8]) * (x - towers_x[8])) +  ((y  - towers_y[8]) * (y  - towers_y[8])) <= ((x  - towers_x[0]) * (x - towers_x[0])) +  ((y  - towers_y[0]) * (y  - towers_y[0]))) && 
+      ((x  - towers_x[8]) * (x - towers_x[8])) +  ((y  - towers_y[8]) * (y  - towers_y[8])) <= ((x  - towers_x[2]) * (x - towers_x[2])) +  ((y  - towers_y[2]) * (y  - towers_y[2]))
       &&
-      ((x  - seeds_x[8]) * (x - seeds_x[8])) +  ((y  - seeds_y[8]) * (y  - seeds_y[8])) <=((x  - seeds_x[3]) * (x - seeds_x[3])) +  ((y  - seeds_y[3]) * (y  - seeds_y[3]))
+      ((x  - towers_x[8]) * (x - towers_x[8])) +  ((y  - towers_y[8]) * (y  - towers_y[8])) <=((x  - towers_x[3]) * (x - towers_x[3])) +  ((y  - towers_y[3]) * (y  - towers_y[3]))
       &&
-      ((x  - seeds_x[8]) * (x - seeds_x[8])) +  ((y  - seeds_y[8]) * (y  - seeds_y[8])) <= ((x  - seeds_x[4]) * (x - seeds_x[4])) +  ((y  - seeds_y[4]) * (y  - seeds_y[4]))
+      ((x  - towers_x[8]) * (x - towers_x[8])) +  ((y  - towers_y[8]) * (y  - towers_y[8])) <= ((x  - towers_x[4]) * (x - towers_x[4])) +  ((y  - towers_y[4]) * (y  - towers_y[4]))
       &&
-      ((x  - seeds_x[8]) * (x - seeds_x[8])) +  ((y  - seeds_y[8]) * (y  - seeds_y[8])) <= ((x  - seeds_x[5]) * (x - seeds_x[5])) +  ((y  - seeds_y[5]) * (y  - seeds_y[5]))
+      ((x  - towers_x[8]) * (x - towers_x[8])) +  ((y  - towers_y[8]) * (y  - towers_y[8])) <= ((x  - towers_x[5]) * (x - towers_x[5])) +  ((y  - towers_y[5]) * (y  - towers_y[5]))
       &&
-      ((x  - seeds_x[8]) * (x - seeds_x[8])) +  ((y  - seeds_y[8]) * (y  - seeds_y[8])) <= ((x  - seeds_x[6]) * (x - seeds_x[6])) +  ((y  - seeds_y[6]) * (y  - seeds_y[6]))
+      ((x  - towers_x[8]) * (x - towers_x[8])) +  ((y  - towers_y[8]) * (y  - towers_y[8])) <= ((x  - towers_x[6]) * (x - towers_x[6])) +  ((y  - towers_y[6]) * (y  - towers_y[6]))
       &&
-      ((x  - seeds_x[8]) * (x - seeds_x[8])) +  ((y  - seeds_y[8]) * (y  - seeds_y[8])) <= ((x  - seeds_x[1]) * (x - seeds_x[1])) +  ((y  - seeds_y[1]) * (y  - seeds_y[1]))
+      ((x  - towers_x[8]) * (x - towers_x[8])) +  ((y  - towers_y[8]) * (y  - towers_y[8])) <= ((x  - towers_x[1]) * (x - towers_x[1])) +  ((y  - towers_y[1]) * (y  - towers_y[1]))
       &&
-      ((x  - seeds_x[8]) * (x - seeds_x[8])) +  ((y  - seeds_y[8]) * (y  - seeds_y[8])) <= ((x  - seeds_x[7]) * (x - seeds_x[7])) +  ((y  - seeds_y[7]) * (y  - seeds_y[7]))
+      ((x  - towers_x[8]) * (x - towers_x[8])) +  ((y  - towers_y[8]) * (y  - towers_y[8])) <= ((x  - towers_x[7]) * (x - towers_x[7])) +  ((y  - towers_y[7]) * (y  - towers_y[7]))
       &&
-      ((x  - seeds_x[8]) * (x - seeds_x[8])) +  ((y  - seeds_y[8]) * (y  - seeds_y[8])) <= ((x  - seeds_x[9]) * (x - seeds_x[9])) +  ((y  - seeds_y[9]) * (y  - seeds_y[9]))
+      ((x  - towers_x[8]) * (x - towers_x[8])) +  ((y  - towers_y[8]) * (y  - towers_y[8])) <= ((x  - towers_x[9]) * (x - towers_x[9])) +  ((y  - towers_y[9]) * (y  - towers_y[9]))
       &&
-      ((x  - seeds_x[8]) * (x - seeds_x[8])) +  ((y  - seeds_y[8]) * (y  - seeds_y[8])) <= ((x  - seeds_x[10]) * (x - seeds_x[10])) +  ((y  - seeds_y[10]) * (y  - seeds_y[10]))
+      ((x  - towers_x[8]) * (x - towers_x[8])) +  ((y  - towers_y[8]) * (y  - towers_y[8])) <= ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10]))
       &&
-      ((x  - seeds_x[8]) * (x - seeds_x[8])) +  ((y  - seeds_y[8]) * (y  - seeds_y[8])) <=((x  - seeds_x[11]) * (x - seeds_x[11])) +  ((y  - seeds_y[11]) * (y  - seeds_y[11]))
+      ((x  - towers_x[8]) * (x - towers_x[8])) +  ((y  - towers_y[8]) * (y  - towers_y[8])) <=((x  - towers_x[11]) * (x - towers_x[11])) +  ((y  - towers_y[11]) * (y  - towers_y[11]))
       &&
-      ((x  - seeds_x[8]) * (x - seeds_x[8])) +  ((y  - seeds_y[8]) * (y  - seeds_y[8])) <= ((x  - seeds_x[12]) * (x - seeds_x[12])) +  ((y  - seeds_y[12]) * (y  - seeds_y[12]))
+      ((x  - towers_x[8]) * (x - towers_x[8])) +  ((y  - towers_y[8]) * (y  - towers_y[8])) <= ((x  - towers_x[12]) * (x - towers_x[12])) +  ((y  - towers_y[12]) * (y  - towers_y[12]))
       &&
-      ((x  - seeds_x[8]) * (x - seeds_x[8])) +  ((y  - seeds_y[8]) * (y  - seeds_y[8])) <= ((x  - seeds_x[13]) * (x - seeds_x[13])) +  ((y  - seeds_y[13]) * (y  - seeds_y[13]))
+      ((x  - towers_x[8]) * (x - towers_x[8])) +  ((y  - towers_y[8]) * (y  - towers_y[8])) <= ((x  - towers_x[13]) * (x - towers_x[13])) +  ((y  - towers_y[13]) * (y  - towers_y[13]))
       &&
-      ((x  - seeds_x[8]) * (x - seeds_x[8])) +  ((y  - seeds_y[8]) * (y  - seeds_y[8])) <= ((x  - seeds_x[14]) * (x - seeds_x[14])) +  ((y  - seeds_y[14]) * (y  - seeds_y[14]))
+      ((x  - towers_x[8]) * (x - towers_x[8])) +  ((y  - towers_y[8]) * (y  - towers_y[8])) <= ((x  - towers_x[14]) * (x - towers_x[14])) +  ((y  - towers_y[14]) * (y  - towers_y[14]))
       &&
-      ((x  - seeds_x[8]) * (x - seeds_x[8])) +  ((y  - seeds_y[8]) * (y  - seeds_y[8])) <= ((x  - seeds_x[15]) * (x - seeds_x[15])) +  ((y  - seeds_y[15]) * (y  - seeds_y[15])))
+      ((x  - towers_x[8]) * (x - towers_x[8])) +  ((y  - towers_y[8]) * (y  - towers_y[8])) <= ((x  - towers_x[15]) * (x - towers_x[15])) +  ((y  - towers_y[15]) * (y  - towers_y[15])))
       {
       origin3[i*(numNodes-1)+j] = new PVector(x, y);
       }
@@ -410,34 +410,34 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
   for(int l = 0; l<10; l++){
       float x = random(width);
       float y = random(height);
-      if( (((x  - seeds_x[9]) * (x - seeds_x[9])) +  ((y  - seeds_y[9]) * (y  - seeds_y[9])) <= ((x  - seeds_x[0]) * (x - seeds_x[0])) +  ((y  - seeds_y[0]) * (y  - seeds_y[0]))) && 
-      ((x  - seeds_x[9]) * (x - seeds_x[9])) +  ((y  - seeds_y[9]) * (y  - seeds_y[9])) <= ((x  - seeds_x[2]) * (x - seeds_x[2])) +  ((y  - seeds_y[2]) * (y  - seeds_y[2]))
+      if( (((x  - towers_x[9]) * (x - towers_x[9])) +  ((y  - towers_y[9]) * (y  - towers_y[9])) <= ((x  - towers_x[0]) * (x - towers_x[0])) +  ((y  - towers_y[0]) * (y  - towers_y[0]))) && 
+      ((x  - towers_x[9]) * (x - towers_x[9])) +  ((y  - towers_y[9]) * (y  - towers_y[9])) <= ((x  - towers_x[2]) * (x - towers_x[2])) +  ((y  - towers_y[2]) * (y  - towers_y[2]))
       &&
-      ((x  - seeds_x[9]) * (x - seeds_x[9])) +  ((y  - seeds_y[9]) * (y  - seeds_y[9])) <=((x  - seeds_x[3]) * (x - seeds_x[3])) +  ((y  - seeds_y[3]) * (y  - seeds_y[3]))
+      ((x  - towers_x[9]) * (x - towers_x[9])) +  ((y  - towers_y[9]) * (y  - towers_y[9])) <=((x  - towers_x[3]) * (x - towers_x[3])) +  ((y  - towers_y[3]) * (y  - towers_y[3]))
       &&
-      ((x  - seeds_x[9]) * (x - seeds_x[9])) +  ((y  - seeds_y[9]) * (y  - seeds_y[9])) <= ((x  - seeds_x[4]) * (x - seeds_x[4])) +  ((y  - seeds_y[4]) * (y  - seeds_y[4]))
+      ((x  - towers_x[9]) * (x - towers_x[9])) +  ((y  - towers_y[9]) * (y  - towers_y[9])) <= ((x  - towers_x[4]) * (x - towers_x[4])) +  ((y  - towers_y[4]) * (y  - towers_y[4]))
       &&
-     ((x  - seeds_x[9]) * (x - seeds_x[9])) +  ((y  - seeds_y[9]) * (y  - seeds_y[9])) <= ((x  - seeds_x[5]) * (x - seeds_x[5])) +  ((y  - seeds_y[5]) * (y  - seeds_y[5]))
+     ((x  - towers_x[9]) * (x - towers_x[9])) +  ((y  - towers_y[9]) * (y  - towers_y[9])) <= ((x  - towers_x[5]) * (x - towers_x[5])) +  ((y  - towers_y[5]) * (y  - towers_y[5]))
       &&
-     ((x  - seeds_x[9]) * (x - seeds_x[9])) +  ((y  - seeds_y[9]) * (y  - seeds_y[9])) <= ((x  - seeds_x[6]) * (x - seeds_x[6])) +  ((y  - seeds_y[6]) * (y  - seeds_y[6]))
+     ((x  - towers_x[9]) * (x - towers_x[9])) +  ((y  - towers_y[9]) * (y  - towers_y[9])) <= ((x  - towers_x[6]) * (x - towers_x[6])) +  ((y  - towers_y[6]) * (y  - towers_y[6]))
       &&
-      ((x  - seeds_x[9]) * (x - seeds_x[9])) +  ((y  - seeds_y[9]) * (y  - seeds_y[9])) <= ((x  - seeds_x[1]) * (x - seeds_x[1])) +  ((y  - seeds_y[1]) * (y  - seeds_y[1]))
+      ((x  - towers_x[9]) * (x - towers_x[9])) +  ((y  - towers_y[9]) * (y  - towers_y[9])) <= ((x  - towers_x[1]) * (x - towers_x[1])) +  ((y  - towers_y[1]) * (y  - towers_y[1]))
       &&
-      ((x  - seeds_x[9]) * (x - seeds_x[9])) +  ((y  - seeds_y[9]) * (y  - seeds_y[9])) <= ((x  - seeds_x[7]) * (x - seeds_x[7])) +  ((y  - seeds_y[7]) * (y  - seeds_y[7]))
+      ((x  - towers_x[9]) * (x - towers_x[9])) +  ((y  - towers_y[9]) * (y  - towers_y[9])) <= ((x  - towers_x[7]) * (x - towers_x[7])) +  ((y  - towers_y[7]) * (y  - towers_y[7]))
       &&
-      ((x  - seeds_x[9]) * (x - seeds_x[9])) +  ((y  - seeds_y[9]) * (y  - seeds_y[9])) <=((x  - seeds_x[8]) * (x - seeds_x[8])) +  ((y  - seeds_y[8]) * (y  - seeds_y[8]))
+      ((x  - towers_x[9]) * (x - towers_x[9])) +  ((y  - towers_y[9]) * (y  - towers_y[9])) <=((x  - towers_x[8]) * (x - towers_x[8])) +  ((y  - towers_y[8]) * (y  - towers_y[8]))
       &&
-      ((x  - seeds_x[9]) * (x - seeds_x[9])) +  ((y  - seeds_y[9]) * (y  - seeds_y[9])) <= ((x  - seeds_x[10]) * (x - seeds_x[10])) +  ((y  - seeds_y[10]) * (y  - seeds_y[10]))
+      ((x  - towers_x[9]) * (x - towers_x[9])) +  ((y  - towers_y[9]) * (y  - towers_y[9])) <= ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10]))
       &&
-      ((x  - seeds_x[9]) * (x - seeds_x[9])) +  ((y  - seeds_y[9]) * (y  - seeds_y[9])) <=((x  - seeds_x[11]) * (x - seeds_x[11])) +  ((y  - seeds_y[11]) * (y  - seeds_y[11]))
+      ((x  - towers_x[9]) * (x - towers_x[9])) +  ((y  - towers_y[9]) * (y  - towers_y[9])) <=((x  - towers_x[11]) * (x - towers_x[11])) +  ((y  - towers_y[11]) * (y  - towers_y[11]))
       &&
-      ((x  - seeds_x[9]) * (x - seeds_x[9])) +  ((y  - seeds_y[9]) * (y  - seeds_y[9])) <= ((x  - seeds_x[12]) * (x - seeds_x[12])) +  ((y  - seeds_y[12]) * (y  - seeds_y[12]))
+      ((x  - towers_x[9]) * (x - towers_x[9])) +  ((y  - towers_y[9]) * (y  - towers_y[9])) <= ((x  - towers_x[12]) * (x - towers_x[12])) +  ((y  - towers_y[12]) * (y  - towers_y[12]))
       &&
-      ((x  - seeds_x[9]) * (x - seeds_x[9])) +  ((y  - seeds_y[9]) * (y  - seeds_y[9])) <= ((x  - seeds_x[13]) * (x - seeds_x[13])) +  ((y  - seeds_y[13]) * (y  - seeds_y[13]))
+      ((x  - towers_x[9]) * (x - towers_x[9])) +  ((y  - towers_y[9]) * (y  - towers_y[9])) <= ((x  - towers_x[13]) * (x - towers_x[13])) +  ((y  - towers_y[13]) * (y  - towers_y[13]))
       &&
-      ((x  - seeds_x[9]) * (x - seeds_x[9])) +  ((y  - seeds_y[9]) * (y  - seeds_y[9])) <= ((x  - seeds_x[14]) * (x - seeds_x[14])) +  ((y  - seeds_y[14]) * (y  - seeds_y[14]))
+      ((x  - towers_x[9]) * (x - towers_x[9])) +  ((y  - towers_y[9]) * (y  - towers_y[9])) <= ((x  - towers_x[14]) * (x - towers_x[14])) +  ((y  - towers_y[14]) * (y  - towers_y[14]))
       &&
-      ((x  - seeds_x[9]) * (x - seeds_x[9])) +  ((y  - seeds_y[9]) * (y  - seeds_y[9])) <= ((x  - seeds_x[15]) * (x - seeds_x[15])) +  ((y  - seeds_y[15]) * (y  - seeds_y[15])))
+      ((x  - towers_x[9]) * (x - towers_x[9])) +  ((y  - towers_y[9]) * (y  - towers_y[9])) <= ((x  - towers_x[15]) * (x - towers_x[15])) +  ((y  - towers_y[15]) * (y  - towers_y[15])))
       {
       origin4[i*(numNodes-1)+j] = new PVector(x, y);
       }
@@ -451,34 +451,34 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
   for(int l = 0; l<10; l++){
       float x = random(width);
       float y = random(height);
-      if( (((x  - seeds_x[10]) * (x - seeds_x[10])) +  ((y  - seeds_y[10]) * (y  - seeds_y[10])) <= ((x  - seeds_x[0]) * (x - seeds_x[0])) +  ((y  - seeds_y[0]) * (y  - seeds_y[0]))) && 
-      ((x  - seeds_x[10]) * (x - seeds_x[10])) +  ((y  - seeds_y[10]) * (y  - seeds_y[10])) <= ((x  - seeds_x[2]) * (x - seeds_x[2])) +  ((y  - seeds_y[2]) * (y  - seeds_y[2]))
+      if( (((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <= ((x  - towers_x[0]) * (x - towers_x[0])) +  ((y  - towers_y[0]) * (y  - towers_y[0]))) && 
+      ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <= ((x  - towers_x[2]) * (x - towers_x[2])) +  ((y  - towers_y[2]) * (y  - towers_y[2]))
       &&
-      ((x  - seeds_x[10]) * (x - seeds_x[10])) +  ((y  - seeds_y[10]) * (y  - seeds_y[10])) <=((x  - seeds_x[3]) * (x - seeds_x[3])) +  ((y  - seeds_y[3]) * (y  - seeds_y[3]))
+      ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <=((x  - towers_x[3]) * (x - towers_x[3])) +  ((y  - towers_y[3]) * (y  - towers_y[3]))
       &&
-      ((x  - seeds_x[10]) * (x - seeds_x[10])) +  ((y  - seeds_y[10]) * (y  - seeds_y[10])) <= ((x  - seeds_x[4]) * (x - seeds_x[4])) +  ((y  - seeds_y[4]) * (y  - seeds_y[4]))
+      ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <= ((x  - towers_x[4]) * (x - towers_x[4])) +  ((y  - towers_y[4]) * (y  - towers_y[4]))
       &&
-     ((x  - seeds_x[10]) * (x - seeds_x[10])) +  ((y  - seeds_y[10]) * (y  - seeds_y[10])) <= ((x  - seeds_x[5]) * (x - seeds_x[5])) +  ((y  - seeds_y[5]) * (y  - seeds_y[5]))
+     ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <= ((x  - towers_x[5]) * (x - towers_x[5])) +  ((y  - towers_y[5]) * (y  - towers_y[5]))
       &&
-     ((x  - seeds_x[10]) * (x - seeds_x[10])) +  ((y  - seeds_y[10]) * (y  - seeds_y[10])) <= ((x  - seeds_x[6]) * (x - seeds_x[6])) +  ((y  - seeds_y[6]) * (y  - seeds_y[6]))
+     ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <= ((x  - towers_x[6]) * (x - towers_x[6])) +  ((y  - towers_y[6]) * (y  - towers_y[6]))
       &&
-      ((x  - seeds_x[10]) * (x - seeds_x[10])) +  ((y  - seeds_y[10]) * (y  - seeds_y[10])) <= ((x  - seeds_x[1]) * (x - seeds_x[1])) +  ((y  - seeds_y[1]) * (y  - seeds_y[1]))
+      ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <= ((x  - towers_x[1]) * (x - towers_x[1])) +  ((y  - towers_y[1]) * (y  - towers_y[1]))
       &&
-      ((x  - seeds_x[10]) * (x - seeds_x[10])) +  ((y  - seeds_y[10]) * (y  - seeds_y[10])) <= ((x  - seeds_x[7]) * (x - seeds_x[7])) +  ((y  - seeds_y[7]) * (y  - seeds_y[7]))
+      ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <= ((x  - towers_x[7]) * (x - towers_x[7])) +  ((y  - towers_y[7]) * (y  - towers_y[7]))
       &&
-      ((x  - seeds_x[10]) * (x - seeds_x[10])) +  ((y  - seeds_y[10]) * (y  - seeds_y[10])) <=((x  - seeds_x[8]) * (x - seeds_x[8])) +  ((y  - seeds_y[8]) * (y  - seeds_y[8]))
+      ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <=((x  - towers_x[8]) * (x - towers_x[8])) +  ((y  - towers_y[8]) * (y  - towers_y[8]))
       &&
-      ((x  - seeds_x[10]) * (x - seeds_x[10])) +  ((y  - seeds_y[10]) * (y  - seeds_y[10])) <= ((x  - seeds_x[9]) * (x - seeds_x[9])) +  ((y  - seeds_y[9]) * (y  - seeds_y[9]))
+      ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <= ((x  - towers_x[9]) * (x - towers_x[9])) +  ((y  - towers_y[9]) * (y  - towers_y[9]))
       &&
-      ((x  - seeds_x[10]) * (x - seeds_x[10])) +  ((y  - seeds_y[10]) * (y  - seeds_y[10])) <=((x  - seeds_x[11]) * (x - seeds_x[11])) +  ((y  - seeds_y[11]) * (y  - seeds_y[11]))
+      ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <=((x  - towers_x[11]) * (x - towers_x[11])) +  ((y  - towers_y[11]) * (y  - towers_y[11]))
       &&
-      ((x  - seeds_x[10]) * (x - seeds_x[10])) +  ((y  - seeds_y[10]) * (y  - seeds_y[10])) <=((x  - seeds_x[12]) * (x - seeds_x[12])) +  ((y  - seeds_y[12]) * (y  - seeds_y[12]))
+      ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <=((x  - towers_x[12]) * (x - towers_x[12])) +  ((y  - towers_y[12]) * (y  - towers_y[12]))
       &&
-      ((x  - seeds_x[10]) * (x - seeds_x[10])) +  ((y  - seeds_y[10]) * (y  - seeds_y[10])) <=((x  - seeds_x[13]) * (x - seeds_x[13])) +  ((y  - seeds_y[13]) * (y  - seeds_y[13]))
+      ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <=((x  - towers_x[13]) * (x - towers_x[13])) +  ((y  - towers_y[13]) * (y  - towers_y[13]))
       &&
-      ((x  - seeds_x[10]) * (x - seeds_x[10])) +  ((y  - seeds_y[10]) * (y  - seeds_y[10])) <=((x  - seeds_x[14]) * (x - seeds_x[14])) +  ((y  - seeds_y[14]) * (y  - seeds_y[14]))
+      ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <=((x  - towers_x[14]) * (x - towers_x[14])) +  ((y  - towers_y[14]) * (y  - towers_y[14]))
       &&
-      ((x  - seeds_x[10]) * (x - seeds_x[10])) +  ((y  - seeds_y[10]) * (y  - seeds_y[10])) <=((x  - seeds_x[15]) * (x - seeds_x[15])) +  ((y  - seeds_y[15]) * (y  - seeds_y[15])))
+      ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <=((x  - towers_x[15]) * (x - towers_x[15])) +  ((y  - towers_y[15]) * (y  - towers_y[15])))
       {
       origin5[i*(numNodes-1)+j] = new PVector(x, y);
       }
@@ -492,34 +492,34 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
   for(int l = 0; l<10; l++){
       float x = random(width);
       float y = random(height);
-      if( (((x  - seeds_x[11]) * (x - seeds_x[11])) +  ((y  - seeds_y[11]) * (y  - seeds_y[11])) <= ((x  - seeds_x[0]) * (x - seeds_x[0])) +  ((y  - seeds_y[0]) * (y  - seeds_y[0]))) && 
-     ((x  - seeds_x[11]) * (x - seeds_x[11])) +  ((y  - seeds_y[11]) * (y  - seeds_y[11])) <= ((x  - seeds_x[2]) * (x - seeds_x[2])) +  ((y  - seeds_y[2]) * (y  - seeds_y[2]))
+      if( (((x  - towers_x[11]) * (x - towers_x[11])) +  ((y  - towers_y[11]) * (y  - towers_y[11])) <= ((x  - towers_x[0]) * (x - towers_x[0])) +  ((y  - towers_y[0]) * (y  - towers_y[0]))) && 
+     ((x  - towers_x[11]) * (x - towers_x[11])) +  ((y  - towers_y[11]) * (y  - towers_y[11])) <= ((x  - towers_x[2]) * (x - towers_x[2])) +  ((y  - towers_y[2]) * (y  - towers_y[2]))
       &&
-      ((x  - seeds_x[11]) * (x - seeds_x[11])) +  ((y  - seeds_y[11]) * (y  - seeds_y[11])) <=((x  - seeds_x[3]) * (x - seeds_x[3])) +  ((y  - seeds_y[3]) * (y  - seeds_y[3]))
+      ((x  - towers_x[11]) * (x - towers_x[11])) +  ((y  - towers_y[11]) * (y  - towers_y[11])) <=((x  - towers_x[3]) * (x - towers_x[3])) +  ((y  - towers_y[3]) * (y  - towers_y[3]))
       &&
-      ((x  - seeds_x[11]) * (x - seeds_x[11])) +  ((y  - seeds_y[11]) * (y  - seeds_y[11])) <= ((x  - seeds_x[4]) * (x - seeds_x[4])) +  ((y  - seeds_y[4]) * (y  - seeds_y[4]))
+      ((x  - towers_x[11]) * (x - towers_x[11])) +  ((y  - towers_y[11]) * (y  - towers_y[11])) <= ((x  - towers_x[4]) * (x - towers_x[4])) +  ((y  - towers_y[4]) * (y  - towers_y[4]))
       &&
-     ((x  - seeds_x[11]) * (x - seeds_x[11])) +  ((y  - seeds_y[11]) * (y  - seeds_y[11])) <= ((x  - seeds_x[5]) * (x - seeds_x[5])) +  ((y  - seeds_y[5]) * (y  - seeds_y[5]))
+     ((x  - towers_x[11]) * (x - towers_x[11])) +  ((y  - towers_y[11]) * (y  - towers_y[11])) <= ((x  - towers_x[5]) * (x - towers_x[5])) +  ((y  - towers_y[5]) * (y  - towers_y[5]))
       &&
-     ((x  - seeds_x[11]) * (x - seeds_x[11])) +  ((y  - seeds_y[11]) * (y  - seeds_y[11])) <= ((x  - seeds_x[6]) * (x - seeds_x[6])) +  ((y  - seeds_y[6]) * (y  - seeds_y[6]))
+     ((x  - towers_x[11]) * (x - towers_x[11])) +  ((y  - towers_y[11]) * (y  - towers_y[11])) <= ((x  - towers_x[6]) * (x - towers_x[6])) +  ((y  - towers_y[6]) * (y  - towers_y[6]))
       &&
-      ((x  - seeds_x[11]) * (x - seeds_x[11])) +  ((y  - seeds_y[11]) * (y  - seeds_y[11])) <= ((x  - seeds_x[1]) * (x - seeds_x[1])) +  ((y  - seeds_y[1]) * (y  - seeds_y[1]))
+      ((x  - towers_x[11]) * (x - towers_x[11])) +  ((y  - towers_y[11]) * (y  - towers_y[11])) <= ((x  - towers_x[1]) * (x - towers_x[1])) +  ((y  - towers_y[1]) * (y  - towers_y[1]))
       &&
-      ((x  - seeds_x[11]) * (x - seeds_x[11])) +  ((y  - seeds_y[11]) * (y  - seeds_y[11])) <= ((x  - seeds_x[7]) * (x - seeds_x[7])) +  ((y  - seeds_y[7]) * (y  - seeds_y[7]))
+      ((x  - towers_x[11]) * (x - towers_x[11])) +  ((y  - towers_y[11]) * (y  - towers_y[11])) <= ((x  - towers_x[7]) * (x - towers_x[7])) +  ((y  - towers_y[7]) * (y  - towers_y[7]))
       &&
-     ((x  - seeds_x[11]) * (x - seeds_x[11])) +  ((y  - seeds_y[11]) * (y  - seeds_y[11])) <=((x  - seeds_x[8]) * (x - seeds_x[8])) +  ((y  - seeds_y[8]) * (y  - seeds_y[8]))
+     ((x  - towers_x[11]) * (x - towers_x[11])) +  ((y  - towers_y[11]) * (y  - towers_y[11])) <=((x  - towers_x[8]) * (x - towers_x[8])) +  ((y  - towers_y[8]) * (y  - towers_y[8]))
       &&
-      ((x  - seeds_x[11]) * (x - seeds_x[11])) +  ((y  - seeds_y[11]) * (y  - seeds_y[11])) <= ((x  - seeds_x[9]) * (x - seeds_x[9])) +  ((y  - seeds_y[9]) * (y  - seeds_y[9]))
+      ((x  - towers_x[11]) * (x - towers_x[11])) +  ((y  - towers_y[11]) * (y  - towers_y[11])) <= ((x  - towers_x[9]) * (x - towers_x[9])) +  ((y  - towers_y[9]) * (y  - towers_y[9]))
       &&
-      ((x  - seeds_x[11]) * (x - seeds_x[11])) +  ((y  - seeds_y[11]) * (y  - seeds_y[11])) <=((x  - seeds_x[10]) * (x - seeds_x[10])) +  ((y  - seeds_y[10]) * (y  - seeds_y[10]))
+      ((x  - towers_x[11]) * (x - towers_x[11])) +  ((y  - towers_y[11]) * (y  - towers_y[11])) <=((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10]))
       &&
-      ((x  - seeds_x[11]) * (x - seeds_x[11])) +  ((y  - seeds_y[11]) * (y  - seeds_y[11])) <=((x  - seeds_x[12]) * (x - seeds_x[12])) +  ((y  - seeds_y[12]) * (y  - seeds_y[12]))
+      ((x  - towers_x[11]) * (x - towers_x[11])) +  ((y  - towers_y[11]) * (y  - towers_y[11])) <=((x  - towers_x[12]) * (x - towers_x[12])) +  ((y  - towers_y[12]) * (y  - towers_y[12]))
       &&
-      ((x  - seeds_x[11]) * (x - seeds_x[11])) +  ((y  - seeds_y[11]) * (y  - seeds_y[11])) <=((x  - seeds_x[13]) * (x - seeds_x[13])) +  ((y  - seeds_y[13]) * (y  - seeds_y[13]))
+      ((x  - towers_x[11]) * (x - towers_x[11])) +  ((y  - towers_y[11]) * (y  - towers_y[11])) <=((x  - towers_x[13]) * (x - towers_x[13])) +  ((y  - towers_y[13]) * (y  - towers_y[13]))
       &&
-      ((x  - seeds_x[11]) * (x - seeds_x[11])) +  ((y  - seeds_y[11]) * (y  - seeds_y[11])) <=((x  - seeds_x[14]) * (x - seeds_x[14])) +  ((y  - seeds_y[14]) * (y  - seeds_y[14]))
+      ((x  - towers_x[11]) * (x - towers_x[11])) +  ((y  - towers_y[11]) * (y  - towers_y[11])) <=((x  - towers_x[14]) * (x - towers_x[14])) +  ((y  - towers_y[14]) * (y  - towers_y[14]))
       &&
-      ((x  - seeds_x[11]) * (x - seeds_x[11])) +  ((y  - seeds_y[11]) * (y  - seeds_y[11])) <=((x  - seeds_x[15]) * (x - seeds_x[15])) +  ((y  - seeds_y[15]) * (y  - seeds_y[15])))
+      ((x  - towers_x[11]) * (x - towers_x[11])) +  ((y  - towers_y[11]) * (y  - towers_y[11])) <=((x  - towers_x[15]) * (x - towers_x[15])) +  ((y  - towers_y[15]) * (y  - towers_y[15])))
       {
       origin5[i*(numNodes-1)+j] = new PVector(x, y);
       }
@@ -544,20 +544,20 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
   }
   
     // rate, life, origin, destination
-  colorMode(RGB);
+  colorMode(HSB);
   
   for (int i=0; i<numSwarm; i++) {
     
     // delay, origin, destination, speed, color
-    swarmHorde.addSwarm(weight[i], origin[i], destination[i], 1, color(0, 255, 255));
-    swarmHorde2.addSwarm(weight[i], origin2[i], destination[i], 1, color(255, 0, 255));
-    swarmHorde3.addSwarm(weight[i], origin3[i], destination[i], 1, color(255, 255, 0));
-    swarmHorde4.addSwarm(weight[i], origin4[i], destination[i], 1, color(255, 0, 255));
-    swarmHorde5.addSwarm(weight[i], origin5[i], destination[i], 1, color(255, 255, 0));
-    swarmHorde6.addSwarm(weight[i], origin6[i], destination[i], 1, color(0, 255, 255));
-    swarmHorde7.addSwarm(weight[i], origin7[i], destination[i], 1, color(50, 100, 100)); //255.0*i/numSwarm, 255, 255 HSB
-    swarmHorde8.addSwarm(weight[i], origin8[i], destination[i], 1, color(200, 0, 255));
-    swarmHorde9.addSwarm(weight[i], origin9[i], destination[i], 1, color(150, 100, 30));
+    swarmHorde.addSwarm(weight[i], origin[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+    swarmHorde2.addSwarm(weight[i], origin2[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+    swarmHorde3.addSwarm(weight[i], origin3[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+    swarmHorde4.addSwarm(weight[i], origin4[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+    swarmHorde5.addSwarm(weight[i], origin5[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+    swarmHorde6.addSwarm(weight[i], origin6[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+    swarmHorde7.addSwarm(weight[i], origin7[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255)); //255.0*i/numSwarm, 255, 255 HSB
+    swarmHorde8.addSwarm(weight[i], origin8[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+    swarmHorde9.addSwarm(weight[i], origin9[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
     
     // Makes sure that agents 'staying put' eventually die
     swarmHorde.getSwarm(i).temperStandingAgents();
