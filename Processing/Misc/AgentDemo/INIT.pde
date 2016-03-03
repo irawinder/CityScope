@@ -815,11 +815,11 @@ for(int l = 0; l<5; l++){
       &&
       ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <=((x  - towers_x[15]) * (x - towers_x[15])) +  ((y  - towers_y[15]) * (y  - towers_y[15])))
       {
-      origin5[i*(numNodes-1)+j] = new PVector(x, y);
+      origin[i*(numNodes-1)+j] = new PVector(x, y);
       }
       
       else{
-        origin5[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
+        origin[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
       }
        
   }
