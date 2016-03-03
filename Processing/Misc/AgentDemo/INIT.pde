@@ -317,10 +317,7 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
         
     }
      
-     
-
- 
-  
+    
   //origins done with a bit of voronoi geometry
   for (int i=0; i<numNodes; i++) {
     for (int j=0; j<numNodes-1; j++) {

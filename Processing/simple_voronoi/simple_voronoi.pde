@@ -79,7 +79,7 @@ void draw()
     }
     
     
-    for(int i = 0; i<50; i++){
+    for(int i = 0; i<200; i++){
       float x = random(width);
       float y = random(height);
       
@@ -137,15 +137,28 @@ void draw()
       }
       
       else if( (((x  - seeds_x[5]) * (x - seeds_x[5])) +  ((y  - seeds_y[5]) * (y  - seeds_y[5])) <= ((x  - seeds_x[0]) * (x - seeds_x[0])) +  ((y  - seeds_y[0]) * (y  - seeds_y[0]))) && 
-      ((x  - seeds_x[4]) * (x - seeds_x[5])) +  ((y  - seeds_y[5]) * (y  - seeds_y[5])) <= ((x  - seeds_x[1]) * (x - seeds_x[1])) +  ((y  - seeds_y[1]) * (y  - seeds_y[1]))
+      ((x  - seeds_x[5]) * (x - seeds_x[5])) +  ((y  - seeds_y[5]) * (y  - seeds_y[5])) <= ((x  - seeds_x[1]) * (x - seeds_x[1])) +  ((y  - seeds_y[1]) * (y  - seeds_y[1]))
       &&
-      ((x  - seeds_x[4]) * (x - seeds_x[5])) +  ((y  - seeds_y[5]) * (y  - seeds_y[5])) <= ((x  - seeds_x[2]) * (x - seeds_x[2])) +  ((y  - seeds_y[2]) * (y  - seeds_y[2]))
+      ((x  - seeds_x[5]) * (x - seeds_x[5])) +  ((y  - seeds_y[5]) * (y  - seeds_y[5])) <= ((x  - seeds_x[2]) * (x - seeds_x[2])) +  ((y  - seeds_y[2]) * (y  - seeds_y[2]))
       &&
-      ((x  - seeds_x[4]) * (x - seeds_x[5])) +  ((y  - seeds_y[5]) * (y  - seeds_y[5])) <= ((x  - seeds_x[3]) * (x - seeds_x[3])) +  ((y  - seeds_y[3]) * (y  - seeds_y[3]))
+      ((x  - seeds_x[5]) * (x - seeds_x[5])) +  ((y  - seeds_y[5]) * (y  - seeds_y[5])) <= ((x  - seeds_x[3]) * (x - seeds_x[3])) +  ((y  - seeds_y[3]) * (y  - seeds_y[3]))
       &&
-      ((x  - seeds_x[4]) * (x - seeds_x[5])) +  ((y  - seeds_y[5]) * (y  - seeds_y[5])) <= ((x  - seeds_x[4]) * (x - seeds_x[4])) +  ((y  - seeds_y[4]) * (y  - seeds_y[4])))
+      ((x  - seeds_x[5]) * (x - seeds_x[5])) +  ((y  - seeds_y[5]) * (y  - seeds_y[5])) <= ((x  - seeds_x[4]) * (x - seeds_x[4])) +  ((y  - seeds_y[4]) * (y  - seeds_y[4])))
       {
       fill(seed_colors[5]);
+      stroke(0);
+      }
+      
+      else if( (((x  - seeds_x[0]) * (x - seeds_x[0])) +  ((y  - seeds_y[0]) * (y  - seeds_y[0])) <= ((x  - seeds_x[5]) * (x - seeds_x[5])) +  ((y  - seeds_y[5]) * (y  - seeds_y[5]))) && 
+      ((x  - seeds_x[0]) * (x - seeds_x[0])) +  ((y  - seeds_y[0]) * (y  - seeds_y[0])) <= ((x  - seeds_x[1]) * (x - seeds_x[1])) +  ((y  - seeds_y[1]) * (y  - seeds_y[1]))
+      &&
+      ((x  - seeds_x[0]) * (x - seeds_x[0])) +  ((y  - seeds_y[0]) * (y  - seeds_y[0])) <= ((x  - seeds_x[2]) * (x - seeds_x[2])) +  ((y  - seeds_y[2]) * (y  - seeds_y[2]))
+      &&
+      ((x  - seeds_x[0]) * (x - seeds_x[0])) +  ((y  - seeds_y[0]) * (y  - seeds_y[0])) <= ((x  - seeds_x[3]) * (x - seeds_x[3])) +  ((y  - seeds_y[3]) * (y  - seeds_y[3]))
+      &&
+      ((x  - seeds_x[0]) * (x - seeds_x[0])) +  ((y  - seeds_y[0]) * (y  - seeds_y[0])) <= ((x  - seeds_x[4]) * (x - seeds_x[4])) +  ((y  - seeds_y[4]) * (y  - seeds_y[4])))
+      {
+      fill(seed_colors[0]);
       stroke(0);
       }
       
