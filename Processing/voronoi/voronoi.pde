@@ -27,21 +27,19 @@ void setup()
     // Set towers position, random
     for(i=0; i < ncolors; i = i+1)
     {
-        towers_x[0] = (60);
-        towers_y[0] = (70);
-        towers_x[1] = (90);
-        towers_y[1] = (100);
-        towers_x[2] = (50);
-        towers_y[2] = (50);
-        towers_x[3] = (70);
-        towers_y[3] = (30);
-        towers_x[4] = (20);
-        towers_y[4] = (85);
-        towers_x[5] = (300);
-        towers_y[5] = (400);
+        towers_x[0] = int(random(width));
+        towers_y[0] = int(random(height));
+        towers_x[1] = int(random(width));
+        towers_y[1] = int(random(height));
+        towers_x[2] = int(random(width));
+        towers_y[2] =int(random(height));
+        towers_x[3] = int(random(width));
+        towers_y[3] = int(random(height));
+        towers_x[4] =  int(random(width));
+        towers_y[4] = int(random(height));
+        towers_x[5] =  int(random(width));
+        towers_y[5] = int(random(height));
         
-        fill(255);
-        ellipse(towers_x[i], towers_y[i], 15, 15);
     }
     
     
