@@ -316,7 +316,14 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
         }
         
     }
-     
+    
+    
+  int a_1 = 0; 
+  int b_1 = 0;   
+  int a_2 = 0; 
+  int b_2 = 0;  
+  
+
     
   //origins done with a bit of voronoi geometry
   for (int i=0; i<numNodes; i++) {
@@ -324,8 +331,49 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
       
       origin[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
       //write voronoi math here to get the other origins to do the thing 
+      for(int l = 0; l<10; l++){
+      float x = random(width);
+      float y = random(height);
+      if( (((x  - seeds_x[7]) * (x - seeds_x[7])) +  ((y  - seeds_y[7]) * (y  - seeds_y[7])) <= ((x  - seeds_x[0]) * (x - seeds_x[0])) +  ((y  - seeds_y[0]) * (y  - seeds_y[0]))) && 
+      ((x  - seeds_x[7]) * (x - seeds_x[7])) +  ((y  - seeds_y[7]) * (y  - seeds_y[7])) <= ((x  - seeds_x[2]) * (x - seeds_x[2])) +  ((y  - seeds_y[2]) * (y  - seeds_y[2]))
+      &&
+      ((x  - seeds_x[7]) * (x - seeds_x[7])) +  ((y  - seeds_y[7]) * (y  - seeds_y[7])) <= ((x  - seeds_x[3]) * (x - seeds_x[3])) +  ((y  - seeds_y[3]) * (y  - seeds_y[3]))
+      &&
+      ((x  - seeds_x[7]) * (x - seeds_x[7])) +  ((y  - seeds_y[7]) * (y  - seeds_y[7])) <= ((x  - seeds_x[4]) * (x - seeds_x[4])) +  ((y  - seeds_y[4]) * (y  - seeds_y[4]))
+      &&
+      ((x  - seeds_x[7]) * (x - seeds_x[7])) +  ((y  - seeds_y[7]) * (y  - seeds_y[7])) <= ((x  - seeds_x[5]) * (x - seeds_x[5])) +  ((y  - seeds_y[5]) * (y  - seeds_y[5]))
+      &&
+      ((x  - seeds_x[7]) * (x - seeds_x[7])) +  ((y  - seeds_y[7]) * (y  - seeds_y[7])) <= ((x  - seeds_x[6]) * (x - seeds_x[6])) +  ((y  - seeds_y[6]) * (y  - seeds_y[6]))
+      &&
+      ((x  - seeds_x[7]) * (x - seeds_x[7])) +  ((y  - seeds_y[7]) * (y  - seeds_y[7])) <= ((x  - seeds_x[1]) * (x - seeds_x[1])) +  ((y  - seeds_y[1]) * (y  - seeds_y[1]))
+      &&
+      ((x  - seeds_x[7]) * (x - seeds_x[7])) +  ((y  - seeds_y[7]) * (y  - seeds_y[7])) <= ((x  - seeds_x[8]) * (x - seeds_x[8])) +  ((y  - seeds_y[8]) * (y  - seeds_y[8]))
+      &&
+      ((x  - seeds_x[7]) * (x - seeds_x[7])) +  ((y  - seeds_y[7]) * (y  - seeds_y[7])) <=((x  - seeds_x[9]) * (x - seeds_x[9])) +  ((y  - seeds_y[9]) * (y  - seeds_y[9]))
+      &&
+      ((x  - seeds_x[7]) * (x - seeds_x[7])) +  ((y  - seeds_y[7]) * (y  - seeds_y[7])) <= ((x  - seeds_x[10]) * (x - seeds_x[10])) +  ((y  - seeds_y[10]) * (y  - seeds_y[10]))
+      &&
+      ((x  - seeds_x[7]) * (x - seeds_x[7])) +  ((y  - seeds_y[7]) * (y  - seeds_y[7])) <= ((x  - seeds_x[11]) * (x - seeds_x[11])) +  ((y  - seeds_y[11]) * (y  - seeds_y[11]))
+      &&
+      ((x  - seeds_x[7]) * (x - seeds_x[7])) +  ((y  - seeds_y[7]) * (y  - seeds_y[7])) <= ((x  - seeds_x[12]) * (x - seeds_x[12])) +  ((y  - seeds_y[12]) * (y  - seeds_y[12]))
+      &&
+      ((x  - seeds_x[7]) * (x - seeds_x[7])) +  ((y  - seeds_y[7]) * (y  - seeds_y[7])) <= ((x  - seeds_x[13]) * (x - seeds_x[13])) +  ((y  - seeds_y[13]) * (y  - seeds_y[13]))
+      &&
+      ((x  - seeds_x[7]) * (x - seeds_x[7])) +  ((y  - seeds_y[7]) * (y  - seeds_y[7])) <= ((x  - seeds_x[14]) * (x - seeds_x[14])) +  ((y  - seeds_y[14]) * (y  - seeds_y[14]))
+      &&
+      ((x  - seeds_x[7]) * (x - seeds_x[7])) +  ((y  - seeds_y[7]) * (y  - seeds_y[7])) <= ((x  - seeds_x[15]) * (x - seeds_x[15])) +  ((y  - seeds_y[15]) * (y  - seeds_y[15])))
+      {
+      origin2[i*(numNodes-1)+j] = new PVector(x, y);
+      }
       
-      origin2[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
+      else{
+        origin2[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
+      }
+       
+  }
+      
+      
+     
       origin3[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
       origin4[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
       origin5[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
