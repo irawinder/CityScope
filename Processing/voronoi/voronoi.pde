@@ -39,6 +39,7 @@ void setup()
         towers_y[4] = int(random(height));
         towers_x[5] =  int(random(width));
         towers_y[5] = int(random(height));
+       
         
     }
     

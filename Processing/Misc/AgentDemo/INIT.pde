@@ -136,6 +136,7 @@ void initAgents(PGraphics p) {
 void swarmPaths(PGraphics p, boolean enable) {
   // Applies pathfinding network to swarms
   swarmHorde.solvePaths(pFinder, enable);
+  if(dataMode != 2){
   swarmHorde2.solvePaths(pFinder, enable);
   swarmHorde3.solvePaths(pFinder, enable);
   swarmHorde4.solvePaths(pFinder, enable);
@@ -151,6 +152,7 @@ void swarmPaths(PGraphics p, boolean enable) {
   swarmHorde14.solvePaths(pFinder, enable);
   swarmHorde15.solvePaths(pFinder, enable);
   swarmHorde16.solvePaths(pFinder, enable);
+  }
   pFinderPaths_Viz(p, enable);
 }
 
@@ -159,6 +161,7 @@ void sources_Viz(PGraphics p) {
   sources_Viz.beginDraw();
   // Draws Sources and Sinks to canvas
   swarmHorde.displaySource(sources_Viz);
+  if(dataMode != 2){
   swarmHorde2.displaySource(sources_Viz);
   swarmHorde3.displaySource(sources_Viz);
   swarmHorde4.displaySource(sources_Viz);
@@ -174,6 +177,7 @@ void sources_Viz(PGraphics p) {
   swarmHorde14.displaySource(sources_Viz);
   swarmHorde15.displaySource(sources_Viz);
   swarmHorde16.displaySource(sources_Viz);
+  }
   sources_Viz.endDraw(); 
 }
 
