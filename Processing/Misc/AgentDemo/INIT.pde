@@ -375,7 +375,8 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
       origin[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
       
 //HUGE UGLY VORONOI MATH THAT DOES THING 
-
+if(dataMode !=2)
+{
 for(int l = 0; l<5; l++){
       float x = random(width);
       float y = random(height);
@@ -783,46 +784,48 @@ for(int l = 0; l<5; l++){
        
   }
   
-  for(int l = 0; l<5; l++){
-      float x = random(width);
-      float y = random(height);
-      if( (((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <= ((x  - towers_x[0]) * (x - towers_x[0])) +  ((y  - towers_y[0]) * (y  - towers_y[0]))) && 
-      ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <= ((x  - towers_x[2]) * (x - towers_x[2])) +  ((y  - towers_y[2]) * (y  - towers_y[2]))
-      &&
-      ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <=((x  - towers_x[3]) * (x - towers_x[3])) +  ((y  - towers_y[3]) * (y  - towers_y[3]))
-      &&
-      ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <= ((x  - towers_x[4]) * (x - towers_x[4])) +  ((y  - towers_y[4]) * (y  - towers_y[4]))
-      &&
-     ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <= ((x  - towers_x[5]) * (x - towers_x[5])) +  ((y  - towers_y[5]) * (y  - towers_y[5]))
-      &&
-     ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <= ((x  - towers_x[6]) * (x - towers_x[6])) +  ((y  - towers_y[6]) * (y  - towers_y[6]))
-      &&
-      ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <= ((x  - towers_x[1]) * (x - towers_x[1])) +  ((y  - towers_y[1]) * (y  - towers_y[1]))
-      &&
-      ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <= ((x  - towers_x[7]) * (x - towers_x[7])) +  ((y  - towers_y[7]) * (y  - towers_y[7]))
-      &&
-      ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <=((x  - towers_x[8]) * (x - towers_x[8])) +  ((y  - towers_y[8]) * (y  - towers_y[8]))
-      &&
-      ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <= ((x  - towers_x[9]) * (x - towers_x[9])) +  ((y  - towers_y[9]) * (y  - towers_y[9]))
-      &&
-      ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <=((x  - towers_x[11]) * (x - towers_x[11])) +  ((y  - towers_y[11]) * (y  - towers_y[11]))
-      &&
-      ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <=((x  - towers_x[12]) * (x - towers_x[12])) +  ((y  - towers_y[12]) * (y  - towers_y[12]))
-      &&
-      ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <=((x  - towers_x[13]) * (x - towers_x[13])) +  ((y  - towers_y[13]) * (y  - towers_y[13]))
-      &&
-      ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <=((x  - towers_x[14]) * (x - towers_x[14])) +  ((y  - towers_y[14]) * (y  - towers_y[14]))
-      &&
-      ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <=((x  - towers_x[15]) * (x - towers_x[15])) +  ((y  - towers_y[15]) * (y  - towers_y[15])))
-      {
-      origin[i*(numNodes-1)+j] = new PVector(x, y);
-      }
-      
-      else{
-        origin[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
-      }
-       
-  }
+//
+//  for(int l = 0; l<5; l++){
+//      float x = random(width);
+//      float y = random(height);
+//      if( (((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <= ((x  - towers_x[0]) * (x - towers_x[0])) +  ((y  - towers_y[0]) * (y  - towers_y[0]))) && 
+//      ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <= ((x  - towers_x[2]) * (x - towers_x[2])) +  ((y  - towers_y[2]) * (y  - towers_y[2]))
+//      &&
+//      ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <=((x  - towers_x[3]) * (x - towers_x[3])) +  ((y  - towers_y[3]) * (y  - towers_y[3]))
+//      &&
+//      ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <= ((x  - towers_x[4]) * (x - towers_x[4])) +  ((y  - towers_y[4]) * (y  - towers_y[4]))
+//      &&
+//     ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <= ((x  - towers_x[5]) * (x - towers_x[5])) +  ((y  - towers_y[5]) * (y  - towers_y[5]))
+//      &&
+//     ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <= ((x  - towers_x[6]) * (x - towers_x[6])) +  ((y  - towers_y[6]) * (y  - towers_y[6]))
+//      &&
+//      ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <= ((x  - towers_x[1]) * (x - towers_x[1])) +  ((y  - towers_y[1]) * (y  - towers_y[1]))
+//      &&
+//      ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <= ((x  - towers_x[7]) * (x - towers_x[7])) +  ((y  - towers_y[7]) * (y  - towers_y[7]))
+//      &&
+//      ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <=((x  - towers_x[8]) * (x - towers_x[8])) +  ((y  - towers_y[8]) * (y  - towers_y[8]))
+//      &&
+//      ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <= ((x  - towers_x[9]) * (x - towers_x[9])) +  ((y  - towers_y[9]) * (y  - towers_y[9]))
+//      &&
+//      ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <=((x  - towers_x[11]) * (x - towers_x[11])) +  ((y  - towers_y[11]) * (y  - towers_y[11]))
+//      &&
+//      ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <=((x  - towers_x[12]) * (x - towers_x[12])) +  ((y  - towers_y[12]) * (y  - towers_y[12]))
+//      &&
+//      ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <=((x  - towers_x[13]) * (x - towers_x[13])) +  ((y  - towers_y[13]) * (y  - towers_y[13]))
+//      &&
+//      ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <=((x  - towers_x[14]) * (x - towers_x[14])) +  ((y  - towers_y[14]) * (y  - towers_y[14]))
+//      &&
+//      ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <=((x  - towers_x[15]) * (x - towers_x[15])) +  ((y  - towers_y[15]) * (y  - towers_y[15])))
+//      {
+//      origin[i*(numNodes-1)+j] = new PVector(x, y);
+//      }
+//      
+//      else{
+//        origin[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
+//      }
+//       
+//  }
+//  
   
   for(int l = 0; l<5; l++){
       float x = random(width);
@@ -1031,7 +1034,11 @@ for(int l = 0; l<5; l++){
       }
        
   }
+    }
 
+  else{
+     origin[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
+  }
       
       destination[i*(numNodes-1)+j] = new PVector(nodes[(i+j+1)%(numNodes)].x, nodes[(i+j+1)%(numNodes)].y);  
    
@@ -1043,12 +1050,13 @@ for(int l = 0; l<5; l++){
   
     // rate, life, origin, destination
   colorMode(HSB);
-  
+
   for (int i=0; i<numSwarm; i++) {
     
     // delay, origin, destination, speed, color
     swarmHorde.addSwarm(weight[i], origin[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
-    swarmHorde2.addSwarm(weight[i], origin2[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+    if(dataMode != 2){
+      swarmHorde2.addSwarm(weight[i], origin2[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
     swarmHorde3.addSwarm(weight[i], origin3[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
     swarmHorde4.addSwarm(weight[i], origin4[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
     swarmHorde5.addSwarm(weight[i], origin5[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
@@ -1063,6 +1071,33 @@ for(int l = 0; l<5; l++){
     swarmHorde14.addSwarm(weight[i], origin14[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
     swarmHorde15.addSwarm(weight[i], origin15[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
     swarmHorde16.addSwarm(weight[i], origin16[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+   
+    }
+    
+
+//for (int k=1; k<numSwarm-1; k++) {
+//    
+//    // delay, origin, destination, speed, color
+//    swarmHorde.addSwarm(weight[i], origin[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+//    if(dataMode != 2){
+//    swarmHorde2.addSwarm(weight[i], origin2[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+//    swarmHorde3.addSwarm(weight[i], origin3[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+//    swarmHorde4.addSwarm(weight[i], origin4[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+//    swarmHorde5.addSwarm(weight[i], origin5[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+//    swarmHorde6.addSwarm(weight[i], origin6[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+//    swarmHorde7.addSwarm(weight[i], origin7[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255)); 
+//    swarmHorde8.addSwarm(weight[i], origin8[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+//    swarmHorde9.addSwarm(weight[i], origin9[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+//    swarmHorde10.addSwarm(weight[i], origin10[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+//    swarmHorde11.addSwarm(weight[i], origin11[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+//    swarmHorde12.addSwarm(weight[i], origin12[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+//    swarmHorde13.addSwarm(weight[i], origin13[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+//    swarmHorde14.addSwarm(weight[i], origin14[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+//    swarmHorde15.addSwarm(weight[i], origin15[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+//    swarmHorde16.addSwarm(weight[i], origin16[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+//    }
+//      }
+    
     
     // Makes sure that agents 'staying put' eventually die
     swarmHorde.getSwarm(i).temperStandingAgents();
@@ -1084,6 +1119,7 @@ for(int l = 0; l<5; l++){
     swarmHorde16.getSwarm(i).temperStandingAgents();
    
   }
+  
   colorMode(RGB);
   
   swarmHorde.popScaler(1.0);
@@ -1264,6 +1300,7 @@ void pFinderPaths_Viz(PGraphics p, boolean enable) {
   pFinderPaths = createGraphics(p.width, p.height);
   pFinderPaths.beginDraw();
   swarmHorde.solvePaths(pFinder, enable);
+  if(dataMode != 2){
   swarmHorde2.solvePaths(pFinder, enable);
   swarmHorde3.solvePaths(pFinder, enable);
   swarmHorde4.solvePaths(pFinder, enable);
@@ -1272,6 +1309,14 @@ void pFinderPaths_Viz(PGraphics p, boolean enable) {
   swarmHorde7.solvePaths(pFinder, enable);
   swarmHorde8.solvePaths(pFinder, enable);
   swarmHorde9.solvePaths(pFinder, enable);
+  swarmHorde10.solvePaths(pFinder, enable);
+  swarmHorde11.solvePaths(pFinder, enable);
+  swarmHorde12.solvePaths(pFinder, enable);
+  swarmHorde13.solvePaths(pFinder, enable);
+  swarmHorde14.solvePaths(pFinder, enable);
+  swarmHorde15.solvePaths(pFinder, enable);
+  swarmHorde16.solvePaths(pFinder, enable);
+  }
   swarmHorde.displayPaths(pFinderPaths);
   pFinderPaths.endDraw();
   

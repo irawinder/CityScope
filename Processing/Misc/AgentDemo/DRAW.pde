@@ -200,22 +200,22 @@ void drawTestFinder(PGraphics p, Pathfinder f, ArrayList<PVector> path, ArrayLis
   
   //Draw Origin
   p.strokeWeight(2);
-  p.stroke(#ff0000);
+  p.stroke(#ffff00);
   p.noFill();
   p.ellipse(A.x, A.y, f.getResolution(), f.getResolution());
   
   p.fill(textColor);
   p.text("origin", A.x + f.getResolution(), A.y);
-  
-  //Draw Destination
+//  
+//  Draw Destination
   p.strokeWeight(2);
   p.stroke(#0000FF);
   p.noFill();
   p.ellipse(B.x, B.y, f.getResolution(), f.getResolution());
   
-//  p.fill(textColor);
-//  p.text("destination", B.x +finderTest f.getResolution(), B.y);
-  
+//p.fill(textColor);
+//p.text("destination", B.x +finderTest f.getResolution(), B.y);
+//  
   //Draw Path not Found Message
   if (path.size() < 2) {
     p.textAlign(CENTER);
