@@ -266,57 +266,10 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
   
   for (int i=0; i<numNodes; i++) {
     nodes[i] = new PVector(random(10, p.width-10), random(10, p.height-10));
+    towers_x[i] = nodes[i].x;
+    towers_y[i] = nodes[i].y;
   }
   
-    // Set towers position, random
-        towers_x[0] = nodes[0].x;
-        towers_y[0] = nodes[0].y;
-
-        towers_x[1] = nodes[1].x;
-        towers_y[1] = nodes[1].y;
-
-        towers_x[2] = nodes[2].x;
-        towers_y[2] = nodes[2].y;
-
-        towers_x[3] = nodes[3].x;
-        towers_y[3] = nodes[3].y;
-
-        towers_x[4] = nodes[4].x;
-        towers_y[4] = nodes[4].y;
-
-        towers_x[5] = nodes[5].x;
-        towers_y[5] = nodes[5].y;
-        
-        towers_x[6] = nodes[6].x;
-        towers_y[6] = nodes[6].y;
-        
-        towers_x[7] = nodes[7].x;
-        towers_y[7] = nodes[7].y;
-        
-        towers_x[8] = nodes[8].x;
-        towers_y[8] = nodes[8].y;
-        
-        towers_x[9] = nodes[9].x;
-        towers_y[9] = nodes[9].y;
-        
-        towers_x[10] = nodes[10].x;
-        towers_y[10] = nodes[10].y;
-        
-        towers_x[11] = nodes[11].x;
-        towers_y[11] = nodes[11].y;
-        
-        towers_x[12] = nodes[12].x;
-        towers_y[12] = nodes[12].y;
-        
-        towers_x[13] = nodes[13].x;
-        towers_y[13] = nodes[13].y;
-        
-        towers_x[14] = nodes[14].x;
-        towers_y[14] = nodes[14].y;
-        
-        towers_x[15] = nodes[15].x;
-        towers_y[15] = nodes[15].y;
-        
 
        float minDistance = 0;
        float minIndex = 0;
