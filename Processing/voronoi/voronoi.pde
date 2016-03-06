@@ -167,3 +167,9 @@ void draw()
     }
 }
 
+void mouseClicked(){
+  clear();
+  setup();
+  redraw();
+  
+}

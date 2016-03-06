@@ -369,9 +369,9 @@ for(int l = 0; l<5; l++){
       origin16[i*(numNodes-1)+j] = new PVector(x, y);
       }
       
-      else{
-        origin16[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
-      }
+  else{
+        origin16[i*(numNodes-1)+j] = new PVector(random(width-nodes[i].x), random(height-nodes[i].y));
+     }
 }
 
 for(int l = 0; l<5; l++){
