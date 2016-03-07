@@ -156,10 +156,18 @@ void keyPressed() {
     case '-':
       projH[canvasIndex]--;
       saveProjectorLocation();
+      //Renders Perspective and Plan Despite No forced Simulation Update
+      renderPerspective();
+      renderPlan();
+    
       break;
     case '+':
       projH[canvasIndex]++;
       saveProjectorLocation();
+      //Renders Perspective and Plan Despite No forced Simulation Update
+      renderPerspective();
+      renderPlan();
+    
       break;
     case 'C':
       canvasIndex = nextMode(canvasIndex, numProj-1);
