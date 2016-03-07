@@ -61,6 +61,11 @@ void initContent(PGraphics p) {
 // ---------------------Initialize Agent-based Objects---
 //call multiple swarmHordes to manipulate into different sub origins 
 Horde swarmHorde;
+
+
+PVector[] origin, origin2, origin3, origin4, origin5, origin6, origin7, origin8, origin9, origin10, origin11, origin12, origin13, origin14, origin15, origin16, destination, nodes;
+float[] weight;
+
 Horde swarmHorde2;
 Horde swarmHorde3;
 Horde swarmHorde4;
@@ -77,8 +82,6 @@ Horde swarmHorde14;
 Horde swarmHorde15;
 Horde swarmHorde16;
 
-PVector[] origin, origin2, origin3, origin4, origin5, origin6, origin7, origin8, origin9, origin10, origin11, origin12, origin13, origin14, origin15, origin16, destination, nodes;
-float[] weight;
 
 int textSize = 8;
 
@@ -110,6 +113,7 @@ void initAgents(PGraphics p) {
   swarmHorde14 = new Horde(150);
   swarmHorde15 = new Horde(150);
   swarmHorde16 = new Horde(150);
+
   sources_Viz = createGraphics(p.width, p.height);
   edges_Viz = createGraphics(p.width, p.height);
   
@@ -136,7 +140,6 @@ void initAgents(PGraphics p) {
 void swarmPaths(PGraphics p, boolean enable) {
   // Applies pathfinding network to swarms
   swarmHorde.solvePaths(pFinder, enable);
-  if(dataMode != 2){
   swarmHorde2.solvePaths(pFinder, enable);
   swarmHorde3.solvePaths(pFinder, enable);
   swarmHorde4.solvePaths(pFinder, enable);
@@ -152,7 +155,7 @@ void swarmPaths(PGraphics p, boolean enable) {
   swarmHorde14.solvePaths(pFinder, enable);
   swarmHorde15.solvePaths(pFinder, enable);
   swarmHorde16.solvePaths(pFinder, enable);
-  }
+
   pFinderPaths_Viz(p, enable);
 }
 
@@ -334,7 +337,7 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
 //HUGE UGLY VORONOI MATH THAT DOES THING 
 if(dataMode !=2)
 {
-for(int l = 0; l<5; l++){
+for(int l = 0; l<5, l++){
       float x = random(width);
       float y = random(height);
       if( (((x  - towers_x[0]) * (x - towers_x[0])) +  ((y  - towers_y[0]) * (y  - towers_y[0])) <= ((x  - towers_x[1]) * (x - towers_x[1])) +  ((y  - towers_y[1]) * (y  - towers_y[1]))) && 
@@ -370,7 +373,7 @@ for(int l = 0; l<5; l++){
       }
       
   else{
-        origin16[i*(numNodes-1)+j] = new PVector(random(width-nodes[i].x), random(height-nodes[i].y));
+        origin16[i*(numNodes-1)+j] = new PVector(nodes[i].x), random(nodes[i].y));
      }
 }
 
