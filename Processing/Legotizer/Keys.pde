@@ -164,6 +164,10 @@ void keyPressed() {
     case 'C':
       canvasIndex = nextMode(canvasIndex, numProj-1);
       break;
+    case 'D':
+      // Ping Karthik's Server
+      pingCloud("/n", "104.131.179.31", 6666);
+      break;
   }
   
   if (key == CODED) { 

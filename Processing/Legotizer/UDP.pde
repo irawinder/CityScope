@@ -151,3 +151,7 @@ void sendCommand(String command, int port) {
   
 }
 
+void pingCloud(String message, String ip, int port) {
+  udp.send(message, ip, port);
+} 
+
