@@ -252,7 +252,6 @@ void drawScreen() {
       if (firstFrame) {
         firstFrame = false;
       }
-    
     }
     
       

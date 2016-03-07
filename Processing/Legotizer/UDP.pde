@@ -48,6 +48,10 @@ void parseCodeStrings(String data[]) {
         //loadSolutionJSON(solutionJSON, "solutionNodes.json", vizMode);
         receipt = true;
         readSolution = true;
+        if (!citySimConnected) {
+          citySimConnected = true;
+          println("CitySim - Legotizer Link Established");
+        }
       } else if (split[0].equals("")) {
   
       } else {
