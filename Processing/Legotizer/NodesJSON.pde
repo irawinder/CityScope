@@ -21,6 +21,8 @@ String DDPAddress = "104.131.183.20";
 import ddpclient.*;
 DDPClient ddp;
 
+boolean citySimConnected = false;
+
 void loadContext() {
   context = loadJSONArray(legotizer_data + demoPrefix + demos[vizMode] + "context/context.json");
   
@@ -133,7 +135,7 @@ void checkSendNodesJSON(String filename) {
     updateAllNodes();
     //println("I updated the nodes!");
     
-    if (receipt) {
+    if (receipt || !citySimConnected) {
       // Run functions and simulations to update any dependent parameters
   
       saveNodesJSON(filename + "Nodes.json");

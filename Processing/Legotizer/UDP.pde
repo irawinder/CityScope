@@ -14,6 +14,7 @@ UDP udp;  // define the UDP object
 
 boolean busyImporting = false;
 boolean viaUDP = true;
+boolean pingCloud = false;
 
 // boolean for detecting "handshake" from simulation app
 boolean receipt = true;
@@ -47,6 +48,10 @@ void parseCodeStrings(String data[]) {
         //loadSolutionJSON(solutionJSON, "solutionNodes.json", vizMode);
         receipt = true;
         readSolution = true;
+        if (!citySimConnected) {
+          citySimConnected = true;
+          println("CitySim - Legotizer Link Established");
+        }
       } else if (split[0].equals("")) {
   
       } else {
@@ -150,4 +155,8 @@ void sendCommand(String command, int port) {
   }
   
 }
+
+void pingCloud(String message, String ip, int port) {
+  udp.send(message, ip, port);
+} 
 
