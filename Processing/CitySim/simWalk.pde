@@ -348,9 +348,9 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
     } //end j loop
   } //end i loop
   
-  println("maxLiveAccess = " + maxLiveAccess);
-  println("maxWorkAccess = " + maxWorkAccess);
-  println("maxParkAccess = " + maxParkAccess);
+  //println("maxLiveAccess = " + maxLiveAccess);
+  //println("maxWorkAccess = " + maxWorkAccess);
+  //println("maxParkAccess = " + maxParkAccess);
   
   // The following for-loop iterates through each Node of an input array and determines JobChance Values
   for (int i = 0; i < points.size(); i++) {
@@ -510,11 +510,11 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
   avgEmployeeChance /= employeeCounter;
   avgParkChance /= parkCounter;
     
-  println("maxJobChance = " + maxJobChance);
-  println("avgJobChance = " + avgJobChance);
-  println("avgEmployeeChance = " + avgEmployeeChance);
-  println("avgEmployerChance = " + avgEmployerChance);
-  println("avgParkChance = " + avgParkChance);
+//  println("maxJobChance = " + maxJobChance);
+//  println("avgJobChance = " + avgJobChance);
+//  println("avgEmployeeChance = " + avgEmployeeChance);
+//  println("avgEmployerChance = " + avgEmployerChance);
+//  println("avgParkChance = " + avgParkChance);
   
   // Merges Input Values and WalkSim Values into a single solutionJSON
   
@@ -543,9 +543,9 @@ void solveWalk(JSONArray points, float wlk_dst, float emp_rt, float hh_sz, float
       solution.setInt("z", z);
       //solution.setInt("use", pt.getInt("use"));
       
-      //solution.setFloat("liveAccess", liveAccess[u][v][z][0]);
-      //solution.setFloat("workAccess", workAccess[u][v][z][0]);
-      //solution.setFloat("parkAccess", parkAccess[u][v][z][0]);
+//      solution.setFloat("liveAccess", liveAccess[u][v][z][0]);
+//      solution.setFloat("workAccess", workAccess[u][v][z][0]);
+//      solution.setFloat("parkAccess", parkAccess[u][v][z][0]);
       
       if (pt.getInt("use") == 4) {
         solution.setFloat(walkScoreNames[0], -1);

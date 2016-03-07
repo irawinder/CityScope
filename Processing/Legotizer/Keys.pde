@@ -3,7 +3,7 @@ void keyPressed() {
     case 'h': 
       toggleHelp();
       break;
-    case 'p': 
+    case 'g': 
       toggleStaticSpacer();
       break;
     case ';': 
@@ -43,7 +43,7 @@ void keyPressed() {
       toggleColorMode();
       break;
     case 'm': 
-      changeDisplayMode();
+      drawPerspective = toggle(drawPerspective);
       break;
     case 's': 
       toggleStaticDraw();
@@ -57,17 +57,18 @@ void keyPressed() {
       break;
     case 'c': 
       changeTestCodes();
-      updateAllNodes();
+      forceSimUpdate();
       break;
     case 'd': 
       toggleDynamicDraw();
       forceSimUpdate();
       break;
     case 't': 
-      toggleStatsDraw();
+      renderPerspective = toggle(renderPerspective);
       break;
     case 'r': 
       rotateCamera();
+      renderPerspective();
       break;
     /**
     * case 'R' (01/12/16 YS)
@@ -81,8 +82,8 @@ void keyPressed() {
     case 'a': 
       toggleAxes();
       break;
-    case 'g': 
-      toggleGridOnly();
+    case 'p': 
+      showPulse = toggle(showPulse);
       break;
     case 'z': 
       toggleStaticOverride();
@@ -102,7 +103,7 @@ void keyPressed() {
       updateAllNodes();
       break;
     case 'f': 
-      flip();
+      displayFramerate = toggle(displayFramerate);
       break;
     case '`':
       toggle2DProjection();
@@ -120,10 +121,10 @@ void keyPressed() {
       changeImageMode();
       break;
     case 'x': 
-      changeScoreWebMode();
+      drawInfo = toggle(drawInfo);
       break;
     case 'n':
-      toggleNodes();
+      renderPlan = toggle(renderPlan);
       break;
     case 'N':
       changeNodes();
@@ -163,6 +164,10 @@ void keyPressed() {
     case 'C':
       canvasIndex = nextMode(canvasIndex, numProj-1);
       break;
+    case 'D':
+      // Ping Karthik's Server
+      pingCloud = toggle(pingCloud);
+      break;
   }
   
   if (key == CODED) { 
@@ -182,6 +187,11 @@ void keyPressed() {
       projV[canvasIndex]--;
       saveProjectorLocation();
     }
+    
+    //Renders Perspective and Plan Despite No forced Simulation Update
+    renderPerspective();
+    renderPlan();
+        
   }
 }
 
@@ -193,4 +203,13 @@ int nextMode(int mode, int maxMode) {
   }
 }
 
+boolean toggle(boolean bool) {
+  if (bool) {
+    println("false");
+    return false;
+  } else {
+    println("true");
+    return true;
+  }
+}
 

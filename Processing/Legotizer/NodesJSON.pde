@@ -21,6 +21,8 @@ String DDPAddress = "104.131.183.20";
 import ddpclient.*;
 DDPClient ddp;
 
+boolean citySimConnected = false;
+
 void loadContext() {
   context = loadJSONArray(legotizer_data + demoPrefix + demos[vizMode] + "context/context.json");
   
@@ -120,7 +122,7 @@ void saveNodesJSON(String filename) {
   }
   
   saveJSONArray(nodesJSON, legotizer_data + demoPrefix + demos[vizMode] + filename);
-  println(counter + " nodes saved to " + legotizer_data + demoPrefix + demos[vizMode] + filename);
+  //println(counter + " nodes saved to " + legotizer_data + demoPrefix + demos[vizMode] + filename);
 }
 
 void checkSendNodesJSON(String filename) {
@@ -133,7 +135,7 @@ void checkSendNodesJSON(String filename) {
     updateAllNodes();
     //println("I updated the nodes!");
     
-    if (receipt) {
+    if (receipt || !citySimConnected) {
       // Run functions and simulations to update any dependent parameters
   
       saveNodesJSON(filename + "Nodes.json");
@@ -180,8 +182,9 @@ JSONObject smashNodes(JSONArray _nodesJSON){
     
     try{
       use_levels = smashed.getString(uvkey);
-    }catch(RuntimeException e){
+    } catch(RuntimeException e){
       use_levels = new String(new char[maxZ]).replace("\0","0");
+      println("Caught at 'JSONObject smashNodes()'");
     }
     
     use_levels = use_levels.substring(0,z)+use+use_levels.substring(z+1);
@@ -209,6 +212,7 @@ void loadSolutionJSON(JSONArray solution, String filename, String names, int viz
     updateSolution(solution);
   } catch(RuntimeException e){
     println(filename + " incomplete file");
+    println("Caught at 'void loadSolutionJSON()'");
   }
 }
 

@@ -234,7 +234,7 @@ void updateSolution(JSONArray solution) {
     JSONObject pt = solution.getJSONObject(i);
     solutionCloud[pt.getInt("u")][pt.getInt("v")][pt.getInt("z")] = pt.getFloat(scoreNames[scoreIndex]);
   }
-  println(solution.size() + " solution nodes loaded");
+  //println(solution.size() + " solution nodes loaded into Legotizer");
 }
 
 void forceSimUpdate() {

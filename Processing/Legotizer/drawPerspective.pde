@@ -1,3 +1,4 @@
+PGraphics perspective;
 
 int coordMode = 0; //0 is Processing normal, 1 is OPENGL cam callibration
 
@@ -45,14 +46,23 @@ int res, off, ret, ins;
 float ht;
 float nodeGap = 0.98;
 
-void drawPerspective() {
+void initializePerspective() {
+  perspective = createGraphics(width, height, P3D);
+}
+
+void renderPerspective() {
   
-  background(0);
+  perspective.beginDraw();
+  perspective.background(0);
+  
+  // Sets Camera View and Lights for Perspective
+  camPerspective(boardLength, boardWidth); 
   
   if (drawAxes) {
     drawAxes();                //Draws Axes in Positive directions
   }
   
+  // Draws all the 3D bricks
   drawBricks(); 
   
 //  if (displayStatic) {
@@ -63,11 +73,25 @@ void drawPerspective() {
 //  if (displayDynamic) {
 //    drawDynamicModel();        //Draws Dynamic 3D Model
 //  }
+  
+  // Renders Raster of satellite or drawing image
+  if (displaySatellite) {
+    drawSatellite();
+  }
+    
+  perspective.endDraw();
+}
 
+void drawPerspective(int x, int y, int w, int h) {
+  try {
+    image(perspective, x, y, w, h);
+  } catch(RuntimeException e){
+    //println("No Image Rendered for Perspective");
+  }
 }
 
 void drawBricks() {
-  noStroke();
+  perspective.noStroke();
   
   // Indroduces a small gap just after 0,0 that acounts or half the width of a plexiglas grid width
   pTranslate(dynamicSpacer*gridGap/2, 0, dynamicSpacer*gridGap/2);
@@ -78,7 +102,7 @@ void drawBricks() {
       pTranslate(boxW/2, 0, boxW/2);
       
       if (gridOnly) { //Shows only plexiglas grid template w/out rendered pieces
-        fill(offColor);
+        perspective.fill(offColor);
         drawBox(0, 0.0, boxW);
         
       } else { //renders dynamic pieces 
@@ -289,11 +313,11 @@ void draw1x1Structure(int i, int j) {
   if (structures1x1.getInt(codeArray[i][j][0], 2) == 1) { //is road
     //Draws Street
     if (colorMode == 0) { // Building and Land Use Mode
-      fill(openColor);
+      perspective.fill(openColor);
     } else if (colorMode == 1) { // Generic Building Form Mode
-      fill(openColor);
+      perspective.fill(openColor);
     } else if (colorMode == 2) { // Heatmap
-      fill(offColor);
+      perspective.fill(offColor);
     }
     drawBox(staticBaseH_LU*boxH, 0, boxW);
     checkFill(roadColor);
@@ -301,11 +325,11 @@ void draw1x1Structure(int i, int j) {
   } else if (structures1x1.getInt(codeArray[i][j][0], 3) == 1) { //is park
     //Draws Park Space
     if (colorMode == 0) { // Building and Land Use Mode
-      fill(openColor);
+      perspective.fill(openColor);
     } else if (colorMode == 1) { // Generic Building Form Mode
-      fill(openColor);
+      perspective.fill(openColor);
     } else if (colorMode == 2) { // Heatmap
-      fill(offColor);
+      perspective.fill(offColor);
     }
     drawBox(staticBaseH_LU*boxH, 0, boxW);
     checkFill(parkColor, mediumGray);
@@ -323,14 +347,14 @@ void draw1x1Structure(int i, int j) {
     drawBox(staticBaseH_LU*boxH, 0.0, boxW);
     
     if (colorMode == 0) { // Building and Land Use Mode
-      fill(retailColor);
+      perspective.fill(retailColor);
     } else if (colorMode == 1) { // Generic Building Form Mode
-      fill(bldgColor);
+      perspective.fill(bldgColor);
     } else if (colorMode == 2) { // Heatmap
       if (heatMapActive[i][j] == 1) { 
-        fill(255*(1 - heatMap[i][j]), 255*heatMap[i][j], 0);
+        perspective.fill(255*(1 - heatMap[i][j]), 255*heatMap[i][j], 0);
       } else {
-        fill(lightGray);
+        perspective.fill(lightGray);
       }
     }
     drawBox(pieceH_LU*boxH*ret, staticBaseH_LU*boxH, boxW);
@@ -341,14 +365,14 @@ void draw1x1Structure(int i, int j) {
     drawBox(staticBaseH_LU*boxH, 0.0, boxW);
     
     if (colorMode == 0) { // Building and Land Use Mode
-      fill(officeColor);
+      perspective.fill(officeColor);
     } else if (colorMode == 1) { // Generic Building Form Mode
-      fill(bldgColor);
+      perspective.fill(bldgColor);
     } else if (colorMode == 2) { // Heatmap
       if (heatMapActive[i][j] == 1) { 
-        fill(255*(1 - heatMap[i][j]), 255*heatMap[i][j], 0);
+        perspective.fill(255*(1 - heatMap[i][j]), 255*heatMap[i][j], 0);
       } else {
-        fill(lightGray);
+        perspective.fill(lightGray);
       }
     }
     drawBox(pieceH_LU*boxH*off, staticBaseH_LU*boxH + pieceH_LU*boxH*(ret), boxW);
@@ -359,14 +383,14 @@ void draw1x1Structure(int i, int j) {
     drawBox(staticBaseH_LU*boxH, 0.0, boxW);
     
     if (colorMode == 0) { // Building and Land Use Mode
-      fill(academicColor);
+      perspective.fill(academicColor);
     } else if (colorMode == 1) { // Generic Building Form Mode
-      fill(bldgColor);
+      perspective.fill(bldgColor);
     } else if (colorMode == 2) { // Heatmap
       if (heatMapActive[i][j] == 1) { 
-        fill(255*(1 - heatMap[i][j]), 255*heatMap[i][j], 0);
+        perspective.fill(255*(1 - heatMap[i][j]), 255*heatMap[i][j], 0);
       } else {
-        fill(lightGray);
+        perspective.fill(lightGray);
       }
     }
     drawBox(pieceH_LU*boxH*ins, staticBaseH_LU*boxH + pieceH_LU*boxH*(ret+off), boxW);
@@ -377,14 +401,14 @@ void draw1x1Structure(int i, int j) {
     drawBox(staticBaseH_LU*boxH, 0.0, boxW);
     
     if (colorMode == 0) { // Building and Land Use Mode
-      fill(residentialColor);
+      perspective.fill(residentialColor);
     } else if (colorMode == 1) { // Generic Building Form Mode
-      fill(bldgColor);
+      perspective.fill(bldgColor);
     } else if (colorMode == 2) { // Heatmap
       if (heatMapActive[i][j] == 1) { 
-        fill(255*(1 - heatMap[i][j]), 255*heatMap[i][j], 0);
+        perspective.fill(255*(1 - heatMap[i][j]), 255*heatMap[i][j], 0);
       } else {
-        fill(lightGray);
+        perspective.fill(lightGray);
       }
     }
     drawBox(pieceH_LU*boxH*res, staticBaseH_LU*boxH + pieceH_LU*boxH*(ret+off+ins), boxW);
@@ -408,9 +432,9 @@ void draw1x1Nodes(int u, int v, float HT, float offset) {
       findFill(u, v, useCloud.nodes[u][v][k]);
     } else if (nodeMode == 1) {
       if (solutionCloud[u][v][k] == -1) {
-        fill(lightGray);
+        perspective.fill(lightGray);
       } else {
-        fill(255*(1-solutionCloud[u][v][k]), 255*solutionCloud[u][v][k], 0);
+        perspective.fill(255*(1-solutionCloud[u][v][k]), 255*solutionCloud[u][v][k], 0);
       }
     }
     
@@ -467,12 +491,12 @@ void draw4x4Nodes(int u, int v, float HT, float offset, float buildingWidth) {
             findFill(u, v, useCloud.nodes[u*4+j][v*4+k][i]);
           } else if (nodeMode == 1) {
             if (solutionCloud[u*4+j][v*4+k][i] < 0) {
-              fill(offColor);
+              perspective.fill(offColor);
               if (useCloud.nodes[u*4+j][v*4+k][i] > 1) { //Makes parks, live, and work brighter gray in heatmap
-                fill(lightGray);
+                perspective.fill(lightGray);
               }
             } else {
-              fill(255*(1-solutionCloud[u*4+j][v*4+k][i]), 255*solutionCloud[u*4+j][v*4+k][i], 0);
+              perspective.fill(255*(1-solutionCloud[u*4+j][v*4+k][i]), 255*solutionCloud[u*4+j][v*4+k][i], 0);
             }
           }
           
@@ -488,14 +512,14 @@ void draw4x4Nodes(int u, int v, float HT, float offset, float buildingWidth) {
 
 void drawAxes() {
   //Axes
-  stroke(#FF0000);
+  perspective.stroke(#FF0000);
   pLine(0,0,0, 1000, 0, 0);
-  stroke(#00FF00);
+  perspective.stroke(#00FF00);
   pLine(0,0,0, 0, 0, 1000);
-  stroke(#0000FF);
+  perspective.stroke(#0000FF);
   pLine(0,0,0, 0, 1000, 0);
   
-  stroke(#FFFFFF);
+  perspective.stroke(#FFFFFF);
   
   if (gridOnly) {
     for (int i = 1; i<=VMax; i++) {
@@ -546,89 +570,89 @@ void drawBox(float HT, float offset, float buildingWidth) {
 // Takes sphere height, vertical offset
 void drawSphere(float HT, float offset) {
   pTranslate(0, HT/2+offset, 0);
-  sphere(HT);
+  perspective.sphere(HT);
   pTranslate(0, -HT/2-offset, 0);
 }
 
 // Modified 'translate()' function that allows for two coordinate systems
 void pTranslate(float x, float z, float y) {
   if (coordMode == 0) {
-    translate(x, flip*z, y);
+    perspective.translate(x, flip*z, y);
   } else {
-    translate(x, -y, flip*(-z));
+    perspective.translate(x, -y, flip*(-z));
   }
 }
 
 // Modified 'box()' function that allows for two coordinate systems
 void pBox(float x, float z, float y) {
   if (coordMode == 0) {
-    box(x, z, y);
+    perspective.box(x, z, y);
   } else {
-    box(x, y, z);
+    perspective.box(x, y, z);
   }
 }
 
 // Modified 'rotateY()' function that allows for two coordinate systems
 void pRotateY(float rad) {
   if (coordMode == 0) {
-    rotateY(rad);
+    perspective.rotateY(rad);
   } else {
-    rotateZ(rad);
+    perspective.rotateZ(rad);
   }
 }
 
 // Modified 'line()' function that allows for two coordinate systems
 void pLine(float x1, float z1, float y1, float x2, float z2, float y2) {
   if (coordMode == 0) {
-    line(x1, flip*z1, y1, x2, flip*z2, y2);
+    perspective.line(x1, flip*z1, y1, x2, flip*z2, y2);
   } else {
-    line(x1, -y1, flip*(-z1), x2, -y2, flip*(-z2));
+    perspective.line(x1, -y1, flip*(-z1), x2, -y2, flip*(-z2));
   }
 }
 
 // Modified 'point()' function that allows for two coordinate systems
 void pPoint(float x, float z, float y) {
   if (coordMode == 0) {
-    point(x, flip*z, y);
+    perspective.point(x, flip*z, y);
   } else {
-    point(x, -y, flip*(-z));
+    perspective.point(x, -y, flip*(-z));
   }
 }
 
 // Draws Texture Maps in Model Coordinate System
 void pMap(PImage img, float w, float h, float wO, float hO, float ht) { 
-  beginShape();
-  texture(img);
+  perspective.beginShape();
+  perspective.texture(img);
   if (coordMode == 0) {
-    vertex( -hO, ht,  -wO, 0, 0);
-    vertex( -hO, ht, w+wO, img.width, 0);
-    vertex(h+hO, ht, w+wO, img.width, img.height);
-    vertex(h+hO, ht,  -wO, 0, img.height);
+    perspective.vertex( -hO, ht,  -wO, 0, 0);
+    perspective.vertex( -hO, ht, w+wO, img.width, 0);
+    perspective.vertex(h+hO, ht, w+wO, img.width, img.height);
+    perspective.vertex(h+hO, ht,  -wO, 0, img.height);
   } else {
-    vertex( -hO,    wO, -ht, 0, 0);
-    vertex( -hO, -w-wO, -ht, img.width, 0);
-    vertex(h+hO, -w-wO, -ht, img.width, img.height);
-    vertex(h+hO,    wO, -ht, 0, img.height);
+    perspective.vertex( -hO,    wO, -ht, 0, 0);
+    perspective.vertex( -hO, -w-wO, -ht, img.width, 0);
+    perspective.vertex(h+hO, -w-wO, -ht, img.width, img.height);
+    perspective.vertex(h+hO,    wO, -ht, 0, img.height);
   }
-  endShape();
+  perspective.endShape();
     
 }
 
 // If in heatmap mode, changes fill to "offColor," something more gray and dull
 void checkFill(int col, int off) {
   if (colorMode == 2) {
-    fill(off);
+    perspective.fill(off);
   } else {
-    fill(col);
+    perspective.fill(col);
   }
 }
 
 // If in heatmap mode, changes fill to "offColor," something more gray and dull
 void checkFill(int col) {
   if (colorMode == 2) {
-    fill(offColor);
+    perspective.fill(offColor);
   } else {
-    fill(col);
+    perspective.fill(col);
   }
 }
 
@@ -648,40 +672,40 @@ void findFill(int u, int v, int value) {
       break;
     case 3:
       if (colorMode == 0) { // Building and Land Use Mode
-        fill(residentialColor);
+        perspective.fill(residentialColor);
       } else if (colorMode == 1) { // Generic Building Form Mode
-        fill(bldgColor);
+        perspective.fill(bldgColor);
       } else if (colorMode == 2) { // Heatmap
         if (heatMapActive[u][v] == 1) {
-          fill(255*(1 - heatMap[u][v]), 255*heatMap[u][v], 0);
+          perspective.fill(255*(1 - heatMap[u][v]), 255*heatMap[u][v], 0);
         } else {
-          fill(lightGray);
+          perspective.fill(lightGray);
         }
       }
       break;
     case 4:
       if (colorMode == 0) { // Building and Land Use Mode
-        fill(officeColor);
+        perspective.fill(officeColor);
       } else if (colorMode == 1) { // Generic Building Form Mode
-        fill(bldgColor);
+        perspective.fill(bldgColor);
       } else if (colorMode == 2) { // Heatmap
         if (heatMapActive[u][v] == 1) {
-          fill(255*(1 - heatMap[u][v]), 255*heatMap[u][v], 0);
+          perspective.fill(255*(1 - heatMap[u][v]), 255*heatMap[u][v], 0);
         } else {
-          fill(lightGray);
+          perspective.fill(lightGray);
         }
       }
       break;
     case 5:
       if (colorMode == 0) { // Ammenity Land Use Mode
-        fill(retailColor);
+        perspective.fill(retailColor);
       } else if (colorMode == 1) { // Generic Building Form Mode
-        fill(bldgColor);
+        perspective.fill(bldgColor);
       } else if (colorMode == 2) { // Heatmap
         if (heatMapActive[u][v] == 1) {
-          fill(255*(1 - heatMap[u][v]), 255*heatMap[u][v], 0);
+          perspective.fill(255*(1 - heatMap[u][v]), 255*heatMap[u][v], 0);
         } else {
-          fill(lightGray);
+          perspective.fill(lightGray);
         }
       }
       break;
@@ -690,14 +714,14 @@ void findFill(int u, int v, int value) {
       break;
     case 7:
       if (colorMode == 0) { // Academic Land Use Mode
-        fill(academicColor);
+        perspective.fill(academicColor);
       } else if (colorMode == 1) { // Generic Building Form Mode
-        fill(bldgColor);
+        perspective.fill(bldgColor);
       } else if (colorMode == 2) { // Heatmap
         if (heatMapActive[u][v] == 1) {
-          fill(255*(1 - heatMap[u][v]), 255*heatMap[u][v], 0);
+          perspective.fill(255*(1 - heatMap[u][v]), 255*heatMap[u][v], 0);
         } else {
-          fill(lightGray);
+          perspective.fill(lightGray);
         }
       }
       break;
@@ -803,21 +827,16 @@ void toggleDynamicDraw() {
   }
 }
 
-void toggleStatsDraw() {
-  if (drawStats == false) {
-    drawStats = true;
-    println("No Content Yet Supported");
-  } else {
-    drawStats = false;
-  }
-}
-
 void toggleColorMode() {
   switch(colorMode) {
     case 0:
       drawNodes = true;
       nodeMode = 0;
       colorMode = 1;
+      
+      //Renders Perspective and Plan Despite No forced Simulation Update
+      renderPerspective();
+      renderPlan();
       
       println("ColorMode = " + colorMode);
       
@@ -831,12 +850,7 @@ void toggleColorMode() {
       hilite++;
       
       //same as key command '='
-      changeDetected = true;
-      simCounter = simTime;
-      saveMetaJSON("metadata.json");
-      checkSendNodesJSON("user");
-      
-      
+      forceSimUpdate();
       
       println("ColorMode = " + colorMode);
       
@@ -848,10 +862,7 @@ void toggleColorMode() {
         heatMapName = scoreNames[scoreIndex];
         
         //same as key command '='
-        changeDetected = true;
-        simCounter = simTime;
-        saveMetaJSON("metadata.json");
-        checkSendNodesJSON("user");
+        forceSimUpdate();
         
         println("ColorMode = " + colorMode);
         
@@ -861,6 +872,10 @@ void toggleColorMode() {
         colorMode = 0;
         hilite = -1;
         
+        //Renders Perspective and Plan Despite No forced Simulation Update
+        renderPerspective();
+        renderPlan();
+      
         println("ColorMode = " + colorMode);
         
       }
