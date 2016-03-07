@@ -177,6 +177,12 @@ void draw() {
   
   if (dataLoaded) {
     
+    // Loads Last Colortizer Data submitted to the cloud
+    if (pingCloud && millis() % 1000 <= 150 ) {
+    //if (pingCloud) {
+      pingCloud("/n", "104.131.179.31", 6666);
+    }
+    
     //-------- ReLoad Simulation .tsv's ------------ //
     
     // Loads Solution from SIM if recieved

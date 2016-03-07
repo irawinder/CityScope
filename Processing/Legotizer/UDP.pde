@@ -14,6 +14,7 @@ UDP udp;  // define the UDP object
 
 boolean busyImporting = false;
 boolean viaUDP = true;
+boolean pingCloud = false;
 
 // boolean for detecting "handshake" from simulation app
 boolean receipt = true;

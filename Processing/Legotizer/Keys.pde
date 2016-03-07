@@ -166,7 +166,7 @@ void keyPressed() {
       break;
     case 'D':
       // Ping Karthik's Server
-      pingCloud("/n", "104.131.179.31", 6666);
+      pingCloud = toggle(pingCloud);
       break;
   }
   
