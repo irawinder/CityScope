@@ -9,6 +9,10 @@
  * -
  */
 
+import com.google.gson.Gson; // you don't need this if your just using DDPclient
+import ddpclient.*;
+
+
 boolean busyImporting = false;
 boolean viaUDP = true;
 boolean karthikPrototype = false;
@@ -23,8 +27,7 @@ UDP udp;  // define the UDP object
 */
 boolean enableDDP = false;
 String DDPAddress = "104.131.183.20";
-import com.google.gson.Gson; // you don't need this if your just using DDPclient
-import ddpclient.*;
+
 
 DDPClient ddp;
 Gson gson; // handy to have one gson converter...
@@ -164,13 +167,9 @@ void sendData() {
 
     // Karthik's IP Address
     if(karthikPrototype) {
-      // Phone 1
-      udp.send( dataToSend, "18.85.25.65", 6152 );
-
-      // Phone 2
-      udp.send( dataToSend, "18.85.27.217", 6152 );
+      if (millis() % 1000 <=150) udp.send( dataToSend, "104.131.179.31", 33333 );
     }
-
+    
     //println("update received");
 
   } else {

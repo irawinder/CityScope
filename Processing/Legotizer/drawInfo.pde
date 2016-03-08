@@ -1,3 +1,5 @@
+boolean displayFramerate = false;
+
 String[] metricNames = {
   "MIT Strategic Design Lab",
   "MIT City Science"
@@ -67,10 +69,19 @@ void drawInfo() {
   textAlign(LEFT);
   textFont(font12, 12);
   fill(#CCCCCC);
+  
+  if (displayFramerate) {
+    text("Framerate: " + frameRate, 0, -50);
+  }
+  
   text("Assumptions",0, 0);
   fill(#999999);
   for (int i = 0; i < assumptions.getColumnCount(); i++) {
-    text(assumptions.getString(0, i) + ": " + (float)int(assumptions.getFloat(1, i)*10)/10, 0, 20 + i*15);
+    try {
+      text(assumptions.getString(0, i) + ": " + (float)int(assumptions.getFloat(1, i)*10)/10, 0, 20 + i*15);
+    } catch(RuntimeException e){
+      println("Caught at 'void drawInfo()'");
+    }
   }
   
   translate(0,200);
@@ -96,6 +107,7 @@ void drawInfo() {
   text("# Jobs", 0, 200);
   fill(#CCCCCC);
   text(jobs + " ppl", 0, 230);
+  
   translate(-20, 0);
   
   translate(-(width-60), -100);

@@ -129,17 +129,19 @@ void keyPressed() {
       pFinderGrid_Viz(tableCanvas);
       break;
     case ']': //manually iterate to next Hour in data
-      setLoader("CDR Data Hour: " + hourIndex);
+      key_RightBracket();
+//      setLoader("CDR Data Hour: " + hourIndex);
       // runs key_RightBracket() next frame
       break;
     case '[': //go to previous hour in data and wrap around like forward 
-      setLoader("CDR Data Hour: " + hourIndex);
+      key_LeftBracket();
+//      setLoader("CDR Data Hour: " + hourIndex);
       // runs key_LeftBracket() next frame
       //go to previous hour in data and wrap around like forward 
-      hourIndex = prevHour(hourIndex);
-      setSwarmFlow(hourIndex);
+      //hourIndex = prevHour(hourIndex);
+      //setSwarmFlow(hourIndex);
       // Reinitializes Network Edges
-      edges_Viz(tableCanvas);
+      //edges_Viz(tableCanvas);
       break;
     case 'I': //next data index
       setLoader("CDR Data: " + dates[nextMode(dateIndex, dates.length-1)]);

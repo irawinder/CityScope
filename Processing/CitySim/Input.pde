@@ -48,12 +48,12 @@ void loadInput(String filename, int viz) {
   try {
     nodesJSON = loadJSONArray(legotizer_data + demoPrefix + demos[viz] + filename); 
     numNodes = nodesJSON.size();
-    println(numNodes + " nodes loaded.");
+    //println(numNodes + " nodes loaded into CitySim");
   } catch(RuntimeException e){
     println(filename + " incomplete file");
   }
   
-  defaultNode = loadJSONObject(legotizer_data + demoPrefix + demos[viz] + "defaultNode.json"); 
+  defaultNode = loadJSONObject(legotizer_data + demoPrefix + demoTemplate + "defaultNode.json"); 
 
   // Calculate maxU, maxV, maxZ
   maxZ = 0;

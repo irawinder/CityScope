@@ -1,7 +1,10 @@
 /* Legotizer By Ira Winder [jiw@mit.edu], CityScope Project, Changing Places Group, MIT Media Lab
  *
- * This code draws a visualization of a digital, voxelized reconstruction of a physical Lego Model
- * User should have knowledge of "CityScope" Color Scanning Technology by Changing Places Group in MIT Media Lab
+ * This code :
+ *  (1) Draws a visualization of a digital, voxelized reconstruction of a physical Lego Model
+ *  (2) Opens 1 or more Canvases to project a 3D plan onto a physical mode
+ *  (3) Usually works in conjuntion with "Colortizer" and "CitySim" Algorithms that exist in the same Processing folder.
+ * User should have knowledge of "CityScope" Color Scanning Technology, Colortizer, by Changing Places Group in MIT Media Lab
  * Script uses data recieved via UDP from a Lego color/pattern scanning algorithm such as "Colortizer" written by Ira Winder [jiw@mit.edu]
  *
  *
@@ -63,15 +66,19 @@
  * v1.31: August 27, 2015- Allow view of 3D model from 4 additional, orthogonal angles * v1.31: August 27, 2015- Allow view of 3D model from 4 additional, orthogonal angles
  * v1.32: Sep 6, 2015    - Added New Demomode for Hamburg (legotizer_library folders updated with basemaps!)
  * v1.33: Jan 16, 2016   - Update Hamburg visualization for 2 projectors, not 1.  Concatenate Multiple Tables
+ * v1.34: Feb 1, 2016    - Added DemoMode for Tongzhou for iSoftStone & support or receiving multiple webcam inputs
  * 
  * TO DO: 
+ * 0. Make Framerate a lot better
+ * 0. Eliminate Library Dependencies (Keystone) to make export to executable possible
+ * 0. Make Better UI, including continuous camera rotation, better lighting, etc
+ * 0. Fix Table Row 1 error
  * 1. Uniquely color each Heatmap and/or change description to be more intuitive?
- * 2. Include Static Structures in Nodes? Or just have simulator reference original "staticStructures.tsv" file?
  */
 
 
 
-float version = 1.33;
+float version = 1.34;
 
 // For any given setup, please update these dimensions, in pixels
 //
@@ -102,8 +109,7 @@ boolean sketchFullScreen() {
 // Sets default visualization Mode
 int vizMode = 0;
 boolean vizChange = false;
-
-boolean drawStats = false;
+boolean firstFrame = true;
 
 // Runs once before any draw function is called
 void setup() {
@@ -131,7 +137,7 @@ void setup() {
 // Infinite draw loop
 void draw() {
   
-  // These are essentially Setup functions, but they are runi n the first draw frame to allow for the folder selection option
+  // These are essentially Setup functions, but they are run in the first draw frame to allow for the folder selection option
   if (dataSelected && !dataLoaded) {
     
     initializePaths();           // defines filepaths for data from "index.txt"
@@ -147,6 +153,7 @@ void draw() {
     initializePieces();          // Loads Libraries of Piece Typologies
     
     initializePlan();            // Initializes PGraphic that holds plan Information
+    initializePerspective();     // Initializes PGraphic that holds perspective Information
     initializeHeatMap();         // Initializes Array that holds heatmap values
     initializeScoreWeb();        // Initialized PGraphics for Score Web Vizualization
     
@@ -160,11 +167,21 @@ void draw() {
     
     //Opens Projection-Mapping Canvas
     toggle2DProjection();
+    
+    // Ensures that plan and perspective is rendered even before any change detected
+    renderPerspective();
+    renderPlan();
   }
   
   //-------- Draw functions enabled -------------- //
   
   if (dataLoaded) {
+    
+    // Loads Last Colortizer Data submitted to the cloud
+    if (pingCloud && millis() % 1000 <= 150 ) {
+    //if (pingCloud) {
+      pingCloud("/n", "104.131.179.31", 6666);
+    }
     
     //-------- ReLoad Simulation .tsv's ------------ //
     
@@ -172,6 +189,7 @@ void draw() {
     if (readSolution) {
       loadSolutionJSON(solutionJSON, "solutionNodes.json", "scoreNames.tsv", vizMode);
       loadSummary();
+      loadAssumptions();
       readSolution = false;
     }
     
@@ -191,57 +209,10 @@ void draw() {
       resetProjection2D();
       vizChange = false;
     }
-  
-    // Visualization Graphics
-    if (displayHelp) {
-      drawHelp();
-    } else { // Puts most typical draw functions here
-      
-      background(0);
-      
-      //---------- Begin 3D Graphics --------------//
-      
-      // Sets Camera View and Lights for Perspective
-      camPerspective(boardLength, boardWidth); 
-      
-      // Renders Axes, Grids, Static Models and/or Dynamic Models
-      drawPerspective();                       
-      
-      // Renders Raster of satellite or drawing image
-      if (displaySatellite) {
-        drawSatellite();
-      }
-      
-      
-      if (displayMode == 0) {
-        
-        //---------- Begin 2D Graphics ------------//
-        
-        // Sets Camera View to 2D, reset fill and alpha values
-        cam2D();                     
-        fill(#FFFFFF, 255);
-        
-        // Draws small Plan in upper corner 
-        drawPlan(10, 10, int(0.3*height), int(0.3*height));  
-        
-        // Draws Web Representing Scores
-        if (displayScoreWeb) {
-          drawScoreWeb(int(0.8*width), int(height - 0.3*width), int(0.2*width), int(0.2*width));
-        }
-        
-        // Draws information about current view
-        drawInfo();
-       
-        // Needs to be reformatted for use in Legotizer
-        //if (vizMode == 0) {              //Calculates and Draws Secondary Analysis
-        //  calcStats();
-        //  drawStats();
-        //}
-      
-      } 
-    }
+    
+    drawScreen();
+    
   }
-  //println(frameRate);
 }
 
 void initializeCanvas() {
@@ -249,4 +220,65 @@ void initializeCanvas() {
   canvasWidth  = canvas.getInt(0, "width");   // Projector Width in Pixels
   canvasHeight = canvas.getInt(0, "height");  // Projector Height in Pixels
   println("Canvas Info: " + canvasWidth + ", " + canvasHeight);
+}
+
+boolean drawPerspective = true;
+boolean renderPlan = true;
+boolean renderPerspective = true;
+boolean drawInfo = true;
+
+void drawScreen() {
+  
+  // Visualization Graphics
+  if (displayHelp) {
+    drawHelp();
+  } else { // Puts most typical draw functions here
+    
+    
+    //---------- Begin rendering Graphics --------------//
+    
+    if (changeDetected || firstFrame) {
+      
+      // Renders Axes, Grids, Static Models and/or Dynamic Models (Very Heavy)
+      if (renderPerspective) {
+        renderPerspective();   
+      }
+      
+      // Renders Plan to Projection Canvas (Very Heavy)
+      if (renderPlan) {
+        renderPlan();
+      }
+      
+      if (firstFrame) {
+        firstFrame = false;
+      }
+    }
+    
+      
+    //---------- Draw PGraphics onto main Canvas ------------//
+    
+    // Sets Camera View to 2D, reset fill and alpha values
+    cam2D();
+    background(0);
+    fill(#FFFFFF, 255);
+    
+    if (drawPerspective) {
+      drawPerspective(0, 0, width, height);
+    }
+    
+    // Draws small Plan in upper corner 
+    if (drawPlan) {
+      drawPlan(10, 10, int(0.3*height), int(0.3*height));
+    }
+    
+    // Draws Web Representing Scores
+    if (displayScoreWeb) {
+      drawScoreWeb(int(0.8*width), int(height - 0.3*width), int(0.2*width), int(0.2*width));
+    }
+    
+    // Draws information about current view
+    if (drawInfo) {
+      drawInfo();
+    }
+  }
 }

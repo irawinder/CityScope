@@ -12,11 +12,10 @@ String help[] = {
  "Developer Keycodes specified in 'keyPressed()' (these are for troubleshooting and debugging, not meant to be final UI):",
  "'h' Displays advanced developer functions and help",
  "'S/L' Save/Load Table State",
- "'p' Toggle plexiglas grid gap for static model [On/Off]",
+ "'p' Toggle pulsing of dynamic pieces",
  "';' Toggle plexiglas grid gap for dynamic model [On/Off]",
  "'q' Toggle 1x1 or 4x4 piece type",
  "'SPACEBAR' Change Color Mode (Use-based, Form-based, or Heatmap)",
- "'m' Toggle Camera Mode [Screen or Projector]",
  "'s' Toggle Static Model [On/Off]",
  "'c' Toggle different test piece configurations (does not render if connection to Colortizer is Active)",
  "'d' Toggle Dynamic Model [On/Off]",
@@ -24,13 +23,11 @@ String help[] = {
  "'R' Toggle data transfer to Remote via DDP",
  "'v' Change Demo Being Visualized (Kendall, Riyadh, etc)",
  "'a' Toggle Grid Axes [On/Off]",
- "'t' Toggle Statistics (not finished)",
- "'g' Toggle Grid View Mode (turns off everthing else)",
  "'z' Toggle override of Static Buildings [On/Off]",
  "'l' Display Plan in Upper Left Corner",
  "'k' Rotate pieces 90 degrees",
- "'f' flip model upside down",
- "'P' Refresh Projection Mapping Cancas",
+ "'f' Show/Hide Framerate",
+ "'P' Refresh Projection Mapping Canvas",
  "'`' turn on secondary canvas for projection mapping",
  "   'c' [secondary canvas only] turns on calibration mode",
  "   's' [secondary canvas only] save calibration state",
@@ -42,8 +39,6 @@ String help[] = {
  "'[' draw satellite image in plan",
  "']' draw static buildings in plan",
  "'b' Toggle 'Web' for drawing scores",
- "'x' Change colorweb fill type (constant, average, and binary)",
- "'n' Change 3D visualization to use Nodes as input instead of building files",
  "'/' Toggle dynamic pieces to have width of 1 or 4 Lego units",
  "'.' Toggle dynamic pieces to have hieght of 1 or 3 Lego units",
  "'=' Saves a JSON file of nodes to '../legotizer_data/demo_name/' folder",
@@ -54,7 +49,12 @@ String help[] = {
  "'5' Sends '5' String to colortizer (i.e. 'displaymode daylighting' in SDL RhinoScript)",
  "'6' Sends '6' String to colortizer (i.e. (re)initiates SDL RhinoScript server)",
  "'UP', 'DOWN', 'LEFT', 'RIGHT', '-', and '+' adjust the projector's location in 3D space.",
- "'C' Change Canvas for adjusting projector's locationin 3D space",
+ "'SHIFT + C' Change Canvas for adjusting projector's locationin 3D space",
+ "'x' Toggle Information",
+ "'n' Toggle Plan Rendering",
+ "'t' Toggle Perspective Rendering",
+ "'g' Toggle plexiglas grid gap for static model [On/Off]",
+ "'m' Toggle 3D Model display",
  "",
  "Press 'h' key to return to Legotizer"
 };
@@ -66,6 +66,11 @@ void drawHelp() {
   background(0);
   for (int i=0; i<help.length; i++) {
     text(help[i], 10, 13*(i+1));
+  }
+  
+  textAlign(RIGHT);
+  if (displayFramerate) {
+    text("Framerate: " + frameRate, width - 10, 13);
   }
 }
 

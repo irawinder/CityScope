@@ -648,16 +648,24 @@ void saveMetaJSON(String filename) {
   metaData.setFloat("maxLU_H", maxLU_H);
   
   saveJSONObject(metaData, legotizer_data + demoPrefix + demos[vizMode] + filename);
-  println("Metadata saved to " + legotizer_data + demoPrefix + demos[vizMode] + filename);
+  //println("Metadata saved to " + legotizer_data + demoPrefix + demos[vizMode] + filename);
 }
 
 void loadSummary() {
-  
-  summary = loadTable(legotizer_data + demoPrefix + demos[vizMode] + "summary.tsv");
-  
-  living = summary.getInt(1,3);
-  working = summary.getInt(1,4);
-  jobs = summary.getInt(1,5);
+  try {
+    summary = loadTable(legotizer_data + demoPrefix + demos[vizMode] + "summary.tsv");
+    
+    living = summary.getInt(1,3);
+    working = summary.getInt(1,4);
+    jobs = summary.getInt(1,5);
+  } catch(RuntimeException e){
+    println("Caught at 'void loadSummary()'");
+    summary = loadTable(legotizer_data + demoPrefix + demoTemplate + "summaryTemplate.tsv");
+    
+    living = summary.getInt(1,3);
+    working = summary.getInt(1,4);
+    jobs = summary.getInt(1,5);
+  }
   
   summary.removeColumn(5);
   summary.removeColumn(4);
@@ -677,7 +685,12 @@ void loadSummary() {
 }
 
 void loadAssumptions() {
-  assumptions = loadTable(legotizer_data + demoPrefix + demos[vizMode] + "assumptions.tsv");
+  try {
+    assumptions = loadTable(legotizer_data + demoPrefix + demos[vizMode] + "assumptions.tsv");
+  } catch(RuntimeException e){
+    println("Caught at 'void loadAssumptions()'");
+    assumptions = loadTable(legotizer_data + demoPrefix + demoTemplate + "assumptionsTemplate.tsv");
+  }
 }
 
 void initializeHeatMap() {
