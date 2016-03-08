@@ -1,5 +1,5 @@
 // How big your applet window is, in pixels
-int canvasWidth = 500;
+int canvasWidth = 800;
 int canvasHeight = int(canvasWidth * float(gridV)/gridU);
 
 // 2D matrix that holds grid values
@@ -16,6 +16,7 @@ void loadPixelData() {
   
   array = loadJSONArray("data/" + fileName + "_totes.json");
   
+  println(fileName);
   matrix = new float[gridU][gridV];
   for (int u=0; u<gridU; u++) {
     for (int v=0; v<gridV; v++) {
@@ -28,7 +29,10 @@ void loadPixelData() {
   matrixMAX = 0;
   
   for (int i=0; i<array.size(); i++) {
-    temp = array.getJSONObject(i);
+    try {
+      temp = array.getJSONObject(i);
+    } catch(RuntimeException e) {
+    }
     matrix[temp.getInt("u")][temp.getInt("v")] = temp.getInt("totes");
   }
   
@@ -85,7 +89,7 @@ void renderData() {
       // Hue Color of the grid is function of matrix value;
       // 0.25 coefficient narrows the range of colors used
       // 100 + var offsets the range of colors used
-      fill( 255*normalized, 255, 255);
+      fill( 255*normalized, 255, 255, 50);
       
       // Draws a grid cell
       rect(u*gridWidth, v*gridHeight, gridWidth, gridHeight);
@@ -93,4 +97,15 @@ void renderData() {
     }
   }
 
+}
+
+void renderLines() {
+  stroke(0, 50);
+  strokeWeight(1.5);
+  for (int i=1; i<gridU/4; i++) {
+    line(width*i/(gridU/4.0), 0, width*i/(gridU/4.0), height);
+  }
+  for (int i=1; i<gridV/4; i++) {
+    line(0, height*i/(gridV/4.0), width, height*i/(gridV/4.0));
+  }
 }

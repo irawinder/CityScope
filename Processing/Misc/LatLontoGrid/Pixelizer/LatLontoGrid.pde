@@ -17,15 +17,14 @@
  * 
  */
 
-//Define the grid
-float centerLatitude = 39.95;
-float centerLongitude = -104.9903;
-float azimuth =  0; //North
-float gridSize = 2; //km
 int gridV = 22*4; // Height of Lego Table
 int gridU =  18*4; // Width of Lego Table
 
-String fileName = "denver";
+float gridSize;
+float centerLatitude;
+float centerLongitude;
+float azimuth; //North
+String fileName;
 
 int grid[][];
 
@@ -33,6 +32,32 @@ int counter = 0;
 Table dataInput;
 JSONArray dataOutput;
 JSONObject temp;
+
+void denverMode() {
+  //Define the grid
+  gridSize = 2; //km
+  //float gridSize = 1.25; //km
+  //float gridSize = 1; //km
+  
+  centerLatitude = 39.95;
+  centerLongitude = -104.9903;
+  azimuth =  0; //North
+  
+  fileName = "denver";
+}
+
+void sanjoseMode() {
+  //Define the grid
+  gridSize = 1; //km
+  //float gridSize = 1.25; //km
+  //float gridSize = 1; //km
+
+  centerLatitude = 37.395237;
+  centerLongitude = -121.979507;
+  azimuth =  0; //North
+  
+  fileName = "sanjose";  
+}
 
 void pixelizeData() {
   // Name of CSV file to upload
@@ -46,7 +71,7 @@ void pixelizeData() {
   int[] uv = new int[2]; // [0] is u, [1] is v
   initGrid(); //Creates the grid then fills it with zeros
   
-  for(int i=2;i<dataInput.getRowCount();i++) //start 2 rows in because of header
+  for(int i=1;i<dataInput.getRowCount();i++) //start 2 rows in because of header
   {
     latitude = dataInput.getFloat(i,8); //9th column is latitude
     longitude = dataInput.getFloat(i,9); //10th column is longitude
