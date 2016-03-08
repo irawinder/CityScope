@@ -1,10 +1,6 @@
 // How big your applet window is, in pixels
 int canvasWidth = 500;
-int canvasHeight = 500;
-
-// how many grid squares you are visualizing
-int gridU = 64;
-int gridV = 64;
+int canvasHeight = int(canvasWidth * float(gridV)/gridU);
 
 // 2D matrix that holds grid values
 float matrix[][];
@@ -13,16 +9,12 @@ float matrixMIN, matrixMAX;
 
 //JSON array holding totes
 JSONArray array;
-JSONObject temp;
+// JSONObject temp;
 
 // Runs once when initializes
-void setup() {
-  size(canvasWidth, canvasHeight);
+void loadPixelData() {
   
-  // Window may be resized after initialized
-  frame.setResizable(true);
-  
-  array = loadJSONArray("totes.json");
+  array = loadJSONArray("data/" + fileName + "_totes.json");
   
   matrix = new float[gridU][gridV];
   for (int u=0; u<gridU; u++) {
@@ -66,17 +58,20 @@ void setup() {
 }
 
 // runs every frame
-void draw() {
+void renderData() {
   
   // Dynamically adjusts grid size to fit within canvas dimensions
   float gridWidth = float(width)/gridU;
   float gridHeight= float(height)/gridV;
   
-  // Stroke color set to balck, "0"
-  stroke(0);
+  // No lines draw around grid cells
+  noStroke();
   
-  // Stroke is 2 pixel wide (i.e. polylines)
-  strokeWeight(1);
+//  // Stroke color set to balck, "0"
+//  stroke(0);
+//
+//  // Stroke is 2 pixel wide (i.e. polylines)
+//  strokeWeight(1);
   
   // makes it so that colors are defined by Hue, Saturation, and Brightness values (0-255 by default)
   colorMode(HSB);
@@ -90,7 +85,7 @@ void draw() {
       // Hue Color of the grid is function of matrix value;
       // 0.25 coefficient narrows the range of colors used
       // 100 + var offsets the range of colors used
-      fill( 100 + 0.25*255*normalized, 255, 255);
+      fill( 255*normalized, 255, 255);
       
       // Draws a grid cell
       rect(u*gridWidth, v*gridHeight, gridWidth, gridHeight);

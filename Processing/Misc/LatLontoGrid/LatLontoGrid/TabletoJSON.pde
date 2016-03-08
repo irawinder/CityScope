@@ -29,7 +29,7 @@ void setup()
   
   float latitude;
   float longitude;
-  float value;
+  int value;
   
   int[] uv;
   uv = new int[2]; // [0] is u, [1] is v
@@ -40,7 +40,7 @@ void setup()
   {
     latitude = dataInput.getFloat(i,8); //9th column is latitude
     longitude = dataInput.getFloat(i,9); //10th column is longitude
-    value = dataInput.getFloat(i,12); //13th column is the totes value
+    value = dataInput.getInt(i,12); //13th column is the totes value
       
     //println(value);
     //println(latitude, longitude, value);
