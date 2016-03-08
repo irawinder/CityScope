@@ -1,5 +1,5 @@
-/* Pixelizer is a script that transforms a cloud of weighted latitude-longitude data 
- * into a discrete, pixelized density of the weighted data.  Input is a TSV file
+/* Pixelizer is a script that transforms a cloud of weighted latitude-longitude points 
+ * into a discrete, pixelized aggregation data set.  Input is a TSV file
  * of weighted lat-lon and out put is a JSON.
  *
  *      ---------------> + U-Axis 
@@ -161,8 +161,17 @@ int[] LatLontoGrid(float lat, float lon, float centerLat, float centerLon, float
   
   int[] xy;
   xy = new int[2];
-  xy[0] = - int(x);
-  xy[1] =   int(y);
+  // Adjusts for negative latitude and longitudes
+  if (centerLon < 0) {
+    xy[0] = - int(x);
+  } else {
+    xy[0] =   int(x);
+  }
+  if (centerLat < 0) {
+    xy[1] = - int(y);
+  } else {
+    xy[1] =   int(y);
+  }
   
   //println(xy[0], xy[1]);
   return xy;

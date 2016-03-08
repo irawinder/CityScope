@@ -1,5 +1,5 @@
-/* Pixelizer is a script that transforms a cloud of weighted latitude-longitude data 
- * into a discrete, pixelized density of the weighted data.  Input is a TSV file
+/* Pixelizer is a script that transforms a cloud of weighted latitude-longitude points 
+ * into a discrete, pixelized aggregation data set.  Input is a TSV file
  * of weighted lat-lon and out put is a JSON.
  *
  *      ---------------> + U-Axis 
@@ -50,7 +50,7 @@ void draw() {
 
 void keyPressed() {
   switch(key) {
-    case 'm': // changes data mode between Denver and San Jose
+    case 'm': // changes data mode between Denver and San Jose ... kind of buggy
       modeIndex = next(modeIndex, 1);
       load();
       break;
