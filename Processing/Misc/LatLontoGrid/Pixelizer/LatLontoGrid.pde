@@ -68,14 +68,14 @@ void pixelizeData() {
   initGrid(); //Creates the grid then fills it with zeros
   
   for(int i=1;i<dataInput.getRowCount();i++) //start 2 rows in because of header
-  {
+  { 
+    // Column Locations based on CTL data received Feb 2015
     latitude = dataInput.getFloat(i,8); //9th column is latitude
     longitude = dataInput.getFloat(i,9); //10th column is longitude
     value = dataInput.getInt(i,12); //13th column is the totes value
-      
-    uv = LatLontoGrid(latitude,longitude,centerLatitude,centerLongitude,azimuth,gridSize,gridV,gridU);
     
-    //println(uv[0], uv[1], value);
+    // Fetch grid location of coordinate
+    uv = LatLontoGrid(latitude,longitude,centerLatitude,centerLongitude,azimuth,gridSize,gridV,gridU);
     
     //Check if the location is inside the grid
     if((uv[0]>0) && (uv[1]>0) && (uv[0]<gridU) && (uv[1]<gridV))
@@ -150,27 +150,29 @@ int[] LatLontoGrid(float lat, float lon, float centerLat, float centerLon, float
   float x = (lon - centerLon)*kmperLon/gridsize;
   float y = (lat - centerLat)*kmperLat/gridsize;
   
-  //Rotate (Im rotating opposite direction because Im really supposed to rotate the coordinate system)
-  x = -x*cos((float)Math.PI/180*(azm)) + y*sin((float)Math.PI/180*(azm));
-  y = -x*sin((float)Math.PI/180*(azm)) - y*cos((float)Math.PI/180*(azm));
+  //Rotate
+  float xR, yR;
+  float theta = (float)Math.PI/180*(azm+180);
+  xR = + x*cos(theta) + y*sin(theta);
+  yR = - x*sin(theta) + y*cos(theta);
   
   //Translate from center of grid to top left corner
-  x = x - gw/2;
-  y = y + gh/2;
+  xR -= 0.5*gw;
+  yR += 0.5*gh;
   // x and y are now on the grid, truncating to int will give us its location
   
   int[] xy;
   xy = new int[2];
   // Adjusts for negative latitude and longitudes
   if (centerLon < 0) {
-    xy[0] = - int(x);
+    xy[0] = - int(xR);
   } else {
-    xy[0] =   int(x);
+    xy[0] =   int(xR);
   }
   if (centerLat < 0) {
-    xy[1] = - int(y);
+    xy[1] = - int(yR);
   } else {
-    xy[1] =   int(y);
+    xy[1] =   int(yR);
   }
   
   //println(xy[0], xy[1]);
