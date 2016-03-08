@@ -19,5 +19,7 @@ void setup() {
 void draw() {
   // Draws false color heatmap to canvas
   renderData();
+  
+  save("data/" + fileName + ".png");
 }
 

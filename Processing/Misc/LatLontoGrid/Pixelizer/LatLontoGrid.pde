@@ -21,7 +21,7 @@
 float centerLatitude = 39.95;
 float centerLongitude = -104.9903;
 float azimuth =  0; //North
-float gridSize = 0.250; //km
+float gridSize = 2; //km
 int gridV = 22*4; // Height of Lego Table
 int gridU =  18*4; // Width of Lego Table
 
@@ -121,8 +121,8 @@ int[] LatLontoGrid(float lat, float lon, float centerLat, float centerLon, float
 {
   //Create the unit conversion ratios. Earth Radius = 6371km
   //I find the km per Longitude from the center and assume its constant over the region
-  float kmperLon = cos((float)(Math.PI/180*centerLat))*6371/360;
-  float kmperLat = 6371/360;
+  float kmperLon = 2*PI*cos((float)(Math.PI/180.0*centerLat))*6371.0/360;
+  float kmperLat = 2*PI*6371.0/360;
   
   //Convert from lat/lon to grid units (not yet rotated)
   float x = (lon - centerLon)*kmperLon/gridsize;
