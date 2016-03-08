@@ -8,7 +8,7 @@
 
 //Define the grid
 float centerLatitude = 39.7392;
-float centerLongitude = 104.9903;
+float centerLongitude = -104.9903;
 float azimuth = 0; //North
 float gridSize = 1; //km
 int gridHeight = 64;
@@ -24,7 +24,7 @@ JSONObject temp;
 void setup()
 {
   
-  dataInput = loadTable("Data.csv");
+  dataInput = loadTable("denver.tsv");
   dataOutput = new JSONArray();
   
   float latitude;
@@ -35,13 +35,12 @@ void setup()
   uv = new int[2]; // [0] is u, [1] is v
   initGrid(); //Creates the grid then fills it with zeros
   
-  int i;
   //for(i=3;i<dataInput.getRowCount();i++) //start 3 rows in because of header
-  for(i=3;i<10;i++)
+  for(int i=2;i<dataInput.getRowCount();i++)
   {
     latitude = dataInput.getFloat(i,8); //9th column is latitude
     longitude = dataInput.getFloat(i,9); //10th column is longitude
-    value = dataInput.getInt(i,12); //13th column is the totes value
+    value = dataInput.getFloat(i,12); //13th column is the totes value
       
     //println(value);
     //println(latitude, longitude, value);
@@ -58,7 +57,7 @@ void setup()
     if((uv[0]>0) && (uv[1]>0) && (uv[0]<gridWidth) && (uv[1]<gridHeight))
     {
       grid[uv[0]][uv[1]] += value;
-    }
+    } 
   }
   
   //Write JSON file
@@ -68,10 +67,10 @@ void setup()
 void initGrid()
 {
   grid = new int[gridWidth][gridHeight];
-  int i,j;
-  for(i=0;i<gridWidth;i++)
+
+  for(int i=0;i<gridHeight;i++)
   {
-    for(j=0;j<gridWidth;j++)
+    for(int j=0;j<gridWidth;j++)
     {
       grid[i][j] = 0;
     }
@@ -80,11 +79,10 @@ void initGrid()
 
 void writeGrid()
 {
-  grid = new int[gridWidth][gridHeight];
-  int i,j;
-  for(i=0;i<gridWidth;i++)
+  // grid = new int[gridWidth][gridHeight];
+  for(int i=0;i<gridHeight;i++)
   {
-    for(j=0;j<gridWidth;j++)
+    for(int j=0;j<gridWidth;j++)
     {
       temp = new JSONObject();
       temp.setInt("u", i);

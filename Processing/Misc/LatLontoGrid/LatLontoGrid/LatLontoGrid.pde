@@ -30,8 +30,8 @@ int[] LatLontoGrid(float lat, float lon, float centerLat, float centerLon, float
   
   int[] xy;
   xy = new int[2];
-  xy[0] = int(x);
-  xy[1] = int(y);
+  xy[0] = - int(x);
+  xy[1] =   int(y);
   
   //println(xy[0], xy[1]);
   return xy;
