@@ -11,8 +11,8 @@
  *     |
  *   + V-Axis
  * 
- * Ira Winder (jiw@mit.edu)
  * Mike Winder (mhwinder@gmail.com)
+ * Ira Winder (jiw@mit.edu)
  * Write Date: January, 2015
  * 
  */
@@ -130,11 +130,8 @@ void writeGrid()
  *
  * Azimuth in degrees, gridsize in km/stud.
  *
- * // possible issue with y being positive while v needs to be negative
- * // possible issue with kmperLon although the geometry seems right
- * // issue with azimuth != 0
- *
  * Mike Winder (mhwinder@gmail.com)
+ * Ira Winder (jiw@mit.edu)
  * January, 2015
  * 
  */
