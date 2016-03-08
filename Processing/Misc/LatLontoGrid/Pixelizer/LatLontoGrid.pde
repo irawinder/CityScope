@@ -36,8 +36,6 @@ JSONObject temp;
 void denverMode() {
   //Define the grid
   gridSize = 2; //km
-  //float gridSize = 1.25; //km
-  //float gridSize = 1; //km
   
   centerLatitude = 39.95;
   centerLongitude = -104.9903;
@@ -49,8 +47,6 @@ void denverMode() {
 void sanjoseMode() {
   //Define the grid
   gridSize = 1; //km
-  //float gridSize = 1.25; //km
-  //float gridSize = 1; //km
 
   centerLatitude = 37.395237;
   centerLongitude = -121.979507;

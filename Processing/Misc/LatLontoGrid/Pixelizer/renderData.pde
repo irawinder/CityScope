@@ -61,7 +61,7 @@ void loadPixelData() {
   
 }
 
-// runs every frame
+// Draws false color heatmap to canvas
 void renderData() {
   
   // Dynamically adjusts grid size to fit within canvas dimensions
@@ -108,9 +108,9 @@ void renderData() {
       
     }
   }
-
 }
 
+// Draws Outlines of Lego Data Modules (a 4x4 lego stud piece)
 void renderLines() {
   stroke(255, 50);
   strokeWeight(1.5);
