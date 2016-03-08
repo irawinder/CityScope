@@ -45,6 +45,7 @@ int[] numGridAreas = {1}; // 1 grid for 1 distortion area
 float vizRatio = float(19)/(19); //Must match measurements in reality, i.e. a table surface
 int vizWidth = 400; //Resolution (in pixels)
 int vizHeight = int(vizWidth/vizRatio);
+int gcCount = 0; //YZ
 
 void setup() {
   size(vizWidth*2+500, vizHeight*2, P2D);
@@ -60,7 +61,12 @@ void draw() {
   background(0);
   runScan(vizWidth, vizHeight); //Updates and runs all scan objects
   //runViz();
-  System.gc(); //YZ
+  //YZ
+  gcCount ++;
+  if(gcCount >= 300){
+    System.gc(); 
+    gcCount = 0;
+  }
   
   //println(frameRate);
   
