@@ -54,6 +54,11 @@ void keyPressed() {
       modeIndex = next(modeIndex, 1);
       load();
       break;
+    case 'p': // print screen to file
+      String location = "export/" + fileName + "_" + int(gridSize*1000) + ".png";
+      save(location);
+      println("File saved to " + location);
+      break;
   }
 }
 
