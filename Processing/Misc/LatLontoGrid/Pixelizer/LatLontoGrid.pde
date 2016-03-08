@@ -85,6 +85,7 @@ void pixelizeData() {
     if((uv[0]>0) && (uv[1]>0) && (uv[0]<gridU) && (uv[1]<gridV))
     {
       grid[uv[0]][uv[1]] += value;
+      //grid[uv[0]][uv[1]] += 1;
     } 
   }
   

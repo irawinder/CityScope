@@ -89,7 +89,19 @@ void renderData() {
       // Hue Color of the grid is function of matrix value;
       // 0.25 coefficient narrows the range of colors used
       // 100 + var offsets the range of colors used
-      fill( 255*normalized, 255, 255, 50);
+      //fill(100 + 0.25*255*normalized, 255, 255, 50);
+      
+      fill(100 + 0.5*255*normalized, 255, 255, 100);
+      
+      if (normalized == 0) {
+        noFill();
+      }
+      
+//      if (normalized > 0) {
+//        fill(255/2, 255, 255, 50);
+//      } else {
+//        fill(0, 255, 255, 50);
+//      }
       
       // Draws a grid cell
       rect(u*gridWidth, v*gridHeight, gridWidth, gridHeight);
@@ -100,7 +112,7 @@ void renderData() {
 }
 
 void renderLines() {
-  stroke(0, 50);
+  stroke(255, 50);
   strokeWeight(1.5);
   for (int i=1; i<gridU/4; i++) {
     line(width*i/(gridU/4.0), 0, width*i/(gridU/4.0), height);
