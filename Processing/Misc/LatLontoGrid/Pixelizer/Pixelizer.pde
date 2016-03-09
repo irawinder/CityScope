@@ -99,6 +99,8 @@ void loadMenu(int canvasWidth, int canvasHeight) {
   mainMenu = new Menu(canvasWidth, canvasHeight, 170, 25, 2, buttonNames, align);
   // Selects on one of the mutually exclusive heatmps
   depressHeatmapButtons(3, 6);
+  // Selects on one of the pixel scales
+  depressHeatmapButtons(15, 17, gridSize);
 }
 
 void draw() {
@@ -111,6 +113,8 @@ void draw() {
   
   // Draws Outlines of Lego Data Modules (a 4x4 lego stud piece)
   renderLines();
+  
+  printStats();
   
   // Draws Menu
   hideMenu.draw();

@@ -18,7 +18,7 @@
  */
 
 // length of one pixel [km]
-float gridSize;
+float gridSize = 2;
 
 // Lat-Lon and rotation to center the grid
 float centerLatitude;
@@ -36,11 +36,17 @@ String valueMode = "totes";
   // "deliveries" essentially makes all weights set to 1, regardless of totes
   // "doorstep" will average the doorstep time for each grid
   // "source" will describes which store ID(s) serve that grid bucket
-  // "stores" will place the store ID in any pixel that has a store
-
+  
+boolean showStores = true;
 
 // The grid array of "buckets" that hold aggregated values
-int grid[][];
+int gridSum[][];
+
+// The grid array of "buckets" that holds frequency values
+int gridFreq[][];
+
+// The grid array of "buckets" that holds store locations
+int gridStore[][];
 
 // TSV to hold lat-lon points
 Table dataInput;
@@ -49,7 +55,6 @@ JSONArray dataOutput;
 
 // Sets Default Paramters for Denver Area
 void denverMode() {
-  gridSize = 2; //km
   centerLatitude = 39.95;
   centerLongitude = -104.9903;
   azimuth =  0; // 0 = North
@@ -58,7 +63,6 @@ void denverMode() {
 
 // Sets Default Paramters for San Jose Area
 void sanjoseMode() {
-  gridSize = 1; //km
   centerLatitude = 37.395237;
   centerLongitude = -121.979507;
   azimuth =  0; // 0 = North
@@ -72,17 +76,20 @@ void pixelizeData(int gridU, int gridV) {
   dataInput = loadTable("data/" + fileName + ".tsv");
   dataOutput = new JSONArray();
   
-  // variables to temporary hold lat, lon, value, and grid buck for a single point
-  float latitude;
-  float longitude;
+  // variables to temporary hold lat, lon, value, and grid buck for a single point; C for customer, S for store
+  float latitudeC, longitudeC, latitudeS, longitudeS;
   int value; // One weighted value per JSON file (currently)
   int[] uv = new int[2]; // [0] is u, [1] is v
   
   //initializes the grid then fills it with zeros
-  grid = new int[gridU][gridV];
+  gridSum   = new int[gridU][gridV];
+  gridFreq  = new int[gridU][gridV];
+  gridStore = new int[gridU][gridV];
   for(int i=0;i<gridU;i++) {
     for(int j=0;j<gridV;j++) {
-      grid[i][j] = 0;
+      gridSum[i][j] = 0;
+      gridFreq[i][j] = 0;
+      gridStore[i][j] = 0;
     }
   }
   
@@ -91,33 +98,49 @@ void pixelizeData(int gridU, int gridV) {
   { 
     // Column Locations based on CTL data received Feb 2015
     
-    latitude = dataInput.getFloat(i,8); //9th column is customer latitude
-    longitude = dataInput.getFloat(i,9); //10th column is customer longitude
+    latitudeC = dataInput.getFloat(i,8); //9th column is customer latitude
+    longitudeC = dataInput.getFloat(i,9); //10th column is customer longitude
+    latitudeS = dataInput.getFloat(i,10);  //11th column is store latitude
+    longitudeS = dataInput.getFloat(i,11); //12th column is store longitude
     
     value = 0;
     
     if (valueMode.equals("deliveries")) {
       value = 1;
     } else if (valueMode.equals("totes")) {
-      value = dataInput.getInt(i,12); //13th column is the totes value
+      value = dataInput.getInt(i,12);       //13th column is the totes value
     } else if (valueMode.equals("doorstep")) {
-      value = dataInput.getInt(i,13); //14th column is the totes value
+      value = dataInput.getInt(i,13);       //14th column is the totes value
     } else if (valueMode.equals("source")) {
-      value = dataInput.getInt(i,0);        //1st column is the store ID
-    } else if (valueMode.equals("stores")) {
-      latitude = dataInput.getFloat(i,10);  //11th column is store latitude
-      longitude = dataInput.getFloat(i,11); //12th column is store longitude
       value = dataInput.getInt(i,0);        //1st column is the store ID
     }
     
-    // Fetch grid location of coordinate
-    uv = LatLontoGrid(latitude, longitude, centerLatitude, centerLongitude, azimuth, gridSize, this.gridV, this.gridU);
-    
+    // Fetch grid location of Customer coordinate
+    uv = LatLontoGrid(latitudeC, longitudeC, centerLatitude, centerLongitude, azimuth, gridSize, this.gridV, this.gridU);
     //Check if the location is inside the grid
     if((uv[0]>0) && (uv[1]>0) && (uv[0]<gridU) && (uv[1]<gridV))
     {
-      grid[uv[0]][uv[1]] += value;
+      if(valueMode.equals("source")) {
+        // in the case of stores, "value" is the store's integer ID
+        gridSum[uv[0]][uv[1]] = value;
+      } else {
+        // In all other cases, the value is added into its grid bucket
+        gridSum[uv[0]][uv[1]] += value;
+      }
+      
+      // += 1 every time a value is deposited into a bucket of gridSum[][]
+      gridFreq[uv[0]][uv[1]] += 1;
     } 
+    
+    // Fetch grid location of Store coordinate
+    uv = LatLontoGrid(latitudeS, longitudeS, centerLatitude, centerLongitude, azimuth, gridSize, this.gridV, this.gridU);
+    //Check if the location is inside the grid
+    if((uv[0]>0) && (uv[1]>0) && (uv[0]<gridU) && (uv[1]<gridV))
+    {
+      // Presence of a store is designated as "1" (could become more diverse for sm/lg stores, lockers, etc)
+      gridStore[uv[0]][uv[1]] = 1;
+    } 
+    
   }
   
   // Writes Grid to JSON File
@@ -128,12 +151,30 @@ void pixelizeData(int gridU, int gridV) {
       temp = new JSONObject();
       temp.setInt("u", i);
       temp.setInt("v", j);
-      temp.setInt("totes", grid[i][j]);
+      
+      // Performs a different summary calculation depending on the data type
+      if (valueMode.equals("deliveries")) {
+        // Sum of deliveries per grid
+        temp.setInt(valueMode, gridSum[i][j]);
+      } else if (valueMode.equals("totes")) {
+        // Sum of Totes per grid
+        temp.setInt(valueMode, gridSum[i][j]);
+      } else if (valueMode.equals("doorstep")) {
+        // Average Doorstep time per grid
+        temp.setFloat(valueMode, int((float)gridSum[i][j]/gridFreq[i][j]));
+      } else if (valueMode.equals("source")) {
+        // Store Source at a particular Grid
+        temp.setInt(valueMode, gridSum[i][j]);
+      }
+      
+      // 0 or 1 describing whether a store is present
+      temp.setInt("store", gridStore[i][j]);
+      
       dataOutput.setJSONObject(counter, temp);
       counter++;
     }
   }
-  saveJSONArray(dataOutput, "data/" + fileName + "_totes.json");
+  saveJSONArray(dataOutput, "data/" + fileName + "_" + valueMode + ".json");
 }
 
 

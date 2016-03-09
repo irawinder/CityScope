@@ -1,27 +1,33 @@
 // 2D matrix that holds grid values
-float matrix[][];
+float heatmap[][], stores[][];
 // variables to hol minimum and maximum grid values in matrix
-float matrixMIN, matrixMAX;
+float heatmapMIN, heatmapMAX;
+float storesMIN, storesMAX;
 
 //JSON array holding totes
 JSONArray array;
-// JSONObject temp;
 
 // Runs once when initializes
 void loadPixelData() {
   
-  array = loadJSONArray("data/" + fileName + "_totes.json");
+  array = loadJSONArray("data/" + fileName + "_" + valueMode + ".json");
   
-  matrix = new float[gridU][gridV];
+  heatmap = new float[gridU][gridV];
+  stores = new float[gridU][gridV];
   for (int u=0; u<gridU; u++) {
     for (int v=0; v<gridV; v++) {
-      matrix[u][v] = 0;
+      heatmap[u][v] = 0;
+      stores[u][v] = 0;
     }
   }
   
   // MIN and MAX set to arbitrarily large and small values
-  matrixMIN = 100000;
-  matrixMAX = 0;
+  heatmapMIN = 100000;
+  heatmapMAX = 0;
+  
+  // MIN and MAX set to arbitrarily large and small values
+  storesMIN = 100000;
+  storesMAX = 0;
   
   JSONObject temp = new JSONObject();
   for (int i=0; i<array.size(); i++) {
@@ -29,31 +35,38 @@ void loadPixelData() {
       temp = array.getJSONObject(i);
     } catch(RuntimeException e) {
     }
-    matrix[temp.getInt("u")][temp.getInt("v")] = temp.getInt("totes");
+    heatmap[temp.getInt("u")][temp.getInt("v")] = temp.getInt(valueMode);
+    stores[temp.getInt("u")][temp.getInt("v")] = temp.getInt("store");
   }
   
   for (int u=0; u<gridU; u++) {
     for (int v=0; v<gridV; v++) {
       
-      // each cell in the MAtrix randomly assigned a vlue between 0 and 178
+      // each cell in the heatmap randomly assigned a vlue between 0 and 178
       // This is a placeholder that should eventually hold real data (i.e. number of totes)
-      //matrix[u][v] = random(0, 178);
+      //heatmap[u][v] = random(0, 178);
       
+      if (heatmap[u][v] != 0) { // 0 is usually void, so including it will skew our color gradient
+        // Checks if smallest value thusfar
+        if (heatmap[u][v] < heatmapMIN) {
+          heatmapMIN = heatmap[u][v]; }
+        // Checks if largest value thusfar
+        if (heatmap[u][v] > heatmapMAX) {
+          heatmapMAX = heatmap[u][v]; }
+      }
+        
       // Checks if smallest value thusfar
-      if (matrix[u][v] < matrixMIN) {
-        matrixMIN = matrix[u][v];
-      }
-      
+      if (stores[u][v] < storesMIN) {
+        storesMIN = stores[u][v]; }
       // Checks if largest value thusfar
-      if (matrix[u][v] > matrixMAX) {
-        matrixMAX = matrix[u][v];
-      }
+      if (stores[u][v] > storesMAX) {
+        storesMAX = stores[u][v]; }
     }
   }
   
   // Prints largest and smallest values to console
-  println("Maximum Value: " + matrixMAX);
-  println("Minimum Value: " + matrixMIN);
+  println("Maximum Value: " + heatmapMAX);
+  println("Minimum Value: " + heatmapMIN);
   
 }
 
@@ -64,43 +77,54 @@ void renderData() {
   float gridWidth = float(width)/gridU;
   float gridHeight= float(height)/gridV;
   
-  // No lines draw around grid cells
-  noStroke();
-  
-//  // Stroke color set to balck, "0"
-//  stroke(0);
-//
-//  // Stroke is 2 pixel wide (i.e. polylines)
-//  strokeWeight(1);
-  
   // makes it so that colors are defined by Hue, Saturation, and Brightness values (0-255 by default)
   colorMode(HSB);
   
   for (int u=0; u<gridU; u++) {
     for (int v=0; v<gridV; v++) {
       
-      // Matrix value is normalized to a value between 0 and 1;
-      float normalized = (matrix[u][v] - matrixMIN)/(matrixMAX-matrixMIN);
+      // heatmap value is normalized to a value between 0 and 1;
+      float normalized = (heatmap[u][v] - heatmapMIN)/(heatmapMAX-heatmapMIN);
       
-      // Hue Color of the grid is function of matrix value;
+      // Hue Color of the grid is function of heatmap value;
       // 0.25 coefficient narrows the range of colors used
       // 100 + var offsets the range of colors used
-      //fill(100 + 0.25*255*normalized, 255, 255, 50);
       
-      fill(100 + 0.5*255*normalized, 255, 255, 100);
+      if (valueMode.equals("totes") || valueMode.equals("deliveries") ) {
+        // Narrower Color Range
+        fill(0.75*255*(1-normalized), 255, 255, 150);
+      } else if (valueMode.equals("source") || valueMode.equals("doorstep") ) {
+        // Less Narrower Color Range
+        fill(0.75*255*normalized, 255, 255, 150);
+      } else {
+        // Full Color Range
+        fill(255*normalized, 255, 255, 150);
+      }
+      // No lines draw around grid cells
+      noStroke();
       
-      if (normalized == 0) {
-        noFill();
+      // Doesn't draw a rectangle for values of 0
+      if (normalized >= 0) {
+        rect(u*gridWidth, v*gridHeight, gridWidth, gridHeight);
       }
       
-//      if (normalized > 0) {
-//        fill(255/2, 255, 255, 50);
-//      } else {
-//        fill(0, 255, 255, 50);
-//      }
-      
-      // Draws a grid cell
-      rect(u*gridWidth, v*gridHeight, gridWidth, gridHeight);
+      // Draws Store Locations
+      if (showStores) {
+        // heatmap value is normalized to a value between 0 and 1;
+        normalized = (stores[u][v] - storesMIN)/(storesMAX-storesMIN);
+        
+        // Full Color Range
+        fill(255*normalized, 255, 255, 255);
+        
+        //Outlines stores
+        strokeWeight(1);
+        stroke(textColor);
+        
+        // Doesn't draw a rectangle for values of 0
+        if (normalized != 0) {
+          rect(u*gridWidth, v*gridHeight, gridWidth, gridHeight);
+        }
+      }
       
     }
   }
@@ -115,5 +139,29 @@ void renderLines() {
   }
   for (int i=1; i<gridV/4; i++) {
     line(0, height*i/(gridV/4.0), width, height*i/(gridV/4.0));
+  }
+}
+
+void printStats() {
+  fill(textColor);
+  
+  textAlign(RIGHT);
+  text("Pixelizer v1.0 by Ira Winder, jiw@mit.edu", width - 10, height - 15);
+  
+  if (showMainMenu) {
+    textAlign(LEFT);
+    String suffix = "";
+    String prefix = "";
+    if (valueMode.equals("totes") || valueMode.equals("deliveries") ) {
+      suffix = " " + valueMode;
+    } else if ( valueMode.equals("source") ) {
+      prefix = "StoreID ";
+    }  else if ( valueMode.equals("doorstep") ) {
+      suffix = " seconds";
+    }
+    text("Grid Stats", 10, height - 75);
+    text("Min: " + prefix + (int)heatmapMIN + suffix, 10, height - 60);
+    text("Max: " + prefix + (int)heatmapMAX + suffix, 10, height - 45);
+    text(fileName + ": 1 grid square = " + gridSize + "km", 10, height - 15);
   }
 }

@@ -15,7 +15,11 @@ String[] buttonNames =
   "Align Left (l)",        // 10
   "Align Right (r)",       // 11
   "Align Center (c)",      // 12
-  "Invert Colors (i)"      // 13
+  "Invert Colors (i)",     // 13
+  "VOID",                  // 14
+  "2km per pixel (2)",         // 15
+  "1km per pixel (1)",         // 16
+  "500m per pixel (5)",        // 17
 };
 
 // These Strings are for the hideMenu, formatted as arrays for Menu Class Constructor
@@ -78,37 +82,57 @@ void mouseClicked() {
     setStores(8);
   }
   
-  //function9
-  if(mainMenu.buttons[9].over()){  
-    alignLeft();
-  }
-  
   //function10
-  if(mainMenu.buttons[10].over()){ 
-    alignRight();
+  if(mainMenu.buttons[10].over()){  
+    alignLeft();
   }
   
   //function11
   if(mainMenu.buttons[11].over()){ 
-    alignCenter();
+    alignRight();
   }
   
   //function12
   if(mainMenu.buttons[12].over()){ 
+    alignCenter();
+  }
+  
+  //function13
+  if(mainMenu.buttons[13].over()){ 
     invertColors();
+  }
+  
+  //function14
+  if(mainMenu.buttons[14].over()){ 
+    //VOID
+  }
+  
+  //function15
+  if(mainMenu.buttons[15].over()){ 
+    setGridSize(2.0, 15);
+  }
+  
+  //function16
+  if(mainMenu.buttons[16].over()){ 
+    setGridSize(1.0, 16);
+  }
+  
+  //function17
+  if(mainMenu.buttons[17].over()){ 
+    setGridSize(0.5, 17);
   }
 }
 
 void keyPressed() {
   switch(key) {
-    case 'h': // "Hide Main Menu (h)"   // 0
+    case 'h': // "Hide Main Menu (h)"     // 0
       toggleMainMenu();
       break;
       
-    case 'n': // "Next City (n)"        // 0
+    case 'n': // "Next City (n)"          // 0
       nextModeIndex();
       break;
-    case 'p': // "Print Screenshot (p)" // 1
+    case 'p': // "Print Screenshot (p)"   // 1
       printScreen();
       break;
   
@@ -129,17 +153,27 @@ void keyPressed() {
       setStores(8);
       break;
       
-    case 'l': // "Align Left (l)",   // 9
+    case 'l': // "Align Left (l)",        // 10
       alignLeft();
       break;
-    case 'r': // "Align Right (r)"   // 10
+    case 'r': // "Align Right (r)"        // 11
       alignRight();
       break;
-    case 'c': // "Align Center (c)"  // 11
+    case 'c': // "Align Center (c)"       // 12
       alignCenter();
       break;
-    case 'i': // "Invert Colors (i)" // 12
+    case 'i': // "Invert Colors (i)"      // 13
       invertColors();
+      break;
+  
+    case '2': // "2km per pixel",         // 15
+      setGridSize(2.0, 15);
+      break;
+    case '1': // "1km per pixel",         // 16
+      setGridSize(1.0, 16);
+      break;
+    case '5': // "500m per pixel",        // 17
+      setGridSize(0.5, 17);
       break;
   }
 }
@@ -198,9 +232,20 @@ void setDoorstep(int button) {
 }
 
 void setStores(int button) {
-  valueMode = "stores";
+  showStores = toggle(showStores);
+  if (!showStores) {
+    mainMenu.buttons[button].isPressed = true;
+  } else {
+    mainMenu.buttons[button].isPressed = false;
+  }
+  println("showStores: " + showStores);
+}
+
+void setGridSize(float size, int button) {
+  gridSize = size;
+  depressHeatmapButtons(15, 17, button);
   loadData(gridU, gridV, modeIndex);
-  println("valueMode: " + valueMode);
+  println("gridSize: " + gridSize + "km");
 }
 
 // Presses all buttons in a set of mutually exclusive buttons except for the index specified
@@ -216,6 +261,27 @@ void depressHeatmapButtons(int min, int max) {
     button += 2;
   } else if (valueMode.equals("doorstep")) {
     button += 3;
+  }
+  
+  // Turns all buttons off
+  for(int i=min; i<=max; i++) { //heatmap buttons min-max are mutually exclusive
+    mainMenu.buttons[i].isPressed = true;
+  }
+  // highlighted the heatmap button that is activated only
+  mainMenu.buttons[button].isPressed = false;
+}
+
+// Presses all buttons in a set of mutually exclusive buttons except for the index specified
+// min-max specifies a range of button indices; size specifies the currently selected button
+void depressHeatmapButtons(int min, int max, float size) {
+  
+  int button = 15;
+  if (size == 2) {
+    button += 0;
+  } else if (size == 1) {
+    button += 1;
+  } else if (size == 0.5) {
+    button += 2;
   }
   
   // Turns all buttons off
@@ -263,9 +329,13 @@ void invertColors() {
   if (background == 0) {
     background = 255;
     textColor = 0;
+    mapColor = "color";
+    loadBasemap();
   } else {
     background = 0;
     textColor = 255;
+    mapColor = "bw";
+    loadBasemap();
   }
   println ("background: " + background + ", textColor: " + textColor);
 }

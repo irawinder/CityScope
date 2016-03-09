@@ -13,6 +13,7 @@ void loadBasemap() {
 
 // Draws a Google Satellite Image
 void renderBasemap() {
+  background(background);
   try {
     image(basemap, 0, 0, width, height);
   } catch(RuntimeException e) {
