@@ -17,9 +17,11 @@ String[] buttonNames =
   "Align Center (c)",      // 12
   "Invert Colors (i)",     // 13
   "VOID",                  // 14
-  "2km per pixel (2)",         // 15
-  "1km per pixel (1)",         // 16
-  "500m per pixel (5)",        // 17
+  "2km per pixel (3)",     // 15
+  "1km per pixel (2)",     // 16
+  "500m per pixel (1)",    // 17
+  "VOID",                  // 18
+  "Show Basemap (m)",      // 19
 };
 
 // These Strings are for the hideMenu, formatted as arrays for Menu Class Constructor
@@ -121,6 +123,16 @@ void mouseClicked() {
   if(mainMenu.buttons[17].over()){ 
     setGridSize(0.5, 17);
   }
+  
+  //function18
+  if(mainMenu.buttons[18].over()){ 
+    //VOID
+  }
+  
+  //function19
+  if(mainMenu.buttons[19].over()){ 
+    toggleBaseMap(19);
+  }
 }
 
 void keyPressed() {
@@ -166,15 +178,22 @@ void keyPressed() {
       invertColors();
       break;
   
-    case '2': // "2km per pixel",         // 15
+    case '3': // "2km per pixel",         // 15
       setGridSize(2.0, 15);
       break;
-    case '1': // "1km per pixel",         // 16
+    case '2': // "1km per pixel",         // 16
       setGridSize(1.0, 16);
       break;
-    case '5': // "500m per pixel",        // 17
+    case '1': // "500m per pixel",        // 17
       setGridSize(0.5, 17);
       break;
+      
+    case 'm': // "Show Map (m)",          // 19
+      toggleBaseMap(19);
+      break;
+    
+    
+    
   }
 }
 
@@ -246,6 +265,16 @@ void setGridSize(float size, int button) {
   depressHeatmapButtons(15, 17, button);
   loadData(gridU, gridV, modeIndex);
   println("gridSize: " + gridSize + "km");
+}
+
+void toggleBaseMap(int button) {
+  showBasemap = toggle(showBasemap);
+  if (showBasemap) {
+    mainMenu.buttons[button].isPressed = false;
+  } else {
+    mainMenu.buttons[button].isPressed = true;
+  }
+  println("showBasemap = " + showBasemap);
 }
 
 // Presses all buttons in a set of mutually exclusive buttons except for the index specified

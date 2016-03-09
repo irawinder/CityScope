@@ -96,13 +96,13 @@ float C = 2*PI*6372798.2; // Circumference of Earth
 //    String templateFile = "denver.png";
     
     // Latitude and Longitude at Center of Model
-    float lat = 37.395237;
-    float lon = -121.979507;
-    int zoom = 11;
-    float modelWidth  = 1000*18*4; // width of model in meters
-    float modelHeight = 1000*22*4;   // height of model in meters
+    float lat = 39.95;
+    float lon = -104.9903;
+    int zoom = 13;
+    float modelWidth  = 500*18*4; // width of model in meters
+    float modelHeight = 500*22*4;   // height of model in meters
     float modelRotation = 0.0; // rotation of model in radians clockwise from north
-    boolean useTemplate = false;
+    boolean useTemplate = true;
     String templateFile = "denver.png";
 
 float scale; // distance represented by one pixel

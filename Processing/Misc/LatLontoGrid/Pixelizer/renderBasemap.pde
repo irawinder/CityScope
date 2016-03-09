@@ -1,6 +1,8 @@
 PImage basemap;
 String mapColor = "bw";
-//String mapColor = "color";
+
+boolean showBasemap = true;
+
 
 // Loads Basemap file
 void loadBasemap() {
@@ -15,7 +17,9 @@ void loadBasemap() {
 void renderBasemap() {
   background(background);
   try {
-    image(basemap, 0, 0, width, height);
+    if (showBasemap) {
+      image(basemap, 0, 0, width, height);
+    }
   } catch(RuntimeException e) {
     println("No basemap available at this scale: " + gridSize + "km per pixel.");
   }
