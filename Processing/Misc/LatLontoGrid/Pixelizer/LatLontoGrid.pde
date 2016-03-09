@@ -17,9 +17,6 @@
  * 
  */
 
-int gridV = 22*4; // Height of Lego Table
-int gridU =  18*4; // Width of Lego Table
-
 float gridSize;
 float centerLatitude;
 float centerLongitude;
@@ -36,26 +33,22 @@ JSONObject temp;
 void denverMode() {
   //Define the grid
   gridSize = 2; //km
-  
   centerLatitude = 39.95;
   centerLongitude = -104.9903;
   azimuth =  0; //North
-  
   fileName = "denver";
 }
 
 void sanjoseMode() {
   //Define the grid
   gridSize = 1; //km
-
   centerLatitude = 37.395237;
   centerLongitude = -121.979507;
   azimuth =  0; //North
-  
   fileName = "sanjose";  
 }
 
-void pixelizeData() {
+void pixelizeData(int gridU, int gridV) {
   // Name of CSV file to upload
   dataInput = loadTable("data/" + fileName + ".tsv");
   dataOutput = new JSONArray();
@@ -75,7 +68,7 @@ void pixelizeData() {
     value = dataInput.getInt(i,12); //13th column is the totes value
     
     // Fetch grid location of coordinate
-    uv = LatLontoGrid(latitude,longitude,centerLatitude,centerLongitude,azimuth,gridSize,gridV,gridU);
+    uv = LatLontoGrid(latitude, longitude, centerLatitude, centerLongitude, azimuth, gridSize, this.gridV, this.gridU);
     
     //Check if the location is inside the grid
     if((uv[0]>0) && (uv[1]>0) && (uv[0]<gridU) && (uv[1]<gridV))

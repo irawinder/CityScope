@@ -1,7 +1,3 @@
-// How big your applet window is, in pixels
-int canvasWidth = 800;
-int canvasHeight = int(canvasWidth * float(gridV)/gridU);
-
 // 2D matrix that holds grid values
 float matrix[][];
 // variables to hol minimum and maximum grid values in matrix
