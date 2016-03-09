@@ -204,6 +204,29 @@ void setStores(int button) {
 }
 
 // Presses all buttons in a set of mutually exclusive buttons except for the index specified
+// min-max specifies a range of button indices; valueMode specifies the currently selected button
+void depressHeatmapButtons(int min, int max) {
+  
+  int button = 3;
+  if (valueMode.equals("deliveries")) {
+    button += 0;
+  } else if (valueMode.equals("totes")) {
+    button += 1;
+  } else if (valueMode.equals("source")) {
+    button += 2;
+  } else if (valueMode.equals("doorstep")) {
+    button += 3;
+  }
+  
+  // Turns all buttons off
+  for(int i=min; i<=max; i++) { //heatmap buttons min-max are mutually exclusive
+    mainMenu.buttons[i].isPressed = true;
+  }
+  // highlighted the heatmap button that is activated only
+  mainMenu.buttons[button].isPressed = false;
+}
+
+// Presses all buttons in a set of mutually exclusive buttons except for the index specified
 // min-max specifies a range of button indices; "button" specifies the currently selected button
 void depressHeatmapButtons(int min, int max, int button) {
   // Turns all buttons off
