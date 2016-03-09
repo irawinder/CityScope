@@ -23,14 +23,37 @@ void mouseClicked() {
     toggleMainMenu();
   }
   
-  //Next City
+  
+  // Main Menu Functions:
+  
+  //function0
   if(mainMenu.buttons[0].over()){  
     nextModeIndex();
   }
   
-  //Print Screen Shot
+  //function1
   if(mainMenu.buttons[1].over()){ 
     printScreen();
+  }
+  
+  //function3
+  if(mainMenu.buttons[3].over()){  
+    alignLeft();
+  }
+  
+  //function4
+  if(mainMenu.buttons[4].over()){ 
+    alignRight();
+  }
+  
+  //function5
+  if(mainMenu.buttons[5].over()){ 
+    alignCenter();
+  }
+  
+  //function6
+  if(mainMenu.buttons[6].over()){ 
+    invertColors();
   }
 }
 
@@ -39,11 +62,25 @@ void keyPressed() {
     case 'h': // "Hide Main Menu (h)"
       toggleMainMenu();
       break;
+      
     case 'n': // "Next City (n)"
       nextModeIndex();
       break;
     case 'p': // "Print Screenshot (p)"
       printScreen();
+      break;
+      
+    case 'l': // "Align Left (l)",   // 0
+      alignLeft();
+      break;
+    case 'r': // "Align Right (r)"   // 1
+      alignRight();
+      break;
+    case 'c': // "Align Center (c)"  // 2
+      alignCenter();
+      break;
+    case 'i': // "Invert Colors (i)"  // 4
+      invertColors();
       break;
   }
 }
@@ -68,6 +105,35 @@ void printScreen() {
   String location = "export/" + fileName + "_" + int(gridSize*1000) + ".png";
   save(location);
   println("File saved to " + location);
+}
+
+void alignLeft() {
+  align = "LEFT";
+  loadMenu(width, height);
+  println(align);
+}
+
+void alignRight() {
+  align = "RIGHT";
+  loadMenu(width, height);
+  println(align);
+}
+
+void alignCenter() {
+  align = "CENTER";
+  loadMenu(width, height);
+  println(align);
+}
+
+void invertColors() {
+  if (background == 0) {
+    background = 255;
+    textColor = 0;
+  } else {
+    background = 0;
+    textColor = 255;
+  }
+  println ("background: " + background + ", textColor: " + textColor);
 }
 
 // iterates an index parameter
