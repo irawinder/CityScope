@@ -42,6 +42,7 @@ int canvasHeight = int(canvasWidth * float(gridV)/gridU);
 //Global Text and Background Color
 int textColor = 255;
 int background = 0;
+String align = "RIGHT";
 
 // Class that holds a button menu
 Menu mainMenu, hideMenu;
@@ -95,8 +96,8 @@ void loadData(int gridU, int gridV, int index) {
 void loadMenu(int canvasWidth, int canvasHeight) {
   // Initializes Menu Items (canvas width, canvas height, button width[pix], button height[pix], 
   // number of buttons to offset downward, String[] names of buttons)
-  hideMenu = new Menu(canvasWidth, canvasHeight, 170, 25, 0, hide, "RIGHT");
-  mainMenu = new Menu(canvasWidth, canvasHeight, 170, 25, 2, buttonNames, "RIGHT");
+  hideMenu = new Menu(canvasWidth, canvasHeight, 170, 25, 0, hide, align);
+  mainMenu = new Menu(canvasWidth, canvasHeight, 170, 25, 2, buttonNames, align);
 }
 
 void draw() {

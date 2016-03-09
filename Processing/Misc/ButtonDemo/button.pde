@@ -10,7 +10,8 @@ String[] buttonNames =
   "Align Left (l)",    // 0
   "Align Right (r)",   // 1
   "Align Center (c)",  // 2
-  "Invert Colors (i)"  // 3
+  "VOID",              // 3
+  "Invert Colors (i)"  // 4
 };
 
 // These Strings are for the hideMenu, formatted as arrays for Menu Class Constructor
@@ -41,7 +42,7 @@ void mouseClicked() {
   }
   
   //function3
-  if(mainMenu.buttons[3].over()){ 
+  if(mainMenu.buttons[4].over()){ 
     invertColors();
   }
 }
@@ -60,7 +61,7 @@ void keyPressed() {
     case 'c': // "Align Center (c)"  // 2
       alignCenter();
       break;
-    case 'i': // "Invert Colors (i)"  // 3
+    case 'i': // "Invert Colors (i)"  // 4
       invertColors();
       break;
   }
@@ -135,6 +136,7 @@ class Button{
   int pressed = 120; // darkest
   
   boolean isPressed = false;
+  boolean isVoid = false;
   
   //Button Constructor
   Button(int x, int y, int w, int h, String label){
@@ -147,18 +149,20 @@ class Button{
   
   //Button Objects are draw to a PGraphics object rather than directly to canvas
   void draw(PGraphics p){
-    p.smooth();
-    p.noStroke();
-    if (isPressed){
-      p.fill(textColor, pressed);
-    } else if( over() ) {  // Darkens button if hovering mouse over it
-      p.fill(textColor, hover);
-    } else {
-      p.fill(textColor, active);
+    if (!isVoid) {
+      p.smooth();
+      p.noStroke();
+      if (isPressed){
+        p.fill(textColor, pressed);
+      } else if( over() ) {  // Darkens button if hovering mouse over it
+        p.fill(textColor, hover);
+      } else {
+        p.fill(textColor, active);
+      }
+      p.rect(x, y, w, h, 5);
+      p.fill(background);
+      p.text(label, x + (w/2-textWidth(label)/2), y + 0.6*h); //text(str, x1, y1, x2, y2) text(label, x + 5, y + 15)
     }
-    p.rect(x, y, w, h, 5);
-    p.fill(background);
-    p.text(label, x + (w/2-textWidth(label)/2), y + 0.6*h); //text(str, x1, y1, x2, y2) text(label, x + 5, y + 15)
   } 
   
   // returns true if mouse hovers in button region
@@ -172,11 +176,18 @@ class Button{
 }
 
 class Menu{
+  // Button Array Associated with this Menu
   Button[] buttons;
+  // Graphics Object to Draw this Menu
   PGraphics canvas;
+  // Button Name Array Associated with Menu
   String[] names;
+  // Menu Alignment
   String align;
+  // variables describing canvasWidth, canvas Height, Button Width, Button Height, Verticle Displacement (#buttons down)
   int w, h, x, y, vOffset;
+  
+  //Constructor
   Menu(int w, int h, int x, int y, int vOffset, String[] names, String align){
     this.names = names;
     this.w = w;
@@ -187,7 +198,10 @@ class Menu{
     this.y = y;
     
     canvas = createGraphics(w, h);
+    // #Buttons defined by Name String Array Length
     buttons = new Button[this.names.length];
+    
+    // Initializes the button objects
     for (int i=0; i<buttons.length; i++) {
       if ( this.align.equals("right") || this.align.equals("RIGHT") ) {
         // Right Align
@@ -199,8 +213,15 @@ class Menu{
         // Center Align
         buttons[i] = new Button( (this.w-this.x)/2, 10 + this.vOffset*(this.y+5) + i*(this.y+5), this.x, this.y, this.names[i]);
       }
+      
+      // Alows a menu button spacer to be added by setting its string value to "VOID"
+      if (this.names[i].equals("void") || this.names[i].equals("VOID") ) {
+        buttons[i].isVoid = true;
+      }
     }
   }
+  
+  // Draws the Menu to its own PGraphics canvas
   void draw() {
     canvas.beginDraw();
     canvas.clear();
