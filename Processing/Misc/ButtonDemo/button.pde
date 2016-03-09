@@ -1,9 +1,16 @@
+/* ButtonDemo is a script that shows the basic framework for implementing, aligning, and hiding buttons in Processing.
+ * It was largely written by Nina Lutz for AgentDemo, but was extracted in it's simplest for by Ira Winder
+ * MIT Media Lab, March 2016
+ */
+ 
 // Define how many buttons are in the Main Menu and 
 // what they are named by editing this String array:
 String[] buttonNames = 
 {
-  "Next City (n)",         // 0
-  "Print Screenshot (p)"   // 1
+  "Align Left (l)",    // 0
+  "Align Right (r)",   // 1
+  "Align Center (c)",  // 2
+  "Invert Colors (i)"  // 3
 };
 
 // These Strings are for the hideMenu, formatted as arrays for Menu Class Constructor
@@ -18,14 +25,24 @@ void mouseClicked() {
     toggleMainMenu();
   }
   
-  //Next City
+  //function0
   if(mainMenu.buttons[0].over()){  
-    nextModeIndex();
+    alignLeft();
   }
   
-  //Print Screen Shot
+  //function1
   if(mainMenu.buttons[1].over()){ 
-    printScreen();
+    alignRight();
+  }
+  
+  //function2
+  if(mainMenu.buttons[2].over()){ 
+    alignCenter();
+  }
+  
+  //function3
+  if(mainMenu.buttons[3].over()){ 
+    invertColors();
   }
 }
 
@@ -34,11 +51,17 @@ void keyPressed() {
     case 'h': // "Hide Main Menu (h)"
       toggleMainMenu();
       break;
-    case 'n': // "Next City (n)"
-      nextModeIndex();
+    case 'l': // "Align Left (l)",   // 0
+      alignLeft();
       break;
-    case 'p': // "Print Screenshot (p)"
-      printScreen();
+    case 'r': // "Align Right (r)"   // 1
+      alignRight();
+      break;
+    case 'c': // "Align Center (c)"  // 2
+      alignCenter();
+      break;
+    case 'i': // "Invert Colors (i)"  // 3
+      invertColors();
       break;
   }
 }
@@ -53,16 +76,33 @@ void toggleMainMenu() {
   println("showMainMenu = " + showMainMenu);
 }
 
-void nextModeIndex() {
-  modeIndex = next(modeIndex, 1);
-  loadData(gridU, gridV, modeIndex);
-  println("Mode Index = " + modeIndex + ": " + fileName);
+void alignLeft() {
+  align = "LEFT";
+  loadMenu(width, height);
+  println(align);
 }
 
-void printScreen() {
-  String location = "export/" + fileName + "_" + int(gridSize*1000) + ".png";
-  save(location);
-  println("File saved to " + location);
+void alignRight() {
+  align = "RIGHT";
+  loadMenu(width, height);
+  println(align);
+}
+
+void alignCenter() {
+  align = "CENTER";
+  loadMenu(width, height);
+  println(align);
+}
+
+void invertColors() {
+  if (background == 0) {
+    background = 255;
+    textColor = 0;
+  } else {
+    background = 0;
+    textColor = 255;
+  }
+  println ("background: " + background + ", textColor: " + textColor);
 }
 
 // iterates an index parameter
@@ -85,12 +125,18 @@ boolean toggle(boolean bool) {
 }
 
 class Button{
+  // variables describing upper left corner of button, width, and height in pixels
   int x,y,w,h;
+  // String of the Button Text
   String label;
-  int active  = 180;
+  // Various Shades of button states (0-255)
+  int active  = 180; // lightest
   int hover   = 160;
-  int pressed = 120;
+  int pressed = 120; // darkest
+  
   boolean isPressed = false;
+  
+  //Button Constructor
   Button(int x, int y, int w, int h, String label){
     this.x = x;
     this.y = y;
@@ -98,6 +144,8 @@ class Button{
     this.h = h;
     this.label = label;
   }
+  
+  //Button Objects are draw to a PGraphics object rather than directly to canvas
   void draw(PGraphics p){
     p.smooth();
     p.noStroke();
@@ -112,8 +160,10 @@ class Button{
     p.fill(background);
     p.text(label, x + (w/2-textWidth(label)/2), y + 0.6*h); //text(str, x1, y1, x2, y2) text(label, x + 5, y + 15)
   } 
+  
+  // returns true if mouse hovers in button region
   boolean over(){
-    if(mouseX >= x  && mouseY >= y && mouseX <= x + 170 && mouseY <= y + 22){
+    if(mouseX >= x  && mouseY >= y + 5 && mouseX <= x + w && mouseY <= y + 2 + h){
       return true;
     } else {
       return false;

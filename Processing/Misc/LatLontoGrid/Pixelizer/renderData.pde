@@ -12,7 +12,6 @@ void loadPixelData() {
   
   array = loadJSONArray("data/" + fileName + "_totes.json");
   
-  println(fileName);
   matrix = new float[gridU][gridV];
   for (int u=0; u<gridU; u++) {
     for (int v=0; v<gridV; v++) {

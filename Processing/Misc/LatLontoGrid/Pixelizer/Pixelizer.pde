@@ -93,9 +93,10 @@ void loadData(int gridU, int gridV, int index) {
 }
 
 void loadMenu(int canvasWidth, int canvasHeight) {
-  // Initializes Menu Items (canvas width, canvas height, number of buttons to offset downward, String[] names of buttons)
-  hideMenu = new Menu(canvasWidth, canvasHeight, 0, hide);
-  mainMenu = new Menu(canvasWidth, canvasHeight, 2, buttonNames);
+  // Initializes Menu Items (canvas width, canvas height, button width[pix], button height[pix], 
+  // number of buttons to offset downward, String[] names of buttons)
+  hideMenu = new Menu(canvasWidth, canvasHeight, 170, 25, 0, hide, "RIGHT");
+  mainMenu = new Menu(canvasWidth, canvasHeight, 170, 25, 2, buttonNames, "RIGHT");
 }
 
 void draw() {
@@ -115,39 +116,5 @@ void draw() {
     mainMenu.draw();
   }
   
-}
-
-void keyPressed() {
-  switch(key) {
-    case 'm': // changes data mode between Denver and San Jose ... kind of buggy
-      modeIndex = next(modeIndex, 1);
-      loadData(gridU, gridV, modeIndex);
-      break;
-    case 'p': // print screen to file
-      String location = "export/" + fileName + "_" + int(gridSize*1000) + ".png";
-      save(location);
-      println("File saved to " + location);
-      break;
-  }
-}
-
-// iterates an index parameter
-int next(int index, int max) {
-  if (index == max) {
-    index = 0;
-  } else {
-    index ++;
-  }
-  println(index);
-  return index;
-}
-
-// flips a boolean
-boolean toggle(boolean bool) {
-  if (bool) {
-    return false;
-  } else {
-    return true;
-  }
 }
   
