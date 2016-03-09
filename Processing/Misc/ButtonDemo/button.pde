@@ -152,10 +152,10 @@ class Button{
     if (!isVoid) {
       p.smooth();
       p.noStroke();
-      if (isPressed){
-        p.fill(textColor, pressed);
-      } else if( over() ) {  // Darkens button if hovering mouse over it
+      if( over() ) {  // Darkens button if hovering mouse over it
         p.fill(textColor, hover);
+      } else if (isPressed){
+        p.fill(textColor, pressed);
       } else {
         p.fill(textColor, active);
       }

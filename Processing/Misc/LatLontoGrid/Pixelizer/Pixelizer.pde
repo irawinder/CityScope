@@ -97,6 +97,8 @@ void loadMenu(int canvasWidth, int canvasHeight) {
   // number of buttons to offset downward, String[] names of buttons)
   hideMenu = new Menu(canvasWidth, canvasHeight, 170, 25, 0, hide, align);
   mainMenu = new Menu(canvasWidth, canvasHeight, 170, 25, 2, buttonNames, align);
+  // Selects on one of the mutually exclusive heatmps
+  depressHeatmapButtons(3, 6, 4);
 }
 
 void draw() {

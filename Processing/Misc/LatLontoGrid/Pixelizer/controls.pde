@@ -5,10 +5,17 @@ String[] buttonNames =
   "Next City (n)",         // 0
   "Print Screenshot (p)",  // 1
   "VOID",                  // 2
-  "Align Left (l)",        // 3
-  "Align Right (r)",       // 4
-  "Align Center (c)",      // 5
-  "Invert Colors (i)"      // 6
+  "Delivery Counts (d)",   // 3
+  "Tote Counts (t)",       // 4
+  "Store Source (o)",      // 5
+  "Avg Doorstep Time (a)", // 6
+  "VOID",                  // 7
+  "Store Locations (s)",   // 8
+  "VOID",                  // 9
+  "Align Left (l)",        // 10
+  "Align Right (r)",       // 11
+  "Align Center (c)",      // 12
+  "Invert Colors (i)"      // 13
 };
 
 // These Strings are for the hideMenu, formatted as arrays for Menu Class Constructor
@@ -36,50 +43,102 @@ void mouseClicked() {
     printScreen();
   }
   
+  //function2
+  if(mainMenu.buttons[2].over()){  
+    //VOID
+  }
+
   //function3
   if(mainMenu.buttons[3].over()){  
-    alignLeft();
+    setDeliveries(3);
   }
   
   //function4
-  if(mainMenu.buttons[4].over()){ 
-    alignRight();
+  if(mainMenu.buttons[4].over()){  
+    setTotes(4);
   }
   
   //function5
-  if(mainMenu.buttons[5].over()){ 
-    alignCenter();
+  if(mainMenu.buttons[5].over()){  
+    setSource(5);
   }
   
   //function6
-  if(mainMenu.buttons[6].over()){ 
+  if(mainMenu.buttons[6].over()){  
+    setDoorstep(6);
+  }
+  
+  //function7
+  if(mainMenu.buttons[7].over()){  
+    //VOID
+  }
+  
+  //function8
+  if(mainMenu.buttons[8].over()){  
+    setStores(8);
+  }
+  
+  //function9
+  if(mainMenu.buttons[9].over()){  
+    alignLeft();
+  }
+  
+  //function10
+  if(mainMenu.buttons[10].over()){ 
+    alignRight();
+  }
+  
+  //function11
+  if(mainMenu.buttons[11].over()){ 
+    alignCenter();
+  }
+  
+  //function12
+  if(mainMenu.buttons[12].over()){ 
     invertColors();
   }
 }
 
 void keyPressed() {
   switch(key) {
-    case 'h': // "Hide Main Menu (h)"
+    case 'h': // "Hide Main Menu (h)"   // 0
       toggleMainMenu();
       break;
       
-    case 'n': // "Next City (n)"
+    case 'n': // "Next City (n)"        // 0
       nextModeIndex();
       break;
-    case 'p': // "Print Screenshot (p)"
+    case 'p': // "Print Screenshot (p)" // 1
       printScreen();
       break;
+  
+    case 'd': // "Delivery Counts (d)",   // 3
+      setDeliveries(3);
+      break;
+    case 't': // "Tote Counts (t)",       // 4
+      setTotes(4);
+      break;
+    case 'o': // "Store Source (o)",      // 5
+      setSource(5);
+      break;
+    case 'a': // "Avg Doorstep Time (a)"  // 6
+      setDoorstep(6);
+      break;
       
-    case 'l': // "Align Left (l)",   // 0
+    case 's': // "Store Locations (s)"    // 8
+      setStores(8);
+      break;
+      
+    case 'l': // "Align Left (l)",   // 9
       alignLeft();
       break;
-    case 'r': // "Align Right (r)"   // 1
+    case 'r': // "Align Right (r)"   // 10
       alignRight();
       break;
-    case 'c': // "Align Center (c)"  // 2
+    case 'c': // "Align Center (c)"  // 11
       alignCenter();
       break;
-    case 'i': // "Invert Colors (i)"  // 4
+    case 'i': // "Invert Colors (i)" // 12
       invertColors();
       break;
   }
@@ -108,6 +167,51 @@ void printScreen() {
   String location = "export/" + fileName + "_" + int(gridSize*1000) + ".png";
   save(location);
   println("File saved to " + location);
+}
+
+void setDeliveries(int button) {
+  valueMode = "deliveries";
+  depressHeatmapButtons(3, 6, button);
+  loadData(gridU, gridV, modeIndex);
+  println("valueMode: " + valueMode);
+}
+
+void setTotes(int button) {
+  valueMode = "totes";
+  depressHeatmapButtons(3, 6, button);
+  loadData(gridU, gridV, modeIndex);
+  println("valueMode: " + valueMode);
+}
+
+void setSource(int button) {
+  valueMode = "source";
+  depressHeatmapButtons(3, 6, button);
+  loadData(gridU, gridV, modeIndex);
+  println("valueMode: " + valueMode);
+}
+
+void setDoorstep(int button) {
+  valueMode = "doorstep";
+  depressHeatmapButtons(3, 6, button);
+  loadData(gridU, gridV, modeIndex);
+  println("valueMode: " + valueMode);
+}
+
+void setStores(int button) {
+  valueMode = "stores";
+  loadData(gridU, gridV, modeIndex);
+  println("valueMode: " + valueMode);
+}
+
+// Presses all buttons in a set of mutually exclusive buttons except for the index specified
+// min-max specifies a range of button indices; "button" specifies the currently selected button
+void depressHeatmapButtons(int min, int max, int button) {
+  // Turns all buttons off
+  for(int i=min; i<=max; i++) { //heatmap buttons min-max are mutually exclusive
+    mainMenu.buttons[i].isPressed = true;
+  }
+  // highlighted the heatmap button that is activated only
+  mainMenu.buttons[button].isPressed = false;
 }
 
 // Aligns Menue to Left
@@ -189,10 +293,10 @@ class Button{
     if (!isVoid) {
       p.smooth();
       p.noStroke();
-      if (isPressed){
-        p.fill(textColor, pressed);
-      } else if( over() ) {  // Darkens button if hovering mouse over it
+      if( over() ) {  // Darkens button if hovering mouse over it
         p.fill(textColor, hover);
+      } else if (isPressed){
+        p.fill(textColor, pressed);
       } else {
         p.fill(textColor, active);
       }

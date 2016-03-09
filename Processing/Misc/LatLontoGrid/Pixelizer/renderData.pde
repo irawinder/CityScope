@@ -23,6 +23,7 @@ void loadPixelData() {
   matrixMIN = 100000;
   matrixMAX = 0;
   
+  JSONObject temp = new JSONObject();
   for (int i=0; i<array.size(); i++) {
     try {
       temp = array.getJSONObject(i);
