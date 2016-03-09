@@ -16,7 +16,6 @@
  * Write Date: January, 2015
  * 
  */
-// For some reason switching modes with 'm' results in null JSON Objects?
 
 // Library needed for ComponentAdapter()
 import java.awt.event.*;

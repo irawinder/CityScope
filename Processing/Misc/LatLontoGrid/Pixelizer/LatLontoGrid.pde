@@ -1,4 +1,4 @@
-/* Pixelizer is a script that transforms a cloud of weighted latitude-longitude points 
+/* LatLontoGrid is a script that transforms a cloud of weighted latitude-longitude points 
  * into a discrete, pixelized aggregation data set.  Input is a TSV file
  * of weighted lat-lon and out put is a JSON.
  *
@@ -17,15 +17,24 @@
  * 
  */
 
+// length of one pixel [km]
 float gridSize;
+
+// Lat-Lon and rotation to center the grid
 float centerLatitude;
 float centerLongitude;
-float azimuth; //North
+float azimuth;
+
+// Filename of TSV file to grab weighted lat-lon points 
+// for example, the fileName for data.tsv would simply be the string "data"; 
+// this script add ".tsv" for you
 String fileName;
 
+// The grid array of "buckets" that hold aggregated values
 int grid[][];
 
-int counter = 0;
+// Counter used to keep track of JSONObject index
+int counter;
 Table dataInput;
 JSONArray dataOutput;
 JSONObject temp;
@@ -56,10 +65,17 @@ void pixelizeData(int gridU, int gridV) {
   float latitude;
   float longitude;
   int value; // One weighted value per JSON file (currently)
-  
   int[] uv = new int[2]; // [0] is u, [1] is v
-  initGrid(); //Creates the grid then fills it with zeros
   
+  //Creates the grid then fills it with zeros
+  grid = new int[gridU][gridV];
+  for(int i=0;i<gridU;i++) {
+    for(int j=0;j<gridV;j++) {
+      grid[i][j] = 0;
+    }
+  }
+  
+  //Dumps weighted lat-lon points into grid[][] buckets
   for(int i=1;i<dataInput.getRowCount();i++) //start 2 rows in because of header
   { 
     // Column Locations based on CTL data received Feb 2015
@@ -78,43 +94,20 @@ void pixelizeData(int gridU, int gridV) {
     } 
   }
   
-  //Write JSON file
-  writeGrid();
-}
-
-// Initialized Grid totes to '0'
-void initGrid()
-{
-  grid = new int[gridU][gridV];
-
-  for(int i=0;i<gridU;i++)
-  {
-    for(int j=0;j<gridV;j++)
-    {
-      grid[i][j] = 0;
-    }
-  }
-}
-
-// Writes Grid to JSON File
-void writeGrid()
-{
-  for(int i=0;i<gridU;i++)
-  {
-    for(int j=0;j<gridV;j++)
-    {
+  // Writes Grid to JSON File
+  counter = 0;
+  for(int i=0;i<gridU;i++) {
+    for(int j=0;j<gridV;j++) {
       temp = new JSONObject();
       temp.setInt("u", i);
       temp.setInt("v", j);
       temp.setInt("totes", grid[i][j]);
-      
       dataOutput.setJSONObject(counter, temp);
       counter++;
     }
   }
   saveJSONArray(dataOutput, "data/" + fileName + "_totes.json");
 }
-
 
 
 

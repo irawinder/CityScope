@@ -85,6 +85,7 @@ void keyPressed() {
   }
 }
 
+// Show or Hide Main Menu Items 
 void toggleMainMenu() {
   showMainMenu = toggle(showMainMenu);
   if (showMainMenu) {
@@ -95,36 +96,42 @@ void toggleMainMenu() {
   println("showMainMenu = " + showMainMenu);
 }
 
+// Loads Next Data Set
 void nextModeIndex() {
   modeIndex = next(modeIndex, 1);
   loadData(gridU, gridV, modeIndex);
   println("Mode Index = " + modeIndex + ": " + fileName);
 }
 
+// Prints Screen to File
 void printScreen() {
   String location = "export/" + fileName + "_" + int(gridSize*1000) + ".png";
   save(location);
   println("File saved to " + location);
 }
 
+// Aligns Menue to Left
 void alignLeft() {
   align = "LEFT";
   loadMenu(width, height);
   println(align);
 }
 
+// Aligns Menue to Right
 void alignRight() {
   align = "RIGHT";
   loadMenu(width, height);
   println(align);
 }
 
+// Aligns Menue to Center
 void alignCenter() {
   align = "CENTER";
   loadMenu(width, height);
   println(align);
 }
 
+// Inverts background and text colors
 void invertColors() {
   if (background == 0) {
     background = 255;
