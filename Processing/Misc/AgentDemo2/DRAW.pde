@@ -38,6 +38,23 @@ void drawTableCanvas(PGraphics p) {
   //Updates Agent Data to Display
   if (showSwarm) {
     swarmHorde.update();
+    if(dataMode == 1){
+    swarmHorde2.update();
+    swarmHorde3.update();
+    swarmHorde4.update();
+    swarmHorde5.update();
+    swarmHorde6.update();
+    swarmHorde7.update();
+    swarmHorde8.update();
+    swarmHorde9.update();
+    swarmHorde10.update();
+    swarmHorde11.update();
+    swarmHorde12.update();
+    swarmHorde13.update();
+    swarmHorde14.update();
+    swarmHorde15.update();
+    swarmHorde16.update();
+    }
   }
   
   //Updates Heatmap Data to Display
@@ -108,6 +125,21 @@ void drawTableCanvas(PGraphics p) {
       // Renders Agent 'dots' and corresponding obstacles and heatmaps
       if (showSwarm) {
         swarmHorde.display(p, showTraces);
+        swarmHorde2.display(p, showTraces);
+        swarmHorde3.display(p, showTraces);
+        swarmHorde4.display(p, showTraces);
+        swarmHorde5.display(p, showTraces);
+        swarmHorde6.display(p, showTraces);
+        swarmHorde7.display(p, showTraces);
+        swarmHorde8.display(p, showTraces);
+        swarmHorde9.display(p, showTraces);
+        swarmHorde10.display(p, showTraces);
+        swarmHorde11.display(p, showTraces);
+        swarmHorde12.display(p, showTraces);
+        swarmHorde13.display(p, showTraces);
+        swarmHorde14.display(p, showTraces);
+        swarmHorde15.display(p, showTraces);
+        swarmHorde16.display(p, showTraces);
       }
       
       if (dataMode != 0) {
@@ -170,22 +202,22 @@ void drawTestFinder(PGraphics p, Pathfinder f, ArrayList<PVector> path, ArrayLis
   
   //Draw Origin
   p.strokeWeight(2);
-  p.stroke(#FF0000);
+  p.stroke(#ffff00);
   p.noFill();
   p.ellipse(A.x, A.y, f.getResolution(), f.getResolution());
   
   p.fill(textColor);
   p.text("origin", A.x + f.getResolution(), A.y);
-  
-  //Draw Destination
+//  
+//  Draw Destination
   p.strokeWeight(2);
-  p.stroke(#FF00FF);
+  p.stroke(#0000FF);
   p.noFill();
   p.ellipse(B.x, B.y, f.getResolution(), f.getResolution());
   
-//  p.fill(textColor);
-//  p.text("destination", B.x +finderTest f.getResolution(), B.y);
-  
+//p.fill(textColor);
+//p.text("destination", B.x +finderTest f.getResolution(), B.y);
+//  
   //Draw Path not Found Message
   if (path.size() < 2) {
     p.textAlign(CENTER);

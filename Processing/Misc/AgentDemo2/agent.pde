@@ -177,7 +177,8 @@ void updateSpeed(int dir) {
   println("Speed: " + speed);
 }
 
-// A class for managing multiple agents
+
+
 class Swarm {
   
   boolean generateAgent = true;
@@ -196,7 +197,7 @@ class Swarm {
   int hitbox = 5;
   float finderResolution = hitbox*2;
   
-  PVector origin, destination;
+  PVector origin, origin2, destination;
   
   Obstacle sink;
   
@@ -299,6 +300,7 @@ class Swarm {
     swarm.clear();
     
     path = f.findPath(origin, destination, enable);
+    
     finderResolution = f.getResolution();
 
 //    // Agent generation slowed down to constant rate if path not found
@@ -445,9 +447,9 @@ class Swarm {
       p.line(path.get(i).x, path.get(i).y, path.get(i+1).x, path.get(i+1).y);
     }
     
-    //Draw Origin
-    p.stroke(#FF0000);
-    p.ellipse(origin.x, origin.y, finderResolution, finderResolution);
+//    //Draw Origin
+//    p.stroke(#FF0000);
+//    p.ellipse(origin.x, origin.y, finderResolution, finderResolution);
     
     //Draw Destination
     p.stroke(#0000FF);
@@ -456,7 +458,10 @@ class Swarm {
   
 }
 
+
 // A class for managing multiple Swarms
+
+
 class Horde {
   
   ArrayList<Swarm> horde;
@@ -594,7 +599,7 @@ class Horde {
     textSize = 8;
     p.textAlign(LEFT);
 
-    p.text("Total Agents Rendered: " + agentCount, 20, 20);
+    p.text("Total Agents Rendered: " + agentCount*15, 20, 20);
     if(showFrameRate == true){
     p.text("Framerate:  " + frameRate, textWidth("Total Agents Rendered   : 5000" +  190), 20);
     }
@@ -632,5 +637,4 @@ class Horde {
   }
   
 }
-
 

@@ -1,6 +1,6 @@
 // This is the staging script for the Pathfinding for agent-based modeling
 // Ira Winder, MIT Media Lab, jiw@mit.edu, Fall 2015
-
+//Nina Lutz, MIT Media Lab, nlutz@mit.edu, Spring 2016
 
 int canvasWidth = 1000;
 int canvasHeight = 540;
@@ -12,7 +12,7 @@ boolean bw = true;
 // Key Commands:
 //
 //   Data Navigation
-//     'D' = Next Data Mode
+//     'D' = Next Data ModeTotal
 //         dataMode = 1 for random network
 //         dataMode = 0 for empty network and Pathfinder Test OD
 //
@@ -347,7 +347,6 @@ if(editObstacles == true){
       }
       }
 }
-     
 
 }
 
