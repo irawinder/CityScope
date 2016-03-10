@@ -17,6 +17,7 @@ boolean busyImporting = false;
 boolean viaUDP = true;
 boolean karthikPrototype = false;
 boolean ryanUDP = false;
+int countRyanUDP = 0;
 
 // import UDP library
 import hypermedia.net.*;
@@ -172,8 +173,10 @@ void sendData() {
     }
     
     // Ryan's IP Address
-    if(ryanUDP) {
-      if (millis() % 1000 <=150) udp.send( dataToSend, "18.85.27.198", 7004 );
+    countRyanUDP ++;
+    if(ryanUDP && countRyanUDP >= 30) {
+      udp.send( dataToSend, "18.85.27.198", 7004 );
+      countRyanUDP = 0;
     }
     
     //println("update received");
