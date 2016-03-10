@@ -242,6 +242,9 @@ public class projApplet extends PApplet {
       }
       break;
       
+    case ' ':
+      toggleColorMode();
+      break;
     }
   }
 }
