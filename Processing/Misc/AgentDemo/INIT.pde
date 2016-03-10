@@ -62,7 +62,7 @@ void initContent(PGraphics p) {
 
 Horde swarmHorde;
 
-PVector[] origin, destination, nodes;
+PVector[] origin, origin2, origin3, origin4, origin5, destination, nodes;
 float[] weight;
 
 int textSize = 8;
@@ -77,7 +77,7 @@ void initAgents(PGraphics p) {
   
   println("Initializing Agent Objects ... ");
   
-  swarmHorde = new Horde(2000);
+  swarmHorde = new Horde(1000);
   sources_Viz = createGraphics(p.width, p.height);
   edges_Viz = createGraphics(p.width, p.height);
   
@@ -148,6 +148,10 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
   
   nodes = new PVector[numNodes];
   origin = new PVector[numSwarm];
+  origin2 = new PVector[numSwarm];
+  origin3 = new PVector[numSwarm];
+  origin4 = new PVector[numSwarm];
+  origin5 = new PVector[numSwarm];
   destination = new PVector[numSwarm];
   weight = new float[numSwarm];
   swarmHorde.clearHorde();
@@ -162,6 +166,10 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
     for (int j=0; j<numNodes-1; j++) {
       
       origin[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
+      origin2[i*(numNodes-1)+j] = new PVector(nodes[i].x + 5, nodes[i].y+8);
+      origin3[i*(numNodes-1)+j] = new PVector(nodes[i].x + random(10, 15), nodes[i].y+8);
+      origin4[i*(numNodes-1)+j] = new PVector(nodes[i].x + 100, nodes[i].y+random(10, 15));
+      origin5[i*(numNodes-1)+j] = new PVector(nodes[i].x + random(10, 15), nodes[i].y-7);
       
       destination[i*(numNodes-1)+j] = new PVector(nodes[(i+j+1)%(numNodes)].x, nodes[(i+j+1)%(numNodes)].y);
       
@@ -176,7 +184,12 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
   for (int i=0; i<numSwarm; i++) {
     
     // delay, origin, destination, speed, color
-    swarmHorde.addSwarm(weight[i], origin[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+//    swarmHorde.addSwarm(weight[i], origin[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+    swarmHorde.addSwarm(weight[i], origin2[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+    swarmHorde.addSwarm(weight[i], origin3[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+    swarmHorde.addSwarm(weight[i], origin4[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+    swarmHorde.addSwarm(weight[i], origin5[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+    
     
     // Makes sure that agents 'staying put' eventually die
     swarmHorde.getSwarm(i).temperStandingAgents();
