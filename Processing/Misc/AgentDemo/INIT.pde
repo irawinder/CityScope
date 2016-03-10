@@ -166,7 +166,9 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
     for (int j=0; j<numNodes-1; j++) {
       
       origin[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
-      origin2[i*(numNodes-1)+j] = new PVector(nodes[i].x + 5, nodes[i].y+8);
+      for(int l=0; l<numNodes; l++){
+      origin2[i*(numNodes-1)+j] = new PVector(nodes[i].x + l*5, nodes[i].y+8);
+      }
       origin3[i*(numNodes-1)+j] = new PVector(nodes[i].x + random(10, 15), nodes[i].y+8);
       origin4[i*(numNodes-1)+j] = new PVector(nodes[i].x + 100, nodes[i].y+random(10, 15));
       origin5[i*(numNodes-1)+j] = new PVector(nodes[i].x + random(10, 15), nodes[i].y-7);
@@ -184,11 +186,11 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
   for (int i=0; i<numSwarm; i++) {
     
     // delay, origin, destination, speed, color
-//    swarmHorde.addSwarm(weight[i], origin[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+//  swarmHorde.addSwarm(weight[i], origin[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
     swarmHorde.addSwarm(weight[i], origin2[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
     swarmHorde.addSwarm(weight[i], origin3[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
-    swarmHorde.addSwarm(weight[i], origin4[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
-    swarmHorde.addSwarm(weight[i], origin5[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+//    swarmHorde.addSwarm(weight[i], origin4[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+//    swarmHorde.addSwarm(weight[i], origin5[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
     
     
     // Makes sure that agents 'staying put' eventually die
