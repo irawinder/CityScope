@@ -16,6 +16,7 @@ import ddpclient.*;
 boolean busyImporting = false;
 boolean viaUDP = true;
 boolean karthikPrototype = false;
+boolean ryanUDP = false;
 
 // import UDP library
 import hypermedia.net.*;
@@ -168,6 +169,11 @@ void sendData() {
     // Karthik's IP Address
     if(karthikPrototype) {
       if (millis() % 1000 <=150) udp.send( dataToSend, "104.131.179.31", 33333 );
+    }
+    
+    // Ryan's IP Address
+    if(ryanUDP) {
+      if (millis() % 1000 <=150) udp.send( dataToSend, "18.85.27.198", 7004 );
     }
     
     //println("update received");
