@@ -33,6 +33,7 @@ import deadpixel.keystone.*;
 
 // Visualization may show 2D projection visualization, or not
 boolean displayProjection2D = false;
+boolean nextDataMode = false; // Flag to pass key command from projection canvas to main canvas.
 
 // defines Keystone settings from xml file in parent folder
 Keystone ks;
@@ -243,7 +244,7 @@ public class projApplet extends PApplet {
       break;
       
     case ' ':
-      toggleColorMode();
+      nextDataMode = true;
       break;
     }
   }
