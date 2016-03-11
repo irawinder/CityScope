@@ -226,6 +226,11 @@ int[] LatLontoGrid(float lat, float lon, float centerLat, float centerLon, float
     xy[1] =   int(yR);
   }
   
+//  // Prints lat-lon of lower left corner to console
+//  // Coordinates are needed for STL to match their coordinate system
+//  println("Lat: " + (centerLat - (gridSize*gh/2)/kmperLat) );
+//  println("Lon: " + (centerLon - (gridSize*gw/2)/kmperLon) );
+  
   //println(xy[0], xy[1]);
   return xy;
 }

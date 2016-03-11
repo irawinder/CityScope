@@ -1,6 +1,6 @@
 /* Pixelizer is a script that transforms a cloud of weighted latitude-longitude points 
  * into a discrete, pixelized aggregation data set.  Input is a TSV file
- * of weighted lat-lon and out put is a JSON.
+ * of weighted lat-lon and output is a JSON.
  *
  *      ---------------> + U-Axis 
  *     |
@@ -27,7 +27,7 @@ int modeIndex = 0;
 // Set this to false if you know that you don't need to regenerate data every time Software is run
 boolean pixelizeData = true;
 
-// Set this to true to display the main menue upon start
+// Set this to true to display the main menu upon start
 boolean showMainMenu = true;
 
 // Matrix Size (probably influence by how many pixels you want to render on your canvas)
@@ -62,10 +62,10 @@ void setup() {
    }
    );
   
-  // Reads point data from TSV file, converts to JSON, and reads in from JSON
+  // Reads point data from TSV file, converts to JSON, prints to JSON, and reads in from JSON
   loadData(gridU, gridV, modeIndex);
   
-  // Loads and formats menue items
+  // Loads and formats menu items
   loadMenu(canvasWidth, canvasHeight);
 }
 
@@ -97,9 +97,9 @@ void loadMenu(int canvasWidth, int canvasHeight) {
   // number of buttons to offset downward, String[] names of buttons)
   hideMenu = new Menu(canvasWidth, canvasHeight, 170, 25, 0, hide, align);
   mainMenu = new Menu(canvasWidth, canvasHeight, 170, 25, 2, buttonNames, align);
-  // Selects on one of the mutually exclusive heatmps
+  // Selects one of the mutually exclusive heatmps
   depressHeatmapButtons(3, 6);
-  // Selects on one of the pixel scales
+  // Selects one of the mutually exclusive pixel scales
   depressHeatmapButtons(15, 17, gridSize);
 }
 
