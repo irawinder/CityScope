@@ -65,6 +65,8 @@ Horde swarmHorde;
 PVector[] origin, origin2, origin3, origin4, origin5, destination, nodes;
 float[] weight;
 
+  
+
 int textSize = 8;
 
 boolean enablePathfinding = true;
@@ -146,6 +148,10 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
   numEdges = numNodes*(numNodes-1);
   numSwarm = numEdges;
   
+  float[] towers_x = new float[numNodes];
+  float[] towers_y = new float[numNodes];
+
+  
   nodes = new PVector[numNodes];
   origin = new PVector[numSwarm];
   origin2 = new PVector[numSwarm];
@@ -156,6 +162,63 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
   weight = new float[numSwarm];
   swarmHorde.clearHorde();
   
+ if(dataMode ==1){ 
+ //towers for Voronoi 
+ for (int i=0; i<numNodes; i++) {
+    nodes[i] = new PVector(random(10, p.width-10), random(10, p.height-10));
+    towers_x[i] = nodes[i].x;
+    towers_y[i] = nodes[i].y;
+  }
+  //draw voronoi
+       float minDistance = 0;
+       float minIndex = 0;
+       color[] tower_colors = new color[16];
+       
+        tower_colors[0] = color(255, 0, 0); //red
+        tower_colors[1] = color(0, 255, 0); //green
+        tower_colors[2] = color(0, 0, 255); //cyan blue
+        tower_colors[3] = color(255, 255, 0); //yellow 
+        tower_colors[4] = color(255, 0, 255); //bright purple
+        tower_colors[5] = color(0, 255, 255); //light bright blue
+        tower_colors[6] = color(127, 0, 255); //medium purple
+        tower_colors[7] = color(225, 128, 0); //orange
+        tower_colors[8] = color(102, 255, 178); //seafoam
+        tower_colors[9] = color(0, 128, 255); //medium blue
+        tower_colors[10] = color(255, 0, 127); //medium pink
+        tower_colors[11] = color(229, 204, 255); //lavendar
+        tower_colors[12] = color(255, 153, 153); //peach
+        tower_colors[13] = color(255, 213, 0); //yellow-orange
+        tower_colors[14] = color(0, 204, 102); //medium green
+        tower_colors[15] = color(128, 255, 0); //yellow green
+       
+     
+       for(int px = 0; px < width; px++)
+    {
+      
+         for(int py = 0; py < height; py++)
+         {
+           
+             // Check distances to colors
+             minDistance = ((px  - towers_x[0]) * (px - towers_x[0])) +  ((py  - towers_y[0]) * (py  - towers_y[0]));
+             minIndex = 0;
+ 
+             for (int nc = 1; nc < 16; nc++)
+             {
+                 float dist = ((px  - towers_x[nc]) * (px - towers_x[nc])) +  ((py  - towers_y[nc]) * (py  - towers_y[nc]));
+                  
+                 if (dist <= minDistance)
+                 {
+                     minDistance = dist;
+                     minIndex = nc;
+                }
+            }
+            stroke(tower_colors[int(minIndex)]);
+            point(px, py);
+           
+        }
+        
+    }
+ }
 
   
   for (int i=0; i<numNodes; i++) {
@@ -164,12 +227,13 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
   
   for (int i=0; i<numNodes; i++) {
     for (int j=0; j<numNodes-1; j++) {
-      
       origin[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
+      
       for(int l=0; l<numNodes; l++){
       origin2[i*(numNodes-1)+j] = new PVector(nodes[i].x + l*5, nodes[i].y+8);
-      }
       origin3[i*(numNodes-1)+j] = new PVector(nodes[i].x + random(10, 15), nodes[i].y+8);
+      }  
+      
       origin4[i*(numNodes-1)+j] = new PVector(nodes[i].x + 100, nodes[i].y+random(10, 15));
       origin5[i*(numNodes-1)+j] = new PVector(nodes[i].x + random(10, 15), nodes[i].y-7);
       
