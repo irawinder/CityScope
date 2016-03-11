@@ -829,7 +829,7 @@ void toggleDynamicDraw() {
 
 void toggleColorMode() {
   switch(colorMode) {
-    case 0:
+    case 0: // Change to Form Mode
       drawNodes = true;
       nodeMode = 0;
       colorMode = 1;
@@ -841,7 +841,7 @@ void toggleColorMode() {
       println("ColorMode = " + colorMode);
       
       break;
-    case 1:
+    case 1: // Change to Heatmap
       colorMode = 2;
       nodeMode = 1;
       drawNodes = true;
@@ -855,7 +855,7 @@ void toggleColorMode() {
       println("ColorMode = " + colorMode);
       
       break;
-    case 2:
+    case 2: // Change to next Heatmap
       if (scoreIndex < scoreNames.length-1) {
         scoreIndex++;
         hilite++;
@@ -866,7 +866,7 @@ void toggleColorMode() {
         
         println("ColorMode = " + colorMode);
         
-      } else {
+      } else { // Change to land use
         drawNodes = true;
         nodeMode = 0;
         colorMode = 0;

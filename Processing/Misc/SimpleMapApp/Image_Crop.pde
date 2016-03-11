@@ -62,8 +62,8 @@ float C = 2*PI*6372798.2; // Circumference of Earth
 //          float lat = 39.895565;
 //          float lon = 116.69402;
 //          // Google Lat-Lon
-//          float lat = 39.89675
-//          float lon = 116.700035
+//          float lat = 39.89675;
+//          float lon = 116.700035;
 //        int zoom = 16;
 //        float modelWidth  =                     6.68612*96*4; // width of model in meters
 //        float modelHeight = (1 + 284.0*2/768.0)*6.68812*96;   // height of model in meters
@@ -71,19 +71,39 @@ float C = 2*PI*6372798.2; // Circumference of Earth
 //        boolean useTemplate = true;
 //        String templateFile = "TongzhouPlanTemplate.png";
 
-        // Latitude and Longitude at Center of Model
-          // Microsoft Lat-Lon
-//          float lat = 39.895565;
-//          float lon = 116.69402;
-          // Google Lat-Lon
-          float lat = 39.89675;
-          float lon = 116.700035;
-        int zoom = 17;
-        float modelWidth  =                     6.68612*96*4; // width of model in meters
-        float modelHeight = (1 + 284.0*2/768.0)*6.68812*96;   // height of model in meters
-        float modelRotation = -(43.69+1.7068)/180*PI; // rotation of model in radians clockwise from north
-        boolean useTemplate = true;
-        String templateFile = "TongzhouPlanTemplate.png";
+// Denver Location
+
+//    // Latitude and Longitude at Center of Model
+//    float lat = 39.95;
+//    float lon = -104.9903;
+//    int zoom = 9;
+//    float modelWidth  = 2000*18*4; // width of model in meters
+//    float modelHeight = 2000*22*4;   // height of model in meters
+//    float modelRotation = 0.0; // rotation of model in radians clockwise from north
+//    boolean useTemplate = true;
+//    String templateFile = "denver.png";
+
+// San Jose Location
+
+//    // Latitude and Longitude at Center of Model
+//    float lat = 37.395237;
+//    float lon = -121.979507;
+//    int zoom = 11;
+//    float modelWidth  = 1000*18*4; // width of model in meters
+//    float modelHeight = 1000*22*4;   // height of model in meters
+//    float modelRotation = 0.0; // rotation of model in radians clockwise from north
+//    boolean useTemplate = false;
+//    String templateFile = "denver.png";
+    
+    // Latitude and Longitude at Center of Model
+    float lat = 39.95;
+    float lon = -104.9903;
+    int zoom = 13;
+    float modelWidth  = 500*18*4; // width of model in meters
+    float modelHeight = 500*22*4;   // height of model in meters
+    float modelRotation = 0.0; // rotation of model in radians clockwise from north
+    boolean useTemplate = true;
+    String templateFile = "denver.png";
 
 float scale; // distance represented by one pixel
 

@@ -177,6 +177,11 @@ void draw() {
   
   if (dataLoaded) {
     
+    if (nextDataMode) {
+      toggleColorMode();
+      nextDataMode = false;
+    }
+    
     // Loads Last Colortizer Data submitted to the cloud
     if (pingCloud && millis() % 1000 <= 150 ) {
     //if (pingCloud) {
