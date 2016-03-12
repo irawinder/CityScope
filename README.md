@@ -1,12 +1,12 @@
 # CityScope Repository
-CityScope Repository is a collection of sketches developed with Processing IDE, largely to serve the "CityScope" platform at  [http://cp.media.mit.edu/city-simulation](http://cp.media.mit.edu/city-simulation).
+CityScope Repository is a collection of sketches developed with Processing 2 IDE v2.2.1, largely to serve the "CityScope" platform at  [http://cp.media.mit.edu/city-simulation](http://cp.media.mit.edu/city-simulation).
 
 * Arrange a Meeting with Ira Winder [jiw@mit.edu] before making any commits to this repository.
 * Avoid forking the repository and instead opt to make a new branch.
 
 ## Setup
 1. Clone Repository to your machine
-2. Download latest version of Processing 2 from Processing.org and set its preferences such that the Sketchbook location is the *CityScope/Processing/* Folder. ( We use Processing 2 since CityScope uses some libraries which have not yet migrated to Processing 3 )
+2. Download Processing 2.2.1 from [Processing.org](https://processing.org/download/?processing) and set its preferences such that the Sketchbook location is the *CityScope/Processing/* Folder. ( We use Processing 2 since CityScope uses some libraries which have not yet migrated to Processing 3 )
 3. Re-start Processing 2.  Now all of the sketches should show up under File>Sketchbook>
 
 ## Useful Tips
