@@ -1,5 +1,5 @@
 # CityScope Repository
-CityScope Repository is a collection of sketches developed with Processing 2 IDE v2.2.1, largely to serve the "CityScope" platform at  [http://cp.media.mit.edu/city-simulation](http://cp.media.mit.edu/city-simulation).
+CityScope is a collection of scripts developed with Processing 2 IDE v2.2.1, largely to serve the "CityScope" platform at  [http://cp.media.mit.edu/city-simulation](http://cp.media.mit.edu/city-simulation).
 
 * Arrange a Meeting with Ira Winder [jiw@mit.edu] before making any commits to this repository.
 * Avoid forking the repository and instead opt to make a new branch.
