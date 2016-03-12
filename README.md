@@ -1,10 +1,9 @@
 # CityScope Repository
-Arrange a Meeting with Ira Winder [jiw@mit.edu] before making any commits to this repository.
-Avoid forking the repository and instead opt to make a new branch.
-
-## Intro
 CityScope Repository is a collection of sketches developed with Processing IDE, largely to serve the "CityScope" platform
-[http://cp.media.mit.edu/city-simulation](http://cp.media.mit.edu/city-simulation)
+* [http://cp.media.mit.edu/city-simulation](http://cp.media.mit.edu/city-simulation)
+
+* Arrange a Meeting with Ira Winder [jiw@mit.edu] before making any commits to this repository.
+* Avoid forking the repository and instead opt to make a new branch.
 
 ## Setup
 1. Clone Repository to your machine
