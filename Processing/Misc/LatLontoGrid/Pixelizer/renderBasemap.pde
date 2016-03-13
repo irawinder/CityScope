@@ -1,6 +1,7 @@
 PImage basemap;
 String mapColor = "bw";
 boolean showBasemap = true;
+int mapPanX, mapPanY;
 
 // Loads Basemap file
 void loadBasemap() {
@@ -10,13 +11,20 @@ void loadBasemap() {
   } catch(RuntimeException e) {
     println("No basemap available at this scale: " + gridSize + "km per pixel.");
   }
+  mapPan();
+  println(mapPanX, mapPanY); 
+}
+
+void mapPan() {
+  mapPanX = - int(width *( gridPanU - (gridU-displayU)/2 ) / displayU);
+  mapPanY = - int(height*( gridPanV - (gridV-displayV)/2 ) / displayV);
 }
 
 // Draws a Google Satellite Image
 void renderBasemap() {
   try {
     if (showBasemap) {
-      image(basemap, 0, 0, width, height);
+      image(basemap, mapPanX, mapPanY, width, height);
     }
   } catch(RuntimeException e) {
     println("No basemap available at this scale: " + gridSize + "km per pixel.");

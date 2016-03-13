@@ -17,6 +17,7 @@ void initDataGraphics() {
 }
 
 void reRender() {
+  
   // Renders false color heatmap to canvas
   renderData(h, s);
   
@@ -25,6 +26,8 @@ void reRender() {
   
   // Renders Text
   renderInfo(i);
+  
+  mapPan();
   
   println("ReRendered");
 }
