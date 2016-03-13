@@ -29,14 +29,27 @@ boolean pixelizeData = true;
 
 // Set this to true to display the main menu upon start
 boolean showMainMenu = true;
+boolean showFrameRate = false;
 
-// Matrix Size (probably influence by how many pixels you want to render on your canvas)
-int gridV = 22*4; // Height of Lego Table
-int gridU = 18*4; // Width of Lego Table
+// Display Matrix Size (cells rendered to screen)
+int displayV = 22*4; // Height of Lego Table
+int displayU = 18*4; // Width of Lego Table
+int gridPanV, gridPanU; // Integers that describe how much to offset grid pixels when drawing
+
+int scaler, gridU, gridV;
+void setGridParameters() {
+  scaler = int(maxGridSize/gridSize);
+  // Total Matrix Size (includes cells beyond extents of screen)
+  gridV = displayV*scaler; // Height of Lego Table
+  gridU = displayU*scaler; // Width of Lego Table
+  // Integers that describe how much to offset grid pixels when drawing
+  gridPanV = (gridV-displayV)/2;
+  gridPanU = (gridU-displayU)/2;
+}
 
 // How big your applet window is, in pixels
 int canvasWidth = 800;
-int canvasHeight = int(canvasWidth * float(gridV)/gridU);
+int canvasHeight = int(canvasWidth * float(displayV)/displayU);
 
 //Global Text and Background Color
 int textColor = 255;
@@ -62,8 +75,12 @@ void setup() {
    }
    );
   
+  setGridParameters();
+  initDataGraphics();
+  
   // Reads point data from TSV file, converts to JSON, prints to JSON, and reads in from JSON
   loadData(gridU, gridV, modeIndex);
+  reRender();
   
   // Loads and formats menu items
   loadMenu(canvasWidth, canvasHeight);
@@ -104,22 +121,30 @@ void loadMenu(int canvasWidth, int canvasHeight) {
 }
 
 void draw() {
-
+  
+  background(background);
+  
   // Draws a Google Satellite Image
   renderBasemap();
   
-  // Draws false color heatmap to canvas
-  renderData();
+  image(h, 0, 0, width, height);
   
-  // Draws Outlines of Lego Data Modules (a 4x4 lego stud piece)
-  renderLines();
+  if (showStores) {
+    image(s, 0, 0, width, height);
+  }
   
-  printStats();
+  image(l, 0, 0, width, height);
+  
+  image(i, 0, 0, width, height);
   
   // Draws Menu
   hideMenu.draw();
   if (showMainMenu) {
     mainMenu.draw();
+  }
+  
+  if (showFrameRate) {
+    text("FrameRate: " + frameRate, 10, 15);
   }
   
 }

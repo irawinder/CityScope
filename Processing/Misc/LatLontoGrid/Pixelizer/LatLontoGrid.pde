@@ -18,7 +18,8 @@
  */
 
 // length of one pixel [km]
-float gridSize = 2;
+float gridSize = 2.0; // toggle to 2.0, 1.0, and 0.5
+float maxGridSize = 2.0;
 
 // Lat-Lon and rotation to center the grid
 float centerLatitude;
@@ -47,6 +48,9 @@ int gridFreq[][];
 
 // The grid array of "buckets" that holds store locations
 int gridStore[][];
+
+// The grid array of "buckets" that we display on screen
+int gridSDisplay[][];
 
 // TSV to hold lat-lon points
 Table dataInput;

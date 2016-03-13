@@ -1,3 +1,5 @@
+PGraphics h, s, l, i;
+
 // 2D matrix that holds grid values
 float heatmap[][], stores[][];
 // variables to hol minimum and maximum grid values in matrix
@@ -6,6 +8,26 @@ float storesMIN, storesMAX;
 
 //JSON array holding totes
 JSONArray array;
+
+void initDataGraphics() {
+  h = createGraphics(width, height);
+  s = createGraphics(width, height);
+  l = createGraphics(width, height);
+  i = createGraphics(width, height);
+}
+
+void reRender() {
+  // Renders false color heatmap to canvas
+  renderData(h, s);
+  
+  // Renders Outlines of Lego Data Modules (a 4x4 lego stud piece)
+  renderLines(l);
+  
+  // Renders Text
+  renderInfo(i);
+  
+  println("ReRendered");
+}
 
 // Runs once when initializes
 void loadPixelData() {
@@ -71,20 +93,35 @@ void loadPixelData() {
 }
 
 // Draws false color heatmap to canvas
-void renderData() {
+void renderData(PGraphics h, PGraphics s) {
   
   // Dynamically adjusts grid size to fit within canvas dimensions
-  float gridWidth = float(width)/gridU;
-  float gridHeight= float(height)/gridV;
+  float gridWidth = float(width)/displayU;
+  float gridHeight= float(height)/displayV;
+  
+  // clear canvases
+  h.beginDraw();
+  h.clear();
+  
+  s.beginDraw();
+  s.clear();
   
   // makes it so that colors are defined by Hue, Saturation, and Brightness values (0-255 by default)
-  colorMode(HSB);
+  h.colorMode(HSB);
+  s.colorMode(HSB);
   
-  for (int u=0; u<gridU; u++) {
-    for (int v=0; v<gridV; v++) {
+  for (int u=0; u<displayU; u++) {
+    for (int v=0; v<displayV; v++) {
       
-      // heatmap value is normalized to a value between 0 and 1;
-      float normalized = (heatmap[u][v] - heatmapMIN)/(heatmapMAX-heatmapMIN);
+      float normalized;
+      
+      // Draw Heatmap
+      try {
+        // heatmap value is normalized to a value between 0 and 1;
+        normalized = (heatmap[u + gridPanU][v + gridPanV] - heatmapMIN)/(heatmapMAX-heatmapMIN);
+      } catch(Exception ex) {
+        normalized = (0 - heatmapMIN)/(heatmapMAX-heatmapMIN);
+      }
       
       // Hue Color of the grid is function of heatmap value;
       // 0.25 coefficient narrows the range of colors used
@@ -92,64 +129,72 @@ void renderData() {
       
       if (valueMode.equals("totes") || valueMode.equals("deliveries") ) {
         // Narrower Color Range
-        fill(0.75*255*(1-normalized), 255, 255, 150);
+        h.fill(0.75*255*(1-normalized), 255, 255, 150);
       } else if (valueMode.equals("source") || valueMode.equals("doorstep") ) {
         // Less Narrower Color Range
-        fill(0.75*255*normalized, 255, 255, 150);
+        h.fill(0.75*255*normalized, 255, 255, 150);
       } else {
         // Full Color Range
-        fill(255*normalized, 255, 255, 150);
+        h.fill(255*normalized, 255, 255, 150);
       }
       // No lines draw around grid cells
-      noStroke();
+      h.noStroke();
       
       // Doesn't draw a rectangle for values of 0
       if (normalized >= 0) {
-        rect(u*gridWidth, v*gridHeight, gridWidth, gridHeight);
+        h.rect(u*gridWidth, v*gridHeight, gridWidth, gridHeight);
       }
       
       // Draws Store Locations
-      if (showStores) {
+      try {
         // heatmap value is normalized to a value between 0 and 1;
-        normalized = (stores[u][v] - storesMIN)/(storesMAX-storesMIN);
-        
-        // Full Color Range
-        fill(255*normalized, 255, 255, 255);
-        
-        //Outlines stores
-        strokeWeight(1);
-        stroke(textColor);
-        
-        // Doesn't draw a rectangle for values of 0
-        if (normalized != 0) {
-          rect(u*gridWidth, v*gridHeight, gridWidth, gridHeight);
-        }
+        normalized = (stores[u + gridPanU][v + gridPanV] - storesMIN)/(storesMAX-storesMIN);
+      } catch(Exception ex) {
+        normalized = (0 - storesMIN)/(storesMAX-storesMIN);
       }
+    
+      // Full Color Range
+      s.fill(255*normalized, 255, 255, 255);
       
+      //Outlines stores
+      s.strokeWeight(1);
+      s.stroke(textColor);
+      
+      // Doesn't draw a rectangle for values of 0
+      if (normalized != 0) {
+        s.rect(u*gridWidth, v*gridHeight, gridWidth, gridHeight);
+      }
     }
   }
+  h.endDraw();
+  s.endDraw();
 }
 
 // Draws Outlines of Lego Data Modules (a 4x4 lego stud piece)
-void renderLines() {
-  stroke(255, 50);
-  strokeWeight(1.5);
-  for (int i=1; i<gridU/4; i++) {
-    line(width*i/(gridU/4.0), 0, width*i/(gridU/4.0), height);
+void renderLines(PGraphics l) {
+  l.beginDraw();
+  l.clear();
+  l.stroke(255, 50);
+  l.strokeWeight(1.5);
+  for (int i=1; i<displayU/4; i++) {
+    l.line(width*i/(displayU/4.0), 0, width*i/(displayU/4.0), height);
   }
-  for (int i=1; i<gridV/4; i++) {
-    line(0, height*i/(gridV/4.0), width, height*i/(gridV/4.0));
+  for (int i=1; i<displayV/4; i++) {
+    l.line(0, height*i/(displayV/4.0), width, height*i/(displayV/4.0));
   }
+  l.endDraw();
 }
 
-void printStats() {
-  fill(textColor);
+void renderInfo(PGraphics i) {
+  i.beginDraw();
+  i.clear();
+  i.fill(textColor);
   
-  textAlign(RIGHT);
-  text("Pixelizer v1.0 by Ira Winder, jiw@mit.edu", width - 10, height - 15);
+  i.textAlign(RIGHT);
+  i.text("Pixelizer v1.0 by Ira Winder, jiw@mit.edu", width - 10, height - 15);
   
   if (showMainMenu) {
-    textAlign(LEFT);
+    i.textAlign(LEFT);
     String suffix = "";
     String prefix = "";
     if (valueMode.equals("totes") || valueMode.equals("deliveries") ) {
@@ -159,9 +204,10 @@ void printStats() {
     }  else if ( valueMode.equals("doorstep") ) {
       suffix = " seconds";
     }
-    text("Grid Stats", 10, height - 75);
-    text("Min: " + prefix + (int)heatmapMIN + suffix, 10, height - 60);
-    text("Max: " + prefix + (int)heatmapMAX + suffix, 10, height - 45);
-    text(fileName + ": 1 grid square = " + gridSize + "km", 10, height - 15);
+    i.text("Grid Stats", 10, height - 75);
+    i.text("Min: " + prefix + (int)heatmapMIN + suffix, 10, height - 60);
+    i.text("Max: " + prefix + (int)heatmapMAX + suffix, 10, height - 45);
+    i.text(fileName + ": 1 grid square = " + gridSize + "km", 10, height - 15);
   }
+  i.endDraw();
 }

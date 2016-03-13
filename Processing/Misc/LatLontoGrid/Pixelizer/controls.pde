@@ -133,6 +133,8 @@ void mouseClicked() {
   if(mainMenu.buttons[19].over()){ 
     toggleBaseMap(19);
   }
+  
+  reRender();
 }
 
 void keyPressed() {
@@ -191,10 +193,32 @@ void keyPressed() {
     case 'm': // "Show Map (m)",          // 19
       toggleBaseMap(19);
       break;
-    
-    
+      
+      
+    // These key commands do not have buttons
+    case 'f': // "Show Framerate" (f)",
+      showFrameRate = toggle(showFrameRate);
+      break;
     
   }
+  
+  //------arrow keys and how to code keys that aren't characters exactly----- 
+  if (key == CODED) { 
+    if (keyCode == LEFT) {
+      gridPanU++;
+    }  
+    if (keyCode == RIGHT) {
+      gridPanU--;
+    }  
+    if (keyCode == DOWN) {
+      gridPanV--;
+    }  
+    if (keyCode == UP) {
+      gridPanV++;
+    }
+  }
+  
+  reRender();
 }
 
 // Show or Hide Main Menu Items 
@@ -262,6 +286,7 @@ void setStores(int button) {
 
 void setGridSize(float size, int button) {
   gridSize = size;
+  setGridParameters();
   depressHeatmapButtons(15, 17, button);
   loadData(gridU, gridV, modeIndex);
   println("gridSize: " + gridSize + "km");
@@ -275,7 +300,7 @@ void toggleBaseMap(int button) {
     mainMenu.buttons[button].isPressed = true;
   }
   println("showBasemap = " + showBasemap);
-}
+} 
 
 // Presses all buttons in a set of mutually exclusive buttons except for the index specified
 // min-max specifies a range of button indices; valueMode specifies the currently selected button
