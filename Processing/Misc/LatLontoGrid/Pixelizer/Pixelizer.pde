@@ -34,6 +34,7 @@ boolean showFrameRate = false;
 boolean showStores = true;
 boolean showDeliveryData = false;
 boolean showPopulationData = false;
+boolean showBasemap = true;
 
 // Display Matrix Size (cells rendered to screen)
 int displayV = 22*4; // Height of Lego Table
@@ -161,6 +162,7 @@ void draw() {
   renderBasemap();
   
   if (showPopulationData){
+    image(p, 0, 0, width, height);
     image(p, 0, 0, width, height);
   }
   

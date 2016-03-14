@@ -1,6 +1,5 @@
 PImage basemap;
 String mapColor = "bw";
-boolean showBasemap = true;
 int mapPanX, mapPanY;
 
 // Loads Basemap file
