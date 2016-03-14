@@ -9,12 +9,17 @@ String[] menuOrder =
   "1km per pixel (2)",
   "500m per pixel (1)",
   "VOID",
+  "Store Locations (s)",
+  "VOID",
+  "Show Delivery Data (D)",
   "Delivery Counts (d)",
   "Tote Counts (t)",
   "Store Source (o)",
   "Avg Doorstep Time (a)",
   "VOID",
-  "Store Locations (s)",
+  "Show Population Data (P)",
+  "Population Counts (u)",
+  "Household Counts (e)",
   "VOID",
   "Invert Colors (i)",
   "Show Basemap (m)",
@@ -30,22 +35,26 @@ String[] menuOrder =
 // DO NOT CHANGE THE ORDER OF THESE NAMES!
 String[] buttonNames = 
 {
-  "Next City (n)",         // 0
-  "Print Screenshot (p)",  // 1
-  "Delivery Counts (d)",   // 2
-  "Tote Counts (t)",       // 3
-  "Store Source (o)",      // 4
-  "Avg Doorstep Time (a)", // 5
-  "Store Locations (s)",   // 6
-  "Align Left (l)",        // 7
-  "Align Right (r)",       // 8
-  "Align Center (c)",      // 9
-  "Invert Colors (i)",     // 10
-  "2km per pixel (3)",     // 11
-  "1km per pixel (2)",     // 12
-  "500m per pixel (1)",    // 13
-  "Show Basemap (m)",      // 14
-  "Show Framerate (f)"     // 15
+  "Next City (n)",           // 0
+  "Print Screenshot (p)",    // 1
+  "Delivery Counts (d)",     // 2
+  "Tote Counts (t)",         // 3
+  "Store Source (o)",        // 4
+  "Avg Doorstep Time (a)",   // 5
+  "Store Locations (s)",     // 6
+  "Align Left (l)",          // 7
+  "Align Right (r)",         // 8
+  "Align Center (c)",        // 9
+  "Invert Colors (i)",       // 10
+  "2km per pixel (3)",       // 11
+  "1km per pixel (2)",       // 12
+  "500m per pixel (1)",      // 13
+  "Show Basemap (m)",        // 14
+  "Show Framerate (f)",      // 15
+  "Show Delivery Data (D)",  // 16
+  "Show Population Data (P)",// 17
+  "Population Counts (u)",   // 18
+  "Household Counts (e)",    // 19
 };
 
 int getButtonIndex(String name) {
@@ -157,6 +166,26 @@ void mouseClicked() {
     toggleFramerate(getButtonIndex(buttonNames[15]));
   }
   
+  //function16
+  if(mainMenu.buttons[getButtonIndex(buttonNames[16])].over()){ 
+    toggleDeliveryData(getButtonIndex(buttonNames[16]));
+  }
+  
+  //function17
+  if(mainMenu.buttons[getButtonIndex(buttonNames[17])].over()){ 
+    togglePopulationData(getButtonIndex(buttonNames[17]));
+  }
+  
+  //function18
+  if(mainMenu.buttons[getButtonIndex(buttonNames[18])].over()){ 
+    setPop(getButtonIndex(buttonNames[18]));
+  }
+  
+  //function19
+  if(mainMenu.buttons[getButtonIndex(buttonNames[19])].over()){ 
+    setHousing(getButtonIndex(buttonNames[19]));
+  }
+  
   reRender();
 }
 
@@ -219,7 +248,18 @@ void keyPressed() {
     case 'f': // "Show Framerate" (f)",   // 15
       toggleFramerate(getButtonIndex(buttonNames[15]));
       break;
-    
+    case 'D': // "Show Delivery Data (D)",  // 16
+      toggleDeliveryData(getButtonIndex(buttonNames[16]));
+      break;
+    case 'P': // "Show Population Data (P)",  // 17
+      togglePopulationData(getButtonIndex(buttonNames[17]));
+      break;
+    case 'u': // "Population Counts (u)",   // 18
+      setPop(getButtonIndex(buttonNames[18]));
+      break;
+    case 'e': // "Household Counts (e)",    // 19
+      setHousing(getButtonIndex(buttonNames[19]));
+      break;
   }
   
   //------arrow keys and how to code keys that aren't characters exactly----- 
@@ -334,12 +374,22 @@ void setDoorstep(int button) {
 
 void setStores(int button) {
   showStores = toggle(showStores);
-  if (!showStores) {
-    mainMenu.buttons[button].isPressed = true;
-  } else {
-    mainMenu.buttons[button].isPressed = false;
-  }
+  pressButton(showStores, button);
   println("showStores: " + showStores);
+}
+
+void setPop(int button) {
+  popMode = "POP10";
+  depressPopulationButtons();
+  loadData(gridU, gridV, modeIndex);
+  println("popMode: " + popMode);
+}
+
+void setHousing(int button) {
+  popMode = "HOUSING10";
+  depressPopulationButtons();
+  loadData(gridU, gridV, modeIndex);
+  println("popMode: " + popMode);
 }
 
 void setGridSize(float size, int button) {
@@ -360,6 +410,38 @@ void toggleFramerate(int button) {
   showFrameRate = toggle(showFrameRate);
   pressButton(showFrameRate, button);
   println("showFrameRate = " + showFrameRate);
+} 
+
+void toggleDeliveryData(int button) {
+  showDeliveryData = toggle(showDeliveryData);
+  pressButton(showDeliveryData, button);
+  println("sshowDeliveryData = " + showDeliveryData);
+  
+  if (!showDeliveryData) {
+    for (int i=2; i<=5; i++) {
+      mainMenu.buttons[getButtonIndex(buttonNames[i])].show = false;
+    }
+  } else {
+    for (int i=2; i<=5; i++) {
+      mainMenu.buttons[getButtonIndex(buttonNames[i])].show = true;
+    }
+  }
+} 
+
+void togglePopulationData(int button) {
+  showPopulationData = toggle(showPopulationData);
+  pressButton(showPopulationData, button);
+  println("showPopulationData = " + showPopulationData);
+  
+  if (!showPopulationData) {
+    for (int i=18; i<=19; i++) {
+      mainMenu.buttons[getButtonIndex(buttonNames[i])].show = false;
+    }
+  } else {
+    for (int i=18; i<=19; i++) {
+      mainMenu.buttons[getButtonIndex(buttonNames[i])].show = true;
+    }
+  }
 } 
 
 void pressButton(boolean bool, int button) {
@@ -386,6 +468,28 @@ void depressHeatmapButtons() {
     button += 2;
   } else if (valueMode.equals("doorstep")) {
     button += 3;
+  }
+  
+  // Turns all buttons off
+  for(int i=min; i<=max; i++) { //heatmap buttons min-max are mutually exclusive
+    mainMenu.buttons[i].isPressed = true;
+  }
+  // highlighted the heatmap button that is activated only
+  mainMenu.buttons[button].isPressed = false;
+}
+
+// Presses all buttons in a set of mutually exclusive buttons except for the index specified
+// min-max specifies a range of button indices; valueMode specifies the currently selected button
+void depressPopulationButtons() {
+  
+  int min = getButtonIndex(buttonNames[18]);
+  int max = getButtonIndex(buttonNames[19]);
+  
+  int button = min;
+  if (popMode.equals("POP10")) {
+    button += 0;
+  } else if (popMode.equals("HOUSING10")) {
+    button += 1;
   }
   
   // Turns all buttons off
@@ -490,6 +594,7 @@ class Button{
   
   boolean isPressed = false;
   boolean isVoid = false;
+  boolean show = true;
   
   //Button Constructor
   Button(int x, int y, int w, int h, String label){
@@ -580,7 +685,9 @@ class Menu{
     canvas.beginDraw();
     canvas.clear();
     for (int i=0; i<buttons.length; i++) {
-      buttons[i].draw(canvas);
+      if (buttons[i].show) {
+        buttons[i].draw(canvas);
+      }
     }
     canvas.endDraw();
     

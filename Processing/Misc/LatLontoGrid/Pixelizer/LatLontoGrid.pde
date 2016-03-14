@@ -38,7 +38,10 @@ String valueMode = "totes";
   // "doorstep" will average the doorstep time for each grid
   // "source" will describes which store ID(s) serve that grid bucket
   
-boolean showStores = true;
+// String that specifies what parameter of population data to load
+String popMode = "POP10";
+  // "POP10" for population count from 2010 census
+  // "HOUSING10" for housing unit count from 2010 census
 
 // The grid array of "buckets" that hold aggregated values
 int gridSum[][];

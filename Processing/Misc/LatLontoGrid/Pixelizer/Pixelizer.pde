@@ -31,6 +31,10 @@ boolean pixelizeData = true;
 boolean showMainMenu = true;
 boolean showFrameRate = false;
 
+boolean showStores = true;
+boolean showDeliveryData = false;
+boolean showPopulationData = false;
+
 // Display Matrix Size (cells rendered to screen)
 int displayV = 22*4; // Height of Lego Table
 int displayU = 18*4; // Width of Lego Table
@@ -117,11 +121,36 @@ void loadMenu(int canvasWidth, int canvasHeight) {
   mainMenu = new Menu(canvasWidth, canvasHeight, 170, 20, 2, menuOrder, align);
   // Selects one of the mutually exclusive heatmps
   depressHeatmapButtons();
+  // Selects one of the mutually exclusive population maps
+  depressPopulationButtons();
   // Selects one of the mutually exclusive pixel scales
   depressZoomButtons(gridSize);
   // Checks whether these true/false button should be pressed
+  pressButton(showStores, getButtonIndex(buttonNames[6]));
   pressButton(showBasemap, getButtonIndex(buttonNames[14]));
   pressButton(showFrameRate, getButtonIndex(buttonNames[15]));
+  pressButton(showDeliveryData, getButtonIndex(buttonNames[16]));
+  pressButton(showPopulationData, getButtonIndex(buttonNames[17]));
+  
+  if (!showPopulationData) {
+    for (int i=18; i<=19; i++) {
+      mainMenu.buttons[getButtonIndex(buttonNames[i])].show = false;
+    }
+  } else {
+    for (int i=18; i<=19; i++) {
+      mainMenu.buttons[getButtonIndex(buttonNames[i])].show = true;
+    }
+  }
+  
+  if (!showDeliveryData) {
+    for (int i=2; i<=5; i++) {
+      mainMenu.buttons[getButtonIndex(buttonNames[i])].show = false;
+    }
+  } else {
+    for (int i=2; i<=5; i++) {
+      mainMenu.buttons[getButtonIndex(buttonNames[i])].show = true;
+    }
+  }
 }
 
 void draw() {
@@ -131,7 +160,13 @@ void draw() {
   // Draws a Google Satellite Image
   renderBasemap();
   
-  image(h, 0, 0, width, height);
+  if (showPopulationData){
+    image(p, 0, 0, width, height);
+  }
+  
+  if (showDeliveryData) {
+    image(h, 0, 0, width, height);
+  }
   
   if (showStores) {
     image(s, 0, 0, width, height);
@@ -139,6 +174,7 @@ void draw() {
   
   image(l, 0, 0, width, height);
   
+  renderInfo(i);
   image(i, 0, 0, width, height);
   
   renderCursor(c);

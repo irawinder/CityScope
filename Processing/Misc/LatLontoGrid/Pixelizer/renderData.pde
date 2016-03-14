@@ -1,14 +1,19 @@
-PGraphics h, s, l, i, c;
+PGraphics h, s, l, i, c, p;
 int gridWidth, gridHeight;
 
 // 2D matrix that holds grid values
-float heatmap[][], stores[][];
+float heatmap[][], stores[][], pop[][], hu[][];
 // variables to hol minimum and maximum grid values in matrix
 float heatmapMIN, heatmapMAX;
 float storesMIN, storesMAX;
+float popMIN, popMAX;
+float huMIN, huMAX;
 
 //JSON array holding totes
 JSONArray array;
+
+//Table holding Population Counts and Housing Units (created from GridResampler)
+Table popCSV, huCSV;
 
 void initDataGraphics() {
   h = createGraphics(width, height);
@@ -16,12 +21,13 @@ void initDataGraphics() {
   l = createGraphics(width, height);
   i = createGraphics(width, height);
   c = createGraphics(width, height);
+  p = createGraphics(width, height);
 }
 
 void reRender() {
   
   // Renders false color heatmap to canvas
-  renderData(h, s);
+  renderData(h, s, p);
   
   // Renders Outlines of Lego Data Modules (a 4x4 lego stud piece)
   renderLines(l);
@@ -38,23 +44,34 @@ void reRender() {
 void loadPixelData() {
   
   array = loadJSONArray("data/" + fileName + "_" + valueMode + ".json");
+  try {
+    popCSV = loadTable("data/CSV_POPHU/" + fileName + "_" + popMode + "_" + gridV + "_" + gridU + "_" + int(gridSize*1000) + ".csv");
+  }  catch(RuntimeException e) {
+    popCSV = new Table();
+  }
   
   heatmap = new float[gridU][gridV];
   stores = new float[gridU][gridV];
+  pop = new float[gridU][gridV];
   for (int u=0; u<gridU; u++) {
     for (int v=0; v<gridV; v++) {
       heatmap[u][v] = 0;
       stores[u][v] = 0;
+      pop[u][v] = 0;
     }
   }
   
   // MIN and MAX set to arbitrarily large and small values
-  heatmapMIN = 100000;
-  heatmapMAX = 0;
+  heatmapMIN = Float.POSITIVE_INFINITY;
+  heatmapMAX = Float.NEGATIVE_INFINITY;
   
   // MIN and MAX set to arbitrarily large and small values
-  storesMIN = 100000;
-  storesMAX = 0;
+  storesMIN = Float.POSITIVE_INFINITY;
+  storesMAX = Float.NEGATIVE_INFINITY;
+  
+  // MIN and MAX set to arbitrarily large and small values
+  popMIN = Float.POSITIVE_INFINITY;
+  popMAX = Float.NEGATIVE_INFINITY;
   
   JSONObject temp = new JSONObject();
   for (int i=0; i<array.size(); i++) {
@@ -66,6 +83,13 @@ void loadPixelData() {
     stores[temp.getInt("u")][temp.getInt("v")] = temp.getInt("store");
   }
   
+  for (int i=0; i<popCSV.getRowCount(); i++) {
+    for (int j=0; j<popCSV.getColumnCount(); j++) {
+      pop[j][i] = popCSV.getFloat(popCSV.getRowCount()-1-i, j);
+    }
+  }
+    
+  
   for (int u=0; u<gridU; u++) {
     for (int v=0; v<gridV; v++) {
       
@@ -74,20 +98,17 @@ void loadPixelData() {
       //heatmap[u][v] = random(0, 178);
       
       if (heatmap[u][v] != 0) { // 0 is usually void, so including it will skew our color gradient
-        // Checks if smallest value thusfar
-        if (heatmap[u][v] < heatmapMIN) {
-          heatmapMIN = heatmap[u][v]; }
-        // Checks if largest value thusfar
-        if (heatmap[u][v] > heatmapMAX) {
-          heatmapMAX = heatmap[u][v]; }
+        heatmapMIN = min(heatmapMIN, heatmap[u][v]);
+        heatmapMAX = max(heatmapMAX, heatmap[u][v]);
       }
         
-      // Checks if smallest value thusfar
-      if (stores[u][v] < storesMIN) {
-        storesMIN = stores[u][v]; }
-      // Checks if largest value thusfar
-      if (stores[u][v] > storesMAX) {
-        storesMAX = stores[u][v]; }
+      storesMIN = min(storesMIN, stores[u][v]);
+      storesMAX = max(storesMAX, stores[u][v]);
+      
+      if (pop[u][v] != 0) { // 0 is usually void, so including it will skew our color gradient
+        popMIN = min(popMIN, pop[u][v]);
+        popMAX = max(popMAX, pop[u][v]);
+      }
     }
   }
   
@@ -98,7 +119,7 @@ void loadPixelData() {
 }
 
 // Draws false color heatmap to canvas
-void renderData(PGraphics h, PGraphics s) {
+void renderData(PGraphics h, PGraphics s, PGraphics p) {
   
   // Dynamically adjusts grid size to fit within canvas dimensions
   gridWidth = int(float(width)/displayU);
@@ -111,20 +132,26 @@ void renderData(PGraphics h, PGraphics s) {
   s.beginDraw();
   s.clear();
   
+  p.beginDraw();
+  p.clear();
+  
   // makes it so that colors are defined by Hue, Saturation, and Brightness values (0-255 by default)
   h.colorMode(HSB);
   s.colorMode(HSB);
+  p.colorMode(HSB);
   
   for (int u=0; u<displayU; u++) {
     for (int v=0; v<displayV; v++) {
       // Only loads data within bounds of dataset
       if (u+gridPanU>=0 && u+gridPanU<gridU && v+gridPanV>=0 && v+gridPanV<gridV) {
         
-        color from, to;
+        float normalized;
+        color from, to;        
+        
+        
+        //BEGIN Drawing HEATMAP
         from = color(0,255,0);
         to = color(255,0,0);
-        
-        float normalized;
         
         // Draw Heatmap
         try {
@@ -147,20 +174,42 @@ void renderData(PGraphics h, PGraphics s) {
         } else if (valueMode.equals("doorstep")) {
           // Less Narrower Color Range, reversed
           h.fill(lerpColor(from,to,normalized), 150);
-          
         } else {
           // Full Color Range
           h.fill(255*normalized, 255, 255, 150);
         }
-        // No lines draw around grid cells
-        h.noStroke();
         
         // Doesn't draw a rectangle for values of 0
+        h.noStroke(); // No lines draw around grid cells
         if (normalized >= 0) {
           h.rect(u*gridWidth, v*gridHeight, gridWidth, gridHeight);
         }
         
-        // Draws Store Locations
+        
+        //BEGIN Drawing POPULATION
+        from = color(#C18A12, 0); // Brown
+        to = color(#125CC1);   // Blue 
+        
+        // Draw Population
+        try {
+          // heatmap value is normalized to a value between 0 and 1;
+          normalized = ( sqrt(sqrt(pop[u + gridPanU][v + gridPanV])) - sqrt(sqrt(popMIN)))/sqrt(sqrt(popMAX-popMIN));
+        } catch(Exception ex) {
+          normalized = (0 - popMIN)/(popMAX-popMIN);
+        }
+        
+        p.fill(lerpColor(from,to,normalized));
+        
+        // Doesn't draw a rectangle for values of 0
+        p.noStroke(); // No lines draw around grid cells
+        if (normalized >= 0) {
+          p.rect(u*gridWidth, v*gridHeight, gridWidth, gridHeight);
+        }
+        
+        
+        
+        
+        // BEGIN Drawing Draws Store Locations
         try {
           // heatmap value is normalized to a value between 0 and 1;
           normalized = (stores[u + gridPanU][v + gridPanV] - storesMIN)/(storesMAX-storesMIN);
@@ -184,6 +233,7 @@ void renderData(PGraphics h, PGraphics s) {
   }
   h.endDraw();
   s.endDraw();
+  p.endDraw();
 }
 
 // Draws Outlines of Lego Data Modules (a 4x4 lego stud piece)
@@ -222,7 +272,12 @@ void renderInfo(PGraphics i) {
   }
   
   i.fill(0,255,0);
-  i.text("Current Cell Value: " + prefix + (int)getCellValue(mouseToU(), mouseToV()) + suffix, 10, height - 110);
+  if (showDeliveryData) {
+    i.text("Cell Value: " + prefix + (int)getCellValue(mouseToU(), mouseToV()) + suffix, 10, height - 125);
+  }
+  if (showPopulationData) {
+    i.text("Cell Population: " + (int)getCellPop(mouseToU(), mouseToV()) + " " + popMode, 10, height - 110);
+  }
   
   i.fill(textColor);
   i.text(fileName.toUpperCase() + " Grid Statistics:", 10, height - 80);
@@ -247,6 +302,10 @@ float getCellValue(int u, int v) {
   return heatmap[u][v];
 }
 
+float getCellPop(int u, int v) {
+  return pop[u][v];
+}
+
 void renderCursor(PGraphics c) {
   c.beginDraw();
   c.clear();
@@ -260,11 +319,11 @@ void renderCursor(PGraphics c) {
   y = mouseToV() - gridPanV;
   c.rect(x*gridWidth, y*gridWidth, gridWidth, gridWidth);
   
-  // Render Selection
-  c.stroke(0, 255, 0);
-  x = selectionU - gridPanU;
-  y = selectionV - gridPanV;
-  c.rect(x*gridWidth, y*gridWidth, gridWidth, gridWidth);
+//  // Render Selection
+//  c.stroke(0, 255, 0);
+//  x = selectionU - gridPanU;
+//  y = selectionV - gridPanV;
+//  c.rect(x*gridWidth, y*gridWidth, gridWidth, gridWidth);
   
   c.endDraw();
 }
