@@ -172,7 +172,7 @@ void drawTestFinder(PGraphics p, Pathfinder f, ArrayList<PVector> path, ArrayLis
   p.strokeWeight(2);
   p.stroke(#FF0000);
   p.noFill();
-  p.ellipse(A.x, A.y, f.getResolution(), f.getResolution());
+//  p.ellipse(A.x, A.y, f.getResolution(), f.getResolution());
   
   p.fill(textColor);
   p.text("origin", A.x + f.getResolution(), A.y);

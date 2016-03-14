@@ -392,9 +392,9 @@ class Swarm {
     p.line(origin.x - 5, origin.y - 5, origin.x + 5, origin.y + 5);
     p.line(origin.x - 5, origin.y + 5, origin.x + 5, origin.y - 5);
     
-    //Draw Sink
-    p.strokeWeight(3);
-    p.ellipse(destination.x, destination.y, 30, 30);
+//    //Draw Sink
+//    p.strokeWeight(3);
+//    p.ellipse(destination.x, destination.y, 30, 30);
   }
   
   

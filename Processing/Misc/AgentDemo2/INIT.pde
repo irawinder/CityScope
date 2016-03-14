@@ -66,23 +66,6 @@ Horde swarmHorde;
 PVector[] origin, origin2, origin3, origin4, origin5, origin6, origin7, origin8, origin9, origin10, origin11, origin12, origin13, origin14, origin15, origin16, destination, nodes;
 float[] weight;
 
-Horde swarmHorde2;
-Horde swarmHorde3;
-Horde swarmHorde4;
-Horde swarmHorde5;
-Horde swarmHorde6;
-Horde swarmHorde7;
-Horde swarmHorde8;
-Horde swarmHorde9;
-Horde swarmHorde10;
-Horde swarmHorde11;
-Horde swarmHorde12;
-Horde swarmHorde13;
-Horde swarmHorde14;
-Horde swarmHorde15;
-Horde swarmHorde16;
-
-
 int textSize = 8;
 
 boolean enablePathfinding = true;
@@ -97,7 +80,7 @@ void initAgents(PGraphics p) {
   
   //lots of small hordes instead of one big one 
   
-  swarmHorde = new Horde(150);
+  swarmHorde = new Horde(2000);
   if(dataMode == 1){
   swarmHorde2 = new Horde(150);
   swarmHorde3 = new Horde(150);
@@ -1019,8 +1002,7 @@ for(int l = 0; l<5; l++){
   for (int i=0; i<numSwarm; i++) {
     
     // delay, origin, destination, speed, color
-    swarmHorde.addSwarm(weight[i], origin[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
-    if(dataMode == 1){
+//    swarmHorde.addSwarm(weight[i], origin[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
     swarmHorde.addSwarm(weight[i], origin2[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
     swarmHorde.addSwarm(weight[i], origin3[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
     swarmHorde.addSwarm(weight[i], origin4[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
@@ -1037,7 +1019,7 @@ for(int l = 0; l<5; l++){
     swarmHorde.addSwarm(weight[i], origin15[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
     swarmHorde.addSwarm(weight[i], origin16[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
    
-    }
+    
     
 //
 //for (int k=1; k<numSwarm-1; k++) {
