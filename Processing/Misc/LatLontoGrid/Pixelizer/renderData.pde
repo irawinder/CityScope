@@ -187,8 +187,8 @@ void renderData(PGraphics h, PGraphics s, PGraphics p) {
         
         
         //BEGIN Drawing POPULATION
-        from = color(#C18A12, 0); // Brown
-        to = color(#125CC1);   // Blue 
+        from = color(#000AF7, 100); // Blue
+        to = color(#FF0000);   // Red
         
         // Draw Population
         try {
@@ -198,6 +198,9 @@ void renderData(PGraphics h, PGraphics s, PGraphics p) {
           normalized = (0 - popMIN)/(popMAX-popMIN);
         }
         
+        // Full Color Range
+        //p.fill(255*(1-normalized), 255, 255, 150);
+          
         p.fill(lerpColor(from,to,normalized));
         
         // Doesn't draw a rectangle for values of 0
