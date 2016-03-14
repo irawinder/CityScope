@@ -243,6 +243,13 @@ int scroll_x = 0;
 int scroll_y_0 = 0;
 int scroll_x_0 = 0;
 
+void resetMousePan() {
+  scroll_y = 0;
+  scroll_x = 0;
+  scroll_y_0 = 0;
+  scroll_x_0 = 0;
+}
+
 void mousePressed() {
   x_0 = mouseX;
   y_0 = mouseY;
@@ -251,7 +258,11 @@ void mousePressed() {
 void mouseDragged() {
   scroll_x = scroll_x_0 + mouseX - x_0;
   scroll_y = scroll_y_0 + mouseY - y_0;
-  println(scroll_x, scroll_y);
+  
+  gridPanU = - int(scroll_x*((float)displayU/width)) + (gridU-displayU)/2;
+  gridPanV = - int(scroll_y*((float)displayV/height)) + (gridV-displayV)/2;
+  
+  reRender();
 }
 
 void mouseReleased() {

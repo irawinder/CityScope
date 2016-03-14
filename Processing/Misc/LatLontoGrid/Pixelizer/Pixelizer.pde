@@ -45,6 +45,7 @@ void setGridParameters() {
   // Integers that describe how much to offset grid pixels when drawing
   gridPanV = (gridV-displayV)/2;
   gridPanU = (gridU-displayU)/2;
+  resetMousePan();
 }
 
 // How big your applet window is, in pixels

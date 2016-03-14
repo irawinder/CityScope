@@ -115,57 +115,60 @@ void renderData(PGraphics h, PGraphics s) {
   
   for (int u=0; u<displayU; u++) {
     for (int v=0; v<displayV; v++) {
+      // Only loads data within bounds of dataset
+      if (u+gridPanU>=0 && u+gridPanU<gridU && v+gridPanV>=0 && v+gridPanV<gridV) {
       
-      float normalized;
+        float normalized;
+        
+        // Draw Heatmap
+        try {
+          // heatmap value is normalized to a value between 0 and 1;
+          normalized = (heatmap[u + gridPanU][v + gridPanV] - heatmapMIN)/(heatmapMAX-heatmapMIN);
+        } catch(Exception ex) {
+          normalized = (0 - heatmapMIN)/(heatmapMAX-heatmapMIN);
+        }
+        
+        // Hue Color of the grid is function of heatmap value;
+        // 0.25 coefficient narrows the range of colors used
+        // 100 + var offsets the range of colors used
+        
+        if (valueMode.equals("totes") || valueMode.equals("deliveries") ) {
+          // Narrower Color Range
+          h.fill(0.75*255*(1-normalized), 255, 255, 150);
+        } else if (valueMode.equals("source") || valueMode.equals("doorstep") ) {
+          // Less Narrower Color Range
+          h.fill(0.75*255*normalized, 255, 255, 150);
+        } else {
+          // Full Color Range
+          h.fill(255*normalized, 255, 255, 150);
+        }
+        // No lines draw around grid cells
+        h.noStroke();
+        
+        // Doesn't draw a rectangle for values of 0
+        if (normalized >= 0) {
+          h.rect(u*gridWidth, v*gridHeight, gridWidth, gridHeight);
+        }
+        
+        // Draws Store Locations
+        try {
+          // heatmap value is normalized to a value between 0 and 1;
+          normalized = (stores[u + gridPanU][v + gridPanV] - storesMIN)/(storesMAX-storesMIN);
+        } catch(Exception ex) {
+          normalized = (0 - storesMIN)/(storesMAX-storesMIN);
+        }
       
-      // Draw Heatmap
-      try {
-        // heatmap value is normalized to a value between 0 and 1;
-        normalized = (heatmap[u + gridPanU][v + gridPanV] - heatmapMIN)/(heatmapMAX-heatmapMIN);
-      } catch(Exception ex) {
-        normalized = (0 - heatmapMIN)/(heatmapMAX-heatmapMIN);
-      }
-      
-      // Hue Color of the grid is function of heatmap value;
-      // 0.25 coefficient narrows the range of colors used
-      // 100 + var offsets the range of colors used
-      
-      if (valueMode.equals("totes") || valueMode.equals("deliveries") ) {
-        // Narrower Color Range
-        h.fill(0.75*255*(1-normalized), 255, 255, 150);
-      } else if (valueMode.equals("source") || valueMode.equals("doorstep") ) {
-        // Less Narrower Color Range
-        h.fill(0.75*255*normalized, 255, 255, 150);
-      } else {
         // Full Color Range
-        h.fill(255*normalized, 255, 255, 150);
-      }
-      // No lines draw around grid cells
-      h.noStroke();
-      
-      // Doesn't draw a rectangle for values of 0
-      if (normalized >= 0) {
-        h.rect(u*gridWidth, v*gridHeight, gridWidth, gridHeight);
-      }
-      
-      // Draws Store Locations
-      try {
-        // heatmap value is normalized to a value between 0 and 1;
-        normalized = (stores[u + gridPanU][v + gridPanV] - storesMIN)/(storesMAX-storesMIN);
-      } catch(Exception ex) {
-        normalized = (0 - storesMIN)/(storesMAX-storesMIN);
-      }
-    
-      // Full Color Range
-      s.fill(255*normalized, 255, 255, 255);
-      
-      //Outlines stores
-      s.strokeWeight(1);
-      s.stroke(textColor);
-      
-      // Doesn't draw a rectangle for values of 0
-      if (normalized != 0) {
-        s.rect(u*gridWidth, v*gridHeight, gridWidth, gridHeight);
+        s.fill(255*normalized, 255, 255, 255);
+        
+        //Outlines stores
+        s.strokeWeight(1);
+        s.stroke(textColor);
+        
+        // Doesn't draw a rectangle for values of 0
+        if (normalized != 0) {
+          s.rect(u*gridWidth, v*gridHeight, gridWidth, gridHeight);
+        }
       }
     }
   }
