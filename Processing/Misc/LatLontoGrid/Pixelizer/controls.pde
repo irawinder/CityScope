@@ -4,7 +4,10 @@
 String[] menuOrder = 
 {
   "Next City (n)",
-  "Print Screenshot (p)",
+  "VOID",
+  "2km per pixel (3)",
+  "1km per pixel (2)",
+  "500m per pixel (1)",
   "VOID",
   "Delivery Counts (d)",
   "Tote Counts (t)",
@@ -13,16 +16,14 @@ String[] menuOrder =
   "VOID",
   "Store Locations (s)",
   "VOID",
+  "Invert Colors (i)",
+  "Show Basemap (m)",
+  "VOID",
   "Align Left (l)",
   "Align Right (r)",
   "Align Center (c)",
-  "Invert Colors (i)",
-  "VOID",
-  "2km per pixel (3)",
-  "1km per pixel (2)",
-  "500m per pixel (1)",
-  "VOID",
-  "Show Basemap (m)"
+  "Show Framerate (f)",
+  "Print Screenshot (p)"
 };
 
 // Define how many button of which type in this array
@@ -44,6 +45,7 @@ String[] buttonNames =
   "1km per pixel (2)",     // 12
   "500m per pixel (1)",    // 13
   "Show Basemap (m)",      // 14
+  "Show Framerate (f)"     // 15
 };
 
 int getButtonIndex(String name) {
@@ -145,6 +147,11 @@ void mouseClicked() {
     toggleBaseMap(getButtonIndex(buttonNames[14]));
   }
   
+  //function15
+  if(mainMenu.buttons[getButtonIndex(buttonNames[15])].over()){ 
+    toggleFramerate(getButtonIndex(buttonNames[15]));
+  }
+  
   reRender();
 }
 
@@ -204,11 +211,8 @@ void keyPressed() {
     case 'm': // "Show Map (m)",          // 14
       toggleBaseMap(getButtonIndex(buttonNames[14]));
       break;
-      
-      
-    // These key commands do not have buttons
-    case 'f': // "Show Framerate" (f)",
-      showFrameRate = toggle(showFrameRate);
+    case 'f': // "Show Framerate" (f)",   // 15
+      toggleFramerate(getButtonIndex(buttonNames[15]));
       break;
     
   }
@@ -305,13 +309,23 @@ void setGridSize(float size, int button) {
 
 void toggleBaseMap(int button) {
   showBasemap = toggle(showBasemap);
-  if (showBasemap) {
+  pressButton(showBasemap, button);
+  println("showBasemap = " + showBasemap);
+} 
+
+void toggleFramerate(int button) {
+  showFrameRate = toggle(showFrameRate);
+  pressButton(showFrameRate, button);
+  println("showFrameRate = " + showFrameRate);
+} 
+
+void pressButton(boolean bool, int button) {
+  if (bool) {
     mainMenu.buttons[button].isPressed = false;
   } else {
     mainMenu.buttons[button].isPressed = true;
   }
-  println("showBasemap = " + showBasemap);
-} 
+}
 
 // Presses all buttons in a set of mutually exclusive buttons except for the index specified
 // min-max specifies a range of button indices; valueMode specifies the currently selected button

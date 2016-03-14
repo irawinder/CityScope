@@ -118,6 +118,9 @@ void loadMenu(int canvasWidth, int canvasHeight) {
   depressHeatmapButtons();
   // Selects one of the mutually exclusive pixel scales
   depressZoomButtons(gridSize);
+  // Checks whether these true/false button should be pressed
+  pressButton(showBasemap, getButtonIndex(buttonNames[14]));
+  pressButton(showFrameRate, getButtonIndex(buttonNames[15]));
 }
 
 void draw() {
