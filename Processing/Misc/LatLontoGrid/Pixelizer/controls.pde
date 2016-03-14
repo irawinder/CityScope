@@ -236,6 +236,29 @@ void keyPressed() {
   reRender();
 }
 
+// variables for Scroll Bar
+int y_0, x_0;
+int scroll_y = 0;
+int scroll_x = 0;
+int scroll_y_0 = 0;
+int scroll_x_0 = 0;
+
+void mousePressed() {
+  x_0 = mouseX;
+  y_0 = mouseY;
+}
+
+void mouseDragged() {
+  scroll_x = scroll_x_0 + mouseX - x_0;
+  scroll_y = scroll_y_0 + mouseY - y_0;
+  println(scroll_x, scroll_y);
+}
+
+void mouseReleased() {
+  scroll_x_0 = scroll_x;
+  scroll_y_0 = scroll_y;
+}
+
 // Show or Hide Main Menu Items 
 void toggleMainMenu() {
   showMainMenu = toggle(showMainMenu);
@@ -353,7 +376,7 @@ void depressHeatmapButtons() {
   mainMenu.buttons[button].isPressed = false;
 }
 
-// Presses all buttons in a set of mutually exclusive buttons except for the index specified
+// Presses all buttons withinin a set of mutually exclusive buttons except for the index specified
 // min-max specifies a range of button indices; size specifies the currently selected button
 void depressZoomButtons(float size) {
   
