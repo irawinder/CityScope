@@ -163,7 +163,6 @@ void draw() {
   
   if (showPopulationData){
     image(p, 0, 0, width, height);
-    image(p, 0, 0, width, height);
   }
   
   if (showDeliveryData) {
