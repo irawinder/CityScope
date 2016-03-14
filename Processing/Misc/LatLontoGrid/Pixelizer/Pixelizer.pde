@@ -112,12 +112,12 @@ void loadData(int gridU, int gridV, int index) {
 void loadMenu(int canvasWidth, int canvasHeight) {
   // Initializes Menu Items (canvas width, canvas height, button width[pix], button height[pix], 
   // number of buttons to offset downward, String[] names of buttons)
-  hideMenu = new Menu(canvasWidth, canvasHeight, 170, 25, 0, hide, align);
-  mainMenu = new Menu(canvasWidth, canvasHeight, 170, 25, 2, buttonNames, align);
+  hideMenu = new Menu(canvasWidth, canvasHeight, 170, 20, 0, hide, align);
+  mainMenu = new Menu(canvasWidth, canvasHeight, 170, 20, 2, menuOrder, align);
   // Selects one of the mutually exclusive heatmps
-  depressHeatmapButtons(3, 6);
+  depressHeatmapButtons();
   // Selects one of the mutually exclusive pixel scales
-  depressHeatmapButtons(15, 17, gridSize);
+  depressZoomButtons(gridSize);
 }
 
 void draw() {

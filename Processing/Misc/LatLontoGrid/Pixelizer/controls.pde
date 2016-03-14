@@ -1,28 +1,59 @@
-// Define how many buttons are in the Main Menu and 
-// what they are named by editing this String array:
+// Define the ORDER of the buttons by changing this array
+// May only be a subset of buttonNames[]
+// May include "VOID" if you which to leave a gap between menu buttons
+String[] menuOrder = 
+{
+  "Next City (n)",
+  "Print Screenshot (p)",
+  "VOID",
+  "Delivery Counts (d)",
+  "Tote Counts (t)",
+  "Store Source (o)",
+  "Avg Doorstep Time (a)",
+  "VOID",
+  "Store Locations (s)",
+  "VOID",
+  "Align Left (l)",
+  "Align Right (r)",
+  "Align Center (c)",
+  "Invert Colors (i)",
+  "VOID",
+  "2km per pixel (3)",
+  "1km per pixel (2)",
+  "500m per pixel (1)",
+  "VOID",
+  "Show Basemap (m)"
+};
+
+// Define how many button of which type in this array
+// DO NOT CHANGE THE ORDER OF THESE NAMES!
 String[] buttonNames = 
 {
   "Next City (n)",         // 0
   "Print Screenshot (p)",  // 1
-  "VOID",                  // 2
-  "Delivery Counts (d)",   // 3
-  "Tote Counts (t)",       // 4
-  "Store Source (o)",      // 5
-  "Avg Doorstep Time (a)", // 6
-  "VOID",                  // 7
-  "Store Locations (s)",   // 8
-  "VOID",                  // 9
-  "Align Left (l)",        // 10
-  "Align Right (r)",       // 11
-  "Align Center (c)",      // 12
-  "Invert Colors (i)",     // 13
-  "VOID",                  // 14
-  "2km per pixel (3)",     // 15
-  "1km per pixel (2)",     // 16
-  "500m per pixel (1)",    // 17
-  "VOID",                  // 18
-  "Show Basemap (m)",      // 19
+  "Delivery Counts (d)",   // 2
+  "Tote Counts (t)",       // 3
+  "Store Source (o)",      // 4
+  "Avg Doorstep Time (a)", // 5
+  "Store Locations (s)",   // 6
+  "Align Left (l)",        // 7
+  "Align Right (r)",       // 8
+  "Align Center (c)",      // 9
+  "Invert Colors (i)",     // 10
+  "2km per pixel (3)",     // 11
+  "1km per pixel (2)",     // 12
+  "500m per pixel (1)",    // 13
+  "Show Basemap (m)",      // 14
 };
+
+int getButtonIndex(String name) {
+  for(int i=0; i<menuOrder.length; i++) {
+    if (menuOrder[i].equals(name)) {
+      return i;
+    }
+  }
+  return 0;
+}
 
 // These Strings are for the hideMenu, formatted as arrays for Menu Class Constructor
 String[] hide = {"Hide Main Menu (h)"};
@@ -40,98 +71,78 @@ void mouseClicked() {
   // Main Menu Functions:
   
   //function0
-  if(mainMenu.buttons[0].over()){  
+  if(mainMenu.buttons[getButtonIndex(buttonNames[0])].over()){  
     nextModeIndex();
   }
   
   //function1
-  if(mainMenu.buttons[1].over()){ 
+  if(mainMenu.buttons[getButtonIndex(buttonNames[1])].over()){ 
     printScreen();
   }
-  
-  //function2
-  if(mainMenu.buttons[2].over()){  
-    //VOID
-  }
 
+  //function2
+  if(mainMenu.buttons[getButtonIndex(buttonNames[2])].over()){  
+    setDeliveries(getButtonIndex(buttonNames[2]));
+  }
+  
   //function3
-  if(mainMenu.buttons[3].over()){  
-    setDeliveries(3);
+  if(mainMenu.buttons[getButtonIndex(buttonNames[3])].over()){  
+    setTotes(getButtonIndex(buttonNames[3]));
   }
   
   //function4
-  if(mainMenu.buttons[4].over()){  
-    setTotes(4);
+  if(mainMenu.buttons[getButtonIndex(buttonNames[4])].over()){  
+    setSource(getButtonIndex(buttonNames[4]));
   }
   
   //function5
-  if(mainMenu.buttons[5].over()){  
-    setSource(5);
+  if(mainMenu.buttons[getButtonIndex(buttonNames[5])].over()){  
+    setDoorstep(getButtonIndex(buttonNames[5]));
   }
   
   //function6
-  if(mainMenu.buttons[6].over()){  
-    setDoorstep(6);
+  if(mainMenu.buttons[getButtonIndex(buttonNames[6])].over()){  
+    setStores(getButtonIndex(buttonNames[6]));
   }
   
   //function7
-  if(mainMenu.buttons[7].over()){  
-    //VOID
-  }
-  
-  //function8
-  if(mainMenu.buttons[8].over()){  
-    setStores(8);
-  }
-  
-  //function10
-  if(mainMenu.buttons[10].over()){  
+  if(mainMenu.buttons[getButtonIndex(buttonNames[7])].over()){  
     alignLeft();
   }
   
-  //function11
-  if(mainMenu.buttons[11].over()){ 
+  //function8
+  if(mainMenu.buttons[getButtonIndex(buttonNames[8])].over()){ 
     alignRight();
   }
   
-  //function12
-  if(mainMenu.buttons[12].over()){ 
+  //function9
+  if(mainMenu.buttons[getButtonIndex(buttonNames[9])].over()){ 
     alignCenter();
   }
   
-  //function13
-  if(mainMenu.buttons[13].over()){ 
+  //function10
+  if(mainMenu.buttons[getButtonIndex(buttonNames[10])].over()){ 
     invertColors();
   }
   
+  //function11
+  if(mainMenu.buttons[getButtonIndex(buttonNames[11])].over()){ 
+    setGridSize(2.0, getButtonIndex(buttonNames[11]));
+  }
+  
+  //function12
+  if(mainMenu.buttons[getButtonIndex(buttonNames[12])].over()){ 
+    setGridSize(1.0, getButtonIndex(buttonNames[12]));
+  }
+  
+  //function13
+  if(mainMenu.buttons[getButtonIndex(buttonNames[13])].over()){ 
+    setGridSize(0.5, getButtonIndex(buttonNames[13]));
+  }
+  
   //function14
-  if(mainMenu.buttons[14].over()){ 
-    //VOID
-  }
-  
-  //function15
-  if(mainMenu.buttons[15].over()){ 
-    setGridSize(2.0, 15);
-  }
-  
-  //function16
-  if(mainMenu.buttons[16].over()){ 
-    setGridSize(1.0, 16);
-  }
-  
-  //function17
-  if(mainMenu.buttons[17].over()){ 
-    setGridSize(0.5, 17);
-  }
-  
-  //function18
-  if(mainMenu.buttons[18].over()){ 
-    //VOID
-  }
-  
-  //function19
-  if(mainMenu.buttons[19].over()){ 
-    toggleBaseMap(19);
+  if(mainMenu.buttons[getButtonIndex(buttonNames[14])].over()){ 
+    toggleBaseMap(getButtonIndex(buttonNames[14]));
   }
   
   reRender();
@@ -150,48 +161,48 @@ void keyPressed() {
       printScreen();
       break;
   
-    case 'd': // "Delivery Counts (d)",   // 3
-      setDeliveries(3);
+    case 'd': // "Delivery Counts (d)",   // 2
+      setDeliveries(getButtonIndex(buttonNames[2]));
       break;
-    case 't': // "Tote Counts (t)",       // 4
-      setTotes(4);
+    case 't': // "Tote Counts (t)",       // 3
+      setTotes(getButtonIndex(buttonNames[3]));
       break;
-    case 'o': // "Store Source (o)",      // 5
-      setSource(5);
+    case 'o': // "Store Source (o)",      // 4
+      setSource(getButtonIndex(buttonNames[4]));
       break;
-    case 'a': // "Avg Doorstep Time (a)"  // 6
-      setDoorstep(6);
-      break;
-      
-    case 's': // "Store Locations (s)"    // 8
-      setStores(8);
+    case 'a': // "Avg Doorstep Time (a)"  // 5
+      setDoorstep(getButtonIndex(buttonNames[5]));
       break;
       
-    case 'l': // "Align Left (l)",        // 10
+    case 's': // "Store Locations (s)"    // 6
+      setStores(getButtonIndex(buttonNames[6]));
+      break;
+      
+    case 'l': // "Align Left (l)",        // 7
       alignLeft();
       break;
-    case 'r': // "Align Right (r)"        // 11
+    case 'r': // "Align Right (r)"        // 8
       alignRight();
       break;
-    case 'c': // "Align Center (c)"       // 12
+    case 'c': // "Align Center (c)"       // 9
       alignCenter();
       break;
-    case 'i': // "Invert Colors (i)"      // 13
+    case 'i': // "Invert Colors (i)"      // 10
       invertColors();
       break;
   
-    case '3': // "2km per pixel",         // 15
-      setGridSize(2.0, 15);
+    case '3': // "2km per pixel",         // 11
+      setGridSize(2.0, getButtonIndex(buttonNames[11]));
       break;
-    case '2': // "1km per pixel",         // 16
-      setGridSize(1.0, 16);
+    case '2': // "1km per pixel",         // 12
+      setGridSize(1.0, getButtonIndex(buttonNames[12]));
       break;
-    case '1': // "500m per pixel",        // 17
-      setGridSize(0.5, 17);
+    case '1': // "500m per pixel",        // 13
+      setGridSize(0.5, getButtonIndex(buttonNames[13]));
       break;
       
-    case 'm': // "Show Map (m)",          // 19
-      toggleBaseMap(19);
+    case 'm': // "Show Map (m)",          // 14
+      toggleBaseMap(getButtonIndex(buttonNames[14]));
       break;
       
       
@@ -248,28 +259,28 @@ void printScreen() {
 
 void setDeliveries(int button) {
   valueMode = "deliveries";
-  depressHeatmapButtons(3, 6, button);
+  depressHeatmapButtons();
   loadData(gridU, gridV, modeIndex);
   println("valueMode: " + valueMode);
 }
 
 void setTotes(int button) {
   valueMode = "totes";
-  depressHeatmapButtons(3, 6, button);
+  depressHeatmapButtons();
   loadData(gridU, gridV, modeIndex);
   println("valueMode: " + valueMode);
 }
 
 void setSource(int button) {
   valueMode = "source";
-  depressHeatmapButtons(3, 6, button);
+  depressHeatmapButtons();
   loadData(gridU, gridV, modeIndex);
   println("valueMode: " + valueMode);
 }
 
 void setDoorstep(int button) {
   valueMode = "doorstep";
-  depressHeatmapButtons(3, 6, button);
+  depressHeatmapButtons();
   loadData(gridU, gridV, modeIndex);
   println("valueMode: " + valueMode);
 }
@@ -287,7 +298,7 @@ void setStores(int button) {
 void setGridSize(float size, int button) {
   gridSize = size;
   setGridParameters();
-  depressHeatmapButtons(15, 17, button);
+  depressZoomButtons(size);
   loadData(gridU, gridV, modeIndex);
   println("gridSize: " + gridSize + "km");
 }
@@ -304,9 +315,12 @@ void toggleBaseMap(int button) {
 
 // Presses all buttons in a set of mutually exclusive buttons except for the index specified
 // min-max specifies a range of button indices; valueMode specifies the currently selected button
-void depressHeatmapButtons(int min, int max) {
+void depressHeatmapButtons() {
   
-  int button = 3;
+  int min = getButtonIndex(buttonNames[2]);
+  int max = getButtonIndex(buttonNames[5]);
+  
+  int button = min;
   if (valueMode.equals("deliveries")) {
     button += 0;
   } else if (valueMode.equals("totes")) {
@@ -327,9 +341,12 @@ void depressHeatmapButtons(int min, int max) {
 
 // Presses all buttons in a set of mutually exclusive buttons except for the index specified
 // min-max specifies a range of button indices; size specifies the currently selected button
-void depressHeatmapButtons(int min, int max, float size) {
+void depressZoomButtons(float size) {
   
-  int button = 15;
+  int min = getButtonIndex(buttonNames[11]);
+  int max = getButtonIndex(buttonNames[13]);
+  
+  int button = min;
   if (size == 2) {
     button += 0;
   } else if (size == 1) {
@@ -338,17 +355,6 @@ void depressHeatmapButtons(int min, int max, float size) {
     button += 2;
   }
   
-  // Turns all buttons off
-  for(int i=min; i<=max; i++) { //heatmap buttons min-max are mutually exclusive
-    mainMenu.buttons[i].isPressed = true;
-  }
-  // highlighted the heatmap button that is activated only
-  mainMenu.buttons[button].isPressed = false;
-}
-
-// Presses all buttons in a set of mutually exclusive buttons except for the index specified
-// min-max specifies a range of button indices; "button" specifies the currently selected button
-void depressHeatmapButtons(int min, int max, int button) {
   // Turns all buttons off
   for(int i=min; i<=max; i++) { //heatmap buttons min-max are mutually exclusive
     mainMenu.buttons[i].isPressed = true;
