@@ -141,7 +141,11 @@ void draw() {
   
   image(i, 0, 0, width, height);
   
+  renderCursor(c);
+  image(c, 0, 0, width, height);
+  
   // Draws Menu
+  buttonHovering = false;
   hideMenu.draw();
   if (showMainMenu) {
     mainMenu.draw();

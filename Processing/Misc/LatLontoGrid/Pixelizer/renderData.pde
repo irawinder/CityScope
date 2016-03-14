@@ -1,4 +1,5 @@
-PGraphics h, s, l, i;
+PGraphics h, s, l, i, c;
+int gridWidth, gridHeight;
 
 // 2D matrix that holds grid values
 float heatmap[][], stores[][];
@@ -14,6 +15,7 @@ void initDataGraphics() {
   s = createGraphics(width, height);
   l = createGraphics(width, height);
   i = createGraphics(width, height);
+  c = createGraphics(width, height);
 }
 
 void reRender() {
@@ -99,8 +101,8 @@ void loadPixelData() {
 void renderData(PGraphics h, PGraphics s) {
   
   // Dynamically adjusts grid size to fit within canvas dimensions
-  float gridWidth = float(width)/displayU;
-  float gridHeight= float(height)/displayV;
+  gridWidth = int(float(width)/displayU);
+  gridHeight= int(float(height)/displayV);
   
   // clear canvases
   h.beginDraw();
@@ -117,7 +119,11 @@ void renderData(PGraphics h, PGraphics s) {
     for (int v=0; v<displayV; v++) {
       // Only loads data within bounds of dataset
       if (u+gridPanU>=0 && u+gridPanU<gridU && v+gridPanV>=0 && v+gridPanV<gridV) {
-      
+        
+        color from, to;
+        from = color(0,255,0);
+        to = color(255,0,0);
+        
         float normalized;
         
         // Draw Heatmap
@@ -132,12 +138,16 @@ void renderData(PGraphics h, PGraphics s) {
         // 0.25 coefficient narrows the range of colors used
         // 100 + var offsets the range of colors used
         
-        if (valueMode.equals("totes") || valueMode.equals("deliveries") ) {
+        if (valueMode.equals("totes") || valueMode.equals("deliveries")) {
           // Narrower Color Range
           h.fill(0.75*255*(1-normalized), 255, 255, 150);
-        } else if (valueMode.equals("source") || valueMode.equals("doorstep") ) {
+        } else if (valueMode.equals("source")) {
           // Less Narrower Color Range
           h.fill(0.75*255*normalized, 255, 255, 150);
+        } else if (valueMode.equals("doorstep")) {
+          // Less Narrower Color Range, reversed
+          h.fill(lerpColor(from,to,normalized), 150);
+          
         } else {
           // Full Color Range
           h.fill(255*normalized, 255, 255, 150);
@@ -162,12 +172,12 @@ void renderData(PGraphics h, PGraphics s) {
         s.fill(255*normalized, 255, 255, 255);
         
         //Outlines stores
-        s.strokeWeight(1);
+        s.strokeWeight(2);
         s.stroke(textColor);
         
         // Doesn't draw a rectangle for values of 0
         if (normalized != 0) {
-          s.rect(u*gridWidth, v*gridHeight, gridWidth, gridHeight);
+          s.ellipse((u+.5)*gridWidth, (v+.5)*gridHeight, 0.75*gridWidth, 0.75*gridHeight);
         }
       }
     }
@@ -199,21 +209,62 @@ void renderInfo(PGraphics i) {
   i.textAlign(RIGHT);
   i.text("Pixelizer v1.0 by Ira Winder, jiw@mit.edu", width - 10, height - 15);
   
-  if (showMainMenu) {
-    i.textAlign(LEFT);
-    String suffix = "";
-    String prefix = "";
-    if (valueMode.equals("totes") || valueMode.equals("deliveries") ) {
-      suffix = " " + valueMode;
-    } else if ( valueMode.equals("source") ) {
-      prefix = "StoreID ";
-    }  else if ( valueMode.equals("doorstep") ) {
-      suffix = " seconds";
-    }
-    i.text("Grid Stats", 10, height - 75);
-    i.text("Min: " + prefix + (int)heatmapMIN + suffix, 10, height - 60);
-    i.text("Max: " + prefix + (int)heatmapMAX + suffix, 10, height - 45);
-    i.text(fileName + ": 1 grid square = " + gridSize + "km", 10, height - 15);
+
+  i.textAlign(LEFT);
+  String suffix = "";
+  String prefix = "";
+  if (valueMode.equals("totes") || valueMode.equals("deliveries") ) {
+    suffix = " " + valueMode;
+  } else if ( valueMode.equals("source") ) {
+    prefix = "StoreID ";
+  }  else if ( valueMode.equals("doorstep") ) {
+    suffix = " seconds";
   }
+  
+  i.fill(0,255,0);
+  i.text("Current Cell Value: " + prefix + (int)getCellValue(mouseToU(), mouseToV()) + suffix, 10, height - 110);
+  
+  i.fill(textColor);
+  i.text(fileName.toUpperCase() + " Grid Statistics:", 10, height - 80);
+  i.text("Min Cell Value: " + prefix + (int)heatmapMIN + suffix, 10, height - 60);
+  i.text("Max Cell Value: " + prefix + (int)heatmapMAX + suffix, 10, height - 45);
+  i.text("1 grid square = " + gridSize + "km", 10, height - 15);
+  
   i.endDraw();
+}
+
+// pass 1 to include pan
+int mouseToU() {
+  return int(displayU*(float)mouseX/width) + gridPanU;   
+}
+
+// pass 1 to include pan
+int mouseToV() {
+  return int(displayV*(float)mouseY/height) + gridPanV;
+}
+
+float getCellValue(int u, int v) {
+  return heatmap[u][v];
+}
+
+void renderCursor(PGraphics c) {
+  c.beginDraw();
+  c.clear();
+  c.noFill();
+  c.strokeWeight(2);
+  
+  int x, y;
+  // Render Mouse
+  c.stroke(0, 255, 255);
+  x = mouseToU() - gridPanU;
+  y = mouseToV() - gridPanV;
+  c.rect(x*gridWidth, y*gridWidth, gridWidth, gridWidth);
+  
+  // Render Selection
+  c.stroke(0, 255, 0);
+  x = selectionU - gridPanU;
+  y = selectionV - gridPanV;
+  c.rect(x*gridWidth, y*gridWidth, gridWidth, gridWidth);
+  
+  c.endDraw();
 }

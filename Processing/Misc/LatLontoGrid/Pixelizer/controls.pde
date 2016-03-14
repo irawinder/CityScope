@@ -64,6 +64,11 @@ String[] show = {"Show Main Menu (h)"};
 // The result of each button click is defined here
 void mouseClicked() {
   
+  if (!buttonHovering) {
+    selectionU = mouseToU();
+    selectionV = mouseToV();
+  }
+  
   //Hide/Show Menu
   if(hideMenu.buttons[0].over()){  
     toggleMainMenu();
@@ -242,12 +247,16 @@ int scroll_y = 0;
 int scroll_x = 0;
 int scroll_y_0 = 0;
 int scroll_x_0 = 0;
+int selectionU = gridU/2;
+int selectionV = gridV/2;
 
 void resetMousePan() {
   scroll_y = 0;
   scroll_x = 0;
   scroll_y_0 = 0;
   scroll_x_0 = 0;
+  selectionU = gridU/2;
+  selectionV = gridV/2;
 }
 
 void mousePressed() {
@@ -467,6 +476,8 @@ boolean toggle(boolean bool) {
   }
 }
 
+boolean buttonHovering = false;
+
 class Button{
   // variables describing upper left corner of button, width, and height in pixels
   int x,y,w,h;
@@ -496,6 +507,7 @@ class Button{
       p.noStroke();
       if( over() ) {  // Darkens button if hovering mouse over it
         p.fill(textColor, hover);
+        buttonHovering = true;
       } else if (isPressed){
         p.fill(textColor, pressed);
       } else {
