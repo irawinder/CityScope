@@ -1,5 +1,5 @@
 PGraphics h, s, l, i, c, p;
-int gridWidth, gridHeight;
+float gridWidth, gridHeight;
 
 // 2D matrix that holds grid values
 float heatmap[][], stores[][], pop[][], hu[][];
@@ -122,8 +122,8 @@ void loadPixelData() {
 void renderData(PGraphics h, PGraphics s, PGraphics p) {
   
   // Dynamically adjusts grid size to fit within canvas dimensions
-  gridWidth = int(float(width)/displayU);
-  gridHeight= int(float(height)/displayV);
+  gridWidth = float(width)/displayU;
+  gridHeight= float(height)/displayV;
   
   // clear canvases
   h.beginDraw();
