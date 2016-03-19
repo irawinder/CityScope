@@ -18,7 +18,8 @@
  */
 
 // length of one pixel [km]
-float gridSize = 2;
+float gridSize = 2.0; // toggle to 2.0, 1.0, and 0.5
+float maxGridSize = 2.0;
 
 // Lat-Lon and rotation to center the grid
 float centerLatitude;
@@ -37,7 +38,10 @@ String valueMode = "totes";
   // "doorstep" will average the doorstep time for each grid
   // "source" will describes which store ID(s) serve that grid bucket
   
-boolean showStores = true;
+// String that specifies what parameter of population data to load
+String popMode = "POP10";
+  // "POP10" for population count from 2010 census
+  // "HOUSING10" for housing unit count from 2010 census
 
 // The grid array of "buckets" that hold aggregated values
 int gridSum[][];
@@ -47,6 +51,9 @@ int gridFreq[][];
 
 // The grid array of "buckets" that holds store locations
 int gridStore[][];
+
+// The grid array of "buckets" that we display on screen
+int gridSDisplay[][];
 
 // TSV to hold lat-lon points
 Table dataInput;

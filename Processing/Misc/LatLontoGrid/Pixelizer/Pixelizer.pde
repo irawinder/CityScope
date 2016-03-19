@@ -29,14 +29,33 @@ boolean pixelizeData = true;
 
 // Set this to true to display the main menu upon start
 boolean showMainMenu = true;
+boolean showFrameRate = false;
 
-// Matrix Size (probably influence by how many pixels you want to render on your canvas)
-int gridV = 22*4; // Height of Lego Table
-int gridU = 18*4; // Width of Lego Table
+boolean showStores = true;
+boolean showDeliveryData = false;
+boolean showPopulationData = false;
+boolean showBasemap = true;
+
+// Display Matrix Size (cells rendered to screen)
+int displayV = 22*4; // Height of Lego Table
+int displayU = 18*4; // Width of Lego Table
+int gridPanV, gridPanU; // Integers that describe how much to offset grid pixels when drawing
+
+int scaler, gridU, gridV;
+void setGridParameters() {
+  scaler = int(maxGridSize/gridSize);
+  // Total Matrix Size (includes cells beyond extents of screen)
+  gridV = displayV*scaler; // Height of Lego Table
+  gridU = displayU*scaler; // Width of Lego Table
+  // Integers that describe how much to offset grid pixels when drawing
+  gridPanV = (gridV-displayV)/2;
+  gridPanU = (gridU-displayU)/2;
+  resetMousePan();
+}
 
 // How big your applet window is, in pixels
 int canvasWidth = 800;
-int canvasHeight = int(canvasWidth * float(gridV)/gridU);
+int canvasHeight = int(canvasWidth * float(displayV)/displayU);
 
 //Global Text and Background Color
 int textColor = 255;
@@ -62,8 +81,12 @@ void setup() {
    }
    );
   
+  setGridParameters();
+  initDataGraphics();
+  
   // Reads point data from TSV file, converts to JSON, prints to JSON, and reads in from JSON
   loadData(gridU, gridV, modeIndex);
+  reRender();
   
   // Loads and formats menu items
   loadMenu(canvasWidth, canvasHeight);
@@ -95,31 +118,78 @@ void loadData(int gridU, int gridV, int index) {
 void loadMenu(int canvasWidth, int canvasHeight) {
   // Initializes Menu Items (canvas width, canvas height, button width[pix], button height[pix], 
   // number of buttons to offset downward, String[] names of buttons)
-  hideMenu = new Menu(canvasWidth, canvasHeight, 170, 25, 0, hide, align);
-  mainMenu = new Menu(canvasWidth, canvasHeight, 170, 25, 2, buttonNames, align);
+  hideMenu = new Menu(canvasWidth, canvasHeight, 170, 20, 0, hide, align);
+  mainMenu = new Menu(canvasWidth, canvasHeight, 170, 20, 2, menuOrder, align);
   // Selects one of the mutually exclusive heatmps
-  depressHeatmapButtons(3, 6);
+  depressHeatmapButtons();
+  // Selects one of the mutually exclusive population maps
+  depressPopulationButtons();
   // Selects one of the mutually exclusive pixel scales
-  depressHeatmapButtons(15, 17, gridSize);
+  depressZoomButtons(gridSize);
+  // Checks whether these true/false button should be pressed
+  pressButton(showStores, getButtonIndex(buttonNames[6]));
+  pressButton(showBasemap, getButtonIndex(buttonNames[14]));
+  pressButton(showFrameRate, getButtonIndex(buttonNames[15]));
+  pressButton(showDeliveryData, getButtonIndex(buttonNames[16]));
+  pressButton(showPopulationData, getButtonIndex(buttonNames[17]));
+  
+  if (!showPopulationData) {
+    for (int i=18; i<=19; i++) {
+      mainMenu.buttons[getButtonIndex(buttonNames[i])].show = false;
+    }
+  } else {
+    for (int i=18; i<=19; i++) {
+      mainMenu.buttons[getButtonIndex(buttonNames[i])].show = true;
+    }
+  }
+  
+  if (!showDeliveryData) {
+    for (int i=2; i<=5; i++) {
+      mainMenu.buttons[getButtonIndex(buttonNames[i])].show = false;
+    }
+  } else {
+    for (int i=2; i<=5; i++) {
+      mainMenu.buttons[getButtonIndex(buttonNames[i])].show = true;
+    }
+  }
 }
 
 void draw() {
-
+  
+  background(background);
+  
   // Draws a Google Satellite Image
   renderBasemap();
   
-  // Draws false color heatmap to canvas
-  renderData();
+  if (showPopulationData){
+    image(p, 0, 0, width, height);
+  }
   
-  // Draws Outlines of Lego Data Modules (a 4x4 lego stud piece)
-  renderLines();
+  if (showDeliveryData) {
+    image(h, 0, 0, width, height);
+  }
   
-  printStats();
+  if (showStores) {
+    image(s, 0, 0, width, height);
+  }
+  
+  image(l, 0, 0, width, height);
+  
+  renderInfo(i);
+  image(i, 0, 0, width, height);
+  
+  renderCursor(c);
+  image(c, 0, 0, width, height);
   
   // Draws Menu
+  buttonHovering = false;
   hideMenu.draw();
   if (showMainMenu) {
     mainMenu.draw();
+  }
+  
+  if (showFrameRate) {
+    text("FrameRate: " + frameRate, 10, 15);
   }
   
 }
