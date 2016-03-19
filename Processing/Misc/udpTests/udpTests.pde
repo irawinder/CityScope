@@ -23,7 +23,7 @@ UDP udp;  // define the UDP object
  */
 void setup() {
   
-  test = loadTable("test.csv");
+  test = loadTable("input_facilities.csv");
   // create a new datagram connection on port 6000
   // and wait for incomming message
   udp = new UDP( this, 6000 );
@@ -37,7 +37,7 @@ void draw() {
   
   if (millis() % 1000 < 150) {
     background(255);
-    sendData(test, "18.189.21.70", 5005);
+    sendData(test, "18.189.117.245", 5005);
   } else {
     background(0);
   }
@@ -89,6 +89,10 @@ void sendData(Table table, String ip, int port) {
   
   //top value
   dataToSend += table.getString(0,0);
+  dataToSend += ",";
+  dataToSend += table.getInt(0,1);
+  dataToSend += ",";
+  dataToSend += table.getInt(0,2);
   dataToSend += "\n" ;
   
   for (int v=1; v<table.getRowCount(); v++) {
