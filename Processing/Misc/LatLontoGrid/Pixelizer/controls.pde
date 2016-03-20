@@ -289,6 +289,7 @@ int scroll_y_0 = 0;
 int scroll_x_0 = 0;
 int selectionU = gridU/2;
 int selectionV = gridV/2;
+boolean panChange = false;
 
 void resetMousePan() {
   scroll_y = 0;
@@ -308,10 +309,22 @@ void mouseDragged() {
   scroll_x = scroll_x_0 + mouseX - x_0;
   scroll_y = scroll_y_0 + mouseY - y_0;
   
-  gridPanU = - int(scroll_x*((float)displayU/width)) + (gridU-displayU)/2;
-  gridPanV = - int(scroll_y*((float)displayV/height)) + (gridV-displayV)/2;
+  if (gridPanU != - int(scroll_x*((float)displayU/width)) + (gridU-displayU)/2) {
+    gridPanU = - int(scroll_x*((float)displayU/width)) + (gridU-displayU)/2;
+    panChange = true;
+  }
   
+  if (gridPanV != - int(scroll_y*((float)displayV/height)) + (gridV-displayV)/2) {
+    gridPanV = - int(scroll_y*((float)displayV/height)) + (gridV-displayV)/2;
+    panChange = true;
+  }
+  
+  // On ReRenders if pan direction is changed
+  if (panChange) {
   reRender();
+  panChange = false;
+  }
+  
 }
 
 void mouseReleased() {

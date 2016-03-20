@@ -275,11 +275,24 @@ void renderInfo(PGraphics i) {
   }
   
   i.fill(0,255,0);
+  String value = "";
   if (showDeliveryData) {
-    i.text("Cell Value: " + prefix + (int)getCellValue(mouseToU(), mouseToV()) + suffix, 10, height - 125);
+    value = "";
+    if ((int)getCellValue(mouseToU(), mouseToV()) == -1) {
+      value = "NO_DATA";
+    } else {
+      value += (int)getCellValue(mouseToU(), mouseToV());
+    }
+    i.text("Cell Value: " + prefix + value + suffix, 10, height - 125);
   }
   if (showPopulationData) {
-    i.text("Cell Population: " + (int)getCellPop(mouseToU(), mouseToV()) + " " + popMode, 10, height - 110);
+    value = "";
+    if ((int)getCellPop(mouseToU(), mouseToV()) == -1) {
+      value = "NO_DATA";
+    } else {
+      value += (int)getCellPop(mouseToU(), mouseToV());
+    }
+    i.text("Cell Population: " + value + " " + popMode, 10, height - 110);
   }
   
   i.fill(textColor);
@@ -302,11 +315,19 @@ int mouseToV() {
 }
 
 float getCellValue(int u, int v) {
-  return heatmap[u][v];
+  try {
+    return heatmap[u][v];
+  }  catch(RuntimeException e) {
+    return -1;
+  }
 }
 
 float getCellPop(int u, int v) {
-  return pop[u][v];
+  try {  
+    return pop[u][v];
+  }  catch(RuntimeException e) {
+    return -1;
+  }
 }
 
 void renderCursor(PGraphics c) {
@@ -316,6 +337,7 @@ void renderCursor(PGraphics c) {
   c.strokeWeight(2);
   
   int x, y;
+  
   // Render Mouse
   c.stroke(0, 255, 255);
   x = mouseToU() - gridPanU;
