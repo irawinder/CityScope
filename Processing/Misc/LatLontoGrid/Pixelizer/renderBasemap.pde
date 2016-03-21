@@ -7,8 +7,8 @@ void initializeBaseMap() {
 
 // Loads Basemap file
 void loadBasemap() {
-  float w = wholeMap.width/gridU;
-  float h = wholeMap.height/gridV;
+  float w = (float)wholeMap.width/gridU;
+  float h = (float)wholeMap.height/gridV;
   basemap = wholeMap.get(int(gridPanU*w), int(gridPanV*h), int(displayU*w), int(displayV*h));
   loadMiniBaseMap();
 }
