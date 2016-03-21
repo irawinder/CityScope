@@ -205,6 +205,10 @@ void draw() {
   table.endDraw();
   
   image(table, tablex_0, tabley_0, tablex_1, tabley_1);
+  noFill();
+  stroke(textColor);
+  strokeWeight(2);
+  rect(tablex_0, tabley_0, tablex_1, tabley_1);
   
   
   
