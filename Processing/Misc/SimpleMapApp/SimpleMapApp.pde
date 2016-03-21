@@ -1,7 +1,7 @@
 
 
 void setup() {
-  size(3100, 3100, P2D);
+  size(4000, 4000, P2D);
   
   setupMap();
   

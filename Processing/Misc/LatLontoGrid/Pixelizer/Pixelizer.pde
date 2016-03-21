@@ -123,7 +123,10 @@ void loadData(int gridU, int gridV, int index) {
   // Loads pixel data into heatmap
   loadPixelData();
   
-  // Loads Basemap file
+  // Initializes Basemap file
+  initializeBaseMap();
+  
+  // Loads Basemap from subset of file
   loadBasemap();
 }
 

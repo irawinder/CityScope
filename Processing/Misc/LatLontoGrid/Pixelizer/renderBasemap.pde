@@ -1,31 +1,21 @@
-PImage basemap;
+PImage wholeMap, basemap;
 String mapColor = "bw";
-int mapPanX, mapPanY;
+
+void initializeBaseMap() {
+  wholeMap = loadImage("data/" + mapColor + "/" + fileName + "_2000.png");
+}
 
 // Loads Basemap file
 void loadBasemap() {
-  try {
-    loadMiniBaseMap();
-    basemap = loadImage("data/" + mapColor + "/" + fileName + "_" + int(gridSize*1000) + ".png");
-    basemap.resize(table.width, table.height);
-  } catch(RuntimeException e) {
-    println("No basemap available at this scale: " + gridSize + "km per pixel.");
-  }
-  mapPan();
-}
-
-void mapPan() {
-  mapPanX = - int(table.width *( gridPanU - (gridU-displayU)/2 ) / displayU);
-  mapPanY = - int(table.height*( gridPanV - (gridV-displayV)/2 ) / displayV);
+  float w = wholeMap.width/gridU;
+  float h = wholeMap.height/gridV;
+  basemap = wholeMap.get(int(gridPanU*w), int(gridPanV*h), int(displayU*w), int(displayV*h));
+  loadMiniBaseMap();
 }
 
 // Draws a Google Satellite Image
 void renderBasemap(PGraphics graphic) {
-  try {
-    if (showBasemap) {
-      graphic.image(basemap, mapPanX, mapPanY, table.width, table.height);
-    }
-  } catch(RuntimeException e) {
-    println("No basemap available at this scale: " + gridSize + "km per pixel.");
+  if (showBasemap) {
+    graphic.image(basemap, 0, 0, table.width, table.height);
   }
 }

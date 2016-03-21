@@ -58,8 +58,6 @@ void reRender() {
   // Renders Text
   renderInfo(i, 2*tablex_0 + tablex_1, tabley_0, mapRatio*tablex_1, mapRatio*tabley_1);
   
-  mapPan();
-  
   reDraw = true;
 }
 

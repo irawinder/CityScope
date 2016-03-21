@@ -270,17 +270,29 @@ void keyPressed() {
   
   //------arrow keys and how to code keys that aren't characters exactly----- 
   if (key == CODED) { 
-    if (keyCode == LEFT) {
-      gridPanU++;
-    }  
     if (keyCode == RIGHT) {
-      gridPanU--;
+      if(gridPanU+1 <= gridU - displayU) {
+        gridPanU++;
+        loadBasemap();
+      }
     }  
-    if (keyCode == DOWN) {
-      gridPanV--;
+    if (keyCode == LEFT) {
+      if(gridPanU-1 >= 0) {
+        gridPanU--;
+        loadBasemap();
+      }
     }  
     if (keyCode == UP) {
-      gridPanV++;
+      if(gridPanV-1 >= 0) {
+        gridPanV--;
+        loadBasemap();
+      }
+    }  
+    if (keyCode == DOWN) {
+      if(gridPanV+1 <= gridV - displayV) {
+        gridPanV++;
+        loadBasemap();
+      }
     }
   }
   
@@ -309,19 +321,32 @@ void resetMousePan() {
 void mousePressed() {
   x_0 = mouseX;
   y_0 = mouseY;
+  
+  if (showBasemap) {
+    mapWasOn = true;
+  } else {
+    mapWasOn = false;
+  }
 }
 
+boolean dragging = false;
+boolean mapWasOn;
 void mouseDragged() {
+  showBasemap = false;
+  dragging = true;
   scroll_x = scroll_x_0 + mouseX - x_0;
   scroll_y = scroll_y_0 + mouseY - y_0;
   
-  if (gridPanU != - int(scroll_x*((float)displayU/width)) + (gridU-displayU)/2) {
-    gridPanU = - int(scroll_x*((float)displayU/width)) + (gridU-displayU)/2;
+  int tempU = - int(scroll_x*((float)displayU/width)) + (gridU-displayU)/2;
+  int tempV = - int(scroll_y*((float)displayV/height)) + (gridV-displayV)/2;
+  
+  if (gridPanU != tempU && tempU+1 <= gridU - displayU && tempU-1 >= 0 ) {
+    gridPanU = tempU;
     panChange = true;
   }
   
-  if (gridPanV != - int(scroll_y*((float)displayV/height)) + (gridV-displayV)/2) {
-    gridPanV = - int(scroll_y*((float)displayV/height)) + (gridV-displayV)/2;
+  if (gridPanV != tempV && tempV+1 <= gridV - displayV && tempV-1 >= 0 ) {
+    gridPanV = tempV;
     panChange = true;
   }
   
@@ -334,6 +359,13 @@ void mouseDragged() {
 }
 
 void mouseReleased() {
+  if (dragging) {
+    if (mapWasOn) {
+      showBasemap = true;
+    }
+    dragging  = false;
+    loadBasemap();
+  }
   scroll_x_0 = scroll_x;
   scroll_y_0 = scroll_y;
 }
@@ -590,6 +622,8 @@ void invertColors() {
     mapColor = "bw";
     loadBasemap();
   }
+  initializeBaseMap();
+  loadBasemap();
   renderMiniMap(miniMap);
   println ("background: " + background + ", textColor: " + textColor);
 }
