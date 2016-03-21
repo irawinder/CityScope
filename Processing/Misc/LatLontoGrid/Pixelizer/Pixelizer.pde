@@ -24,6 +24,12 @@ import java.awt.event.*;
 // 1 = San Jose
 int modeIndex = 0;
 
+int projectorWidth = 1920;
+int projectorHeight = 1080;
+
+int screenWidth = 1200;
+int screenHeight = 800;
+
 // Set this to false if you know that you don't need to regenerate data every time Software is run
 boolean pixelizeData = true;
 
@@ -33,8 +39,10 @@ boolean showFrameRate = false;
 
 boolean showStores = true;
 boolean showDeliveryData = false;
-boolean showPopulationData = false;
+boolean showPopulationData = true;
 boolean showBasemap = true;
+
+boolean flagResize = false;
 
 // Display Matrix Size (cells rendered to screen)
 int displayV = 22*4; // Height of Lego Table
@@ -54,8 +62,8 @@ void setGridParameters() {
 }
 
 // How big your applet window is, in pixels
-int canvasWidth = 800;
-int canvasHeight = int(canvasWidth * float(displayV)/displayU);
+int tableWidth = 800;
+int tableHeight = int(tableWidth * float(displayV)/displayU);
 
 //Global Text and Background Color
 int textColor = 255;
@@ -66,7 +74,7 @@ String align = "RIGHT";
 Menu mainMenu, hideMenu;
 
 void setup() {
-  size(canvasWidth, canvasHeight);
+  size(screenWidth, screenHeight);
   
   // Window may be resized after initialized
   frame.setResizable(true);
@@ -75,7 +83,7 @@ void setup() {
   frame.addComponentListener(new ComponentAdapter() { 
      public void componentResized(ComponentEvent e) { 
        if(e.getSource()==frame) { 
-         loadMenu(width, height);
+         flagResize = true;
        } 
      } 
    }
@@ -86,10 +94,14 @@ void setup() {
   
   // Reads point data from TSV file, converts to JSON, prints to JSON, and reads in from JSON
   loadData(gridU, gridV, modeIndex);
+  
+  // Renders Minimap
+  renderMiniMap(miniMap);
+  
   reRender();
   
   // Loads and formats menu items
-  loadMenu(canvasWidth, canvasHeight);
+  loadMenu(tableWidth, tableHeight);
 }
 
 void loadData(int gridU, int gridV, int index) {
@@ -115,11 +127,11 @@ void loadData(int gridU, int gridV, int index) {
   loadBasemap();
 }
 
-void loadMenu(int canvasWidth, int canvasHeight) {
-  // Initializes Menu Items (canvas width, canvas height, button width[pix], button height[pix], 
+void loadMenu(int screenWidth, int screenHeight) {
+  // Initializes Menu Items (screenWidth, screenHeight, button width[pix], button height[pix], 
   // number of buttons to offset downward, String[] names of buttons)
-  hideMenu = new Menu(canvasWidth, canvasHeight, 170, 20, 0, hide, align);
-  mainMenu = new Menu(canvasWidth, canvasHeight, 170, 20, 2, menuOrder, align);
+  hideMenu = new Menu(screenWidth, screenHeight, 170, 20, 0, hide, align);
+  mainMenu = new Menu(screenWidth, screenHeight, 170, 20, 2, menuOrder, align);
   // Selects one of the mutually exclusive heatmps
   depressHeatmapButtons();
   // Selects one of the mutually exclusive population maps
@@ -152,45 +164,67 @@ void loadMenu(int canvasWidth, int canvasHeight) {
       mainMenu.buttons[getButtonIndex(buttonNames[i])].show = true;
     }
   }
+  
+  mainMenu.buttons[getButtonIndex(buttonNames[20])].isPressed = true;
 }
 
 void draw() {
   
+  if (flagResize) {
+    initScreenOffsets();
+    loadMenu(screenWidth, screenHeight);
+    flagResize = false;
+  }
+  
   background(background);
   
+  table.beginDraw();
+  table.clear();
+  table.background(background);
+  
   // Draws a Google Satellite Image
-  renderBasemap();
+  renderBasemap(table);
   
   if (showPopulationData){
-    image(p, 0, 0, width, height);
+    table.image(p, 0, 0);
   }
   
   if (showDeliveryData) {
-    image(h, 0, 0, width, height);
+    table.image(h, 0, 0);
   }
   
   if (showStores) {
-    image(s, 0, 0, width, height);
+    table.image(s, 0, 0);
   }
   
-  image(l, 0, 0, width, height);
-  
-  renderInfo(i);
-  image(i, 0, 0, width, height);
+  table.image(l, 0, 0);
   
   renderCursor(c);
-  image(c, 0, 0, width, height);
+  table.image(c, 0, 0);
+  
+  table.endDraw();
+  
+  image(table, tablex_0, tabley_0, tablex_1, tabley_1);
+  
+  
+  
+  
+  screen.beginDraw();
+  screen.clear();
+  
+  renderInfo(i, 2*tablex_0 + tablex_1, tabley_0, 0.2*tablex_1, 0.2*tabley_1);
+  screen.image(i, 0, 0);
   
   // Draws Menu
   buttonHovering = false;
-  hideMenu.draw();
+  hideMenu.draw(screen);
   if (showMainMenu) {
-    mainMenu.draw();
+    mainMenu.draw(screen);
   }
   
-  if (showFrameRate) {
-    text("FrameRate: " + frameRate, 10, 15);
-  }
+  screen.endDraw();
+  
+  image(screen, 0, 0);
   
 }
   

@@ -5,25 +5,25 @@ int mapPanX, mapPanY;
 // Loads Basemap file
 void loadBasemap() {
   try {
+    loadMiniBaseMap();
     basemap = loadImage("data/" + mapColor + "/" + fileName + "_" + int(gridSize*1000) + ".png");
-    basemap.resize(width, height);
+    basemap.resize(table.width, table.height);
   } catch(RuntimeException e) {
     println("No basemap available at this scale: " + gridSize + "km per pixel.");
   }
   mapPan();
-  println(mapPanX, mapPanY); 
 }
 
 void mapPan() {
-  mapPanX = - int(width *( gridPanU - (gridU-displayU)/2 ) / displayU);
-  mapPanY = - int(height*( gridPanV - (gridV-displayV)/2 ) / displayV);
+  mapPanX = - int(table.width *( gridPanU - (gridU-displayU)/2 ) / displayU);
+  mapPanY = - int(table.height*( gridPanV - (gridV-displayV)/2 ) / displayV);
 }
 
 // Draws a Google Satellite Image
-void renderBasemap() {
+void renderBasemap(PGraphics graphic) {
   try {
     if (showBasemap) {
-      image(basemap, mapPanX, mapPanY, width, height);
+      graphic.image(basemap, mapPanX, mapPanY, table.width, table.height);
     }
   } catch(RuntimeException e) {
     println("No basemap available at this scale: " + gridSize + "km per pixel.");

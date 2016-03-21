@@ -1,5 +1,10 @@
+PGraphics screen, projector, table;
 PGraphics h, s, l, i, c, p;
 float gridWidth, gridHeight;
+
+int tabley_0 = 50;
+int tablex_0 = 50;
+int tabley_1, tablex_1;
 
 // 2D matrix that holds grid values
 float heatmap[][], stores[][], pop[][], hu[][];
@@ -15,15 +20,33 @@ JSONArray array;
 //Table holding Population Counts and Housing Units (created from GridResampler)
 Table popCSV, huCSV;
 
-void initDataGraphics() {
-  h = createGraphics(width, height);
-  s = createGraphics(width, height);
-  l = createGraphics(width, height);
-  i = createGraphics(width, height);
-  c = createGraphics(width, height);
-  p = createGraphics(width, height);
+void initScreenOffsets() {
+  screenWidth = width;
+  screenHeight = height;
+  screen = createGraphics(screenWidth, screenHeight);
+  i = createGraphics(screenWidth, screenHeight);
+         
+  tabley_1 = screenHeight - 2*tabley_0;
+  tablex_1 = int(((float)displayU/displayV)*tabley_1);
 }
 
+void initDataGraphics() {
+  projector = createGraphics(projectorWidth, projectorHeight);
+  
+  screen = createGraphics(screenWidth, screenHeight);
+  i = createGraphics(screen.width, screen.height); // Information
+  miniMap = createGraphics(gridU, gridV);
+
+  // Table Layers
+  table = createGraphics(tableWidth, tableHeight); // Main Table Canvas
+  h = createGraphics(table.width, table.height);   // Heatmap Cells
+  p = createGraphics(table.width, table.height);   // Population Cells
+  s = createGraphics(table.width, table.height);   // Store Dots
+  l = createGraphics(table.width, table.height);   // lines
+  c = createGraphics(table.width, table.height);   // Cursor
+}
+
+boolean reDraw = true;
 void reRender() {
   
   // Renders false color heatmap to canvas
@@ -33,11 +56,11 @@ void reRender() {
   renderLines(l);
   
   // Renders Text
-  renderInfo(i);
+  renderInfo(i, 2*tablex_0 + tablex_1, tabley_0, 0.2*tablex_1, 0.2*tabley_1);
   
   mapPan();
   
-  println("ReRendered");
+  reDraw = true;
 }
 
 // Runs once when initializes
@@ -122,8 +145,8 @@ void loadPixelData() {
 void renderData(PGraphics h, PGraphics s, PGraphics p) {
   
   // Dynamically adjusts grid size to fit within canvas dimensions
-  gridWidth = float(width)/displayU;
-  gridHeight= float(height)/displayV;
+  gridWidth = float(table.width)/displayU;
+  gridHeight= float(table.height)/displayV;
   
   // clear canvases
   h.beginDraw();
@@ -144,89 +167,30 @@ void renderData(PGraphics h, PGraphics s, PGraphics p) {
     for (int v=0; v<displayV; v++) {
       // Only loads data within bounds of dataset
       if (u+gridPanU>=0 && u+gridPanU<gridU && v+gridPanV>=0 && v+gridPanV<gridV) {
-        
         float normalized;
-        color from, to;        
+        color from, to; 
         
-        
-        //BEGIN Drawing HEATMAP
-        from = color(0,255,0);
-        to = color(255,0,0);
-        
-        // Draw Heatmap
-        try {
-          // heatmap value is normalized to a value between 0 and 1;
-          normalized = (heatmap[u + gridPanU][v + gridPanV] - heatmapMIN)/(heatmapMAX-heatmapMIN);
-        } catch(Exception ex) {
-          normalized = (0 - heatmapMIN)/(heatmapMAX-heatmapMIN);
-        }
-        
-        // Hue Color of the grid is function of heatmap value;
-        // 0.25 coefficient narrows the range of colors used
-        // 100 + var offsets the range of colors used
-        
-        if (valueMode.equals("totes") || valueMode.equals("deliveries")) {
-          // Narrower Color Range
-          h.fill(0.75*255*(1-normalized), 255, 255, 150);
-        } else if (valueMode.equals("source")) {
-          // Less Narrower Color Range
-          h.fill(0.75*255*normalized, 255, 255, 150);
-        } else if (valueMode.equals("doorstep")) {
-          // Less Narrower Color Range, reversed
-          h.fill(lerpColor(from,to,normalized), 150);
-        } else {
-          // Full Color Range
-          h.fill(255*normalized, 255, 255, 150);
-        }
-        
+        // HEATMAP
+        normalized = findHeatmapFill(h, u+gridPanU, v+gridPanV);
         // Doesn't draw a rectangle for values of 0
         h.noStroke(); // No lines draw around grid cells
         if (normalized >= 0) {
           h.rect(u*gridWidth, v*gridHeight, gridWidth, gridHeight);
         }
         
-        
-        //BEGIN Drawing POPULATION
-        from = color(#000AF7, 100); // Blue
-        to = color(#FF0000);   // Red
-        
-        // Draw Population
-        try {
-          // heatmap value is normalized to a value between 0 and 1;
-          normalized = ( sqrt(sqrt(pop[u + gridPanU][v + gridPanV])) - sqrt(sqrt(popMIN)))/sqrt(sqrt(popMAX-popMIN));
-        } catch(Exception ex) {
-          normalized = (0 - popMIN)/(popMAX-popMIN);
-        }
-        
-        // Full Color Range
-        //p.fill(255*(1-normalized), 255, 255, 150);
-          
-        p.fill(lerpColor(from,to,normalized));
-        
-        // Doesn't draw a rectangle for values of 0
-        p.noStroke(); // No lines draw around grid cells
-        if (normalized >= 0) {
+        // POPULATION
+        if (pop[u+gridPanU][v+gridPanV] > 10.0*sq(gridSize)) {
+          normalized = findPopFill(p, u+gridPanU, v+gridPanV);
+          // Doesn't draw a rectangle for values of 0
+          p.noStroke(); // No lines draw around grid cells
           p.rect(u*gridWidth, v*gridHeight, gridWidth, gridHeight);
         }
         
-        
-        
-        
-        // BEGIN Drawing Draws Store Locations
-        try {
-          // heatmap value is normalized to a value between 0 and 1;
-          normalized = (stores[u + gridPanU][v + gridPanV] - storesMIN)/(storesMAX-storesMIN);
-        } catch(Exception ex) {
-          normalized = (0 - storesMIN)/(storesMAX-storesMIN);
-        }
-      
-        // Full Color Range
-        s.fill(255*normalized, 255, 255, 255);
-        
+        //STORES
+        normalized = findStoreFill(s, u+gridPanU, v+gridPanV);
         //Outlines stores
         s.strokeWeight(2);
         s.stroke(textColor);
-        
         // Doesn't draw a rectangle for values of 0
         if (normalized != 0) {
           s.ellipse((u+.5)*gridWidth, (v+.5)*gridHeight, 0.75*gridWidth, 0.75*gridHeight);
@@ -239,6 +203,90 @@ void renderData(PGraphics h, PGraphics s, PGraphics p) {
   p.endDraw();
 }
 
+float findHeatmapFill(PGraphics graphic, int u, int v) {
+    float normalized;
+    color from, to;        
+    
+    //BEGIN Drawing HEATMAP
+    from = color(0,255,0);
+    to = color(255,0,0);
+    
+    // Draw Heatmap
+    try {
+      // heatmap value is normalized to a value between 0 and 1;
+      normalized = (heatmap[u][v] - heatmapMIN)/(heatmapMAX-heatmapMIN);
+    } catch(Exception ex) {
+      normalized = (0 - heatmapMIN)/(heatmapMAX-heatmapMIN);
+    }
+    
+    // Hue Color of the grid is function of heatmap value;
+    // 0.25 coefficient narrows the range of colors used
+    // 100 + var offsets the range of colors used
+    
+    if (valueMode.equals("totes") || valueMode.equals("deliveries")) {
+      // Narrower Color Range
+      graphic.fill(0.75*255*(1-normalized), 255, 255, 150);
+      graphic.stroke(0.75*255*(1-normalized), 255, 255, 150);
+    } else if (valueMode.equals("source")) {
+      // Less Narrower Color Range
+      graphic.fill(0.75*255*normalized, 255, 255, 150);
+      graphic.stroke(0.75*255*normalized, 255, 255, 150);
+    } else if (valueMode.equals("doorstep")) {
+      // Less Narrower Color Range, reversed
+      graphic.fill(lerpColor(from,to,normalized), 150);
+      graphic.stroke(lerpColor(from,to,normalized), 150);
+    } else {
+      // Full Color Range
+      graphic.fill(255*normalized, 255, 255, 150);
+      graphic.stroke(255*normalized, 255, 255, 150);
+    }
+    
+    return normalized;
+}
+
+float findPopFill(PGraphics graphic, int u, int v) {
+    float normalized;
+    color from, to;  
+    
+    //BEGIN Drawing POPULATION
+    from = color(#000AF7, 100); // Blue
+    to = color(#FF0000);   // Red
+    
+    // Draw Population
+    try {
+      // heatmap value is normalized to a value between 0 and 1;
+      normalized = ( sqrt(sqrt(pop[u][v])) - sqrt(sqrt(popMIN)))/sqrt(sqrt(popMAX-popMIN));
+    } catch(Exception ex) {
+      normalized = (0 - popMIN)/(popMAX-popMIN);
+    }
+    
+    // Full Color Range
+    //p.fill(255*(1-normalized), 255, 255, 150);
+      
+    graphic.fill(lerpColor(from,to,normalized));
+    graphic.stroke(lerpColor(from,to,normalized));
+    
+    return normalized;
+}
+
+float findStoreFill(PGraphics graphic, int u, int v) {
+    float normalized;  
+    
+    // BEGIN Drawing Draws Store Locations
+    try {
+      // heatmap value is normalized to a value between 0 and 1;
+      normalized = (stores[u][v] - storesMIN)/(storesMAX-storesMIN);
+    } catch(Exception ex) {
+      normalized = (0 - storesMIN)/(storesMAX-storesMIN);
+    }
+  
+    // Full Color Range
+    graphic.fill(255*normalized, 255, 255, 255);
+    graphic.stroke(255*normalized, 255, 255, 255);
+        
+    return normalized;
+}
+
 // Draws Outlines of Lego Data Modules (a 4x4 lego stud piece)
 void renderLines(PGraphics l) {
   l.beginDraw();
@@ -246,21 +294,21 @@ void renderLines(PGraphics l) {
   l.stroke(255, 50);
   l.strokeWeight(1.5);
   for (int i=1; i<displayU/4; i++) {
-    l.line(width*i/(displayU/4.0), 0, width*i/(displayU/4.0), height);
+    l.line(table.width*i/(displayU/4.0), 0, table.width*i/(displayU/4.0), table.height);
   }
   for (int i=1; i<displayV/4; i++) {
-    l.line(0, height*i/(displayV/4.0), width, height*i/(displayV/4.0));
+    l.line(0, table.height*i/(displayV/4.0), table.width, table.height*i/(displayV/4.0));
   }
   l.endDraw();
 }
 
-void renderInfo(PGraphics i) {
+void renderInfo(PGraphics i, int x_0, int y_0, float w, float h) {
   i.beginDraw();
   i.clear();
   i.fill(textColor);
   
   i.textAlign(RIGHT);
-  i.text("Pixelizer v1.0 by Ira Winder, jiw@mit.edu", width - 10, height - 15);
+  i.text("Pixelizer v1.0 by Ira Winder, jiw@mit.edu", screen.width - 10, screen.height - 15);
   
 
   i.textAlign(LEFT);
@@ -274,6 +322,8 @@ void renderInfo(PGraphics i) {
     suffix = " seconds";
   }
   
+  i.translate(x_0, 2*y_0 + h + 10);
+  
   i.fill(0,255,0);
   String value = "";
   if (showDeliveryData) {
@@ -283,7 +333,7 @@ void renderInfo(PGraphics i) {
     } else {
       value += (int)getCellValue(mouseToU(), mouseToV());
     }
-    i.text("Cell Value: " + prefix + value + suffix, 10, height - 125);
+    i.text("Cell Value: " + prefix + value + suffix, 10, 120);
   }
   if (showPopulationData) {
     value = "";
@@ -292,26 +342,42 @@ void renderInfo(PGraphics i) {
     } else {
       value += (int)getCellPop(mouseToU(), mouseToV());
     }
-    i.text("Cell Population: " + value + " " + popMode, 10, height - 110);
+    i.text("Cell Population: " + value + " " + popMode, 10, 135);
   }
   
   i.fill(textColor);
-  i.text(fileName.toUpperCase() + " Grid Statistics:", 10, height - 80);
-  i.text("Min Cell Value: " + prefix + (int)heatmapMIN + suffix, 10, height - 60);
-  i.text("Max Cell Value: " + prefix + (int)heatmapMAX + suffix, 10, height - 45);
-  i.text("1 grid square = " + gridSize + "km", 10, height - 15);
+  i.text(fileName.toUpperCase() + " Grid Statistics:", 10, 0);
+  i.text("Min Cell Value: " + prefix + (int)heatmapMIN + suffix, 10, 30);
+  i.text("Max Cell Value: " + prefix + (int)heatmapMAX + suffix, 10, 45);
+  i.text("1 grid square = " + gridSize + "km", 10, 60);
   
+  if (showFrameRate) {
+    i.text("FrameRate: " + frameRate, 10, 80);
+  }
+  
+  i.endDraw();
+  
+  
+  // Draw MiniMap
+  i.beginDraw();
+  i.translate(x_0, y_0);  
+  i.image(miniMap, 0, 0, w, h);
+  i.noFill();
+  i.stroke(textColor);
+  i.rect(w*gridPanU/gridU, h*gridPanV/gridV, w*(0.5*gridSize), h*(0.5*gridSize));
+  
+
   i.endDraw();
 }
 
 // pass 1 to include pan
 int mouseToU() {
-  return int(displayU*(float)mouseX/width) + gridPanU;   
+  return int(displayU*(float)(mouseX - tablex_0)/tablex_1) + gridPanU;   
 }
 
 // pass 1 to include pan
 int mouseToV() {
-  return int(displayV*(float)mouseY/height) + gridPanV;
+  return int(displayV*(float)(mouseY - tabley_0)/tabley_1) + gridPanV;
 }
 
 float getCellValue(int u, int v) {

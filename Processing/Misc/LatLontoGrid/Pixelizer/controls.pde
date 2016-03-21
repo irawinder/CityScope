@@ -8,6 +8,7 @@ String[] menuOrder =
   "2km per pixel (3)",
   "1km per pixel (2)",
   "500m per pixel (1)",
+  "Recenter Grid (R)",
   "VOID",
   "Store Locations (s)",
   "VOID",
@@ -21,12 +22,8 @@ String[] menuOrder =
   "Population Counts (u)",
   "Household Counts (e)",
   "VOID",
-  "Invert Colors (i)",
   "Show Basemap (m)",
-  "VOID",
-  "Align Left (l)",
-  "Align Right (r)",
-  "Align Center (c)",
+  "Invert Colors (i)",
   "Show Framerate (f)",
   "Print Screenshot (p)"
 };
@@ -55,6 +52,7 @@ String[] buttonNames =
   "Show Population Data (P)",// 17
   "Population Counts (u)",   // 18
   "Household Counts (e)",    // 19
+  "Recenter Grid (R)",       // 20
 };
 
 int getButtonIndex(String name) {
@@ -63,7 +61,7 @@ int getButtonIndex(String name) {
       return i;
     }
   }
-  return 0;
+  return 1;
 }
 
 // These Strings are for the hideMenu, formatted as arrays for Menu Class Constructor
@@ -186,6 +184,11 @@ void mouseClicked() {
     setHousing(getButtonIndex(buttonNames[19]));
   }
   
+  //function20
+  if(mainMenu.buttons[getButtonIndex(buttonNames[20])].over()){ 
+    setGridParameters();
+  }
+  
   reRender();
 }
 
@@ -259,6 +262,9 @@ void keyPressed() {
       break;
     case 'e': // "Household Counts (e)",    // 19
       setHousing(getButtonIndex(buttonNames[19]));
+      break;
+    case 'R': //  "Recenter Grid (R)",      // 20
+      setGridParameters();
       break;
   }
   
@@ -347,6 +353,7 @@ void toggleMainMenu() {
 void nextModeIndex() {
   modeIndex = next(modeIndex, 1);
   loadData(gridU, gridV, modeIndex);
+  renderMiniMap(miniMap);
   println("Mode Index = " + modeIndex + ": " + fileName);
 }
 
@@ -361,6 +368,7 @@ void setDeliveries(int button) {
   valueMode = "deliveries";
   depressHeatmapButtons();
   loadData(gridU, gridV, modeIndex);
+  renderMiniMap(miniMap);
   println("valueMode: " + valueMode);
 }
 
@@ -368,6 +376,7 @@ void setTotes(int button) {
   valueMode = "totes";
   depressHeatmapButtons();
   loadData(gridU, gridV, modeIndex);
+  renderMiniMap(miniMap);
   println("valueMode: " + valueMode);
 }
 
@@ -375,6 +384,7 @@ void setSource(int button) {
   valueMode = "source";
   depressHeatmapButtons();
   loadData(gridU, gridV, modeIndex);
+  renderMiniMap(miniMap);
   println("valueMode: " + valueMode);
 }
 
@@ -382,12 +392,14 @@ void setDoorstep(int button) {
   valueMode = "doorstep";
   depressHeatmapButtons();
   loadData(gridU, gridV, modeIndex);
+  renderMiniMap(miniMap);
   println("valueMode: " + valueMode);
 }
 
 void setStores(int button) {
   showStores = toggle(showStores);
   pressButton(showStores, button);
+  renderMiniMap(miniMap);
   println("showStores: " + showStores);
 }
 
@@ -395,6 +407,7 @@ void setPop(int button) {
   popMode = "POP10";
   depressPopulationButtons();
   loadData(gridU, gridV, modeIndex);
+  renderMiniMap(miniMap);
   println("popMode: " + popMode);
 }
 
@@ -402,6 +415,7 @@ void setHousing(int button) {
   popMode = "HOUSING10";
   depressPopulationButtons();
   loadData(gridU, gridV, modeIndex);
+  renderMiniMap(miniMap);
   println("popMode: " + popMode);
 }
 
@@ -410,11 +424,14 @@ void setGridSize(float size, int button) {
   setGridParameters();
   depressZoomButtons(size);
   loadData(gridU, gridV, modeIndex);
+  miniMap = createGraphics(gridU, gridV);
+  renderMiniMap(miniMap);
   println("gridSize: " + gridSize + "km");
 }
 
 void toggleBaseMap(int button) {
   showBasemap = toggle(showBasemap);
+  renderMiniMap(miniMap);
   pressButton(showBasemap, button);
   println("showBasemap = " + showBasemap);
 } 
@@ -427,8 +444,9 @@ void toggleFramerate(int button) {
 
 void toggleDeliveryData(int button) {
   showDeliveryData = toggle(showDeliveryData);
+  renderMiniMap(miniMap);
   pressButton(showDeliveryData, button);
-  println("sshowDeliveryData = " + showDeliveryData);
+  println("showDeliveryData = " + showDeliveryData);
   
   if (!showDeliveryData) {
     for (int i=2; i<=5; i++) {
@@ -443,6 +461,7 @@ void toggleDeliveryData(int button) {
 
 void togglePopulationData(int button) {
   showPopulationData = toggle(showPopulationData);
+  renderMiniMap(miniMap);
   pressButton(showPopulationData, button);
   println("showPopulationData = " + showPopulationData);
   
@@ -540,21 +559,21 @@ void depressZoomButtons(float size) {
 // Aligns Menue to Left
 void alignLeft() {
   align = "LEFT";
-  loadMenu(width, height);
+  loadMenu(screen.width, screen.height);
   println(align);
 }
 
 // Aligns Menue to Right
 void alignRight() {
   align = "RIGHT";
-  loadMenu(width, height);
+  loadMenu(screen.width, screen.height);
   println(align);
 }
 
 // Aligns Menue to Center
 void alignCenter() {
   align = "CENTER";
-  loadMenu(width, height);
+  loadMenu(screen.width, screen.height);
   println(align);
 }
 
@@ -619,27 +638,27 @@ class Button{
   }
   
   //Button Objects are draw to a PGraphics object rather than directly to canvas
-  void draw(PGraphics p){
+  void draw(PGraphics graphic){
     if (!isVoid) {
-      p.smooth();
-      p.noStroke();
+      graphic.smooth();
+      graphic.noStroke();
       if( over() ) {  // Darkens button if hovering mouse over it
-        p.fill(textColor, hover);
+        graphic.fill(textColor, hover);
         buttonHovering = true;
       } else if (isPressed){
-        p.fill(textColor, pressed);
+        graphic.fill(textColor, pressed);
       } else {
-        p.fill(textColor, active);
+        graphic.fill(textColor, active);
       }
-      p.rect(x, y, w, h, 5);
-      p.fill(background);
-      p.text(label, x + (w/2-textWidth(label)/2), y + 0.6*h); //text(str, x1, y1, x2, y2) text(label, x + 5, y + 15)
+      graphic.rect(x, y, w, h, 5);
+      graphic.fill(background);
+      graphic.text(label, x + (w/2-textWidth(label)/2), y + 0.6*h); //text(str, x1, y1, x2, y2) text(label, x + 5, y + 15)
     }
   } 
   
   // returns true if mouse hovers in button region
   boolean over(){
-    if(mouseX >= x  && mouseY >= y + 5 && mouseX <= x + w && mouseY <= y + 2 + h){
+    if(mouseX >= x  && mouseY >= y && mouseX <= x + w && mouseY <= y + 2 + h){
       return true;
     } else {
       return false;
@@ -656,7 +675,7 @@ class Menu{
   String[] names;
   // Menu Alignment
   String align;
-  // variables describing canvasWidth, canvas Height, Button Width, Button Height, Verticle Displacement (#buttons down)
+  // variables describing screenWidth, screenHeight, Button Width, Button Height, Verticle Displacement (#buttons down)
   int w, h, x, y, vOffset;
   
   //Constructor
@@ -677,13 +696,13 @@ class Menu{
     for (int i=0; i<buttons.length; i++) {
       if ( this.align.equals("right") || this.align.equals("RIGHT") ) {
         // Right Align
-        buttons[i] = new Button(this.w - this.x - 10, 10 + this.vOffset*(this.y+5) + i*(this.y+5), this.x, this.y, this.names[i]);
+        buttons[i] = new Button(this.w - this.x - 10, tabley_0 + this.vOffset*(this.y+5) + i*(this.y+5), this.x, this.y, this.names[i]);
       } else if ( this.align.equals("left") || this.align.equals("LEFT") ) { 
         // Left Align
-        buttons[i] = new Button(10, 10 + this.vOffset*(this.y+5) + i*(this.y+5), this.x, this.y, names[i]);
+        buttons[i] = new Button(10, tabley_0 + this.vOffset*(this.y+5) + i*(this.y+5), this.x, this.y, names[i]);
       } else if ( this.align.equals("center") || this.align.equals("CENTER") ) { 
         // Center Align
-        buttons[i] = new Button( (this.w-this.x)/2, 10 + this.vOffset*(this.y+5) + i*(this.y+5), this.x, this.y, this.names[i]);
+        buttons[i] = new Button( (this.w-this.x)/2, tabley_0 + this.vOffset*(this.y+5) + i*(this.y+5), this.x, this.y, this.names[i]);
       }
       
       // Alows a menu button spacer to be added by setting its string value to "VOID"
@@ -694,7 +713,7 @@ class Menu{
   }
   
   // Draws the Menu to its own PGraphics canvas
-  void draw() {
+  void draw(PGraphics graphic) {
     canvas.beginDraw();
     canvas.clear();
     for (int i=0; i<buttons.length; i++) {
@@ -704,6 +723,6 @@ class Menu{
     }
     canvas.endDraw();
     
-    image(canvas, 0, 0);
+    graphic.image(canvas, 0, 0);
   }
 }
