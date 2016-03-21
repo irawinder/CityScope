@@ -590,6 +590,7 @@ void invertColors() {
     mapColor = "bw";
     loadBasemap();
   }
+  renderMiniMap(miniMap);
   println ("background: " + background + ", textColor: " + textColor);
 }
 
@@ -696,10 +697,10 @@ class Menu{
     for (int i=0; i<buttons.length; i++) {
       if ( this.align.equals("right") || this.align.equals("RIGHT") ) {
         // Right Align
-        buttons[i] = new Button(this.w - this.x - 10, tabley_0 + this.vOffset*(this.y+5) + i*(this.y+5), this.x, this.y, this.names[i]);
+        buttons[i] = new Button(this.w - this.x - tablex_0, tabley_0 + this.vOffset*(this.y+5) + i*(this.y+5), this.x, this.y, this.names[i]);
       } else if ( this.align.equals("left") || this.align.equals("LEFT") ) { 
         // Left Align
-        buttons[i] = new Button(10, tabley_0 + this.vOffset*(this.y+5) + i*(this.y+5), this.x, this.y, names[i]);
+        buttons[i] = new Button(tablex_0, tabley_0 + this.vOffset*(this.y+5) + i*(this.y+5), this.x, this.y, names[i]);
       } else if ( this.align.equals("center") || this.align.equals("CENTER") ) { 
         // Center Align
         buttons[i] = new Button( (this.w-this.x)/2, tabley_0 + this.vOffset*(this.y+5) + i*(this.y+5), this.x, this.y, this.names[i]);

@@ -2,8 +2,8 @@ PGraphics screen, projector, table;
 PGraphics h, s, l, i, c, p;
 float gridWidth, gridHeight;
 
-int tabley_0 = 50;
-int tablex_0 = 50;
+int tabley_0 = 25;
+int tablex_0 = 25;
 int tabley_1, tablex_1;
 
 // 2D matrix that holds grid values
@@ -56,7 +56,7 @@ void reRender() {
   renderLines(l);
   
   // Renders Text
-  renderInfo(i, 2*tablex_0 + tablex_1, tabley_0, 0.2*tablex_1, 0.2*tabley_1);
+  renderInfo(i, 2*tablex_0 + tablex_1, tabley_0, mapRatio*tablex_1, mapRatio*tabley_1);
   
   mapPan();
   
@@ -308,7 +308,7 @@ void renderInfo(PGraphics i, int x_0, int y_0, float w, float h) {
   i.fill(textColor);
   
   i.textAlign(RIGHT);
-  i.text("Pixelizer v1.0 by Ira Winder, jiw@mit.edu", screen.width - 10, screen.height - 15);
+  i.text("Pixelizer v1.0 by Ira Winder, jiw@mit.edu", screen.width - 10, screen.height - tabley_0);
   
 
   i.textAlign(LEFT);

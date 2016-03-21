@@ -1,5 +1,6 @@
 PGraphics miniMap;
 PImage miniBaseMap;
+float mapRatio = 0.2;
 
 void loadMiniBaseMap() {
   miniBaseMap = loadImage("data/" + mapColor + "/" + fileName + "_2000.png");
