@@ -247,12 +247,52 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
   
   for (int i=0; i<numNodes; i++) {
     for (int j=0; j<numNodes-1; j++) {
-      origin[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
+//      origin[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
 
 //HUGE UGLY VORONOI MATH THAT DOES THING 
 if(showVoronoi == true)
 {
+ for(int l = 0; l<5; l++){
+      float x = random(width);
+      float y = random(height);
+      if( (((x  - towers_x[0]) * (x - towers_x[0])) +  ((y  - towers_y[0]) * (y  - towers_y[0])) <= ((x  - towers_x[2]) * (x - towers_x[2])) +  ((y  - towers_y[2]) * (y  - towers_y[2]))) && 
+      ((x  - towers_x[0]) * (x - towers_x[0])) +  ((y  - towers_y[0]) * (y  - towers_y[0])) <= ((x  - towers_x[6]) * (x - towers_x[6])) +  ((y  - towers_y[6]) * (y  - towers_y[6]))
+      &&
+      ((x  - towers_x[0]) * (x - towers_x[0])) +  ((y  - towers_y[0]) * (y  - towers_y[0])) <= ((x  - towers_x[3]) * (x - towers_x[3])) +  ((y  - towers_y[3]) * (y  - towers_y[3]))
+      &&
+      ((x  - towers_x[0]) * (x - towers_x[0])) +  ((y  - towers_y[0]) * (y  - towers_y[0])) <=  ((x  - towers_x[4]) * (x - towers_x[4])) +  ((y  - towers_y[4]) * (y  - towers_y[4]))
+      &&
+      ((x  - towers_x[0]) * (x - towers_x[0])) +  ((y  - towers_y[0]) * (y  - towers_y[0])) <= ((x  - towers_x[5]) * (x - towers_x[5])) +  ((y  - towers_y[5]) * (y  - towers_y[5]))
+      &&
+      ((x  - towers_x[0]) * (x - towers_x[0])) +  ((y  - towers_y[0]) * (y  - towers_y[0])) <=  ((x  - towers_x[7]) * (x - towers_x[7])) +  ((y  - towers_y[7]) * (y  - towers_y[7]))
+      &&
+     ((x  - towers_x[0]) * (x - towers_x[0])) +  ((y  - towers_y[0]) * (y  - towers_y[0])) <= ((x  - towers_x[1]) * (x - towers_x[1])) +  ((y  - towers_y[1]) * (y  - towers_y[1]))
+      &&
+      ((x  - towers_x[0]) * (x - towers_x[0])) +  ((y  - towers_y[0]) * (y  - towers_y[0])) <= ((x  - towers_x[8]) * (x - towers_x[8])) +  ((y  - towers_y[8]) * (y  - towers_y[8]))
+      &&
+      ((x  - towers_x[0]) * (x - towers_x[0])) +  ((y  - towers_y[0]) * (y  - towers_y[0])) <=((x  - towers_x[9]) * (x - towers_x[9])) +  ((y  - towers_y[9]) * (y  - towers_y[9]))
+      &&
+      ((x  - towers_x[0]) * (x - towers_x[0])) +  ((y  - towers_y[0]) * (y  - towers_y[0])) <=  ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10]))
+      &&
+      ((x  - towers_x[0]) * (x - towers_x[0])) +  ((y  - towers_y[0]) * (y  - towers_y[0])) <= ((x  - towers_x[11]) * (x - towers_x[11])) +  ((y  - towers_y[11]) * (y  - towers_y[11]))
+      &&
+      ((x  - towers_x[0]) * (x - towers_x[0])) +  ((y  - towers_y[0]) * (y  - towers_y[0])) <= ((x  - towers_x[12]) * (x - towers_x[12])) +  ((y  - towers_y[12]) * (y  - towers_y[12]))
+      &&
+      ((x  - towers_x[0]) * (x - towers_x[0])) +  ((y  - towers_y[0]) * (y  - towers_y[0])) <= ((x  - towers_x[13]) * (x - towers_x[13])) +  ((y  - towers_y[13]) * (y  - towers_y[13]))
+      &&
+      ((x  - towers_x[0]) * (x - towers_x[0])) +  ((y  - towers_y[0]) * (y  - towers_y[0])) <=  ((x  - towers_x[14]) * (x - towers_x[14])) +  ((y  - towers_y[14]) * (y  - towers_y[14]))
+      &&
+      ((x  - towers_x[0]) * (x - towers_x[0])) +  ((y  - towers_y[0]) * (y  - towers_y[0])) <=((x  - towers_x[15]) * (x - towers_x[15])) +  ((y  - towers_y[15]) * (y  - towers_y[15])))
+      {
+      origin[i*(numNodes-1)+j] = new PVector(x, y);
+      }
+      
+      else{
+         origin[i*(numNodes-1)+j] = new PVector(towers_x[0] + 1000000, towers_y[0] + 1000000);
+      }
+}
 
+  
   for(int l = 0; l<5; l++){
       float x = random(width);
       float y = random(height);
@@ -847,7 +887,7 @@ if(showVoronoi == true)
   for (int i=0; i<numSwarm; i++) {
     
     // delay, origin, destination, speed, color
-//swarmHorde.addSwarm(weight[i], origin[i], destination[i], 1, color(tower_colors[0])); //color(255.0*i/numSwarm, 255, 255
+  swarmHorde.addSwarm(weight[i], origin[i], destination[i], 1, color(tower_colors[0])); //color(255.0*i/numSwarm, 255, 255
   swarmHorde.addSwarm(weight[i], origin2[i], destination[i], 1, color(tower_colors[1]));
   swarmHorde.addSwarm(weight[i], origin3[i], destination[i], 1, color(tower_colors[2]));
   swarmHorde.addSwarm(weight[i], origin4[i], destination[i], 1, color(tower_colors[3]));
