@@ -39,8 +39,15 @@ void initContent(PGraphics p) {
       finderMode = 0;
       showEdges = false;
       showSource = true;
-      showPaths = true;
+      showPaths = false;
       break;
+//    case 2: // Random Demo
+//      showGrid = true;
+//      finderMode = 0;
+//      showEdges = true;
+//      showSource = true;
+//      showPaths = true;
+//      break;
   }
   
   initObstacles(p);
@@ -79,7 +86,7 @@ void initAgents(PGraphics p) {
   
   println("Initializing Agent Objects ... ");
   
-  swarmHorde = new Horde(2000);
+  swarmHorde = new Horde(8000);
   sources_Viz = createGraphics(p.width, p.height);
   edges_Viz = createGraphics(p.width, p.height);
   
@@ -93,6 +100,10 @@ void initAgents(PGraphics p) {
     case 2: 
       testNetwork_Random(p, 16);
       break;
+//    case 3: 
+//      testNetwork_Random(p, 16);
+//      showVoronoi = false;
+//      break;
   }
   
   swarmPaths(p, enablePathfinding);
@@ -171,6 +182,7 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
   destination = new PVector[numSwarm];
   weight = new float[numSwarm];
   swarmHorde.clearHorde();
+
         color[] tower_colors = new color[16];
         tower_colors[0] = color(255, 0, 0); //red
         tower_colors[1] = color(0, 255, 0); //green
@@ -238,7 +250,7 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
       origin[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
 
 //HUGE UGLY VORONOI MATH THAT DOES THING 
-if(dataMode !=2)
+if(showVoronoi == true)
 {
 
   for(int l = 0; l<5; l++){
@@ -277,7 +289,7 @@ if(dataMode !=2)
       }
       
       else{
-        origin2[i*(numNodes-1)+j] = new PVector(towers_x[2] , towers_y[2]);
+         origin2[i*(numNodes-1)+j] = new PVector(towers_x[2] + 1000000, towers_y[2] + 1000000);
       }
 }
 
@@ -318,7 +330,7 @@ if(dataMode !=2)
       }
       
       else{
-        origin3[i*(numNodes-1)+j] = new PVector(towers_x[3], towers_y[3]);
+        origin3[i*(numNodes-1)+j] = new PVector(towers_x[3] + 1000000, towers_y[3] + 1000000);
       }
        
   }
@@ -359,7 +371,7 @@ if(dataMode !=2)
       }
       
       else{
-        origin4[i*(numNodes-1)+j] = new PVector(towers_x[4], towers_y[4]);
+        origin4[i*(numNodes-1)+j] = new PVector(towers_x[4] + 1000000, towers_y[4] + 1000000);
       }
        
   }
@@ -400,7 +412,7 @@ if(dataMode !=2)
       }
       
       else{
-        origin5[i*(numNodes-1)+j] = new PVector(towers_x[5], towers_y[5]);
+        origin5[i*(numNodes-1)+j] = new PVector(towers_x[5] + 1000000, towers_y[5] + 1000000);
       }
        
   }
@@ -441,7 +453,7 @@ if(dataMode !=2)
       }
       
       else{
-        origin6[i*(numNodes-1)+j] = new PVector(towers_x[6], towers_y[6]);
+        origin6[i*(numNodes-1)+j] = new PVector(towers_x[6] + 100000, towers_y[6] + 100000);
       }
        
   }
@@ -482,7 +494,7 @@ if(dataMode !=2)
       }
       
       else{
-        origin7[i*(numNodes-1)+j] = new PVector(towers_x[7], towers_y[7]);
+        origin7[i*(numNodes-1)+j] = new PVector(towers_x[7] + 1000000, towers_y[7]+ 1000000);
       }
        
   }
@@ -523,7 +535,7 @@ if(dataMode !=2)
       }
       
       else{
-        origin8[i*(numNodes-1)+j] = new PVector(towers_x[8], towers_y[8]);
+        origin8[i*(numNodes-1)+j] = new PVector(towers_x[8] + 1000000, towers_y[8] + 1000000);
       }
        
   }
@@ -564,7 +576,7 @@ if(dataMode !=2)
       }
       
       else{
-        origin9[i*(numNodes-1)+j] = new PVector(towers_x[9], towers_y[9]);
+        origin9[i*(numNodes-1)+j] = new PVector(towers_x[9] + 1000000, towers_y[9] + 1000000);
       }
        
   }
@@ -605,7 +617,7 @@ if(dataMode !=2)
       }
       
       else{
-        origin10[i*(numNodes-1)+j] = new PVector(towers_x[10], towers_y[10]);
+        origin10[i*(numNodes-1)+j] = new PVector(towers_x[10] + 1000000, towers_y[10]+ 1000000);
       }
        
   }
@@ -646,7 +658,7 @@ if(dataMode !=2)
       }
       
       else{
-        origin11[i*(numNodes-1)+j] = new PVector(towers_x[11], towers_y[11]);
+        origin11[i*(numNodes-1)+j] = new PVector(towers_x[11] + 1000000, towers_y[11] + 1000000);
       }
        
   }
@@ -687,7 +699,7 @@ if(dataMode !=2)
       }
       
       else{
-        origin12[i*(numNodes-1)+j] = new PVector(towers_x[12], towers_y[12]);
+        origin12[i*(numNodes-1)+j] = new PVector(towers_x[12] + 1000000, towers_y[12] + 1000000);
       }
        
   }
@@ -729,7 +741,7 @@ if(dataMode !=2)
       }
       
       else{
-        origin13[i*(numNodes-1)+j] = new PVector(towers_x[13], towers_y[13]);
+        origin13[i*(numNodes-1)+j] = new PVector(towers_x[13] + 1000000, towers_y[13] + 1000000);
       }
        
   }
@@ -771,7 +783,7 @@ if(dataMode !=2)
       }
       
       else{
-        origin14[i*(numNodes-1)+j] = new PVector(towers_x[14], towers_y[14]);
+        origin14[i*(numNodes-1)+j] = new PVector(towers_x[14] + 1000000, towers_y[14] + 1000000);
       }
        
   }
@@ -813,7 +825,7 @@ if(dataMode !=2)
       }
       
       else{
-        origin15[i*(numNodes-1)+j] = new PVector(towers_x[15], towers_y[15]);
+        origin15[i*(numNodes-1)+j] = new PVector(towers_x[15]+ 1000000, towers_y[15]+ 1000000);
       }
        
   }
@@ -835,7 +847,7 @@ if(dataMode !=2)
   for (int i=0; i<numSwarm; i++) {
     
     // delay, origin, destination, speed, color
-  swarmHorde.addSwarm(weight[i], origin[i], destination[i], 1, color(tower_colors[0])); //color(255.0*i/numSwarm, 255, 255
+//swarmHorde.addSwarm(weight[i], origin[i], destination[i], 1, color(tower_colors[0])); //color(255.0*i/numSwarm, 255, 255
   swarmHorde.addSwarm(weight[i], origin2[i], destination[i], 1, color(tower_colors[1]));
   swarmHorde.addSwarm(weight[i], origin3[i], destination[i], 1, color(tower_colors[2]));
   swarmHorde.addSwarm(weight[i], origin4[i], destination[i], 1, color(tower_colors[3]));

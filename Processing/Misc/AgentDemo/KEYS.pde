@@ -67,7 +67,7 @@ void keyPressed() {
       }
       break;
     case 'D': //Toggles various data and visualization modes
-      setLoader("Data Mode " + nextMode(dataMode, 3));
+      setLoader("Data Mode " + nextMode(dataMode, 4));
       // runs key_D() next frame
       break;
     case 'E': // shows or hides obsticale editor 
@@ -341,7 +341,7 @@ void mouseClicked() {
   }
   
   if(button8.over()){ //next datamode
-    setLoader("Data Mode " + nextMode(dataMode, 3));
+    setLoader("Data Mode " + nextMode(dataMode, 4));
     key_D();
   }
   
