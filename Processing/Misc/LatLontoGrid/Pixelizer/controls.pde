@@ -456,7 +456,6 @@ void setGridSize(float size, int button) {
   setGridParameters();
   depressZoomButtons(size);
   loadData(gridU, gridV, modeIndex);
-  miniMap = createGraphics(gridU, gridV);
   renderMiniMap(miniMap);
   println("gridSize: " + gridSize + "km");
 }

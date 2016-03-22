@@ -36,7 +36,7 @@ void initDataGraphics() {
   
   screen = createGraphics(screenWidth, screenHeight);
   i = createGraphics(screen.width, screen.height); // Information
-  miniMap = createGraphics(gridU, gridV);
+  miniMap = createGraphics(4*displayU, 4*displayV);
 
   // Table Layers
   table = createGraphics(tableWidth, tableHeight); // Main Table Canvas
