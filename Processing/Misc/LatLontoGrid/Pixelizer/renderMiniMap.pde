@@ -30,14 +30,14 @@ void renderMiniMap(PGraphics miniMap) {
       if (showPopulationData){
         if (pop[u][v] > 10.0*sq(gridSize)) {
           // HEATMAP
-          normalized = findPopFill(miniMap, u, v);
+          normalized = findPopFill(miniMap, pop[u][v]);
           miniMap.point(u,v);
         }
       }
       if (showDeliveryData) {
         if (heatmap[u][v] > 0) {
           // HEATMAP
-          normalized = findHeatmapFill(miniMap, u, v);
+          normalized = findHeatmapFill(miniMap, heatmap[u][v]);
           miniMap.point(u,v);
         }
       }
@@ -53,8 +53,9 @@ void renderMiniMap(PGraphics miniMap) {
       for (int v=0; v<gridV; v++) {
         if (stores[u][v] != 0) {
           // HEATMAP
-          //normalized = findStoreFill(miniMap, u, v);
-          miniMap.fill(#FF0000);
+          normalized = findStoreFill(miniMap, stores[u][v]);
+          if (normalized == 0) {miniMap.noFill();}
+          //miniMap.fill(#FF0000);
           miniMap.stroke(textColor);
           miniMap.strokeWeight(2.0/gridSize);
           miniMap.ellipse(u,v,6/gridSize,6/gridSize);

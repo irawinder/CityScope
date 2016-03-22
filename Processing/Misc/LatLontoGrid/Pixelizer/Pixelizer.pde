@@ -39,7 +39,7 @@ boolean showFrameRate = false;
 
 boolean showStores = true;
 boolean showDeliveryData = false;
-boolean showPopulationData = false;
+boolean showPopulationData = true;
 boolean showBasemap = true;
 
 boolean flagResize = false;
@@ -211,10 +211,6 @@ void draw() {
   table.endDraw();
   
   image(table, tablex_0, tabley_0, tablex_1, tabley_1);
-  noFill();
-  stroke(textColor);
-  strokeWeight(1);
-  rect(tablex_0, tabley_0, tablex_1, tabley_1);
   
   
   
@@ -224,6 +220,7 @@ void draw() {
   
   renderInfo(i, 2*tablex_0 + tablex_1, tabley_0, mapRatio*tablex_1, mapRatio*tabley_1);
   screen.image(i, 0, 0);
+  
   
   // Draws Menu
   buttonHovering = false;

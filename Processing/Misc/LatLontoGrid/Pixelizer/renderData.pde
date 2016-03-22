@@ -1,6 +1,7 @@
 PGraphics screen, projector, table;
 PGraphics h, s, l, i, c, p;
 float gridWidth, gridHeight;
+PGraphics legendH, legendP;
 
 int tabley_0 = 25;
 int tablex_0 = 25;
@@ -44,6 +45,11 @@ void initDataGraphics() {
   s = createGraphics(table.width, table.height);   // Store Dots
   l = createGraphics(table.width, table.height);   // lines
   c = createGraphics(table.width, table.height);   // Cursor
+  
+  int legendWidth = 40;
+  int legendHeight = 100;
+  legendH = createGraphics(legendWidth, legendHeight);
+  legendP = createGraphics(legendWidth, legendHeight);
 }
 
 boolean reDraw = true;
@@ -54,6 +60,9 @@ void reRender() {
   
   // Renders Outlines of Lego Data Modules (a 4x4 lego stud piece)
   renderLines(l);
+  
+  // Renders Legends
+  renderLegends();
   
   // Renders Text
   renderInfo(i, 2*tablex_0 + tablex_1, tabley_0, mapRatio*tablex_1, mapRatio*tabley_1);
@@ -133,9 +142,9 @@ void loadPixelData() {
     }
   }
   
-  // Prints largest and smallest values to console
-  println("Maximum Value: " + heatmapMAX);
-  println("Minimum Value: " + heatmapMIN);
+//  // Prints largest and smallest values to console
+//  println("Maximum Value: " + heatmapMAX);
+//  println("Minimum Value: " + heatmapMIN);
   
 }
 
@@ -169,7 +178,12 @@ void renderData(PGraphics h, PGraphics s, PGraphics p) {
         color from, to; 
         
         // HEATMAP
-        normalized = findHeatmapFill(h, u+gridPanU, v+gridPanV);
+        if (valueMode.equals("source")) {
+          normalized = findStoreFill(h, heatmap[u+gridPanU][v+gridPanV]);
+          if (normalized == 0) {h.noFill();}
+        } else {
+          normalized = findHeatmapFill(h, heatmap[u+gridPanU][v+gridPanV]);
+        }
         // Doesn't draw a rectangle for values of 0
         h.noStroke(); // No lines draw around grid cells
         if (normalized >= 0) {
@@ -178,14 +192,14 @@ void renderData(PGraphics h, PGraphics s, PGraphics p) {
         
         // POPULATION
         if (pop[u+gridPanU][v+gridPanV] > 10.0*sq(gridSize)) {
-          normalized = findPopFill(p, u+gridPanU, v+gridPanV);
+          normalized = findPopFill(p, pop[u+gridPanU][v+gridPanV]);
           // Doesn't draw a rectangle for values of 0
           p.noStroke(); // No lines draw around grid cells
           p.rect(u*gridWidth, v*gridHeight, gridWidth, gridHeight);
         }
         
         //STORES
-        normalized = findStoreFill(s, u+gridPanU, v+gridPanV);
+        normalized = findStoreFill(s, stores[u+gridPanU][v+gridPanV]);
         //Outlines stores
         s.strokeWeight(2);
         s.stroke(textColor);
@@ -201,7 +215,7 @@ void renderData(PGraphics h, PGraphics s, PGraphics p) {
   p.endDraw();
 }
 
-float findHeatmapFill(PGraphics graphic, int u, int v) {
+float findHeatmapFill(PGraphics graphic, float heatmap) {
     float normalized;
     color from, to;        
     
@@ -212,7 +226,7 @@ float findHeatmapFill(PGraphics graphic, int u, int v) {
     // Draw Heatmap
     try {
       // heatmap value is normalized to a value between 0 and 1;
-      normalized = (heatmap[u][v] - heatmapMIN)/(heatmapMAX-heatmapMIN);
+      normalized = (heatmap - heatmapMIN)/(heatmapMAX-heatmapMIN);
     } catch(Exception ex) {
       normalized = (0 - heatmapMIN)/(heatmapMAX-heatmapMIN);
     }
@@ -221,28 +235,32 @@ float findHeatmapFill(PGraphics graphic, int u, int v) {
     // 0.25 coefficient narrows the range of colors used
     // 100 + var offsets the range of colors used
     
+    graphic.colorMode(HSB);
+    
+    int alpha = 255;
+    
     if (valueMode.equals("totes") || valueMode.equals("deliveries")) {
       // Narrower Color Range
-      graphic.fill(0.75*255*(1-normalized), 255, 255, 150);
-      graphic.stroke(0.75*255*(1-normalized), 255, 255, 150);
+      graphic.fill(0.75*255*(1-normalized), 255, 255, alpha);
+      graphic.stroke(0.75*255*(1-normalized), 255, 255, alpha);
     } else if (valueMode.equals("source")) {
       // Less Narrower Color Range
-      graphic.fill(0.75*255*normalized, 255, 255, 150);
-      graphic.stroke(0.75*255*normalized, 255, 255, 150);
+      graphic.fill(0.75*255*normalized, 255, 255, alpha);
+      graphic.stroke(0.75*255*normalized, 255, 255, alpha);
     } else if (valueMode.equals("doorstep")) {
       // Less Narrower Color Range, reversed
-      graphic.fill(lerpColor(from,to,normalized), 150);
-      graphic.stroke(lerpColor(from,to,normalized), 150);
+      graphic.fill(lerpColor(from,to,normalized), alpha);
+      graphic.stroke(lerpColor(from,to,normalized), alpha);
     } else {
       // Full Color Range
-      graphic.fill(255*normalized, 255, 255, 150);
-      graphic.stroke(255*normalized, 255, 255, 150);
+      graphic.fill(255*normalized, 255, 255, alpha);
+      graphic.stroke(255*normalized, 255, 255, alpha);
     }
     
     return normalized;
 }
 
-float findPopFill(PGraphics graphic, int u, int v) {
+float findPopFill(PGraphics graphic, float pop) {
     float normalized;
     color from, to;  
     
@@ -252,35 +270,37 @@ float findPopFill(PGraphics graphic, int u, int v) {
     
     // Draw Population
     try {
-      // heatmap value is normalized to a value between 0 and 1;
-      normalized = ( sqrt(sqrt(pop[u][v])) - sqrt(sqrt(popMIN)))/sqrt(sqrt(popMAX-popMIN));
+    // heatmap value is normalized to a value between 0 and 1;
+//      normalized = ( sqrt(sqrt(pop)) - sqrt(sqrt(popMIN)))/sqrt(sqrt(popMAX-popMIN));
+        normalized = ( sqrt(pop) - sqrt(popMIN))/sqrt(popMAX-popMIN);
+//      normalized = ( pop - popMIN)/(popMAX-popMIN);
     } catch(Exception ex) {
       normalized = (0 - popMIN)/(popMAX-popMIN);
     }
     
-    // Full Color Range
-    //p.fill(255*(1-normalized), 255, 255, 150);
-      
+    graphic.colorMode(HSB);
     graphic.fill(lerpColor(from,to,normalized));
     graphic.stroke(lerpColor(from,to,normalized));
     
     return normalized;
 }
 
-float findStoreFill(PGraphics graphic, int u, int v) {
+float findStoreFill(PGraphics graphic, float stores) {
     float normalized;  
+    int alpha = 255;
     
     // BEGIN Drawing Draws Store Locations
     try {
       // heatmap value is normalized to a value between 0 and 1;
-      normalized = (stores[u][v] - storesMIN)/(storesMAX-storesMIN);
+      normalized = (stores - storesMIN)/(storesMAX-storesMIN);
     } catch(Exception ex) {
       normalized = (0 - storesMIN)/(storesMAX-storesMIN);
     }
   
     // Full Color Range
-    graphic.fill(255*normalized, 255, 255, 255);
-    graphic.stroke(255*normalized, 255, 255, 255);
+    graphic.colorMode(HSB);
+    graphic.fill(255*normalized, 255, 255, alpha);
+    graphic.stroke(255*normalized, 255, 255, alpha);
         
     return normalized;
 }
@@ -303,10 +323,63 @@ void renderLines(PGraphics l) {
 void renderInfo(PGraphics i, int x_0, int y_0, float w, float h) {
   i.beginDraw();
   i.clear();
-  i.fill(textColor);
   
+  // Draw Rectangle around main canvas
+  i.noFill();
+  i.stroke(textColor);
+  i.strokeWeight(1);
+  i.rect(tablex_0, tabley_0, tablex_1, tabley_1);
+  
+  
+  i.translate(tablex_0 + tablex_1, tabley_0 + tabley_1);
+  
+    // Draw Scale
+    int scale_0 = 10;
+    int scale_1 = int(w + tablex_0);
+    float scalePix = tabley_1/displayV;
+    i.line(scale_0, 0, scale_1, 0);
+    i.line(scale_0, -4*scalePix, scale_1, -4*scalePix);
+    i.line(scale_1 - scale_0, 0, scale_1 - scale_0, -scalePix);
+    i.line(scale_1 - scale_0, -3*scalePix, scale_1 - scale_0, -4*scalePix);
+    i.text(4*gridSize + " km", scale_1 - 2*scale_0, -1.5*scalePix);
+    
+    if (showPopulationData) {
+      float legendPix = -tabley_0-4*scalePix-legendP.height;
+      // Draw Legends
+      i.image(legendP, tablex_0, legendPix);
+      i.text("Population Legend", tablex_0, legendPix - 20);
+      i.text(int(popMIN+1) + " " + popMode, 1.5*tablex_0 + legendP.width, legendPix + legendP.height);
+      i.text(int(popMAX) + " " + popMode, 1.5*tablex_0 + legendP.width, legendPix+10);
+    }
+    
+    if (showDeliveryData) {
+      float legendPix = -3*tabley_0-4*scalePix-2*legendH.height-20;
+      if (valueMode.equals("source")) {
+        float normalized;
+        int column = -1;
+        i.text("Delivery Legend", tablex_0, legendPix - 20);
+        for (int j=0; j<storeID.size(); j++) {
+          if (j % 8 == 0) {
+            column++;
+          }
+          normalized = findHeatmapFill(i, (float)storeID.get(j));
+          i.text("StoreID: " + storeID.get(j), tablex_0*(column*5+1), legendPix+10+(j-column*8)*15);
+        }
+      } else { 
+        // Draw Legends
+        i.image(legendH, tablex_0, legendPix);
+        i.text("Delivery Legend", tablex_0, legendPix - 20);
+        i.text(int(heatmapMIN+1) + " " + valueMode, 1.5*tablex_0 + legendP.width, legendPix + legendP.height);
+        i.text(int(heatmapMAX) + " " + valueMode, 1.5*tablex_0 + legendP.width, legendPix+10);
+      }
+    }
+  
+  i.translate(-(tablex_0 + tablex_1), -(tabley_0 + tabley_1));
+  
+  i.fill(textColor);
   i.textAlign(RIGHT);
-  i.text("Pixelizer v1.0 by Ira Winder, jiw@mit.edu", screen.width - 10, screen.height - tabley_0);
+  i.text("Pixelizer v1.0", screen.width - 10, screen.height - tabley_0 - 15);
+  i.text("Ira Winder, jiw@mit.edu", screen.width - 10, screen.height - tabley_0);
   
 
   i.textAlign(LEFT);
@@ -322,7 +395,13 @@ void renderInfo(PGraphics i, int x_0, int y_0, float w, float h) {
   
   i.translate(x_0, 2*y_0 + h + 10);
   
-  i.fill(0,255,0);
+  if (showDeliveryData || showPopulationData) {
+    i.text("Cell Information:", 0, 90);
+    i.text("Delivery Value:", 0, 120);
+    i.text("Population Value:", 0, 150);
+  }
+  i.colorMode(RGB);
+  i.fill(0,255,255);
   String value = "";
   if (showDeliveryData) {
     value = "";
@@ -330,7 +409,7 @@ void renderInfo(PGraphics i, int x_0, int y_0, float w, float h) {
       value = "NO_DATA";
     } else {
       value += (int)getCellValue(mouseToU(), mouseToV());
-      i.text("Cell Value: " + prefix + value + suffix, 0, 120);
+      i.text(prefix + value + suffix, 0, 135);
     }
   }
   if (showPopulationData) {
@@ -339,18 +418,20 @@ void renderInfo(PGraphics i, int x_0, int y_0, float w, float h) {
       value = "NO_DATA";
     } else {
       value += (int)getCellPop(mouseToU(), mouseToV());
-      i.text("Cell Population: " + value + " " + popMode, 0, 135);
+      i.text(value + " " + popMode, 0, 165);
     }
   }
   
   i.fill(textColor);
-  i.text(fileName.toUpperCase() + " Grid Statistics:", 0, 0);
-  i.text("Min Cell Value: " + prefix + (int)heatmapMIN + suffix, 0, 30);
-  i.text("Max Cell Value: " + prefix + (int)heatmapMAX + suffix, 0, 45);
-  i.text("1 grid square = " + gridSize + "km", 0, 60);
+  i.text(fileName.toUpperCase(), 0, 0);
+  i.text("Last Mile Logistics", 0, 15);
+//  i.text(fileName.toUpperCase() + " Grid Statistics:", 0, 0);
+//  i.text("Min Cell Value: " + prefix + (int)heatmapMIN + suffix, 0, 30);
+//  i.text("Max Cell Value: " + prefix + (int)heatmapMAX + suffix, 0, 45);
+//  i.text("1 grid square = " + gridSize + "km", 0, 60);
   
   if (showFrameRate) {
-    i.text("FrameRate: " + frameRate, 0, 80);
+    i.text("FrameRate: " + frameRate, 0, 45);
   }
   
   i.endDraw();
@@ -415,4 +496,28 @@ void renderCursor(PGraphics c) {
 //  c.rect(x*gridWidth, y*gridWidth, gridWidth, gridWidth);
   
   c.endDraw();
+}
+
+void renderLegends() {
+  
+  float normalized;
+  int intervals = 10;
+  int h = legendP.height/intervals;
+  
+  
+  legendP.beginDraw();
+  legendP.clear();
+  for (int i=0; i<intervals; i++) {
+     normalized = findPopFill(legendP, (intervals-i-1)*popMAX/intervals);
+     legendP.rect(0, i*h, legendP.width, h);
+  }
+  legendP.endDraw();
+  
+  legendH.beginDraw();
+  legendH.clear();
+  for (int i=0; i<intervals; i++) {
+     normalized = findHeatmapFill(legendH, (intervals-i-1)*heatmapMAX/intervals);
+     legendH.rect(0, i*h, legendH.width, h);
+  }
+  legendH.endDraw();
 }

@@ -52,6 +52,9 @@ int gridFreq[][];
 // The grid array of "buckets" that holds store locations
 int gridStore[][];
 
+// An Array List that holds one instance of each store detected
+ArrayList<Integer> storeID;
+
 // The grid array of "buckets" that we display on screen
 int gridSDisplay[][];
 
@@ -92,6 +95,7 @@ void pixelizeData(int gridU, int gridV) {
   gridSum   = new int[gridU][gridV];
   gridFreq  = new int[gridU][gridV];
   gridStore = new int[gridU][gridV];
+  storeID = new ArrayList<Integer>();
   for(int i=0;i<gridU;i++) {
     for(int j=0;j<gridV;j++) {
       gridSum[i][j] = 0;
@@ -141,14 +145,23 @@ void pixelizeData(int gridU, int gridV) {
     
     // Fetch grid location of Store coordinate
     uv = LatLontoGrid(latitudeS, longitudeS, centerLatitude, centerLongitude, azimuth, gridSize, this.gridV, this.gridU);
+    value = dataInput.getInt(i,0);        //1st column is the store ID
     //Check if the location is inside the grid
     if((uv[0]>0) && (uv[1]>0) && (uv[0]<gridU) && (uv[1]<gridV))
     {
+//      // Presence of a store is designated as "1" (could become more diverse for sm/lg stores, lockers, etc)
+//      gridStore[uv[0]][uv[1]] = 1;
+      
       // Presence of a store is designated as "1" (could become more diverse for sm/lg stores, lockers, etc)
-      gridStore[uv[0]][uv[1]] = 1;
+      gridStore[uv[0]][uv[1]] = value;
+      
+      if (!detectValue(value, storeID)) {
+        storeID.add(value);
+      }
     } 
-    
   }
+  
+//  println("# Stores: " + storeID.size());
   
   // Writes Grid to JSON File
   int counter = 0; // Counter used to keep track of JSONObject index
@@ -241,3 +254,15 @@ int[] LatLontoGrid(float lat, float lon, float centerLat, float centerLon, float
   //println(xy[0], xy[1]);
   return xy;
 }
+
+boolean detectValue(int current, ArrayList<Integer> values) {
+  boolean detected = false;
+  for (int i=0; i<values.size(); i++) {
+    if (values.get(i) == current) {
+      detected = true;
+      break;
+    }
+  }
+  return detected;
+}
+    
