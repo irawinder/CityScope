@@ -330,8 +330,8 @@ void renderInfo(PGraphics i, int x_0, int y_0, float w, float h) {
       value = "NO_DATA";
     } else {
       value += (int)getCellValue(mouseToU(), mouseToV());
+      i.text("Cell Value: " + prefix + value + suffix, 0, 120);
     }
-    i.text("Cell Value: " + prefix + value + suffix, 10, 120);
   }
   if (showPopulationData) {
     value = "";
@@ -339,18 +339,18 @@ void renderInfo(PGraphics i, int x_0, int y_0, float w, float h) {
       value = "NO_DATA";
     } else {
       value += (int)getCellPop(mouseToU(), mouseToV());
+      i.text("Cell Population: " + value + " " + popMode, 0, 135);
     }
-    i.text("Cell Population: " + value + " " + popMode, 10, 135);
   }
   
   i.fill(textColor);
-  i.text(fileName.toUpperCase() + " Grid Statistics:", 10, 0);
-  i.text("Min Cell Value: " + prefix + (int)heatmapMIN + suffix, 10, 30);
-  i.text("Max Cell Value: " + prefix + (int)heatmapMAX + suffix, 10, 45);
-  i.text("1 grid square = " + gridSize + "km", 10, 60);
+  i.text(fileName.toUpperCase() + " Grid Statistics:", 0, 0);
+  i.text("Min Cell Value: " + prefix + (int)heatmapMIN + suffix, 0, 30);
+  i.text("Max Cell Value: " + prefix + (int)heatmapMAX + suffix, 0, 45);
+  i.text("1 grid square = " + gridSize + "km", 0, 60);
   
   if (showFrameRate) {
-    i.text("FrameRate: " + frameRate, 10, 80);
+    i.text("FrameRate: " + frameRate, 0, 80);
   }
   
   i.endDraw();

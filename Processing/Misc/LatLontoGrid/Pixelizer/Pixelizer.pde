@@ -39,7 +39,7 @@ boolean showFrameRate = false;
 
 boolean showStores = true;
 boolean showDeliveryData = false;
-boolean showPopulationData = true;
+boolean showPopulationData = false;
 boolean showBasemap = true;
 
 boolean flagResize = false;
@@ -168,6 +168,9 @@ void loadMenu(int screenWidth, int screenHeight) {
     }
   }
   
+  mainMenu.buttons[getButtonIndex(buttonNames[0])].isPressed = true;
+  mainMenu.buttons[getButtonIndex(buttonNames[1])].isPressed = true;
+  mainMenu.buttons[getButtonIndex(buttonNames[10])].isPressed = true;
   mainMenu.buttons[getButtonIndex(buttonNames[20])].isPressed = true;
 }
 
@@ -210,7 +213,7 @@ void draw() {
   image(table, tablex_0, tabley_0, tablex_1, tabley_1);
   noFill();
   stroke(textColor);
-  strokeWeight(2);
+  strokeWeight(1);
   rect(tablex_0, tabley_0, tablex_1, tabley_1);
   
   
