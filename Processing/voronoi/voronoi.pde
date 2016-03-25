@@ -77,8 +77,8 @@ void draw()
         
     }
     
-    
-    for(int i = 0; i<200; i++){
+
+    for(int i = 0; i<100; i++){
       float x = random(width);
       float y = random(height);
       
@@ -96,6 +96,7 @@ void draw()
       stroke(0);
       }
       
+
       else if( (((x  - towers_x[2]) * (x - towers_x[2])) +  ((y  - towers_y[2]) * (y  - towers_y[2])) <= ((x  - towers_x[0]) * (x - towers_x[0])) +  ((y  - towers_y[0]) * (y  - towers_y[0]))) && 
       ((x  - towers_x[2]) * (x - towers_x[2])) +  ((y  - towers_y[2]) * (y  - towers_y[2])) <= ((x  - towers_x[1]) * (x - towers_x[1])) +  ((y  - towers_y[1]) * (y  - towers_y[1]))
       &&
@@ -160,9 +161,7 @@ void draw()
       fill(tower_colors[0]);
       stroke(0);
       }
-      
-      
-      
+    
       ellipse(x, y, 5, 5);
     }
 }
