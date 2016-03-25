@@ -655,7 +655,7 @@
 //      }
 //      
 //      else{
-//        origin15[i*(numNodes-1)+j] = new PVector(towers_x[15]+ 1000000, towers_y[15]+ 1000000);
+//        origin15[i*(numNodes-1)+j] = new PVector(towers_x[15], towers_y[15]);
 //      }
 //       
 //  }
