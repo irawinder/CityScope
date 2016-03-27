@@ -1,4 +1,13 @@
 // Graphics object in memory that holds visualization
+
+
+//NEW IDEA
+/*
+Make discrete ammenity points
+Test if in polygon
+Hook else statement to them
+*/
+
 PGraphics tableCanvas;
 
 boolean works = false;
