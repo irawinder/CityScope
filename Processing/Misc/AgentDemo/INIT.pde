@@ -294,7 +294,7 @@ if(showVoronoi == true)
         if(i>1 && works == true){
         origin[i*(numNodes-1)+j] = origin[(i-1)*(numNodes-1)+(j-1)];
         }
-        else if(i>1 && works == false){
+       if(i>1 && works == false){
         origin[i*(numNodes-1)+j] = origin[(i-1)*(numNodes-1)+(j-1)];
         }
         else if(i>10 && works == false){
@@ -889,10 +889,43 @@ if(showVoronoi == true)
         else if(i>1 && works == false){
         origin11[i*(numNodes-1)+j] = origin11[(i-1)*(numNodes-1)+(j-1)];
         }
+        else if(i>2 && works == false){
+        origin11[i*(numNodes-1)+j] = origin11[(i-1)*(numNodes-1)+(j-1)];
+        }
+        else if(i>3 && works == false){
+        origin11[i*(numNodes-1)+j] = origin11[(i-1)*(numNodes-1)+(j-1)];
+        }
+        else if(i>4 && works == false){
+        origin11[i*(numNodes-1)+j] = origin11[(i-1)*(numNodes-1)+(j-1)];
+        }
         else if(i>5 && works == false){
         origin11[i*(numNodes-1)+j] = origin11[(i-1)*(numNodes-1)+(j-1)];
         }
+         else if(i>6 && works == false){
+        origin11[i*(numNodes-1)+j] = origin11[(i-1)*(numNodes-1)+(j-1)];
+        }
+         else if(i>7 && works == false){
+        origin11[i*(numNodes-1)+j] = origin11[(i-1)*(numNodes-1)+(j-1)];
+        }
+         else if(i>8 && works == false){
+        origin11[i*(numNodes-1)+j] = origin11[(i-1)*(numNodes-1)+(j-1)];
+        }
         else if(i>10 && works == false){
+          origin11[i*(numNodes-1)+j] = origin11[(i-2)*(numNodes-1)+(j-2)];
+        }
+         else if(i>11 && works == false){
+          origin11[i*(numNodes-1)+j] = origin11[(i-2)*(numNodes-1)+(j-2)];
+        }
+         else if(i>12 && works == false){
+          origin11[i*(numNodes-1)+j] = origin11[(i-2)*(numNodes-1)+(j-2)];
+        }
+         else if(i>13 && works == false){
+          origin11[i*(numNodes-1)+j] = origin11[(i-2)*(numNodes-1)+(j-2)];
+        }
+        else if(i>14 && works == false){
+          origin11[i*(numNodes-1)+j] = origin11[(i-2)*(numNodes-1)+(j-2)];
+        }
+        else if(i>15 && works == false){
           origin11[i*(numNodes-1)+j] = origin11[(i-2)*(numNodes-1)+(j-2)];
         }
         else{
@@ -1125,21 +1158,7 @@ if(showVoronoi == true)
       
     }
     
-//       origin2[i*(numNodes-1)+j] = new PVector(towers_x[2], towers_y[2]);
-//        origin3[i*(numNodes-1)+j] = new PVector(towers_x[3], towers_y[3]);
-//        origin4[i*(numNodes-1)+j] = new PVector(towers_x[4], towers_y[4]);
-//        origin5[i*(numNodes-1)+j] = new PVector(towers_x[5], towers_y[5]);
-//        origin6[i*(numNodes-1)+j] = new PVector(towers_x[6], towers_y[6]);
-//        origin7[i*(numNodes-1)+j] = new PVector(towers_x[7], towers_y[7]);
-//        origin8[i*(numNodes-1)+j] = new PVector(towers_x[8], towers_y[8]);
-//        origin9[i*(numNodes-1)+j] = new PVector(towers_x[9], towers_y[9]);
-//        origin10[i*(numNodes-1)+j] = new PVector(towers_x[10], towers_y[10]);
-//        origin11[i*(numNodes-1)+j] = new PVector(towers_x[11], towers_y[11]);
-//        origin12[i*(numNodes-1)+j] = new PVector(towers_x[12], towers_y[12]);
-//        origin13[i*(numNodes-1)+j] =new PVector(towers_x[13], towers_y[13]);
-//        origin14[i*(numNodes-1)+j] = new PVector(towers_x[14], towers_y[14]);
-//        origin15[i*(numNodes-1)+j] = new PVector(towers_x[15], towers_y[15]);
-//      
+
       destination[i*(numNodes-1)+j] = new PVector(nodes[(i+j+1)%(numNodes)].x, nodes[(i+j+1)%(numNodes)].y);
       
       weight[i*(numNodes-1)+j] = random(0.1, 2.0);

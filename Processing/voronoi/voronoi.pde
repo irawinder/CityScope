@@ -10,7 +10,7 @@ int minIndex = 0;
  // this is run once.
 void setup()
 {
-    size(350, 350);
+    size(500, 500);
        
     // smooth edges
     smooth();
@@ -64,12 +64,14 @@ void draw()
              for (int nc = 1; nc < ncolors; nc++)
              {
                  int dist = ((px  - towers_x[nc]) * (px - towers_x[nc])) +  ((py  - towers_y[nc]) * (py  - towers_y[nc]));
+          
                   
                  if (dist <= minDistance)
                  {
                      minDistance = dist;
                      minIndex = nc;
                 }
+                
             }
             stroke(tower_colors[minIndex]);
             point(px, py);
@@ -161,8 +163,7 @@ void draw()
       fill(tower_colors[0]);
       stroke(0);
       }
-      
-    
+ 
       ellipse(x, y, 5, 5);
     }
 }
