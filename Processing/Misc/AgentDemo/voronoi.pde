@@ -1,5 +1,3 @@
-//someday there will be voronoi code here
-
 // for(int l = 0; l<5; l++){
 //      float x = random(width);
 //      float y = random(height);
@@ -39,7 +37,6 @@
 //        origin[i*(numNodes-1)+j] = new PVector(towers_x[0], towers_y[0]);
 //      }
 //}
-
 //    for(int l = 0; l<5; l++){
 //      float x = random(width);
 //      float y = random(height);
@@ -81,7 +78,6 @@
 //      }
 //       
 //  }
-
 //  
 //  for(int l = 0; l<5; l++){
 //      float x = random(width);
