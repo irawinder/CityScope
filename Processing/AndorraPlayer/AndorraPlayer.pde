@@ -3,11 +3,12 @@
 // For Andorra Data Stories
 // Ira Winder, MIT Media Lab, jiw@mit.edu, Fall 2015
 
-// To Do:
-// Make a Horde Class for Swarms
-// Make Custom Editor for Swarm Attributes
-// Make Agent LifeSpan some sort of sense
-// Hi Yasushi
+/*
+Nina To Do
+1. Implement voronois about ammenities data
+2. Ammenities data graph
+3. Ammenities data radius thing 
+*/
 
 // In general, migrate global "void drawFoo()" methods into class-specific "display()" methods
 // Consolidate Agents, Obstacles, and Pathfinder classes to libraries and/or standalone applets and/or libraries?

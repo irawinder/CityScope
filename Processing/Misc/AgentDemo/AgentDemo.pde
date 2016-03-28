@@ -2,6 +2,16 @@
 // Ira Winder, MIT Media Lab, jiw@mit.edu, Fall 2015
 // Nina Lutz, MIT Media Lab, nlutz@mit.edu, Spring 2016
 
+/* NINA TO DO LIST
+
+1. Clean code
+2. Plot voronoi nodes
+3. Voronoi liness
+4. Button to toggle them 
+5. DataModes for Voronoi and Stagnant 
+6. CLEAN CLEAN CLEAN CODE
+*/
+
 int canvasWidth = 1000;
 int canvasHeight = 540;
 String refresh; 
