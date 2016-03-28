@@ -204,7 +204,7 @@ class Swarm {
   
   Swarm () {
     agentLife = 0;
-    agentDelay = 10000;
+    agentDelay = 100;  //10000
     swarm = new ArrayList<Agent>();
   }
   
@@ -249,11 +249,17 @@ class Swarm {
   void temperStandingAgents() {   
     // Makes sure that agents 'staying put' generate only enough to represent their numbers then stop
     if (origin == destination || path.size() < 2) {
-      agentLife = 1000;
+      agentLife = 0;
       //immortal = true;
     }
   }
   
+  void voronoiTowers(){
+    if(towergeneration){
+      agentDelay = Float.MAX_VALUE;
+    }
+  }
+
   void cropAgents(boolean _external) {
     if (_external) {
       cropAgents = true;
@@ -381,6 +387,7 @@ class Swarm {
       }
     }
   }
+ 
   
   // Draw Sources and Sinks
   void displaySource(PGraphics p) {
@@ -473,7 +480,7 @@ class Horde {
     agentCounts = new ArrayList<Integer>();
     agentCount = 0;
     hordeIndex = 0;
-    rateScaler = 1.0;
+    rateScaler = 2.0;
     popScaler = 1.0;
     maxAgents = _maxAgents;
   }
@@ -486,6 +493,7 @@ class Horde {
     horde.add(new Swarm(freq, a, b, maxS, f));
     agentCounts.add(0);
   }
+  
   
   void clearHorde() {
     horde.clear();
@@ -598,7 +606,7 @@ class Horde {
     if(showFrameRate == true){
     p.text("Framerate:  " + frameRate, textWidth("Total Agents Rendered   : 5000" +  190), 20);
     }
-    //p.text("rateScaler: " + int(rateScaler), 20, 20 + 3*textSize);
+p.text("rateScaler: " + int(rateScaler), 20, 20 + 3*textSize);
   }
   
   void displaySwarmList(PGraphics p) {

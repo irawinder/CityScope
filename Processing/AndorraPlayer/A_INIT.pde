@@ -347,6 +347,43 @@ void testNetwork_CDRWifi(boolean CDR, boolean Wifi) {
     nodes[i].y += marginWidthPix;
   }
   
+ float[] towers_x = new float[numNodes];
+ float[] towers_y = new float[numNodes];
+ 
+  for (int i=0; i<numNodes; i++) {
+    towers_x[i] = nodes[i].x;
+    towers_y[i] = nodes[i].y;
+  }
+  
+  for(int px = 0; px < width; px++)
+    {
+      
+         for(int py = 0; py < height; py++)
+         {
+           
+             // Check distances to colors
+             minDistance = ((px  - towers_x[0]) * (px - towers_x[0])) +  ((py  - towers_y[0]) * (py  - towers_y[0]));
+             minIndex = 0;
+ 
+             for (int nc = 1; nc < numNodes; nc++)
+             {
+                 int dist = ((px  - towers_x[nc]) * (px - towers_x[nc])) +  ((py  - towers_y[nc]) * (py  - towers_y[nc]));
+          
+                  
+                 if (dist <= minDistance)
+                 {
+                     minDistance = dist;
+                     minIndex = nc;
+                }
+                
+            }
+            stroke(tower_colors[minIndex]);
+            point(px, py);
+        }
+        
+    }
+  
+  
   for (int i=0; i<numNodes; i++) {
     for (int j=0; j<numNodes-1; j++) {
       
