@@ -204,7 +204,7 @@ class Swarm {
   
   Swarm () {
     agentLife = 0;
-    agentDelay = 100;  //10000
+    agentDelay = -5.0;  //10000
     swarm = new ArrayList<Agent>();
   }
   
@@ -255,9 +255,14 @@ class Swarm {
   }
   
   void voronoiTowers(){
-    if(towergeneration){
-      agentDelay = Float.MAX_VALUE;
+  
+  for(int i = 0; i<16; i++){
+if (origin.x == nodes[i].x) {
+//      agentDelay = Float.MAX_VALUE;
+      //immortal = true;
+//      println("hi");
     }
+  }
   }
 
   void cropAgents(boolean _external) {
@@ -398,6 +403,12 @@ class Swarm {
     p.strokeWeight(2);
     p.line(origin.x - 5, origin.y - 5, origin.x + 5, origin.y + 5);
     p.line(origin.x - 5, origin.y + 5, origin.x + 5, origin.y - 5);
+  if(showVoronoi == true){
+    for(int i = 0; i<16; i++){
+      p.stroke(#ff00ff);
+      p.ellipse(nodes[i].x, nodes[i].y, 10, 10);
+    }
+  }
     
 //    //Draw Sink
 //    p.strokeWeight(3);

@@ -4,9 +4,9 @@
 
 /* NINA TO DO LIST
 
-1. Clean code
-2. Plot voronoi nodes
-3. Voronoi liness
+2. MAKE THING WORK
+    Store working points in array and access randomly for else condition
+3. Voronoi lines
 4. Button to toggle them 
 5. DataModes for Voronoi and Stagnant 
 6. CLEAN CLEAN CLEAN CODE

@@ -140,6 +140,7 @@ void drawTestFinder(PGraphics p, Pathfinder f, ArrayList<PVector> path, ArrayLis
   // Draw Base Network
   f.display(p);
   
+  
   // Draw Nodes Visited in order to find path solution
   p.strokeWeight(1);
   int base = 255;
@@ -173,6 +174,7 @@ void drawTestFinder(PGraphics p, Pathfinder f, ArrayList<PVector> path, ArrayLis
   p.stroke(#FF0000);
   p.noFill();
 //  p.ellipse(A.x, A.y, f.getResolution(), f.getResolution());
+
   
   p.fill(textColor);
   p.text("origin", A.x + f.getResolution(), A.y);

@@ -349,6 +349,8 @@ void testNetwork_CDRWifi(boolean CDR, boolean Wifi) {
   
  float[] towers_x = new float[numNodes];
  float[] towers_y = new float[numNodes];
+ float minDistance = 0;
+=float minIndex = 0;
  
   for (int i=0; i<numNodes; i++) {
     towers_x[i] = nodes[i].x;
