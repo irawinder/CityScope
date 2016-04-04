@@ -102,6 +102,8 @@ void draw()
       if(x != 0){
       println(x, working_1x[i]);
       println(y, working_1y[i]);
+      int c = int(random(0, i));
+      println("gahjkfakjsdfads", c);
       int b = working_1x[int(random(0, i))];
       if(b != 0){
       println("pleasepleasepleasefuckingwork", b);

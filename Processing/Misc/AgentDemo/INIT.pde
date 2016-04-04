@@ -185,8 +185,10 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
   origin13 = new PVector[numSwarm];
   origin14 = new PVector[numSwarm];
   origin15 = new PVector[numSwarm];
-  int[] working_1x  = new int[100];
-  int[] working_1y  = new int[100];
+  float[] working_1x  = new float[100];
+  float[] working_1y  = new float[100];
+  float[] working_10x  = new float[100];
+  float[] working_10y  = new float[100];
   destination = new PVector[numSwarm];
   weight = new float[numSwarm];
   swarmHorde.clearHorde();
@@ -319,8 +321,8 @@ if(showVoronoi == true)
 //float[] working_1y  = new float[100];
 
     for(int l = 0; l<3; l++){
-      float x = random(10, p.width-10);
-      float y = random(10, p.height-10);
+      float x = random(100, p.width-50);
+      float y = random(100, p.height-50);
       if( (((x  - towers_x[1]) * (x - towers_x[1])) +  ((y  - towers_y[1]) * (y  - towers_y[1])) <= ((x  - towers_x[0]) * (x - towers_x[0])) +  ((y  - towers_y[0]) * (y  - towers_y[0]))) 
       && 
      ((x  - towers_x[1]) * (x - towers_x[1])) +  ((y  - towers_y[1]) * (y  - towers_y[1])) <= ((x  - towers_x[2]) * (x - towers_x[2])) +  ((y  - towers_y[2]) * (y  - towers_y[2]))
@@ -350,7 +352,7 @@ if(showVoronoi == true)
        ((x  - towers_x[1]) * (x - towers_x[1])) +  ((y  - towers_y[1]) * (y  - towers_y[1])) <=((x  - towers_x[13]) * (x - towers_x[13])) +  ((y  - towers_y[13]) * (y  - towers_y[13]))
       &&
        ((x  - towers_x[1]) * (x - towers_x[1])) +  ((y  - towers_y[1]) * (y  - towers_y[1])) <=((x  - towers_x[15]) * (x - towers_x[15])) +  ((y  - towers_y[15]) * (y  - towers_y[15]))
-      && h<10)
+       )
       {
       origin1[i*(numNodes-1)+j] = new PVector(x, y);
       working_1x[i]  = int(x);
@@ -358,8 +360,13 @@ if(showVoronoi == true)
       }
         else{
           int a = int(random(0, i));
+          if(working_1x[a] != 0 && working_1y[a] != 0){
           origin1[i*(numNodes-1)+j] = new PVector(working_1x[a], working_1y[a]); //in real life, this would be to an ammenity in the polygon
-        } 
+          }
+          else{
+             origin1[i*(numNodes-1)+j] =  new PVector( working_1x[9], working_1y[9]);
+          }
+        }
   }
 
   for(int l = 0; l<3; l++){
@@ -836,23 +843,18 @@ if(showVoronoi == true)
       ((x  - towers_x[10]) * (x - towers_x[10])) +  ((y  - towers_y[10]) * (y  - towers_y[10])) <=((x  - towers_x[15]) * (x - towers_x[15])) +  ((y  - towers_y[15]) * (y  - towers_y[15])))
       {
       origin10[i*(numNodes-1)+j] = new PVector(x, y);
-      works = true;
+      working_10x[i]  = int(x);
+      working_10y[i]  = int(y); 
       }
-       else{
-        if(i>1 && works == true){
-        origin10[i*(numNodes-1)+j] = origin10[(i-1)*(numNodes-1)+(j-1)];
-        }
-        else if(i>1 && works == false){
-        origin10[i*(numNodes-1)+j] = origin10[(i-1)*(numNodes-1)+(j-1)];
-        }
-        else if(i>10 && works == false){
-          origin10[i*(numNodes-1)+j] = origin10[(i-2)*(numNodes-1)+(j-2)];
-        }
         else{
-          origin10[i*(numNodes-1)+j] = new PVector(towers_x[10], towers_y[10]); //in real life, this would be to an ammenity in the polygon
-          towergeneration = true;
-        }
-      }      
+          int a = int(random(0, i));
+          if(working_10x[a] != 0 && working_10y[a] != 0){
+          origin10[i*(numNodes-1)+j] = new PVector(working_10x[a], working_10y[a]); //in real life, this would be to an ammenity in the polygon
+          }
+          else{
+             origin10[i*(numNodes-1)+j] =  new PVector( working_10x[9], working_10y[9]);
+          }
+        }     
   }
   for(int l = 0; l<3; l++){
       float x = random(10, p.width-10);
