@@ -317,12 +317,9 @@ if(showVoronoi == true)
        }
 }
 
-//float[] working_1x  = new float[100];
-//float[] working_1y  = new float[100];
-
     for(int l = 0; l<3; l++){
-      float x = random(100, p.width-50);
-      float y = random(100, p.height-50);
+      float x = random(10, p.width-10);
+      float y = random(10, p.height-10);
       if( (((x  - towers_x[1]) * (x - towers_x[1])) +  ((y  - towers_y[1]) * (y  - towers_y[1])) <= ((x  - towers_x[0]) * (x - towers_x[0])) +  ((y  - towers_y[0]) * (y  - towers_y[0]))) 
       && 
      ((x  - towers_x[1]) * (x - towers_x[1])) +  ((y  - towers_y[1]) * (y  - towers_y[1])) <= ((x  - towers_x[2]) * (x - towers_x[2])) +  ((y  - towers_y[2]) * (y  - towers_y[2]))
@@ -355,16 +352,20 @@ if(showVoronoi == true)
        )
       {
       origin1[i*(numNodes-1)+j] = new PVector(x, y);
+      if(x != 0){
       working_1x[i]  = int(x);
       working_1y[i]  = int(y); 
       }
+      }
         else{
           int a = int(random(0, i));
-          if(working_1x[a] != 0 && working_1y[a] != 0){
-          origin1[i*(numNodes-1)+j] = new PVector(working_1x[a], working_1y[a]); //in real life, this would be to an ammenity in the polygon
+          if(working_1x[a]*working_1y[a] != 0){
+          origin1[i*(numNodes-1)+j] = new PVector(int(working_1x[a]), int(working_1y[a])); //in real life, this would be to an ammenity in the polygon
           }
           else{
-             origin1[i*(numNodes-1)+j] =  new PVector( working_1x[9], working_1y[9]);
+//             origin1[i*(numNodes-1)+j] =  new PVector(working_1x[0], working_1y[0]);
+             float c = random(10, 50);
+             origin1[i*(numNodes-1)+j] =  new PVector(towers_x[1] + c, towers_y[1] + c); //<--- this guy is my issue
           }
         }
   }
@@ -1133,7 +1134,7 @@ for(int l = 0; l<3; l++){
 //  swarmHorde.addSwarm(weight[i], origin7[i], destination[i], 1, color(tower_colors[7]));
 //  swarmHorde.addSwarm(weight[i], origin8[i], destination[i], 1, color(tower_colors[8]));
 //  swarmHorde.addSwarm(weight[i], origin9[i], destination[i], 1, color(tower_colors[9]));
-  swarmHorde.addSwarm(weight[i], origin10[i], destination[i], 1, color(tower_colors[10]));
+//  swarmHorde.addSwarm(weight[i], origin10[i], destination[i], 1, color(tower_colors[10]));
 //  swarmHorde.addSwarm(weight[i], origin11[i], destination[i], 1, color(tower_colors[11]));
 //  swarmHorde.addSwarm(weight[i], origin12[i], destination[i], 1, color(tower_colors[12]));
 //  swarmHorde.addSwarm(weight[i], origin13[i], destination[i], 1, color(tower_colors[13]));
