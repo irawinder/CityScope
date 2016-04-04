@@ -3,6 +3,8 @@ int ncolors = 6;
 int[] towers_x = new int[ncolors];
 int[] towers_y = new int[ncolors];
 color[] tower_colors = new color[ncolors];
+int[] working_1x  = new int[100];
+int[] working_1y  = new int[100];
  
 int minDistance = 0;
 int minIndex = 0;
@@ -32,7 +34,7 @@ void setup()
         towers_x[1] = int(random(width));
         towers_y[1] = int(random(height));
         towers_x[2] = int(random(width));
-        towers_y[2] =int(random(height));
+        towers_y[2] = int(random(height));
         towers_x[3] = int(random(width));
         towers_y[3] = int(random(height));
         towers_x[4] =  int(random(width));
@@ -95,6 +97,18 @@ void draw()
       (((x  - towers_x[1]) * (x - towers_x[1])) +  ((y  - towers_y[1]) * (y  - towers_y[1])) <= ((x  - towers_x[5]) * (x - towers_x[5])) +  ((y  - towers_y[5]) * (y  - towers_y[5]))))
       {
       fill(tower_colors[1]);
+      working_1x[i]  = int(x);
+      working_1y[i]  = int(y);
+      if(x != 0){
+      println(x, working_1x[i]);
+      println(y, working_1y[i]);
+      int b = working_1x[int(random(0, i))];
+      if(b != 0){
+      println("pleasepleasepleasefuckingwork", b);
+      }
+      }
+//      ellipse(working_1x[i], working_1y[i], 20, 20); 
+      ellipse(working_1x[i], working_1y[i], 20, 20); 
       stroke(0);
       }
       
@@ -109,6 +123,7 @@ void draw()
       ((x  - towers_x[2]) * (x - towers_x[2])) +  ((y  - towers_y[2]) * (y  - towers_y[2])) <= ((x  - towers_x[5]) * (x - towers_x[5])) +  ((y  - towers_y[5]) * (y  - towers_y[5])))
       {
       fill(tower_colors[2]);
+//       println(x, y, 2);
       stroke(0);
       }
       
@@ -122,6 +137,7 @@ void draw()
       ((x  - towers_x[3]) * (x - towers_x[3])) +  ((y  - towers_y[3]) * (y  - towers_y[3])) <= ((x  - towers_x[5]) * (x - towers_x[5])) +  ((y  - towers_y[5]) * (y  - towers_y[5])))
       {
       fill(tower_colors[3]);
+//       println(x, y, 3);
       stroke(0);
       }
       
@@ -135,6 +151,7 @@ void draw()
       ((x  - towers_x[4]) * (x - towers_x[4])) +  ((y  - towers_y[4]) * (y  - towers_y[4])) <= ((x  - towers_x[5]) * (x - towers_x[5])) +  ((y  - towers_y[5]) * (y  - towers_y[5])))
       {
       fill(tower_colors[4]);
+//       println(x, y, 4);
       stroke(0);
       }
       
@@ -148,6 +165,7 @@ void draw()
       ((x  - towers_x[5]) * (x - towers_x[5])) +  ((y  - towers_y[5]) * (y  - towers_y[5])) <= ((x  - towers_x[4]) * (x - towers_x[4])) +  ((y  - towers_y[4]) * (y  - towers_y[4])))
       {
       fill(tower_colors[5]);
+//       println(x, y, 5);
       stroke(0);
       }
       
@@ -161,10 +179,12 @@ void draw()
       (((x  - towers_x[0]) * (x - towers_x[0])) +  ((y  - towers_y[0]) * (y  - towers_y[0])) <= ((x  - towers_x[4]) * (x - towers_x[4])) +  ((y  - towers_y[4]) * (y  - towers_y[4]))))
       {
       fill(tower_colors[0]);
+//       println(x, y, 0);
       stroke(0);
       }
- 
+
       ellipse(x, y, 5, 5);
+      fill(0);
     }
 }
 

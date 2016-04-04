@@ -4,6 +4,7 @@ PGraphics tableCanvas;
 
 boolean works = false;
 boolean towergeneration = false;
+boolean gah = false;
 
 PImage demoMap;
 
@@ -165,6 +166,7 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
   float[] towers_x = new float[numNodes];
   float[] towers_y = new float[numNodes];
 
+  int h = 0;
   
   nodes = new PVector[numNodes];
   origin = new PVector[numSwarm];
@@ -183,7 +185,8 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
   origin13 = new PVector[numSwarm];
   origin14 = new PVector[numSwarm];
   origin15 = new PVector[numSwarm];
-  working = new PVector[numSwarm];
+  int[] working_1x  = new int[100];
+  int[] working_1y  = new int[100];
   destination = new PVector[numSwarm];
   weight = new float[numSwarm];
   swarmHorde.clearHorde();
@@ -246,23 +249,18 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
     }
  }
 
-//  
-//  for (int i=0; i<numNodes; i++) {
-//    nodes[i] = new PVector(random(10, p.width-10), random(10, p.height-10));
-//  }
-  
   for (int i=0; i<numNodes; i++) {
     for (int j=0; j<numNodes-1; j++) {
-//      origin[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
+        //origin[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
 
-
-//HUGE UGLY VORONOI MATH THAT DOES THING 
+     //HUGE UGLY VORONOI MATH THAT DOES THING 
 if(showVoronoi == true)
 {
   for(int l = 0; l<3; l++){
       float x = random(10, p.width-10);
       float y = random(10, p.height-10);
-      if((((x  - towers_x[0]) * (x - towers_x[0])) +  ((y  - towers_y[0]) * (y  - towers_y[0])) <= ((x  - towers_x[2]) * (x - towers_x[2])) +  ((y  - towers_y[2]) * (y  - towers_y[2]))) && 
+      if(
+      (((x  - towers_x[0]) * (x - towers_x[0])) +  ((y  - towers_y[0]) * (y  - towers_y[0])) <= ((x  - towers_x[2]) * (x - towers_x[2])) +  ((y  - towers_y[2]) * (y  - towers_y[2]))) && 
       ((x  - towers_x[0]) * (x - towers_x[0])) +  ((y  - towers_y[0]) * (y  - towers_y[0])) <= ((x  - towers_x[6]) * (x - towers_x[6])) +  ((y  - towers_y[6]) * (y  - towers_y[6]))
       &&
       ((x  - towers_x[0]) * (x - towers_x[0])) +  ((y  - towers_y[0]) * (y  - towers_y[0])) <= ((x  - towers_x[3]) * (x - towers_x[3])) +  ((y  - towers_y[3]) * (y  - towers_y[3]))
@@ -289,11 +287,12 @@ if(showVoronoi == true)
       &&
       ((x  - towers_x[0]) * (x - towers_x[0])) +  ((y  - towers_y[0]) * (y  - towers_y[0])) <=  ((x  - towers_x[14]) * (x - towers_x[14])) +  ((y  - towers_y[14]) * (y  - towers_y[14]))
       &&
-      ((x  - towers_x[0]) * (x - towers_x[0])) +  ((y  - towers_y[0]) * (y  - towers_y[0])) <=((x  - towers_x[15]) * (x - towers_x[15])) +  ((y  - towers_y[15]) * (y  - towers_y[15])))
+      ((x  - towers_x[0]) * (x - towers_x[0])) +  ((y  - towers_y[0]) * (y  - towers_y[0])) <=((x  - towers_x[15]) * (x - towers_x[15])) +  ((y  - towers_y[15]) * (y  - towers_y[15]))
+      )
       {
       origin[i*(numNodes-1)+j] = new PVector(x, y);
       works = true;
-//      towergeneration = false;
+      towergeneration = false;
       }
       
       
@@ -315,6 +314,10 @@ if(showVoronoi == true)
           
        }
 }
+
+//float[] working_1x  = new float[100];
+//float[] working_1y  = new float[100];
+
     for(int l = 0; l<3; l++){
       float x = random(10, p.width-10);
       float y = random(10, p.height-10);
@@ -346,36 +349,25 @@ if(showVoronoi == true)
       &&
        ((x  - towers_x[1]) * (x - towers_x[1])) +  ((y  - towers_y[1]) * (y  - towers_y[1])) <=((x  - towers_x[13]) * (x - towers_x[13])) +  ((y  - towers_y[13]) * (y  - towers_y[13]))
       &&
-       ((x  - towers_x[1]) * (x - towers_x[1])) +  ((y  - towers_y[1]) * (y  - towers_y[1])) <=((x  - towers_x[15]) * (x - towers_x[15])) +  ((y  - towers_y[15]) * (y  - towers_y[15])))
+       ((x  - towers_x[1]) * (x - towers_x[1])) +  ((y  - towers_y[1]) * (y  - towers_y[1])) <=((x  - towers_x[15]) * (x - towers_x[15])) +  ((y  - towers_y[15]) * (y  - towers_y[15]))
+      && h<10)
       {
       origin1[i*(numNodes-1)+j] = new PVector(x, y);
-      works = true;
+      working_1x[i]  = int(x);
+      working_1y[i]  = int(y); 
       }
-      
-      else{
-        if(i>1 && works == true){
-        origin1[i*(numNodes-1)+j] = origin1[(i-1)*(numNodes-1)+(j-1)];
-        }
-        else if(i>1 && works == false){
-        origin1[i*(numNodes-1)+j] = origin1[(i-1)*(numNodes-1)+(j-1)];
-        }
-        else if(i>10 && works == false){
-          origin1[i*(numNodes-1)+j] = origin1[(i-2)*(numNodes-1)+(j-2)];
-        }
         else{
-          origin1[i*(numNodes-1)+j] = new PVector(towers_x[1], towers_y[1]); //in real life, this would be to an ammenity in the polygon
-          towergeneration = true;
-          println(i, j);
-        }
-          
-      }
-       
+          int a = int(random(0, i));
+          origin1[i*(numNodes-1)+j] = new PVector(working_1x[a], working_1y[a]); //in real life, this would be to an ammenity in the polygon
+        } 
   }
-  
+
   for(int l = 0; l<3; l++){
       float x = random(10, p.width-10);
       float y = random(10, p.height-10);
-      if( (((x  - towers_x[2]) * (x - towers_x[2])) +  ((y  - towers_y[2]) * (y  - towers_y[2])) <= ((x  - towers_x[0]) * (x - towers_x[0])) +  ((y  - towers_y[0]) * (y  - towers_y[0]))) && 
+      if( 
+      (((x  - towers_x[2]) * (x - towers_x[2])) +  ((y  - towers_y[2]) * (y  - towers_y[2])) <= ((x  - towers_x[0]) * (x - towers_x[0])) +  ((y  - towers_y[0]) * (y  - towers_y[0]))) 
+      && 
       ((x  - towers_x[2]) * (x - towers_x[2])) +  ((y  - towers_y[2]) * (y  - towers_y[2])) <=  ((x  - towers_x[6]) * (x - towers_x[6])) +  ((y  - towers_y[6]) * (y  - towers_y[6]))
       &&
       ((x  - towers_x[2]) * (x - towers_x[2])) +  ((y  - towers_y[2]) * (y  - towers_y[2])) <= ((x  - towers_x[3]) * (x - towers_x[3])) +  ((y  - towers_y[3]) * (y  - towers_y[3]))
@@ -402,10 +394,12 @@ if(showVoronoi == true)
       &&
       ((x  - towers_x[2]) * (x - towers_x[2])) +  ((y  - towers_y[2]) * (y  - towers_y[2])) <=  ((x  - towers_x[14]) * (x - towers_x[14])) +  ((y  - towers_y[14]) * (y  - towers_y[14]))
       &&
-      ((x  - towers_x[2]) * (x - towers_x[2])) +  ((y  - towers_y[2]) * (y  - towers_y[2])) <= ((x  - towers_x[15]) * (x - towers_x[15])) +  ((y  - towers_y[15]) * (y  - towers_y[15])))
+      ((x  - towers_x[2]) * (x - towers_x[2])) +  ((y  - towers_y[2]) * (y  - towers_y[2])) <= ((x  - towers_x[15]) * (x - towers_x[15])) +  ((y  - towers_y[15]) * (y  - towers_y[15]))
+      )
       {
       origin2[i*(numNodes-1)+j] = new PVector(x, y);
       works = true;
+//      println(x, y, l);
       }
       
       else{
@@ -425,8 +419,6 @@ if(showVoronoi == true)
           
       }
 }
-
-
  for(int l = 0; l<3; l++){
       float x = random(10, p.width-10);
       float y = random(10, p.height-10);
@@ -846,7 +838,6 @@ if(showVoronoi == true)
       origin10[i*(numNodes-1)+j] = new PVector(x, y);
       works = true;
       }
-      
        else{
         if(i>1 && works == true){
         origin10[i*(numNodes-1)+j] = origin10[(i-1)*(numNodes-1)+(j-1)];
@@ -861,11 +852,8 @@ if(showVoronoi == true)
           origin10[i*(numNodes-1)+j] = new PVector(towers_x[10], towers_y[10]); //in real life, this would be to an ammenity in the polygon
           towergeneration = true;
         }
-          
-      }
-       
+      }      
   }
-
   for(int l = 0; l<3; l++){
       float x = random(10, p.width-10);
       float y = random(10, p.height-10);
@@ -902,16 +890,11 @@ if(showVoronoi == true)
       works = true;
       towergeneration = false;
       }
-      
       else{
           origin11[i*(numNodes-1)+j] = new PVector(towers_x[11], towers_y[11]); //in real life, this would be to an ammenity in the polygon
-          towergeneration = true;
-          
+          towergeneration = true;   
       }
-       
   }
-  
-  
     for(int l = 0; l<3; l++){
       float x = random(10, p.width-10);
       float y = random(10, p.height-10);
@@ -947,7 +930,6 @@ if(showVoronoi == true)
       origin12[i*(numNodes-1)+j] = new PVector(x, y);
       works = true;
       }
-      
       else{
         if(i>1 && works == true){
         origin12[i*(numNodes-1)+j] = origin12[(i-1)*(numNodes-1)+(j-1)];
@@ -962,11 +944,8 @@ if(showVoronoi == true)
           origin12[i*(numNodes-1)+j] = new PVector(towers_x[12], towers_y[12]); //in real life, this would be to an ammenity in the polygon
           towergeneration = true;
         }
-          
-      }
-       
+      } 
   }
-  
     for(int l = 0; l<3; l++){
       float x = random(10, p.width-10);
       float y = random(10, p.height-10);
@@ -1004,7 +983,6 @@ if(showVoronoi == true)
       //what if I just made an array with 15 working points?
       works = true;
       }
-      
    else{
      //and called a random index of them here
         if(i>1 && works == true){
@@ -1020,10 +998,9 @@ if(showVoronoi == true)
           origin13[i*(numNodes-1)+j] = new PVector(towers_x[13], towers_y[13]); //in real life, this would be to an ammenity in the polygon
           towergeneration = true;
         }
-          
       }
   }
-  int n = 0;
+
     for(int l = 0; l<3; l++){
       float x = random(10, p.width-10);
       float y = random(10, p.height-10);
@@ -1059,9 +1036,7 @@ if(showVoronoi == true)
       {
       origin14[i*(numNodes-1)+j] = new PVector(x, y);
       works = true;
-      }
-      
-      
+      }   
       else{
         if(i>1 && works == true){
         origin14[i*(numNodes-1)+j] = origin14[(i-1)*(numNodes-1)+(j-1)];
@@ -1075,12 +1050,9 @@ if(showVoronoi == true)
         else{
           origin14[i*(numNodes-1)+j] = new PVector(towers_x[14], towers_y[14]); //in real life, this would be to an ammenity in the polygon
           towergeneration = true;
-        }
-          
-      }
-       
-  }
-  
+        }        
+      }    
+  } 
 for(int l = 0; l<3; l++){
       float x = random(10, p.width-10);
       float y = random(10, p.height-10);
@@ -1117,7 +1089,6 @@ for(int l = 0; l<3; l++){
       origin15[i*(numNodes-1)+j] = new PVector(x, y);
       works = true;
       }
-      
        else{
         if(i>1 && works == true){
         origin15[i*(numNodes-1)+j] = origin15[(i-1)*(numNodes-1)+(j-1)];
@@ -1132,36 +1103,9 @@ for(int l = 0; l<3; l++){
           origin15[i*(numNodes-1)+j] = new PVector(towers_x[15], towers_y[15]); //in real life, this would be to an ammenity in the polygon
           towergeneration = true;
         }
-          
       }
-
-  
  }
-
-      
     }
-    
-      else{
-        towergeneration = true;
-        origin[i*(numNodes-1)+j] = new PVector(towers_x[0], towers_y[0]);
-        origin1[i*(numNodes-1)+j] = new PVector(towers_x[1], towers_y[1]);
-        origin2[i*(numNodes-1)+j] = new PVector(towers_x[2], towers_y[2]);
-        origin3[i*(numNodes-1)+j] = new PVector(towers_x[3], towers_y[3]);
-        origin4[i*(numNodes-1)+j] = new PVector(towers_x[4], towers_y[4]);
-        origin5[i*(numNodes-1)+j] = new PVector(towers_x[5], towers_y[5]);
-        origin6[i*(numNodes-1)+j] = new PVector(towers_x[6], towers_y[6]);
-        origin7[i*(numNodes-1)+j] = new PVector(towers_x[7], towers_y[7]);
-        origin8[i*(numNodes-1)+j] = new PVector(towers_x[8], towers_y[8]);
-        origin9[i*(numNodes-1)+j] = new PVector(towers_x[9], towers_y[9]);
-        origin10[i*(numNodes-1)+j] = new PVector(towers_x[10], towers_y[10]);
-        origin11[i*(numNodes-1)+j] = new PVector(towers_x[11], towers_y[11]);
-        origin12[i*(numNodes-1)+j] = new PVector(towers_x[12], towers_y[12]);
-        origin13[i*(numNodes-1)+j] =new PVector(towers_x[13], towers_y[13]);
-        origin14[i*(numNodes-1)+j] = new PVector(towers_x[14], towers_y[14]);
-        origin15[i*(numNodes-1)+j] = new PVector(towers_x[15], towers_y[15]);
-
-      }
-    
 
       destination[i*(numNodes-1)+j] = new PVector(nodes[(i+j+1)%(numNodes)].x, nodes[(i+j+1)%(numNodes)].y);
       
@@ -1177,22 +1121,22 @@ for(int l = 0; l<3; l++){
 
   for (int i=0; i<numSwarm; i++) {
     // delay, origin, destination, speed, color
-  swarmHorde.addSwarm(weight[i], origin[i], destination[i], 1, color(tower_colors[0])); //color(255.0*i/numSwarm, 255, 255
+//  swarmHorde.addSwarm(weight[i], origin[i], destination[i], 1, color(tower_colors[0])); //color(255.0*i/numSwarm, 255, 255
   swarmHorde.addSwarm(weight[i], origin1[i], destination[i], 1, color(tower_colors[1]));
-  swarmHorde.addSwarm(weight[i], origin2[i], destination[i], 1, color(tower_colors[2]));
-  swarmHorde.addSwarm(weight[i], origin3[i], destination[i], 1, color(tower_colors[3]));
-  swarmHorde.addSwarm(weight[i], origin4[i], destination[i], 1, color(tower_colors[4]));
-  swarmHorde.addSwarm(weight[i], origin5[i], destination[i], 1, color(tower_colors[5]));
-  swarmHorde.addSwarm(weight[i], origin6[i], destination[i], 1, color(tower_colors[6]));
-  swarmHorde.addSwarm(weight[i], origin7[i], destination[i], 1, color(tower_colors[7]));
-  swarmHorde.addSwarm(weight[i], origin8[i], destination[i], 1, color(tower_colors[8]));
-  swarmHorde.addSwarm(weight[i], origin9[i], destination[i], 1, color(tower_colors[9]));
+//  swarmHorde.addSwarm(weight[i], origin2[i], destination[i], 1, color(tower_colors[2]));
+//  swarmHorde.addSwarm(weight[i], origin3[i], destination[i], 1, color(tower_colors[3]));
+//  swarmHorde.addSwarm(weight[i], origin4[i], destination[i], 1, color(tower_colors[4]));
+//  swarmHorde.addSwarm(weight[i], origin5[i], destination[i], 1, color(tower_colors[5]));
+//  swarmHorde.addSwarm(weight[i], origin6[i], destination[i], 1, color(tower_colors[6]));
+//  swarmHorde.addSwarm(weight[i], origin7[i], destination[i], 1, color(tower_colors[7]));
+//  swarmHorde.addSwarm(weight[i], origin8[i], destination[i], 1, color(tower_colors[8]));
+//  swarmHorde.addSwarm(weight[i], origin9[i], destination[i], 1, color(tower_colors[9]));
   swarmHorde.addSwarm(weight[i], origin10[i], destination[i], 1, color(tower_colors[10]));
-  swarmHorde.addSwarm(weight[i], origin11[i], destination[i], 1, color(tower_colors[11]));
-  swarmHorde.addSwarm(weight[i], origin12[i], destination[i], 1, color(tower_colors[12]));
-  swarmHorde.addSwarm(weight[i], origin13[i], destination[i], 1, color(tower_colors[13]));
-  swarmHorde.addSwarm(weight[i], origin14[i], destination[i], 1, color(tower_colors[14]));
-  swarmHorde.addSwarm(weight[i], origin15[i], destination[i], 1, color(tower_colors[15]));
+//  swarmHorde.addSwarm(weight[i], origin11[i], destination[i], 1, color(tower_colors[11]));
+//  swarmHorde.addSwarm(weight[i], origin12[i], destination[i], 1, color(tower_colors[12]));
+//  swarmHorde.addSwarm(weight[i], origin13[i], destination[i], 1, color(tower_colors[13]));
+//  swarmHorde.addSwarm(weight[i], origin14[i], destination[i], 1, color(tower_colors[14]));
+//  swarmHorde.addSwarm(weight[i], origin15[i], destination[i], 1, color(tower_colors[15]));
 
     // Makes sure that agents 'staying put' eventually die
     swarmHorde.getSwarm(i).temperStandingAgents();
