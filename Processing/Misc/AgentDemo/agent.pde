@@ -217,6 +217,10 @@ class Swarm {
   Swarm (float delay, PVector a, PVector b, float maxS, color f) {
     origin = a;
     destination = b;
+    if(a.x == 0 && b.x == 0){
+    println("here's origin", origin);
+    println("here's destination", destination);
+    }
     
     path = new ArrayList<PVector>();
     path.add(origin);
