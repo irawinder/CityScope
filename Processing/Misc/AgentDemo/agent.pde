@@ -203,8 +203,8 @@ class Swarm {
   ArrayList<PVector> path;
   
   Swarm () {
-    agentLife = 0;
-    agentDelay = -5.0;  //10000
+    agentLife = 0.0;
+    agentDelay = 0.0;  //10000
     swarm = new ArrayList<Agent>();
   }
   
@@ -250,21 +250,10 @@ class Swarm {
     // Makes sure that agents 'staying put' generate only enough to represent their numbers then stop
     if (origin == destination || path.size() < 2) {
       agentLife = 0;
-      //immortal = true;
+//      immortal = true;
     }
   }
   
-  void voronoiTowers(){
-  
-  for(int i = 0; i<16; i++){
-if (origin.x == nodes[i].x) {
-//      agentDelay = Float.MAX_VALUE;
-      //immortal = true;
-//      println("hi");
-    }
-  }
-  }
-
   void cropAgents(boolean _external) {
     if (_external) {
       cropAgents = true;
@@ -491,7 +480,7 @@ class Horde {
     agentCounts = new ArrayList<Integer>();
     agentCount = 0;
     hordeIndex = 0;
-    rateScaler = 2.0;
+    rateScaler = 1.0;
     popScaler = 1.0;
     maxAgents = _maxAgents;
   }
