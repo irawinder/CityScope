@@ -182,7 +182,7 @@ void initContent() {
 
 Horde swarmHorde;
 
-PVector[] origin, destination, nodes;
+PVector[] origin, origin1, destination, nodes;
 float[] weight;
 
 int textSize = 8;
@@ -289,7 +289,9 @@ void testNetwork_Random(int _numNodes) {
   for (int i=0; i<numNodes; i++) {
     for (int j=0; j<numNodes-1; j++) {
       
-      origin[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
+//      origin[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
+      
+      origin1[i*(numNodes-1)+j] = new PVector(nodes[1].x, nodes[1].y);
       
       destination[i*(numNodes-1)+j] = new PVector(nodes[(i+j+1)%(numNodes)].x, nodes[(i+j+1)%(numNodes)].y);
       
@@ -304,7 +306,9 @@ void testNetwork_Random(int _numNodes) {
   for (int i=0; i<numSwarm; i++) {
     
     // delay, origin, destination, speed, color
-    swarmHorde.addSwarm(weight[i], origin[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+//    swarmHorde.addSwarm(weight[i], origin[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+    swarmHorde.addSwarm(weight[i], origin1[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+
     
     // Makes sure that agents 'staying put' eventually die
     swarmHorde.getSwarm(i).temperStandingAgents();
@@ -389,7 +393,7 @@ void testNetwork_CDRWifi(boolean CDR, boolean Wifi) {
   for (int i=0; i<numNodes; i++) {
     for (int j=0; j<numNodes-1; j++) {
       
-      origin[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
+      origin1[i*(numNodes-1)+j] = new PVector(nodes[1].x, nodes[1].y);
       
       destination[i*(numNodes-1)+j] = new PVector(nodes[(i+j+1)%(numNodes)].x, nodes[(i+j+1)%(numNodes)].y);
       
@@ -425,6 +429,7 @@ void CDRNetwork() {
   numSwarm = network.getRowCount();
   
   origin = new PVector[numSwarm];
+  origin1 = new PVector[numSwarm];
   destination = new PVector[numSwarm];
   weight = new float[numSwarm];
   swarmHorde.clearHorde();
