@@ -31,6 +31,8 @@ void setupKeyStone() {
   ks = new Keystone(this);
   surface = ks.createCornerPinSurface(tableCanvas.width, tableCanvas.height, 20);
   
+  ks.load();
+  
   // We need an offscreen buffer to draw the surface we
   // want projected
   // note that we're matching the resolution of the

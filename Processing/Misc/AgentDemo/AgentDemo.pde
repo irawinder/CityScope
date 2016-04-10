@@ -2,14 +2,14 @@
 // Ira Winder, MIT Media Lab, jiw@mit.edu, Fall 2015
 
 
-int canvasWidth = 1000;
-int canvasHeight = 540;
+int canvasWidth = 1920;
+int canvasHeight = 1200;
 String refresh; 
 String editor;
 boolean show_menu = false;
 boolean bw = true;
 
-boolean enableProjectionMapping = false;
+boolean enableProjectionMapping = true;
 
 // Key Commands:
 //
@@ -94,6 +94,8 @@ void mainDraw() {
     loading(tableCanvas, loadText);
   }
   
+  renderButtons(tableCanvas);
+  
   // Renders the finished tableCanvas onto main canvas as a projection map or screen
   renderTableCanvas();
   
@@ -161,196 +163,7 @@ void draw() {
     }
   }
   
-
-//directions
-if(show_directions == true && dataMode != 2){
-fill(abs(textColor-25), 200);
-  noStroke();
-  rect(10, 30, 0.4*width, 10*10+10-20, 12, 12, 12, 12);
-  fill(background);
-  text("Directions:", 20, 50);
-  text("Click to add vertices. Use arrows to fine tune.", 20, 70);
-}
-
-//lightboxes for button
-if(show_menu == true && editObstacles == false && dataMode != 2){
-  if(showPaths){
-  fill(textColor, 180);
-  rect(canvasWidth - 180, 430, 82, 25, 5);
-  }
   
-  if(showSwarm && dataMode == 1){
-  fill(textColor, 200);
-  rect(canvasWidth - 180, 370, 82, 25, 5);}
-  
-  if(showTraces){
-    fill(textColor, 180);
-  rect(canvasWidth - 90, 400, 82, 25, 5);
-  }
-  
-  if(showEdges){
-   fill(textColor, 180);
-  rect(canvasWidth - 180, 400, 82, 25, 5);
-}
-  
-  if(showSource){
-    fill(textColor, 170);
-  rect(canvasWidth - 90, 370, 82, 25, 5);
-}
-  if(showPathInfo){
-    fill(textColor, 180);
-  rect(canvasWidth - 180, 40, 170, 25, 5);
-}
-  if(showInfo && dataMode == 1){
-    fill(textColor, 180);
-  rect(canvasWidth - 90, 430, 82, 25, 5);}
-  
-  if(button4_down){
-  fill(textColor, 180);
-  rect(canvasWidth - 180, 130, 170, 25, 5);
-}
-
-  if(showFrameRate && dataMode == 1){
-     fill(textColor, 180);
-  rect(canvasWidth - 180, 340, 170, 25, 5);
-  }
-
-  if(enablePathfinding){
-  fill(textColor, 200);
-  rect(canvasWidth - 180, 160, 170, 25, 5);}
-  
-}
-
-
-if(initialized){
-//master button to toggle menu display
-      menu = new MenuButton(canvasWidth - 100, 10, "Show Menu");
-      menu2 = new MenuButton(canvasWidth - 180, 10, "Hide Menu");
-     
-//global buttons    
-      button = new Button(canvasWidth - 180, 70, refresh);
-      button2 = new Button(canvasWidth - 180, 100, "Next Network"); //random, grid, custom (MIT), gridded obstacles 
-      button3 = new Button(canvasWidth-180, 40, "Overview");
-      button4 = new Button(canvasWidth-180, 130, "Invert Colors");
-      menu5 = new MenuButton(canvasWidth-180, 220, "-");
-      menu6 = new MenuButton(canvasWidth-30, 220, "+");
-      button7 = new Button(canvasWidth-180, 160, "Path Finding");
-      button8 = new Button(canvasWidth-180, 190, "Next Data Mode");
-      
-      if(show_menu == false){
-      menu.draw();
-    }
-      
-      if(show_menu == true && editObstacles == false && (finderMode == 0 || finderMode == 1 || finderMode == 2 | finderMode == 3)){
-         fill(0, 70);
-        rect(canvasWidth - 200, 0, 200, canvasHeight);
-      menu2.draw();
-      button.draw();
-      button2.draw();
-      button3.draw();
-      button4.draw();
-      fill(textColor);
-      text("Transparency", canvasWidth -137, 237);
-      menu5.draw();
-      menu6.draw();
-      button7.draw();
-      button8.draw();
-      }
-      
-      if(show_menu == true && editObstacles == true){
-      fill(background, 50);
-        rect(canvasWidth - 200, 0, 200, canvasHeight);
-        menu2.draw();
-      }
-      
-      
-//buttons for not in obstacle editor
-      if(editObstacles == false && dataMode == 1){
-      menu9 = new MenuButton(canvasWidth-180, 280, "-");
-      menu10 = new MenuButton(canvasWidth-30, 280, "+");
-      button10 = new Button(canvasWidth-180, 310, "New Random Network");
-      button11 = new Button(canvasWidth-180, 340, "Framerate");
-      button12 = new HalfButton(canvasWidth-180, 370, "Agents");
-      button30 = new HalfButton(canvasWidth-90, 370, "Sources");
-      button13 = new HalfButton(canvasWidth-90, 400, "Traces");
-      button14 = new HalfButton(canvasWidth-180, 400, "Edges");
-      button15 = new HalfButton(canvasWidth-180, 430, "Paths");
-      button31 = new HalfButton(canvasWidth-90, 430, "Swarm Info");
-      
-      if(show_menu == true){
-      menu9.draw();
-      fill(textColor);
-      text("Speed", canvasWidth - 120, 295);
-      menu10.draw();
-      button10.draw();
-      button11.draw();
-      button12.draw();
-      button13.draw();
-      button14.draw();
-      button15.draw();
-      button30.draw();
-      button31.draw();
-      }
-      }
-      
-//enter/exit obstacle editor button placement 
-int y = 0; 
-if(editObstacles == false){
-  y = 490;
-}
-
-if(editObstacles == true){
-  y = 490;
-}
-
-//enter/exit obstacle editor
-      if(dataMode == 1){
-        button16 = new Button(canvasWidth-180, y, editor);
-        if(show_menu == true){
-        button16.draw();
-        }
-      }
-
-//buttons for obstacle editor       
-      if(editObstacles == true && dataMode == 1){
-      button17 = new Button(canvasWidth+10, 250, "Sources");
-      button18 = new Button(canvasWidth+60, 250, "Agents");
-      button19 = new Button(canvasWidth+10, 280, "Traces");
-      button20 = new Button(canvasWidth+70, 280, "Edges");
-      menu21 = new MenuButton(canvasWidth+10, 220, "+");
-      fill(255);
-      //text("Speed", canvasWidth + 40, 235);
-      menu22 = new MenuButton(canvasWidth+90, 220, "-");
-      button23 = new Button(canvasWidth+10, 310, "Print Framerate to Console");
-      button32 = new Button(canvasWidth-180, 40, "Directions");
-      button24 = new Button(canvasWidth-180, 250, "Save Layout");
-      button25 = new Button(canvasWidth-180, 70, "Load Saved Layout");
-      button26 = new Button(canvasWidth-180, 100, "Add Obstacle");
-      button33 = new Button(canvasWidth-180, 130, "Next Obstacle");
-      button27 = new Button(canvasWidth-180, 160, "Remove Obstacle");
-      button28 = new Button(canvasWidth-180, 190, "Jump Vertex");
-      button29 = new Button(canvasWidth-180, 220, "Remove Vertex");
-      button34 = new ThirdButton(canvasWidth-180, 310, "Apply");
-      button35 = new ThirdButton(canvasWidth-120, 310, "OK");
-      button36 = new ThirdButton(canvasWidth-60, 310, "Cancel");
-      
-      
-      if(show_menu == true){
-      button24.draw();
-      button25.draw();
-      button26.draw();
-      button27.draw();
-      button28.draw();
-      button29.draw();
-      button32.draw();
-      button33.draw();
-      button34.draw();
-      button35.draw();
-      button36.draw();
-      }
-      }
-}
-     
 
 }
 
@@ -379,3 +192,204 @@ void folderSelected(File selection) {
   }
 }
 
+void renderButtons(PGraphics p) {
+  p.endDraw();
+  p.beginDraw();
+  
+  p.textSize(12);
+  
+  //directions
+  if(show_directions == true && dataMode != 2){
+    p.fill(abs(textColor-25), 200);
+    p.noStroke();
+    p.rect(10, 30, 0.4*width, 10*10+10-20, 12, 12, 12, 12);
+    p.fill(background);
+    p.text("Directions:", 20, 50);
+    p.text("Click to add vertices. Use arrows to fine tune.", 20, 70);
+  }
+  
+  //lightboxes for button
+  if(show_menu == true && editObstacles == false && dataMode != 2){
+    if(showPaths){
+      p.fill(textColor, 180);
+      p.rect(canvasWidth - 180, 430, 82, 25, 5);
+    }
+    
+    if(showSwarm && dataMode == 1){
+      p.fill(textColor, 200);
+      p.rect(canvasWidth - 180, 370, 82, 25, 5);
+    }
+    
+    if(showTraces){
+      p.fill(textColor, 180);
+      p.rect(canvasWidth - 90, 400, 82, 25, 5);
+    }
+    
+    if(showEdges){
+      p.fill(textColor, 180);
+      p.rect(canvasWidth - 180, 400, 82, 25, 5);
+    }
+    
+    if(showSource){
+      p.fill(textColor, 170);
+      p.rect(canvasWidth - 90, 370, 82, 25, 5);
+    }
+    
+    if(showPathInfo){
+      p.fill(textColor, 180);
+      p.rect(canvasWidth - 180, 40, 170, 25, 5);
+    }
+    
+    if(showInfo && dataMode == 1){
+      p.fill(textColor, 180);
+      p.rect(canvasWidth - 90, 430, 82, 25, 5);}
+    
+    if(button4_down){
+      p.fill(textColor, 180);
+      p.rect(canvasWidth - 180, 130, 170, 25, 5);
+    }
+  
+    if(showFrameRate && dataMode == 1){
+      p.fill(textColor, 180);
+      p.rect(canvasWidth - 180, 340, 170, 25, 5);
+    }
+  
+    if(enablePathfinding){
+      p.fill(textColor, 200);
+      p.rect(canvasWidth - 180, 160, 170, 25, 5);
+    }
+    
+  }
+  
+  
+  if(initialized){
+    //master button to toggle menu display
+    menu = new MenuButton(canvasWidth - 100, 10, "Show Menu");
+    menu2 = new MenuButton(canvasWidth - 180, 10, "Hide Menu");
+         
+    //global buttons    
+    button = new Button(canvasWidth - 180, 70, refresh);
+    button2 = new Button(canvasWidth - 180, 100, "Next Network"); //random, grid, custom (MIT), gridded obstacles 
+    button3 = new Button(canvasWidth-180, 40, "Overview");
+    button4 = new Button(canvasWidth-180, 130, "Invert Colors");
+    menu5 = new MenuButton(canvasWidth-180, 220, "-");
+    menu6 = new MenuButton(canvasWidth-30, 220, "+");
+    button7 = new Button(canvasWidth-180, 160, "Path Finding");
+    button8 = new Button(canvasWidth-180, 190, "Next Data Mode");
+    
+    if(show_menu == false){
+      menu.draw(tableCanvas);
+    }
+    
+    if(show_menu == true && editObstacles == false && (finderMode == 0 || finderMode == 1 || finderMode == 2 | finderMode == 3)){
+      p.fill(0, 70);
+      p.rect(canvasWidth - 200, 0, 200, canvasHeight);
+      menu2.draw(tableCanvas);
+      button.draw(tableCanvas);
+      button2.draw(tableCanvas);
+      button3.draw(tableCanvas);
+      button4.draw(tableCanvas);
+      p.fill(textColor);
+      p.text("Transparency", canvasWidth -137, 237);
+      menu5.draw(tableCanvas);
+      menu6.draw(tableCanvas);
+      button7.draw(tableCanvas);
+      button8.draw(tableCanvas);
+    }
+    
+    if(show_menu == true && editObstacles == true){
+      p.fill(background, 50);
+      p.rect(canvasWidth - 200, 0, 200, canvasHeight);
+      menu2.draw(tableCanvas);
+    }
+          
+          
+    //buttons for not in obstacle editor
+    if(editObstacles == false && dataMode == 1){
+      menu9 = new MenuButton(canvasWidth-180, 280, "-");
+      menu10 = new MenuButton(canvasWidth-30, 280, "+");
+      button10 = new Button(canvasWidth-180, 310, "New Random Network");
+      button11 = new Button(canvasWidth-180, 340, "Framerate");
+      button12 = new HalfButton(canvasWidth-180, 370, "Agents");
+      button30 = new HalfButton(canvasWidth-90, 370, "Sources");
+      button13 = new HalfButton(canvasWidth-90, 400, "Traces");
+      button14 = new HalfButton(canvasWidth-180, 400, "Edges");
+      button15 = new HalfButton(canvasWidth-180, 430, "Paths");
+      button31 = new HalfButton(canvasWidth-90, 430, "Swarm Info");
+    
+      if(show_menu == true){
+        menu9.draw(tableCanvas);
+        p.fill(textColor);
+        p.text("Speed", canvasWidth - 120, 295);
+        menu10.draw(tableCanvas);
+        button10.draw(tableCanvas);
+        button11.draw(tableCanvas);
+        button12.draw(tableCanvas);
+        button13.draw(tableCanvas);
+        button14.draw(tableCanvas);
+        button15.draw(tableCanvas);
+        button30.draw(tableCanvas);
+        button31.draw(tableCanvas);
+      }
+    }
+          
+    //enter/exit obstacle editor button placement 
+    int y = 0; 
+    if(editObstacles == false){
+      y = 490;
+    }
+    
+    if(editObstacles == true){
+      y = 490;
+    }
+    
+    //enter/exit obstacle editor
+    if(dataMode == 1){
+      button16 = new Button(canvasWidth-180, y, editor);
+      if(show_menu == true){
+      button16.draw(tableCanvas);
+      }
+    }
+  
+    //buttons for obstacle editor       
+    if(editObstacles == true && dataMode == 1){
+      button17 = new Button(canvasWidth+10, 250, "Sources");
+      button18 = new Button(canvasWidth+60, 250, "Agents");
+      button19 = new Button(canvasWidth+10, 280, "Traces");
+      button20 = new Button(canvasWidth+70, 280, "Edges");
+      menu21 = new MenuButton(canvasWidth+10, 220, "+");
+      fill(255);
+      //text("Speed", canvasWidth + 40, 235);
+      menu22 = new MenuButton(canvasWidth+90, 220, "-");
+      button23 = new Button(canvasWidth+10, 310, "Print Framerate to Console");
+      button32 = new Button(canvasWidth-180, 40, "Directions");
+      button24 = new Button(canvasWidth-180, 250, "Save Layout");
+      button25 = new Button(canvasWidth-180, 70, "Load Saved Layout");
+      button26 = new Button(canvasWidth-180, 100, "Add Obstacle");
+      button33 = new Button(canvasWidth-180, 130, "Next Obstacle");
+      button27 = new Button(canvasWidth-180, 160, "Remove Obstacle");
+      button28 = new Button(canvasWidth-180, 190, "Jump Vertex");
+      button29 = new Button(canvasWidth-180, 220, "Remove Vertex");
+      button34 = new ThirdButton(canvasWidth-180, 310, "Apply");
+      button35 = new ThirdButton(canvasWidth-120, 310, "OK");
+      button36 = new ThirdButton(canvasWidth-60, 310, "Cancel");
+      
+      
+      if(show_menu == true){
+        button24.draw(tableCanvas);
+        button25.draw(tableCanvas);
+        button26.draw(tableCanvas);
+        button27.draw(tableCanvas);
+        button28.draw(tableCanvas);
+        button29.draw(tableCanvas);
+        button32.draw(tableCanvas);
+        button33.draw(tableCanvas);
+        button34.draw(tableCanvas);
+        button35.draw(tableCanvas);
+        button36.draw(tableCanvas);
+      }
+    }
+  }
+  
+  p.endDraw();
+}
