@@ -19,22 +19,42 @@
 //AllocatedArrivalDemand:light blue
 //unallocatedArrivalDemand:blue
 
-	public static DragStatus dragStatus;
-	public static OperationWindow opw;
-	public static Status status;
-	public static PImage hwImg, lwImg, hrImg, lrImg, roadImg, intersectionImg, noneImg, backgroundImg, congestionImg;
-	public static Tile[][] simCoordinate;
-	public static int vehicleColor;
-	public static int allocatedDepartureColor;
-	public static int unallocatedDepartureColor;
-	public static int allocatedArrivalColor;
-	public static int unallocatedArrivalColor;
-	public static int hubColor;
-	public static int hubVehicleColor;
-	public static int hubPeripheralVehicleColor;
-	public static int hubEffectiveLengthColor;
-	public static PGraphics legendPg, demandPg;
-	public static int brushNumber;
+int projectorWidth = 1920;
+int projectorHeight = 1200;
+int projectorOffset = 1842;
+
+int screenWidth = 1842;
+int screenHeight = 1026;
+
+int displayU = 18;
+int displayV = 22;
+
+int IDMax = 15;
+
+// Table Canvas Width and Height
+int TABLE_IMAGE_HEIGHT = 1000;
+int TABLE_IMAGE_WIDTH = 1000;
+
+// Arrays that holds ID information of rectilinear tile arrangement.
+int tablePieceInput[][][] = new int[displayU][displayV][2];
+
+
+public static DragStatus dragStatus;
+public static OperationWindow opw;
+public static Status status;
+public static PImage hwImg, lwImg, hrImg, lrImg, roadImg, intersectionImg, noneImg, backgroundImg, congestionImg;
+public static Tile[][] simCoordinate;
+public static int vehicleColor;
+public static int allocatedDepartureColor;
+public static int unallocatedDepartureColor;
+public static int allocatedArrivalColor;
+public static int unallocatedArrivalColor;
+public static int hubColor;
+public static int hubVehicleColor;
+public static int hubPeripheralVehicleColor;
+public static int hubEffectiveLengthColor;
+public static PGraphics legendPg, demandPg;
+public static int brushNumber;
 
 	// Temporary
 	public static MapBlock mapBlock;
@@ -52,11 +72,22 @@
 	// public static HubVehicle hubVehicle;
 	public static UDPSocket udpSocket;
 
-	
+	PGraphics captionG,mainG;
 
 	public void setup() {
+		mainG=createGraphics(800,800);
+
+		//size(screenWidth, screenHeight, P3D);
+
+  		// Initial Projection-Mapping Canvas
+  		initializeProjection2D();
+
+  		// Allows application to receive information from Colortizer via UDP
+  		initUDP();
+
+
 		// SimulationWindow
-		size(800, 800);
+		size(1000, 1000);
 
 		// OperationWindow
 		new PFrame(1000, 0, 1900, 875);
@@ -89,7 +120,8 @@
 		basicTile = new BasicTile();
 		mapBlockBrushs = new MapBlockBrushs(this, 4);
 		mapBlockStack = new MapBlockStack(this);
-		disp = new Disp(this);
+		//disp = new Disp(this);
+		disp = new Disp(mainG,this);
 		simParam = new SimParam();
 		demandStack = new DemandStack();
 		simCoordinate = new Tile[80][80];
@@ -105,11 +137,14 @@
 		legendSymbolImgCreation(); // create legend symbol image for operation
 									// display
 		demandGenerationImgCreation(); // create demand image for operation
-										// display
+		// display
 		fileControl = new FileControl();
 	}
 
 	public void draw() {
+		// Exports table Graphic to Projector
+ 		projector = get(0, 0, TABLE_IMAGE_WIDTH, TABLE_IMAGE_HEIGHT);
+
 		simParam.update();
 
 		demandStack.demandLifetimeControl();
@@ -124,6 +159,7 @@
 		// Display
 		disp.show();
 
+		image(mainG,180,0,725,725);
 	}
 
 	void loadTileImage() {
@@ -137,13 +173,20 @@
 		congestionImg = loadImage("congestion.png");
 	}
 
-	public void mousePressed() {
-		int x = (int) (mouseX / 50);
-		int y = (int) (mouseY / 50);
+	void keyPressed() {
+		switch(key) {
+   		 case '`': //  "Enable Projection (`)"
+   		 toggle2DProjection();
+   		 break;
+   		}
+   	}
+   	public void mousePressed() {
+   		int x = (int) (mouseX / 50);
+   		int y = (int) (mouseY / 50);
 
-		if (simParam.mapType == 2) {
-			mapBlockStack.mapBlockArray[x][y] = mapBlockBrushs.selectedBrush;
-			fileControl.customMap[16 * y + x] = brushNumber;
+   		if (simParam.mapType == 2) {
+   			mapBlockStack.mapBlockArray[x][y] = mapBlockBrushs.selectedBrush;
+   			fileControl.customMap[16 * y + x] = brushNumber;
 			mapBlockStack.updateCoordinate();// reflect change of mapblock to //
 												// // demand
 			// generation
@@ -228,21 +271,21 @@
 
 		for (int i = 0; i < 720; i++) {
 			demandPg.line(offset + i, 20 - (basicTile.hwTile.departureProbabilityArray[i / 30] * 100 / 5), offset + i,
-					20);
+				20);
 			demandPg.line(offset + i, 50 - (basicTile.hwTile.arrivalProbabilityArray[i / 30] * 100 / 5), offset + i,
-					50);
+				50);
 			demandPg.line(offset + i, 90 - (basicTile.lwTile.departureProbabilityArray[i / 30] * 100 / 5), offset + i,
-					90);
+				90);
 			demandPg.line(offset + i, 120 - (basicTile.lwTile.arrivalProbabilityArray[i / 30] * 100 / 5), offset + i,
-					120);
+				120);
 			demandPg.line(offset + i, 160 - (basicTile.hrTile.departureProbabilityArray[i / 30] * 100 / 5), offset + i,
-					160);
+				160);
 			demandPg.line(offset + i, 190 - (basicTile.hrTile.arrivalProbabilityArray[i / 30] * 100 / 5), offset + i,
-					190);
+				190);
 			demandPg.line(offset + i, 230 - (basicTile.lrTile.departureProbabilityArray[i / 30] * 100 / 5), offset + i,
-					230);
+				230);
 			demandPg.line(offset + i, 260 - (basicTile.lrTile.arrivalProbabilityArray[i / 30] * 100 / 5), offset + i,
-					260);
+				260);
 		}
 		demandPg.endDraw();
 	}
