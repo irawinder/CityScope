@@ -753,7 +753,6 @@ void drawLineGraph() {
   
   
   //--------Graph and 1 mile radius thing 
-  text("Within 1 Mile of Current Hotel", 0, 50);
   text("Stars vs. Cost of Hotels", 8.0*marginWidthPix, 50);
   stroke(255);
   line(9.0*marginWidthPix, 70, 9.0*marginWidthPix, 250);

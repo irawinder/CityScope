@@ -366,7 +366,7 @@ void renderTableCanvas() {
   
   // Renders the tableCanvas as either a projection map or on-screen 
   image(tableCanvas, 0, 0, tableCanvas.width, tableCanvas.height);
-}  
+}
 
 // Method that opens a folder
 String folderPath;

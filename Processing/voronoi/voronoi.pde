@@ -41,7 +41,6 @@ void setup()
         towers_y[4] = int(random(height));
         towers_x[5] =  int(random(width));
         towers_y[5] = int(random(height));
-       
         
     }
     
@@ -52,6 +51,7 @@ void setup()
 void draw()
 
 {  
+  
   
     for(int px = 0; px < width; px++)
     {
@@ -100,17 +100,13 @@ void draw()
       working_1x[i]  = int(x);
       working_1y[i]  = int(y);
       if(x != 0){
-      println(x, working_1x[i]);
-      println(y, working_1y[i]);
       int c = int(random(0, i));
-      println("gahjkfakjsdfads", c);
       int b = working_1x[int(random(0, i))];
       if(b != 0){
-      println("pleasepleasepleasefuckingwork", b);
       }
       }
 //      ellipse(working_1x[i], working_1y[i], 20, 20); 
-      ellipse(working_1x[i], working_1y[i], 20, 20); 
+//      ellipse(working_1x[i], working_1y[i], 20, 20); 
       stroke(0);
       }
       
@@ -184,9 +180,18 @@ void draw()
 //       println(x, y, 0);
       stroke(0);
       }
+      
 
       ellipse(x, y, 5, 5);
+      
       fill(0);
+    }
+    
+          for(i=0; i < 6; i = i+1)
+    {
+        
+        ellipse(towers_x[i], towers_y[i], 10, 10);
+        
     }
 }
 

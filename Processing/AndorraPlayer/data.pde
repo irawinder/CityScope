@@ -36,10 +36,13 @@ boolean load_non_essential_data = true;
   Table localTowers;
   Table restaurants;
   Table attractions;
+  Table ammenities; 
+  Table wifi; 
   
   // OD Matrix Information
   Table network;
   Table OD;
+  Table towers;
   int dateIndex = 6; // Initial date index    
   String[] dates = { "20140602", 
                      "20140815",
@@ -97,6 +100,7 @@ void initData() {
   localTowers = loadTable("data/localTowers.tsv", "header");
   frenchWifi = loadTable("data/network_edges_french.csv", "header");
   
+  
   // loads baseimage for topographic model
   topo = loadImage("crop.png");
   
@@ -104,7 +108,17 @@ void initData() {
     
     network = loadTable("data/CDR_OD/" + dates[dateIndex] + "_network.tsv", "header");
     OD =      loadTable("data/CDR_OD/" + dates[dateIndex] + "_OD.tsv", "header");
- 
+    
+    wifi = loadTable("data/wifi_user.csv");
+    
+    ammenities = loadTable("data/all_amenities.csv", "header");
+    for (int i=ammenities.getRowCount() - 1; i >= 0; i--) {
+     if (ammenities.getFloat(i, "Lat") < lat2 || ammenities.getFloat(i, "Lat") > lat1 ||
+          ammenities.getFloat(i, "Long") < lon1 || ammenities.getFloat(i, "Long") > lon2) {
+        ammenities.removeRow(i);
+      }
+    }
+    
    restaurants = loadTable("data/restaurants.csv", "header");
    for (int i=restaurants.getRowCount() - 1; i >= 0; i--) {
      if (restaurants.getFloat(i, "Lat") < lat2 || restaurants.getFloat(i, "Lat") > lat1 ||
@@ -121,6 +135,7 @@ void initData() {
       }
     }
     
+   
     
     tripAdvisor = loadTable("data/Tripadvisor_andorra_la_vella.csv", "header");
     for (int i=tripAdvisor.getRowCount()-1; i >= 0; i--) {
@@ -132,9 +147,11 @@ void initData() {
   } else { // Initializes empty objects to prevent null pointer error
     network = new Table();
     OD = new Table();
+    wifi = new Table();
     tripAdvisor = new Table();
     restaurants = new Table();
     attractions = new Table();
+    ammenities = new Table();
   }
   
   println("Data loaded.");
