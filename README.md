@@ -1,6 +1,6 @@
 # CityScope Repository
 CityScope is a collection of scripts developed with Processing 2 IDE v2.2.1, largely to serve the "CityScope" platform at  [http://cp.media.mit.edu/city-simulation](http://cp.media.mit.edu/city-simulation).
-
+* Colortizer has been moved to its [own repo](https://github.com/ChangingPlaces/Colortizer)!!
 * Arrange a Meeting with Ira Winder [jiw@mit.edu] before making any commits to this repository.
 * Avoid forking the repository and instead opt to make a new branch.
 
@@ -10,7 +10,7 @@ CityScope is a collection of scripts developed with Processing 2 IDE v2.2.1, lar
 3. Re-start Processing 2.  Now all of the sketches should show up under File>Sketchbook>
 
 ## Useful Tips
-* **Colortizer** takes a webcam input of colored tags and turns it into a matrix of IDs & rotations passed via UDP
+* **Colortizer** (has been moved to its own repo!!) takes a webcam input of colored tags and turns it into a matrix of IDs & rotations passed via UDP
 * **Legotizer** takes input from Colortizer and *legotizer_data/* folder to rebuild a digital model of the table.  It also sends and receives heatmap data from CitySim.
 * **CitySim** takes JSON data of a point cloud received from Legotizer and does matrix math on it.  It tells Legotizer when it is done.
 * **CityScope/Misc/** folder containes helper sketches and in-progress sketches.

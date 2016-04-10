@@ -89,7 +89,7 @@ void parseCodeStrings(String data[]) {
       int u_temp = int(split[1]) + siteOffsetU;
       int v_temp = int(split[2]) + siteOffsetV;
       
-      if (split.length == 3) { // If 3 columns
+      if (split.length == 3 && !split[0].equals("gridExtents")) { // If 3 columns
           
         // detects if different from previous value
         if ( v_temp < codeArray.length && u_temp < codeArray[0].length ) {

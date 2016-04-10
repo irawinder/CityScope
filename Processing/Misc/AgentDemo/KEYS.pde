@@ -228,7 +228,7 @@ int scroll_0 = 0;
 
 void mousePressed() {
   y_0 = mouseY;
-    }
+}
 
 void mouseDragged() {
   scroll = scroll_0 + mouseY - y_0;
