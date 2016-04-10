@@ -147,6 +147,25 @@ void keyPressed() {
     case 'T': // Turns demo background image on or off
       showDemoMap = toggle(showDemoMap);
       break;
+    case '`': // Toggle Projection Mapping on/off
+      enableProjectionMapping = !enableProjectionMapping;
+      println(enableProjectionMapping);
+      break;
+    case 'C':
+      // enter/leave calibration mode, where surfaces can be warped 
+      // and moved
+      ks.toggleCalibration();
+      break;
+  
+    case 'L':
+      // loads the saved layout
+      ks.load();
+      break;
+  
+    case 'Q':
+      // saves the layout
+      ks.save();
+      break;
   }
   
   //------arrow keys and how to code keys that aren't characters exactly----- 

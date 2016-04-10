@@ -9,6 +9,8 @@ String editor;
 boolean show_menu = false;
 boolean bw = true;
 
+boolean enableProjectionMapping = false;
+
 // Key Commands:
 //
 //   Data Navigation
@@ -74,7 +76,8 @@ int drawDelay = 10;
 void setup() {
   size(canvasWidth, canvasHeight, P3D);
   initCanvas();
-
+  
+  setupKeyStone();
 //  //Call this method if data folder ever needs to be selected by a user
 //  selectFolder("Please select the a folder and click 'Open'", "folderSelected");
 }
@@ -356,7 +359,11 @@ void renderTableCanvas() {
   background(0);
   
   // Renders the tableCanvas as either a projection map or on-screen 
-  image(tableCanvas, 0, 0, tableCanvas.width, tableCanvas.height);
+  if (!enableProjectionMapping) {
+    image(tableCanvas, 0, 0, tableCanvas.width, tableCanvas.height);
+  } else {
+    drawKeyStone();
+  }
 }  
 
 // Method that opens a folder
