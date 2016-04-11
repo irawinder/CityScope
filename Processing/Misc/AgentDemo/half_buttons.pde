@@ -15,16 +15,16 @@ class HalfButton{
     this.y = y;
     this.label = label;
   }
-  void draw(){
-    smooth();
-    fill(textColor, 180);
-    noStroke();
+  void draw(PGraphics p){
+    p.smooth();
+    p.fill(textColor, 180);
+    p.noStroke();
     if(over()){
-    fill(textColor, 160);
+    p.fill(textColor, 160);
     }
-    rect(x, y, 82, 25, 5);
-    fill(background);
-    text(label, x + (42-textWidth(label)/2), y + 15); //text(str, x1, y1, x2, y2) text(label, x + 5, y + 15)
+    p.rect(x, y, 82, 25, 5);
+    p.fill(background);
+    p.text(label, x + (42-textWidth(label)/2), y + 15); //text(str, x1, y1, x2, y2) text(label, x + 5, y + 15)
   }
   boolean over(){
     if(mouseX >= x  && mouseY >= y && mouseX <= x + 85  && mouseY <= y + 15){

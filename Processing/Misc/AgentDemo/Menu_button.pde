@@ -6,15 +6,15 @@ class MenuButton{
     this.y = y;
     this.label = label;
   }
-  void draw(){
-    fill(textColor, 180);
-    noStroke();
+  void draw(PGraphics p){
+    p.fill(textColor, 180);
+    p.noStroke();
     if(over()){
-    fill(textColor, 160);
+    p.fill(textColor, 160);
     }
-    rect(x, y, textWidth(label) + 10, 25, 5);
-    fill(background);
-    text(label, x + 5, y + 15);
+    p.rect(x, y, textWidth(label) + 10, 25, 5);
+    p.fill(background);
+    p.text(label, x + 5, y + 15);
   }
   boolean over(){
     if(mouseX >= x - 20 && mouseY >= y && mouseX <= x + textWidth(label) + 20 && mouseY <= y + 22){

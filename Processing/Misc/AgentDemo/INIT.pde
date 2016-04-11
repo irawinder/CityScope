@@ -13,6 +13,7 @@ void initCanvas() {
   println("Initializing Canvas Objects ... ");
   
   // Largest Canvas that holds unchopped parent graphic.
+  
   tableCanvas = createGraphics(canvasWidth, canvasHeight, P3D);
   
   // Adjusts Colors and Transparency depending on whether visualization is on screen or projected
