@@ -138,17 +138,17 @@ void draw() {
     
     //strings for shared button placements
       if(dataMode == 1){
-      refresh = "Refresh Visualization";
+      refresh = "Refresh Visualization (r)";
         }
       if(dataMode == 0) {
-      refresh = "New Origin Destination Pair";
+      refresh = "New Origin Destination Pair (r)";
       }
       
       if(editObstacles == true){
-      editor = "Exit Editor";
+      editor = "Exit Editor (E)";
       }
       if(editObstacles == false){
-      editor = "Enter Editor";
+      editor = "Enter Editor (E)";
     }
      
     // Print Framerate of animation to console
@@ -269,13 +269,13 @@ void renderButtons(PGraphics p) {
          
     //global buttons    
     button = new Button(canvasWidth - 180, 70, refresh);
-    button2 = new Button(canvasWidth - 180, 100, "Next Network"); //random, grid, custom (MIT), gridded obstacles 
-    button3 = new Button(canvasWidth-180, 40, "Overview");
-    button4 = new Button(canvasWidth-180, 130, "Invert Colors");
+    button2 = new Button(canvasWidth - 180, 100, "Next Network (>)"); //random, grid, custom (MIT), gridded obstacles 
+    button3 = new Button(canvasWidth-180, 40, "Overview (h)");
+    button4 = new Button(canvasWidth-180, 130, "Invert Colors (b)");
     menu5 = new MenuButton(canvasWidth-180, 220, "-");
     menu6 = new MenuButton(canvasWidth-30, 220, "+");
-    button7 = new Button(canvasWidth-180, 160, "Path Finding");
-    button8 = new Button(canvasWidth-180, 190, "Next Data Mode");
+    button7 = new Button(canvasWidth-180, 160, "Path Finding (P)");
+    button8 = new Button(canvasWidth-180, 190, "Next Data Mode (D)");
     
     if(show_menu == false){
       menu.draw(tableCanvas);
@@ -308,14 +308,14 @@ void renderButtons(PGraphics p) {
     if(editObstacles == false && dataMode == 1){
       menu9 = new MenuButton(canvasWidth-180, 280, "-");
       menu10 = new MenuButton(canvasWidth-30, 280, "+");
-      button10 = new Button(canvasWidth-180, 310, "New Random Network");
-      button11 = new Button(canvasWidth-180, 340, "Framerate");
-      button12 = new HalfButton(canvasWidth-180, 370, "Agents");
-      button30 = new HalfButton(canvasWidth-90, 370, "Sources");
-      button13 = new HalfButton(canvasWidth-90, 400, "Traces");
-      button14 = new HalfButton(canvasWidth-180, 400, "Edges");
-      button15 = new HalfButton(canvasWidth-180, 430, "Paths");
-      button31 = new HalfButton(canvasWidth-90, 430, "Swarm Info");
+      button10 = new Button(canvasWidth-180, 310, "New Random Network (n)");
+      button11 = new Button(canvasWidth-180, 340, "Framerate (f)");
+      button12 = new HalfButton(canvasWidth-180, 370, "Agents (S)");
+      button30 = new HalfButton(canvasWidth-90, 370, "Sources (k)");
+      button13 = new HalfButton(canvasWidth-90, 400, "Traces (t)");
+      button14 = new HalfButton(canvasWidth-180, 400, "Edges (e)");
+      button15 = new HalfButton(canvasWidth-180, 430, "Paths (P)");
+      button31 = new HalfButton(canvasWidth-90, 430, "Swarm Info (i)");
     
       if(show_menu == true){
         menu9.draw(tableCanvas);
