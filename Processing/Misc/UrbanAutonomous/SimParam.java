@@ -1,5 +1,8 @@
 
 public class SimParam {
+	public int maxX;
+	public int maxY;
+
 	//Vehicle
 	public int numberOfVehicle;
 	public int capacityOfVehicle;
@@ -25,9 +28,11 @@ public class SimParam {
 	public int mapType;// 0:urban,1:Rural,2:custom
 
 	public SimParam() {
-		hubEnable=true;
+		maxX =18;
+		maxY =22;
+		hubEnable=false;
 		demandSizeCustom = false;
-		mapType = 1;
+		mapType = 2;
 		currentTimeZone = 0;
 		currentTime = -1;
 		capacityOfVehicle = 4;

@@ -43,8 +43,8 @@ public class Disp {
 
 	// ShowMap
 	void oldshowMap() {
-		for (int y = 0; y < 16; y++)
-			for (int x = 0; x < 16; x++)
+		for (int y = 0; y < UrbanAutonomous.simParam.maxY; y++)
+			for (int x = 0; x < UrbanAutonomous.simParam.maxX; x++)
 				p.image(UrbanAutonomous.mapBlockStack.mapBlockArray[x][y].pg, x * 50, y * 50);
 	}
 

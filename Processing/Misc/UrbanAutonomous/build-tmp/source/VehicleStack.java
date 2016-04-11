@@ -32,8 +32,8 @@ public class VehicleStack extends PApplet{
 	    int y=0;
 	    boolean isIntersection=false;
 	    if (isHorizontalStreet) {
-	      x = (int)random(80);
-	      streetNumber = (int)random(16);
+	      x = (int)random(UrbanAutonomous.simParam.maxX*5);
+	      streetNumber = (int)random(UrbanAutonomous.simParam.maxY);
 	      y = streetNumber*5+2;
 	      if (streetNumber==0) {
 	        if ((x-2)==0)
@@ -41,8 +41,8 @@ public class VehicleStack extends PApplet{
 	      } else if (streetNumber == (x-2)/5 && (x-2)%5==0 )
 	        isIntersection=true;
 	    } else {
-	      y = (int)random(80);
-	      streetNumber = (int)random(16);
+	      y = (int)random(UrbanAutonomous.simParam.maxY*5);
+	      streetNumber = (int)random(UrbanAutonomous.simParam.maxX);
 	      x = streetNumber*5+2;
 	      if (streetNumber==0) {
 	        if ((y-2)==0)

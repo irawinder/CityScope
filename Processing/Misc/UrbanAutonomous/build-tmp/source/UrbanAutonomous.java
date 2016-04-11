@@ -39,6 +39,8 @@ public class UrbanAutonomous extends PApplet {
 //AllocatedArrivalDemand:light blue
 //unallocatedArrivalDemand:blue
 
+
+
 int projectorWidth = 1920;
 int projectorHeight = 1200;
 int projectorOffset = 1842;
@@ -77,12 +79,12 @@ public static PGraphics legendPg, demandPg;
 public static int brushNumber;
 
 	// Temporary
+	public static SimParam simParam;
 	public static MapBlock mapBlock;
 	public static BasicTile basicTile;
 	public static MapBlockBrushs mapBlockBrushs;
 	public static MapBlockStack mapBlockStack;
 	public static Disp disp;
-	public static SimParam simParam;
 	public static DemandStack demandStack;
 	public static VehicleStack vehicleStack;
 	// public static OperationDisp operationDisp;
@@ -95,7 +97,7 @@ public static int brushNumber;
 	PGraphics captionG,mainG;
 
 	public void setup() {
-		mainG=createGraphics(800,800);
+		mainG=createGraphics(1000,1200);
 
 		//size(screenWidth, screenHeight, P3D);
 
@@ -132,6 +134,7 @@ public static int brushNumber;
 		hubPeripheralVehicleColor = color(200, 255, 200, 200);
 
 		// Temporary
+		simParam = new SimParam();
 		udpSocket = new UDPSocket(this);
 
 		hubStack = new HubStack(this);
@@ -142,12 +145,11 @@ public static int brushNumber;
 		mapBlockStack = new MapBlockStack(this);
 		//disp = new Disp(this);
 		disp = new Disp(mainG,this);
-		simParam = new SimParam();
 		demandStack = new DemandStack();
-		simCoordinate = new Tile[80][80];
+		simCoordinate = new Tile[UrbanAutonomous.simParam.maxX*5][UrbanAutonomous.simParam.maxY*5];
 		vehicleStack = new VehicleStack();
 
-		mapBlockStack.loadRuralMap();
+		//mapBlockStack.loadRuralMap();
 
 		mapBlockStack.updateCoordinate();// reflect change of mapblock to demand
 											// generation
@@ -179,7 +181,9 @@ public static int brushNumber;
 		// Display
 		disp.show();
 
-		image(mainG,180,0,725,725);
+		//image(mainG,180,0,725,725);
+		image(mainG,180,0,905,1090);
+		//image(mainG,0,0,1000,1200);
 	}
 
 	public void loadTileImage() {
@@ -206,7 +210,7 @@ public static int brushNumber;
 
    		if (simParam.mapType == 2) {
    			mapBlockStack.mapBlockArray[x][y] = mapBlockBrushs.selectedBrush;
-   			fileControl.customMap[16 * y + x] = brushNumber;
+   			fileControl.customMap[UrbanAutonomous.simParam.maxX * y + x] = brushNumber;
 			mapBlockStack.updateCoordinate();// reflect change of mapblock to //
 												// // demand
 			// generation

@@ -43,6 +43,7 @@ public class DemandStack extends PApplet {
 
 	// Demand Generation
 	public void demandGen(int _numberOfDemand, int _updateInterval) {
+		//java.lang.System.out.println("test");
 		if (UrbanAutonomous.simParam.currentTime % _updateInterval == 0) {
 			for (int i = 0; i < _numberOfDemand; i++) {
 				isHorizontalStreet = !isHorizontalStreet;
@@ -53,10 +54,12 @@ public class DemandStack extends PApplet {
 					if (isHubEffective(tmpArrivalDemand, tmpDepartureDemand)) {
 						unallocatedHubArrivalList.add(tmpArrivalDemand);
 						unallocatedHubDepartureList.add(tmpDepartureDemand);// departureDemand
-					} else {
-						unallocatedArrivalList.add(tmpArrivalDemand);
-						unallocatedDepartureList.add(tmpDepartureDemand);// departureDemand
+					} else{
 					}
+				}
+				else {
+					unallocatedArrivalList.add(tmpArrivalDemand);
+					unallocatedDepartureList.add(tmpDepartureDemand);// departureDemand
 				}
 			}
 		}
@@ -76,14 +79,14 @@ public class DemandStack extends PApplet {
 	Demand demandCandidateGen(boolean isHorizontalStreet, boolean isDepartureDemand) {
 		Demand _demandCandidate;
 		if (isHorizontalStreet) {
-			int streetNumber = (int) random(16);
+			int streetNumber = (int) random(UrbanAutonomous.simParam.maxY);
 			int y = streetNumber * 5 + 2;
-			int x = (int) random(80);
+			int x = (int) random(5*UrbanAutonomous.simParam.maxX);
 			_demandCandidate = new Demand(x, y, streetNumber, isHorizontalStreet, isDepartureDemand);
 		} else {
-			int streetNumber = (int) random(16);
+			int streetNumber = (int) random(UrbanAutonomous.simParam.maxX);
 			int x = streetNumber * 5 + 2;
-			int y = (int) random(80);
+			int y = (int) random(5*UrbanAutonomous.simParam.maxY);
 			_demandCandidate = new Demand(x, y, streetNumber, isHorizontalStreet, isDepartureDemand);
 		}
 		return _demandCandidate;
