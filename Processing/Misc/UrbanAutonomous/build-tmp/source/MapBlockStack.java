@@ -23,8 +23,17 @@ public class MapBlockStack extends MapBlockBase{
 	public void customMapGen() {
 		UrbanAutonomous.simParam.mapType = 2;
 		for (int y = 0; y < UrbanAutonomous.simParam.maxY; y++)
-			for (int x = 0; x < UrbanAutonomous.simParam.maxX; x++)
-				mapBlockArray[x][y] = UrbanAutonomous.mapBlockBrushs.specificBrushs[0];
+			for (int x = 0; x < UrbanAutonomous.simParam.maxX; x++){
+				if(UrbanAutonomous.tablePieceInput[x][y][0]==0||UrbanAutonomous.tablePieceInput[x][y][0]==1||UrbanAutonomous.tablePieceInput[x][y][0]==2||UrbanAutonomous.tablePieceInput[x][y][0]==3)
+					mapBlockArray[x][y] = UrbanAutonomous.mapBlockBrushs.specificBrushs[UrbanAutonomous.tablePieceInput[x][y][0]];
+				else{
+					mapBlockArray[x][y] = UrbanAutonomous.mapBlockBrushs.specificBrushs[3];
+					//java.lang.System.out.println(x);
+					//java.lang.System.out.println(y);
+					//java.lang.System.out.println(UrbanAutonomous.tablePieceInput[x][y][0]);
+
+				}
+			}
 	}
 
 	public void noneMapGen() {

@@ -28,8 +28,8 @@ int projectorOffset = 1842;
 int screenWidth = 1842;
 int screenHeight = 1026;
 
-int displayU = 18;
-int displayV = 22;
+public static int displayU = 18;
+public static int displayV = 22;
 
 int IDMax = 15;
 
@@ -38,7 +38,7 @@ int TABLE_IMAGE_HEIGHT = 1000;
 int TABLE_IMAGE_WIDTH = 1000;
 
 // Arrays that holds ID information of rectilinear tile arrangement.
-int tablePieceInput[][][] = new int[displayU][displayV][2];
+public static int tablePieceInput[][][] = new int[displayU][displayV][2];
 
 
 public static DragStatus dragStatus;
@@ -144,6 +144,9 @@ public static int brushNumber;
 	}
 
 	public void draw() {
+		if(simParam.mapType==2) //custom map
+			mapBlockStack.customMapGen();
+
 		// Exports table Graphic to Projector
  		projector = get(0, 0, TABLE_IMAGE_WIDTH, TABLE_IMAGE_HEIGHT);
 
