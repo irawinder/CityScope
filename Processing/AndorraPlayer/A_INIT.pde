@@ -150,7 +150,7 @@ void initContent() {
       showGrid = false;
       finderMode = 2;
       showEdges = false;
-      showSource = true;
+      showSource = false;
       showPaths = false;
       break;
     case 4: //Hotel and Amenities Demo 
@@ -159,7 +159,7 @@ void initContent() {
       showEdges = false;
       showSource = false;
       showPaths = false;
-      showSwarm = false;
+      showSwarm = true;
       break;
   }
   
