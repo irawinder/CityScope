@@ -9,6 +9,7 @@ public class OperationWindow extends PApplet {
 	  	//fullscreen();
 		operationDisp = new OperationDisp(this);
 		    delay(500);
+		    
 		  }
 		  public void draw() {
 		    operationDisp.show();  

@@ -20,7 +20,6 @@
 //unallocatedArrivalDemand:blue
 
 
-
 int projectorWidth = 1920;
 int projectorHeight = 1200;
 int projectorOffset = 1842;

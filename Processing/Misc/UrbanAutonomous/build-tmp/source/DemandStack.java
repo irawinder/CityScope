@@ -274,6 +274,8 @@ public class DemandStack extends PApplet {
 				if (tmpDemand.lifetime == 0) {
 					iter.remove();
 					missedDemand++;
+					UrbanAutonomous.simParam.numberOfVehicle++;
+			        UrbanAutonomous.vehicleStack.vehicleGen();
 					// missedDemandHistory[UrbanAutonomous.simParam.currentTime/20]=missedDemand;
 				} else {
 					tmpDemand.lifetime -= 1;
