@@ -100,7 +100,8 @@ public static int brushNumber;
 
 		// Load Image
 		loadTileImage();
-		backgroundImg = loadImage("operationWindow.jpg");
+		//backgroundImg = loadImage("operationWindow.jpg");
+		backgroundImg = loadImage("operationWindow.png");
 		sideDisplayImg = loadImage("sideDisplay.jpg");
 
 		// Legend Symbol

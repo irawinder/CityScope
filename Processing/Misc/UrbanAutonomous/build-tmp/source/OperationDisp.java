@@ -13,6 +13,44 @@ public class OperationDisp {
 
 	public void show() {
 		UrbanAutonomous.opw.image(UrbanAutonomous.backgroundImg, 0, 0);
+
+		p.noStroke();
+		UrbanAutonomous.opw.textSize(35);
+		//fill(#006837);
+		//Vehicle Size
+		p.fill(0,104,55);
+		p.rect(350, 250, UrbanAutonomous.simParam.capacityOfVehicle*10, 50);
+		//Vehicle Size TEXT
+		p.fill(255,255,255);
+		String vehicleSizeLabel = Integer.toString(UrbanAutonomous.simParam.capacityOfVehicle);
+		UrbanAutonomous.opw.text(vehicleSizeLabel, 360, 295);
+
+		//Time Bar
+		p.fill(0,104,55);
+		p.rect(350, 350, UrbanAutonomous.simParam.currentTime/10, 50);
+		//Time Text
+		p.fill(255,255,255);
+		UrbanAutonomous.opw.textSize(35);
+		int hour = UrbanAutonomous.simParam.currentTime / 600;// 600step = 1hour
+		int min = (UrbanAutonomous.simParam.currentTime - hour * 600) / 60;// 60step = // 1min
+		String timeLabel = p.nf(hour, 2) + ":" + p.nf(min, 2);
+		UrbanAutonomous.opw.text(timeLabel, 360, 395);
+		//Demand
+		p.fill(0,104,55);
+		for(int i=0;i<24;i++){
+			p.rect(350+60*i, 500-UrbanAutonomous.simParam.demandSizeArray[i], 60,UrbanAutonomous.simParam.demandSizeArray[i]);
+		}
+		//Optimal Fleet Size
+		p.fill(0,104,55);
+		p.rect(350, 700, UrbanAutonomous.simParam.numberOfVehicle * UrbanAutonomous.simParam.capacityOfVehicle, 50);
+		//Optimal Fleet Size
+		p.fill(255,255,255);
+		String fleetSizeLabel = Integer.toString(UrbanAutonomous.simParam.capacityOfVehicle*UrbanAutonomous.simParam.numberOfVehicle);
+		UrbanAutonomous.opw.text(fleetSizeLabel, 360, 745);
+
+
+
+		/*
 		showBrush();
 		showMapGUI();
 		showLegendSymbolGUI();
@@ -27,8 +65,12 @@ public class OperationDisp {
 		//showDemandProbabilityGUI();
 		oldshowDemandProbabilityGUI();
 		showTotalCongestion();
+		*/
 	}
 
+
+
+///////////////////////////////
 	void oldshowBrush() {
 		for (int i = 0; i < UrbanAutonomous.mapBlockBrushs.specificBrushs.length; i++) {
 			UrbanAutonomous.opw.image(UrbanAutonomous.mapBlockBrushs.specificBrushs[i].pg, 50, 250 + 70 * i);
