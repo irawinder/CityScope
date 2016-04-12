@@ -3,256 +3,269 @@ char initKey;
 
 void keyPressed() {
   switch (key) {
-     case '$': //shows hotels by price when in data mode
-      hotelprice = true;
-      hotelstars = false;
-      break;
-    case '*':  //shows hotel stars when in data mode
-      hotelstars = true;
-      hotelprice = false;
-      break;
-     case '(': //selects back a row in the hotel data
-      if (d>0)
-      {d -= 1;
-      }
-      if (d == 0)
-      {d = (tripAdvisor.getRowCount () -1);
-      }
-      break; 
-    case ')': //selects forward a row in the hotel data 
-      if (d < (tripAdvisor.getRowCount () - 1)){
+  case '$': //shows hotels by price when in data mode
+    hotelprice = true;
+    hotelstars = false;
+    break;
+  case '*':  //shows hotel stars when in data mode
+    hotelstars = true;
+    hotelprice = false;
+    break;
+  case '(': //selects back a row in the hotel data
+    if (d>0)
+    {
+      d -= 1;
+    }
+    if (d == 0)
+    {
+      d = (tripAdvisor.getRowCount () -1);
+    }
+    break; 
+  case ')': //selects forward a row in the hotel data 
+    if (d < (tripAdvisor.getRowCount () - 1)) {
       d += 1;
-      }
-      if (d == (tripAdvisor.getRowCount () - 1)){
-        d = 0;
-      }
-      break;
-    case '6': //selects back a row in the hotel data
-      if (q>0)
-      {q -= 1;
-      }
-      if (q == 0)
-      {q = (attractions.getRowCount () -1);
-      }
-      break; 
-    case '7': //selects forward a row in the hotel data 
-      if (q < (attractions.getRowCount () - 1)){
+    }
+    if (d == (tripAdvisor.getRowCount () - 1)) {
+      d = 0;
+    }
+    break;
+  case 'u': 
+    toggle(showVoronoi);
+    setLoader("New Agents");
+    initAgents(tableCanvas);
+    scrollX = 0;
+    scrollY = 0;
+    break;
+  case '6': //selects back a row in the hotel data
+    if (q>0)
+    {
+      q -= 1;
+    }
+    if (q == 0)
+    {
+      q = (attractions.getRowCount () -1);
+    }
+    break; 
+  case '7': //selects forward a row in the hotel data 
+    if (q < (attractions.getRowCount () - 1)) {
       q += 1;
-      }
-      if (q == (attractions.getRowCount () - 1)){
-        q = 0;
-      }
-      break;
-   case '8': //selects back a row in the hotel data
-      if (t>0)
-      {t -= 1;
-      }
-      if (t == 0)
-      {t = (restaurants.getRowCount () -1);
-      }
-      break; 
-    case '9': //selects forward a row in the hotel data 
-      if (t < (restaurants.getRowCount () - 1)){
+    }
+    if (q == (attractions.getRowCount () - 1)) {
+      q = 0;
+    }
+    break;
+  case '8': //selects back a row in the hotel data
+    if (t>0)
+    {
+      t -= 1;
+    }
+    if (t == 0)
+    {
+      t = (restaurants.getRowCount () -1);
+    }
+    break; 
+  case '9': //selects forward a row in the hotel data 
+    if (t < (restaurants.getRowCount () - 1)) {
       t += 1;
-      }
-      if (t == (restaurants.getRowCount () - 1)){
-        t = 0;
-      }
-      break;
-    case '^': 
-      reststars = true;
-      break;
-    case 'H':
-      hotelstars = false;
-      hotelprice = false; 
-      break;
-    case 'J': 
-      reststars = false;
-      break;
-    case '0': //ReBoots App
-      setLoader("Andorra Player | Version " + version);
-      // runs key_0() next frame
-      break;
-    case 'o': //show obstacle outlines
-      showObstacles = toggle(showObstacles);
-      break;
-    case 'k': //show sources and sinks for agents
-      showSource = toggle(showSource);
-      break;
-    case 'r': //reset agents and simulation
-      setLoader("New Agents");
-      // runs key_r() next frame
-      break;
-    case 'f': //print framerate to console
-      showFrameRate = toggle(showFrameRate);
-      break;
-    case 'S': //toggles display of swarms of agents
-      showSwarm = toggle(showSwarm);
-      break;
-    case 'e': //shows network edges of motion
-      showEdges = toggle(showEdges);
-      break;
-    case 'i': //shows info about swarms like weight and agent numbers
-      showInfo = toggle(showInfo);
-      break;
-    case 'h': //shows info about paths
-      showPathInfo = toggle(showPathInfo);
-      pFinderGrid_Viz(tableCanvas);
-      break;
-    case 'p': //makes a grid of obstacles
-      setLoader("Gridded Obstacles");
-      // runs key_p() next frame
-      break;
-    case 't': //shows thermal/traces of where agents have been 
-      showTraces = toggle(showTraces);
-      break;
-    case 'F': //toggles frameStep
-      frameStep = toggle(frameStep);
-      println("FrameStep = " + frameStep);
-      break;
-    case '+': //speed it up
-      updateSpeed(1);
-      break;
-    case '-': //slow it down
-      updateSpeed(-1);
-      break;
-    case 'c': //enter calibration mode 
-      ks.toggleCalibration();
-      break;
-    case 'l': //loads course
-      if (editObstacles) {
-        boundaries.loadCourse("data/course.tsv");
-      } else {
-        // loads the saved layout
-        ks.load();
-      }
-      break;
-    case 's'://save course
-      if (editObstacles) {
-        boundaries.saveCourse("data/course.tsv");
-      } else {
-        // saves the layout
-        ks.save();
-      }
-      break;
-    case 'm': // changes draw mode
-      drawMode = nextMode(drawMode, 1);
-      // Adjusts Colors and Transparency depending on whether visualization is on screen or projected
-      setScheme(drawMode);
-      // Reinitialize any PGraphics that use masterAlpha and schemaScaler
-      refreshGraphicScheme(tableCanvas);
-      break;
-    case 'g': // changes debug mode
-      debug = toggle(debug);
-      break;
-    case 'd': //shows test geospatial data
-      if(dataMode != 4){
-        setLoader("Geo-located Test Data");
-      }
-      if(dataMode == 4){ 
-      }
-      // runs key_d() next frame
-      break;
-    case 'D': //Toggles various data and visualization modes
-      setLoader("Data Mode " + nextMode(dataMode, 4));
-      // runs key_D() next frame
-      break;
-    case 'T': // show topography 
-      showTopo = toggle(showTopo);
-      break;
-    case 'E': // shows or hides obstale editor 
-      setLoader("Obstacles Editor");
-      // runs key_E() next frame
-      break;
-    case '': //hit the delete key 
-      if (editObstacles) {
-        boundaries.removeVertex();
-      }
-      break;
-    case 'A': //lets you add obstcles
-      if (editObstacles) {
-        boundaries.addObstacle();
-      }
-      break;
-    case 'R': //lets you remove obstacles 
-      if (editObstacles) {
-        boundaries.removeObstacle();
-      }
-      break;
-    case ' ': //switch between the two obstacles to edit them 
-      if (editObstacles) {
-        boundaries.nextIndex();
-      }
-      break;
-    case 'N': //hops to next vertice 
-      if (editObstacles) {
-        boundaries.nextVert();
-      }
-      break;
-    case 'V': //starts printing frames to file
-      printFrames = toggle(printFrames);
-      break;
-    case 'b': //toggle background between black and white
-      background = toggleBW(background);
-      textColor = toggleBW(textColor);
-      grayColor = int(abs(background - (255.0/2)*schemeScaler));
-      pFinderGrid_Viz(tableCanvas);
-      break;
-    case ']': //manually iterate to next Hour in data
-      setLoader("CDR Data Hour: " + hourIndex);
-      // runs key_RightBracket() next frame
-      break;
-    case '[': //go to previous hour in data and wrap around like forward 
-      setLoader("CDR Data Hour: " + hourIndex);
-      // runs key_LeftBracket() next frame
-      //go to previous hour in data and wrap around like forward 
-      hourIndex = prevHour(hourIndex);
-      setSwarmFlow(hourIndex);
-      // Reinitializes Network Edges
-      edges_Viz(tableCanvas);
-      break;
-    case 'I': //next data index
-      setLoader("CDR Data: " + dates[nextMode(dateIndex, dates.length-1)]);
-      // runs key_I() next frame
-      break;
-    case 'P': //toggle display of shortest paths
-      showPaths = toggle(showPaths);
-      break;
-    case 'G': //toggle display for pathing grip
-      showGrid = toggle(showGrid);
-      break;
-    case 'X': 
-      setLoader("New Origin-Destination Pair");
-      // runs key_X() next frame
-      break;
-    case 'n': // randomize/reset current network for pathfinding
-      setLoader("New Pathfinder Network");
-      // runs key_n() next frame
-      break;
-    case '>': // Toggle network for pathfinding
-      setLoader("Pathfinder Mode " + nextMode(finderMode, 2));
-      // runs key_RightCarrot() next frame
-      break;
-    case '<': // Enable/Disable Pathfinding
-      setLoader("Pathfinder: " + toggle(enablePathfinding));
-      // runs key_LeftCarrot() next frame
-      break;
-    case '{': // Decrease Alpha
-      adjustAlpha(-10);
-      pFinderGrid_Viz(tableCanvas);
-      grayColor = int(abs(background - (255.0/2)*schemeScaler));
-      println("schemeScaler: " + schemeScaler);
-      println("masterAlpha: " + masterAlpha);
-      break;
-    case '}': // Increase Alpha
-      adjustAlpha(+10);
-      pFinderGrid_Viz(tableCanvas);
-      grayColor = int(abs(background - (255.0/2)*schemeScaler));
-      println("schemeScaler: " + schemeScaler);
-      println("masterAlpha: " + masterAlpha);
-      break;
+    }
+    if (t == (restaurants.getRowCount () - 1)) {
+      t = 0;
+    }
+    break;
+  case '^': 
+    reststars = true;
+    break;
+  case 'H':
+    hotelstars = false;
+    hotelprice = false; 
+    break;
+  case 'J': 
+    reststars = false;
+    break;
+  case '0': //ReBoots App
+    setLoader("Andorra Player | Version " + version);
+    // runs key_0() next frame
+    break;
+  case 'o': //show obstacle outlines
+    showObstacles = toggle(showObstacles);
+    break;
+  case 'k': //show sources and sinks for agents
+    showSource = toggle(showSource);
+    break;
+  case 'r': //reset agents and simulation
+    setLoader("New Agents");
+    // runs key_r() next frame
+    break;
+  case 'f': //print framerate to console
+    showFrameRate = toggle(showFrameRate);
+    break;
+  case 'S': //toggles display of swarms of agents
+    showSwarm = toggle(showSwarm);
+    break;
+  case 'e': //shows network edges of motion
+    showEdges = toggle(showEdges);
+    break;
+  case 'i': //shows info about swarms like weight and agent numbers
+    showInfo = toggle(showInfo);
+    break;
+  case 'h': //shows info about paths
+    showPathInfo = toggle(showPathInfo);
+    pFinderGrid_Viz(tableCanvas);
+    break;
+  case 'p': //makes a grid of obstacles
+    setLoader("Gridded Obstacles");
+    // runs key_p() next frame
+    break;
+  case 't': //shows thermal/traces of where agents have been 
+    showTraces = toggle(showTraces);
+    break;
+  case 'F': //toggles frameStep
+    frameStep = toggle(frameStep);
+    println("FrameStep = " + frameStep);
+    break;
+  case '+': //speed it up
+    updateSpeed(1);
+    break;
+  case '-': //slow it down
+    updateSpeed(-1);
+    break;
+  case 'c': //enter calibration mode 
+    ks.toggleCalibration();
+    break;
+  case 'l': //loads course
+    if (editObstacles) {
+      boundaries.loadCourse("data/course.tsv");
+    } else {
+      // loads the saved layout
+      ks.load();
+    }
+    break;
+  case 's'://save course
+    if (editObstacles) {
+      boundaries.saveCourse("data/course.tsv");
+    } else {
+      // saves the layout
+      ks.save();
+    }
+    break;
+  case 'm': // changes draw mode
+    drawMode = nextMode(drawMode, 1);
+    // Adjusts Colors and Transparency depending on whether visualization is on screen or projected
+    setScheme(drawMode);
+    // Reinitialize any PGraphics that use masterAlpha and schemaScaler
+    refreshGraphicScheme(tableCanvas);
+    break;
+  case 'g': // changes debug mode
+    debug = toggle(debug);
+    break;
+  case 'd': //shows test geospatial data
+    if (dataMode != 4) {
+      setLoader("Geo-located Test Data");
+    }
+    if (dataMode == 4) {
+    }
+    // runs key_d() next frame
+    break;
+  case 'D': //Toggles various data and visualization modes
+    setLoader("Data Mode " + nextMode(dataMode, 4));
+    // runs key_D() next frame
+    break;
+  case 'T': // show topography 
+    showTopo = toggle(showTopo);
+    break;
+  case 'E': // shows or hides obstale editor 
+    setLoader("Obstacles Editor");
+    // runs key_E() next frame
+    break;
+  case '': //hit the delete key 
+    if (editObstacles) {
+      boundaries.removeVertex();
+    }
+    break;
+  case 'A': //lets you add obstcles
+    if (editObstacles) {
+      boundaries.addObstacle();
+    }
+    break;
+  case 'R': //lets you remove obstacles 
+    if (editObstacles) {
+      boundaries.removeObstacle();
+    }
+    break;
+  case ' ': //switch between the two obstacles to edit them 
+    if (editObstacles) {
+      boundaries.nextIndex();
+    }
+    break;
+  case 'N': //hops to next vertice 
+    if (editObstacles) {
+      boundaries.nextVert();
+    }
+    break;
+  case 'V': //starts printing frames to file
+    printFrames = toggle(printFrames);
+    break;
+  case 'b': //toggle background between black and white
+    background = toggleBW(background);
+    textColor = toggleBW(textColor);
+    grayColor = int(abs(background - (255.0/2)*schemeScaler));
+    pFinderGrid_Viz(tableCanvas);
+    break;
+  case ']': //manually iterate to next Hour in data
+    setLoader("CDR Data Hour: " + hourIndex);
+    // runs key_RightBracket() next frame
+    break;
+  case '[': //go to previous hour in data and wrap around like forward 
+    setLoader("CDR Data Hour: " + hourIndex);
+    // runs key_LeftBracket() next frame
+    //go to previous hour in data and wrap around like forward 
+    hourIndex = prevHour(hourIndex);
+    setSwarmFlow(hourIndex);
+    // Reinitializes Network Edges
+    edges_Viz(tableCanvas);
+    break;
+  case 'I': //next data index
+    setLoader("CDR Data: " + dates[nextMode(dateIndex, dates.length-1)]);
+    // runs key_I() next frame
+    break;
+  case 'P': //toggle display of shortest paths
+    showPaths = toggle(showPaths);
+    break;
+  case 'G': //toggle display for pathing grip
+    showGrid = toggle(showGrid);
+    break;
+  case 'X': 
+    setLoader("New Origin-Destination Pair");
+    // runs key_X() next frame
+    break;
+  case 'n': // randomize/reset current network for pathfinding
+    setLoader("New Pathfinder Network");
+    // runs key_n() next frame
+    break;
+  case '>': // Toggle network for pathfinding
+    setLoader("Pathfinder Mode " + nextMode(finderMode, 2));
+    // runs key_RightCarrot() next frame
+    break;
+  case '<': // Enable/Disable Pathfinding
+    setLoader("Pathfinder: " + toggle(enablePathfinding));
+    // runs key_LeftCarrot() next frame
+    break;
+  case '{': // Decrease Alpha
+    adjustAlpha(-10);
+    pFinderGrid_Viz(tableCanvas);
+    grayColor = int(abs(background - (255.0/2)*schemeScaler));
+    println("schemeScaler: " + schemeScaler);
+    println("masterAlpha: " + masterAlpha);
+    break;
+  case '}': // Increase Alpha
+    adjustAlpha(+10);
+    pFinderGrid_Viz(tableCanvas);
+    grayColor = int(abs(background - (255.0/2)*schemeScaler));
+    println("schemeScaler: " + schemeScaler);
+    println("masterAlpha: " + masterAlpha);
+    break;
   }
-  
+
   //------arrow keys and how to code keys that aren't characters exactly----- 
   if (key == CODED) { 
     if (keyCode == LEFT) {
@@ -364,48 +377,52 @@ void mouseClicked() {
 // Runs on a delay
 void keyInit() {
   switch(initKey) {
-    case '0':
-      key_0();
-      break;
-    case 'D':
-      key_D();
-      break;
-    case '>':
-      key_RightCarrot();
-      break;
-    case '<':
-      key_LeftCarrot();
-      break;
-    case 'n':
-      key_n();
-      break;
-    case 'E':
-      key_E();
-      break;
-    case 'p':
-      key_p();
-      break;
-    case 'r':
-      key_r();
-      break;
-    case 'd':
-      key_d();
-      break;
-    case 'I':
-      key_I();
-      break;
-    case '[':
-      key_LeftBracket();
-      break;
-    case ']':
-      key_RightBracket();
-      break;
-    case 'X':
-      key_X();
-      break;
+  case '0':
+    key_0();
+    break;
+  case 'D':
+    key_D();
+    break;
+  case '>':
+    key_RightCarrot();
+    break;
+  case '<':
+    key_LeftCarrot();
+    break;
+  case 'n':
+    key_n();
+    break;
+  case 'E':
+    key_E();
+    break;
+  case 'p':
+    key_p();
+    break;
+  case 'r':
+    key_r();
+    break;
+  case 'u':
+    key_r();
+    toggle(showVoronoi);
+    break;  
+  case 'd':
+    key_d();
+    break;
+  case 'I':
+    key_I();
+    break;
+  case '[':
+    key_LeftBracket();
+    break;
+  case ']':
+    key_RightBracket();
+    break;
+  case 'X':
+    key_X();
+    break;
   }
 }
-  
+
 void key_0() {
   // Restarts the whole sh'bang
   initCanvas();
@@ -466,6 +483,7 @@ void key_p() {
 
 void key_r() {
   //reset agents and simulation
+  toggle(showVoronoi);
   initAgents(tableCanvas);
   scrollX = 0;
   scrollY = 0;
@@ -513,3 +531,4 @@ void key_X() {
   initPath(pFinder, A, B);
   pFinderGrid_Viz(tableCanvas);
 }
+

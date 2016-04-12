@@ -152,7 +152,7 @@ void initContent() {
       showEdges = false;
       showSource = false;
       showPaths = false;
-      showVoronoi = false;
+//      showVoronoi = false;
       break;
     case 4: //Hotel and Amenities Demo 
       showGrid = false; 
@@ -160,7 +160,7 @@ void initContent() {
       showEdges = false;
       showSource = false;
       showPaths = false;
-      showVoronoi = true;
+//      showVoronoi = true;
       showSwarm = true;
       break;
   }
@@ -224,7 +224,6 @@ void initAgents(PGraphics p) {
       break;
     case 4: 
       CDRNetwork();
-      showVoronoi = true;
       break;
   }
   
@@ -435,13 +434,13 @@ void CDRNetwork() {
         }
         
     if(origin[i].x >= 550 && origin[i].x <= 780){
-         for(int j = 0; j<184; j++){ 
-                 int c = int(random(0,184));
-                 PVector sub = stufftodo.get(c);
-                 if(abs(origin[i].x- sub.x) <= 15){
-                   origin[i] = new PVector(sub.x, sub.y);
-                 }
-         }
+//         for(int j = 0; j<184; j++){ 
+//                 int c = int(random(0,184));
+//                 PVector sub = stufftodo.get(c);
+//                 if(abs(origin[i].x- sub.x) <= 15){
+//                   origin[i] = new PVector(sub.x, sub.y);
+//                 }
+//         }
           for(int j = 0; j<184; j++){ 
                  int c = int(random(0,184));
                  PVector sub = stufftodo.get(c);

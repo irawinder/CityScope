@@ -71,40 +71,40 @@ void drawTableCanvas(PGraphics p) {
       //Draws if dataMode = 4 
        if (dataMode == 4) { 
              drawHotels(p);
-             drawHotelSelector(p);
-             drawAttractionSelector(p);
-             drawRestaurantSelector(p);
+//             drawHotelSelector(p);
+//             drawAttractionSelector(p);
+//             drawRestaurantSelector(p);
              drawRestaurants(p);
              drawAttractions(p);
       if (hotelprice == true) { 
           drawHotelPrice(p);
-          drawHotelSelector(p);
-          drawAttractionSelector(p);
-          drawRestaurantSelector(p);
+//          drawHotelSelector(p);
+//          drawAttractionSelector(p);
+//          drawRestaurantSelector(p);
           drawRestaurants(p);
           drawAttractions(p);
               }
       if (hotelstars == true) { 
           drawHotelStars(p);
-          drawHotelSelector(p);
-          drawAttractionSelector(p);
-          drawRestaurantSelector(p);
+//          drawHotelSelector(p);
+//          drawAttractionSelector(p);
+//          drawRestaurantSelector(p);
           drawRestaurants(p);
           drawAttractions(p);
       }
       if (reststars == true){
           drawHotels(p);
-          drawHotelSelector(p);
-          drawAttractionSelector(p);
-          drawRestaurantSelector(p);
+//          drawHotelSelector(p);
+//          drawAttractionSelector(p);
+//          drawRestaurantSelector(p);
           drawRestStars(p);
           drawAttractions(p);
         }
        if ((reststars == true) && (hotelstars == true)){
           drawHotelStars(p);
-          drawHotelSelector(p);
-          drawAttractionSelector(p);
-          drawRestaurantSelector(p);
+//          drawHotelSelector(p);
+//          drawAttractionSelector(p);
+//          drawRestaurantSelector(p);
           //drawRestaurants(p);
           drawAttractions(p);
           drawRestStars(p);
@@ -112,14 +112,66 @@ void drawTableCanvas(PGraphics p) {
        if ((reststars == true) && (hotelprice == true)){
           drawHotelPrice(p);
           //drawHotelStars(p);
-          drawHotelSelector(p);
-          drawAttractionSelector(p);
-          drawRestaurantSelector(p);
+//          drawHotelSelector(p);
+//          drawAttractionSelector(p);
+//          drawRestaurantSelector(p);
           //drawRestaurants(p);
           drawAttractions(p);
           drawRestStars(p);
        }
               }
+              
+       if (dataMode == 3) { 
+             drawHotels(p);
+//             drawHotelSelector(p);
+//             drawAttractionSelector(p);
+//             drawRestaurantSelector(p);
+             drawRestaurants(p);
+             drawAttractions(p);
+      if (hotelprice == true) { 
+          drawHotelPrice(p);
+//          drawHotelSelector(p);
+//          drawAttractionSelector(p);
+//          drawRestaurantSelector(p);
+          drawRestaurants(p);
+          drawAttractions(p);
+              }
+      if (hotelstars == true) { 
+          drawHotelStars(p);
+//          drawHotelSelector(p);
+//          drawAttractionSelector(p);
+//          drawRestaurantSelector(p);
+          drawRestaurants(p);
+          drawAttractions(p);
+      }
+      if (reststars == true){
+          drawHotels(p);
+//          drawHotelSelector(p);
+//          drawAttractionSelector(p);
+//          drawRestaurantSelector(p);
+          drawRestStars(p);
+          drawAttractions(p);
+        }
+       if ((reststars == true) && (hotelstars == true)){
+          drawHotelStars(p);
+//          drawHotelSelector(p);
+//          drawAttractionSelector(p);
+//          drawRestaurantSelector(p);
+          //drawRestaurants(p);
+          drawAttractions(p);
+          drawRestStars(p);
+       }
+       if ((reststars == true) && (hotelprice == true)){
+          drawHotelPrice(p);
+          //drawHotelStars(p);
+//          drawHotelSelector(p);
+//          drawAttractionSelector(p);
+//          drawRestaurantSelector(p);
+          //drawRestaurants(p);
+          drawAttractions(p);
+          drawRestStars(p);
+       }
+              }       
       
       // Allows dragging of Table Area Info
       p.translate(scrollX, scrollY);
