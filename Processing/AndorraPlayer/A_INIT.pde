@@ -152,6 +152,7 @@ void initContent() {
       showEdges = false;
       showSource = false;
       showPaths = false;
+      showVoronoi = false;
       break;
     case 4: //Hotel and Amenities Demo 
       showGrid = false; 
@@ -159,6 +160,7 @@ void initContent() {
       showEdges = false;
       showSource = false;
       showPaths = false;
+      showVoronoi = true;
       showSwarm = true;
       break;
   }
@@ -398,6 +400,7 @@ void CDRNetwork() {
  if (network.getInt(i, "CON_O") == 0 && network.getInt(i, "CON_D") == 0) {
         destination[i] = mercatorMap.getScreenLocation(new PVector(network.getFloat(i, "LAT_D"), network.getFloat(i, "LON_D")));
         origin[i] = mercatorMap.getScreenLocation(new PVector(network.getFloat(i, "LAT_O"), network.getFloat(i, "LON_O")));
+  if(showVoronoi == true){
     if(origin[i].x <= 470){
          for(int j = 0; j<184; j++){ 
                  int c = int(random(0,184));
@@ -447,6 +450,7 @@ void CDRNetwork() {
                  }
          }
         }
+  }
         
  }
    
