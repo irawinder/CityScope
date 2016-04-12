@@ -26,7 +26,9 @@ public class OperationWindow extends PApplet {
 		    }
 		  	//Time
 		    else if (mouseY >350 && mouseY<400) {
-		      UrbanAutonomous.simParam.currentTime=(mouseX-350)*10 ;
+			    if (mouseX >350 && mouseX <350+1440) {
+			      UrbanAutonomous.simParam.currentTime=(mouseX-350)*10 ;
+			    }
 		    }
 		}
 	}
