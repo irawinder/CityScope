@@ -22,6 +22,7 @@ public class OperationWindow extends PApplet {
 			      UrbanAutonomous.simParam.capacityOfVehicle=(mouseX-350)/10;
 			      UrbanAutonomous.simParam.numberOfVehicle=1;
 			      UrbanAutonomous.vehicleStack.vehicleGen();
+			      UrbanAutonomous.simParam.currentTime=4200;
 			    }
 		    }
 		  	//Time

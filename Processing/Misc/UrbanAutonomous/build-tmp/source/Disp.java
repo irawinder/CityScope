@@ -98,7 +98,9 @@ public class Disp {
 		for (Vehicle vehicle : UrbanAutonomous.vehicleStack.vehicleList) {
 			p.ellipseMode(PConstants.CENTER);
 			p.fill(UrbanAutonomous.vehicleColor);
-			p.ellipse(vehicle.x * 10 + 5, vehicle.y * 10 + 5, 5*UrbanAutonomous.simParam.capacityOfVehicle, 5*UrbanAutonomous.simParam.capacityOfVehicle);
+			int vSize= (int)java.lang.Math.sqrt(UrbanAutonomous.simParam.capacityOfVehicle*100) ;
+			//p.ellipse(vehicle.x * 10 + 5, vehicle.y * 10 + 5, 5*UrbanAutonomous.simParam.capacityOfVehicle, 5*UrbanAutonomous.simParam.capacityOfVehicle);
+			p.ellipse(vehicle.x * 10 + 5, vehicle.y * 10 + 5, vSize,vSize);
 		}
 	}
 
