@@ -327,40 +327,11 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
               
             { 
               origin[i*(numNodes-1)+j] = new PVector(x, y);
-              println("assigning to origin");
               println(origin[i*(numNodes-1)+j]);
-              workings.add(origin[i*(numNodes-1)+j]); 
         } 
-////grabs from FloatLists
-//        else{
-//          int a = int(random(1,working_xx.size()));
-//             origin[i*(numNodes-1)+j] = new PVector(working_xx.get(a), working_yy.get(a)); //in real life, this would be to an ammenity in the polygon
-//             if (origin[i*(numNodes-1)+j].x < 10 && origin[i*(numNodes-1)+j].y < 10) {
-//               println("Near-Zero Origin at swarm #" + (i*(numNodes-1)+j), origin[i*(numNodes-1)+j].x, origin[i*(numNodes-1)+j].y);
-//               origin[i*(numNodes-1)+j] = new PVector(working_xx.get(a), working_yy.get(a));
-//             }
-//        }
-////grabs from ArrayList  
-//        else {
-//              println(workings.size());
-//              int a = int(random(0, workings.size()));
-//              println("workings");
-//              println(workings);
-////              origin[i*(numNodes-1)+j] =  workings.get(a);
-//                }
-                println("workings");
-                println(workings);
-                int a = int(random(0, workings.size()));
-                if(workings.size() > 0) {
-                  println(a);
-                  println(workings.size());
-                  println(origin.length);
-                  println(i*(numNodes-1)+j);
-                  origin[i*(numNodes-1)+j] =  workings.get(a);
-                  println("this thing printed D:D:D:D:");
+        else {
+              origin[i*(numNodes-1)+j] = new PVector(towers_x[0], towers_y[0]);
                 }
-                
-  
       }
     
       origin1[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);

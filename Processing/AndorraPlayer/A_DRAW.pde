@@ -411,6 +411,7 @@ void drawHotels(PGraphics p) {
      j+=1;
      p.ellipse(coord.x, coord.y, 5.5, 5.5);
      p.fill(#ffffff);
+     
   }
 
   PVector geo;

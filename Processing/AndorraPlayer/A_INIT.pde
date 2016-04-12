@@ -187,6 +187,8 @@ float[] weight;
 
 int textSize = 8;
 
+boolean showVoronoi = false;
+
 boolean enablePathfinding = true;
 
 HeatMap traces;
@@ -220,6 +222,7 @@ void initAgents(PGraphics p) {
       break;
     case 4: 
       CDRNetwork();
+      showVoronoi = true;
       break;
   }
   
@@ -388,72 +391,73 @@ void CDRNetwork() {
     }
   
   for (int i=0; i<numSwarm; i++) {
+   
 
     boolean external = false;
-    
     // If edge is within table area //this get voronoi math!!!!
-    if (network.getInt(i, "CON_O") == 0 && network.getInt(i, "CON_D") == 0) {
-//         println("yayforprintinghere", stufftodo);
-         origin[i] = mercatorMap.getScreenLocation(new PVector(network.getFloat(i, "LAT_O"), network.getFloat(i, "LON_O")));
-         destination[i] = mercatorMap.getScreenLocation(new PVector(network.getFloat(i, "LAT_D"), network.getFloat(i, "LON_D")));
-               for(int j = 0; j<184; j++){ 
-               int c = int(random(0,184));
-               PVector sub = stufftodo.get(c);
-                  if(
-                  ((sub.x  - localTowers.getFloat(0, "Lat") * (sub.x  - localTowers.getFloat(0, "Lat"))) +  ((sub.y  - localTowers.getFloat(0, "Lon")) * (sub.y  - localTowers.getFloat(0, "Lon")))) 
-                     <= ((sub.x  - localTowers.getFloat(2, "Lat")) * (sub.x - localTowers.getFloat(2, "Lat")) +  ((sub.y  - localTowers.getFloat(2, "Lon")) * (sub.y  - localTowers.getFloat(2, "Lon")))) 
-                  && 
-                  ((sub.x  - localTowers.getFloat(0, "Lat") * (sub.x  - localTowers.getFloat(0, "Lat"))) +  ((sub.y  - localTowers.getFloat(0, "Lon")) * (sub.y  - localTowers.getFloat(0, "Lon")))) 
-                     <= ((sub.x  - localTowers.getFloat(6, "Lat")) * (sub.x - localTowers.getFloat(6, "Lat")) +  ((sub.y  - localTowers.getFloat(6, "Lon")) * (sub.y  - localTowers.getFloat(6, "Lon"))))
-                  &&
-                  ((sub.x  - localTowers.getFloat(0, "Lat") * (sub.x  - localTowers.getFloat(0, "Lat"))) +  ((sub.y  - localTowers.getFloat(0, "Lon")) * (sub.y  - localTowers.getFloat(0, "Lon")))) 
-                    <= ((sub.x  - localTowers.getFloat(3, "Lat")) * (sub.x - localTowers.getFloat(3, "Lat")) +  ((sub.y  - localTowers.getFloat(3, "Lon")) * (sub.y  - localTowers.getFloat(3, "Lon"))))
-                  &&
-                  ((sub.x  - localTowers.getFloat(0, "Lat") * (sub.x  - localTowers.getFloat(0, "Lat"))) +  ((sub.y  - localTowers.getFloat(0, "Lon")) * (sub.y  - localTowers.getFloat(0, "Lon")))) 
-                   <= ((sub.x  - localTowers.getFloat(4, "Lat")) * (sub.x - localTowers.getFloat(4, "Lat")) +  ((sub.y  - localTowers.getFloat(4, "Lon")) * (sub.y  - localTowers.getFloat(4, "Lon"))))
-                  &&
-                  ((sub.x  - localTowers.getFloat(0, "Lat") * (sub.x  - localTowers.getFloat(0, "Lat"))) +  ((sub.y  - localTowers.getFloat(0, "Lon")) * (sub.y  - localTowers.getFloat(0, "Lon")))) 
-                    <= ((sub.x  - localTowers.getFloat(5, "Lat")) * (sub.x - localTowers.getFloat(5, "Lat")) +  ((sub.y  - localTowers.getFloat(5, "Lon")) * (sub.y  - localTowers.getFloat(5, "Lon"))))
-                  &&
-                  ((sub.x  - localTowers.getFloat(0, "Lat") * (sub.x  - localTowers.getFloat(0, "Lat"))) +  ((sub.y  - localTowers.getFloat(0, "Lon")) * (sub.y  - localTowers.getFloat(0, "Lon")))) 
-                    <= ((sub.x  - localTowers.getFloat(7, "Lat")) * (sub.x - localTowers.getFloat(7, "Lat")) +  ((sub.y  - localTowers.getFloat(7, "Lon")) * (sub.y  - localTowers.getFloat(7, "Lon"))))
-                  &&
-                  ((sub.x  - localTowers.getFloat(0, "Lat") * (sub.x  - localTowers.getFloat(0, "Lat"))) +  ((sub.y  - localTowers.getFloat(0, "Lon")) * (sub.y  - localTowers.getFloat(0, "Lon")))) 
-                    <= ((sub.x  - localTowers.getFloat(1, "Lat")) * (sub.x - localTowers.getFloat(1, "Lat")) +  ((sub.y  - localTowers.getFloat(1, "Lon")) * (sub.y  - localTowers.getFloat(1, "Lon"))))
-                  &&
-                  ((sub.x  - localTowers.getFloat(0, "Lat") * (sub.x  - localTowers.getFloat(0, "Lat"))) +  ((sub.y  - localTowers.getFloat(0, "Lon")) * (sub.y  - localTowers.getFloat(0, "Lon")))) 
-                    <= ((sub.x  - localTowers.getFloat(8, "Lat")) * (sub.x - localTowers.getFloat(8, "Lat")) +  ((sub.y  - localTowers.getFloat(8, "Lon")) * (sub.y  - localTowers.getFloat(8, "Lon"))))
-                  &&
-                  ((sub.x  - localTowers.getFloat(0, "Lat") * (sub.x  - localTowers.getFloat(0, "Lat"))) +  ((sub.y  - localTowers.getFloat(0, "Lon")) * (sub.y  - localTowers.getFloat(0, "Lon")))) 
-                    <= ((sub.x  - localTowers.getFloat(9, "Lat")) * (sub.x - localTowers.getFloat(9, "Lat")) +  ((sub.y  - localTowers.getFloat(9, "Lon")) * (sub.y  - localTowers.getFloat(9, "Lon"))))
-                  &&
-                  ((sub.x  - localTowers.getFloat(0, "Lat") * (sub.x  - localTowers.getFloat(0, "Lat"))) +  ((sub.y  - localTowers.getFloat(0, "Lon")) * (sub.y  - localTowers.getFloat(0, "Lon")))) 
-                    <= ((sub.x  - localTowers.getFloat(10, "Lat")) * (sub.x - localTowers.getFloat(10, "Lat")) +  ((sub.y  - localTowers.getFloat(10, "Lon")) * (sub.y  - localTowers.getFloat(10, "Lon"))))
-                  &&
-                  ((sub.x  - localTowers.getFloat(0, "Lat") * (sub.x  - localTowers.getFloat(0, "Lat"))) +  ((sub.y  - localTowers.getFloat(0, "Lon")) * (sub.y  - localTowers.getFloat(0, "Lon")))) 
-                    <=((sub.x  - localTowers.getFloat(11, "Lat")) * (sub.x - localTowers.getFloat(11, "Lat")) +  ((sub.y  - localTowers.getFloat(11, "Lon")) * (sub.y  - localTowers.getFloat(11, "Lon"))))
-                  &&
-                  ((sub.x  - localTowers.getFloat(0, "Lat") * (sub.x  - localTowers.getFloat(0, "Lat"))) +  ((sub.y  - localTowers.getFloat(0, "Lon")) * (sub.y  - localTowers.getFloat(0, "Lon")))) 
-                    <= ((sub.x  - localTowers.getFloat(12, "Lat")) * (sub.x - localTowers.getFloat(12, "Lat")) +  ((sub.y  - localTowers.getFloat(12, "Lon")) * (sub.y  - localTowers.getFloat(12, "Lon"))))
-                  &&
-                  ((sub.x  - localTowers.getFloat(0, "Lat") * (sub.x  - localTowers.getFloat(0, "Lat"))) +  ((sub.y  - localTowers.getFloat(0, "Lon")) * (sub.y  - localTowers.getFloat(0, "Lon")))) 
-                    <=((sub.x  - localTowers.getFloat(13, "Lat")) * (sub.x - localTowers.getFloat(13, "Lat")) +  ((sub.y  - localTowers.getFloat(13, "Lon")) * (sub.y  - localTowers.getFloat(13, "Lon"))))
-                    )         
-                    { 
-                      origin[i] = new PVector(sub.x, sub.y);
-                    }  
-                else{
-                 origin[i] = mercatorMap.getScreenLocation(new PVector(network.getFloat(i, "LAT_O"), network.getFloat(i, "LON_O")));
-                }
-    }
-    } 
+ if (network.getInt(i, "CON_O") == 0 && network.getInt(i, "CON_D") == 0) {
+        destination[i] = mercatorMap.getScreenLocation(new PVector(network.getFloat(i, "LAT_D"), network.getFloat(i, "LON_D")));
+        origin[i] = mercatorMap.getScreenLocation(new PVector(network.getFloat(i, "LAT_O"), network.getFloat(i, "LON_O")));
+    if(origin[i].x <= 470){
+         for(int j = 0; j<184; j++){ 
+                 int c = int(random(0,184));
+                 PVector sub = stufftodo.get(c);
+                 if(abs(origin[i].x- sub.x) <= 15){
+                   origin[i] = new PVector(sub.x, sub.y);
+                 }
+         }
+          for(int j = 0; j<184; j++){ 
+                 int c = int(random(0,184));
+                 PVector sub = stufftodo.get(c);
+                 if(abs(destination[i].x- sub.x) <= 15){
+                   destination[i] = new PVector(sub.x, sub.y);
+                 }
+         }
+        }
+    if(origin[i].y <= 230){
+         for(int j = 0; j<184; j++){ 
+                 int c = int(random(0,184));
+                 PVector sub = stufftodo.get(c);
+                 if(abs(origin[i].x- sub.x) <= 15){
+                   origin[i] = new PVector(sub.x, sub.y);
+                 }
+         }
+          for(int j = 0; j<184; j++){ 
+                 int c = int(random(0,184));
+                 PVector sub = stufftodo.get(c);
+                 if(abs(destination[i].x- sub.x) <= 15){
+                   destination[i] = new PVector(sub.x, sub.y);
+                 }
+         }
+        }
+        
+    if(origin[i].x >= 550 && origin[i].x <= 780){
+         for(int j = 0; j<184; j++){ 
+                 int c = int(random(0,184));
+                 PVector sub = stufftodo.get(c);
+                 if(abs(origin[i].x- sub.x) <= 15){
+                   origin[i] = new PVector(sub.x, sub.y);
+                 }
+         }
+          for(int j = 0; j<184; j++){ 
+                 int c = int(random(0,184));
+                 PVector sub = stufftodo.get(c);
+                 if(abs(destination[i].x- sub.x) <= 15){
+                   destination[i] = new PVector(sub.x, sub.y);
+                 }
+         }
+        }
+        
+ }
+   
+  
     // If edge crosses table area
     else {
       origin[i] = container_Locations[network.getInt(i, "CON_O")];
       destination[i] = container_Locations[network.getInt(i, "CON_D")];
       external = true;
     }
-  
+ 
     weight[i] = 20;
     
     if (network.getString(i, "NATION").equals("sp")) {
@@ -472,6 +476,8 @@ void CDRNetwork() {
     swarmHorde.getSwarm(i).temperStandingAgents(external);
     
   }
+  
+
   
   
   //Sets maximum range for hourly data

@@ -195,7 +195,7 @@ class Swarm {
   int hitbox = 5;
   float finderResolution = hitbox*2;
   
-  PVector origin, destination;
+  PVector origin, destination, sub;
   
   Obstacle sink;
   
@@ -443,9 +443,10 @@ class Swarm {
     p.strokeWeight(2);
     p.line(origin.x - 5, origin.y - 5, origin.x + 5, origin.y + 5);
     p.line(origin.x - 5, origin.y + 5, origin.x + 5, origin.y - 5);
+
+    p.text(origin.x, origin.x + 15, origin.y + 15);
+    p.text(origin.y, origin.x + 35, origin.y + 35);
     
-//    p.text(origin.x, origin.x + 15, origin.y + 15);
-//    p.text(origin.y, origin.x + 35, origin.y + 35);
     
     //Draw Sink
     p.strokeWeight(3);
