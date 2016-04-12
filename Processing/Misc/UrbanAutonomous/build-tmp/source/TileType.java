@@ -5,7 +5,8 @@ public enum TileType {
 	  HR(3), 
 	  LR(4),
 	  ROAD(5),
-	  INTERSECTION(6);
+	  INTERSECTION(6),
+	  NONE(7);
 
 	  private final int id;
 

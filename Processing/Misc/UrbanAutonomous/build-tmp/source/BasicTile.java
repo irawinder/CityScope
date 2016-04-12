@@ -4,6 +4,7 @@ public class BasicTile {
 	public Tile hrTile;
 	public Tile lrTile;
 	public Tile roadTile;
+	public Tile noneTile;
 	public Tile intersectionTile;
 
 	public BasicTile() {
@@ -23,17 +24,16 @@ public class BasicTile {
 		float[] lrArrivalProbabilityArray = { 0.03f, 0.03f, 0.03f, 0.03f, 0.10f, 0.13f, 0.12f, 0.07f, 0.07f, 0.07f, 0.07f, 0.07f, 0.10f, 0.10f, 0.10f, 0.10f, 0.30f, 0.30f, 0.30f, 0.17f, 0.13f, 0.10f, 0.07f, 0.03f };
 		lrTile = new Tile(lrDepartureProbabilityArray, lrArrivalProbabilityArray, TileType.LR);
 
-		float[] roadDepartureProbabilityArray = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-				0 };
-		float[] roadArrivalProbabilityArray = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-				0 };
+		float[] roadDepartureProbabilityArray = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		float[] roadArrivalProbabilityArray = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 		roadTile = new Tile(roadDepartureProbabilityArray, roadArrivalProbabilityArray, TileType.ROAD);
 
-		float[] intersectionDepartureProbabilityArray = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-				0, 0, 0 };
-		float[] intersectionArrivalProbabilityArray = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-				0, 0, 0 };
-		intersectionTile = new Tile(intersectionDepartureProbabilityArray, intersectionArrivalProbabilityArray,
-				TileType.INTERSECTION);
+		float[] noneDepartureProbabilityArray = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		float[] noneArrivalProbabilityArray = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		noneTile = new Tile(noneDepartureProbabilityArray, noneArrivalProbabilityArray, TileType.NONE);
+
+		float[] intersectionDepartureProbabilityArray = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		float[] intersectionArrivalProbabilityArray = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		intersectionTile = new Tile(intersectionDepartureProbabilityArray, intersectionArrivalProbabilityArray, TileType.INTERSECTION);
 	}
 }

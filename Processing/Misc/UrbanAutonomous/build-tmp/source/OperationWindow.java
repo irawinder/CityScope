@@ -4,7 +4,9 @@ import processing.core.PApplet;
 public class OperationWindow extends PApplet {
 	//OperationDisp operationDisp;
 	public static OperationDisp operationDisp;
+
 	  public void setup() {
+	  	//fullscreen();
 		operationDisp = new OperationDisp(this);
 		    delay(500);
 		  }

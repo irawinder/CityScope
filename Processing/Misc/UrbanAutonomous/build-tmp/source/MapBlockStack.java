@@ -25,9 +25,10 @@ public class MapBlockStack extends MapBlockBase{
 		for (int y = 0; y < UrbanAutonomous.simParam.maxY; y++)
 			for (int x = 0; x < UrbanAutonomous.simParam.maxX; x++){
 				if(UrbanAutonomous.tablePieceInput[x][y][0]==0||UrbanAutonomous.tablePieceInput[x][y][0]==1||UrbanAutonomous.tablePieceInput[x][y][0]==2||UrbanAutonomous.tablePieceInput[x][y][0]==3)
-					mapBlockArray[x][y] = UrbanAutonomous.mapBlockBrushs.specificBrushs[UrbanAutonomous.tablePieceInput[x][y][0]];
+					mapBlockArray[x][y] = UrbanAutonomous.mapBlockBrushs.specificBrushs[-(UrbanAutonomous.tablePieceInput[x][y][0]-3)];
+					//mapBlockArray[x][y] = UrbanAutonomous.mapBlockBrushs.specificBrushs[UrbanAutonomous.tablePieceInput[x][y][0]];
 				else{
-					mapBlockArray[x][y] = UrbanAutonomous.mapBlockBrushs.specificBrushs[3];
+					mapBlockArray[x][y] = UrbanAutonomous.mapBlockBrushs.specificBrushs[4];
 					//java.lang.System.out.println(x);
 					//java.lang.System.out.println(y);
 					//java.lang.System.out.println(UrbanAutonomous.tablePieceInput[x][y][0]);

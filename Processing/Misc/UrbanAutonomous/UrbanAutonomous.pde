@@ -44,7 +44,7 @@ public static int tablePieceInput[][][] = new int[displayU][displayV][2];
 public static DragStatus dragStatus;
 public static OperationWindow opw;
 public static Status status;
-public static PImage hwImg, lwImg, hrImg, lrImg, roadImg, intersectionImg, noneImg, backgroundImg, congestionImg;
+public static PImage hwImg, lwImg, hrImg, lrImg, roadImg, intersectionImg, noneImg, backgroundImg, congestionImg,sideDisplayImg;
 public static Tile[][] simCoordinate;
 public static int vehicleColor;
 public static int allocatedDepartureColor;
@@ -92,7 +92,8 @@ public static int brushNumber;
 		size(1000, 1000);
 
 		// OperationWindow
-		new PFrame(1000, 0, 1900, 875);
+		//new PFrame(1000, 0, 1900, 875);
+		new PFrame(0, 0, 1842, 1026);
 
 		// Status
 		status = Status.CONFIG;
@@ -101,13 +102,19 @@ public static int brushNumber;
 		// Load Image
 		loadTileImage();
 		backgroundImg = loadImage("operationWindow.jpg");
+		sideDisplayImg = loadImage("sideDisplay.jpg");
 
 		// Legend Symbol
-		vehicleColor = color(255, 128, 0, 255);
-		allocatedDepartureColor = color(255, 0, 255, 127);
-		unallocatedDepartureColor = color(255, 0, 0, 127);
-		allocatedArrivalColor = color(0, 255, 255, 127);
-		unallocatedArrivalColor = color(0, 0, 255, 127);
+		//vehicleColor = color(255, 128, 0, 255);
+		vehicleColor = color(255, 255, 255, 255);
+		allocatedDepartureColor = color(0, 128, 0, 255);
+		unallocatedDepartureColor = color(0, 128, 0, 255);
+		allocatedArrivalColor = color(0, 0, 255, 255);
+		unallocatedArrivalColor = color(0, 0, 255, 255);
+		//allocatedDepartureColor = color(0, 255, 127, 127);
+		//unallocatedDepartureColor = color(0, 128, 0, 127);
+		//allocatedArrivalColor = color(0, 255, 255, 127);
+		//unallocatedArrivalColor = color(0, 0, 255, 127);
 		hubColor = color(0, 255, 0, 200);
 		hubEffectiveLengthColor = color(0, 255, 0, 64);
 		hubVehicleColor = color(142, 0, 204, 200);
@@ -121,7 +128,7 @@ public static int brushNumber;
 
 		brushNumber = 0;
 		basicTile = new BasicTile();
-		mapBlockBrushs = new MapBlockBrushs(this, 4);
+		mapBlockBrushs = new MapBlockBrushs(this, 5);
 		mapBlockStack = new MapBlockStack(this);
 		//disp = new Disp(this);
 		disp = new Disp(mainG,this);
@@ -144,9 +151,11 @@ public static int brushNumber;
 	}
 
 	public void draw() {
-		if(simParam.mapType==2) //custom map
+		if(simParam.mapType==2){ //custom map
 			mapBlockStack.customMapGen();
-
+			mapBlockStack.updateCoordinate();// reflect change of mapblock to // // // demand // generation
+			mapBlockStack.mapImgCreation();// map image creation for display
+		}
 		// Exports table Graphic to Projector
  		projector = get(0, 0, TABLE_IMAGE_WIDTH, TABLE_IMAGE_HEIGHT);
 
@@ -166,6 +175,7 @@ public static int brushNumber;
 
 		//image(mainG,180,0,725,725);
 		image(mainG,180,0,905,1090);
+		image(sideDisplayImg,0,0,180,1000);
 		//image(mainG,0,0,1000,1200);
 	}
 
@@ -194,9 +204,7 @@ public static int brushNumber;
    		if (simParam.mapType == 2) {
    			mapBlockStack.mapBlockArray[x][y] = mapBlockBrushs.selectedBrush;
    			fileControl.customMap[UrbanAutonomous.simParam.maxX * y + x] = brushNumber;
-			mapBlockStack.updateCoordinate();// reflect change of mapblock to //
-												// // demand
-			// generation
+			mapBlockStack.updateCoordinate();// reflect change of mapblock to // // // demand // generation
 			mapBlockStack.mapImgCreation();// map image creation for display
 		}
 		// Hub Relocation

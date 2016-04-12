@@ -31,7 +31,7 @@ public class MapBlockBrushs extends MapBlockBase {
 	  }
 
 	  public void specificBrushsGen() {
-	    for (int i=0; i<4; i++) {
+	    for (int i=0; i<5; i++) {
 	      specificBrushs[i] = new MapBlock(p,specificTileArrayGen(i));
 	    }
 	  }

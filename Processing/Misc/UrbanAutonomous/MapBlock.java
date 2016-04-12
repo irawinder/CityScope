@@ -30,6 +30,10 @@ public class MapBlock {
 		pg.stroke(255);
 		for (int y = 0; y < blockSize; y++) {
 			for (int x = 0; x < blockSize; x++) {
+				//for abstraction, delete road
+				if(x==2||y==2)
+					tileArray[x][y].tileType=tileArray[0][0].tileType;
+
 				switch (tileArray[x][y].tileType) {
 				case HW:
 					pg.image(UrbanAutonomous.hwImg, x * 10, y * 10);
@@ -48,6 +52,9 @@ public class MapBlock {
 					break;
 				case INTERSECTION:
 					pg.image(UrbanAutonomous.intersectionImg, x * 10, y * 10);
+					break;
+				case NONE:
+					pg.image(UrbanAutonomous.noneImg, x * 10, y * 10);
 					break;
 				default:
 					break;

@@ -81,7 +81,7 @@ public class Disp {
 			p.fill(UrbanAutonomous.allocatedDepartureColor);
 		else
 			p.fill(UrbanAutonomous.allocatedArrivalColor);
-		p.ellipse(tmpDemand.x * 10 + 5, tmpDemand.y * 10 + 5, 5, 5);
+		p.ellipse(tmpDemand.x * 10 + 5, tmpDemand.y * 10 + 5, 10,10);
 	}
 
 	void showEachDemand(Demand tmpDemand) {
@@ -90,7 +90,7 @@ public class Disp {
 			p.fill(UrbanAutonomous.unallocatedDepartureColor);
 		else
 			p.fill(UrbanAutonomous.unallocatedArrivalColor);
-		p.ellipse(tmpDemand.x * 10 + 5, tmpDemand.y * 10 + 5, 5, 5);
+		p.ellipse(tmpDemand.x * 10 + 5, tmpDemand.y * 10 + 5, 10, 10);
 	}
 
 	// ShowVehicle

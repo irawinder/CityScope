@@ -9,8 +9,7 @@ public class MapBlockBase {
 	  Tile[][] randomTileArrayGen(PApplet p) {
 	    Tile[][] tileArray=new Tile[5][5];
 	    Tile [] basicTileArray= {
-	      UrbanAutonomous.basicTile.hwTile, UrbanAutonomous.basicTile.lwTile, UrbanAutonomous.basicTile.hrTile, UrbanAutonomous.basicTile.lrTile
-	    }; 
+	      UrbanAutonomous.basicTile.hwTile, UrbanAutonomous.basicTile.lwTile, UrbanAutonomous.basicTile.hrTile, UrbanAutonomous.basicTile.lrTile,UrbanAutonomous.basicTile.noneTile }; 
 	    for (int y=0; y<5; y++) {
 	      for (int x=0; x<5; x++) {
 	        if (x==2&&y==2)
@@ -29,7 +28,7 @@ public class MapBlockBase {
 	  Tile[][] specificTileArrayGen(int number) {
 	    Tile[][] tileArray=new Tile[5][5];
 	    Tile [] basicTileArray= {
-	      UrbanAutonomous.basicTile.hwTile, UrbanAutonomous.basicTile.lwTile, UrbanAutonomous.basicTile.hrTile, UrbanAutonomous.basicTile.lrTile
+	      UrbanAutonomous.basicTile.hwTile, UrbanAutonomous.basicTile.lwTile, UrbanAutonomous.basicTile.hrTile, UrbanAutonomous.basicTile.lrTile,UrbanAutonomous.basicTile.noneTile
 	    }; 
 	    for (int y=0; y<5; y++) {
 	      for (int x=0; x<5; x++) {
