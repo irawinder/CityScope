@@ -38,7 +38,7 @@ public class OperationDisp {
 		//Demand
 		p.fill(0,104,55);
 		for(int i=0;i<24;i++){
-			p.rect(350+60*i, 500-UrbanAutonomous.simParam.demandSizeArray[i], 60,UrbanAutonomous.simParam.demandSizeArray[i]);
+			p.rect(350+60*i, 500-UrbanAutonomous.simParam.demandSizeArray[i]*5, 60,UrbanAutonomous.simParam.demandSizeArray[i]*5);
 		}
 		//Optimal Fleet Size
 		p.fill(0,104,55);

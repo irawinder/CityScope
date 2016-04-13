@@ -166,6 +166,8 @@ public static int brushNumber;
 		demandStack.demandAllocation();
 		demandStack.demandHubAllocation();
 		vehicleStack.allVehicleMovement();
+		simParam.usagerate=UrbanAutonomous.demandStack.usageRateCal();
+
 		hubStack.hubVehicleA.move();
 		hubStack.hubPeripheralVehicleA.move();
 		hubStack.hubPeripheralVehicleB.move();

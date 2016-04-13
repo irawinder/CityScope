@@ -41,11 +41,13 @@ public class SimParam {
 		capacityOfVehicle = 4;
 		numberOfVehicle = 1;
 		currentDemandSize = 0;
-		demandInterval = 10;
+		//demandInterval = 10;
+		demandInterval = 1;
 		vehicleHistorySize = 30;
 		currentTotalCongestionLevel = 0;
 		totalCongestionLevel = new int[720];
-		demandSizeArray = new int[] { 5, 5, 5, 5, 5, 10, 20, 50, 50, 20, 10, 10, 20, 10, 20, 30, 50, 50, 50, 30, 20, 10, 10, 10 };
+		//demandSizeArray = new int[] { 5, 5, 5, 5, 5, 10, 20, 50, 50, 20, 10, 10, 20, 10, 20, 30, 50, 50, 50, 30, 20, 10, 10, 10 };
+		demandSizeArray = new int[] { 1, 1, 1, 1, 1, 2, 4, 10, 10, 4, 2, 2, 4, 2, 4, 6, 10, 10, 10, 6, 4, 2, 2, 2 };
 		demandLifetime = 10;
 		hubEffectiveLength = 15;
 		hubDedicatedVehicleCapacity = 50;
@@ -61,7 +63,6 @@ public class SimParam {
 
 	public void update() {
 		currentTime++;
-		usagerate=UrbanAutonomous.demandStack.usageRateCal();
 		if (currentTime >= 14400)
 			currentTime = 0;
 		// unallocatedDemandSizeHistory

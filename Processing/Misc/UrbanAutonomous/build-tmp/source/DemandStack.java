@@ -205,14 +205,18 @@ public class DemandStack extends PApplet {
 		if(result==0)
 			result=100;
 
-		if(result<80){
-			/*
+		if(result<50){
 			if(UrbanAutonomous.simParam.numberOfVehicle>1){
 				//UrbanAutonomous.vehicleStack.vehicleList.remove(UrbanAutonomous.vehicleStack.vehicleList.size()-1);
-				UrbanAutonomous.simParam.numberOfVehicle--;
+				int tmp=UrbanAutonomous.simParam.numberOfVehicle/3;
+				if(tmp>0)
+					UrbanAutonomous.simParam.numberOfVehicle=tmp;
+				else{
+					UrbanAutonomous.simParam.numberOfVehicle=1;
+				}
+
 			    UrbanAutonomous.vehicleStack.vehicleGen();
 			}
-			*/
 		}
 
 		return result;
