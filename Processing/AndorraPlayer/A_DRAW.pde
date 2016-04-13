@@ -386,11 +386,8 @@ void drawRestaurants(PGraphics p) {
   p.noStroke();
   for (int i=0; i<restaurants.getRowCount (); i++) {
      coord = mercatorMap.getScreenLocation(new PVector(restaurants.getFloat(i, "Lat"), restaurants.getFloat(i, "Long")));
-    if(coord.y >= marginWidthPix){
-        p.ellipse(coord.x, coord.y, 5.5, 5.5);
-      }
    if(coord.y >= marginWidthPix && coord.x >= marginWidthPix){
-        p.ellipse(coord.x, coord.y, 5.5, 5.5);
+        p.rect(coord.x, coord.y, 8, 8);
       }
      p.fill(#ff0000);
   }
@@ -448,12 +445,12 @@ void drawAttractions(PGraphics p){
      p.fill(#9933ff);
      coord = mercatorMap.getScreenLocation(new PVector(attractions.getFloat(i, "Lat"), attractions.getFloat(i, "Long")));
      if(coord.y >= marginWidthPix){
-     p.ellipse(coord.x, coord.y, 5, 5);
+     p.rect(coord.x, coord.y, 8, 8);
      }
      if(coord.x >= 100){
-     p.ellipse(coord.x, coord.y, 5, 5);
+     p.rect(coord.x, coord.y, 8, 8);
      }
-     p.fill(#DC52FF);
+     p.fill(#e600e6);
      k+=1;
   }
 
@@ -473,7 +470,7 @@ void drawHotels(PGraphics p) {
      coord = mercatorMap.getScreenLocation(new PVector(tripAdvisor.getFloat(i, "Lat"), tripAdvisor.getFloat(i, "Long")));
      j+=1;
        if(coord.y >= marginWidthPix && coord.x >= marginWidthPix){
-        p.ellipse(coord.x, coord.y, 5.5, 5.5);
+        p.rect(coord.x, coord.y, 8, 8);
       }
      p.fill(#ffff00);
      

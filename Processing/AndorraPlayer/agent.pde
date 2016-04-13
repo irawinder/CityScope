@@ -652,14 +652,14 @@ class Horde {
     p.text("rateScaler: " + int(rateScaler), marginWidthPix, 0.7*marginWidthPix);
     
     p.fill(#ffff00);
-    p.text("Hotels ", marginWidthPix + 1000, 0.40*marginWidthPix);
-    p.ellipse(marginWidthPix + 995, 0.35*marginWidthPix, 5, 5);
+    p.text("Hotels ", marginWidthPix + 1500, 0.40*marginWidthPix);
+    p.ellipse(marginWidthPix + 1495, 0.35*marginWidthPix, 5, 5);
     p.fill(#ff0000);
-    p.text("Restaurants", marginWidthPix +1000, 0.60*marginWidthPix);
-     p.ellipse(marginWidthPix + 995, 0.55*marginWidthPix, 5, 5);
-    p.fill(#DC52FF);
-    p.text("Attractions", marginWidthPix +1000, 0.80*marginWidthPix);
-     p.ellipse(marginWidthPix + 995, 0.75*marginWidthPix, 5, 5);
+    p.text("Restaurants", marginWidthPix +1500, 0.60*marginWidthPix);
+     p.ellipse(marginWidthPix + 1495, 0.55*marginWidthPix, 5, 5);
+    p.fill(#e600e6);
+    p.text("Attractions", marginWidthPix +1500, 0.80*marginWidthPix);
+     p.ellipse(marginWidthPix + 1495, 0.75*marginWidthPix, 5, 5);
   }
   
   void displaySwarmList(PGraphics p) {
