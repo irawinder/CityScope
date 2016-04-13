@@ -188,6 +188,36 @@ public class DemandStack extends PApplet {
 		}
 		return result;
 	}
+	//usage rate
+	public int usageRateCal(){
+		int result=10;
+		int totalVehicle=UrbanAutonomous.simParam.numberOfVehicle;
+		int usingVehicle=0;
+		for (Vehicle vehicle : UrbanAutonomous.vehicleStack.vehicleList) {
+			if(vehicle.departureList.size()==0&&vehicle.arrivalList.size()==0)
+				;
+			else{
+				usingVehicle++;
+			}
+		}
+		result = 100* usingVehicle/totalVehicle;
+
+		if(result==0)
+			result=100;
+
+		if(result<80){
+			/*
+			if(UrbanAutonomous.simParam.numberOfVehicle>1){
+				//UrbanAutonomous.vehicleStack.vehicleList.remove(UrbanAutonomous.vehicleStack.vehicleList.size()-1);
+				UrbanAutonomous.simParam.numberOfVehicle--;
+			    UrbanAutonomous.vehicleStack.vehicleGen();
+			}
+			*/
+		}
+
+		return result;
+
+	}
 
 	// DemandAllocation except hub
 	public void demandAllocation() {

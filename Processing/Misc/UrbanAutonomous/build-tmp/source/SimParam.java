@@ -27,7 +27,10 @@ public class SimParam {
 	//Map
 	public int mapType;// 0:urban,1:Rural,2:custom
 
+	public int usagerate;
+
 	public SimParam() {
+		usagerate=100;
 		maxX =18;
 		maxY =22;
 		hubEnable=false;
@@ -58,11 +61,14 @@ public class SimParam {
 
 	public void update() {
 		currentTime++;
+		usagerate=UrbanAutonomous.demandStack.usageRateCal();
 		if (currentTime >= 14400)
 			currentTime = 0;
 		// unallocatedDemandSizeHistory
-		if (currentTime % 20 == 0)
+		if (currentTime % 20 == 0){
 			UrbanAutonomous.demandStack.unallocatedDemandSizeHistory[currentTime / 20] = UrbanAutonomous.demandStack.unallocatedDepartureList.size();
+			//usagerate=UrbanAutonomous.demandStack.usageRateCal();
+		}
 		currentTimeZone = currentTime / 600;// 600step = 1hour
 		if (!demandSizeCustom)
 			currentDemandSize = demandSizeArray[currentTimeZone];

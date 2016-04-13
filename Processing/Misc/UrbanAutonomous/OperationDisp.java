@@ -43,10 +43,16 @@ public class OperationDisp {
 		//Optimal Fleet Size
 		p.fill(0,104,55);
 		p.rect(350, 700, UrbanAutonomous.simParam.numberOfVehicle * UrbanAutonomous.simParam.capacityOfVehicle, 50);
-		//Optimal Fleet Size
+		//Optimal Fleet Size text
 		p.fill(255,255,255);
 		String fleetSizeLabel = Integer.toString(UrbanAutonomous.simParam.capacityOfVehicle*UrbanAutonomous.simParam.numberOfVehicle);
 		UrbanAutonomous.opw.text(fleetSizeLabel, 360, 745);
+
+		//usage rate text
+		p.fill(255,255,255);
+		String usageLabel = Integer.toString(UrbanAutonomous.simParam.usagerate);
+		usageLabel += "%";
+		UrbanAutonomous.opw.text(usageLabel, 360, 895);
 
 
 
