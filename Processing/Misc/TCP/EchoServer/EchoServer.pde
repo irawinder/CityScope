@@ -60,9 +60,10 @@ public class SingleSocketServer {
           process.append((char)character);
         }
         System.out.println(process);
-        //need to wait 10 seconds for the app to update database
+        //need to wait 1/2 second for the app to update database
+        //for demo purpose only
         try {
-          Thread.sleep(10000);
+          Thread.sleep(500);
         }
         catch (Exception e){}
         TimeStamp = new java.util.Date().toString();
