@@ -41,13 +41,13 @@ Nina To Do
 
 // set to true when running app to prevent fullScreen Mode
 // also enables some visualizations for debugging
-//boolean debug = false;
-boolean debug = true;
+boolean debug = false;
+//boolean debug = true;
 
-//int projectorWidth = 1920;
-//int projectorHeight = 1200;
-int projectorWidth = 1500;
-int projectorHeight = 1000;
+int projectorWidth = 1920;
+int projectorHeight = 1200;
+//int projectorWidth = 1500;
+//int projectorHeight = 1000;
     
 // Key Commands:
 //
