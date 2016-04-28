@@ -29,13 +29,7 @@ void keyPressed() {
       d = 0;
     }
     break;
-  case 'u': 
-    toggle(showVoronoi);
-    setLoader("New Agents");
-    initAgents(tableCanvas);
-    scrollX = 0;
-    scrollY = 0;
-    break;
+
   case '6': //selects back a row in the hotel data
     if (q>0)
     {
@@ -400,11 +394,7 @@ void keyInit() {
     break;
   case 'r':
     key_r();
-    break;
-  case 'u':
-    key_r();
-    toggle(showVoronoi);
-    break;  
+    break; 
   case 'd':
     key_d();
     break;
@@ -483,7 +473,6 @@ void key_p() {
 
 void key_r() {
   //reset agents and simulation
-  toggle(showVoronoi);
   initAgents(tableCanvas);
   scrollX = 0;
   scrollY = 0;

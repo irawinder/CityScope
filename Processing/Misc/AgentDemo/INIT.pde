@@ -334,8 +334,7 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
                 }
       }
     
-      origin1[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
-      
+      origin1[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);      
       origin2[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
       origin3[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
       origin4[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);

@@ -387,9 +387,9 @@ void drawRestaurants(PGraphics p) {
   for (int i=0; i<restaurants.getRowCount (); i++) {
      coord = mercatorMap.getScreenLocation(new PVector(restaurants.getFloat(i, "Lat"), restaurants.getFloat(i, "Long")));
    if(coord.y >= marginWidthPix && coord.x >= marginWidthPix){
-        p.rect(coord.x, coord.y, 8, 8);
+        p.rect(coord.x + marginWidthPix, coord.y + marginWidthPix, 8, 8);
       }
-     p.fill(#ff0000);
+     p.fill(#ff0000); //red
   }
 
   PVector geo;
@@ -444,11 +444,8 @@ void drawAttractions(PGraphics p){
   for (int i=0; i<attractions.getRowCount (); i++) {
      p.fill(#9933ff);
      coord = mercatorMap.getScreenLocation(new PVector(attractions.getFloat(i, "Lat"), attractions.getFloat(i, "Long")));
-     if(coord.y >= marginWidthPix){
-     p.rect(coord.x, coord.y, 8, 8);
-     }
-     if(coord.x >= 100){
-     p.rect(coord.x, coord.y, 8, 8);
+     if(coord.y >= marginWidthPix && coord.x >= marginWidthPix){
+     p.rect(coord.x + marginWidthPix, coord.y + marginWidthPix, 8, 8);
      }
      p.fill(#e600e6);
      k+=1;
@@ -470,7 +467,7 @@ void drawHotels(PGraphics p) {
      coord = mercatorMap.getScreenLocation(new PVector(tripAdvisor.getFloat(i, "Lat"), tripAdvisor.getFloat(i, "Long")));
      j+=1;
        if(coord.y >= marginWidthPix && coord.x >= marginWidthPix){
-        p.rect(coord.x, coord.y, 8, 8);
+        p.rect(coord.x + marginWidthPix, coord.y + marginWidthPix, 8, 8);
       }
      p.fill(#ffff00);
      

@@ -152,7 +152,6 @@ void initContent() {
       showEdges = false;
       showSource = false;
       showPaths = false;
-//      showVoronoi = false;
       break;
     case 4: //Hotel and Amenities Demo 
       showGrid = false; 
@@ -160,7 +159,6 @@ void initContent() {
       showEdges = false;
       showSource = false;
       showPaths = false;
-//      showVoronoi = true;
       showSwarm = true;
       break;
   }
@@ -177,9 +175,6 @@ void initContent() {
 }
 
 
-
-
-
 // ---------------------Initialize Agent-based Objects---
 
 Horde swarmHorde;
@@ -188,8 +183,6 @@ PVector[] origin, destination, nodes;
 float[] weight;
 
 int textSize = 8;
-
-boolean showVoronoi = false;
 
 boolean enablePathfinding = true;
 
@@ -386,7 +379,7 @@ void CDRNetwork() {
   
   ArrayList<PVector> stufftodo = new ArrayList<PVector>();
   
-    for(int m = 0; m<184; m++){
+    for(int m = 0; m<ammenities.getRowCount(); m++){
     PVector c = mercatorMap.getScreenLocation(new PVector(ammenities.getFloat(m, "Lat"), ammenities.getFloat(m, "Long")));
     stufftodo.add(c);
     }
@@ -395,64 +388,11 @@ void CDRNetwork() {
    
 
     boolean external = false;
-    // If edge is within table area //this get voronoi math!!!!
  if (network.getInt(i, "CON_O") == 0 && network.getInt(i, "CON_D") == 0) {
         destination[i] = mercatorMap.getScreenLocation(new PVector(network.getFloat(i, "LAT_D"), network.getFloat(i, "LON_D")));
         origin[i] = mercatorMap.getScreenLocation(new PVector(network.getFloat(i, "LAT_O"), network.getFloat(i, "LON_O")));
-  if(showVoronoi == true){
-    if(origin[i].x <= 470){
-         for(int j = 0; j<184; j++){ 
-                 int c = int(random(0,184));
-                 PVector sub = stufftodo.get(c);
-                 if(abs(origin[i].x- sub.x) <= 15){
-                   origin[i] = new PVector(sub.x, sub.y);
-                 }
-         }
-          for(int j = 0; j<184; j++){ 
-                 int c = int(random(0,184));
-                 PVector sub = stufftodo.get(c);
-                 if(abs(destination[i].x- sub.x) <= 15){
-                   destination[i] = new PVector(sub.x, sub.y);
-                 }
-         }
-        }
-    if(origin[i].y <= 230){
-         for(int j = 0; j<184; j++){ 
-                 int c = int(random(0,184));
-                 PVector sub = stufftodo.get(c);
-                 if(abs(origin[i].x- sub.x) <= 15){
-                   origin[i] = new PVector(sub.x, sub.y);
-                 }
-         }
-          for(int j = 0; j<184; j++){ 
-                 int c = int(random(0,184));
-                 PVector sub = stufftodo.get(c);
-                 if(abs(destination[i].x- sub.x) <= 15){
-                   destination[i] = new PVector(sub.x, sub.y);
-                 }
-         }
-        }
-        
-    if(origin[i].x >= 550 && origin[i].x <= 780){
-//         for(int j = 0; j<184; j++){ 
-//                 int c = int(random(0,184));
-//                 PVector sub = stufftodo.get(c);
-//                 if(abs(origin[i].x- sub.x) <= 15){
-//                   origin[i] = new PVector(sub.x, sub.y);
-//                 }
-//         }
-          for(int j = 0; j<184; j++){ 
-                 int c = int(random(0,184));
-                 PVector sub = stufftodo.get(c);
-                 if(abs(destination[i].x- sub.x) <= 15){
-                   destination[i] = new PVector(sub.x, sub.y);
-                 }
-         }
-        }
-  }
-        
+ 
  }
-   
   
     // If edge crosses table area
     else {
