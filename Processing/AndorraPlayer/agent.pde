@@ -195,7 +195,7 @@ class Swarm {
   int hitbox = 5;
   float finderResolution = hitbox*2;
   
-  PVector origin, destination, sub;
+  PVector origin, destination;
   
   Obstacle sink;
   
@@ -299,16 +299,6 @@ class Swarm {
     
     path = f.findPath(origin, destination, enable);
     finderResolution = f.getResolution();
-
-//    // Agent generation slowed down to constant rate if path not found
-//    if (path.size() == 1) {
-//      agentDelay = 1;
-//    }
-    
-//    // Agents cull themselves at origin if path not found
-//    if (path.size() == 1) {
-//      sink = hitBox(origin, hitbox, true);
-//    }
     
     if (dataMode == 1) {
       // Generates only 10 agents

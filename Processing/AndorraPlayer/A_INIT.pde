@@ -179,7 +179,7 @@ void initContent() {
 
 Horde swarmHorde;
 
-PVector[] origin, destination, nodes;
+PVector[] origin, destination, nodes, c, origin_coord, destination_coord;
 float[] weight;
 
 int textSize = 8;
@@ -338,7 +338,6 @@ void testNetwork_CDRWifi(boolean CDR, boolean Wifi) {
   for (int i=0; i<numNodes; i++) {
     for (int j=0; j<numNodes-1; j++) {
       
-      
       destination[i*(numNodes-1)+j] = new PVector(nodes[(i+j+1)%(numNodes)].x, nodes[(i+j+1)%(numNodes)].y);
       
       weight[i*(numNodes-1)+j] = random(2.0);
@@ -373,27 +372,34 @@ void CDRNetwork() {
   numSwarm = network.getRowCount();
   
   origin = new PVector[numSwarm];
+  origin_coord = new PVector[numSwarm];
+  c = new PVector[amenities.getRowCount()];
   destination = new PVector[numSwarm];
+  destination_coord = new PVector[numSwarm];
   weight = new float[numSwarm];
   swarmHorde.clearHorde();
-  
   ArrayList<PVector> stufftodo = new ArrayList<PVector>();
   
-    for(int m = 0; m<ammenities.getRowCount(); m++){
-    PVector c = mercatorMap.getScreenLocation(new PVector(ammenities.getFloat(m, "Lat"), ammenities.getFloat(m, "Long")));
-    stufftodo.add(c);
-    }
+  int marginWidthPix = int((marginWidth/tableWidth)*canvasWidth);
+
   
   for (int i=0; i<numSwarm; i++) {
-   
-
     boolean external = false;
- if (network.getInt(i, "CON_O") == 0 && network.getInt(i, "CON_D") == 0) {
-        destination[i] = mercatorMap.getScreenLocation(new PVector(network.getFloat(i, "LAT_D"), network.getFloat(i, "LON_D")));
-        origin[i] = mercatorMap.getScreenLocation(new PVector(network.getFloat(i, "LAT_O"), network.getFloat(i, "LON_O")));
- 
- }
-  
+    int w = int(random(1, amenities.getRowCount()));
+    destination[i] = mercatorMap.getScreenLocation(new PVector(network.getFloat(i, "LAT_D"), network.getFloat(i, "LON_D")));
+    origin[i] = mercatorMap.getScreenLocation(new PVector(network.getFloat(i, "LAT_O"), network.getFloat(i, "LON_O")));
+    origin_coord[i] = mercatorMap.getScreenLocation(new PVector(amenities.getFloat(w, "Lat"), amenities.getFloat(w, "Long")));
+    destination_coord[i] = mercatorMap.getScreenLocation(new PVector(amenities.getFloat(w, "Lat"), amenities.getFloat(w, "Long")));
+       if (network.getInt(i, "CON_O") == 0 && network.getInt(i, "CON_D") == 0) {
+         if(abs(origin_coord[i].x - origin[i].x) <= 150 && abs(origin_coord[i].y - origin[i].y) <= 150){
+                origin[i] = new PVector(origin_coord[i].x + marginWidthPix, origin_coord[i].y + marginWidthPix);
+                println("hello new origin :D");
+         }
+         if(abs(destination_coord[i].x - destination[i].x) <= 150 && abs(destination_coord[i].y - destination[i].y) <= 150){
+              destination[i] = new PVector(destination_coord[i].x + marginWidthPix, destination_coord[i].y + marginWidthPix);
+              println("hello new destination :D");
+              }
+           }
     // If edge crosses table area
     else {
       origin[i] = container_Locations[network.getInt(i, "CON_O")];
@@ -419,7 +425,6 @@ void CDRNetwork() {
     swarmHorde.getSwarm(i).temperStandingAgents(external);
     
   }
-  
 
   
   

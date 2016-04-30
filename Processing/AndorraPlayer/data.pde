@@ -36,7 +36,7 @@ boolean load_non_essential_data = true;
   Table localTowers;
   Table restaurants;
   Table attractions;
-  Table ammenities; 
+  Table amenities; 
   Table wifi; 
   
   // OD Matrix Information
@@ -111,11 +111,11 @@ void initData() {
     
     wifi = loadTable("data/wifi_user.csv");
     
-    ammenities = loadTable("data/all_amenities.csv", "header");
-    for (int i=ammenities.getRowCount() - 1; i >= 0; i--) {
-     if (ammenities.getFloat(i, "Lat") < lat2 || ammenities.getFloat(i, "Lat") > lat1 ||
-          ammenities.getFloat(i, "Long") < lon1 || ammenities.getFloat(i, "Long") > lon2) {
-        ammenities.removeRow(i);
+    amenities = loadTable("data/all_amenities.csv", "header");
+    for (int i=amenities.getRowCount() - 1; i >= 0; i--) {
+     if (amenities.getFloat(i, "Lat") < lat2 || amenities.getFloat(i, "Lat") > lat1 ||
+          amenities.getFloat(i, "Long") < lon1 || amenities.getFloat(i, "Long") > lon2) {
+        amenities.removeRow(i);
       }
     }
     
@@ -151,7 +151,7 @@ void initData() {
     tripAdvisor = new Table();
     restaurants = new Table();
     attractions = new Table();
-    ammenities = new Table();
+    amenities = new Table();
   }
   
   println("Data loaded.");
