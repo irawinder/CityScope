@@ -390,16 +390,30 @@ void CDRNetwork() {
     origin[i] = mercatorMap.getScreenLocation(new PVector(network.getFloat(i, "LAT_O"), network.getFloat(i, "LON_O")));
     origin_coord[i] = mercatorMap.getScreenLocation(new PVector(amenities.getFloat(w, "Lat"), amenities.getFloat(w, "Long")));
     destination_coord[i] = mercatorMap.getScreenLocation(new PVector(amenities.getFloat(w, "Lat"), amenities.getFloat(w, "Long")));
-       if (network.getInt(i, "CON_O") == 0 && network.getInt(i, "CON_D") == 0) {
-         if(abs(origin_coord[i].x - origin[i].x) <= 150 && abs(origin_coord[i].y - origin[i].y) <= 150){
-                origin[i] = new PVector(origin_coord[i].x + marginWidthPix, origin_coord[i].y + marginWidthPix);
-                println("hello new origin :D");
-         }
-         if(abs(destination_coord[i].x - destination[i].x) <= 150 && abs(destination_coord[i].y - destination[i].y) <= 150){
-              destination[i] = new PVector(destination_coord[i].x + marginWidthPix, destination_coord[i].y + marginWidthPix);
-              println("hello new destination :D");
-              }
-           }
+           if (network.getInt(i, "CON_O") == 0 && network.getInt(i, "CON_D") == 0) {
+             
+             //compare between the origins and destinations with voronoi math 
+                
+                 if((abs(origin_coord[i].x - origin[i].x) < abs(origin_coord[i].x - origin[i-1].x)) &&  (abs(origin_coord[i].y - origin[i].y) < abs(origin_coord[i].y - origin[i-1].y))){
+                     origin[i] = new PVector(origin_coord[i].x + marginWidthPix, origin_coord[i].y + marginWidthPix);
+                     println("hello new voronoi origin XD");
+                 }
+                 
+                  if((abs(destination_coord[i].x - destination[i].x) < abs(destination_coord[i].x - destination[i-1].x)) &&  (abs(destination_coord[i].y - destination[i].y) < abs(destination_coord[i].y - destination[i-1].y))){
+                     destination[i] = new PVector(destination_coord[i].x + marginWidthPix, destination_coord[i].y + marginWidthPix);
+                     println("hello new voronoi destinationr XD");
+                 }
+                 
+                 
+//                   if(abs(origin_coord[i].x - origin[i].x) <= 150 && abs(origin_coord[i].y - origin[i].y) <= 150){
+//                          origin[i] = new PVector(origin_coord[i].x + marginWidthPix, origin_coord[i].y + marginWidthPix);
+//                          println("hello new origin :D");
+//                          }
+//                             if(abs(destination_coord[i].x - destination[i].x) <= 150 && abs(destination_coord[i].y - destination[i].y) <= 150){
+//                                  destination[i] = new PVector(destination_coord[i].x + marginWidthPix, destination_coord[i].y + marginWidthPix);
+//                                  println("hello new destination :D");
+//                                 }
+               }
     // If edge crosses table area
     else {
       origin[i] = container_Locations[network.getInt(i, "CON_O")];
