@@ -392,8 +392,7 @@ void CDRNetwork() {
     destination_coord[i] = mercatorMap.getScreenLocation(new PVector(amenities.getFloat(w, "Lat"), amenities.getFloat(w, "Long")));
            if (network.getInt(i, "CON_O") == 0 && network.getInt(i, "CON_D") == 0) {
              
-             //compare between the origins and destinations with voronoi math 
-                
+             //compare between the origins and destinations with voronoi math                
                  if((abs(origin_coord[i].x - origin[i].x) < abs(origin_coord[i].x - origin[i-1].x)) &&  (abs(origin_coord[i].y - origin[i].y) < abs(origin_coord[i].y - origin[i-1].y))){
                      origin[i] = new PVector(origin_coord[i].x + marginWidthPix, origin_coord[i].y + marginWidthPix);
                      println("hello new voronoi origin XD");
@@ -404,7 +403,7 @@ void CDRNetwork() {
                      println("hello new voronoi destinationr XD");
                  }
                  
-                 
+             //cheap radius comparison     
 //                   if(abs(origin_coord[i].x - origin[i].x) <= 150 && abs(origin_coord[i].y - origin[i].y) <= 150){
 //                          origin[i] = new PVector(origin_coord[i].x + marginWidthPix, origin_coord[i].y + marginWidthPix);
 //                          println("hello new origin :D");
