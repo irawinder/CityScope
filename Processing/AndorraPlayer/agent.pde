@@ -239,7 +239,7 @@ class Swarm {
     // also that they don't blead into the margin or topo
     if (origin == destination || path.size() < 2) {
       //immortal = true;
-      agentLife = 1000;
+      agentLife = 0;
       cropAgents(_external);
     }
     
@@ -248,7 +248,7 @@ class Swarm {
   void temperStandingAgents() {   
     // Makes sure that agents 'staying put' generate only enough to represent their numbers then stop
     if (origin == destination || path.size() < 2) {
-      agentLife = 1000;
+      agentLife = 0;
       //immortal = true;
     }
   }
