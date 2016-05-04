@@ -396,7 +396,7 @@ void CDRNetwork() {
     correct_destination_coord[i] = new PVector(destination_coord[i].x + marginWidthPix, destination_coord[i].y + marginWidthPix);
            if (network.getInt(i, "CON_O") == 0 && network.getInt(i, "CON_D") == 0) {   
              //cheap radius comparison     
-                  if(abs(correct_origin_coord[i].x - origin[i].x) <= 200 && abs(correct_origin_coord[i].y - origin[i].y) <= 200){
+                  if(abs(correct_origin_coord[i].x - origin[i].x) <= 500 && abs(correct_origin_coord[i].y - origin[i].y) <= 200){
                           origin[i] = correct_origin_coord[i];
                           println("hello new origin :D");
 //                                if(abs(destination_coord[i].x - destination[i].x) <= 300 && abs(destination_coord[i].y - destination[i].y) <= 300){
@@ -404,7 +404,7 @@ void CDRNetwork() {
 //                                      println("hello new destination :D");                                   
 //                                     }
                           }
-                   if(abs(destination_coord[i].x - destination[i].x) <= 200 && abs(destination_coord[i].y - destination[i].y) <= 200){
+                   if(abs(destination_coord[i].x - destination[i].x) <= 500 && abs(destination_coord[i].y - destination[i].y) <= 200){
                         destination[i] = correct_destination_coord[i];
                         println("hello new destination :D");
 //                              if(abs(correct_origin_coord[i].x - origin[i].x) <= 300 && abs(correct_origin_coord[i].y - origin[i].y) <= 300){
