@@ -166,6 +166,10 @@ void keyPressed() {
       // saves the layout
       ks.save();
       break;
+      
+    case 'u':
+      toggle(show_menu);
+      break;
   }
   
   //------arrow keys and how to code keys that aren't characters exactly----- 
