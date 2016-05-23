@@ -386,6 +386,13 @@ void CDRNetwork() {
   
   int w = 1;
   
+/*
+Steps: 
+  1. What are these origins? Why are they happening? 
+  2. More heuristics to distribute amongst the upper left main street
+  3. Completely stop generating at towers
+*/
+  
   for (int i=0; i<numSwarm; i++) {
     boolean external = false;
     destination[i] = mercatorMap.getScreenLocation(new PVector(network.getFloat(i, "LAT_D"), network.getFloat(i, "LON_D")));
@@ -394,51 +401,75 @@ void CDRNetwork() {
     destination_coord[i] = mercatorMap.getScreenLocation(new PVector(amenities.getFloat(w, "Lat"), amenities.getFloat(w, "Long")));
     correct_origin_coord[i] = new PVector(origin_coord[i].x + marginWidthPix, origin_coord[i].y + marginWidthPix);
     correct_destination_coord[i] = new PVector(destination_coord[i].x + marginWidthPix, destination_coord[i].y + marginWidthPix);
-           if (network.getInt(i, "CON_O") == 0 && network.getInt(i, "CON_D") == 0) {   
-             //cheap radius comparison     
-                  if(abs(correct_origin_coord[i].x - origin[i].x) <= 500 && abs(correct_origin_coord[i].y - origin[i].y) <= 200){
-                          origin[i] = correct_origin_coord[i];
-                          println("hello new origin :D");
-//                                if(abs(destination_coord[i].x - destination[i].x) <= 300 && abs(destination_coord[i].y - destination[i].y) <= 300){
-//                                      destination[i] = correct_destination_coord[i];
-//                                      println("hello new destination :D");                                   
-//                                     }
-                          }
-                   if(abs(destination_coord[i].x - destination[i].x) <= 500 && abs(destination_coord[i].y - destination[i].y) <= 200){
-                        destination[i] = correct_destination_coord[i];
-                        println("hello new destination :D");
-//                              if(abs(correct_origin_coord[i].x - origin[i].x) <= 300 && abs(correct_origin_coord[i].y - origin[i].y) <= 300){
-//                              origin[i] = correct_origin_coord[i];
-//                              println("hello new origin :D");                           
-//                              }
-                       }
-                       
-             //compare between the origins and destinations with voronoi math                
-                 if((abs(correct_origin_coord[i].x - origin[i].x) < abs(correct_origin_coord[i].x - origin[i-1].x)) &&  
-                 (abs(correct_origin_coord[i].y - origin[i].y) < abs(correct_origin_coord[i].y - origin[i-1].y))){
-                     origin[i] = correct_origin_coord[i];
-                     println("hello new voronoi origin XD");
-//                           if((abs(correct_destination_coord[i].x - destination[i].x) < abs(correct_destination_coord[i].x - destination[i-1].x)) &&
-//                            (abs(correct_destination_coord[i].y - destination[i].y) < abs(correct_destination_coord[i].y - destination[i-1].y))){
-//                               destination[i] = correct_destination_coord[i];
-//                               println("hello new voronoi destinationr XD");
-//                           }
-                 }
+           if (network.getInt(i, "CON_O") == 0 && network.getInt(i, "CON_D") == 0) {  
+             destination[i] = mercatorMap.getScreenLocation(new PVector(network.getFloat(i, "LAT_D"), network.getFloat(i, "LON_D")));
+    origin[i] = mercatorMap.getScreenLocation(new PVector(network.getFloat(i, "LAT_O"), network.getFloat(i, "LON_O"))); 
+////--------cheap radius comparison     
+//                  if(abs(correct_origin_coord[i].x - origin[i].x) <= 500 && abs(correct_origin_coord[i].y - origin[i].y) <= 200){
+//                          origin[i] = correct_origin_coord[i];
+//                          println("hello new origin :D");
+////                                if(abs(destination_coord[i].x - destination[i].x) <= 300 && abs(destination_coord[i].y - destination[i].y) <= 300){
+////                                      destination[i] = correct_destination_coord[i];
+////                                      println("hello new destination :D");                                   
+////                                     }
+//                          }
+//                   if(abs(destination_coord[i].x - destination[i].x) <= 500 && abs(destination_coord[i].y - destination[i].y) <= 200){
+//                        destination[i] = correct_destination_coord[i];
+//                        println("hello new destination :D");
+////                              if(abs(correct_origin_coord[i].x - origin[i].x) <= 300 && abs(correct_origin_coord[i].y - origin[i].y) <= 300){
+////                              origin[i] = correct_origin_coord[i];
+////                              println("hello new origin :D");                           
+////                              }
+//                       }
+//                       
+//----------compare between the origins and destinations with voronoi math                
+//                 if((abs(correct_origin_coord[i].x - origin[i].x) < abs(correct_origin_coord[i].x - origin[i-1].x)) &&  
+//                 (abs(correct_origin_coord[i].y - origin[i].y) < abs(correct_origin_coord[i].y - origin[i-1].y))){
+//                     origin[i] = correct_origin_coord[i];
+//                     println("hello new voronoi origin XD");
+////                           if((abs(correct_destination_coord[i].x - destination[i].x) < abs(correct_destination_coord[i].x - destination[i-1].x)) &&
+////                            (abs(correct_destination_coord[i].y - destination[i].y) < abs(correct_destination_coord[i].y - destination[i-1].y))){
+////                               destination[i] = correct_destination_coord[i];
+////                               println("hello new voronoi destinationr XD");
+////                           }
+//                 }
+                  
                  
-                  if((abs(correct_destination_coord[i].x - destination[i].x) < abs(correct_destination_coord[i].x - destination[i-1].x)) &&
-                  (abs(correct_destination_coord[i].y - destination[i].y) < abs(correct_destination_coord[i].y - destination[i-1].y))){
-                     destination[i] = correct_destination_coord[i];
-                     println("hello new voronoi destinationr XD");
-//                              if((abs(correct_origin_coord[i].x - origin[i].x) < abs(correct_origin_coord[i].x - origin[i-1].x)) &&  
-//                               (abs(correct_origin_coord[i].y - origin[i].y) < abs(correct_origin_coord[i].y - origin[i-1].y))){
-//                                   origin[i] = correct_origin_coord[i];
-//                                   println("hello new voronoi origin XD");
-//                               }
-                 }
-                  if (w == amenities.getRowCount()-1){
-                    w = 1;
-                  }
-                w++;
+//                  if((abs(correct_destination_coord[i].x - destination[i].x) < abs(correct_destination_coord[i].x - destination[i-1].x)) &&
+//                  (abs(correct_destination_coord[i].y - destination[i].y) < abs(correct_destination_coord[i].y - destination[i-1].y))){
+//                     destination[i] = correct_destination_coord[i];
+//                     println("hello new voronoi destinationr XD");
+////                              if((abs(correct_origin_coord[i].x - origin[i].x) < abs(correct_origin_coord[i].x - origin[i-1].x)) &&  
+////                               (abs(correct_origin_coord[i].y - origin[i].y) < abs(correct_origin_coord[i].y - origin[i-1].y))){
+////                                   origin[i] = correct_origin_coord[i];
+////                                   println("hello new voronoi origin XD");
+////                               }
+//                 }
+                 
+//-----------more heuristics 
+//                  if(destination[i].x <= 800 || origin[i].x <= 800){
+//                   if(abs(correct_origin_coord[i].x - origin[i].x) <= 200 && abs(correct_origin_coord[i].y - origin[i].y) <= 200){
+//                          origin[i] = correct_origin_coord[i];
+//                          println("hello new origin :D");
+////                                if(abs(destination_coord[i].x - destination[i].x) <= 300 && abs(destination_coord[i].y - destination[i].y) <= 300){
+////                                      destination[i] = correct_destination_coord[i];
+////                                      println("hello new destination :D");                                   
+////                                     }
+//                          }
+//                   if(abs(destination_coord[i].x - destination[i].x) <= 200 && abs(destination_coord[i].y - destination[i].y) <= 200){
+//                        destination[i] = correct_destination_coord[i];
+//                        println("hello new destination :D");
+////                              if(abs(correct_origin_coord[i].x - origin[i].x) <= 300 && abs(correct_origin_coord[i].y - origin[i].y) <= 300){
+////                              origin[i] = correct_origin_coord[i];
+////                              println("hello new origin :D");                           
+////                              }
+//                       }
+//                  }
+
+                      if (w == amenities.getRowCount()-1){
+                        w = 1;
+                        }
+                       w++;
                }
     // If edge crosses table area
     else {
