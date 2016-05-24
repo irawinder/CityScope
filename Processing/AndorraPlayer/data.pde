@@ -66,9 +66,9 @@ boolean load_non_essential_data = true;
   String[] container_Names = {"Andorra La Vella",
                               "St. Julia",
                               "Massana",
-                              "Arans",
+                              "Ordino",
                               "Encamp",
-                              "Soldeu",
+                              "Canillo",
                               "El Pas de la Casa" };
 
   float offset = -.2; // Amount that Hamlets markers are offset from center of margin   
