@@ -179,7 +179,7 @@ void initContent() {
 
 Horde swarmHorde;
 
-PVector[] origin, destination, nodes, origin_coord, destination_coord, c, correct_origin_coord, correct_destination_coord;
+PVector[] origin, destination, nodes, origin_coord, destination_coord, c, correct_origin_coord, correct_destination_coord, spanish_amenities, other_amenities;
 float[] weight;
 
 int textSize = 8;
@@ -364,6 +364,9 @@ void testNetwork_CDRWifi(boolean CDR, boolean Wifi) {
   swarmHorde.popScaler(1.0);
 }
 
+//make array of spanish speaking
+//make array of other
+
 void CDRNetwork() {
   
   int numSwarm;
@@ -375,98 +378,92 @@ void CDRNetwork() {
   origin_coord = new PVector[numSwarm];
   destination = new PVector[numSwarm];
   destination_coord = new PVector[numSwarm];
-  correct_origin_coord = new PVector[numSwarm];
-  correct_destination_coord = new PVector[numSwarm];
   weight = new float[numSwarm];
   swarmHorde.clearHorde();
-  ArrayList<PVector> stufftodo = new ArrayList<PVector>();
-  boolean need_towers = true;
-  
-  int marginWidthPix = int((marginWidth/tableWidth)*canvasWidth);
+
   
   int w = 1;
-  
-/*
-Steps: 
-  1. What are these origins? Why are they happening? 
-  2. More heuristics to distribute amongst the upper left main street
-  3. Completely stop generating at towers
-*/
-  
   for (int i=0; i<numSwarm; i++) {
+    
+    weight[i] = 20;
+    
+    if (network.getString(i, "NATION").equals("sp")) {
+      col = spanish;
+    } else if (network.getString(i, "NATION").equals("fr")) {
+      col = french;
+    } else {
+      col = other;
+    }
+    
     boolean external = false;
-    destination[i] = mercatorMap.getScreenLocation(new PVector(network.getFloat(i, "LAT_D"), network.getFloat(i, "LON_D")));
-    origin[i] = mercatorMap.getScreenLocation(new PVector(network.getFloat(i, "LAT_O"), network.getFloat(i, "LON_O")));
-    origin_coord[i] = mercatorMap.getScreenLocation(new PVector(amenities.getFloat(w, "Lat"), amenities.getFloat(w, "Long")));
-    destination_coord[i] = mercatorMap.getScreenLocation(new PVector(amenities.getFloat(w, "Lat"), amenities.getFloat(w, "Long")));
-    correct_origin_coord[i] = new PVector(origin_coord[i].x + marginWidthPix, origin_coord[i].y + marginWidthPix);
-    correct_destination_coord[i] = new PVector(destination_coord[i].x + marginWidthPix, destination_coord[i].y + marginWidthPix);
-           if (network.getInt(i, "CON_O") == 0 && network.getInt(i, "CON_D") == 0) {  
-             destination[i] = mercatorMap.getScreenLocation(new PVector(network.getFloat(i, "LAT_D"), network.getFloat(i, "LON_D")));
-    origin[i] = mercatorMap.getScreenLocation(new PVector(network.getFloat(i, "LAT_O"), network.getFloat(i, "LON_O"))); 
-////--------cheap radius comparison     
-//                  if(abs(correct_origin_coord[i].x - origin[i].x) <= 500 && abs(correct_origin_coord[i].y - origin[i].y) <= 200){
-//                          origin[i] = correct_origin_coord[i];
-//                          println("hello new origin :D");
-////                                if(abs(destination_coord[i].x - destination[i].x) <= 300 && abs(destination_coord[i].y - destination[i].y) <= 300){
-////                                      destination[i] = correct_destination_coord[i];
-////                                      println("hello new destination :D");                                   
-////                                     }
-//                          }
-//                   if(abs(destination_coord[i].x - destination[i].x) <= 500 && abs(destination_coord[i].y - destination[i].y) <= 200){
-//                        destination[i] = correct_destination_coord[i];
-//                        println("hello new destination :D");
-////                              if(abs(correct_origin_coord[i].x - origin[i].x) <= 300 && abs(correct_origin_coord[i].y - origin[i].y) <= 300){
-////                              origin[i] = correct_origin_coord[i];
-////                              println("hello new origin :D");                           
-////                              }
-//                       }
-//                       
-//----------compare between the origins and destinations with voronoi math                
-//                 if((abs(correct_origin_coord[i].x - origin[i].x) < abs(correct_origin_coord[i].x - origin[i-1].x)) &&  
-//                 (abs(correct_origin_coord[i].y - origin[i].y) < abs(correct_origin_coord[i].y - origin[i-1].y))){
-//                     origin[i] = correct_origin_coord[i];
-//                     println("hello new voronoi origin XD");
-////                           if((abs(correct_destination_coord[i].x - destination[i].x) < abs(correct_destination_coord[i].x - destination[i-1].x)) &&
-////                            (abs(correct_destination_coord[i].y - destination[i].y) < abs(correct_destination_coord[i].y - destination[i-1].y))){
-////                               destination[i] = correct_destination_coord[i];
-////                               println("hello new voronoi destinationr XD");
-////                           }
-//                 }
-                  
-                 
-//                  if((abs(correct_destination_coord[i].x - destination[i].x) < abs(correct_destination_coord[i].x - destination[i-1].x)) &&
-//                  (abs(correct_destination_coord[i].y - destination[i].y) < abs(correct_destination_coord[i].y - destination[i-1].y))){
-//                     destination[i] = correct_destination_coord[i];
-//                     println("hello new voronoi destinationr XD");
-////                              if((abs(correct_origin_coord[i].x - origin[i].x) < abs(correct_origin_coord[i].x - origin[i-1].x)) &&  
-////                               (abs(correct_origin_coord[i].y - origin[i].y) < abs(correct_origin_coord[i].y - origin[i-1].y))){
-////                                   origin[i] = correct_origin_coord[i];
-////                                   println("hello new voronoi origin XD");
-////                               }
-//                 }
-                 
-//-----------more heuristics 
-//                  if(destination[i].x <= 800 || origin[i].x <= 800){
-//                   if(abs(correct_origin_coord[i].x - origin[i].x) <= 200 && abs(correct_origin_coord[i].y - origin[i].y) <= 200){
-//                          origin[i] = correct_origin_coord[i];
-//                          println("hello new origin :D");
-////                                if(abs(destination_coord[i].x - destination[i].x) <= 300 && abs(destination_coord[i].y - destination[i].y) <= 300){
-////                                      destination[i] = correct_destination_coord[i];
-////                                      println("hello new destination :D");                                   
-////                                     }
-//                          }
-//                   if(abs(destination_coord[i].x - destination[i].x) <= 200 && abs(destination_coord[i].y - destination[i].y) <= 200){
-//                        destination[i] = correct_destination_coord[i];
-//                        println("hello new destination :D");
-////                              if(abs(correct_origin_coord[i].x - origin[i].x) <= 300 && abs(correct_origin_coord[i].y - origin[i].y) <= 300){
-////                              origin[i] = correct_origin_coord[i];
-////                              println("hello new origin :D");                           
-////                              }
-//                       }
-//                  }
+    
+   if (network.getInt(i, "CON_O") == 0 && network.getInt(i, "CON_D") == 0) {  
+            destination[i] = mercatorMap.getScreenLocation(new PVector(network.getFloat(i, "LAT_D"), network.getFloat(i, "LON_D")));
+            origin[i] = mercatorMap.getScreenLocation(new PVector(network.getFloat(i, "LAT_O"), network.getFloat(i, "LON_O"))); 
+             
+            origin_coord[i] = mercatorMap.getScreenLocation(new PVector(marc_rest.getFloat(w, "LAT"), marc_rest.getFloat(w, "LNG")));
+            destination_coord[i] = mercatorMap.getScreenLocation(new PVector(marc_rest.getFloat(w, "LAT"), marc_rest.getFloat(w, "LNG")));
+            
+            origin_coord[i] = new PVector(origin_coord[i].x + marginWidthPix, origin_coord[i].y + marginWidthPix);
+            destination_coord[i] = new PVector(destination_coord[i].x + marginWidthPix, destination_coord[i].y + marginWidthPix);
 
-                      if (w == amenities.getRowCount()-1){
+//----------compare between the origins and destinations with voronoi math          
+                  float first_dist_o = sqrt(pow(origin_coord[i].x-origin[i].x, 2) - pow(origin_coord[i].y-origin[i].y, 2));
+                  float second_dist_o = sqrt(pow(origin_coord[i].x-origin[i-1].x, 2) - pow(origin_coord[i].y-origin[i-1].y, 2));
+
+                  float first_dist_d = sqrt(pow(destination_coord[i].x-destination[i].x, 2) - pow(destination_coord[i].y-destination[i].y, 2));
+                  float second_dist_d = sqrt(pow(destination_coord[i].x-destination[i-1].x, 2) - pow(destination_coord[i].y-destination[i-1].y, 2));
+                  
+                 if(first_dist_o < second_dist_o){
+                     origin[i] = origin_coord[i];
+                     println("voronoi origin");
+                           }
+                           
+                float first_xd = abs(destination_coord[i].x - destination[i].x);
+  
+                 
+                  if(first_dist_d < second_dist_d){
+                     destination[i] = destination_coord[i];
+                     println("voronoi destination");
+                 }
+                 
+                 
+                 else {
+                   if (network.getString(i, "NATION").equals("sp")) {
+                         if(marc_rest.getString(w, "LANGUAGES").equals("CA,ES,EN,RU") || marc_rest.getString(w, "LANGUAGES").equals("CA") 
+                          || marc_rest.getString(w, "LANGUAGES").equals("CA,ES,EN,PT") ||marc_rest.getString(w, "LANGUAGES").equals("CA,ES"))
+                          {
+                              destination_coord[i] = mercatorMap.getScreenLocation(new PVector(marc_rest.getFloat(w, "LAT"), marc_rest.getFloat(w, "LNG")));
+                              destination[i] = new PVector(destination_coord[i].x + marginWidthPix, destination_coord[i].y + marginWidthPix);
+                              println("disapears right place spanish", w, i);
+    
+                          }
+                              }
+                              
+                     if (network.getString(i, "NATION").equals("sp")) {
+                         if(marc_rest.getString(w, "LANGUAGES").equals("CA,ES,EN,RU") || marc_rest.getString(w, "LANGUAGES").equals("CA") 
+                          || marc_rest.getString(w, "LANGUAGES").equals("CA,ES,EN,PT") ||marc_rest.getString(w, "LANGUAGES").equals("CA,ES"))
+                          {
+                              origin_coord[i] = mercatorMap.getScreenLocation(new PVector(marc_rest.getFloat(w, "LAT"), marc_rest.getFloat(w, "LNG")));
+                              origin[i] = new PVector(origin_coord[i].x + marginWidthPix, origin_coord[i].y + marginWidthPix);
+                              println("appears right place spanish", w, i);
+    
+                          }
+                              }          
+                    if (network.getString(i, "NATION").equals("fr")) {
+                         if(marc_rest.getString(w, "LANGUAGES").equals("CA,ES,FR,EN") || marc_rest.getString(w, "LANGUAGES").equals("CA,ES,FR,EN,RU") 
+                          || marc_rest.getString(w, "LANGUAGES").equals("CA,ES,FR,PT"))
+                          {
+                              destination_coord[i] = mercatorMap.getScreenLocation(new PVector(marc_rest.getFloat(w, "LAT"), marc_rest.getFloat(w, "LNG")));
+                              destination[i] = new PVector(destination_coord[i].x + marginWidthPix, destination_coord[i].y + marginWidthPix);
+                              println("disapears right place french", w, i);
+    
+                          }
+                              }         
+                              
+                 }
+                 
+                      if (w == marc_rest.getRowCount()-1){
                         w = 1;
                         }
                        w++;
@@ -476,16 +473,6 @@ Steps:
       origin[i] = container_Locations[network.getInt(i, "CON_O")];
       destination[i] = container_Locations[network.getInt(i, "CON_D")];
       external = true;
-    }
- 
-    weight[i] = 20;
-    
-    if (network.getString(i, "NATION").equals("sp")) {
-      col = spanish;
-    } else if (network.getString(i, "NATION").equals("fr")) {
-      col = french;
-    } else {
-      col = other;
     }
    
     

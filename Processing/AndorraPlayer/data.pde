@@ -38,6 +38,7 @@ boolean load_non_essential_data = true;
   Table attractions;
   Table amenities; 
   Table wifi; 
+  Table marc_rest;
   
   // OD Matrix Information
   Table network;
@@ -122,6 +123,14 @@ void initData() {
       }
     }
     
+  marc_rest = loadTable("data/restaurants.tsv", "header");
+  for (int i=marc_rest.getRowCount() - 1; i >= 0; i--) {
+     if (marc_rest.getFloat(i, "LAT") < lat2 || marc_rest.getFloat(i, "LAT") > lat1 ||
+          marc_rest.getFloat(i, "LNG") < lon1 || marc_rest.getFloat(i, "LNG") > lon2) {
+        marc_rest.removeRow(i);
+      }
+    }
+
    restaurants = loadTable("data/restaurants.csv", "header");
    for (int i=restaurants.getRowCount() - 1; i >= 0; i--) {
      if (restaurants.getFloat(i, "Lat") < lat2 || restaurants.getFloat(i, "Lat") > lat1 ||
@@ -138,8 +147,6 @@ void initData() {
       }
     }
     
-   
-    
     tripAdvisor = loadTable("data/Tripadvisor_andorra_la_vella.csv", "header");
     for (int i=tripAdvisor.getRowCount()-1; i >= 0; i--) {
       if (tripAdvisor.getFloat(i, "Lat") < lat2 || tripAdvisor.getFloat(i, "Lat") > lat1 ||
@@ -155,6 +162,7 @@ void initData() {
     restaurants = new Table();
     attractions = new Table();
     amenities = new Table();
+    marc_rest = new Table();
   }
   
   println("Data loaded.");

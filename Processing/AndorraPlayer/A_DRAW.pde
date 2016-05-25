@@ -384,8 +384,13 @@ void drawTopo(PGraphics p) {
 
 void drawRestaurants(PGraphics p) { 
   p.noStroke();
-  for (int i=0; i<restaurants.getRowCount (); i++) {
-     coord = mercatorMap.getScreenLocation(new PVector(restaurants.getFloat(i, "Lat"), restaurants.getFloat(i, "Long")));
+  for (int i=0; i<marc_rest.getRowCount (); i++) {
+     coord = mercatorMap.getScreenLocation(new PVector(marc_rest.getFloat(i, "LAT"), marc_rest.getFloat(i, "LNG")));
+      if(marc_rest.getString(i, "LANGUAGES").equals("CA,ES,EN,RU") || marc_rest.getString(i, "LANGUAGES").equals("CA") 
+      || marc_rest.getString(i, "LANGUAGES").equals("CA,ES,EN,PT") ||marc_rest.getString(i, "LANGUAGES").equals("CA,ES"))
+      {
+
+      }
    if(coord.y >= marginWidthPix && coord.x >= marginWidthPix){
         p.rect(coord.x + marginWidthPix, coord.y + marginWidthPix, 8, 8);
       }
