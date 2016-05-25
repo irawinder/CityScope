@@ -1,5 +1,5 @@
 int i = 0;
-int ncolors = 18;
+int ncolors = 7;
 float[] towers_x = new float[ncolors];
 float[] towers_y = new float[ncolors];
 color[] tower_colors = new color[ncolors];
@@ -13,7 +13,7 @@ int minIndex = 0;
 void setup()
 {
   values = loadTable("data/values.csv", "header");
-    size(800, 800);
+    size(500, 500);
     background(250);
 
     smooth();
@@ -32,7 +32,7 @@ void setup()
     {
         towers_x[i] = random(width);
         towers_y[i] = random(height);
-        tower_colors[i] = color(50*i, 10*i, 5*i);
+        tower_colors[i] = color(100*i, 0, 50*i);
     }
     
 }
