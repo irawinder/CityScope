@@ -445,14 +445,11 @@ void CDRNetwork() {
    if (network.getInt(i, "CON_O") == 0 && network.getInt(i, "CON_D") == 0) {  
             destination[i] = mercatorMap.getScreenLocation(new PVector(network.getFloat(i, "LAT_D"), network.getFloat(i, "LON_D")));
             origin[i] = mercatorMap.getScreenLocation(new PVector(network.getFloat(i, "LAT_O"), network.getFloat(i, "LON_O"))); 
-                    for(int j =0; j<marc_rest.getRowCount(); j++){
-                        
-                        rest_coord[j] = mercatorMap.getScreenLocation(new PVector(marc_rest.getFloat(j, "LAT"), marc_rest.getFloat(j, "LNG")));
-                        
+                    for(int j =0; j<marc_rest.getRowCount(); j++){      
+                        rest_coord[j] = mercatorMap.getScreenLocation(new PVector(marc_rest.getFloat(j, "LAT"), marc_rest.getFloat(j, "LNG")));           
                         rest_coord[j] = new PVector(rest_coord[j].x + marginWidthPix, rest_coord[j].y + marginWidthPix);
                         
 
-      
                          PVector dist_origin_1 = PVector.sub(v_tower1, origin[i]);
                          PVector dist_dest_1 = PVector.sub(v_tower1, destination[i]);
                          PVector dist_origin_2 = PVector.sub(v_tower2, origin[i]);
@@ -469,16 +466,12 @@ void CDRNetwork() {
                          PVector dist_dest_7 = PVector.sub(v_tower7, destination[i]);
                          PVector dist_origin_8 = PVector.sub(v_tower8, origin[i]);
                          PVector dist_dest_8 = PVector.sub(v_tower8, destination[i]);
-                         
                          PVector dist_origin_9 = PVector.sub(v_tower9, origin[i]);
                          PVector dist_dest_9 = PVector.sub(v_tower9, destination[i]);
-                         
-                         
                          PVector dist_origin_10 = PVector.sub(v_tower10, origin[i]);
                          PVector dist_dest_10 = PVector.sub(v_tower10, destination[i]);
                          PVector dist_origin_11 = PVector.sub(v_tower11, origin[i]);
                          PVector dist_dest_11 = PVector.sub(v_tower11, destination[i]);
-                         
                          
                          float m = dist_origin_1.mag();
                          float o = dist_dest_1.mag();
