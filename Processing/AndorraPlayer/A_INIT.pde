@@ -179,7 +179,7 @@ void initContent() {
 
 Horde swarmHorde;
 
-PVector[] origin, destination, nodes, origin_coord, destination_coord, origin_CDR, destination_CDR;
+PVector[] origin, destination, nodes, rest_coord, hotel_coord;
 float[] weight;
 
 int textSize = 8;
@@ -376,11 +376,9 @@ void CDRNetwork() {
   
   
   origin = new PVector[numSwarm];
-  origin_coord = new PVector[numSwarm];
-  origin_CDR = new PVector[numSwarm];
+  rest_coord = new PVector[numSwarm];
   destination = new PVector[numSwarm];
-  destination_coord = new PVector[numSwarm];
-  destination_CDR = new PVector[numSwarm];
+  hotel_coord = new PVector[numSwarm];
   weight = new float[numSwarm];
   swarmHorde.clearHorde();
 
@@ -420,15 +418,12 @@ void CDRNetwork() {
    if (network.getInt(i, "CON_O") == 0 && network.getInt(i, "CON_D") == 0) {  
             destination[i] = mercatorMap.getScreenLocation(new PVector(network.getFloat(i, "LAT_D"), network.getFloat(i, "LON_D")));
             origin[i] = mercatorMap.getScreenLocation(new PVector(network.getFloat(i, "LAT_O"), network.getFloat(i, "LON_O"))); 
-
                     for(int j =0; j<marc_rest.getRowCount(); j++){
                         
-                        origin_coord[j] = mercatorMap.getScreenLocation(new PVector(marc_rest.getFloat(j, "LAT"), marc_rest.getFloat(j, "LNG")));
-                        destination_coord[j] = mercatorMap.getScreenLocation(new PVector(marc_rest.getFloat(j, "LAT"), marc_rest.getFloat(j, "LNG")));
+                        rest_coord[j] = mercatorMap.getScreenLocation(new PVector(marc_rest.getFloat(j, "LAT"), marc_rest.getFloat(j, "LNG")));
                         
-                        origin_coord[j] = new PVector(origin_coord[j].x + marginWidthPix, origin_coord[j].y + marginWidthPix);
-                        destination_coord[j] = new PVector(destination_coord[j].x + marginWidthPix, destination_coord[j].y + marginWidthPix);
-
+                        rest_coord[j] = new PVector(rest_coord[j].x + marginWidthPix, rest_coord[j].y + marginWidthPix);
+      
                          PVector dist_origin_1 = PVector.sub(v_tower1, origin[i]);
                          PVector dist_dest_1 = PVector.sub(v_tower1, destination[i]);
                          PVector dist_origin_2 = PVector.sub(v_tower2, origin[i]);
@@ -635,84 +630,118 @@ void CDRNetwork() {
                         }
                         
         //rest arrays calculations                 
-                            PVector v4 = PVector.sub(v_tower1, origin_coord[j]);
+                            PVector v4 = PVector.sub(v_tower1, rest_coord[j]);
                                 float n = v4.mag();
-                                
-                                if(abs(n) <= 200 && origin_coord[j].y > 120){
-                                tower_1.add(origin_coord[j]);
-                                println("tower 1", tower_1.size());
+                                //1112
+                                if(abs(n) <= 200 && rest_coord[j].x > 1100){
+                                tower_1.add(rest_coord[j]);
                                 }
                                 
-                             PVector v10 = PVector.sub(v_tower2, origin_coord[j]);
+                             PVector v10 = PVector.sub(v_tower2, rest_coord[j]);
                                 float l = v10.mag();
-                                
-                                if(abs(l) <= 100 && origin_coord[j].y > 120){
-                                tower_2.add(origin_coord[j]);
+                                //793
+                                if(abs(l) <= 100 && rest_coord[j].y > 120){
+                                tower_2.add(rest_coord[j]);
                                 }    
                         
-                             PVector v16 = PVector.sub(v_tower3, origin_coord[j]);
+                             PVector v16 = PVector.sub(v_tower3, rest_coord[j]);
                                 float k = v16.mag();
-                                
-                                if(abs(k) <= 300 && origin_coord[j].y > 120){
-                                tower_3.add(origin_coord[j]);
+                                //470
+                                if(abs(k) <= 300 && rest_coord[j].y > 120){
+                                tower_3.add(rest_coord[j]);
                                 }    
                                 
-                          PVector v22 = PVector.sub(v_tower4, origin_coord[j]);
+                          PVector v22 = PVector.sub(v_tower4, rest_coord[j]);
                                 float u = v22.mag();
                                 
-                                if(abs(u) <= 20 && origin_coord[j].y > 120){
-                                tower_4.add(origin_coord[j]);
+                                if(abs(u) <= 100 && rest_coord[j].y > 120 && rest_coord[j].x > 950){
+                                tower_4.add(rest_coord[j]);
                                 }
                                 
-                           PVector v28 = PVector.sub(v_tower5, origin_coord[j]);
+                           PVector v28 = PVector.sub(v_tower5, rest_coord[j]);
                                 float t = v28.mag();
                                 
-                                if(abs(t) <= 300 && origin_coord[j].y > 120){
-                                tower_5.add(origin_coord[j]);
+                                if(abs(t) <= 300 && rest_coord[j].y > 120 && rest_coord[j].x > 400){
+                                tower_5.add(rest_coord[j]);
                                 }    
                          
-                         PVector v34 = PVector.sub(v_tower6, origin_coord[j]);
+                         PVector v34 = PVector.sub(v_tower6, rest_coord[j]);
                                 float r = v34.mag();
                                 
-                                if(abs(r) <= 200 && origin_coord[j].x < 650){
-                                tower_6.add(origin_coord[j]);
+                                if(abs(r) <= 300 && rest_coord[j].x > 550){
+                                tower_6.add(rest_coord[j]);
                                 }      
                                 
-                         PVector v40 = PVector.sub(v_tower7, origin_coord[j]);
+                         PVector v40 = PVector.sub(v_tower7, rest_coord[j]);
                                 float b = v40.mag();
                                 
-                                if(abs(b) <= 200 && abs(origin_coord[j].x - 545)>=20){
-                                tower_7.add(origin_coord[j]);
+                                if(abs(b) <= 200 && rest_coord[j].x > 550 && rest_coord[j].y < 300){
+                                tower_7.add(rest_coord[j]);
                                 }              
                                 
-                         PVector v46 = PVector.sub(v_tower8, origin_coord[j]);
+                         PVector v46 = PVector.sub(v_tower8, rest_coord[j]);
                                 float f = v46.mag();
                                 
-                                if(abs(f) <= 200 && origin_coord[j].y < 240){
-                                tower_8.add(origin_coord[j]);
+                                if(abs(f) <= 200 && rest_coord[j].y < 240){
+                                tower_8.add(rest_coord[j]);
                                 }   
                       
-                         PVector v52 = PVector.sub(v_tower9, origin_coord[j]);
+                         PVector v52 = PVector.sub(v_tower9, rest_coord[j]);
                                 float s = v52.mag();
                                 
-                                if(abs(s) <= 300 && origin_coord[j].y > 150){
-                                tower_9.add(origin_coord[j]);
+                                if(abs(s) <= 300 && rest_coord[j].y > 150){
+                                tower_9.add(rest_coord[j]);
                                 }      
                  
-                         PVector v58 = PVector.sub(v_tower10, origin_coord[j]);
+                         PVector v58 = PVector.sub(v_tower10, rest_coord[j]);
                                 float v = v58.mag();
+                               
+                             for (int z=0;z<tripAdvisor.getRowCount (); z++) {
+                                   hotel_coord[z] = mercatorMap.getScreenLocation(new PVector(tripAdvisor.getFloat(z, "Lat"), tripAdvisor.getFloat(z, "Long")));
+                                   hotel_coord[z] = new PVector(hotel_coord[z].x + marginWidthPix, hotel_coord[z].y + marginWidthPix);
+                                   if(hotel_coord[z].x < 750 && hotel_coord[z].y > 140){
+                                   tower_11.add(hotel_coord[z]);
+                                   tower_10.add(hotel_coord[z]);
+                                   }
+                                 }
+
                                 
-                                if(abs(v) <= 500 && origin_coord[j].y >120 && origin_coord[j].x < 750){
-                                tower_10.add(origin_coord[j]);
-                                }             
-               
-                         PVector v64 = PVector.sub(v_tower11, origin_coord[j]);
+                               if (network.getString(i, "NATION").equals("sp")) {
+                                     if(marc_rest.getString(j, "LANGUAGES").equals("CA,ES,EN,RU") || marc_rest.getString(j, "LANGUAGES").equals("CA") 
+                                      || marc_rest.getString(j, "LANGUAGES").equals("CA,ES,EN,PT") ||marc_rest.getString(j, "LANGUAGES").equals("CA,ES"))
+                                      {
+                                          rest_coord[i] = mercatorMap.getScreenLocation(new PVector(marc_rest.getFloat(j, "LAT"), marc_rest.getFloat(j, "LNG")));
+                                          rest_coord[i] = new PVector(rest_coord[i].x + marginWidthPix, rest_coord[i].y + marginWidthPix);
+                                          tower_10.add(rest_coord[j]);
+                                      }
+                                          }
+                                 if (network.getString(i, "NATION").equals("fr")) {
+                                     if(marc_rest.getString(j, "LANGUAGES").equals("CA,ES,FR,EN") || marc_rest.getString(j, "LANGUAGES").equals("CA,ES,FR,EN,RU") 
+                                     || marc_rest.getString(j, "LANGUAGES").equals("CA,ES,FR,PT"))
+                                      {
+                                          rest_coord[i] = mercatorMap.getScreenLocation(new PVector(marc_rest.getFloat(j, "LAT"), marc_rest.getFloat(j, "LNG")));
+                                          rest_coord[i] = new PVector(rest_coord[i].x + marginWidthPix, rest_coord[i].y + marginWidthPix);
+                                          tower_10.add(rest_coord[j]);
+                                      }
+                                          }
+                                              
+                                                           
+                         PVector v64 = PVector.sub(v_tower11, rest_coord[j]);
                                 float g = v64.mag();
                                 
-                                if(abs(g) <= 500 && origin_coord[j].y > 120 && origin_coord[j].x < 750){
-                                tower_11.add(origin_coord[j]);
-                                println("tower 11", tower_11.size());
-                                }                                     
+                                if(abs(g) <= 600 && rest_coord[j].y > 140 && rest_coord[j].x < 750){
+                                tower_11.add(rest_coord[j]);
+                                }            
+       
+                                 if (network.getString(i, "NATION").equals("fr")) {
+                                     if(marc_rest.getString(j, "LANGUAGES").equals("CA,ES,FR,EN") || marc_rest.getString(j, "LANGUAGES").equals("CA,ES,FR,EN,RU") 
+                                     || marc_rest.getString(j, "LANGUAGES").equals("CA,ES,FR,PT"))
+                                      {
+                                          rest_coord[i] = mercatorMap.getScreenLocation(new PVector(marc_rest.getFloat(j, "LAT"), marc_rest.getFloat(j, "LNG")));
+                                          rest_coord[i] = new PVector(rest_coord[i].x + marginWidthPix, rest_coord[i].y + marginWidthPix);
+                                          tower_11.add(rest_coord[j]);
+                                      }
+                                          }                         
                      }
 
             
