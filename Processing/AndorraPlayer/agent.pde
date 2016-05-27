@@ -631,25 +631,29 @@ class Horde {
     }
   }
   
+  //summary and key information 
   void displaySummary(PGraphics p) {
-    p.fill(textColor);
-    p.textSize(1.5*textSize);
-    textSize = 8;
-    p.textAlign(LEFT);
-
-    p.text("Total Agents Rendered: " + agentCount, marginWidthPix, 0.4*marginWidthPix);
-    p.text("rateScaler: " + int(rateScaler), marginWidthPix, 0.7*marginWidthPix);
-    
-    p.fill(#ffff00);
-    p.text("Hotels ", marginWidthPix + 1500, 0.40*marginWidthPix);
-    p.ellipse(marginWidthPix + 1495, 0.35*marginWidthPix, 5, 5);
-    p.fill(#ff0000);
-    p.text("Restaurants", marginWidthPix +1500, 0.60*marginWidthPix);
-     p.ellipse(marginWidthPix + 1495, 0.55*marginWidthPix, 5, 5);
-    p.fill(#e600e6);
-    p.text("Attractions", marginWidthPix +1500, 0.80*marginWidthPix);
-     p.ellipse(marginWidthPix + 1495, 0.75*marginWidthPix, 5, 5);
-  }
+          p.fill(textColor);
+          p.textSize(1.5*textSize);
+          textSize = 8;
+          p.textAlign(LEFT);
+      
+          p.text("Total Agents Rendered: " + agentCount, marginWidthPix, 0.4*marginWidthPix);
+          p.text("rateScaler: " + int(rateScaler), marginWidthPix, 0.7*marginWidthPix);
+          
+          p.fill(#00ff00);
+          p.text("Hotels ", marginWidthPix + 1500, 0.40*marginWidthPix);
+          p.ellipse(marginWidthPix + 1495, 0.35*marginWidthPix, 5, 5);
+          p.fill(#ff0000);
+          p.text("Restaurants", marginWidthPix +1500, 0.60*marginWidthPix);
+           p.ellipse(marginWidthPix + 1495, 0.55*marginWidthPix, 5, 5);
+          p.fill(#00ffff);
+          p.text("French Restaurants", marginWidthPix +1350, 0.60*marginWidthPix);
+           p.ellipse(marginWidthPix + 1345, 0.35*marginWidthPix, 5, 5);
+          p.fill(#e600e6);
+          p.text("Attractions", marginWidthPix +1500, 0.80*marginWidthPix);
+           p.ellipse(marginWidthPix + 1495, 0.75*marginWidthPix, 5, 5);
+        }
   
   void displaySwarmList(PGraphics p) {
     p.fill(textColor);

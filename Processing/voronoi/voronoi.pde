@@ -33,7 +33,7 @@ void setup()
     {
         towers_x[i] = random(width);
         towers_y[i] = random(height);
-        tower_colors[i] = color(25*i, 5*i, 50*i);
+        tower_colors[i] = color(15*i, 10*i, 50*i);
     }
     
 }

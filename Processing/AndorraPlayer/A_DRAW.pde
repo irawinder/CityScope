@@ -288,22 +288,28 @@ void drawRestaurants(PGraphics p) {
   p.noStroke();
           for (int i=0; i<marc_rest.getRowCount (); i++) {
              coord = mercatorMap.getScreenLocation(new PVector(marc_rest.getFloat(i, "LAT"), marc_rest.getFloat(i, "LNG")));
-                    if(marc_rest.getString(i, "LANGUAGES").equals("CA,ES,EN,RU") || marc_rest.getString(i, "LANGUAGES").equals("CA") 
-                    || marc_rest.getString(i, "LANGUAGES").equals("CA,ES,EN,PT") ||marc_rest.getString(i, "LANGUAGES").equals("CA,ES"))
-                              {
-                                p.ellipse(coord.x + marginWidthPix, coord.y + marginWidthPix, 10, 10);
-                                p.fill(spanish);
-                              }
-                     if(marc_rest.getString(i, "LANGUAGES").equals("CA,ES,FR,EN") || marc_rest.getString(i, "LANGUAGES").equals("CA,ES,FR,EN,RU") 
-                     || marc_rest.getString(i, "LANGUAGES").equals("CA,ES,FR,PT"))
-                              {
-                                p.ellipse(coord.x + marginWidthPix, coord.y + marginWidthPix, 10, 10);
-                                p.fill(#ffaa80);
-                              }  
                      if(coord.y >= marginWidthPix && coord.x >= marginWidthPix){
                           p.rect(coord.x + marginWidthPix, coord.y + marginWidthPix, 8, 8);
+                                  if(marc_rest.getString(i, "LANGUAGES").equals("CA,ES,EN,RU") || marc_rest.getString(i, "LANGUAGES").equals("CA") 
+                                  || marc_rest.getString(i, "LANGUAGES").equals("CA,ES,EN,PT") ||marc_rest.getString(i, "LANGUAGES").equals("CA,ES"))
+                                            {
+//                                              p.ellipse(coord.x + marginWidthPix, coord.y + marginWidthPix, 10, 10);
+                                              p.fill(#ffcc00);
+                                              p.strokeWeight(.05);
+                                              p.stroke(#ff0000);
+                                            }
+                                   if(marc_rest.getString(i, "LANGUAGES").equals("CA,ES,FR,EN") || marc_rest.getString(i, "LANGUAGES").equals("CA,ES,FR,EN,RU") 
+                                   || marc_rest.getString(i, "LANGUAGES").equals("CA,ES,FR,PT"))
+                                            {
+//                                              p.ellipse(coord.x + marginWidthPix, coord.y + marginWidthPix, 10, 10);
+                                              p.fill(#00ffff);
+                                              p.strokeWeight(.05);
+                                              p.stroke(#ff0000);
+                                            }  
+                                   else{
+                                     p.fill(#ff0000);
+                                   }
                         }
-                         p.fill(#ff0000); //red
                 }
           PVector geo;
           geo = mercatorMap.getGeo(new PVector( mouseX-marginWidthPix, mouseY-marginWidthPix));
@@ -316,94 +322,95 @@ void drawRestaurants(PGraphics p) {
 
 
 void drawAttractions(PGraphics p){
-  int k = 0;
-      for (int i=0; i<attractions.getRowCount (); i++) {
-         p.fill(#9933ff);
-         coord = mercatorMap.getScreenLocation(new PVector(attractions.getFloat(i, "Lat"), attractions.getFloat(i, "Long")));
-         if(coord.y >= marginWidthPix && coord.x >= marginWidthPix){
-         p.rect(coord.x + marginWidthPix, coord.y + marginWidthPix, 8, 8);
-         }
-         p.fill(#e600e6);
-         k+=1;
-  }
-
-  PVector geo;
-  geo = mercatorMap.getGeo(new PVector( mouseX-marginWidthPix, mouseY-marginWidthPix));
-  //println(geo.x + ", " + geo.y);
-  coord = mercatorMap.getScreenLocation(geo);
-//  p.fill(#00ff00);
-  p.fill(#9933ff);
-  p.noStroke();
-}
+          int k = 0;
+              for (int i=0; i<attractions.getRowCount (); i++) {
+                 p.fill(#9933ff);
+                 coord = mercatorMap.getScreenLocation(new PVector(attractions.getFloat(i, "Lat"), attractions.getFloat(i, "Long")));
+                 if(coord.y >= marginWidthPix && coord.x >= marginWidthPix){
+                 p.rect(coord.x + marginWidthPix, coord.y + marginWidthPix, 8, 8);
+                 }
+                 p.fill(#e600e6);
+                 k+=1;
+          }
+        
+          PVector geo;
+          geo = mercatorMap.getGeo(new PVector( mouseX-marginWidthPix, mouseY-marginWidthPix));
+          //println(geo.x + ", " + geo.y);
+          coord = mercatorMap.getScreenLocation(geo);
+        //  p.fill(#00ff00);
+          p.fill(#9933ff);
+          p.noStroke();
+        }
 
 void drawHotels(PGraphics p) {
-  p.noStroke();
-  int j = 0; 
-  for (int i=0; i<tripAdvisor.getRowCount (); i++) {
-     coord = mercatorMap.getScreenLocation(new PVector(tripAdvisor.getFloat(i, "Lat"), tripAdvisor.getFloat(i, "Long")));
-     j+=1;
-       if(coord.y >= marginWidthPix && coord.x >= marginWidthPix){
-        p.rect(coord.x + marginWidthPix, coord.y + marginWidthPix, 8, 8);
+        p.noStroke();
+        int j = 0; 
+        for (int i=0; i<tripAdvisor.getRowCount (); i++) {
+           coord = mercatorMap.getScreenLocation(new PVector(tripAdvisor.getFloat(i, "Lat"), tripAdvisor.getFloat(i, "Long")));
+           j+=1;
+             if(coord.y >= marginWidthPix && coord.x >= marginWidthPix){
+              p.rect(coord.x + marginWidthPix, coord.y + marginWidthPix, 8, 8);
+            }
+           p.fill(#00ff00);
+           
+        }
+
+        PVector geo;
+        geo = mercatorMap.getGeo(new PVector( mouseX-marginWidthPix, mouseY-marginWidthPix));
+        //println(geo.x + ", " + geo.y);
+        coord = mercatorMap.getScreenLocation(geo);
+        p.fill(#00FF00);
+        p.noStroke();
+        p.ellipse(coord.x, coord.y, 10, 10);
+      
       }
-     p.fill(#ffff00);
-     
-  }
-
-  PVector geo;
-  geo = mercatorMap.getGeo(new PVector( mouseX-marginWidthPix, mouseY-marginWidthPix));
-  //println(geo.x + ", " + geo.y);
-  coord = mercatorMap.getScreenLocation(geo);
-  p.fill(#00FF00);
-  p.noStroke();
-  p.ellipse(coord.x, coord.y, 10, 10);
-
-}
 
 //draws a selector circle to show what hotel you're on (displaying info below) and initiates j and d to go through hotels
 int j = 0; 
 
 void drawHotelSelector(PGraphics p) { 
-  p.stroke(#ffffff);
-  p.strokeWeight(1);
-  p.noFill();//(#ffffff, 70);
-  for (j = d; j<tripAdvisor.getRowCount (); j++) {
-    // turns latitude and longitude of a point into canvas location within PGraphic topo
-    coord = mercatorMap.getScreenLocation(new PVector(tripAdvisor.getFloat(d, "Lat"), tripAdvisor.getFloat(d, "Long")));
-    }
-// Draw a circle 50 pixels in diameter at geolocation 
-    p.ellipse(coord.x, coord.y, 20, 20);
-    fill(255);
-  }
+        p.stroke(#ffffff);
+        p.strokeWeight(1);
+        p.noFill();//(#ffffff, 70);
+        for (j = d; j<tripAdvisor.getRowCount (); j++) {
+          // turns latitude and longitude of a point into canvas location within PGraphic topo
+          coord = mercatorMap.getScreenLocation(new PVector(tripAdvisor.getFloat(d, "Lat"), tripAdvisor.getFloat(d, "Long")));
+          }
+      // Draw a circle 50 pixels in diameter at geolocation 
+          p.ellipse(coord.x, coord.y, 20, 20);
+          fill(255);
+        }
   
 //draws a selector circle to show what attraction you're on  
 int k = 0; 
 void drawAttractionSelector(PGraphics p) { 
-  p.stroke(#ae33ff);
-  p.strokeWeight(1);
-  p.noFill();//(#ffffff, 70);
-  for (k = q; k<attractions.getRowCount (); k++) {
-    // turns latitude and longitude of a point into canvas location within PGraphic topo
-    coord = mercatorMap.getScreenLocation(new PVector(attractions.getFloat(q, "Lat"), attractions.getFloat(q, "Long")));
-    }
-// Draw a circle 50 pixels in diameter at geolocation 
-    p.ellipse(coord.x, coord.y, 20, 20);
-    fill(255);
-  }
+        p.stroke(#ae33ff);
+        p.strokeWeight(1);
+        p.noFill();//(#ffffff, 70);
+        for (k = q; k<attractions.getRowCount (); k++) {
+          // turns latitude and longitude of a point into canvas location within PGraphic topo
+          coord = mercatorMap.getScreenLocation(new PVector(attractions.getFloat(q, "Lat"), attractions.getFloat(q, "Long")));
+          }
+      // Draw a circle 50 pixels in diameter at geolocation 
+          p.ellipse(coord.x, coord.y, 20, 20);
+          fill(255);
+        }
 
 //draws a selector circle to show what restaurant you're on   
 int f = 0; 
 void drawRestaurantSelector(PGraphics p) { 
-  p.stroke(#0099ff);
-  p.strokeWeight(1);
-  p.noFill();//(#ffffff, 70);
-  for (f = t; f<restaurants.getRowCount (); f++) {
-    // turns latitude and longitude of a point into canvas location within PGraphic topo
-    coord = mercatorMap.getScreenLocation(new PVector(restaurants.getFloat(t, "Lat"), restaurants.getFloat(t, "Long")));
-    }
-// Draw a circle 50 pixels in diameter at geolocation 
-    p.ellipse(coord.x, coord.y, 20, 20);
-    fill(255);
-  }
+        p.stroke(#0099ff);
+        p.strokeWeight(1);
+        p.noFill();//(#ffffff, 70);
+        for (f = t; f<marc_rest.getRowCount (); f++) {
+          // turns latitude and longitude of a point into canvas location within PGraphic topo
+          coord = mercatorMap.getScreenLocation(new PVector(marc_rest.getFloat(t, "Lat"), marc_rest.getFloat(t, "Long")));
+          coord = new PVector(coord.x + marginWidthPix, coord.y + marginWidthPix);
+          }
+      // Draw a circle 50 pixels in diameter at geolocation 
+          p.ellipse(coord.x, coord.y, 20, 20);
+          fill(255);
+        }
 
 
 void drawData(PGraphics p) {
