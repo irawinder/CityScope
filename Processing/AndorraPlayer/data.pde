@@ -112,8 +112,8 @@ void initData() {
     
     wifi = loadTable("data/wifi_user.csv");
     
-    amenities = loadTable("data/all_amenities.csv", "header");
-//    amenities = loadTable("data/attractions.csv", "header");
+//    amenities = loadTable("data/all_amenities.csv", "header");
+    amenities = loadTable("data/attractions.csv", "header");
 //    amenities = loadTable("data/restaurants.csv", "header");
 //    amenities = loadTable("data/Tripadvisor_andorra_la_vella.csv", "header");
     for (int i=amenities.getRowCount() - 1; i >= 0; i--) {

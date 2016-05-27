@@ -389,8 +389,15 @@ void drawRestaurants(PGraphics p) {
       if(marc_rest.getString(i, "LANGUAGES").equals("CA,ES,EN,RU") || marc_rest.getString(i, "LANGUAGES").equals("CA") 
       || marc_rest.getString(i, "LANGUAGES").equals("CA,ES,EN,PT") ||marc_rest.getString(i, "LANGUAGES").equals("CA,ES"))
       {
-
+        p.rect(coord.x + marginWidthPix, coord.y + marginWidthPix, 10, 10);
+        p.fill(spanish);
       }
+       if(marc_rest.getString(i, "LANGUAGES").equals("CA,ES,FR,EN") || marc_rest.getString(i, "LANGUAGES").equals("CA,ES,FR,EN,RU") 
+       || marc_rest.getString(i, "LANGUAGES").equals("CA,ES,FR,PT"))
+      {
+        p.rect(coord.x + marginWidthPix, coord.y + marginWidthPix, 10, 10);
+        p.fill(#00ffff);
+      }  
    if(coord.y >= marginWidthPix && coord.x >= marginWidthPix){
         p.rect(coord.x + marginWidthPix, coord.y + marginWidthPix, 8, 8);
       }

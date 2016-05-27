@@ -62,3 +62,40 @@
 //                        w = 1;
 //                        }
 //                       w++;
+
+//            for(int j=0; j<marc_rest.getRowCount(); j++){
+//            origin_coord[j] = mercatorMap.getScreenLocation(new PVector(marc_rest.getFloat(j, "LAT"), marc_rest.getFloat(j, "LNG")));
+//            destination_coord[j] = mercatorMap.getScreenLocation(new PVector(marc_rest.getFloat(j, "LAT"), marc_rest.getFloat(j, "LNG")));
+//            
+//            origin_coord[j] = new PVector(origin_coord[j].x + marginWidthPix, origin_coord[j].y + marginWidthPix);
+//            destination_coord[j] = new PVector(destination_coord[j].x + marginWidthPix, destination_coord[j].y + marginWidthPix);
+//            
+//             minDistanceOrigin = pow((origin_coord[j].x - origin[1].x), 2)  +  pow((origin_coord[j].y - origin[1].y), 2);
+//             minDistanceDestination = pow((destination_coord[j].x - destination[1].x), 2)  +  pow((destination_coord[j].y - destination[1].y), 2);
+//             minIndexOrigin = 1;
+//             minIndexDestination = 1;
+//             
+//             for(int i=2; i<numSwarm; i++){
+//              if (network.getInt(i, "CON_O") == 0 && network.getInt(i, "CON_D") == 0) {  
+//              float dist_o = pow((origin_coord[j].x - origin[i].x), 2)  +  pow((origin_coord[j].y - origin[i].y), 2);
+//              float dist_d = pow((destination_coord[j].x - destination[i].x), 2)  +  pow((destination_coord[j].y - destination[i].y), 2);
+//                              
+//                             if (dist_o <= minDistanceOrigin)
+//                             {
+//                                 minDistanceOrigin = dist_o;
+//                                 minIndexOrigin = i;
+//                                 println("possible origin...", i, j);
+//                            }
+//                            
+//                            if (dist_d <= minDistanceDestination)
+//                             {
+//                                 minDistanceDestination = dist_d;
+//                                 minIndexDestination = i;
+//                                 println("possible destination...", i, j);
+//                            }
+//                           
+//                  } 
+//                 }
+//                 origin[minIndexOrigin] = origin_coord[j];
+//                 destination[minIndexDestination] = destination_coord[j];
+//               }
