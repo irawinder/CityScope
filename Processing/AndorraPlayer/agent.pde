@@ -124,10 +124,11 @@ class Agent {
     age ++;
     if (age > life*maxspeed/4) {
       finished = true;
+      println("age of death", age);
     }
     
     if(pathLength <= 50){
-      age = int(life*maxspeed/4) + 5;
+      age =  age + 1;
     }
     
     if (finished) {
@@ -442,12 +443,12 @@ class Swarm {
     
     //Draw Source
     p.strokeWeight(2);
-    p.line(origin.x - 5, origin.y - 5, origin.x + 5, origin.y + 5);
-    p.line(origin.x - 5, origin.y + 5, origin.x + 5, origin.y - 5);
+    p.line(origin.x - 2, origin.y - 2, origin.x + 2, origin.y + 2);
+    p.line(origin.x - 2, origin.y + 2, origin.x + 2, origin.y - 2);
 //    
     //Draw Sink
     p.strokeWeight(3);
-//    p.ellipse(destination.x, destination.y, 10, 10);
+    p.ellipse(destination.x, destination.y, 5, 5);
     p.text(destination.x, destination.x + 10, destination.y + 10);
   }
   
