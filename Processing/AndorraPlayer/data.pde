@@ -39,6 +39,9 @@ boolean load_non_essential_data = true;
   Table amenities; 
   Table wifi; 
   Table marc_rest;
+  Table values;
+ 
+
   
   // OD Matrix Information
   Table network;
@@ -100,7 +103,7 @@ void initData() {
   // Used as sample data set
   localTowers = loadTable("data/localTowers.tsv", "header");
   frenchWifi = loadTable("data/network_edges_french.csv", "header");
-  
+  values = loadTable("data/values.csv", "header");
   
   // loads baseimage for topographic model
   topo = loadImage("crop.png");
@@ -154,6 +157,7 @@ void initData() {
         tripAdvisor.removeRow(i);
       }
     }
+
   } else { // Initializes empty objects to prevent null pointer error
     network = new Table();
     OD = new Table();

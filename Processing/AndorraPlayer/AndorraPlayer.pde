@@ -3,7 +3,7 @@
 // For Andorra Data Stories
 // Ira Winder, MIT Media Lab, jiw@mit.edu, Fall 2015
 //Marc Vilella, Observatory Sustainability of Andorra, Summer 2016
-    //Marc = ammenity assignment based on language 
+//Marc = ammenity assignment based on language 
 
 // In general, migrate global "void drawFoo()" methods into class-specific "display()" methods
 // Consolidate Agents, Obstacles, and Pathfinder classes to libraries and/or standalone applets and/or libraries?
@@ -43,7 +43,7 @@ boolean debug = true;
 //int projectorHeight = 1200;
 int projectorWidth = 1500;
 int projectorHeight = 1000;
-    
+
 // Key Commands:
 //
 //     'g' - Toggle debug
@@ -131,20 +131,20 @@ int drawMode = 0;
 
 void setup() {
   //size(2*projectorWidth, 2*projectorHeight, P3D);
-  
+
   // Keystone will only work with P3D or OPENGL renderers, 
   // since it relies on texture mapping to deform
-  
+
   if (use4k) {
     size(2*projectorWidth, 2*projectorHeight, P3D);
   } else {
     size(projectorWidth, projectorHeight, P3D);
   }
-  
+
   initCanvas();
-  
-//  //Call this method if data folder ever needs to be selected by a user
-//  selectFolder("Please select the a folder and click 'Open'", "folderSelected");
+
+  //  //Call this method if data folder ever needs to be selected by a user
+  //  selectFolder("Please select the a folder and click 'Open'", "folderSelected");
 }
 
 
@@ -153,15 +153,15 @@ void mainDraw() {
   // a PGraphics set up to hold all information that will eventually be 
   // projection-mapped onto a big giant table:
   drawTableCanvas(tableCanvas);
-  
+
   if (!keyLoaded) {
     // Draws loading screen on top of last drawn content if keypressed while drawing
     loading(tableCanvas, loadText);
   }
-  
+
   // Renders the finished tableCanvas onto main canvas as a projection map or screen
   renderTableCanvas();
-  
+
   // Draws a line graph of all data for given OD matrix onto the main canvas
   if (load_non_essential_data && dataMode == 3 && drawMode == 0 || dataMode == 4) {
     drawLineGraph();
@@ -169,10 +169,10 @@ void mainDraw() {
 }
 
 void draw() {
-  
+
   // If certain key commands are pressed, it causes a <0 delay which counts down in this section
   if (drawDelay > 0) {
-    
+
     if (initialized) {
       mainDraw();
     } else {
@@ -180,33 +180,33 @@ void draw() {
       loading(tableCanvas, loadText);
       renderTableCanvas();
     }
-    
+
     drawDelay--;
   }
-  
+
   // These are usually run in setup() but we put them here so that 
   // the 'loading' screen successfully runs for the user
   else if (!initialized) {
     initContent();
     initialized = true;
   }
-  
+
   // Methods run every frame (i.e. 'draw()' functions) go here
   else {
-    
+
     // These are initialization functions that may be called while the app is running
     if (!keyLoaded) {
       keyInit();
-      keyLoaded = true;  
+      keyLoaded = true;
     }
-    
+
     mainDraw();
-    
+
     // Print Framerate of animation to console
     if (showFrameRate) {
       println(frameRate);
     }
-    
+
     // If true, saves every frame of the main canvas to a PNG
     if (printFrames) {
       //tableCanvas.save("videoFrames/" + millis() + ".png");
@@ -219,38 +219,38 @@ void renderTableCanvas() {
   // most likely, you'll want a black background to minimize
   // bleeding around your projection area
   background(0);
-  
+
   // Renders the tableCanvas as either a projection map or on-screen 
   switch (drawMode) {
-    case 0: // On-Screen Rendering
-      //image(tableCanvas, 0, (height-tableCanvas.height)/2, tableCanvas.width, tableCanvas.height);
-      image(tableCanvas, 0, 0, tableCanvas.width, tableCanvas.height);
-      break;
-    case 1: // Projection-Mapping Rendering
-      // render the scene, transformed using the corner pin surface
-      for (int i=0; i<surface.length; i++) {
-        chopScreen(i);
-        surface[i].render(offscreen);
-      }
-      break;
+  case 0: // On-Screen Rendering
+    //image(tableCanvas, 0, (height-tableCanvas.height)/2, tableCanvas.width, tableCanvas.height);
+    image(tableCanvas, 0, 0, tableCanvas.width, tableCanvas.height);
+    break;
+  case 1: // Projection-Mapping Rendering
+    // render the scene, transformed using the corner pin surface
+    for (int i=0; i<surface.length; i++) {
+      chopScreen(i);
+      surface[i].render(offscreen);
+    }
+    break;
   }
 }
 
 void chopScreen(int projector) {
   offscreen.beginDraw();
   switch (projector) {
-    case 0:
-      offscreen.image(tableCanvas, 0, 0);
-      break;
-    case 1:
-      offscreen.image(tableCanvas, -canvasWidth/2, 0);
-      break;
-    case 2:
-      offscreen.image(tableCanvas, 0, -canvasHeight/2);
-      break;
-    case 3:
-      offscreen.image(tableCanvas, -canvasWidth/2, -canvasHeight/2);
-      break;
+  case 0:
+    offscreen.image(tableCanvas, 0, 0);
+    break;
+  case 1:
+    offscreen.image(tableCanvas, -canvasWidth/2, 0);
+    break;
+  case 2:
+    offscreen.image(tableCanvas, 0, -canvasHeight/2);
+    break;
+  case 3:
+    offscreen.image(tableCanvas, -canvasWidth/2, -canvasHeight/2);
+    break;
   }
   offscreen.endDraw();
 }

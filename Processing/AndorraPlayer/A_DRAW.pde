@@ -289,25 +289,23 @@ void drawRestaurants(PGraphics p) {
           for (int i=0; i<marc_rest.getRowCount (); i++) {
              coord = mercatorMap.getScreenLocation(new PVector(marc_rest.getFloat(i, "LAT"), marc_rest.getFloat(i, "LNG")));
                      if(coord.y >= marginWidthPix && coord.x >= marginWidthPix){
-                          p.rect(coord.x + marginWidthPix, coord.y + marginWidthPix, 8, 8);
                                   if(marc_rest.getString(i, "LANGUAGES").equals("CA,ES,EN,RU") || marc_rest.getString(i, "LANGUAGES").equals("CA") 
                                   || marc_rest.getString(i, "LANGUAGES").equals("CA,ES,EN,PT") ||marc_rest.getString(i, "LANGUAGES").equals("CA,ES"))
                                             {
-//                                              p.ellipse(coord.x + marginWidthPix, coord.y + marginWidthPix, 10, 10);
-                                              p.fill(#ffcc00);
-                                              p.strokeWeight(.05);
-                                              p.stroke(#ff0000);
+                                              p.fill(#ffff00);
+                                              p.rect(coord.x + marginWidthPix, coord.y + marginWidthPix, 8, 8);
+                                              p.fill(#ffffff);
                                             }
-                                   if(marc_rest.getString(i, "LANGUAGES").equals("CA,ES,FR,EN") || marc_rest.getString(i, "LANGUAGES").equals("CA,ES,FR,EN,RU") 
+                                   else if(marc_rest.getString(i, "LANGUAGES").equals("CA,ES,FR,EN") || marc_rest.getString(i, "LANGUAGES").equals("CA,ES,FR,EN,RU") 
                                    || marc_rest.getString(i, "LANGUAGES").equals("CA,ES,FR,PT"))
                                             {
-//                                              p.ellipse(coord.x + marginWidthPix, coord.y + marginWidthPix, 10, 10);
                                               p.fill(#00ffff);
-                                              p.strokeWeight(.05);
-                                              p.stroke(#ff0000);
-                                            }  
+                                              p.rect(coord.x + marginWidthPix, coord.y + marginWidthPix, 8, 8);
+                                              p.fill(#ffffff);
+                                            }    
                                    else{
                                      p.fill(#ff0000);
+                                     p.rect(coord.x + marginWidthPix, coord.y + marginWidthPix, 8, 8);
                                    }
                         }
                 }
@@ -351,7 +349,7 @@ void drawHotels(PGraphics p) {
              if(coord.y >= marginWidthPix && coord.x >= marginWidthPix){
               p.rect(coord.x + marginWidthPix, coord.y + marginWidthPix, 8, 8);
             }
-           p.fill(#00ff00);
+           p.fill(#47d147);
            
         }
 

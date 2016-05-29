@@ -88,6 +88,7 @@ void draw()
                             }
                         }
             fill(tower_colors[minIndex]);
+            println(i, "is colored", minIndex);
             stroke(0);
             ellipse(x, y, 5, 5); 
             fill(0);

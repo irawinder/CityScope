@@ -188,7 +188,7 @@ void initContent() {
 
 Horde swarmHorde;
 
-PVector[] origin, destination, nodes, rest_coord, hotel_coord, attraction_coord;
+PVector[] origin, destination, nodes, rest_coord, hotel_coord, attraction_coord, tower_coord;
 float[] weight;
 
 int textSize = 8;
@@ -203,7 +203,7 @@ void initAgents(PGraphics p) {
   
   println("Initializing Agent Objects ... ");
   
-  swarmHorde = new Horde(2000);
+  swarmHorde = new Horde(1500);
   
   sources_Viz = createGraphics(p.width, p.height);
   edges_Viz = createGraphics(p.width, p.height);
@@ -385,6 +385,7 @@ void CDRNetwork() {
   
   
   origin = new PVector[numSwarm];
+  tower_coord = new PVector[numSwarm];
   rest_coord = new PVector[numSwarm];
   destination = new PVector[numSwarm];
   hotel_coord = new PVector[numSwarm];
@@ -394,11 +395,9 @@ void CDRNetwork() {
 
   
   int w = 1;
-  float minDistanceOrigin = 0;
-  float minDistanceDestination = 0;
-  int minIndexOrigin = 0;
-  int minIndexDestination = 0;
   boolean external = false;
+  
+
   PVector v_tower1 = new PVector(1112, 217, 0);
   PVector v_tower2 = new PVector(793, 232, 0);
   PVector v_tower3 = new PVector(470, 92,0);
@@ -410,6 +409,8 @@ void CDRNetwork() {
   PVector v_tower9 = new PVector(259, 112, 0);
   PVector v_tower10 = new PVector(515, 68, 0);
   PVector v_tower11 = new PVector(520, 10, 0);
+  PVector v_tower12 = new PVector(1400, 518, 0);
+ 
   ArrayList<PVector> tower_1 = new ArrayList<PVector>();
   ArrayList<PVector> tower_2 = new ArrayList<PVector>();
   ArrayList<PVector> tower_3 = new ArrayList<PVector>();
@@ -421,27 +422,138 @@ void CDRNetwork() {
   ArrayList<PVector> tower_9 = new ArrayList<PVector>();
   ArrayList<PVector> tower_10 = new ArrayList<PVector>();
   ArrayList<PVector> tower_11 = new ArrayList<PVector>();
+  ArrayList<PVector> tower_12 = new ArrayList<PVector>();
+  ArrayList<PVector> french_speaking_amenities = new ArrayList<PVector>();
+  ArrayList<PVector> spanish_speaking_amenities = new ArrayList<PVector>();
 
-     for (int z=0;z<tripAdvisor.getRowCount (); z++) {
-       hotel_coord[z] = mercatorMap.getScreenLocation(new PVector(tripAdvisor.getFloat(z, "Lat"), tripAdvisor.getFloat(z, "Long")));
-       hotel_coord[z] = new PVector(hotel_coord[z].x + marginWidthPix, hotel_coord[z].y + marginWidthPix);
-       if(hotel_coord[z].y > 120){
-       tower_11.add(hotel_coord[z]);
-       tower_10.add(hotel_coord[z]);
-       }
-     }
-     
-     for (int c=0;c<amenities.getRowCount (); c++) {
-       attraction_coord[c] = mercatorMap.getScreenLocation(new PVector(amenities.getFloat(c, "Lat"), amenities.getFloat(c, "Long")));
-       attraction_coord[c] = new PVector(attraction_coord[c].x + marginWidthPix, attraction_coord[c].y + marginWidthPix);
-       if(attraction_coord[c].y > 120){
-       tower_10.add(attraction_coord[c]);
-       tower_11.add(attraction_coord[c]);
-       }
-     }
+  
   
   for (int i=0; i<numSwarm; i++) {
-           
+             for (int z=0;z<tripAdvisor.getRowCount (); z++) {
+                 hotel_coord[z] = mercatorMap.getScreenLocation(new PVector(tripAdvisor.getFloat(z, "Lat"), tripAdvisor.getFloat(z, "Long")));
+                 hotel_coord[z] = new PVector(hotel_coord[z].x + marginWidthPix, hotel_coord[z].y + marginWidthPix);
+                 if(hotel_coord[z].y > 130){
+                   //voronoi for hotels
+                   PVector minDistanceHotel =  PVector.sub(v_tower1, hotel_coord[z]);
+                             int towerIndex = 0;
+                                           
+                             for (int d=0;d<values.getRowCount (); d++) {
+                               tower_coord[d] = new PVector(values.getFloat(d, "x"), values.getFloat(d, "y"));
+                             
+
+                             PVector dist = PVector.sub(tower_coord[d], hotel_coord[z]);
+                              
+                             if (abs(dist.mag()) <= abs(minDistanceHotel.mag()))
+                             {
+                                 minDistanceHotel = dist;
+                                 towerIndex = d; 
+                            }
+                             }
+                             if(towerIndex == 0 && hotel_coord[z].y > 130){
+                               tower_1.add(hotel_coord[z]);
+                             }
+                            if(towerIndex  == 1 && hotel_coord[z].y > 130){
+                               tower_2.add(hotel_coord[z]);
+                             }
+                             if(towerIndex  == 2 && hotel_coord[z].y > 130){
+                               tower_3.add(hotel_coord[z]);
+                             }
+                             if(towerIndex  == 3 && hotel_coord[z].y > 130){
+                               tower_4.add(hotel_coord[z]);
+                             }
+                             if(towerIndex  == 4 && hotel_coord[z].y > 130){
+                               tower_5.add(hotel_coord[z]);
+                             }
+                               if(towerIndex == 5 && hotel_coord[z].y > 130){
+                               tower_6.add(hotel_coord[z]);
+                             }
+                              if(towerIndex == 6 && hotel_coord[z].y > 130){
+                               tower_7.add(hotel_coord[z]);
+                               
+                             }
+                              if(towerIndex == 7 && hotel_coord[z].y > 130){
+                               tower_8.add(hotel_coord[z]);
+                               
+                             }                     
+                            if(towerIndex  == 8 && hotel_coord[z].y > 130){
+                               tower_9.add(hotel_coord[z]);
+                               
+                             }
+                               if(towerIndex == 9 && hotel_coord[z].y > 130){
+                               tower_10.add(hotel_coord[z]);
+                               
+                             }
+                              if(towerIndex == 10 && hotel_coord[z].y > 130){
+                               tower_11.add(hotel_coord[z]);
+                             }
+                              if(towerIndex == 11 && hotel_coord[z].y > 130){
+                               tower_12.add(hotel_coord[z]);
+                             }
+                 }
+               }
+               
+               for (int c=0;c<amenities.getRowCount (); c++) {
+                 attraction_coord[c] = mercatorMap.getScreenLocation(new PVector(amenities.getFloat(c, "Lat"), amenities.getFloat(c, "Long")));
+                 attraction_coord[c] = new PVector(attraction_coord[c].x + marginWidthPix, attraction_coord[c].y + marginWidthPix);
+                 if(attraction_coord[c].y > 130){
+                   //voronoi for attractions
+                   PVector minDistanceAttractions =  PVector.sub(v_tower1, attraction_coord[c]);
+                             int towerIndex = 0;
+                                           
+                             for (int d=0;d<values.getRowCount (); d++) {
+                               tower_coord[d] = new PVector(values.getFloat(d, "x"), values.getFloat(d, "y"));
+                             
+
+                             PVector dist = PVector.sub(tower_coord[d], attraction_coord[c]);
+                              
+                             if (abs(dist.mag()) <= abs(minDistanceAttractions.mag()))
+                             {
+                                 minDistanceAttractions = dist;
+                                 towerIndex = d; 
+                            }
+                             }
+                             if(towerIndex == 0 && attraction_coord[c].y > 130){
+                               tower_1.add(attraction_coord[c]);
+                             }
+                            if(towerIndex  == 1 && attraction_coord[c].y > 130){
+                               tower_2.add(attraction_coord[c]);
+                             }
+                             if(towerIndex  == 2 && attraction_coord[c].y > 130){
+                               tower_3.add(attraction_coord[c]);
+                             }
+                             if(towerIndex  == 3 && attraction_coord[c].y > 130){
+                               tower_4.add(attraction_coord[c]);
+                             }
+                             if(towerIndex  == 4 && attraction_coord[c].y > 130){
+                               tower_5.add(attraction_coord[c]);
+                             }
+                               if(towerIndex == 5 && attraction_coord[c].y > 130){
+                               tower_6.add(attraction_coord[c]);
+                             }
+                              if(towerIndex == 6 && attraction_coord[c].y > 130){
+                               tower_7.add(attraction_coord[c]);
+                               
+                             }
+                              if(towerIndex == 7 && attraction_coord[c].y > 130){
+                               tower_8.add(attraction_coord[c]);
+                               
+                             }                     
+                            if(towerIndex  == 8 && attraction_coord[c].y > 130){
+                               tower_9.add(attraction_coord[c]);
+                               
+                             }
+                               if(towerIndex == 9 && attraction_coord[c].y > 130){
+                               tower_10.add(attraction_coord[c]);
+                               
+                             }
+                              if(towerIndex == 10 && attraction_coord[c].y > 130){
+                               tower_11.add(attraction_coord[c]);
+                             }
+                             if(towerIndex == 11 && attraction_coord[c].y > 130){
+                               tower_12.add(attraction_coord[c]);
+                             }
+                 }
+               }
    if (network.getInt(i, "CON_O") == 0 && network.getInt(i, "CON_D") == 0) {  
             destination[i] = mercatorMap.getScreenLocation(new PVector(network.getFloat(i, "LAT_D"), network.getFloat(i, "LON_D")));
             origin[i] = mercatorMap.getScreenLocation(new PVector(network.getFloat(i, "LAT_O"), network.getFloat(i, "LON_O"))); 
@@ -472,6 +584,8 @@ void CDRNetwork() {
                          PVector dist_dest_10 = PVector.sub(v_tower10, destination[i]);
                          PVector dist_origin_11 = PVector.sub(v_tower11, origin[i]);
                          PVector dist_dest_11 = PVector.sub(v_tower11, destination[i]);
+                         PVector dist_origin_12 = PVector.sub(v_tower12, origin[i]);
+                         PVector dist_dest_12 = PVector.sub(v_tower12, destination[i]);
                          
                          float m = dist_origin_1.mag();
                          float o = dist_dest_1.mag();
@@ -495,12 +609,17 @@ void CDRNetwork() {
                          float dist_10_dest = dist_dest_10.mag();
                          float dist_11_origin = dist_origin_11.mag();
                          float dist_11_dest = dist_dest_11.mag();
-                         
+                         float dist_12_origin = dist_origin_12.mag();
+                         float dist_12_dest = dist_dest_12.mag();
+                        
+                   
+                                          
                          
                         if(m <= 5){
                           if(tower_1.size() >= 1){
                           int h = int(random(0, tower_1.size()));
                           origin[i] = tower_1.get(h);
+                             
                           }
                         }
                         
@@ -650,105 +769,157 @@ void CDRNetwork() {
                           destination[i] = tower_11.get(h);
                           }
                         }
+                          
+                        if(dist_12_origin <= 5){
+                          if(tower_12.size() >= 1){
+                          int h = int(random(0, tower_12.size()));
+                          origin[i] = tower_12.get(h);
+                        }
+                        }
                         
-        //rest arrays calculations                 
-                            PVector v4 = PVector.sub(v_tower1, rest_coord[j]);
-                                float n = v4.mag();
-                                //1112
-                                if(abs(n) <= 200 && rest_coord[j].x > 1000 && rest_coord[j].y < 320){
-                                tower_1.add(rest_coord[j]);
-                                }
-                                
-                             PVector v10 = PVector.sub(v_tower2, rest_coord[j]);
-                                float l = v10.mag();
-                                //793
-                                if(abs(l) <= 100 && rest_coord[j].y > 250){
-                                tower_2.add(rest_coord[j]);
-                                }    
+                        if(dist_12_dest <= 5){
+                          if(tower_12.size() >= 1){
+                          int h = int(random(0, tower_12.size()));
+                          destination[i] = tower_12.get(h);
+                          }  
+                        }
                         
-                             PVector v16 = PVector.sub(v_tower3, rest_coord[j]);
-                                float k = v16.mag();
-                                //470
-                                if(abs(k) <= 300 && rest_coord[j].y > 120){
-                                tower_3.add(rest_coord[j]);
-                                } 
+                        else if(network.getString(i, "NATION").equals("fr") && network.getString(i, "NATION").equals("fr")) {
+                                 if(marc_rest.getString(j, "LANGUAGES").equals("CA,ES,FR,EN") || marc_rest.getString(j, "LANGUAGES").equals("CA,ES,FR,EN,RU") 
+                                 || marc_rest.getString(j, "LANGUAGES").equals("CA,ES,FR,PT"))
+                                  {
+                                      rest_coord[i] = mercatorMap.getScreenLocation(new PVector(marc_rest.getFloat(j, "LAT"), marc_rest.getFloat(j, "LNG")));
+                                      rest_coord[i] = new PVector(rest_coord[i].x + marginWidthPix, rest_coord[i].y + marginWidthPix);
+                                      if(rest_coord[i].y > 130){
+                                      french_speaking_amenities.add(rest_coord[i]);
+                                      int c = int(random(0, french_speaking_amenities.size()));
+                                      PVector doop = PVector.sub(origin[i],french_speaking_amenities.get(c));
+                                      PVector moop = PVector.sub(destination[i], french_speaking_amenities.get(c));
+                                      if(doop.mag() <= 50){
+                                      origin[i] = french_speaking_amenities.get(c);
+                                      }
+                                      if(moop.mag() <= 50){
+                                      destination[i] = french_speaking_amenities.get(c);
+                                      }
+                                      } 
+                                  }
+                                  
+                               }
+                               
+                          else if(network.getString(i, "NATION").equals("sp")) {
+                                 if(marc_rest.getString(j, "LANGUAGES").equals("CA,ES,EN,RU") || marc_rest.getString(j, "LANGUAGES").equals("CA") 
+                                  || marc_rest.getString(j, "LANGUAGES").equals("CA,ES,EN,PT") ||marc_rest.getString(j, "LANGUAGES").equals("CA,ES"))
+                                  {
+                                      rest_coord[i] = mercatorMap.getScreenLocation(new PVector(marc_rest.getFloat(j, "LAT"), marc_rest.getFloat(j, "LNG")));
+                                      rest_coord[i] = new PVector(rest_coord[i].x + marginWidthPix, rest_coord[i].y + marginWidthPix);
+                                      if(rest_coord[i].y > 130){
+                                      spanish_speaking_amenities.add(rest_coord[i]);
+                                      int c = int(random(0, spanish_speaking_amenities.size()));
+                                      PVector doop = PVector.sub(origin[i], spanish_speaking_amenities.get(c));
+                                      PVector moop = PVector.sub(destination[i], spanish_speaking_amenities.get(c));
+                                      if(doop.mag() <= 20){
+                                      origin[i] = spanish_speaking_amenities.get(c);
+                                      }
+                                      if(moop.mag() <= 20){
+                                      destination[i] = spanish_speaking_amenities.get(c);
+                                      }
+                                      } 
+                                  }
+                                  
+                               }     
+                        //}
+                  
+                          
+          
+                        PVector minDistanceRest =  PVector.sub(v_tower1, rest_coord[j]);
+                      
+                        int towerIndex = 0;
+
+                             for (int d=0;d<values.getRowCount (); d++) {
+                               tower_coord[d] = new PVector(values.getFloat(d, "x"), values.getFloat(d, "y"));
+                             
+
+                             PVector dist = PVector.sub(tower_coord[d], rest_coord[j]);
+                              
+                             if (abs(dist.mag()) <= abs(minDistanceRest.mag()))
+                             {
+                                 minDistanceRest = dist;
+                                 towerIndex = d; 
+                            }
+                             }
+                             if(towerIndex == 0 && rest_coord[j].y > 130){
+                               tower_1.add(rest_coord[j]);
+                             }
+                            if(towerIndex  == 1 && rest_coord[j].y > 130){
+                               tower_2.add(rest_coord[j]);
+                             }
+                             if(towerIndex  == 2 && rest_coord[j].y > 130){
+                               tower_3.add(rest_coord[j]);
+                             }
+//                             if(towerIndex  == 3 && rest_coord[j].y > 130){
+//                               tower_4.add(rest_coord[j]);
+//                             }
+                             if(towerIndex  == 4 && rest_coord[j].y > 130){
+                               tower_5.add(rest_coord[j]);
+                             }
+                               if(towerIndex == 5 && rest_coord[j].y > 130){
+                               tower_6.add(rest_coord[j]);
+                             }
+                              if(towerIndex == 6 && rest_coord[j].y > 130){
+                               tower_7.add(rest_coord[j]);
+                               
+                             }
+                              if(towerIndex == 7 && rest_coord[j].y > 130){
+                               tower_8.add(rest_coord[j]);
+                               
+                             }                     
+                            if(towerIndex  == 8 && rest_coord[j].y > 130){
+                               tower_9.add(rest_coord[j]);
+                               
+                             }
+                               if(towerIndex == 9 && rest_coord[j].y > 130){
+                               tower_10.add(rest_coord[j]);
+                               
+                             }
+                              if(towerIndex == 10 && rest_coord[j].y > 130){
+                               tower_11.add(rest_coord[j]);
+                             }
                                 
-                          PVector v22 = PVector.sub(v_tower4, rest_coord[j]);
-                                float u = v22.mag();
-                                //963
-                                if(abs(u) <= 200 && rest_coord[j].y > 280 && rest_coord[j].x > 950){
-                                tower_4.add(rest_coord[j]);
-                                }
-                                
-                           PVector v28 = PVector.sub(v_tower5, rest_coord[j]);
-                                float t = v28.mag();
-                                
-                                if(abs(t) <= 300 && rest_coord[j].y > 120 && rest_coord[j].x<370){
-                                tower_5.add(rest_coord[j]);
-                                }    
-                         
+                             if(towerIndex == 11 && rest_coord[j].y > 130){
+                               tower_12.add(rest_coord[j]);
+                             }
+
                          PVector v34 = PVector.sub(v_tower6, rest_coord[j]);
                                 float r = v34.mag();
                                 
-                                if(abs(r) <= 300 && rest_coord[j].x > 550){
+                                if(abs(r) <= 400 && rest_coord[j].y > 400){
                                 tower_6.add(rest_coord[j]);
                                 }      
                                 
-                         PVector v40 = PVector.sub(v_tower7, rest_coord[j]);
+                       PVector v40 = PVector.sub(v_tower8, rest_coord[j]);
                                 float b = v40.mag();
                                 
-                                if(abs(b) <= 200 && rest_coord[j].x > 550 && rest_coord[j].y < 300){
-                                tower_7.add(rest_coord[j]);
-                                }              
-                                
-                         PVector v46 = PVector.sub(v_tower8, rest_coord[j]);
-                                float f = v46.mag();
-                                
-                                if(abs(f) <= 200 && rest_coord[j].y < 300 && rest_coord[j].x > 806){
+                                if(abs(r) <= 300 && rest_coord[j].y > 130 && rest_coord[j].x > 720 ){
                                 tower_8.add(rest_coord[j]);
-                                }   
-                      
-                         PVector v52 = PVector.sub(v_tower9, rest_coord[j]);
-                                float s = v52.mag();
-                                
-                                if(abs(s) <= 350 && rest_coord[j].y > 150 && rest_coord[j].x < 450){
-                                tower_9.add(rest_coord[j]);
-                                }      
-                 
-                         PVector v58 = PVector.sub(v_tower10, rest_coord[j]);
-                                float v = v58.mag();
-                                
-                                 if (network.getString(i, "NATION").equals("fr")) {
-                                     if(marc_rest.getString(j, "LANGUAGES").equals("CA,ES,FR,EN") || marc_rest.getString(j, "LANGUAGES").equals("CA,ES,FR,EN,RU") 
-                                     || marc_rest.getString(j, "LANGUAGES").equals("CA,ES,FR,PT"))
-                                      {
-                                          rest_coord[i] = mercatorMap.getScreenLocation(new PVector(marc_rest.getFloat(j, "LAT"), marc_rest.getFloat(j, "LNG")));
-                                          rest_coord[i] = new PVector(rest_coord[i].x + marginWidthPix, rest_coord[i].y + marginWidthPix);
-                                          if(rest_coord[i].y > 120 && rest_coord[i].y <320 || rest_coord[i].y >390){
-                                          tower_10.add(rest_coord[j]);
-                                          tower_11.add(rest_coord[j]);
-                                          }
-                                      }
-                                          }
-                                              
-                                                           
+                                }         
+                                                     
                          PVector v64 = PVector.sub(v_tower11, rest_coord[j]);
                                 float g = v64.mag();
                                 
-//                                if(abs(g) <= 600 && rest_coord[j].y > 140 && rest_coord[j].x < 750){
-//                                tower_11.add(rest_coord[j]);
-//                                }            
-       
-                                 if (network.getString(i, "NATION").equals("fr")) {
-                                     if(marc_rest.getString(j, "LANGUAGES").equals("CA,ES,FR,EN") || marc_rest.getString(j, "LANGUAGES").equals("CA,ES,FR,EN,RU") 
-                                     || marc_rest.getString(j, "LANGUAGES").equals("CA,ES,FR,PT"))
-                                      {
-                                          rest_coord[i] = mercatorMap.getScreenLocation(new PVector(marc_rest.getFloat(j, "LAT"), marc_rest.getFloat(j, "LNG")));
-                                          rest_coord[i] = new PVector(rest_coord[i].x + marginWidthPix, rest_coord[i].y + marginWidthPix);
-                                          tower_11.add(rest_coord[j]);
-                                      }
-                                          }                         
-                     }
+                                if(abs(g) <= 600 && rest_coord[j].y > 140 && rest_coord[j].x < 750){
+                                tower_11.add(rest_coord[j]);
+                                }            
+                                
+//                       
+//                       PVector v70 = PVector.sub(v_tower12, rest_coord[j]);
+//                                float b = v70.mag();
+//                                if(abs(b) <= 600 && rest_coord[j].y > 140 && rest_coord[j].x > 1000){
+//                                tower_12.add(rest_coord[j]);
+//                                println("I did the thing!");
+//                                }               
+//       
+                   
+                     } //rest iteration for loop
 
             
    }

@@ -203,8 +203,11 @@ class Swarm {
   
   Swarm () {
     agentLife = 0;
-    agentDelay = 10000;
+    agentDelay = 100;
     swarm = new ArrayList<Agent>();
+    if(swarm.size() >= 300){
+      agentLife = 0;
+    }
   }
   
   Swarm (float delay, int life) {
@@ -251,7 +254,12 @@ class Swarm {
       agentLife = 0;
       //immortal = true;
     }
+        if (abs(origin.mag() - destination.mag()) <= 20 || path.size() < 2) {
+      agentLife = 0;
+        }
   }
+  
+
   
   void cropAgents(boolean _external) {
     if (_external) {
@@ -433,13 +441,11 @@ class Swarm {
     p.strokeWeight(2);
     p.line(origin.x - 5, origin.y - 5, origin.x + 5, origin.y + 5);
     p.line(origin.x - 5, origin.y + 5, origin.x + 5, origin.y - 5);
-
-    p.text(destination.x, destination.x + 15, destination.y + 15);
-    p.text(destination.y, destination.x + 35, destination.y + 35);
-    
+//    
     //Draw Sink
     p.strokeWeight(3);
-    p.ellipse(destination.x, destination.y, 15, 15);
+//    p.ellipse(destination.x, destination.y, 10, 10);
+    p.text(destination.x, destination.x + 10, destination.y + 10);
   }
   
   void displayEdges(PGraphics p) {
@@ -515,6 +521,9 @@ class Horde {
     horde = new ArrayList<Swarm>();
     agentCounts = new ArrayList<Integer>();
     agentCount = 0;
+//    if(agentCount>=1500){
+//      rateScaler = 500;
+//    }
     hordeIndex = 0;
     rateScaler = 1.0;
     popScaler = 1.0;
@@ -641,16 +650,23 @@ class Horde {
           p.text("Total Agents Rendered: " + agentCount, marginWidthPix, 0.4*marginWidthPix);
           p.text("rateScaler: " + int(rateScaler), marginWidthPix, 0.7*marginWidthPix);
           
-          p.fill(#00ff00);
+          p.fill(#47d147);
           p.text("Hotels ", marginWidthPix + 1500, 0.40*marginWidthPix);
           p.ellipse(marginWidthPix + 1495, 0.35*marginWidthPix, 5, 5);
+          
+          p.fill(#ffff00);
+          p.text("Spanish Speaking Amenity", marginWidthPix +1330, 0.40*marginWidthPix);
+          p.ellipse(marginWidthPix + 1325, 0.35*marginWidthPix, 5, 5);
+          
           p.fill(#ff0000);
           p.text("Restaurants", marginWidthPix +1500, 0.60*marginWidthPix);
            p.ellipse(marginWidthPix + 1495, 0.55*marginWidthPix, 5, 5);
+           
           p.fill(#00ffff);
-          p.text("French Restaurants", marginWidthPix +1350, 0.60*marginWidthPix);
-           p.ellipse(marginWidthPix + 1345, 0.35*marginWidthPix, 5, 5);
-          p.fill(#e600e6);
+          p.text("French Speaking Amenity", marginWidthPix +1330, 0.60*marginWidthPix);
+           p.ellipse(marginWidthPix + 1325, 0.55*marginWidthPix, 5, 5);
+           
+          p.fill(#9933ff);
           p.text("Attractions", marginWidthPix +1500, 0.80*marginWidthPix);
            p.ellipse(marginWidthPix + 1495, 0.75*marginWidthPix, 5, 5);
         }
