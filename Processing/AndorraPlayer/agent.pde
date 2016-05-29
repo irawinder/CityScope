@@ -87,7 +87,6 @@ class Agent {
       float d = PVector.dist(location, other.location);
       
       if ((d > 0 ) && (d < desiredseparation)){
-        
         PVector diff = PVector.sub(location, other.location);
         diff.normalize();
         diff.div(d);
@@ -125,6 +124,10 @@ class Agent {
     age ++;
     if (age > life*maxspeed/4) {
       finished = true;
+    }
+    
+    if(pathLength <= 50){
+      age = int(life*maxspeed/4) + 5;
     }
     
     if (finished) {

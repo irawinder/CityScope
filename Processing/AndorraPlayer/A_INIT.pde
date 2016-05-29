@@ -611,10 +611,9 @@ void CDRNetwork() {
                          float dist_11_dest = dist_dest_11.mag();
                          float dist_12_origin = dist_origin_12.mag();
                          float dist_12_dest = dist_dest_12.mag();
-                        
-                   
-                                          
-                         
+            
+
+             
                         if(m <= 5){
                           if(tower_1.size() >= 1){
                           int h = int(random(0, tower_1.size()));
@@ -690,8 +689,9 @@ void CDRNetwork() {
                           if(tower_6.size() >= 1){
                           int h = int(random(0, tower_6.size()));
                           origin[i] = tower_6.get(h);
-                          }
-                        }
+                          }   
+                               }
+                        
                         
                         if(dist_6_dest <= 5){
                           if(tower_6.size() >= 1){
@@ -719,6 +719,7 @@ void CDRNetwork() {
                           int h = int(random(0, tower_8.size()));
                           origin[i] = tower_8.get(h);
                           }
+                         
                         }
                         
                         if(dist_8_dest <= 5){
@@ -726,6 +727,7 @@ void CDRNetwork() {
                           int h = int(random(0, tower_8.size()));
                           destination[i] = tower_8.get(h);
                           }
+                          
                         }
                         
                         if(dist_9_origin <= 5){
@@ -761,12 +763,14 @@ void CDRNetwork() {
                           int h = int(random(0, tower_11.size()));
                           origin[i] = tower_11.get(h);
                           }
+                         
                         }
                         
                         if(dist_11_dest <= 5){
                           if(tower_11.size() >= 1){
                           int h = int(random(0, tower_11.size()));
                           destination[i] = tower_11.get(h);
+                          println("tower 11 has stuff");
                           }
                         }
                           
@@ -775,58 +779,60 @@ void CDRNetwork() {
                           int h = int(random(0, tower_12.size()));
                           origin[i] = tower_12.get(h);
                         }
+                          
                         }
                         
                         if(dist_12_dest <= 5){
                           if(tower_12.size() >= 1){
                           int h = int(random(0, tower_12.size()));
                           destination[i] = tower_12.get(h);
-                          }  
+                          }
+                                 
                         }
                         
-                        else if(network.getString(i, "NATION").equals("fr") && network.getString(i, "NATION").equals("fr")) {
-                                 if(marc_rest.getString(j, "LANGUAGES").equals("CA,ES,FR,EN") || marc_rest.getString(j, "LANGUAGES").equals("CA,ES,FR,EN,RU") 
-                                 || marc_rest.getString(j, "LANGUAGES").equals("CA,ES,FR,PT"))
-                                  {
-                                      rest_coord[i] = mercatorMap.getScreenLocation(new PVector(marc_rest.getFloat(j, "LAT"), marc_rest.getFloat(j, "LNG")));
-                                      rest_coord[i] = new PVector(rest_coord[i].x + marginWidthPix, rest_coord[i].y + marginWidthPix);
-                                      if(rest_coord[i].y > 130){
-                                      french_speaking_amenities.add(rest_coord[i]);
-                                      int c = int(random(0, french_speaking_amenities.size()));
-                                      PVector doop = PVector.sub(origin[i],french_speaking_amenities.get(c));
-                                      PVector moop = PVector.sub(destination[i], french_speaking_amenities.get(c));
-                                      if(doop.mag() <= 50){
-                                      origin[i] = french_speaking_amenities.get(c);
-                                      }
-                                      if(moop.mag() <= 50){
-                                      destination[i] = french_speaking_amenities.get(c);
-                                      }
-                                      } 
-                                  }
-                                  
-                               }
-                               
-                          else if(network.getString(i, "NATION").equals("sp")) {
-                                 if(marc_rest.getString(j, "LANGUAGES").equals("CA,ES,EN,RU") || marc_rest.getString(j, "LANGUAGES").equals("CA") 
-                                  || marc_rest.getString(j, "LANGUAGES").equals("CA,ES,EN,PT") ||marc_rest.getString(j, "LANGUAGES").equals("CA,ES"))
-                                  {
-                                      rest_coord[i] = mercatorMap.getScreenLocation(new PVector(marc_rest.getFloat(j, "LAT"), marc_rest.getFloat(j, "LNG")));
-                                      rest_coord[i] = new PVector(rest_coord[i].x + marginWidthPix, rest_coord[i].y + marginWidthPix);
-                                      if(rest_coord[i].y > 130){
-                                      spanish_speaking_amenities.add(rest_coord[i]);
-                                      int c = int(random(0, spanish_speaking_amenities.size()));
-                                      PVector doop = PVector.sub(origin[i], spanish_speaking_amenities.get(c));
-                                      PVector moop = PVector.sub(destination[i], spanish_speaking_amenities.get(c));
-                                      if(doop.mag() <= 20){
-                                      origin[i] = spanish_speaking_amenities.get(c);
-                                      }
-                                      if(moop.mag() <= 20){
-                                      destination[i] = spanish_speaking_amenities.get(c);
-                                      }
-                                      } 
-                                  }
-                                  
-                               }     
+//                        else if(network.getString(i, "NATION").equals("fr") && network.getString(i, "NATION").equals("fr")) {
+//                                 if(marc_rest.getString(j, "LANGUAGES").equals("CA,ES,FR,EN") 
+//                                 || marc_rest.getString(j, "LANGUAGES").equals("CA,ES,FR,PT"))
+//                                  {
+//                                      rest_coord[i] = mercatorMap.getScreenLocation(new PVector(marc_rest.getFloat(j, "LAT"), marc_rest.getFloat(j, "LNG")));
+//                                      rest_coord[i] = new PVector(rest_coord[i].x + marginWidthPix, rest_coord[i].y + marginWidthPix);
+//                                      if(rest_coord[i].y > 130){
+//                                      french_speaking_amenities.add(rest_coord[i]);
+//                                      int c = int(random(0, french_speaking_amenities.size()));
+//                                      PVector doop = PVector.sub(origin[i],french_speaking_amenities.get(c));
+//                                      PVector moop = PVector.sub(destination[i], french_speaking_amenities.get(c));
+//                                      if(doop.mag() <= 200){
+//                                      origin[i] = french_speaking_amenities.get(c);
+//                                      }
+//                                      if(moop.mag() <= 50){
+//                                      destination[i] = french_speaking_amenities.get(c);
+//                                      }
+//                                      } 
+//                                  }
+//                                  
+//                               }
+//                               
+//                          else if(network.getString(i, "NATION").equals("sp")) {
+//                                 if(marc_rest.getString(j, "LANGUAGES").equals("CA,ES,EN,RU") || marc_rest.getString(j, "LANGUAGES").equals("CA") 
+//                                  || marc_rest.getString(j, "LANGUAGES").equals("CA,ES,EN,PT") ||marc_rest.getString(j, "LANGUAGES").equals("CA,ES"))
+//                                  {
+//                                      rest_coord[i] = mercatorMap.getScreenLocation(new PVector(marc_rest.getFloat(j, "LAT"), marc_rest.getFloat(j, "LNG")));
+//                                      rest_coord[i] = new PVector(rest_coord[i].x + marginWidthPix, rest_coord[i].y + marginWidthPix);
+//                                      if(rest_coord[i].y > 130){
+//                                      spanish_speaking_amenities.add(rest_coord[i]);
+//                                      int c = int(random(0, spanish_speaking_amenities.size()));
+//                                      PVector doop = PVector.sub(origin[i], spanish_speaking_amenities.get(c));
+//                                      PVector moop = PVector.sub(destination[i], spanish_speaking_amenities.get(c));
+//                                      if(doop.mag() <= 50){
+//                                      origin[i] = spanish_speaking_amenities.get(c);
+//                                      }
+//                                      if(moop.mag() <= 100){
+//                                      destination[i] = spanish_speaking_amenities.get(c);
+//                                      }
+//                                      } 
+//                                  }
+//                                  
+//                               }     
                         //}
                   
                           
@@ -856,9 +862,9 @@ void CDRNetwork() {
                              if(towerIndex  == 2 && rest_coord[j].y > 130){
                                tower_3.add(rest_coord[j]);
                              }
-//                             if(towerIndex  == 3 && rest_coord[j].y > 130){
-//                               tower_4.add(rest_coord[j]);
-//                             }
+                             if(towerIndex  == 3 && rest_coord[j].y > 130){
+                               tower_4.add(rest_coord[j]);
+                             }
                              if(towerIndex  == 4 && rest_coord[j].y > 130){
                                tower_5.add(rest_coord[j]);
                              }
@@ -909,7 +915,7 @@ void CDRNetwork() {
                                 if(abs(g) <= 600 && rest_coord[j].y > 140 && rest_coord[j].x < 750){
                                 tower_11.add(rest_coord[j]);
                                 }            
-                                
+//                                
 //                       
 //                       PVector v70 = PVector.sub(v_tower12, rest_coord[j]);
 //                                float b = v70.mag();
@@ -920,9 +926,10 @@ void CDRNetwork() {
 //       
                    
                      } //rest iteration for loop
-
+                     
             
    }
+
   }
   
   
