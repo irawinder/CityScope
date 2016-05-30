@@ -392,16 +392,15 @@ void CDRNetwork() {
   boolean external = false;
 
   ArrayList<PVector> towers = new ArrayList<PVector>();
-  
-
-    
+ 
+ 
   PVector v_tower1 = new PVector(1112, 217, 0);
   PVector v_tower2 = new PVector(793, 232, 0);
   PVector v_tower3 = new PVector(470, 92, 0);
   PVector v_tower4 = new PVector(963, 342, 0);
   PVector v_tower5 = new PVector(377, 123, 0);
   PVector v_tower6 = new PVector(601, 517, 0);
-  PVector v_tower7 = new PVector(545, 319, 0);
+  PVector v_tower7 = new PVector(544, 319, 0);
   PVector v_tower8 = new PVector(806, 41, 0);
   PVector v_tower9 = new PVector(259, 112, 0);
   PVector v_tower10 = new PVector(515, 68, 0);
@@ -438,7 +437,7 @@ void CDRNetwork() {
                 hotel_coord[z] = new PVector(hotel_coord[z].x + marginWidthPix, hotel_coord[z].y + marginWidthPix);
                 if (hotel_coord[z].y > 130) {
                   //voronoi for hotels
-                  PVector minDistanceHotel =  PVector.sub(v_tower1, hotel_coord[z]);
+                  PVector minDistanceHotel =  PVector.sub(towers.get(0), hotel_coord[z]);
                   int towerIndex = 0;
           
                   for (int d=0; d<values.getRowCount (); d++) {
@@ -452,45 +451,47 @@ void CDRNetwork() {
                       towerIndex = d;
                     }
                   }
-                  if (towerIndex == 0 && hotel_coord[z].y > 130) {
+                  if(hotel_coord[z].y > 130){
+                  if (towerIndex == 0) {
                     tower_1.add(hotel_coord[z]);
                   }
-                  if (towerIndex  == 1 && hotel_coord[z].y > 130) {
+                  if (towerIndex  == 1) {
                     tower_2.add(hotel_coord[z]);
                   }
-                  if (towerIndex  == 2 && hotel_coord[z].y > 130) {
+                  if (towerIndex  == 2) {
                     tower_3.add(hotel_coord[z]);
                   }
-                  if (towerIndex  == 3 && hotel_coord[z].y > 130) {
+                  if (towerIndex  == 3) {
                     tower_4.add(hotel_coord[z]);
                   }
-                  if (towerIndex  == 4 && hotel_coord[z].y > 130) {
+                  if (towerIndex  == 4) {
                     tower_5.add(hotel_coord[z]);
                   }
-                  if (towerIndex == 5 && hotel_coord[z].y > 130) {
+                  if (towerIndex == 5) {
                     tower_6.add(hotel_coord[z]);
                   }
-                  if (towerIndex == 6 && hotel_coord[z].y > 130) {
+                  if (towerIndex == 6) {
                     tower_7.add(hotel_coord[z]);
                   }
-                  if (towerIndex == 7 && hotel_coord[z].y > 130) {
+                  if (towerIndex == 7) {
                     tower_8.add(hotel_coord[z]);
                   }                     
-                  if (towerIndex  == 8 && hotel_coord[z].y > 130) {
+                  if (towerIndex  == 8) {
                     tower_9.add(hotel_coord[z]);
                   }
-                  if (towerIndex == 9 && hotel_coord[z].y > 130) {
+                  if (towerIndex == 9) {
                     tower_10.add(hotel_coord[z]);
                   }
-                  if (towerIndex == 10 && hotel_coord[z].y > 130) {
+                  if (towerIndex == 10) {
                     tower_11.add(hotel_coord[z]);
                   }
-                  if (towerIndex == 11 && hotel_coord[z].y > 130) {
+                  if (towerIndex == 11) {
                     tower_12.add(hotel_coord[z]);
                   }
                   if (towerIndex == 10 || towerIndex == 9 || towerIndex == 8 || towerIndex == 2 || towerIndex == 4 || towerIndex == 6) {
                     umbrella.add(hotel_coord[z]);
                   }
+                }
                 }
               }
 
@@ -562,7 +563,7 @@ void CDRNetwork() {
                         rest_coord[j] = mercatorMap.getScreenLocation(new PVector(marc_rest.getFloat(j, "LAT"), marc_rest.getFloat(j, "LNG")));           
                         rest_coord[j] = new PVector(rest_coord[j].x + marginWidthPix, rest_coord[j].y + marginWidthPix);
                 
-                
+               
                         PVector dist_origin_1 = PVector.sub(v_tower1, origin[i]);
                         PVector dist_dest_1 = PVector.sub(v_tower1, destination[i]);
                         PVector dist_origin_2 = PVector.sub(v_tower2, origin[i]);
@@ -663,6 +664,9 @@ void CDRNetwork() {
              if (dates[dateIndex] == "cirq" &&(network.getString(i, "NATION").equals("fr"))) {
              origin[i] = tower_4.get(h);
               }
+             if(dates[dateIndex] != "cirq"){
+             origin[i] = tower_4.get(h);
+             }
           }
         }
 
@@ -706,16 +710,16 @@ void CDRNetwork() {
         }
 
         if (dist_7_origin <= 5) {
-          if (umbrella.size() >= 1) {
-            int h = int(random(0, umbrella.size()));
-            origin[i] = umbrella.get(h);
+          if (tower_7.size() >= 1) {
+            int h = int(random(0, tower_7.size()));
+            origin[i] = tower_7.get(h);
           }
         }
 
         if (dist_7_dest <= 5) {
-          if (umbrella.size() >= 1) {
-            int h = int(random(0, umbrella.size()));
-            destination[i] = umbrella.get(h);
+          if (tower_7.size() >= 1) {
+            int h = int(random(0, tower_7.size()));
+            destination[i] =  tower_7.get(h);
           }
         }
 
@@ -752,7 +756,7 @@ void CDRNetwork() {
         if (dist_10_origin <= 5) {
           if (tower_10.size() >= 1) {
             int h = int(random(0, tower_10.size()));
-            origin[i] = tower_10.get(h);
+            origin[i] = umbrella.get(h);
           }
         }
 
@@ -761,9 +765,8 @@ void CDRNetwork() {
           if (tower_10.size() >= 1) {
             int h = int(random(0, umbrella.size()));
             destination[i] = umbrella.get(h);
-
             if (dates[dateIndex] == "cirq" &&(network.getString(i, "NATION").equals("fr"))) {
-              PVector u4 = new PVector(10, 10);
+              PVector u4 = new PVector(random(0, 10), random(0, 10));
               destination[i] = PVector.add(u4, origin[i]); 
             }
           }
@@ -800,30 +803,23 @@ void CDRNetwork() {
           if (network.getString(i, "NATION").equals("sp")) {
           if(marc_rest.getString(j, "LANGUAGES").equals("CA,ES,EN,RU") || marc_rest.getString(j, "LANGUAGES").equals("CA") 
           || marc_rest.getString(j, "LANGUAGES").equals("CA,ES,EN,PT") ||marc_rest.getString(j, "LANGUAGES").equals("CA,ES") || marc_rest.getString(j, "LANGUAGES").equals("CA, ES, FR, EN, PT"))
-//          if(!((marc_rest.getString(j, "LANGUAGES").equals("CA,ES,FR,EN") || marc_rest.getString(j, "LANGUAGES").equals("CA,ES,FR,EN,RU") 
-//           || marc_rest.getString(j, "LANGUAGES").equals("CA,ES,FR,PT"))))
           {
             rest_coord[i] = mercatorMap.getScreenLocation(new PVector(marc_rest.getFloat(j, "LAT"), marc_rest.getFloat(j, "LNG")));
             rest_coord[i] = new PVector(rest_coord[i].x + marginWidthPix, rest_coord[i].y + marginWidthPix);
             if(rest_coord[i].y > 140){
             spanish_speaking_amenities.add(rest_coord[i]);
             int c = int(random(0, spanish_speaking_amenities.size()));
-            PVector doop = PVector.sub(destination[i], spanish_speaking_amenities.get(c));
-                if(doop.mag()<= 100){
+            PVector doop = PVector.sub(origin[i], spanish_speaking_amenities.get(c));
+            PVector derp = PVector.sub(origin[i], destination[i]);
+                if(doop.mag()<= derp.mag()){
                 destination[i] = spanish_speaking_amenities.get(c);
-//                println("Spanish guy yay!");
-                }
-               if(doop.mag()<= 75){
-                origin[i] = spanish_speaking_amenities.get(c);
-//                println("Spanish guy yay!");
+                println("Spanish destination yay!");
                 }
             }
           }
           }
 
         if (network.getString(i, "NATION").equals("fr")) {
-//          if(!((marc_rest.getString(j, "LANGUAGES").equals("CA,ES,EN,RU") || marc_rest.getString(j, "LANGUAGES").equals("CA") 
-//          || marc_rest.getString(j, "LANGUAGES").equals("CA,ES,EN,PT") ||marc_rest.getString(j, "LANGUAGES").equals("CA,ES"))))
           if (marc_rest.getString(j, "LANGUAGES").equals("CA,ES,FR,EN") || marc_rest.getString(j, "LANGUAGES").equals("CA,ES,FR,EN,RU") 
             || marc_rest.getString(j, "LANGUAGES").equals("CA,ES,FR,PT"))
           {
@@ -831,25 +827,15 @@ void CDRNetwork() {
             rest_coord[i] = new PVector(rest_coord[i].x + marginWidthPix, rest_coord[i].y + marginWidthPix);
             if(rest_coord[i].y > 140){
             french_speaking_amenities.add(rest_coord[i]);
-            int c = int(random(0, spanish_speaking_amenities.size()));
-            PVector moop = PVector.sub(destination[i], french_speaking_amenities.get(c));
-                if(moop.mag()<= 150){
+            int c = int(random(0, french_speaking_amenities.size()));
+            PVector doop = PVector.sub(origin[i], french_speaking_amenities.get(c));
+            PVector derp = PVector.sub(origin[i], destination[i]);
+                if(doop.mag()<= derp.mag()){
                 destination[i] = french_speaking_amenities.get(c);
-//                println("French guy yay!");
-                }
-               if(moop.mag()<= 50){
-                origin[i] = french_speaking_amenities.get(c);
-//                println("French guy yay!");
                 }
             }
-            
           }
         }
-
-            
- 
-       
-
 
         PVector minDistanceRest =  PVector.sub(v_tower1, rest_coord[j]);
 

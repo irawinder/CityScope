@@ -72,6 +72,7 @@ void drawTableCanvas(PGraphics p) {
            drawHotels(p);
            drawRestaurants(p);
            drawAttractions(p);
+//           drawAntennas(p);
             }       
     
       // Allows dragging of Table Area Info
@@ -281,6 +282,19 @@ void drawTopo(PGraphics p) {
   p.image(topo, 0, 0, topoWidthPix, topoHeightPix);
   p.tint(255, 255);
   
+}
+
+void drawAntennas(PGraphics p){
+    for (int i=0; i < antenna.getRowCount(); i++) {
+    coord = mercatorMap.getScreenLocation(new PVector(antenna.getFloat(i, "Latitude"), antenna.getFloat(i, "Longitude")));
+    coord = new PVector(coord.x + marginWidthPix, coord.y + marginWidthPix);
+    if(coord.y >= marginWidthPix && coord.x >= marginWidthPix){
+    p.fill(#ff66ff);
+    p.ellipse(coord.x, coord.y, 10, 10);
+    //arc(x, y, width, height, start angle (radians), end angle (radians);
+    p.arc(coord.x, coord.y, antenna.getFloat(i, "Direction (deg)"),antenna.getFloat(i, "Aperture (deg)"), radians(0), radians( antenna.getFloat(i, "Direction (deg)")));
+    }
+    }
 }
 
 //draw Restaurants

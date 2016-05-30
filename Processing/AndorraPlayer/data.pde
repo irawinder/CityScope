@@ -40,7 +40,7 @@ boolean load_non_essential_data = true;
   Table wifi; 
   Table marc_rest;
   Table values;
- 
+  Table antenna; 
 
   
   // OD Matrix Information
@@ -104,6 +104,7 @@ void initData() {
   localTowers = loadTable("data/localTowers.tsv", "header");
   frenchWifi = loadTable("data/network_edges_french.csv", "header");
   values = loadTable("data/values.csv", "header");
+  antenna = loadTable("data/antenna.csv", "header");
   
   // loads baseimage for topographic model
   topo = loadImage("crop.png");
@@ -133,6 +134,15 @@ void initData() {
         marc_rest.removeRow(i);
       }
     }
+    
+  antenna = loadTable("data/antenna.csv", "header");
+  for (int i=antenna.getRowCount() - 1; i >= 0; i--) {
+     if (antenna.getFloat(i, "Latitude") < lat2 || antenna.getFloat(i, "Latitude") > lat1 ||
+          antenna.getFloat(i, "Longitude") < lon1 || antenna.getFloat(i, "Longitude") > lon2) {
+        antenna.removeRow(i);
+      }
+    }
+  
 
    restaurants = loadTable("data/restaurants.csv", "header");
    for (int i=restaurants.getRowCount() - 1; i >= 0; i--) {
@@ -167,6 +177,7 @@ void initData() {
     attractions = new Table();
     amenities = new Table();
     marc_rest = new Table();
+    antenna = new Table();
   }
   
   println("Data loaded.");
