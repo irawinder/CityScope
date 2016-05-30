@@ -1,5 +1,5 @@
 int i = 0;
-int ncolors = 18;
+int ncolors = 7;
 float[] towers_x = new float[ncolors];
 float[] towers_y = new float[ncolors];
 color[] tower_colors = new color[ncolors];
@@ -33,7 +33,7 @@ void setup()
     {
         towers_x[i] = random(width);
         towers_y[i] = random(height);
-        tower_colors[i] = color(15*i, 10*i, 50*i);
+        tower_colors[i] = color(random(0, 255), random(0, 255), random(0, 255));
     }
     
 }

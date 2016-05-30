@@ -305,7 +305,7 @@ void drawRestaurants(PGraphics p) {
                                             }    
                                    else{
                                      p.fill(#ff0000);
-                                     println(marc_rest.getString(i, "LANGUAGES"));
+//                                     println(marc_rest.getString(i, "LANGUAGES"));
                                      p.rect(coord.x + marginWidthPix, coord.y + marginWidthPix, 8, 8);
                                    }
                         }

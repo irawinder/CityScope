@@ -181,7 +181,7 @@ void initContent() {
 
 Horde swarmHorde;
 
-PVector[] origin, destination, nodes, rest_coord, hotel_coord, attraction_coord, tower_coord;
+PVector[] origin, destination, nodes, rest_coord, hotel_coord, attraction_coord, tower_coord, tower_values;
 float[] weight;
 
 int textSize = 8;
@@ -196,7 +196,7 @@ void initAgents(PGraphics p) {
 
   println("Initializing Agent Objects ... ");
 
-  swarmHorde = new Horde(1500);
+  swarmHorde = new Horde(2000);
 
   sources_Viz = createGraphics(p.width, p.height);
   edges_Viz = createGraphics(p.width, p.height);
@@ -383,6 +383,7 @@ void CDRNetwork() {
   destination = new PVector[numSwarm];
   hotel_coord = new PVector[numSwarm];
   attraction_coord = new PVector[numSwarm];
+  tower_values = new PVector[numSwarm];
   weight = new float[numSwarm];
   swarmHorde.clearHorde();
 
@@ -390,7 +391,10 @@ void CDRNetwork() {
   int w = 1;
   boolean external = false;
 
+  ArrayList<PVector> towers = new ArrayList<PVector>();
+  
 
+    
   PVector v_tower1 = new PVector(1112, 217, 0);
   PVector v_tower2 = new PVector(793, 232, 0);
   PVector v_tower3 = new PVector(470, 92, 0);
@@ -423,6 +427,12 @@ void CDRNetwork() {
 
 
             for (int i=0; i<numSwarm; i++) {
+              
+                for(int v = 0; v<values.getRowCount(); v++){
+                tower_values[i] = new PVector(values.getFloat(v, "x"), values.getFloat(v, "y"), 0);
+                towers.add(tower_values[i]);
+              }
+
               for (int z=0; z<tripAdvisor.getRowCount (); z++) {
                 hotel_coord[z] = mercatorMap.getScreenLocation(new PVector(tripAdvisor.getFloat(z, "Lat"), tripAdvisor.getFloat(z, "Long")));
                 hotel_coord[z] = new PVector(hotel_coord[z].x + marginWidthPix, hotel_coord[z].y + marginWidthPix);
@@ -433,7 +443,6 @@ void CDRNetwork() {
           
                   for (int d=0; d<values.getRowCount (); d++) {
                     tower_coord[d] = new PVector(values.getFloat(d, "x"), values.getFloat(d, "y"));
-          
           
                     PVector dist = PVector.sub(tower_coord[d], hotel_coord[z]);
           
@@ -804,7 +813,7 @@ void CDRNetwork() {
                 destination[i] = spanish_speaking_amenities.get(c);
 //                println("Spanish guy yay!");
                 }
-               if(doop.mag()<= 50){
+               if(doop.mag()<= 75){
                 origin[i] = spanish_speaking_amenities.get(c);
 //                println("Spanish guy yay!");
                 }
@@ -858,7 +867,7 @@ void CDRNetwork() {
             towerIndex = d;
           }
         }
-
+        
         if (towerIndex == 0 && rest_coord[j].y > 130) {
           tower_1.add(rest_coord[j]);
         }
