@@ -124,12 +124,11 @@ class Agent {
     age ++;
     if (age > life*maxspeed/4) {
       finished = true;
-      println("age of death", age);
     }
-    
-    if(pathLength <= 50){
-      age =  age + 1;
-    }
+//    
+//    if(pathLength <= 100){
+//      age =  age + 1;
+//    }
     
     if (finished) {
       //fade -= .1;
@@ -209,9 +208,6 @@ class Swarm {
     agentLife = 0;
     agentDelay = 100;
     swarm = new ArrayList<Agent>();
-    if(swarm.size() >= 300){
-      agentLife = 0;
-    }
   }
   
   Swarm (float delay, int life) {
@@ -258,9 +254,9 @@ class Swarm {
       agentLife = 0;
       //immortal = true;
     }
-        if (abs(origin.mag() - destination.mag()) <= 20 || path.size() < 2) {
-      agentLife = 0;
-        }
+//        if (abs(origin.mag() - destination.mag()) <= 20 || path.size() < 2) {
+//      agentLife = 0;
+//        }
   }
   
 
@@ -525,9 +521,6 @@ class Horde {
     horde = new ArrayList<Swarm>();
     agentCounts = new ArrayList<Integer>();
     agentCount = 0;
-//    if(agentCount>=1500){
-//      rateScaler = 500;
-//    }
     hordeIndex = 0;
     rateScaler = 1.0;
     popScaler = 1.0;
@@ -654,7 +647,7 @@ class Horde {
           p.text("Total Agents Rendered: " + agentCount, marginWidthPix, 0.4*marginWidthPix);
           p.text("rateScaler: " + int(rateScaler), marginWidthPix, 0.7*marginWidthPix);
           
-          p.fill(#47d147);
+          p.fill(#4dff4d);
           p.text("Hotels ", marginWidthPix + 1500, 0.40*marginWidthPix);
           p.ellipse(marginWidthPix + 1495, 0.35*marginWidthPix, 5, 5);
           
@@ -666,7 +659,7 @@ class Horde {
           p.text("Restaurants", marginWidthPix +1500, 0.60*marginWidthPix);
            p.ellipse(marginWidthPix + 1495, 0.55*marginWidthPix, 5, 5);
            
-          p.fill(#00ffff);
+          p.fill(#0099ff);
           p.text("French Speaking Amenity", marginWidthPix +1330, 0.60*marginWidthPix);
            p.ellipse(marginWidthPix + 1325, 0.55*marginWidthPix, 5, 5);
            
@@ -696,6 +689,9 @@ class Horde {
       p.text("Swarm<" + i + ">: ", 0,0);
       p.text("Weight: " + int(1000.0/getSwarm(i).agentDelay) + "/sec", 10*textSize,0);
       p.text("Size: " + agentCounts.get(i) + " agents", 20*textSize,0);
+      if(agentCounts.get(i) >= 200){
+        rateScaler =  rateScaler*.92;
+      }
       p.translate(0, 1.5*textSize);
     }
     p.translate(0, 1.5*textSize);

@@ -294,17 +294,18 @@ void drawRestaurants(PGraphics p) {
                                             {
                                               p.fill(#ffff00);
                                               p.rect(coord.x + marginWidthPix, coord.y + marginWidthPix, 8, 8);
-                                              p.fill(#ffffff);
+       
                                             }
                                    else if(marc_rest.getString(i, "LANGUAGES").equals("CA,ES,FR,EN") || marc_rest.getString(i, "LANGUAGES").equals("CA,ES,FR,EN,RU") 
                                    || marc_rest.getString(i, "LANGUAGES").equals("CA,ES,FR,PT"))
                                             {
-                                              p.fill(#00ffff);
+                                              p.fill(#0099ff);
                                               p.rect(coord.x + marginWidthPix, coord.y + marginWidthPix, 8, 8);
-                                              p.fill(#ffffff);
+   
                                             }    
                                    else{
                                      p.fill(#ff0000);
+                                     println(marc_rest.getString(i, "LANGUAGES"));
                                      p.rect(coord.x + marginWidthPix, coord.y + marginWidthPix, 8, 8);
                                    }
                         }
@@ -349,7 +350,7 @@ void drawHotels(PGraphics p) {
              if(coord.y >= marginWidthPix && coord.x >= marginWidthPix){
               p.rect(coord.x + marginWidthPix, coord.y + marginWidthPix, 8, 8);
             }
-           p.fill(#47d147);
+           p.fill(#4dff4d);
            
         }
 
