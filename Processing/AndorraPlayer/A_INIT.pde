@@ -813,7 +813,6 @@ void CDRNetwork() {
             PVector derp = PVector.sub(origin[i], destination[i]);
                 if(doop.mag()<= derp.mag()){
                 destination[i] = spanish_speaking_amenities.get(c);
-                println("Spanish destination yay!");
                 }
             }
           }
