@@ -474,12 +474,13 @@ for (int i=0; i<numSwarm; i++) {
                                       if (towerIndex == 10) {
                                         tower_11.add(hotel_coord[z]);
                                       }
-                                      if (towerIndex == 11) {
+                                       if (towerIndex == 11) {
                                         tower_12.add(hotel_coord[z]);
                                       }
-                                      if (towerIndex == 10 || towerIndex == 9 || towerIndex == 8 || towerIndex == 2 || towerIndex == 4 || towerIndex == 6) {
+                                      if (towerIndex == 10 || towerIndex == 9) {
                                         umbrella.add(hotel_coord[z]);
                                       }
+                                      
                             }                           
                           }
 ////////////////////////////////////////////////////////////voronoi for attracitons
@@ -538,13 +539,13 @@ for (int i=0; i<numSwarm; i++) {
                                         if (towerIndex == 11) {
                                           tower_12.add(attraction_coord[c]);
                                         }
-                                        if (towerIndex == 10 || towerIndex == 9 || towerIndex == 8 || towerIndex == 2 || towerIndex == 4 || towerIndex == 6) {
+                                        if (towerIndex == 10 || towerIndex == 9) {
                                           umbrella.add(attraction_coord[c]);
                                         } 
                                       }
                       }
                       
-//////////////////////////////////////////////////////voronoi Rest                                       
+//////REST////////////////////////////////////////////////voronoi Restaurants                                       
                    for(int j = 0; j<marc_rest.getRowCount(); j++){
                            rest_coord[j] = mercatorMap.getScreenLocation(new PVector(marc_rest.getFloat(j, "LAT"), marc_rest.getFloat(j, "LNG")));           
                            rest_coord[j] = new PVector(rest_coord[j].x + marginWidthPix, rest_coord[j].y + marginWidthPix);
@@ -567,6 +568,7 @@ for (int i=0; i<numSwarm; i++) {
                                       if(rest_coord[j].y>130){
                                       if (towerIndex == 0) {
                                         tower_1.add(rest_coord[j]);
+                                        tower_12.add(rest_coord[j]);
                                       }
                                       if (towerIndex  == 1) {
                                         tower_2.add(rest_coord[j]);
@@ -603,7 +605,7 @@ for (int i=0; i<numSwarm; i++) {
                                         tower_12.add(rest_coord[j]);
                                       }
                               
-                                      if (towerIndex == 10 || towerIndex == 9 || towerIndex == 8 || towerIndex == 2 || towerIndex == 4 || towerIndex == 6) {
+                                      if (towerIndex == 10 || towerIndex == 9) {
                                           umbrella.add(rest_coord[j]);
                                         }
                                       }
@@ -667,18 +669,13 @@ for (int i=0; i<numSwarm; i++) {
                   }
           
                   if (dist_origin_3.mag() <= 5) {
-                    if (tower_3.size() >= 1) {
-                      int h = int(random(0, umbrella.size()));
-                      origin[i] = umbrella.get(h);
-                    }
+                      int h = int(random(0, tower_3.size()));
+                      origin[i] = tower_3.get(h);
                   }
           
                   if (dist_dest_3.mag() <= 5) {
-                    if (tower_3.size() >= 1) {
-                      int h = int(random(0, umbrella.size()));
-                      destination[i] = umbrella.get(h);
-                      
-                    }
+                      int h = int(random(0, tower_3.size()));
+                      destination[i] = tower_3.get(h);
                   }                        
           
                   if (dist_origin_4.mag() <= 5) {
@@ -705,15 +702,15 @@ for (int i=0; i<numSwarm; i++) {
           
                   if (dist_origin_5.mag()<= 5) {
                     if (tower_5.size() >= 1) {
-                      int h = int(random(0, umbrella.size()));
-                      origin[i] = umbrella.get(h);
+                      int h = int(random(0, tower_5.size()));
+                      origin[i] = tower_5.get(h);
                     }
                   }
           
                   if (dist_dest_5.mag()<= 5) {
                     if (tower_5.size() >= 1) {
-                      int h = int(random(0, umbrella.size()));
-                      destination[i] =  umbrella.get(h);
+                      int h = int(random(0, tower_5.size()));
+                      destination[i] =  tower_5.get(h);
                     }
                   }
           
@@ -757,15 +754,15 @@ for (int i=0; i<numSwarm; i++) {
           
                   if (dist_origin_9.mag() <= 5) {
                     if (tower_9.size() >= 1) {
-                      int h = int(random(0, umbrella.size()));
-                      origin[i] = umbrella.get(h);
+                      int h = int(random(0, tower_9.size()));
+                      origin[i] = tower_9.get(h);
                     }
                   }
           
                   if (dist_dest_9.mag() <= 5) {
                     if (tower_9.size() >= 1) {
-                      int h = int(random(0, umbrella.size()));
-                      destination[i] = umbrella.get(h);
+                      int h = int(random(0, tower_9.size()));
+                      destination[i] = tower_9.get(h);
                     }
                   }
           
@@ -798,20 +795,17 @@ for (int i=0; i<numSwarm; i++) {
                     }
                   }       
           
-                  if (dist_origin_12.mag()  <= 5) {
-                    if (tower_12.size() >= 1) {
+                  if (dist_origin_12.mag()  <= 50) {
                       int h = int(random(0, tower_12.size()));
                       origin[i] = tower_12.get(h);
-                    }
                   }
           
-                  if (dist_dest_12.mag() <= 5) {
-                    if (tower_12.size() >= 1) {
+                  if (dist_dest_12.mag() <= 50) {
                       int h = int(random(0, tower_12.size()));
                       destination[i] = tower_12.get(h);
-                    }
                   }
          ///////LANGUAGE HEURISTICS 
+         for(int j = 0; j<marc_rest.getRowCount(); j++){
                                 if (network.getString(i, "NATION").equals("sp")) {
                                 if(marc_rest.getString(j, "LANGUAGES").equals("CA,ES,EN,RU") || marc_rest.getString(j, "LANGUAGES").equals("CA") 
                                 || marc_rest.getString(j, "LANGUAGES").equals("CA,ES,EN,PT") ||marc_rest.getString(j, "LANGUAGES").equals("CA,ES") || marc_rest.getString(j, "LANGUAGES").equals("CA, ES, FR, EN, PT"))
@@ -823,9 +817,10 @@ for (int i=0; i<numSwarm; i++) {
                                   int c = int(random(0, spanish_speaking_amenities.size()));
                                   PVector doop = PVector.sub(origin[i], spanish_speaking_amenities.get(c));
                                   PVector derp = PVector.sub(origin[i], destination[i]);
-                                      if(doop.mag()<= derp.mag()){
+                                  PVector moop = PVector.sub(destination[i], spanish_speaking_amenities.get(c));
+                                      if(abs(doop.mag())<= abs(derp.mag())){
                                       destination[i] = spanish_speaking_amenities.get(c);
-                                        }
+                                        } 
                                     }
                                   }
                                   }
@@ -843,10 +838,12 @@ for (int i=0; i<numSwarm; i++) {
                                   PVector derp = PVector.sub(origin[i], destination[i]);
                                       if(doop.mag()<= derp.mag()){
                                       destination[i] = french_speaking_amenities.get(c);
+                                      println("yay french destination!");
                                         }
                                     }
                                   }
                                 }
+         }
     }
   } //end of the huge for loop to create the Container 0 OD matrix 
 

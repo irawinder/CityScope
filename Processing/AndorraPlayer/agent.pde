@@ -160,7 +160,7 @@ class Agent {
     p.noStroke();
     p.pushMatrix();
     p.translate(location.x, location.y);
-    p.ellipse(0, 0, 5, 5);
+    p.ellipse(0, 0, 4, 4);
     p.popMatrix();
   }
   
@@ -444,6 +444,11 @@ class Swarm {
     p.stroke(#ea81d6);
     p.strokeWeight(.5);
     p.ellipse(destination.x, destination.y, 5, 5);
+    for(int d = 0; d<values.getRowCount(); d++){
+      p.textSize(18);
+      p.fill(#ffff00);
+      p.text(values.getInt(d, "Tower"), values.getInt(d, "x"), values.getInt(d, "y"));
+    }
 //    p.text(destination.x, destination.x + 10, destination.y + 10);
   }
   
