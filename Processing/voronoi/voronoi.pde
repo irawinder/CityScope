@@ -21,13 +21,6 @@ void setup()
     
     noLoop();
  
-//    tower_colors[0] = color(255, 0, 0); //red
-//    tower_colors[1] = color(0, 255, 0); //green
-//    tower_colors[2] = color(0, 0, 255); //blue
-//    tower_colors[3] = color(255, 255, 0); //yellow
-//    tower_colors[4] = color(255, 0, 255); //purple
-//    tower_colors[5] = color(0, 255, 255); //cyan
-     
     // Set towers position, random
     for(i=0; i < ncolors; i++)
     {
