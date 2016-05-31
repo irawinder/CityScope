@@ -205,7 +205,7 @@ void initAgents(PGraphics p) {
     testNetwork_Random(16);
     break;
   case 2:
-    testNetwork_CDRWifi(true, true);
+    CDRNetwork();
     break;
   case 3:
     CDRNetwork();
@@ -304,56 +304,6 @@ void testNetwork_Random(int _numNodes) {
   swarmHorde.popScaler(1.0);
 }
 
-// dataMode for basic network of Andorra Tower Locations
-void testNetwork_CDRWifi(boolean CDR, boolean Wifi) {
-
-  int numNodes, numEdges, numSwarm;
-
-  numNodes = 0;
-  if (CDR) {
-    numNodes += localTowers.getRowCount();
-  }
-  if (Wifi) {
-    numNodes += frenchWifi.getRowCount();
-  }
-
-  numEdges = numNodes*(numNodes-1);
-  numSwarm = numEdges;
-
-  nodes = new PVector[numNodes];
-  origin = new PVector[numNodes];
-  destination = new PVector[numSwarm];
-  weight = new float[numSwarm];
-  swarmHorde.clearHorde();
-
-
-  for (int i=0; i<numNodes; i++) {
-    for (int j=0; j<numNodes-1; j++) {
-      destination[i*(numNodes-1)+j] = new PVector(nodes[(i+j+1)%(numNodes)].x, nodes[(i+j+1)%(numNodes)].y);
-
-      weight[i*(numNodes-1)+j] = random(2.0);
-
-      //println("swarm:" + (i*(numNodes-1)+j) + "; (" + i + ", " + (i+j+1)%(numNodes) + ")");
-    }
-  }
-
-  // rate, life, origin, destination
-  colorMode(HSB);
-  for (int i=0; i<numSwarm; i++) {
-
-    boolean external = topoBoundary.testForCollision(origin[i]) || topoBoundary.testForCollision(destination[i]);
-
-    // delay, origin, destination, speed, color
-    swarmHorde.addSwarm(weight[i], origin[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255), 0, 0);
-
-    // Makes sure that agents 'staying put' eventually die
-    // also that they don't blead into the margin or topo
-    swarmHorde.getSwarm(i).temperStandingAgents(external);
-  }
-  colorMode(RGB);
-
-  swarmHorde.popScaler(1.0);
-}
 
 //make array of spanish speaking
 //make array of other
