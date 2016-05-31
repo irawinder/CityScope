@@ -1,3 +1,4 @@
+
 boolean load_non_essential_data = true;
 
 //Raster Graphics for basemaps of model
@@ -88,7 +89,7 @@ void initData() {
   
   println("Loading Data ...");
   
-  if (dataMode == 2 || dataMode == 3 || dataMode == 4) {
+  if (dataMode == 2 || dataMode == 3) {
     load_non_essential_data = true;
     showTopo = true;
   } else {

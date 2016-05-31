@@ -3,7 +3,9 @@
 // For Andorra Data Stories
 // Ira Winder, MIT Media Lab, jiw@mit.edu, Fall 2015
 //Marc Vilella, Observatory Sustainability of Andorra, Summer 2016
-//Marc = ammenity assignment based on language 
+      //Marc = ammenity assignment based on language data
+//Nina Lutz, MIT Media Lab, nlutz@mit.edu, Spring 2016
+      //Nina = voronoi algorithm 
 
 // In general, migrate global "void drawFoo()" methods into class-specific "display()" methods
 // Consolidate Agents, Obstacles, and Pathfinder classes to libraries and/or standalone applets and/or libraries?
@@ -163,7 +165,7 @@ void mainDraw() {
   renderTableCanvas();
 
   // Draws a line graph of all data for given OD matrix onto the main canvas
-  if (load_non_essential_data && dataMode == 3 && drawMode == 0 || dataMode == 4) {
+  if (load_non_essential_data && dataMode == 3 && drawMode == 0) {
     drawLineGraph();
   }
 }

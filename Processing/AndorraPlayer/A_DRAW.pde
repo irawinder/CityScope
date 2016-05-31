@@ -74,14 +74,7 @@ void drawTableCanvas(PGraphics p) {
            drawAttractions(p);
 //           drawAntennas(p);
             }       
-          if (dataMode == 4) { 
-           drawHotels(p);
-           drawRestaurants(p);
-           drawAttractions(p);
-           drawHotelSelector(p);
-//           drawAntennas(p);
-            }             
-    
+
       // Allows dragging of Table Area Info
       p.translate(scrollX, scrollY);
       
@@ -531,11 +524,6 @@ void drawLineGraph() {
   translate(float(1)/(maxHour+6)*width, 1.45*canvasHeight);
   text("Hr", 0, textSize);
   
-  if(dataMode == 4){
-  fill(0);
-  noStroke();
-  rect(0, -30, width, width);
-  }
   
   int graphHeight = 2*marginWidthPix;
   
@@ -582,11 +570,11 @@ void drawLineGraph() {
   textSize(18*(projectorWidth/1920.0));
   
   float hor = float(hourIndex+2)/(maxHour+6)*width;
-  if(dataMode != 4){
+
   stroke(#00FF00, 150);
   fill(#00FF00);
   strokeWeight(2);
-  }
+  
   line(hor, -graphHeight - 4*textSize, hor, -1.75*textSize);
   text(hourIndex%24 + ":00 - " + (hourIndex%24+1) + ":00", 
                    hor + 0.5*textSize, -graphHeight - 3*textSize);
@@ -611,129 +599,8 @@ void drawLineGraph() {
   
   textSize(24*(projectorWidth/1920.0));
   textAlign(LEFT);
-  //gives info for the hotels
-  if(dataMode == 4){
-  fill(0);
-  rect(-10, -30, width + 100, width + 100);
-  fill(255);
-  //mouse thing go here
-  text("Current Amenitiy: " + tripAdvisor.getString(d, "Hotel"), 6.0*marginWidthPix, -40);
-  text(tripAdvisor.getFloat(d, "Stars") + " Stars", 13.5*marginWidthPix, -40);
-  text(tripAdvisor.getFloat(d, "USD") + " USD", 15.5*marginWidthPix, -40);
-  text(tripAdvisor.getInt(d, "Review") + " Reviews", 17.5*marginWidthPix, -40);
-  
-  
-  //--------Graph and 1 mile radius thing 
-  text("Stars vs. Cost of Hotels", 9.0*marginWidthPix + 100, -10);
-  stroke(255);
-  line(9.0*marginWidthPix, 10, 9.0*marginWidthPix, 250);
-  line(9.0*marginWidthPix, 250, 20.0*marginWidthPix, 250);
-  
-  
 
-  text("Stars", 9.0*marginWidthPix -50, 20);
-  text("5", 9.0*marginWidthPix -20, 54);
-  text("4", 9.0*marginWidthPix - 20, 98);
-  text("3", 9.0*marginWidthPix -20, 142);
-  text("2", 9.0*marginWidthPix -20, 186);
-  text("1", 9.0*marginWidthPix -20, 230);
-
-  text("Price", 9.0*marginWidthPix + 50, 290);
-  text("$", 9.0*marginWidthPix + 26, 270);
-  text("$$", 9.0*marginWidthPix + 166, 270);
-  text("$$$", 9.0*marginWidthPix + 306, 270);
-  text("$$$$", 9.0*marginWidthPix + 446, 270);
-  text("$$$$$", 9.0*marginWidthPix + 586, 270);
-  float stars = 0; 
-  float price = 0; 
-  fill(#ff00ff);
-  for (int i=0; i<tripAdvisor.getRowCount (); i++) {
-    // turns latitude and longitude of a point into canvas location within PGraphic topo
-      //stars coordinate
-    if ((tripAdvisor.getFloat(i, "Stars") == 5)) {
-     stars = 54;
-    }
-    if ((tripAdvisor.getFloat(i, "Stars") == 4)) {
-     stars = 98;
-    }
-    if ((tripAdvisor.getFloat(i, "Stars") == 3)) {
-    stars = 142;
-    }
-    if ((tripAdvisor.getFloat(i, "Stars") == 2)) {
-    stars = 186;
-    }
-    if ((tripAdvisor.getFloat(i, "Stars") == 1)) {
-    stars = 230;
-    }
-  //}
-    if ((tripAdvisor.getFloat(i, "Price") == 1)){
-      price = 26 + 9.0*marginWidthPix;
-    }
-    if ((tripAdvisor.getFloat(i, "Price") == 2)){
-      price = 166 + 9.0*marginWidthPix;
-    }
-    if ((tripAdvisor.getFloat(i, "Price") == 3)){
-      price = 306 + 9.0*marginWidthPix;
-    }
-    if ((tripAdvisor.getFloat(i, "Price") == 4)){
-      price = 446 + 9.0*marginWidthPix;
-    }
-    if ((tripAdvisor.getFloat(i, "Price") == 5)){
-      price = 586 + 9.0*marginWidthPix;
-    }
-    ellipse(price, stars, .7*i, 2);
-  }
-  
-    }
     
-  
-  
-  if(reststars == true){
-  fill(255);
-  text("Restaurants by Star Rating (1-5)", 0, -5);
-  fill(best);
-  text("5", 1.0*marginWidthPix, 20);
-  fill(good);
-  text("4", 2.0*marginWidthPix, 20);
-  fill(medium);
-  text("3", 3.0*marginWidthPix, 20);
-  fill(poor);
-  text("2", 4.0*marginWidthPix, 20);
-  fill(bad);
-  text("1", 5.0*marginWidthPix, 20);
-  }
-  
-  
-  if(hotelstars == true){ 
-  fill(255);
-  text("Hotels by Star Rating (1-5)", 0, -65);
-  fill(best);
-  text("5", 1.0*marginWidthPix, -40);
-  fill(good);
-  text("4", 2.0*marginWidthPix, -40);
-  fill(medium);
-  text("3", 3.0*marginWidthPix, -40);
-  fill(poor);
-  text("2", 4.0*marginWidthPix, -40);
-  fill(bad);
-  text("1", 5.0*marginWidthPix, -40);
-  }
-  if(hotelprice == true){ 
-  fill(255);
-  text("Hotels by Price (1-5), 5 being the most", 0, -65);
-  fill(bad);
-  text("5", 1.0*marginWidthPix, -40);
-  fill(poor);
-  text("4", 2.0*marginWidthPix, -40);
-  fill(medium);
-  text("3", 3.0*marginWidthPix, -40);
-  fill(good);
-  text("2", 4.0*marginWidthPix, -40);
-  fill(best);
-  text("1", 5.0*marginWidthPix, -40);
-  }
-  
-  if(dataMode != 4){
   fill(#FFFFFF);
   
   textAlign(LEFT);
@@ -747,7 +614,7 @@ void drawLineGraph() {
   
   fill(other);
   text("Other", 5.0*marginWidthPix, 0);
-  }
+  
 }
 
 

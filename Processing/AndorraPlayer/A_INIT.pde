@@ -155,14 +155,6 @@ void initContent() {
     showSource = false;
     showPaths = false;
     break;
-  case 4: //Hotel and Amenities Demo 
-    showGrid = false; 
-    finderMode = 2;
-    showEdges = false;
-    showSource = false;
-    showPaths = false;
-    showSwarm = true;
-    break;
   }
 
   // Loads MercatorMap projecetion for canvas, csv files referenced in 'DATA' tab, etc
@@ -216,9 +208,6 @@ void initAgents(PGraphics p) {
     testNetwork_CDRWifi(true, true);
     break;
   case 3:
-    CDRNetwork();
-    break;
-  case 4: 
     CDRNetwork();
     break;
   }

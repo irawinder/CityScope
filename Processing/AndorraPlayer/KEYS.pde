@@ -156,9 +156,6 @@ void keyPressed() {
     if (dataMode != 4) {
       setLoader("Geo-located Test Data");
     }
-    if (dataMode == 4) {
-    }
-    // runs key_d() next frame
     break;
   case 'D': //Toggles various data and visualization modes
     setLoader("Data Mode " + nextMode(dataMode, 4));
