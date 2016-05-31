@@ -160,7 +160,7 @@ class Agent {
     p.noStroke();
     p.pushMatrix();
     p.translate(location.x, location.y);
-    p.ellipse(0, 0, 4, 4);
+    p.ellipse(0, 0, 5, 5);
     p.popMatrix();
   }
   
@@ -200,6 +200,8 @@ class Swarm {
   
   PVector origin, destination;
   
+  int origin_zone, destination_zone;
+  
   Obstacle sink;
   
   ArrayList<PVector> path;
@@ -216,9 +218,11 @@ class Swarm {
     swarm = new ArrayList<Agent>();
   }
   
-  Swarm (float delay, PVector a, PVector b, float maxS, color f) {
+  Swarm (float delay, PVector a, PVector b, float maxS, color f, int c, int d) {
     origin = a;
     destination = b;
+    origin_zone = c;
+    destination_zone = d;
     
     path = new ArrayList<PVector>();
     path.add(origin);
@@ -241,8 +245,7 @@ class Swarm {
     // Makes sure that agents 'staying put' generate only enough to represent their numbers then stop
     // also that they don't blead into the margin or topo
     if (origin == destination || path.size() < 2) {
-      //(PVector.sub(origin, destination)).mag() <= 30
-      //immortal = true;
+      immortal = true;
       agentLife = 0;
       cropAgents(_external);
     }
@@ -251,9 +254,9 @@ class Swarm {
   
   void temperStandingAgents() {   
     // Makes sure that agents 'staying put' generate only enough to represent their numbers then stop
-    if (origin == destination || path.size() < 2) {
+    if (origin == destination || path.size() < 2 || (origin_zone == 10 && fill == french)) {
       agentLife = 0;
-      //immortal = true;
+      immortal = true;
     }
   }
   
@@ -325,14 +328,14 @@ class Swarm {
     }
     
     if (immortal) {
-      int staticNum = 4;
+      int staticNum = 4; 
       
       while (swarm.size() < staticNum) {
         swarm.add(new Agent(origin.x, origin.y, 6, maxSpeed, path.size()));
       }
-      while (swarm.size() > staticNum) {
-        swarm.remove(0);
-      }
+//      while (swarm.size() > staticNum) {
+//        swarm.remove(0);
+//      }
     }
     
     // Adds an agent
@@ -535,8 +538,8 @@ class Horde {
     popScaler = _popScaler;
   }
   
-  void addSwarm(float freq, PVector a, PVector b, float maxS, color f) {
-    horde.add(new Swarm(freq, a, b, maxS, f));
+  void addSwarm(float freq, PVector a, PVector b, float maxS, color f, int c, int d) {
+    horde.add(new Swarm(freq, a, b, maxS, f, c, d));
     agentCounts.add(0);
   }
   

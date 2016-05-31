@@ -183,6 +183,7 @@ Horde swarmHorde;
 
 PVector[] origin, destination, nodes, rest_coord, hotel_coord, attraction_coord, tower_coord, dist_origins;
 float[] weight;
+int[] origin_zone, destination_zone;
 
 int textSize = 8;
 
@@ -303,7 +304,7 @@ void testNetwork_Random(int _numNodes) {
   for (int i=0; i<numSwarm; i++) {
 
     // delay, origin, destination, speed, color
-    swarmHorde.addSwarm(weight[i], origin[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+    swarmHorde.addSwarm(weight[i], origin[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255), 0, 0);
 
 
     // Makes sure that agents 'staying put' eventually die
@@ -354,7 +355,7 @@ void testNetwork_CDRWifi(boolean CDR, boolean Wifi) {
     boolean external = topoBoundary.testForCollision(origin[i]) || topoBoundary.testForCollision(destination[i]);
 
     // delay, origin, destination, speed, color
-    swarmHorde.addSwarm(weight[i], origin[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255));
+    swarmHorde.addSwarm(weight[i], origin[i], destination[i], 1, color(255.0*i/numSwarm, 255, 255), 0, 0);
 
     // Makes sure that agents 'staying put' eventually die
     // also that they don't blead into the margin or topo
@@ -378,6 +379,8 @@ void CDRNetwork() {
 
 
   origin = new PVector[numSwarm];
+  int[] origin_zone = new int[numSwarm];
+  int[] destination_zone = new int[numSwarm];
   tower_coord = new PVector[numSwarm];
   rest_coord = new PVector[numSwarm];
   destination = new PVector[numSwarm];
@@ -644,6 +647,7 @@ for (int i=0; i<numSwarm; i++) {
                 if (tower_1.size() >= 1) {
                   int h = int(random(0, tower_1.size()));
                   origin[i] = tower_1.get(h);
+                  origin_zone[i] = 1;
                       }
                     }
 
@@ -651,6 +655,7 @@ for (int i=0; i<numSwarm; i++) {
                     if (tower_1.size() >= 1) {
                       int h = int(random(0, tower_1.size()));
                       destination[i] = tower_1.get(h);
+                      destination_zone[i] = 1;
                     }
                   }
           
@@ -658,6 +663,7 @@ for (int i=0; i<numSwarm; i++) {
                     if (tower_2.size() >= 1) {
                       int h = int(random(0, tower_2.size()));
                       origin[i] = tower_2.get(h);
+                      origin_zone[i] = 2;
                     }
                   }
           
@@ -665,17 +671,20 @@ for (int i=0; i<numSwarm; i++) {
                     if (tower_2.size() >= 1) {
                       int h = int(random(0, tower_2.size()));
                       destination[i] = tower_2.get(h);
+                      destination_zone[i] = 2;
                     }
                   }
           
                   if (dist_origin_3.mag() <= 5) {
                       int h = int(random(0, tower_3.size()));
                       origin[i] = tower_3.get(h);
+                      origin_zone[i] = 3;
                   }
           
                   if (dist_dest_3.mag() <= 5) {
                       int h = int(random(0, tower_3.size()));
                       destination[i] = tower_3.get(h);
+                      destination_zone[i] = 3;
                   }                        
           
                   if (dist_origin_4.mag() <= 5) {
@@ -683,9 +692,11 @@ for (int i=0; i<numSwarm; i++) {
                       int h = int(random(0, tower_4.size()));
                       if (dates[dateIndex] == "cirq" && !(network.getString(i, "NATION").equals("sp"))) {
                        origin[i] = tower_4.get(h);
+                       origin_zone[i] = 4;
                         }
                        if(dates[dateIndex] != "cirq"){
                        origin[i] = tower_4.get(h);
+                       origin_zone[i] = 4;
                        }
                     }
                   }
@@ -695,6 +706,7 @@ for (int i=0; i<numSwarm; i++) {
                       int h = int(random(0, tower_4.size()));
                         if ((network.getString(i, "NATION").equals("fr"))) {
                        destination[i] = tower_4.get(h);
+                       destination_zone[i] = 4;
                         }
                     }
                   }
@@ -704,6 +716,7 @@ for (int i=0; i<numSwarm; i++) {
                     if (tower_5.size() >= 1) {
                       int h = int(random(0, tower_5.size()));
                       origin[i] = tower_5.get(h);
+                      origin_zone[i] = 5;
                     }
                   }
           
@@ -711,6 +724,7 @@ for (int i=0; i<numSwarm; i++) {
                     if (tower_5.size() >= 1) {
                       int h = int(random(0, tower_5.size()));
                       destination[i] =  tower_5.get(h);
+                      destination_zone[i] = 5;
                     }
                   }
           
@@ -718,6 +732,7 @@ for (int i=0; i<numSwarm; i++) {
                     if (tower_6.size() >= 1) {
                       int h = int(random(0, tower_6.size()));
                       origin[i] = tower_6.get(h);
+                      origin_zone[i] = 6;
                     }
                   }
           
@@ -725,23 +740,27 @@ for (int i=0; i<numSwarm; i++) {
                     if (tower_6.size() >= 1) {
                       int h = int(random(0, tower_6.size()));
                       destination[i] = tower_6.get(h);
+                      destination_zone[i] = 6;
                     }
                   }
           
                   if (dist_origin_7.mag() <= 50) {
                       int h = int(random(0, tower_7.size()));
                       origin[i] = tower_7.get(h);
+                      origin_zone[i] = 7;
                   }
           
                   if (dist_dest_7.mag() <= 50) {
                       int h = int(random(0, tower_7.size()));
                       destination[i] =  tower_7.get(h);
+                      destination_zone[i] = 7;
                   }
           
                   if (dist_origin_8.mag() <= 5) {
                     if (tower_8.size() >= 1) {
                       int h = int(random(0, tower_8.size()));
                       origin[i] = tower_8.get(h);
+                      origin_zone[i] = 8;
                     }
                   }
           
@@ -749,6 +768,7 @@ for (int i=0; i<numSwarm; i++) {
                     if (tower_8.size() >= 1) {
                       int h = int(random(0, tower_8.size()));
                       destination[i] = tower_8.get(h);
+                      destination_zone[i] = 8;
                     }
                   }
           
@@ -756,6 +776,7 @@ for (int i=0; i<numSwarm; i++) {
                     if (tower_9.size() >= 1) {
                       int h = int(random(0, tower_9.size()));
                       origin[i] = tower_9.get(h);
+                      origin_zone[i] = 9;
                     }
                   }
           
@@ -763,6 +784,7 @@ for (int i=0; i<numSwarm; i++) {
                     if (tower_9.size() >= 1) {
                       int h = int(random(0, tower_9.size()));
                       destination[i] = tower_9.get(h);
+                      destination_zone[i] = 9;
                     }
                   }
           
@@ -771,6 +793,7 @@ for (int i=0; i<numSwarm; i++) {
                     if (tower_10.size() >= 1) {
                       int h = int(random(0, umbrella.size()));
                       origin[i] = umbrella.get(h);
+                      origin_zone[i] = 10;
                     }
                   }
           
@@ -778,6 +801,7 @@ for (int i=0; i<numSwarm; i++) {
                     if (tower_10.size() >= 1) {
                       int h = int(random(0, umbrella.size()));
                       destination[i] = umbrella.get(h);
+                      destination_zone[i] = 10;
                     }
                   }
           
@@ -785,6 +809,7 @@ for (int i=0; i<numSwarm; i++) {
                     if (umbrella.size() >= 1) {
                       int h = int(random(0, umbrella.size()));
                       origin[i] = umbrella.get(h);
+                      origin_zone[i] = 11;
                     }
                   }
           
@@ -792,17 +817,20 @@ for (int i=0; i<numSwarm; i++) {
                     if (umbrella.size() >= 1) {
                       int h = int(random(0, umbrella.size()));
                       destination[i] = umbrella.get(h);
+                      destination_zone[i] = 11;
                     }
                   }       
           
                   if (dist_origin_12.mag()  <= 50) {
                       int h = int(random(0, tower_12.size()));
                       origin[i] = tower_12.get(h);
+                      origin_zone[i] = 12;
                   }
           
                   if (dist_dest_12.mag() <= 50) {
                       int h = int(random(0, tower_12.size()));
                       destination[i] = tower_12.get(h);
+                      destination_zone[i] = 12;
                   }
          ///////LANGUAGE HEURISTICS 
          for(int j = 0; j<marc_rest.getRowCount(); j++){
@@ -838,7 +866,6 @@ for (int i=0; i<numSwarm; i++) {
                                   PVector derp = PVector.sub(origin[i], destination[i]);
                                       if(doop.mag()<= derp.mag()){
                                       destination[i] = french_speaking_amenities.get(c);
-                                      println("yay french destination!");
                                         }
                                     }
                                   }
@@ -870,8 +897,9 @@ for (int i=0; i<numSwarm; i++) {
 
 
     // delay, origin, destination, speed, color
-    swarmHorde.addSwarm(weight[i], origin[i], destination[i], 1, col);
-
+    swarmHorde.addSwarm(weight[i], origin[i], destination[i], 1, col, origin_zone[i], destination_zone[i]);
+    // swarmHorde.addSwarm(weight[i], origin[i], destination[i], 1, col, origin_zone, destination_zone);
+    
     // Makes sure that agents 'staying put' eventually die
     // also that they don't blead into the margin or topo
     swarmHorde.getSwarm(i).temperStandingAgents(external);
