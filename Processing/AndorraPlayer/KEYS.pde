@@ -3,79 +3,6 @@ char initKey;
 
 void keyPressed() {
   switch (key) {
-  case '$': //shows hotels by price when in data mode
-    hotelprice = true;
-    hotelstars = false;
-    break;
-  case '*':  //shows hotel stars when in data mode
-    hotelstars = true;
-    hotelprice = false;
-    break;
-  case '(': //selects back a row in the hotel data
-    if (d>0)
-    {
-      d -= 1;
-    }
-    if (d == 0)
-    {
-      d = (tripAdvisor.getRowCount () -1);
-    }
-    break; 
-  case ')': //selects forward a row in the hotel data 
-    if (d < (tripAdvisor.getRowCount () - 1)) {
-      d += 1;
-    }
-    if (d == (tripAdvisor.getRowCount () - 1)) {
-      d = 0;
-    }
-    break;
-
-  case '6': //selects back a row in the hotel data
-    if (q>0)
-    {
-      q -= 1;
-    }
-    if (q == 0)
-    {
-      q = (attractions.getRowCount () -1);
-    }
-    break; 
-  case '7': //selects forward a row in the hotel data 
-    if (q < (attractions.getRowCount () - 1)) {
-      q += 1;
-    }
-    if (q == (attractions.getRowCount () - 1)) {
-      q = 0;
-    }
-    break;
-  case '8': //selects back a row in the hotel data
-    if (t>0)
-    {
-      t -= 1;
-    }
-    if (t == 0)
-    {
-      t = (restaurants.getRowCount () -1);
-    }
-    break; 
-  case '9': //selects forward a row in the hotel data 
-    if (t < (restaurants.getRowCount () - 1)) {
-      t += 1;
-    }
-    if (t == (restaurants.getRowCount () - 1)) {
-      t = 0;
-    }
-    break;
-  case '^': 
-    reststars = true;
-    break;
-  case 'H':
-    hotelstars = false;
-    hotelprice = false; 
-    break;
-  case 'J': 
-    reststars = false;
-    break;
   case '0': //ReBoots App
     setLoader("Andorra Player | Version " + version);
     // runs key_0() next frame
@@ -156,7 +83,7 @@ void keyPressed() {
       setLoader("Geo-located Test Data");
     break;
   case 'D': //Toggles various data and visualization modes
-    setLoader("Data Mode " + nextMode(dataMode, 3));
+    setLoader("Data Mode " + nextMode(dataMode, 2));
     // runs key_D() next frame
     break;
   case 'T': // show topography 
@@ -419,7 +346,7 @@ void key_0() {
 
 void key_D() {
   //Toggles various data and visualization modes
-  dataMode = nextMode(dataMode, 3);
+  dataMode = nextMode(dataMode, 2);
 
   initContent();
 }
@@ -477,7 +404,7 @@ void key_d() {
   //shows test geospatial data
   if (!showData && !load_non_essential_data) {
     load_non_essential_data = toggle(load_non_essential_data);
-    dataMode = 3;
+    dataMode = 2;
     initContent();
   }
   showData = toggle(showData);
