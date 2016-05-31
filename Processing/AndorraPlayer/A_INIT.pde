@@ -148,6 +148,13 @@ void initContent() {
     showSource = false;
     showPaths = false;
     break;
+  case 3: // Andorra Demo
+    showGrid = false;
+    finderMode = 2;
+    showEdges = false;
+    showSource = false;
+    showPaths = false;
+    break;
   }
 
   // Loads MercatorMap projecetion for canvas, csv files referenced in 'DATA' tab, etc
@@ -198,6 +205,9 @@ void initAgents(PGraphics p) {
     testNetwork_Random(16);
     break;
   case 2:
+    CDRNetwork();
+    break;
+  case 3:
     CDRNetwork();
     break;
   }
