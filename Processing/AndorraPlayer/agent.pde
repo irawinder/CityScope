@@ -160,7 +160,7 @@ class Agent {
     p.noStroke();
     p.pushMatrix();
     p.translate(location.x, location.y);
-    p.ellipse(0, 0, r, r);
+    p.ellipse(0, 0, 5, 5);
     p.popMatrix();
   }
   
@@ -241,6 +241,7 @@ class Swarm {
     // Makes sure that agents 'staying put' generate only enough to represent their numbers then stop
     // also that they don't blead into the margin or topo
     if (origin == destination || path.size() < 2) {
+      //(PVector.sub(origin, destination)).mag() <= 30
       //immortal = true;
       agentLife = 0;
       cropAgents(_external);
@@ -254,9 +255,6 @@ class Swarm {
       agentLife = 0;
       //immortal = true;
     }
-//        if (abs(origin.mag() - destination.mag()) <= 20 || path.size() < 2) {
-//      agentLife = 0;
-//        }
   }
   
 
@@ -443,9 +441,10 @@ class Swarm {
     p.line(origin.x - 2, origin.y + 2, origin.x + 2, origin.y - 2);
 //    
     //Draw Sink
-    p.strokeWeight(3);
+    p.stroke(#ea81d6);
+    p.strokeWeight(.5);
     p.ellipse(destination.x, destination.y, 5, 5);
-    p.text(destination.x, destination.x + 10, destination.y + 10);
+//    p.text(destination.x, destination.x + 10, destination.y + 10);
   }
   
   void displayEdges(PGraphics p) {

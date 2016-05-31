@@ -74,6 +74,13 @@ void drawTableCanvas(PGraphics p) {
            drawAttractions(p);
 //           drawAntennas(p);
             }       
+          if (dataMode == 4) { 
+           drawHotels(p);
+           drawRestaurants(p);
+           drawAttractions(p);
+           drawHotelSelector(p);
+//           drawAntennas(p);
+            }             
     
       // Allows dragging of Table Area Info
       p.translate(scrollX, scrollY);
@@ -388,10 +395,13 @@ void drawHotelSelector(PGraphics p) {
         for (j = d; j<tripAdvisor.getRowCount (); j++) {
           // turns latitude and longitude of a point into canvas location within PGraphic topo
           coord = mercatorMap.getScreenLocation(new PVector(tripAdvisor.getFloat(d, "Lat"), tripAdvisor.getFloat(d, "Long")));
+          coord = new PVector(coord.x + marginWidthPix, coord.y + marginWidthPix);
           }
       // Draw a circle 50 pixels in diameter at geolocation 
+      if(coord.y >= marginWidthPix && coord.x >= marginWidthPix){
           p.ellipse(coord.x, coord.y, 20, 20);
           fill(255);
+      }
         }
   
 //draws a selector circle to show what attraction you're on  
@@ -606,54 +616,76 @@ void drawLineGraph() {
   fill(0);
   rect(-10, -30, width + 100, width + 100);
   fill(255);
-  text("Current Hotel: " + tripAdvisor.getString(d, "Hotel"), 6.0*marginWidthPix, -40);
+  //mouse thing go here
+  text("Current Amenitiy: " + tripAdvisor.getString(d, "Hotel"), 6.0*marginWidthPix, -40);
   text(tripAdvisor.getFloat(d, "Stars") + " Stars", 13.5*marginWidthPix, -40);
   text(tripAdvisor.getFloat(d, "USD") + " USD", 15.5*marginWidthPix, -40);
   text(tripAdvisor.getInt(d, "Review") + " Reviews", 17.5*marginWidthPix, -40);
-  fill(#33d6ff);
-  text("Restaurant: " + restaurants.getString(t, "Restaurant"), 6.0*marginWidthPix, -10);
-  fill(255);
-  text(restaurants.getFloat(t, "Stars") + " Stars", 13.5*marginWidthPix, -10);
-  text(restaurants.getInt(t, "Reviews") + " Reviews", 17.5*marginWidthPix, -10);
-  fill(#ae33ff);
-  text("Attraction: " + attractions.getString(q, "Name"), 6.0*marginWidthPix, 20);
-  fill(255);
-  text(attractions.getString(q, "Type"), 13.5*marginWidthPix, 20);
-  text(attractions.getInt(q, "Reviews") + " Reviews", 17.5*marginWidthPix, 20);
   
   
   //--------Graph and 1 mile radius thing 
-  text("Stars vs. Cost of Hotels", 8.0*marginWidthPix, 50);
+  text("Stars vs. Cost of Hotels", 9.0*marginWidthPix + 100, -10);
   stroke(255);
-  line(9.0*marginWidthPix, 70, 9.0*marginWidthPix, 250);
+  line(9.0*marginWidthPix, 10, 9.0*marginWidthPix, 250);
   line(9.0*marginWidthPix, 250, 20.0*marginWidthPix, 250);
+  
+  
+
+  text("Stars", 9.0*marginWidthPix -50, 20);
+  text("5", 9.0*marginWidthPix -20, 54);
+  text("4", 9.0*marginWidthPix - 20, 98);
+  text("3", 9.0*marginWidthPix -20, 142);
+  text("2", 9.0*marginWidthPix -20, 186);
+  text("1", 9.0*marginWidthPix -20, 230);
+
+  text("Price", 9.0*marginWidthPix + 50, 290);
+  text("$", 9.0*marginWidthPix + 26, 270);
+  text("$$", 9.0*marginWidthPix + 166, 270);
+  text("$$$", 9.0*marginWidthPix + 306, 270);
+  text("$$$$", 9.0*marginWidthPix + 446, 270);
+  text("$$$$$", 9.0*marginWidthPix + 586, 270);
   float stars = 0; 
   float price = 0; 
   fill(#ff00ff);
   for (int i=0; i<tripAdvisor.getRowCount (); i++) {
     // turns latitude and longitude of a point into canvas location within PGraphic topo
-    {
       //stars coordinate
     if ((tripAdvisor.getFloat(i, "Stars") == 5)) {
-     stars = 110;
+     stars = 54;
     }
     if ((tripAdvisor.getFloat(i, "Stars") == 4)) {
-     stars = 140;
+     stars = 98;
     }
     if ((tripAdvisor.getFloat(i, "Stars") == 3)) {
-    stars = 170;
+    stars = 142;
     }
     if ((tripAdvisor.getFloat(i, "Stars") == 2)) {
-    stars = 200;
+    stars = 186;
     }
     if ((tripAdvisor.getFloat(i, "Stars") == 1)) {
     stars = 230;
     }
-
+  //}
+    if ((tripAdvisor.getFloat(i, "Price") == 1)){
+      price = 26 + 9.0*marginWidthPix;
     }
-    // Draw a circle 7 pixels in diameter at geolocation
-   ellipse(7.0*marginWidthPix + (tripAdvisor.getFloat(i, "USD"))*5, stars, .5, 5);
+    if ((tripAdvisor.getFloat(i, "Price") == 2)){
+      price = 166 + 9.0*marginWidthPix;
+    }
+    if ((tripAdvisor.getFloat(i, "Price") == 3)){
+      price = 306 + 9.0*marginWidthPix;
+    }
+    if ((tripAdvisor.getFloat(i, "Price") == 4)){
+      price = 446 + 9.0*marginWidthPix;
+    }
+    if ((tripAdvisor.getFloat(i, "Price") == 5)){
+      price = 586 + 9.0*marginWidthPix;
+    }
+    ellipse(price, stars, .7*i, 2);
   }
+  
+    }
+    
   
   
   if(reststars == true){
@@ -716,7 +748,6 @@ void drawLineGraph() {
   fill(other);
   text("Other", 5.0*marginWidthPix, 0);
   }
-}
 }
 
 
