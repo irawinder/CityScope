@@ -83,7 +83,7 @@ void keyPressed() {
       setLoader("Geo-located Test Data");
     break;
   case 'D': //Toggles various data and visualization modes
-    setLoader("Data Mode " + nextMode(dataMode, 3));
+    setLoader("Data Mode " + nextMode(dataMode, 2));
     // runs key_D() next frame
     break;
   case 'T': // show topography 
@@ -346,7 +346,7 @@ void key_0() {
 
 void key_D() {
   //Toggles various data and visualization modes
-  dataMode = nextMode(dataMode, 3);
+  dataMode = nextMode(dataMode, 2);
 
   initContent();
 }
@@ -404,7 +404,7 @@ void key_d() {
   //shows test geospatial data
   if (!showData && !load_non_essential_data) {
     load_non_essential_data = toggle(load_non_essential_data);
-    dataMode = 3; //should this be dataMode = 2? 
+    dataMode = 2; //should this be dataMode = 2? 
     initContent();
   }
   showData = toggle(showData);

@@ -68,7 +68,7 @@ void drawTableCanvas(PGraphics p) {
         drawMargin(p);
       }
             
-     if (dataMode == 3 || dataMode == 2) { 
+     if (dataMode == 2) { 
            drawHotels(p);
            drawRestaurants(p);
            drawAttractions(p);

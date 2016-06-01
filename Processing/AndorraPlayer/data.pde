@@ -25,9 +25,8 @@ boolean load_non_essential_data = true;
 
 // Tables of CDR and other point-based data
 
-  int dataMode = 3;
-  // dataMode = 3 for Andorra CDR Network (circa Dec 2015)
-  // dataMode = 2 for basic network of Andorra Tower Locations
+  int dataMode = 2;
+  // dataMode = 2 for Andorra CDR Network (circa Dec 2015)
   // dataMode = 1 for random network
   // dataMode = 0 for empty network and Pathfinder Test OD
   
@@ -89,7 +88,7 @@ void initData() {
   
   println("Loading Data ...");
   
-  if (dataMode == 2 || dataMode == 3) {
+  if (dataMode == 2) {
     load_non_essential_data = true;
     showTopo = true;
   } else {
