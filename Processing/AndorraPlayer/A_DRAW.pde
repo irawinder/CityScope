@@ -73,6 +73,7 @@ void drawTableCanvas(PGraphics p) {
            drawRestaurants(p);
            drawAttractions(p);
 //           drawAntennas(p);
+           drawTowers(p);
             }       
 
       // Allows dragging of Table Area Info
@@ -378,6 +379,16 @@ void drawHotels(PGraphics p) {
       
       }
 
+void drawTowers(PGraphics p){      
+  for (int i=0; i<localTowers.getRowCount(); i++) { // iterates through each row      
+    // turns latitude and longitude of a point into canvas location within PGraphic topo
+    coord = mercatorMap.getScreenLocation(new PVector(localTowers.getFloat(i, "Lat"), localTowers.getFloat(i, "Lon")));
+//    coord = new PVector(coord.x + marginWidthPix, coord.y + marginWidthPix);
+    // Draw a circle 30 pixels in diameter at geolocation
+    p.ellipse(coord.x, coord.y, 30, 30);   
+  }
+} 
+
 //draws a selector circle to show what hotel you're on (displaying info below) and initiates j and d to go through hotels
 int j = 0; 
 
@@ -431,23 +442,8 @@ void drawRestaurantSelector(PGraphics p) {
 
 void drawData(PGraphics p) {
   
-  // Currently renders 3 sets of sample data (Local Cell Towers, Wifi, and TripAdvisor)
+  // Currently renders 2 sets of sample data (Wifi and TripAdvisor)
 
-  // CDR Data:
-  // Sets fill color to blue
-  p.noStroke();
-  p.fill(#0000FF, 150);
-  for (int i=0; i<localTowers.getRowCount(); i+=2) { // iterates through each row
-      
-    // turns latitude and longitude of a point into canvas location within PGraphic topo
-    coord = mercatorMap.getScreenLocation(new PVector(localTowers.getFloat(i, "Lat"), localTowers.getFloat(i, "Lon")));
-    
-    // Draw a circle 30 pixels in diameter at geolocation
-    p.ellipse(coord.x, coord.y, 30, 30);
-    
-  }
-  
-  
   // TripAdvisor Data:
   // Sets fill color to red
   p.noStroke();

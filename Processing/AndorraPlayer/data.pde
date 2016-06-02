@@ -101,7 +101,7 @@ void initData() {
   mercatorMap = new MercatorMap(topoWidthPix, topoHeightPix, lat1, lat2, lon1, lon2, rotation);
   
   // Used as sample data set
-  localTowers = loadTable("data/localTowers.tsv", "header");
+  localTowers = loadTable("data/cell.csv", "header");
   frenchWifi = loadTable("data/network_edges_french.csv", "header");
   values = loadTable("data/values.csv", "header");
   antenna = loadTable("data/antenna.csv", "header");
@@ -116,8 +116,9 @@ void initData() {
     
     wifi = loadTable("data/wifi_user.csv");
     
-    localTowers = loadTable("data/localTowers.tsv", "header");
+    localTowers = loadTable("data/cell.csv", "header");
     amenities = loadTable("data/attractions.csv", "header");
+
 
     for (int i=amenities.getRowCount() - 1; i >= 0; i--) {
      if (amenities.getFloat(i, "Lat") < lat2 || amenities.getFloat(i, "Lat") > lat1 ||
