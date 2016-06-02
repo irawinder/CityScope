@@ -116,7 +116,7 @@ void initData() {
     
     wifi = loadTable("data/wifi_user.csv");
     
-
+    localTowers = loadTable("data/localTowers.tsv", "header");
     amenities = loadTable("data/attractions.csv", "header");
 
     for (int i=amenities.getRowCount() - 1; i >= 0; i--) {

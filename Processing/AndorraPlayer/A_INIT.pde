@@ -148,13 +148,6 @@ void initContent() {
     showSource = false;
     showPaths = false;
     break;
-//  case 3: // Andorra Demo
-//    showGrid = false;
-//    finderMode = 2;
-//    showEdges = false;
-//    showSource = false;
-//    showPaths = false;
-//    break;
   }
 
   // Loads MercatorMap projecetion for canvas, csv files referenced in 'DATA' tab, etc
@@ -173,7 +166,7 @@ void initContent() {
 
 Horde swarmHorde;
 
-PVector[] origin, destination, nodes, rest_coord, hotel_coord, attraction_coord, tower_coord, dist_origins;
+PVector[] origin, destination, nodes, rest_coord, hotel_coord, attraction_coord, tower_coord, dist_origins, tower_values, val;
 float[] weight;
 int[] origin_zone, destination_zone;
 
@@ -207,9 +200,6 @@ void initAgents(PGraphics p) {
   case 2:
     CDRNetwork();
     break;
-//  case 3:
-//    CDRNetwork();
-//    break;
   }
 
   swarmPaths(p, enablePathfinding);
@@ -321,6 +311,7 @@ void CDRNetwork() {
   int[] origin_zone = new int[numSwarm];
   int[] destination_zone = new int[numSwarm];
   tower_coord = new PVector[numSwarm];
+  val = new PVector[numSwarm];
   rest_coord = new PVector[numSwarm];
   destination = new PVector[numSwarm];
   hotel_coord = new PVector[numSwarm];
@@ -360,6 +351,8 @@ void CDRNetwork() {
   ArrayList<PVector> umbrella = new ArrayList<PVector>();
   ArrayList<PVector> french_speaking_amenities = new ArrayList<PVector>();
   ArrayList<PVector> spanish_speaking_amenities = new ArrayList<PVector>();
+  ArrayList<PVector> tower_values = new ArrayList<PVector>();
+  Table localTowers;
 
 for (int i=0; i<numSwarm; i++) {
 ///////////////////////////////////////////////////////////////////////////////////////voronoi for hotels
