@@ -352,7 +352,11 @@ void CDRNetwork() {
   ArrayList<PVector> french_speaking_amenities = new ArrayList<PVector>();
   ArrayList<PVector> spanish_speaking_amenities = new ArrayList<PVector>();
   ArrayList<PVector> tower_values = new ArrayList<PVector>();
-  Table localTowers;
+  
+for (int i=0; i<localTowers.getRowCount(); i++) { // iterates through each row      
+    val[i] = mercatorMap.getScreenLocation(new PVector(localTowers.getFloat(i, "Lat"), localTowers.getFloat(i, "Lon")));
+    tower_values.add(val[i]);
+  }
 
 for (int i=0; i<numSwarm; i++) {
 ///////////////////////////////////////////////////////////////////////////////////////voronoi for hotels

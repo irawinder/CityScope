@@ -382,62 +382,12 @@ void drawHotels(PGraphics p) {
 void drawTowers(PGraphics p){      
   for (int i=0; i<localTowers.getRowCount(); i++) { // iterates through each row      
     // turns latitude and longitude of a point into canvas location within PGraphic topo
-    coord = mercatorMap.getScreenLocation(new PVector(localTowers.getFloat(i, "Lat"), localTowers.getFloat(i, "Lon")));
-//    coord = new PVector(coord.x + marginWidthPix, coord.y + marginWidthPix);
+    val[i] = mercatorMap.getScreenLocation(new PVector(localTowers.getFloat(i, "Lat"), localTowers.getFloat(i, "Lon")));
     // Draw a circle 30 pixels in diameter at geolocation
-    p.ellipse(coord.x, coord.y, 30, 30);   
+    p.ellipse(val[i].x, val[i].y, 30, 30);   
   }
 } 
 
-//draws a selector circle to show what hotel you're on (displaying info below) and initiates j and d to go through hotels
-int j = 0; 
-
-void drawHotelSelector(PGraphics p) { 
-        p.stroke(#ffffff);
-        p.strokeWeight(1);
-        p.noFill();//(#ffffff, 70);
-        for (j = d; j<tripAdvisor.getRowCount (); j++) {
-          // turns latitude and longitude of a point into canvas location within PGraphic topo
-          coord = mercatorMap.getScreenLocation(new PVector(tripAdvisor.getFloat(d, "Lat"), tripAdvisor.getFloat(d, "Long")));
-          coord = new PVector(coord.x + marginWidthPix, coord.y + marginWidthPix);
-          }
-      // Draw a circle 50 pixels in diameter at geolocation 
-      if(coord.y >= marginWidthPix && coord.x >= marginWidthPix){
-          p.ellipse(coord.x, coord.y, 20, 20);
-          fill(255);
-      }
-        }
-  
-//draws a selector circle to show what attraction you're on  
-int k = 0; 
-void drawAttractionSelector(PGraphics p) { 
-        p.stroke(#ae33ff);
-        p.strokeWeight(1);
-        p.noFill();//(#ffffff, 70);
-        for (k = q; k<attractions.getRowCount (); k++) {
-          // turns latitude and longitude of a point into canvas location within PGraphic topo
-          coord = mercatorMap.getScreenLocation(new PVector(attractions.getFloat(q, "Lat"), attractions.getFloat(q, "Long")));
-          }
-      // Draw a circle 50 pixels in diameter at geolocation 
-          p.ellipse(coord.x, coord.y, 20, 20);
-          fill(255);
-        }
-
-//draws a selector circle to show what restaurant you're on   
-int f = 0; 
-void drawRestaurantSelector(PGraphics p) { 
-        p.stroke(#0099ff);
-        p.strokeWeight(1);
-        p.noFill();//(#ffffff, 70);
-        for (f = t; f<marc_rest.getRowCount (); f++) {
-          // turns latitude and longitude of a point into canvas location within PGraphic topo
-          coord = mercatorMap.getScreenLocation(new PVector(marc_rest.getFloat(t, "Lat"), marc_rest.getFloat(t, "Long")));
-          coord = new PVector(coord.x + marginWidthPix, coord.y + marginWidthPix);
-          }
-      // Draw a circle 50 pixels in diameter at geolocation 
-          p.ellipse(coord.x, coord.y, 20, 20);
-          fill(255);
-        }
 
 
 void drawData(PGraphics p) {
