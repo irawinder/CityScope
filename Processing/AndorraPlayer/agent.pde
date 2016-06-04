@@ -125,10 +125,7 @@ class Agent {
     if (age > life*maxspeed/4) {
       finished = true;
     }
-//    
-//    if(pathLength <= 100){
-//      age =  age + 1;
-//    }
+
     
     if (finished) {
       //fade -= .1;
@@ -208,7 +205,7 @@ class Swarm {
   
   Swarm () {
     agentLife = 0;
-    agentDelay = 100;
+    agentDelay = 10000;
     swarm = new ArrayList<Agent>();
   }
   
@@ -333,9 +330,9 @@ class Swarm {
       while (swarm.size() < staticNum) {
         swarm.add(new Agent(origin.x, origin.y, 6, maxSpeed, path.size()));
       }
-//      while (swarm.size() > staticNum) {
-//        swarm.remove(0);
-//      }
+      while (swarm.size() > staticNum) {
+        swarm.remove(0);
+      }
     }
     
     // Adds an agent

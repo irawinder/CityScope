@@ -1,8 +1,4 @@
-
-
-//
 // ---------------------Initialize Graphics Objects for Projection-Mapping ---
-//f
 // Table SetUp with Margin:
 //
 //  |------------------------------------|      ^ North
@@ -164,9 +160,11 @@ void initContent() {
 
 // ---------------------Initialize Agent-based Objects---
 
+boolean voronoi = false;
+
 Horde swarmHorde;
 
-PVector[] origin, destination, nodes, rest_coord, hotel_coord, attraction_coord, tower_coord, dist_origins, tower_values, val, origin_travel;
+PVector[] origin, destination, nodes, val;
 float[] weight;
 int[] origin_zone, destination_zone;
 

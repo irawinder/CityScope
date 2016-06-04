@@ -3,6 +3,10 @@ char initKey;
 
 void keyPressed() {
   switch (key) {
+  case 'v':
+    voronoi = toggle(voronoi);
+    println(voronoi);
+    break;
   case '0': //ReBoots App
     setLoader("Andorra Player | Version " + version);
     // runs key_0() next frame
