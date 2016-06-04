@@ -901,65 +901,61 @@ void testNetwork_Random(int _numNodes) {
 //}
 
 void CDRNetwork() {
-
+  
   int numSwarm;
   color col;
-
+  
   numSwarm = network.getRowCount();
-
+  
   origin = new PVector[numSwarm];
-  int[] origin_zone = new int[numSwarm];
-  int[] destination_zone = new int[numSwarm];
   destination = new PVector[numSwarm];
   weight = new float[numSwarm];
   swarmHorde.clearHorde();
-
-  boolean external = false;
-
-for (int i=0; i<numSwarm; i++) {                              
-  if (network.getInt(i, "CON_O") == 0 && network.getInt(i, "CON_D") == 0) {  
-        destination[i] = mercatorMap.getScreenLocation(new PVector(network.getFloat(i, "LAT_D"), network.getFloat(i, "LON_D")));
-        origin[i] = mercatorMap.getScreenLocation(new PVector(network.getFloat(i, "LAT_O"), network.getFloat(i, "LON_O")));             
-         }                           
-    }
- 
-for (int i=0; i<numSwarm; i++) {
-    if (network.getInt(i, "CON_O") != 0 || network.getInt(i, "CON_D") != 0) {
+  
+  for (int i=0; i<numSwarm; i++) {
+    
+    boolean external = false;
+    
+    // If edge is within table area
+    if (network.getInt(i, "CON_O") == 0 && network.getInt(i, "CON_D") == 0) {
+      origin[i] = mercatorMap.getScreenLocation(new PVector(network.getFloat(i, "LAT_O"), network.getFloat(i, "LON_O")));
+      destination[i] = mercatorMap.getScreenLocation(new PVector(network.getFloat(i, "LAT_D"), network.getFloat(i, "LON_D")));
+    } 
+    
+    // If edge crosses table area
+    else {
       origin[i] = container_Locations[network.getInt(i, "CON_O")];
       destination[i] = container_Locations[network.getInt(i, "CON_D")];
       external = true;
     }
-
-
+      
+    weight[i] = 20;
+    
     if (network.getString(i, "NATION").equals("sp")) {
       col = spanish;
-      weight[i] = 10;
     } else if (network.getString(i, "NATION").equals("fr")) {
       col = french;
-      weight[i] = 10;
     } else {
       col = other;
-      weight[i] = 10;
     }
-
-
+    
     // delay, origin, destination, speed, color
-    swarmHorde.addSwarm(weight[i], origin[i], destination[i], 1, col, origin_zone[i], destination_zone[i]);
-    // swarmHorde.addSwarm(weight[i], origin[i], destination[i], 1, col, origin_zone, destination_zone);
+    swarmHorde.addSwarm(weight[i], origin[i], destination[i], 1, col, 0, 1);
     
     // Makes sure that agents 'staying put' eventually die
     // also that they don't blead into the margin or topo
     swarmHorde.getSwarm(i).temperStandingAgents(external);
+    
   }
-
+  
   //Sets maximum range for hourly data
   maxHour = 0;
-  for (int i=0; i<OD.getRowCount (); i++) {
+  for (int i=0; i<OD.getRowCount(); i++) {
     if (OD.getInt(i, "HOUR") > maxHour) {
       maxHour = OD.getInt(i, "HOUR");
     }
   }
-
+  
   for (int i=0; i<maxHour+1; i++) {
     summary.addRow();
     summary.setInt(i, "HOUR", i);
@@ -968,8 +964,8 @@ for (int i=0; i<numSwarm; i++) {
     summary.setInt(i, "FRENCH", 0);
     summary.setInt(i, "OTHER", 0);
   }
-
-  for (int i=0; i<OD.getRowCount (); i++) {
+  
+  for (int i=0; i<OD.getRowCount(); i++) {
     String country = network.getString(OD.getInt(i, "EDGE_ID"), "NATION");
     if ( country.equals("sp") ) {
       summary.setInt(OD.getInt(i, "HOUR"), "SPANISH", summary.getInt(OD.getInt(i, "HOUR"), "SPANISH") + OD.getInt(i, "AMOUNT"));
@@ -980,18 +976,16 @@ for (int i=0; i<numSwarm; i++) {
     }
     summary.setInt(OD.getInt(i, "HOUR"), "TOTAL", summary.getInt(OD.getInt(i, "HOUR"), "TOTAL") + OD.getInt(i, "AMOUNT"));
   }
-
-  for (int i=0; i<summary.getRowCount (); i++) {
+  
+  for (int i=0; i<summary.getRowCount(); i++) {
     if ( summary.getInt(i, "TOTAL") > maxFlow ) {
       maxFlow = summary.getInt(i, "TOTAL");
     }
   }
-
+  
   // Sets to rates at specific hour ...
   setSwarmFlow(hourIndex);
-  
 }
-
 
 void resetSummary() {
   summary = new Table();
@@ -1004,19 +998,19 @@ void resetSummary() {
 
 // Sets to rates at specific hour ...
 void setSwarmFlow(int hr) {
-
+  
   checkValidHour(hourIndex);
-
+  
   swarmHorde.setFrequency(100000);
-
-  for (int i=0; i<OD.getRowCount (); i++) {
+  
+  for (int i=0; i<OD.getRowCount(); i++) {
     if (OD.getInt(i, "HOUR") == hr) {
       swarmHorde.setFrequency( OD.getInt(i, "EDGE_ID"), 1.0/OD.getInt(i, "AMOUNT") );
       //println(1.0/OD.getInt(i, "AMOUNT"));
       date = OD.getString(i, "DATE");
     }
   }
-
+  
   if (hr < summary.getRowCount()) {
     swarmHorde.popScaler(summary.getFloat(hr, "TOTAL")/maxFlow);
   } else {
@@ -1035,13 +1029,13 @@ int nextHour(int hr) {
 }
 
 //introducing new prevHour function for back button 
-int prevHour(int hr) { 
+int prevHour(int hr){ 
   if (hr < maxHour && hr != 0) { 
-    hr--;
-  } else { 
+    hr--; 
+  } else{ 
     hr = maxHour;
-    if (hr == maxHour) {
-      hr--;
+    if (hr == maxHour){
+    hr--;
     }
   } 
   return hr;
@@ -1050,9 +1044,10 @@ int prevHour(int hr) {
 void checkValidHour(int _hourIndex) {
   // Ensures that hourIndex doesn't null point
   if (_hourIndex > summary.getRowCount()) {
-    hourIndex = summary.getRowCount()-1;
+     hourIndex = summary.getRowCount()-1;
   }
 }
+
 
 
 //------------------Initialize Obstacles----
