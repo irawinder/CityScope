@@ -73,7 +73,7 @@ void drawTableCanvas(PGraphics p) {
            drawRestaurants(p);
            drawAttractions(p);
 //           drawAntennas(p);
-           drawTowers(p);
+//           drawTowers(p);
             }       
 
       // Allows dragging of Table Area Info
