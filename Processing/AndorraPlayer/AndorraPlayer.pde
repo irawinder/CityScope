@@ -264,7 +264,7 @@ void folderSelected(File selection) {
     println("User did not select a folder");
     exit();
   } else { // intitates the rest of the software
-    println("User selected " + selection.getAbsolutePath());
+    println("User selected" + selection.getAbsolutePath());
     folderPath = selection.getAbsolutePath() + "/";
     // some other startup function
   }

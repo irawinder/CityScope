@@ -166,7 +166,7 @@ void initContent() {
 
 Horde swarmHorde;
 
-PVector[] origin, destination, nodes, rest_coord, hotel_coord, attraction_coord, tower_coord, dist_origins, tower_values, val;
+PVector[] origin, destination, nodes, rest_coord, hotel_coord, attraction_coord, tower_coord, dist_origins, tower_values, val, origin_travel;
 float[] weight;
 int[] origin_zone, destination_zone;
 
@@ -294,10 +294,6 @@ void testNetwork_Random(int _numNodes) {
   swarmHorde.popScaler(1.0);
 }
 
-
-//make array of spanish speaking
-//make array of other
-
 void CDRNetwork() {
 
   int numSwarm;
@@ -319,6 +315,7 @@ void CDRNetwork() {
   weight = new float[numSwarm];
   swarmHorde.clearHorde();
   dist_origins = new PVector[numSwarm];
+  origin_travel = new PVector[numSwarm];
 
   int w = 1;
   boolean external = false;
@@ -355,8 +352,11 @@ void CDRNetwork() {
   
 for (int i=0; i<localTowers.getRowCount(); i++) { // iterates through each row      
     val[i] = mercatorMap.getScreenLocation(new PVector(localTowers.getFloat(i, "Lat"), localTowers.getFloat(i, "Lon")));
+    if(val[i].x >= 0 && val[i].y >= 0){
     tower_values.add(val[i]);
+    }
   }
+
 
 for (int i=0; i<numSwarm; i++) {
 ///////////////////////////////////////////////////////////////////////////////////////voronoi for hotels
@@ -378,7 +378,8 @@ for (int i=0; i<numSwarm; i++) {
                                   towerIndex = d;
                                 }
                               }
-                                  
+                              
+
                               if(hotel_coord[z].y > 130){
                                       if (towerIndex == 0) {
                                         tower_1.add(hotel_coord[z]);
@@ -548,7 +549,7 @@ for (int i=0; i<numSwarm; i++) {
                                           umbrella.add(rest_coord[j]);
                                         }
                                       }
-////////////////////////////out of reach special children; tower 6 and tower 8                                                        
+////////////////////////////out of reach special children; tower 6 and tower 8   
                  PVector v34 = PVector.sub(v_tower6, rest_coord[j]);
                     float r = v34.mag();
                     if (abs(r) <= 400 && rest_coord[j].y > 400) {
@@ -565,8 +566,24 @@ for (int i=0; i<numSwarm; i++) {
 //////////////////////////////////////////////////////ACTUAL STUFFS                
   if (network.getInt(i, "CON_O") == 0 && network.getInt(i, "CON_D") == 0) {  
                 destination[i] = mercatorMap.getScreenLocation(new PVector(network.getFloat(i, "LAT_D"), network.getFloat(i, "LON_D")));
-                origin[i] = mercatorMap.getScreenLocation(new PVector(network.getFloat(i, "LAT_O"), network.getFloat(i, "LON_O"))); 
-                              PVector dist_dest_1 = PVector.sub(v_tower1, destination[i]); PVector dist_origin_1 = PVector.sub(v_tower1, origin[i]);
+                origin[i] = mercatorMap.getScreenLocation(new PVector(network.getFloat(i, "LAT_O"), network.getFloat(i, "LON_O")));            
+                 
+                 for(int p = 0; p<tower_values.size(); p++){
+                 origin_travel[i] = PVector.sub(tower_values.get(p), origin[i]);
+                     if(p == 1){
+                     if(origin_travel[i].mag() <= 5){
+                       int h = int(random(0, umbrella.size()));
+                       origin[i] = umbrella.get(h);
+                       origin_zone[i] = 10;
+                     }
+                     }
+                     if(p == 2){
+                     if(origin_travel[i].mag() <= 5){
+                       println("I am gonna be that tower2!");
+                     }
+                     }
+                       
+                 }                            PVector dist_dest_1 = PVector.sub(v_tower1, destination[i]); PVector dist_origin_1 = PVector.sub(v_tower1, origin[i]);
                               PVector dist_origin_2 = PVector.sub(v_tower2, origin[i]); PVector dist_dest_2 = PVector.sub(v_tower2, destination[i]);
                               PVector dist_origin_3 = PVector.sub(v_tower3, origin[i]); PVector dist_dest_3 = PVector.sub(v_tower3, destination[i]);
                               PVector dist_origin_4 = PVector.sub(v_tower4, origin[i]); PVector dist_dest_4 = PVector.sub(v_tower4, destination[i]); 
@@ -578,6 +595,9 @@ for (int i=0; i<numSwarm; i++) {
                               PVector dist_origin_10 = PVector.sub(v_tower10, origin[i]); PVector dist_dest_10 = PVector.sub(v_tower10, destination[i]);
                               PVector dist_origin_11 = PVector.sub(v_tower11, origin[i]); PVector dist_dest_11 = PVector.sub(v_tower11, destination[i]);
                               PVector dist_origin_12 = PVector.sub(v_tower12, origin[i]); PVector dist_dest_12 = PVector.sub(v_tower12, destination[i]);
+      
+      
+      
       //assigning the towers
               if (dist_origin_1.mag() <= 5) {
                 if (tower_1.size() >= 1) {
@@ -724,14 +744,14 @@ for (int i=0; i<numSwarm; i++) {
                     }
                   }
           
-            
-                  if (dist_origin_10.mag() <= 5) {
-                    if (tower_10.size() >= 1) {
-                      int h = int(random(0, umbrella.size()));
-                      origin[i] = umbrella.get(h);
-                      origin_zone[i] = 10;
-                    }
-                  }
+//            
+//                  if (dist_origin_10.mag() <= 5) {
+//                    if (tower_10.size() >= 1) {
+//                      int h = int(random(0, umbrella.size()));
+//                      origin[i] = umbrella.get(h);
+//                      origin_zone[i] = 10;
+//                    }
+//                  }
           
                   if (dist_dest_10.mag() <= 5) {
                     if (tower_10.size() >= 1) {
@@ -788,7 +808,6 @@ for (int i=0; i<numSwarm; i++) {
                                     }
                                   }
                                   }
-                      
                               if (network.getString(i, "NATION").equals("fr")) {
                                 if (marc_rest.getString(j, "LANGUAGES").equals("CA,ES,FR,EN") || marc_rest.getString(j, "LANGUAGES").equals("CA,ES,FR,EN,RU") 
                                   || marc_rest.getString(j, "LANGUAGES").equals("CA,ES,FR,PT"))
@@ -878,7 +897,9 @@ for (int i=0; i<numSwarm; i++) {
 
   // Sets to rates at specific hour ...
   setSwarmFlow(hourIndex);
+  
 }
+
 
 void resetSummary() {
   summary = new Table();
