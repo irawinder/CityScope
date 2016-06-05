@@ -22,19 +22,6 @@ void Voronoi() {
   ArrayList<PVector> french_speaking_amenities = new ArrayList<PVector>();
   ArrayList<PVector> spanish_speaking_amenities = new ArrayList<PVector>();
   ArrayList<PVector> tower_values = new ArrayList<PVector>();
-  
-  PVector v_tower1 = new PVector(1112, 217, 0);
-  PVector v_tower2 = new PVector(793, 232, 0);
-  PVector v_tower3 = new PVector(470, 92, 0);
-  PVector v_tower4 = new PVector(963, 342, 0);
-  PVector v_tower5 = new PVector(377, 123, 0);
-  PVector v_tower6 = new PVector(601, 517, 0);
-  PVector v_tower7 = new PVector(544, 319, 0);
-  PVector v_tower8 = new PVector(806, 41, 0);
-  PVector v_tower9 = new PVector(259, 112, 0);
-  PVector v_tower10 = new PVector(515, 68, 0);
-  PVector v_tower11 = new PVector(520, 10, 0);
-  PVector v_tower12 = new PVector(1400, 518, 0);
 
   ArrayList<PVector> tower_1 = new ArrayList<PVector>();
   ArrayList<PVector> tower_2 = new ArrayList<PVector>();
@@ -407,6 +394,3 @@ for (int i=0; i<numSwarm; i++) {
   setSwarmFlow(hourIndex);
   
 }
-
-
-
