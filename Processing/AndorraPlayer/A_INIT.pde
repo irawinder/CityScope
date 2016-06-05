@@ -305,6 +305,7 @@ PVector[] rest_coord, hotel_coord, attraction_coord, dist_origins, origin_travel
 
 void Voronoi() {
   int numSwarm;
+  boolean external = false;
   color col;
   numSwarm = network.getRowCount();
   origin = new PVector[numSwarm];
@@ -320,7 +321,10 @@ void Voronoi() {
   swarmHorde.clearHorde();
   dist_origins = new PVector[numSwarm];
   origin_travel = new PVector[numSwarm];
-  boolean external = false;
+  ArrayList<PVector> french_speaking_amenities = new ArrayList<PVector>();
+  ArrayList<PVector> spanish_speaking_amenities = new ArrayList<PVector>();
+  ArrayList<PVector> tower_values = new ArrayList<PVector>();
+  
   PVector v_tower1 = new PVector(1112, 217, 0);
   PVector v_tower2 = new PVector(793, 232, 0);
   PVector v_tower3 = new PVector(470, 92, 0);
@@ -347,10 +351,6 @@ void Voronoi() {
   ArrayList<PVector> tower_11 = new ArrayList<PVector>();
   ArrayList<PVector> tower_12 = new ArrayList<PVector>();
   ArrayList<ArrayList<PVector>> test = new ArrayList<ArrayList<PVector>>();
-  ArrayList<PVector> umbrella = new ArrayList<PVector>();
-  ArrayList<PVector> french_speaking_amenities = new ArrayList<PVector>();
-  ArrayList<PVector> spanish_speaking_amenities = new ArrayList<PVector>();
-  ArrayList<PVector> tower_values = new ArrayList<PVector>();
   
 for (int i=0; i<localTowers.getRowCount(); i++) { // iterates through each row      
     val[i] = mercatorMap.getScreenLocation(new PVector(localTowers.getFloat(i, "Lat"), localTowers.getFloat(i, "Lon")));
@@ -382,7 +382,7 @@ for (int i=0; i<numSwarm; i++) {
                               }
                               
 
-                              if(hotel_coord[z].y > 130){
+                              if(hotel_coord[z].y > tower_values.get(4).y){
                                       if (towerIndex == 0) {
                                         tower_1.add(hotel_coord[z]);
                                       }
@@ -419,9 +419,6 @@ for (int i=0; i<numSwarm; i++) {
                                        if (towerIndex == 11) {
                                         tower_12.add(hotel_coord[z]);
                                       }
-//                                      if (towerIndex == 10 || towerIndex == 9) {
-//                                        umbrella.add(hotel_coord[z]);
-//                                      }
                                       
                             }                           
                           }
@@ -444,7 +441,7 @@ for (int i=0; i<numSwarm; i++) {
                                       towerIndex = d;
                                     }
                                   }
-                                        if (attraction_coord[c].y > 130) {
+                                        if (attraction_coord[c].y > tower_values.get(4).y) {
                                         if (towerIndex == 0) {
                                           tower_1.add(attraction_coord[c]);
                                         }
@@ -481,9 +478,6 @@ for (int i=0; i<numSwarm; i++) {
                                         if (towerIndex == 11) {
                                           tower_12.add(attraction_coord[c]);
                                         }
-//                                        if (towerIndex == 10 || towerIndex == 9) {
-//                                          umbrella.add(attraction_coord[c]);
-//                                        } 
                                       }
                       }
                       
@@ -507,7 +501,7 @@ for (int i=0; i<numSwarm; i++) {
                               towerIndex = d;
                             }
                           }
-                                      if(rest_coord[j].y>130){
+                                      if(rest_coord[j].y> tower_values.get(4).y){
                                       if (towerIndex == 0) {
                                         tower_1.add(rest_coord[j]);
                                         tower_12.add(rest_coord[j]);
@@ -545,22 +539,18 @@ for (int i=0; i<numSwarm; i++) {
                               
                                       if (towerIndex == 11) {
                                         tower_12.add(rest_coord[j]);
-                                      }
-                              
-//                                      if (towerIndex == 10 || towerIndex == 9) {
-//                                          umbrella.add(rest_coord[j]);
-//                                        }
+                                      }   
                                       }
 ////////////////////////////out of reach special children; tower 6 and tower 8   
                  PVector v34 = PVector.sub(v_tower6, rest_coord[j]);
                     float r = v34.mag();
-                    if (abs(r) <= 400 && rest_coord[j].y > 400) {
+                    if (abs(r) <= tower_values.get(4).x && rest_coord[j].y > tower_values.get(4).x) {
                       tower_6.add(rest_coord[j]);
                     }      
             
                     PVector v40 = PVector.sub(v_tower8, rest_coord[j]);
                     float b = v40.mag();
-                    if (abs(r) <= 300 && rest_coord[j].y > 130 && rest_coord[j].x > 720 ) {
+                    if (abs(r) <= 300 && rest_coord[j].y > tower_values.get(4).y && rest_coord[j].x > tower_values.get(7).x ) {
                       tower_8.add(rest_coord[j]);
                     }             
            } 
@@ -800,7 +790,7 @@ for (int i=0; i<numSwarm; i++) {
                                 {
                                   rest_coord[i] = mercatorMap.getScreenLocation(new PVector(marc_rest.getFloat(j, "LAT"), marc_rest.getFloat(j, "LNG")));
                                   rest_coord[i] = new PVector(rest_coord[i].x + marginWidthPix, rest_coord[i].y + marginWidthPix);
-                                  if(rest_coord[i].y > 140){
+                                  if(rest_coord[i].y >  tower_values.get(4).y){
                                   spanish_speaking_amenities.add(rest_coord[i]);
                                   int c = int(random(0, spanish_speaking_amenities.size()));
                                   PVector doop = PVector.sub(origin[i], spanish_speaking_amenities.get(c));
@@ -818,7 +808,7 @@ for (int i=0; i<numSwarm; i++) {
                                 {
                                   rest_coord[i] = mercatorMap.getScreenLocation(new PVector(marc_rest.getFloat(j, "LAT"), marc_rest.getFloat(j, "LNG")));
                                   rest_coord[i] = new PVector(rest_coord[i].x + marginWidthPix, rest_coord[i].y + marginWidthPix);
-                                  if(rest_coord[i].y > 140){
+                                  if(rest_coord[i].y > tower_values.get(4).y){
                                   french_speaking_amenities.add(rest_coord[i]);
                                   int c = int(random(0, french_speaking_amenities.size()));
                                   PVector doop = PVector.sub(origin[i], french_speaking_amenities.get(c));
