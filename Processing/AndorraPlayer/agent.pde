@@ -444,10 +444,17 @@ class Swarm {
     p.stroke(#ea81d6);
     p.strokeWeight(.5);
     p.ellipse(destination.x, destination.y, 5, 5);
-    for(int d = 0; d<values.getRowCount(); d++){
+      ArrayList<PVector> tower_values = new ArrayList<PVector>();
+    for (int i=0; i<localTowers.getRowCount(); i++) { // iterates through each row      
+    val[i] = mercatorMap.getScreenLocation(new PVector(localTowers.getFloat(i, "Lat"), localTowers.getFloat(i, "Lon")));
+    if(val[i].x >= 0 && val[i].y >= 0){
+    tower_values.add(val[i]);
+    }
+  }
+    for(int d = 0; d<tower_values.size(); d++){
       p.textSize(18);
       p.fill(#ffff00);
-      p.text(values.getInt(d, "Tower"), values.getInt(d, "x"), values.getInt(d, "y"));
+      p.text(d, tower_values.get(d).x, tower_values.get(d).y);
     }
 //    p.text(destination.x, destination.x + 10, destination.y + 10);
   }
