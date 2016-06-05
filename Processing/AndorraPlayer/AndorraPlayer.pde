@@ -1,3 +1,9 @@
+import org.gicentre.geomap.io.*;
+import org.gicentre.geomap.*;
+
+GeoMap geoMap;
+
+
 // This is the staging script to allow splitting 4k projection mapping across 4 projectors
 // It's also the staging area for the AI of some agent-based modeling
 // For Andorra Data Stories
@@ -143,6 +149,8 @@ void setup() {
     size(projectorWidth, projectorHeight, P3D);
   }
 
+   geoMap = new GeoMap(this);
+   geoMap.readFile("buildings");
   initCanvas();
 
   //  //Call this method if data folder ever needs to be selected by a user
