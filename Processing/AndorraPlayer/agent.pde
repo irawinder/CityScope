@@ -242,8 +242,8 @@ class Swarm {
     // Makes sure that agents 'staying put' generate only enough to represent their numbers then stop
     // also that they don't blead into the margin or topo
     if (origin == destination || path.size() < 2) {
-      immortal = true;
-      agentLife = 0;
+//      immortal = true;
+      agentLife = 1000;
       cropAgents(_external);
     }
     
@@ -251,8 +251,8 @@ class Swarm {
   
   void temperStandingAgents() {   
     // Makes sure that agents 'staying put' generate only enough to represent their numbers then stop
-    if (origin == destination || path.size() < 2 || (origin_zone == 10 && fill == french)) {
-      agentLife = 0;
+    if (origin == destination || path.size() < 2 || (origin_zone == destination_zone)) {
+      agentLife = 100000;
       immortal = true;
     }
   }
@@ -330,9 +330,9 @@ class Swarm {
       while (swarm.size() < staticNum) {
         swarm.add(new Agent(origin.x, origin.y, 6, maxSpeed, path.size()));
       }
-      while (swarm.size() > staticNum) {
-        swarm.remove(0);
-      }
+//      while (swarm.size() > staticNum) {
+//        swarm.remove(0);
+//      }
     }
     
     // Adds an agent

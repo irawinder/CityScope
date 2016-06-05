@@ -6,6 +6,7 @@ void keyPressed() {
   case 'v':
     voronoi = toggle(voronoi);
     println(voronoi);
+    key_0();
     break;
   case '0': //ReBoots App
     setLoader("Andorra Player | Version " + version);
