@@ -41,6 +41,7 @@ boolean load_non_essential_data = true;
   Table marc_rest;
   Table values;
   Table antenna; 
+  Table yup;
 
   
   // OD Matrix Information
@@ -124,6 +125,14 @@ void initData() {
      if (amenities.getFloat(i, "Lat") < lat2 || amenities.getFloat(i, "Lat") > lat1 ||
           amenities.getFloat(i, "Long") < lon1 || amenities.getFloat(i, "Long") > lon2) {
         amenities.removeRow(i);
+      }
+    }
+    
+    yup = loadTable("data/amens.csv", "header");
+    for (int i=yup.getRowCount() - 1; i >= 0; i--) {
+     if (yup.getFloat(i, "Lat") < lat2 || yup.getFloat(i, "Lat") > lat1 ||
+          yup.getFloat(i, "Lon") < lon1 || yup.getFloat(i, "Lon") > lon2) {
+        yup.removeRow(i);
       }
     }
     

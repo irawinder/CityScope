@@ -251,7 +251,7 @@ class Swarm {
   
   void temperStandingAgents() {   
     // Makes sure that agents 'staying put' generate only enough to represent their numbers then stop
-    if (origin == destination || path.size() < 2 || (origin_zone == destination_zone)) {
+    if (origin == destination || path.size() < 2 || origin_zone == destination_zone) {
       agentLife = 100000;
       immortal = true;
     }
