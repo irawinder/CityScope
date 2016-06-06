@@ -67,6 +67,7 @@ for (int i=0; i<numSwarm; i++) {
                               if(amen_coord[t].y > tower_values.get(4).y){
                                   if (towerIndex == 0) {
                                         tower_0.add(amen_coord[t]);
+                                        tower_3.add(amen_coord[t]);
                                       }
                                   if (towerIndex == 1) {
                                         tower_1.add(amen_coord[t]);
@@ -84,6 +85,7 @@ for (int i=0; i<numSwarm; i++) {
                                       }
                                   if (towerIndex == 6) {
                                         tower_6.add(amen_coord[t]);
+                                        tower_3.add(amen_coord[t]);
                                       }  
                                   if (towerIndex == 8) {
                                         tower_8.add(amen_coord[t]);
@@ -94,26 +96,13 @@ for (int i=0; i<numSwarm; i++) {
                                       }      
                                  if (towerIndex == 10) {
                                         tower_10.add(amen_coord[t]);
+                                        tower_7.add(amen_coord[t]);
                                       }  
                                  if (towerIndex == 11) {
                                         tower_11.add(amen_coord[t]);
                                       }                                         
                               }
                             
-                          
-
-////////////////////////////out of reach special children; tower 6 and tower 8   
-                 PVector v34 = PVector.sub(tower_values.get(3), amen_coord[t]);
-                    float r = v34.mag();
-                    if (abs(r) <= tower_values.get(5).x &&  amen_coord[t].y > tower_values.get(4).x) {
-                      tower_3.add(amen_coord[t]);
-                    }      
-            
-                    PVector v40 = PVector.sub(tower_values.get(7), amen_coord[t]);
-                    float b = v40.mag();
-                    if (abs(b) <= 300 && amen_coord[t].y > tower_values.get(4).y && amen_coord[t].x > tower_values.get(7).x ) {
-                      tower_7.add(amen_coord[t]);
-                    }             
            } 
 //       
 //////////////////////////////////////////////////////ACTUAL STUFFS                
@@ -123,6 +112,7 @@ for (int i=0; i<numSwarm; i++) {
                  for(int p = 0; p<tower_values.size(); p++){
                  origin_travel[i] = PVector.sub(tower_values.get(p), origin[i]);
                  destination_travel[i] = PVector.sub(tower_values.get(p), destination[i]);
+                 
                      if(p == 0){
                          if(origin_travel[i].mag() <= 5){
                            int h = int(random(0, tower_0.size()));
@@ -172,18 +162,6 @@ for (int i=0; i<numSwarm; i++) {
                            destination_zone[i] = 3;
                          }
                      }
-                    if(p == 3){
-                         if(origin_travel[i].mag() <= 5){
-                           int h = int(random(0, tower_3.size()));
-                           origin[i] = tower_3.get(h);
-                           origin_zone[i] = 3;
-                         }
-                         if(destination_travel[i].mag() <= 5){
-                           int h = int(random(0, tower_3.size()));
-                           destination[i] = tower_3.get(h);
-                           destination_zone[i] = 3;
-                         }
-                     }
                    if(p == 4){
                          if(origin_travel[i].mag() <= 5){
                            int h = int(random(0, tower_4.size()));
@@ -219,19 +197,7 @@ for (int i=0; i<numSwarm; i++) {
                            destination[i] = tower_6.get(h);
                            destination_zone[i] = 6;
                          }
-                     }
-                  if(p == 7){
-                         if(origin_travel[i].mag() <= 5){
-                           int h = int(random(0, tower_7.size()));
-                           origin[i] = tower_7.get(h);
-                           origin_zone[i] = 7;
-                         }
-                         if(destination_travel[i].mag() <= 5){
-                           int h = int(random(0, tower_7.size()));
-                           destination[i] = tower_7.get(h);
-                           destination_zone[i] = 7;
-                         }
-                     }                     
+                     }              
                   if(p == 8){
                          if(origin_travel[i].mag() <= 5){
                            int h = int(random(0, tower_8.size()));
@@ -256,7 +222,7 @@ for (int i=0; i<numSwarm; i++) {
                            destination_zone[i] = 9;
                          }
                      }     
-                  if(p == 10){
+                  if(p == 10 || p == 7){
                          if(origin_travel[i].mag() <= 5){
                            int h = int(random(0, tower_10.size()));
                            origin[i] = tower_10.get(h);

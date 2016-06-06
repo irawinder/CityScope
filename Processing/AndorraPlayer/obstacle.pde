@@ -499,46 +499,46 @@ class ObstacleCourse {
   }
   
   
-  // filename = "data/course.tsv"
+//  filename = "data/course.tsv"
   void loadCourse(String filename) {
     
-//    Table courseTSV;
-    Table BuildObs;
+    Table courseTSV;
+//    Table BuildObs;
     
     try {
-      BuildObs = loadTable("data/BuildObs.csv", "header");
-      println("Obstacle Course Loaded from " + "data/BuildObs.csv");
-//      courseTSV = loadTable(filename, "header");
-//      println("Obstacle Course Loaded from " + filename);
+//      BuildObs = loadTable("data/BuildObs.csv", "header");
+//      println("Obstacle Course Loaded from " + "data/BuildObs.csv");
+      courseTSV = loadTable(filename, "header");
+      println("Obstacle Course Loaded from " + filename);
     } catch(RuntimeException e){
-//      courseTSV = new Table();
-      BuildObs = new Table();
+      courseTSV = new Table();
+//      BuildObs = new Table();
       println(filename + " incomplete file");
     }
       
     int obstacle;
     
-    if (BuildObs.getRowCount() > 0) {
-//     if (courseTSV.getRowCount() > 0) {  
+//    if (BuildObs.getRowCount() > 0) {
+     if (courseTSV.getRowCount() > 0) {  
       while (numObstacles > 0) {
         removeObstacle();
       }
       
       obstacle = -1;
       
-//            for (int i=0; i<courseTSV.getRowCount(); i++) {
-//        if (obstacle != courseTSV.getInt(i, "obstacle")) {
-//          obstacle = courseTSV.getInt(i, "obstacle");
+            for (int i=0; i<courseTSV.getRowCount(); i++) {
+        if (obstacle != courseTSV.getInt(i, "obstacle")) {
+          obstacle = courseTSV.getInt(i, "obstacle");
       
-      for (int i=0; i<BuildObs.getRowCount(); i++) {
-        if (obstacle != BuildObs.getInt(i, "obstacle")) {
-          obstacle = BuildObs.getInt(i, "obstacle");
+//      for (int i=0; i<BuildObs.getRowCount(); i++) {
+//        if (obstacle != BuildObs.getInt(i, "obstacle")) {
+//          obstacle = BuildObs.getInt(i, "obstacle");
           addObstacle();
         }
         //addVertex(new PVector(courseTSV.getFloat(i, "vertX"), courseTSV.getFloat(i, "vertY")));
         //addVertex(new PVector((projectorWidth/1000.0)*courseTSV.getFloat(i, "vertX"), (projectorWidth/1000.0)*courseTSV.getFloat(i, "vertY")));
-//                addVertex(new PVector((projectorWidth/1920.0)*courseTSV.getFloat(i, "vertX"), (projectorWidth/1920.0)*courseTSV.getFloat(i, "vertY")));
-        addVertex(new PVector(BuildObs.getFloat(i, "vertX") + marginWidthPix, BuildObs.getFloat(i, "vertY")+marginWidthPix));
+                addVertex(new PVector((projectorWidth/1920.0)*courseTSV.getFloat(i, "vertX"), (projectorWidth/1920.0)*courseTSV.getFloat(i, "vertY")));
+//        addVertex(new PVector(BuildObs.getFloat(i, "vertX") + marginWidthPix, BuildObs.getFloat(i, "vertY")+marginWidthPix));
       }
       
     }
