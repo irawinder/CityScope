@@ -1,22 +1,3 @@
-import org.gicentre.geomap.io.*;
-import org.gicentre.geomap.*;
-
-import java.util.List;
-import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.geom.MultiPolygon;
-import com.vividsolutions.jts.geom.Polygon;
-import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.Point;
-import com.vividsolutions.jts.geom.Envelope;
-import com.vividsolutions.jts.geom.GeometryFactory;
-import com.vividsolutions.jts.index.strtree.STRtree;
-
-import com.vividsolutions.jts.geom.GeometryFactory;
-
-
-GeoMap geoMap;
-
-
 // This is the staging script to allow splitting 4k projection mapping across 4 projectors
 // It's also the staging area for the AI of some agent-based modeling
 // For Andorra Data Stories
@@ -149,10 +130,6 @@ boolean use4k = false;
 // 0 = Render For Screen
 // 1 = Render for Projection-Mapping
 int drawMode = 0;
-
-
-List<Feature> feats;
-STRtree index;
 
 
 void setup() {

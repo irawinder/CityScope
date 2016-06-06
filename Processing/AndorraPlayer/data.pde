@@ -39,15 +39,14 @@ boolean load_non_essential_data = true;
   Table amenities; 
   Table wifi; 
   Table marc_rest;
-  Table values;
   Table antenna; 
   Table yup;
+  Table buildings;
 
   
   // OD Matrix Information
   Table network;
   Table OD;
-  Table towers;
   int dateIndex = 6; // Initial date index    
   String[] dates = { "20140602", 
                      "20140815",
@@ -104,8 +103,8 @@ void initData() {
   // Used as sample data set
   localTowers = loadTable("data/cell.csv", "header");
   frenchWifi = loadTable("data/network_edges_french.csv", "header");
-  values = loadTable("data/values.csv", "header");
   antenna = loadTable("data/antenna.csv", "header");
+  buildings = loadTable("data/buildings.csv", "header");
   
   // loads baseimage for topographic model
   topo = loadImage("crop.png");
@@ -119,7 +118,40 @@ void initData() {
     
     localTowers = loadTable("data/cell.csv", "header");
     amenities = loadTable("data/attractions.csv", "header");
+    buildings = loadTable("data/buildings.csv", "header");
+    
+   Table courseBuild = new Table();
+    courseBuild.addColumn("obstacle");
+    courseBuild.addColumn("vertX");
+    courseBuild.addColumn("vertY");
+    
+  Table BuildObs = new Table();
+    BuildObs.addColumn("obstacle");
+    BuildObs.addColumn("vertX");
+    BuildObs.addColumn("vertY");
 
+    for (int i=buildings.getRowCount() - 1; i >= 0; i--) {
+     if (buildings.getFloat(i, "Lat") < lat2 || buildings.getFloat(i, "Lat") > lat1 ||
+          buildings.getFloat(i, "Lon") < lon1 || buildings.getFloat(i, "Lon") > lon2) {
+        buildings.removeRow(i);
+      }
+           TableRow newRow = courseBuild.addRow();
+            newRow.setInt("obstacle", buildings.getInt(i, "shapeid"));
+            newRow.setFloat("vertX", buildings.getFloat(i, "Lat"));
+            newRow.setFloat("vertY", buildings.getFloat(i, "Lon"));
+    }
+   saveTable(courseBuild, "data/courseBuild.csv");  
+    
+    
+    for(int i = 0; i<courseBuild.getRowCount(); i++){
+    coord = mercatorMap.getScreenLocation(new PVector(courseBuild.getFloat(i, "vertX"), courseBuild.getFloat(i,"vertY")));
+        TableRow newRow = BuildObs.addRow();
+        newRow.setInt("obstacle", courseBuild.getInt(i, "obstacle"));
+        newRow.setFloat("vertX", coord.x);
+        newRow.setFloat("vertY", coord.y);
+    }
+    
+    saveTable(BuildObs, "data/BuildObs.csv"); 
 
     for (int i=amenities.getRowCount() - 1; i >= 0; i--) {
      if (amenities.getFloat(i, "Lat") < lat2 || amenities.getFloat(i, "Lat") > lat1 ||

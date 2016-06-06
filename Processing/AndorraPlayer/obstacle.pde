@@ -14,6 +14,9 @@
   
 class Obstacle {
   
+
+  
+  
   //PVector[] vertices;
   
   //vertices and of a polygon obstacles
@@ -474,6 +477,7 @@ class ObstacleCourse {
       p.strokeWeight(1);
     }
   }
+ 
   
   void saveCourse(String filename) {
     Table courseTSV = new Table();
@@ -494,7 +498,9 @@ class ObstacleCourse {
     
     println("ObstacleCourse data saved to '" + filename + "'");
     
+    
   }
+  
   
   // filename = "data/course.tsv"
   void loadCourse(String filename) {
