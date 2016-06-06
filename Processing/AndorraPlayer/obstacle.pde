@@ -14,9 +14,6 @@
   
 class Obstacle {
   
-
-  
-  
   //PVector[] vertices;
   
   //vertices and of a polygon obstacles

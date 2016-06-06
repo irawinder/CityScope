@@ -157,7 +157,7 @@ class Agent {
     p.noStroke();
     p.pushMatrix();
     p.translate(location.x, location.y);
-    p.ellipse(0, 0, 5, 5);
+    p.ellipse(0, 0, 4, 4);
     p.popMatrix();
   }
   
