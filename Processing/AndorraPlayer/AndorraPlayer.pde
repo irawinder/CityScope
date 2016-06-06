@@ -1,6 +1,19 @@
 import org.gicentre.geomap.io.*;
 import org.gicentre.geomap.*;
 
+import java.util.List;
+import com.vividsolutions.jts.geom.Geometry;
+import com.vividsolutions.jts.geom.MultiPolygon;
+import com.vividsolutions.jts.geom.Polygon;
+import com.vividsolutions.jts.geom.Coordinate;
+import com.vividsolutions.jts.geom.Point;
+import com.vividsolutions.jts.geom.Envelope;
+import com.vividsolutions.jts.geom.GeometryFactory;
+import com.vividsolutions.jts.index.strtree.STRtree;
+
+import com.vividsolutions.jts.geom.GeometryFactory;
+
+
 GeoMap geoMap;
 
 
@@ -137,6 +150,11 @@ boolean use4k = false;
 // 1 = Render for Projection-Mapping
 int drawMode = 0;
 
+
+List<Feature> feats;
+STRtree index;
+
+
 void setup() {
   //size(2*projectorWidth, 2*projectorHeight, P3D);
 
@@ -148,14 +166,14 @@ void setup() {
   } else {
     size(projectorWidth, projectorHeight, P3D);
   }
+   
+   initCanvas();
 
-   geoMap = new GeoMap(this);
-   geoMap.readFile("buildings");
-  initCanvas();
 
   //  //Call this method if data folder ever needs to be selected by a user
   //  selectFolder("Please select the a folder and click 'Open'", "folderSelected");
 }
+
 
 
 void mainDraw() {
@@ -179,6 +197,7 @@ void mainDraw() {
 }
 
 void draw() {
+  
 
   // If certain key commands are pressed, it causes a <0 delay which counts down in this section
   if (drawDelay > 0) {
@@ -211,7 +230,7 @@ void draw() {
     }
 
     mainDraw();
-
+    
     // Print Framerate of animation to console
     if (showFrameRate) {
       println(frameRate);

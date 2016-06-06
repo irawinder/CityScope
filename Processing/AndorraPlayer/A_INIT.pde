@@ -182,6 +182,10 @@ void initAgents(PGraphics p) {
   println("Initializing Agent Objects ... ");
 
   swarmHorde = new Horde(2000);
+  
+   index = new STRtree(); //R tree class from library; maximize space utilization 
+   
+   feats = getFeatures("/data/buidlings.shp", 1000000 ); 
 
   sources_Viz = createGraphics(p.width, p.height);
   edges_Viz = createGraphics(p.width, p.height);
