@@ -1,5 +1,5 @@
 int i = 0;
-int ncolors = 7;
+int ncolors = 33;
 float[] towers_x = new float[ncolors];
 float[] towers_y = new float[ncolors];
 color[] tower_colors = new color[ncolors];
