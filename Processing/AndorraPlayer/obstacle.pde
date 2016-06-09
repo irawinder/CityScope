@@ -498,6 +498,7 @@ class ObstacleCourse {
     
   }
   
+//this portion is under development for new obstacles, but for now it's the old ones
   
 //  filename = "data/course.tsv"
   void loadCourse(String filename) {

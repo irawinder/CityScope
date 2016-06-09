@@ -164,7 +164,6 @@ boolean voronoi = true;
 
 Horde swarmHorde;
 
-
 PVector[] origin, destination, nodes, val;
 float[] weight;
 int[] origin_zone, destination_zone;
@@ -299,7 +298,7 @@ void testNetwork_Random(int _numNodes) {
   swarmHorde.popScaler(1.0);
 }
 
-
+//data mode for CDR data
 void CDRNetwork() {
   
   int numSwarm;
