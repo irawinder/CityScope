@@ -352,7 +352,6 @@ void key_0() {
 void key_D() {
   //Toggles various data and visualization modes
   dataMode = nextMode(dataMode, 2);
-
   initContent();
 }
 

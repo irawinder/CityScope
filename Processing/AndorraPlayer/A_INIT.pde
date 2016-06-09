@@ -124,6 +124,7 @@ void initContent() {
 
   switch(dataMode) {
   case 0: // Pathfinder Demo
+    voronoi = false;
     showGrid = true;
     finderMode = 0;
     showEdges = false;
@@ -131,13 +132,15 @@ void initContent() {
     showPaths = false;
     break;
   case 1: // Random Demo
+    voronoi = false;
     showGrid = true;
     finderMode = 0;
     showEdges = false;
     showSource = false;
     showPaths = false;
     break;
-  case 2: // Wifi and Towers Demo
+  case 2: //CDR Demo
+    voronoi = true;
     showGrid = false;
     finderMode = 2;
     showEdges = false;
@@ -159,8 +162,7 @@ void initContent() {
 
 
 // ---------------------Initialize Agent-based Objects---
-
-boolean voronoi = true;
+boolean voronoi;
 
 Horde swarmHorde;
 
@@ -187,7 +189,9 @@ void initAgents(PGraphics p) {
   maxFlow = 0;
   resetSummary();
   CDRNetwork();
+  if(voronoi == true){
   Voronoi();
+  }
 
   switch(dataMode) {
   case 0:
