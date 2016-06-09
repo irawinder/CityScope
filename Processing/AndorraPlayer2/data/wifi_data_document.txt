@@ -1,0 +1,32 @@
+=====================================================================================
+all_tz.csv
+
+There are many wifi hotspots on the main street in Andorra La Valla. This csv collects data every time when an user connect to the hotspot. We arranged the data by users.
+=====================================================================================
+1  : row number in the raw csv
+2 @macAddress: id of each user
+3 GeoCoordinate.@lattitude: the latitude of the user was at while connecting the wifi
+4 GeoCoordinate.@longitude: the longitude of the user was at while connecting the wifi
+5 distance: the distance between this record and previous record. the unit is meter. if the user haven’t appeared in this file before (the first record of each user), distance will be assigned as 0
+6 n: row number of the user. start from 0
+7 speed: distance divide timediff. if it’s the first record of the user or timediff is less than 1 second, speed will be assigned as 0. the unit is meters/second
+8 time: the timestamp when user connected to the hotspot. time zone information is removed. (which is +0200)
+9 timediff: the time difference between this record and previous record of the same user. the unit is second. if the user haven’t appeared in this file before (the first record of each user), timediff will be assigned as 0
+=====================================================================================
+
+=====================================================================================
+user_df_tz.csv
+
+user_df_tz.csv is a summary of records of each user in all_tz.csv. 
+=====================================================================================
+1 user: id of each user 
+2 #dataPoint: number of records of the user in raw data
+3 distance: total distance the user move in data (sum of every move, not origin-destination distance). the unit is meter 
+4 duration: the last record of each user minus the first record in raw data. the unit is second
+5 startTime: time of the first record in raw data. time zone information is removed. (which is +0200)
+6 endTime: time of the last record in raw data. time zone information is removed. (which is +0200)
+7 avgSpeed: total distance divide by duration. the unit is meters/second
+8 transportation: an empty column to be tagged (by car/bike/foot)
+9 travelArea: an empty column to be tagged (e.g.: main street/others)
+10 isLongDistance: an empty column to be tagged (T/F) 
+=====================================================================================
