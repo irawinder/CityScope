@@ -41,10 +41,10 @@
 //boolean debug = false;
 boolean debug = true;
 
-//int projectorWidth = 1920;
-//int projectorHeight = 1200;
-int projectorWidth = 1500;
-int projectorHeight = 1000;
+int projectorWidth = 1920;
+int projectorHeight = 1200;
+//int projectorWidth = 1500;
+//int projectorHeight = 1000;
 
 // Key Commands:
 //
@@ -129,7 +129,7 @@ boolean use4k = false;
 // Draw Modes:
 // 0 = Render For Screen
 // 1 = Render for Projection-Mapping
-int drawMode = 0;
+int drawMode = 1;
 
 
 void setup() {

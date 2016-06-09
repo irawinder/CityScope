@@ -67,7 +67,7 @@ void keyPressed() {
       }
       break;
     case 'D': //Toggles various data and visualization modes
-      setLoader("Data Mode " + nextMode(dataMode, 4));
+      setLoader("Data Mode " + nextMode(dataMode, 3));
       // runs key_D() next frame
       break;
     case 'E': // shows or hides obsticale editor 
@@ -146,6 +146,25 @@ void keyPressed() {
       break;
     case 'T': // Turns demo background image on or off
       showDemoMap = toggle(showDemoMap);
+      break;
+    case '`': // Toggle Projection Mapping on/off
+      enableProjectionMapping = !enableProjectionMapping;
+      println(enableProjectionMapping);
+      break;
+    case 'C':
+      // enter/leave calibration mode, where surfaces can be warped 
+      // and moved
+      ks.toggleCalibration();
+      break;
+  
+    case 'L':
+      // loads the saved layout
+      ks.load();
+      break;
+  
+    case 'Q':
+      // saves the layout
+      ks.save();
       break;
   }
   
@@ -228,7 +247,7 @@ int scroll_0 = 0;
 
 void mousePressed() {
   y_0 = mouseY;
-    }
+}
 
 void mouseDragged() {
   scroll = scroll_0 + mouseY - y_0;
@@ -341,7 +360,7 @@ void mouseClicked() {
   }
   
   if(button8.over()){ //next datamode
-    setLoader("Data Mode " + nextMode(dataMode, 4));
+    setLoader("Data Mode " + nextMode(dataMode, 3));
     key_D();
   }
   

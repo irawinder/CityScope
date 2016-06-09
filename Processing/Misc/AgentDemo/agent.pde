@@ -203,8 +203,8 @@ class Swarm {
   ArrayList<PVector> path;
   
   Swarm () {
-    agentLife = 0.0;
-    agentDelay = 0.0;  //10000
+    agentLife = 0;
+    agentDelay = 10000;
     swarm = new ArrayList<Agent>();
   }
   
@@ -217,10 +217,6 @@ class Swarm {
   Swarm (float delay, PVector a, PVector b, float maxS, color f) {
     origin = a;
     destination = b;
-    if(a.x == 0 && b.x == 0){
-    println("here's origin", origin);
-    println("here's destination", destination);
-    }
     
     path = new ArrayList<PVector>();
     path.add(origin);
@@ -253,8 +249,8 @@ class Swarm {
   void temperStandingAgents() {   
     // Makes sure that agents 'staying put' generate only enough to represent their numbers then stop
     if (origin == destination || path.size() < 2) {
-      agentLife = 0;
-//      immortal = true;
+      agentLife = 1000;
+      //immortal = true;
     }
   }
   
@@ -385,7 +381,6 @@ class Swarm {
       }
     }
   }
- 
   
   // Draw Sources and Sinks
   void displaySource(PGraphics p) {
@@ -396,16 +391,10 @@ class Swarm {
     p.strokeWeight(2);
     p.line(origin.x - 5, origin.y - 5, origin.x + 5, origin.y + 5);
     p.line(origin.x - 5, origin.y + 5, origin.x + 5, origin.y - 5);
-  if(showVoronoi == true){
-    for(int i = 0; i<16; i++){
-      p.stroke(#ff00ff);
-      p.ellipse(nodes[i].x, nodes[i].y, 10, 10);
-    }
-  }
     
-//    //Draw Sink
-//    p.strokeWeight(3);
-//    p.ellipse(destination.x, destination.y, 30, 30);
+    //Draw Sink
+    p.strokeWeight(3);
+    p.ellipse(destination.x, destination.y, 30, 30);
   }
   
   
@@ -497,7 +486,6 @@ class Horde {
     horde.add(new Swarm(freq, a, b, maxS, f));
     agentCounts.add(0);
   }
-  
   
   void clearHorde() {
     horde.clear();
@@ -605,12 +593,12 @@ class Horde {
     p.textSize(1.5*textSize);
     textSize = 8;
     p.textAlign(LEFT);
-
+    
     p.text("Total Agents Rendered: " + agentCount, 20, 20);
     if(showFrameRate == true){
     p.text("Framerate:  " + frameRate, textWidth("Total Agents Rendered   : 5000" +  190), 20);
     }
-p.text("rateScaler: " + int(rateScaler), 20, 20 + 3*textSize);
+    //p.text("rateScaler: " + int(rateScaler), 20, 20 + 3*textSize);
   }
   
   void displaySwarmList(PGraphics p) {
