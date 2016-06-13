@@ -1,5 +1,13 @@
+//stand alone voronoi applet by Nina Lutz
+
+/*
+Generate random nodes and their appropriate voronoi polygons
+Colors the data points in the csv file appropriately 
+Click to redraw, can be a bit buggy, still always in progress 
+*/
+
 int i = 0;
-int ncolors = 33;
+int ncolors = 9;
 float[] towers_x = new float[ncolors];
 float[] towers_y = new float[ncolors];
 color[] tower_colors = new color[ncolors];
