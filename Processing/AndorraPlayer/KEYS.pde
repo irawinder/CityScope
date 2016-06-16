@@ -5,8 +5,7 @@ void keyPressed() {
   switch (key) {
   case 'v':
     voronoi = toggle(voronoi);
-    println(voronoi);
-    key_0();
+    key_r();
     break;
   case '0': //ReBoots App
     setLoader("Andorra Player | Version " + version);

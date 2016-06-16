@@ -3,7 +3,7 @@
 boolean frameStep = true;
 
 float time_0 = 0;
-float speed = 1.5;
+float speed = 0.5;
 
 class Agent {
   
@@ -157,7 +157,7 @@ class Agent {
     p.noStroke();
     p.pushMatrix();
     p.translate(location.x, location.y);
-    p.ellipse(0, 0, 4, 4);
+    p.ellipse(0, 0, r, r);
     p.popMatrix();
   }
   

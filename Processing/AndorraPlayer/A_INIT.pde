@@ -124,7 +124,6 @@ void initContent() {
 
   switch(dataMode) {
   case 0: // Pathfinder Demo
-    voronoi = false;
     showGrid = true;
     finderMode = 0;
     showEdges = false;
@@ -132,7 +131,6 @@ void initContent() {
     showPaths = false;
     break;
   case 1: // Random Demo
-    voronoi = false;
     showGrid = true;
     finderMode = 0;
     showEdges = false;
@@ -140,7 +138,6 @@ void initContent() {
     showPaths = false;
     break;
   case 2: //CDR Demo
-    voronoi = true;
     showGrid = false;
     finderMode = 2;
     showEdges = false;
@@ -162,7 +159,7 @@ void initContent() {
 
 
 // ---------------------Initialize Agent-based Objects---
-boolean voronoi;
+boolean voronoi = true;
 
 Horde swarmHorde;
 
