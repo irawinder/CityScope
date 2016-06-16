@@ -8,16 +8,10 @@ boolean showEdges = false;
 boolean showSwarm = true;
 boolean showInfo = false;
 boolean showTraces = false;
-boolean hotelprice = false;
-boolean hotelstars = false;
-boolean reststars = false;
-int d = 0; 
-int q = 0;
-int t = 0;
 
 // Makes darker colors more visible when projecting
-int masterAlpha = 15;
-float schemeScaler = 0.5;
+int masterAlpha = 60;
+float schemeScaler = 0.74;
 int background = 0;
 int textColor = 255;
 int grayColor = int(abs(background - (255.0/2)*schemeScaler));
@@ -277,7 +271,8 @@ void drawMargin(PGraphics p) {
   
 
 void drawTopo(PGraphics p) {
- 
+   
+  masterAlpha = 50;
   // Draws Satellite images
   p.tint(255, masterAlpha);
   //p.filter(GRAY);
