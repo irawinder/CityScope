@@ -15,12 +15,15 @@ This uses the Haversine formula to project lat lon coordinates to an XY Cartesia
 
 /////BUGS 
 
-1. Please note there is a bug in the Haversine calculation going from Center. It goes perfectly from left corner though. 
+1. Please note there is a bug in the Haversine calculation going from Center. It goes perfectly from left corner though
+          
 2. There are also ghost lines from the shape file on the perimeter. I may need to add another filter.
 
 
 ////To Do 
 1. Clean code and think about how classes are constructed
+
+Test with negative values (depending on where you are in the world
 */
 
 
