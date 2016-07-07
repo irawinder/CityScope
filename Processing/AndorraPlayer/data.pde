@@ -77,7 +77,12 @@ boolean load_non_essential_data = true;
                               "Canillo",
                               "El Pas de la Casa" };
   
-  String[] correlating_dates = {"20140602", "20140815", "20141102", "20141109", "20141225", "20150823", "20150701", "20150712"};    
+  String[] correlating_dates = {"20140602", "20140815", "20141102", 
+                                "20141109", "20141225", "20150823", 
+                                "20150824", "20150825", "20150826",
+                                "20150827", "20150828", 
+                                "20150721", "20150722", "20150723", 
+                                "20150724", "20150725","20150712"};    
 
   float offset = -.2; // Amount that Hamlets markers are offset from center of margin   
   PVector[] container_Locations = {new PVector(topoWidthPix+0.5*marginWidthPix, topoHeightPix+0.5*marginWidthPix), 
@@ -215,7 +220,6 @@ void initData() {
     }
     
    String[] list;
-   String[] hour;
    ArrayList<String> correlates;
    int[] correlating_indices;
    
@@ -230,86 +234,22 @@ void initData() {
          for(int i = 0; i<instagram.getRowCount(); i++){
                 String timestamp = instagram.getString(i, "andorra_time");
                 list = split(timestamp, '-');
-                    if(list[0].equals("2015") && list[1].equals("08") && list[2].charAt(0) == '2' && list[2].charAt(1) == '3')
-                        { 
-                        hour = split(list[2], ':');
-                        TableRow newRow = cleaninsta.addRow();
+                
+                String date = list[0] + list[1] + list[2].charAt(0) + list[2].charAt(1); 
+                
+                for(int j = 0; j<correlating_dates.length; j++){
+                  if(date.equals(correlating_dates[j])){
+                     TableRow newRow = cleaninsta.addRow();
                         newRow.setString("Date", list[0] + list[1] + list[2].charAt(0) + list[2].charAt(1));
                         newRow.setFloat("Lat", instagram.getFloat(i, "location.latitude"));
                         newRow.setFloat("Lon", instagram.getFloat(i, "location.longitude"));
                         newRow.setString("Language", instagram.getString(i, "lang"));
-                        newRow.setString("Hour", hour[0]);
-                            }
-                    else if(list[0].equals("2015") && list[1].equals("07") && list[2].charAt(0) == '0' && list[2].charAt(1) == '1')
-                        { 
-                        hour = split(list[2], ':');
-                        TableRow newRow = cleaninsta.addRow();
-                        newRow.setString("Date", list[0] + list[1] + list[2].charAt(0) + list[2].charAt(1));
-                        newRow.setFloat("Lat", instagram.getFloat(i, "location.latitude"));
-                        newRow.setFloat("Lon", instagram.getFloat(i, "location.longitude"));
-                        newRow.setString("Language", instagram.getString(i, "lang"));
-                        newRow.setString("Hour", hour[0]);
-                            }
-                    else if(list[0].equals("2015") && list[1].equals("07") && list[2].charAt(0) == '1' && list[2].charAt(1) == '2')
-                        { 
-                        hour = split(list[2], ':');
-                        TableRow newRow = cleaninsta.addRow();
-                        newRow.setString("Date", list[0] + list[1] + list[2].charAt(0) + list[2].charAt(1));
-                        newRow.setFloat("Lat", instagram.getFloat(i, "location.latitude"));
-                        newRow.setFloat("Lon", instagram.getFloat(i, "location.longitude"));
-                        newRow.setString("Language", instagram.getString(i, "lang"));
-                        newRow.setString("Hour", hour[0]);
-                            }
-                    else if(list[0].equals("2014") && list[1].equals("06") && list[2].charAt(0) == '0' && list[2].charAt(1) == '2')
-                        { 
-                        hour = split(list[2], ':');
-                        TableRow newRow = cleaninsta.addRow();
-                        newRow.setString("Date", list[0] + list[1] + list[2].charAt(0) + list[2].charAt(1));
-                        newRow.setFloat("Lat", instagram.getFloat(i, "location.latitude"));
-                        newRow.setFloat("Lon", instagram.getFloat(i, "location.longitude"));
-                        newRow.setString("Language", instagram.getString(i, "lang"));
-                        newRow.setString("Hour", hour[0]);
-                            } 
-                    else if(list[0].equals("2014") && list[1].equals("08") && list[2].charAt(0) == '1' && list[2].charAt(1) == '5')
-                        { 
-                        hour = split(list[2], ':');
-                        TableRow newRow = cleaninsta.addRow();
-                        newRow.setString("Date", list[0] + list[1] + list[2].charAt(0) + list[2].charAt(1));
-                        newRow.setFloat("Lat", instagram.getFloat(i, "location.latitude"));
-                        newRow.setFloat("Lon", instagram.getFloat(i, "location.longitude"));
-                        newRow.setString("Language", instagram.getString(i, "lang"));
-                        newRow.setString("Hour", hour[0]);
-                            }
-                    else if(list[0].equals("2014") && list[1].equals("11") && list[2].charAt(0) == '0' && list[2].charAt(1) == '2')
-                        { 
-                        hour = split(list[2], ':');
-                        TableRow newRow = cleaninsta.addRow();
-                        newRow.setString("Date", list[0] + list[1] + list[2].charAt(0) + list[2].charAt(1));
-                        newRow.setFloat("Lat", instagram.getFloat(i, "location.latitude"));
-                        newRow.setFloat("Lon", instagram.getFloat(i, "location.longitude"));
-                        newRow.setString("Language", instagram.getString(i, "lang"));
-                        newRow.setString("Hour", hour[0]);
-                            }
-                    else if(list[0].equals("2014") && list[1].equals("11") && list[2].charAt(0) == '0' && list[2].charAt(1) == '9')
-                        { 
-                        hour = split(list[2], ':');
-                        TableRow newRow = cleaninsta.addRow();
-                        newRow.setString("Date", list[0] + list[1] + list[2].charAt(0) + list[2].charAt(1));
-                        newRow.setFloat("Lat", instagram.getFloat(i, "location.latitude"));
-                        newRow.setFloat("Lon", instagram.getFloat(i, "location.longitude"));
-                        newRow.setString("Language", instagram.getString(i, "lang"));
-                        newRow.setString("Hour", hour[0]);
-                            }
-                    else if(list[0].equals("2014") && list[1].equals("12") && list[2].charAt(0) == '2' && list[2].charAt(1) == '5')
-                        { 
-                        hour = split(list[2], ':');
-                        TableRow newRow = cleaninsta.addRow();
-                        newRow.setString("Date", list[0] + list[1] + list[2].charAt(0) + list[2].charAt(1));
-                        newRow.setFloat("Lat", instagram.getFloat(i, "location.latitude"));
-                        newRow.setFloat("Lon", instagram.getFloat(i, "location.longitude"));
-                        newRow.setString("Language", instagram.getString(i, "lang"));
-                        newRow.setString("Hour", hour[0]);
-                            }    
+                        newRow.setString("Hour",  str(list[2].charAt(3)) + str(list[2].charAt(4)));
+              
+                  }
+                    
+                }
+               
                     }
     saveTable(cleaninsta, "data/cleaninsta.csv");            
     twitter = loadTable("data/twitter.csv", "header");

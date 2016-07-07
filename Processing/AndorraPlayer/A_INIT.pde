@@ -411,6 +411,10 @@ void setSwarmFlow(int hr) {
     }
   }
   
+  if(hr == 23){
+    println("hello 23rd hour!");
+  }
+  
   if (hr < summary.getRowCount()) {
     swarmHorde.popScaler(summary.getFloat(hr, "TOTAL")/maxFlow);
   } else {
@@ -438,7 +442,9 @@ int prevHour(int hr){
     hr--;
     }
   } 
+    println("Hour: " + hr + ":00 - " + (hr+1) + ":00");
   return hr;
+  
 }
 
 void checkValidHour(int _hourIndex) {
