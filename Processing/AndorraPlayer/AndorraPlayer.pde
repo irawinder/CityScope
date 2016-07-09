@@ -129,7 +129,7 @@ boolean use4k = false;
 // Draw Modes:
 // 0 = Render For Screen
 // 1 = Render for Projection-Mapping
-int drawMode = 1;
+int drawMode = 0;
 
 
 void setup() {

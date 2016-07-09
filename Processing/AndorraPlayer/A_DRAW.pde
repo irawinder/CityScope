@@ -18,7 +18,6 @@ int grayColor = int(abs(background - (255.0/2)*schemeScaler));
 
 // temp variable that holds coordinate location for a point to render
 PVector coord;
-PVector ob_coord;
 
 // temp variable that holds coordinate locations for a line to render
 PVector[] line = new PVector[2];

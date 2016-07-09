@@ -409,11 +409,10 @@ void setSwarmFlow(int hr) {
       //println(1.0/OD.getInt(i, "AMOUNT"));
       date = OD.getString(i, "DATE");
     }
+
   }
   
-  if(hr == 23){
-    println("hello 23rd hour!");
-  }
+
   
   if (hr < summary.getRowCount()) {
     swarmHorde.popScaler(summary.getFloat(hr, "TOTAL")/maxFlow);

@@ -72,12 +72,14 @@ for (int i=0; i<numSwarm; i++) {
                                   if (towerIndex == 1) {
                                         tower_1.add(amen_coord[t]);
                                         tower_9.add(amen_coord[t]);
+                                        tower_5.add(amen_coord[t]);
                                       }    
                                    if (towerIndex == 2) {
                                         tower_2.add(amen_coord[t]);
                                       }
                                   if (towerIndex == 4) {
                                         tower_4.add(amen_coord[t]);
+                                        tower_5.add(amen_coord[t]);
                                       }  
                                   if (towerIndex == 5) {
                                         tower_5.add(amen_coord[t]);
@@ -85,7 +87,7 @@ for (int i=0; i<numSwarm; i++) {
                                       }
                                   if (towerIndex == 6) {
                                         tower_6.add(amen_coord[t]);
-                                        tower_3.add(amen_coord[t]);
+                                        //tower_3.add(amen_coord[t]);
                                       }  
                                   if (towerIndex == 8) {
                                         tower_8.add(amen_coord[t]);
