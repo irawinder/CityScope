@@ -1,4 +1,4 @@
-/** 
+/* 
  * Application to read and display Kendall Square Data on CityScope 
  *
  *  Dynamic Vizualizations: 
