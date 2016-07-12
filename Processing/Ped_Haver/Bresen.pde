@@ -52,10 +52,10 @@ void bresenham(String filename, ArrayList<PVector> xylist){
         //number of steps needed, based on what change is biggest
         //depending on your need for accuracy, you can adjust this, the smaller the Steps number, the fewer points rendered
         if(dx > dy){
-          Steps = dx/(scale/2);
+          Steps = dx;
         }
         else{
-          Steps = dy/(scale/2);        
+          Steps = dy;        
         }
           
         //x and y increments for the points in the line      
