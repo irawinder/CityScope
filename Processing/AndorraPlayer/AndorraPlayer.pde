@@ -130,7 +130,7 @@ boolean use4k = false;
 // Draw Modes:
 // 0 = Render For Screen
 // 1 = Render for Projection-Mapping
-int drawMode = 0;
+int drawMode = 1;
 
 void setup() {
   //size(2*projectorWidth, 2*projectorHeight, P3D);
