@@ -64,9 +64,9 @@ Keystone ks;
 CornerPinSurface[] surface = new CornerPinSurface[numProjectors];
 PGraphics offscreen;
 
-boolean sketchFullScreen() {
-  return !debug;
-}
+//boolean sketchFullScreen() {
+//  return !debug;
+//}
 
 void initCanvas() {
 
@@ -686,4 +686,3 @@ void initOD(PGraphics p) {
   A = new PVector(random(1.0)*p.width, random(1.0)*p.height);
   B = new PVector(random(1.0)*p.width, random(1.0)*p.height);
 }
-

@@ -138,11 +138,12 @@ void setup() {
   // Keystone will only work with P3D or OPENGL renderers, 
   // since it relies on texture mapping to deform
 
-  if (use4k) {
-    size(2*projectorWidth, 2*projectorHeight, P3D);
-  } else {
-    size(projectorWidth, projectorHeight, P3D);
-  }
+//  if (use4k) {
+   //size(1920, 1200, P3D);
+    fullScreen(P3D, 3);
+//  } else {
+//    size(projectorWidth, projectorHeight, P3D);
+//  }
    
    initCanvas();
 
