@@ -5,7 +5,7 @@ Drawing Lines Script by Nina Lutz, nlutz@mit.edu
 Made for CDR Network Visualization for the Andorra CityScope Project, MIT Media Lab, Changing Places
 
 Supervisor: Ira Winder, jiw@mit.edu 
-Joint Supervisor (on this script): Arnaud Gringrad
+Joint Supervisor (on this script): Arnaud Grignard
 
 This script generates a random network of nodes and edges and displays a looping animation of the edges traveling from their orgins to destination
 This is an abstract component, but in the real visualization the nodes are cell phone towers and the edges are amounts of different nationalities going between them
