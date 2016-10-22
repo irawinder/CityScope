@@ -3,7 +3,7 @@ import deadpixel.keystone.*;
 
 int projectorWidth = 1920;
 int projectorHeight = 1080;
-int projectorOffset = 1882;
+int projectorOffset = 1500;
 
 int screenWidth = 1882;
 int screenHeight = 1058;
