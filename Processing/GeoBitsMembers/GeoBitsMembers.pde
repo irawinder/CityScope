@@ -41,6 +41,11 @@ void setup() {
 
   MapUtils.createDefaultEventDispatcher(this, map);
   smooth();
+  
+//  // Initial Projection-Mapping Canvas
+//  initializeProjection2D();
+
+  
 }
 
 void draw() {

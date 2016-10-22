@@ -92,6 +92,20 @@ switch(key){
       test_Bresen();
        agentstriggered = !agentstriggered;
       break;
+  case '`': 
+        if (displayProjection2D) {
+          displayProjection2D = false;
+          closeProjection2D();
+        } else {
+          displayProjection2D = true;
+          showProjection2D();
+        }
+        break;    
+    case 'c':
+        // enter/leave calibration mode, where surfaces can be warped 
+        // and moved
+        ks.toggleCalibration();
+        break;
 }
 }
 
