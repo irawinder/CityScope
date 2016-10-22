@@ -122,7 +122,10 @@ public class projApplet extends PApplet {
    p.image(Selection, 0, 0);
    }
    if(initialized){
-     p.image(tests, 0, 0);
+     p.image(special_agents, 0, 0);
+   }
+   if(lines){
+   p.image(special_roads, 0, 0);
    }
 //   p.image(tableCanvas, 0, 0, 100, 100);
 

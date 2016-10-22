@@ -1,6 +1,6 @@
 import deadpixel.keystone.*;
 
-PImage tests;
+PImage special_agents, special_roads;
 
 /* GeoBits 
  
@@ -140,7 +140,7 @@ void draw() {
       }
     }
   }
-
+  
 }
 
 void mouseDragged() {
@@ -158,9 +158,11 @@ void renderTableCanvas() {
   //  background(0);
   // Renders the tableCanvas as either a projection map or on-screen 
   image(tableCanvas, 0, 0, tableCanvas.width, tableCanvas.height);
-  tests = tableCanvas.get();
+ if(initialized){
+  special_agents = tableCanvas.get(int(mercatorMap.getScreenLocation(selection.bounds.boxcorners().get(1)).x), int(mercatorMap.getScreenLocation(selection.bounds.boxcorners().get(1)).y), boxw+100, boxh+100);
+  special_roads = Selection.get(int(mercatorMap.getScreenLocation(selection.bounds.boxcorners().get(1)).x), int(mercatorMap.getScreenLocation(selection.bounds.boxcorners().get(1)).y), boxw+100, boxh+100);
+  }
 }  
-
 void mainDraw() {
   // Draw Functions Located here should exclusively be drawn onto 'tableCanvas',
   // a PGraphics set up to hold all information that will eventually be 
