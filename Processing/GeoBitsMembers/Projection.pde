@@ -117,8 +117,15 @@ public class projApplet extends PApplet {
     p.clear();
     p.fill(#ff0000);
 //    p.ellipse(20, 20, 100, 100);
+    
+   if(lines){
    p.image(Selection, 0, 0);
-   p.image(agents, 0, 0);
+   }
+   if(initialized){
+     p.image(tests, 0, 0);
+   }
+//   p.image(tableCanvas, 0, 0, 100, 100);
+
 //    p.image(margin, 0, 0);
 //    p.image(projector, margin.width, 0);
     p.endDraw();

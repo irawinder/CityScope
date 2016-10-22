@@ -1,5 +1,7 @@
 import deadpixel.keystone.*;
 
+PImage tests;
+
 /* GeoBits 
  
  GeoBits is a system for exploring and rendering GeoSpatial data a global scale in a variety of coordinate systems
@@ -35,7 +37,7 @@ void setup() {
   draw_directions(direction);       
   draw_popup(popup);
   draw_loading(loading);
-  draw_agents(agents);
+//  draw_agents(agents);
 
   map = new UnfoldingMap(this, new OpenStreetMap.OpenStreetMapProvider());
 
@@ -138,6 +140,7 @@ void draw() {
       }
     }
   }
+
 }
 
 void mouseDragged() {
@@ -155,6 +158,7 @@ void renderTableCanvas() {
   //  background(0);
   // Renders the tableCanvas as either a projection map or on-screen 
   image(tableCanvas, 0, 0, tableCanvas.width, tableCanvas.height);
+  tests = tableCanvas.get();
 }  
 
 void mainDraw() {
