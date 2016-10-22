@@ -49,9 +49,9 @@ void initPedestrians(PGraphics p) {
 
   println("Initializing Pedestrian Objects ... ");
   
-  swarmHorde = new Horde(2000);
+  swarmHorde = new Horde(1500);
   sources_Viz = createGraphics(p.width, p.height);
-  testNetwork_Random(p, 20);
+  testNetwork_Random(p, 10);
   
   swarmPaths(p, enablePathfinding);
   sources_Viz(p);

@@ -47,7 +47,7 @@ switch(key){
       zoom = map.getZoomLevel();
       handler = selection;
       Handler = Selection;
-      c = #0000ff;
+      c = #ff0000;
       selection.drawRoads(Selection, c);
       lines = !lines;
       break;  

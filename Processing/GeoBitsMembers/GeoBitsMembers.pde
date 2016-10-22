@@ -9,7 +9,7 @@ PImage special_agents, special_roads;
  
  This code is the essence of under construction...it's a hot mess
  
- Author: Nina Lutz, nlutz@mit.edu
+ Author: Nina Lutz, nlutz@mit.edu`
  
  Supervisor: Ira Winder, jiw@mit.edu
  
@@ -159,8 +159,9 @@ void renderTableCanvas() {
   // Renders the tableCanvas as either a projection map or on-screen 
   image(tableCanvas, 0, 0, tableCanvas.width, tableCanvas.height);
  if(initialized){
-  special_agents = tableCanvas.get(int(mercatorMap.getScreenLocation(selection.bounds.boxcorners().get(1)).x), int(mercatorMap.getScreenLocation(selection.bounds.boxcorners().get(1)).y), boxw+100, boxh+100);
+  println("making PGraphics");
   special_roads = Selection.get(int(mercatorMap.getScreenLocation(selection.bounds.boxcorners().get(1)).x), int(mercatorMap.getScreenLocation(selection.bounds.boxcorners().get(1)).y), boxw+100, boxh+100);
+  special_agents = tableCanvas.get(int(mercatorMap.getScreenLocation(selection.bounds.boxcorners().get(1)).x), int(mercatorMap.getScreenLocation(selection.bounds.boxcorners().get(1)).y), boxw+100, boxh+100);
   }
 }  
 void mainDraw() {
