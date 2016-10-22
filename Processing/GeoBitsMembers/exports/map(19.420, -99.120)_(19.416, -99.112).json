@@ -1,0 +1,6936 @@
+[
+  null,
+  null,
+  null,
+  null,
+  {
+    "water": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "boundaries": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "buildings": {
+      "features": [{
+        "properties": {
+          "id": 398416954,
+          "area": 1675,
+          "source": "openstreetmap.org",
+          "sort_key": 475,
+          "min_zoom": 13,
+          "kind": "building"
+        },
+        "type": "Feature",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [[
+            [
+              -99.11492185,
+              19.41970048
+            ],
+            [
+              -99.11486067,
+              19.42003758
+            ],
+            [
+              -99.11450575,
+              19.4199915
+            ],
+            [
+              -99.1145424,
+              19.41964753
+            ],
+            [
+              -99.11492185,
+              19.41970048
+            ]
+          ]]
+        }
+      }],
+      "type": "FeatureCollection"
+    },
+    "pois": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "landuse": {
+      "features": [
+        {
+          "properties": {
+            "id": 376935453,
+            "area": 58251,
+            "source": "openstreetmap.org",
+            "sort_key": 41,
+            "min_zoom": 9.341,
+            "kind": "commercial"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11489093,
+                19.41997316
+              ],
+              [
+                -99.11485232,
+                19.42021135
+              ],
+              [
+                -99.1148171,
+                19.42055091
+              ],
+              [
+                -99.11453247,
+                19.42047175
+              ],
+              [
+                -99.11453247,
+                19.41997316
+              ],
+              [
+                -99.11489093,
+                19.41997316
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 332450452,
+            "area": 2279,
+            "source": "openstreetmap.org",
+            "sort_key": 32,
+            "min_zoom": 11.6788,
+            "kind": "grass"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11509247,
+                19.41997316
+              ],
+              [
+                -99.11500602,
+                19.42055082
+              ],
+              [
+                -99.11498266,
+                19.42055997
+              ],
+              [
+                -99.11493317,
+                19.42054735
+              ],
+              [
+                -99.11486651,
+                19.42052888
+              ],
+              [
+                -99.11486076,
+                19.42050956
+              ],
+              [
+                -99.11489894,
+                19.42028971
+              ],
+              [
+                -99.1149541,
+                19.42025201
+              ],
+              [
+                -99.11499369,
+                19.41997316
+              ],
+              [
+                -99.11509247,
+                19.41997316
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 332450465,
+            "area": 1367,
+            "source": "openstreetmap.org",
+            "sort_key": 32,
+            "min_zoom": 12.0477,
+            "kind": "grass"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11495104,
+                19.42102398
+              ],
+              [
+                -99.11491577,
+                19.42126832
+              ],
+              [
+                -99.11481527,
+                19.42126832
+              ],
+              [
+                -99.11485546,
+                19.42098586
+              ],
+              [
+                -99.11487837,
+                19.42096688
+              ],
+              [
+                -99.11494026,
+                19.42098722
+              ],
+              [
+                -99.11495104,
+                19.42102398
+              ]
+            ]]
+          }
+        }
+      ],
+      "type": "FeatureCollection"
+    },
+    "earth": {
+      "features": [{
+        "properties": {
+          "id": 261545,
+          "source": "openstreetmapdata.com",
+          "sort_key": 10,
+          "kind": "earth"
+        },
+        "type": "Feature",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [[
+            [
+              -99.11453247,
+              19.41997316
+            ],
+            [
+              -99.11590576,
+              19.41997316
+            ],
+            [
+              -99.11590576,
+              19.42126832
+            ],
+            [
+              -99.11453247,
+              19.42126832
+            ],
+            [
+              -99.11453247,
+              19.41997316
+            ]
+          ]]
+        }
+      }],
+      "type": "FeatureCollection"
+    },
+    "places": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "transit": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "roads": {
+      "features": [
+        {
+          "properties": {
+            "id": 25164380,
+            "highway": "residential",
+            "source": "openstreetmap.org",
+            "sort_key": 360,
+            "name": "Sur 109",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11545527,
+                19.42072941
+              ],
+              [
+                -99.11560811,
+                19.41997316
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 25155043,
+            "highway": "tertiary",
+            "source": "openstreetmap.org",
+            "sort_key": 376,
+            "name": "Sur 111",
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11502479,
+                19.42061013
+              ],
+              [
+                -99.11512844,
+                19.41997316
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 77583286,
+            "highway": "secondary",
+            "source": "openstreetmap.org",
+            "sort_key": 377,
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11590576,
+                19.42085467
+              ],
+              [
+                -99.11585331,
+                19.42084277
+              ],
+              [
+                -99.11545527,
+                19.42072941
+              ],
+              [
+                -99.11502479,
+                19.42061013
+              ],
+              [
+                -99.11494718,
+                19.42058996
+              ],
+              [
+                -99.1148171,
+                19.42055091
+              ],
+              [
+                -99.11453247,
+                19.42047175
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 25163829,
+            "highway": "residential",
+            "source": "openstreetmap.org",
+            "sort_key": 360,
+            "name": "Sur 107",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.1158121,
+                19.42126832
+              ],
+              [
+                -99.11582654,
+                19.42117657
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 25154965,
+            "highway": "tertiary",
+            "source": "openstreetmap.org",
+            "landuse_kind": "commercial",
+            "sort_key": 376,
+            "name": "Lic. Lazaro Pavia",
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11485232,
+                19.42021135
+              ],
+              [
+                -99.1148171,
+                19.42055091
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 25154965,
+            "highway": "tertiary",
+            "source": "openstreetmap.org",
+            "sort_key": 376,
+            "name": "Lic. Lazaro Pavia",
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11495165,
+                19.41997316
+              ],
+              [
+                -99.11492912,
+                19.42012773
+              ],
+              [
+                -99.11485232,
+                19.42021135
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293794627,
+            "is_link": "yes",
+            "highway": "secondary_link",
+            "source": "openstreetmap.org",
+            "sort_key": 355,
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11456063,
+                19.42081346
+              ],
+              [
+                -99.11472035,
+                19.42082845
+              ],
+              [
+                -99.11478117,
+                19.42080905
+              ],
+              [
+                -99.11480075,
+                19.4207644
+              ],
+              [
+                -99.11479294,
+                19.42073102
+              ],
+              [
+                -99.11472278,
+                19.4206984
+              ],
+              [
+                -99.11453247,
+                19.42065325
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 25163831,
+            "highway": "residential",
+            "source": "openstreetmap.org",
+            "sort_key": 360,
+            "name": "Sur 109",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11537585,
+                19.42126832
+              ],
+              [
+                -99.11540784,
+                19.42104898
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 226525517,
+            "ref": "1S",
+            "highway": "primary",
+            "source": "openstreetmap.org",
+            "sort_key": 378,
+            "name": "Fray Servando y Teresa de Mier",
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11590576,
+                19.42096317
+              ],
+              [
+                -99.11483579,
+                19.42067578
+              ],
+              [
+                -99.11460681,
+                19.42063342
+              ],
+              [
+                -99.11453247,
+                19.42062978
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293370870,
+            "highway": "tertiary",
+            "source": "openstreetmap.org",
+            "sort_key": 376,
+            "name": "Lic. Lazaro Pavia",
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11472934,
+                19.42085505
+              ],
+              [
+                -99.11467387,
+                19.42126832
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 242274349,
+            "highway": "secondary",
+            "source": "openstreetmap.org",
+            "sort_key": 377,
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11453247,
+                19.42080566
+              ],
+              [
+                -99.11456063,
+                19.42081346
+              ],
+              [
+                -99.11472934,
+                19.42085505
+              ],
+              [
+                -99.11484226,
+                19.42089513
+              ],
+              [
+                -99.11491493,
+                19.42091495
+              ],
+              [
+                -99.11498455,
+                19.42093418
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293764376,
+            "highway": "footway",
+            "source": "openstreetmap.org",
+            "landuse_kind": "grass",
+            "sort_key": 354,
+            "name": "Lic. Lázaro Pavia",
+            "kind": "path"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11495285,
+                19.42055237
+              ],
+              [
+                -99.11504025,
+                19.41997316
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293764376,
+            "highway": "footway",
+            "source": "openstreetmap.org",
+            "sort_key": 354,
+            "name": "Lic. Lázaro Pavia",
+            "kind": "path"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11494718,
+                19.42058996
+              ],
+              [
+                -99.11495285,
+                19.42055237
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293370872,
+            "highway": "secondary",
+            "source": "openstreetmap.org",
+            "sort_key": 377,
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11498455,
+                19.42093418
+              ],
+              [
+                -99.11540784,
+                19.42104898
+              ],
+              [
+                -99.11582654,
+                19.42117657
+              ],
+              [
+                -99.11590576,
+                19.4211989
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 25164369,
+            "highway": "residential",
+            "source": "openstreetmap.org",
+            "sort_key": 360,
+            "name": "Sur 107",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11585331,
+                19.42084277
+              ],
+              [
+                -99.11590576,
+                19.42048157
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 332450409,
+            "highway": "footway",
+            "source": "openstreetmap.org",
+            "landuse_kind": "grass",
+            "sort_key": 354,
+            "name": "Lic. Lázaro Pavia",
+            "kind": "path"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11490629,
+                19.42097606
+              ],
+              [
+                -99.11486498,
+                19.42126832
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 332450409,
+            "highway": "footway",
+            "source": "openstreetmap.org",
+            "sort_key": 354,
+            "name": "Lic. Lázaro Pavia",
+            "kind": "path"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11491493,
+                19.42091495
+              ],
+              [
+                -99.11490629,
+                19.42097606
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293764372,
+            "highway": "footway",
+            "source": "openstreetmap.org",
+            "landuse_kind": "commercial",
+            "sort_key": 354,
+            "name": "Lic. Lázaro Pavia",
+            "kind": "path"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11489093,
+                19.41997316
+              ],
+              [
+                -99.11485232,
+                19.42021135
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293370876,
+            "ref": "1S",
+            "highway": "primary",
+            "source": "openstreetmap.org",
+            "sort_key": 443,
+            "name": "Fray Servando Teresa de Mier",
+            "oneway": "yes",
+            "is_bridge": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11453247,
+                19.42069522
+              ],
+              [
+                -99.11460959,
+                19.42072526
+              ],
+              [
+                -99.11590576,
+                19.42109933
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 242276870,
+            "highway": "tertiary",
+            "source": "openstreetmap.org",
+            "sort_key": 376,
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11478824,
+                19.42126832
+              ],
+              [
+                -99.11484226,
+                19.42089513
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293794626,
+            "is_link": "yes",
+            "highway": "secondary_link",
+            "source": "openstreetmap.org",
+            "sort_key": 355,
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11590576,
+                19.42086779
+              ],
+              [
+                -99.11565272,
+                19.42083175
+              ],
+              [
+                -99.11522862,
+                19.42072772
+              ],
+              [
+                -99.11483579,
+                19.42067578
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293370871,
+            "highway": "unclassified",
+            "source": "openstreetmap.org",
+            "sort_key": 360,
+            "name": "Sur 111",
+            "oneway": "no",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11498455,
+                19.42093418
+              ],
+              [
+                -99.11493717,
+                19.42126832
+              ]
+            ]
+          }
+        }
+      ],
+      "type": "FeatureCollection"
+    },
+    "landuse_labels": {
+      "features": [],
+      "type": "FeatureCollection"
+    }
+  },
+  {
+    "water": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "boundaries": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "buildings": {
+      "features": [{
+        "properties": {
+          "id": 398416954,
+          "area": 1675,
+          "source": "openstreetmap.org",
+          "sort_key": 475,
+          "min_zoom": 13,
+          "kind": "building"
+        },
+        "type": "Feature",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [[
+            [
+              -99.11492185,
+              19.41970048
+            ],
+            [
+              -99.11486067,
+              19.42003758
+            ],
+            [
+              -99.11450575,
+              19.4199915
+            ],
+            [
+              -99.1145424,
+              19.41964753
+            ],
+            [
+              -99.11492185,
+              19.41970048
+            ]
+          ]]
+        }
+      }],
+      "type": "FeatureCollection"
+    },
+    "pois": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "landuse": {
+      "features": [{
+        "properties": {
+          "id": 376935453,
+          "area": 58251,
+          "source": "openstreetmap.org",
+          "sort_key": 41,
+          "min_zoom": 9.341,
+          "kind": "commercial"
+        },
+        "type": "Feature",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [[
+            [
+              -99.11453247,
+              19.42047175
+            ],
+            [
+              -99.11425503,
+              19.4203946
+            ],
+            [
+              -99.11315918,
+              19.42012484
+            ],
+            [
+              -99.11315918,
+              19.41997316
+            ],
+            [
+              -99.11453247,
+              19.41997316
+            ],
+            [
+              -99.11453247,
+              19.42047175
+            ]
+          ]]
+        }
+      }],
+      "type": "FeatureCollection"
+    },
+    "earth": {
+      "features": [{
+        "properties": {
+          "id": 261545,
+          "source": "openstreetmapdata.com",
+          "sort_key": 10,
+          "kind": "earth"
+        },
+        "type": "Feature",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [[
+            [
+              -99.11315918,
+              19.41997316
+            ],
+            [
+              -99.11453247,
+              19.41997316
+            ],
+            [
+              -99.11453247,
+              19.42126832
+            ],
+            [
+              -99.11315918,
+              19.42126832
+            ],
+            [
+              -99.11315918,
+              19.41997316
+            ]
+          ]]
+        }
+      }],
+      "type": "FeatureCollection"
+    },
+    "places": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "transit": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "roads": {
+      "features": [
+        {
+          "properties": {
+            "id": 25164273,
+            "highway": "residential",
+            "source": "openstreetmap.org",
+            "sort_key": 360,
+            "name": "Ret. 2 de F. Servando T. de M.",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "MultiLineString",
+            "coordinates": [
+              [
+                [
+                  -99.11436309,
+                  19.42075881
+                ],
+                [
+                  -99.11431485,
+                  19.42126832
+                ]
+              ],
+              [
+                [
+                  -99.11404915,
+                  19.42126832
+                ],
+                [
+                  -99.11390136,
+                  19.42124299
+                ],
+                [
+                  -99.11395301,
+                  19.42065096
+                ]
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 77583286,
+            "highway": "secondary",
+            "source": "openstreetmap.org",
+            "landuse_kind": "commercial",
+            "sort_key": 377,
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11425503,
+                19.4203946
+              ],
+              [
+                -99.11315918,
+                19.42012484
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 77583286,
+            "highway": "secondary",
+            "source": "openstreetmap.org",
+            "sort_key": 377,
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11453247,
+                19.42047175
+              ],
+              [
+                -99.11425503,
+                19.4203946
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293794627,
+            "is_link": "yes",
+            "highway": "secondary_link",
+            "source": "openstreetmap.org",
+            "sort_key": 355,
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11453247,
+                19.42065325
+              ],
+              [
+                -99.11440783,
+                19.42062368
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 226525517,
+            "ref": "1S",
+            "highway": "primary",
+            "source": "openstreetmap.org",
+            "sort_key": 378,
+            "name": "Fray Servando y Teresa de Mier",
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11453247,
+                19.42062978
+              ],
+              [
+                -99.11440783,
+                19.42062368
+              ],
+              [
+                -99.11411974,
+                19.42059369
+              ],
+              [
+                -99.11393783,
+                19.42056387
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 242274349,
+            "highway": "secondary",
+            "source": "openstreetmap.org",
+            "sort_key": 377,
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11315918,
+                19.42045421
+              ],
+              [
+                -99.11395301,
+                19.42065096
+              ],
+              [
+                -99.11436309,
+                19.42075881
+              ],
+              [
+                -99.11453247,
+                19.42080566
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 332450426,
+            "highway": "service",
+            "source": "openstreetmap.org",
+            "landuse_kind": "commercial",
+            "sort_key": 358,
+            "name": "Ret. 1",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11425503,
+                19.4203946
+              ],
+              [
+                -99.11431007,
+                19.41997316
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293370876,
+            "ref": "1S",
+            "highway": "primary",
+            "source": "openstreetmap.org",
+            "sort_key": 443,
+            "name": "Fray Servando Teresa de Mier",
+            "oneway": "yes",
+            "is_bridge": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11315918,
+                19.42023225
+              ],
+              [
+                -99.11391421,
+                19.42042789
+              ],
+              [
+                -99.1140724,
+                19.42049499
+              ],
+              [
+                -99.1142217,
+                19.4205676
+              ],
+              [
+                -99.11438322,
+                19.42063707
+              ],
+              [
+                -99.11453247,
+                19.42069522
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293370869,
+            "ref": "1S",
+            "highway": "primary",
+            "source": "openstreetmap.org",
+            "sort_key": 443,
+            "name": "Fray Servando Teresa de Mier",
+            "oneway": "yes",
+            "is_bridge": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11393792,
+                19.42056387
+              ],
+              [
+                -99.11315918,
+                19.42036888
+              ]
+            ]
+          }
+        }
+      ],
+      "type": "FeatureCollection"
+    },
+    "landuse_labels": {
+      "features": [],
+      "type": "FeatureCollection"
+    }
+  },
+  {
+    "water": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "boundaries": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "buildings": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "pois": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "landuse": {
+      "features": [{
+        "properties": {
+          "id": 376935453,
+          "area": 58251,
+          "source": "openstreetmap.org",
+          "sort_key": 41,
+          "min_zoom": 9.341,
+          "kind": "commercial"
+        },
+        "type": "Feature",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [[
+            [
+              -99.11315918,
+              19.42012484
+            ],
+            [
+              -99.11265809,
+              19.42000149
+            ],
+            [
+              -99.11255719,
+              19.41997316
+            ],
+            [
+              -99.11315918,
+              19.41997316
+            ],
+            [
+              -99.11315918,
+              19.42012484
+            ]
+          ]]
+        }
+      }],
+      "type": "FeatureCollection"
+    },
+    "earth": {
+      "features": [{
+        "properties": {
+          "id": 261545,
+          "source": "openstreetmapdata.com",
+          "sort_key": 10,
+          "kind": "earth"
+        },
+        "type": "Feature",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [[
+            [
+              -99.11178589,
+              19.41997316
+            ],
+            [
+              -99.11315918,
+              19.41997316
+            ],
+            [
+              -99.11315918,
+              19.42126832
+            ],
+            [
+              -99.11178589,
+              19.42126832
+            ],
+            [
+              -99.11178589,
+              19.41997316
+            ]
+          ]]
+        }
+      }],
+      "type": "FeatureCollection"
+    },
+    "places": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "transit": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "roads": {
+      "features": [
+        {
+          "properties": {
+            "id": 293794629,
+            "is_link": "yes",
+            "highway": "primary_link",
+            "source": "openstreetmap.org",
+            "sort_key": 355,
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11187248,
+                19.41997316
+              ],
+              [
+                -99.11188374,
+                19.42011892
+              ],
+              [
+                -99.11189623,
+                19.42051278
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293370879,
+            "ref": "3O",
+            "highway": "primary",
+            "source": "openstreetmap.org",
+            "sort_key": 378,
+            "name": "Francisco del Paso y Troncoso",
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11196227,
+                19.41997316
+              ],
+              [
+                -99.11189623,
+                19.42051278
+              ],
+              [
+                -99.11182422,
+                19.42126832
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 77583286,
+            "highway": "secondary",
+            "source": "openstreetmap.org",
+            "landuse_kind": "commercial",
+            "sort_key": 377,
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11265809,
+                19.42000149
+              ],
+              [
+                -99.11255719,
+                19.41997316
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 77583286,
+            "highway": "secondary",
+            "source": "openstreetmap.org",
+            "sort_key": 377,
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11315918,
+                19.42012484
+              ],
+              [
+                -99.11265809,
+                19.42000149
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293370878,
+            "is_link": "yes",
+            "highway": "primary_link",
+            "source": "openstreetmap.org",
+            "sort_key": 443,
+            "oneway": "yes",
+            "is_bridge": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.1125229,
+                19.42020957
+              ],
+              [
+                -99.11240099,
+                19.42019999
+              ],
+              [
+                -99.11231503,
+                19.42020313
+              ],
+              [
+                -99.11215324,
+                19.42024532
+              ],
+              [
+                -99.11204284,
+                19.42029666
+              ],
+              [
+                -99.11193998,
+                19.42036232
+              ],
+              [
+                -99.11184988,
+                19.42046686
+              ],
+              [
+                -99.11179041,
+                19.42063021
+              ],
+              [
+                -99.11178589,
+                19.42068301
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 254930154,
+            "is_link": "yes",
+            "highway": "primary_link",
+            "source": "openstreetmap.org",
+            "sort_key": 355,
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11200662,
+                19.42126832
+              ],
+              [
+                -99.11200978,
+                19.42111633
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 242274349,
+            "highway": "secondary",
+            "source": "openstreetmap.org",
+            "sort_key": 377,
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11220462,
+                19.42023981
+              ],
+              [
+                -99.1126527,
+                19.42032868
+              ],
+              [
+                -99.11315918,
+                19.42045421
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293370866,
+            "highway": "secondary",
+            "source": "openstreetmap.org",
+            "sort_key": 377,
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11210069,
+                19.42126832
+              ],
+              [
+                -99.11220462,
+                19.42023981
+              ],
+              [
+                -99.11223449,
+                19.41997316
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293370867,
+            "ref": "3 OTE",
+            "highway": "primary",
+            "source": "openstreetmap.org",
+            "sort_key": 378,
+            "name": "Francisco del Paso y Troncoso",
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11199389,
+                19.42126832
+              ],
+              [
+                -99.11200978,
+                19.42111633
+              ],
+              [
+                -99.11210743,
+                19.42018398
+              ],
+              [
+                -99.11212923,
+                19.41997316
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293794632,
+            "highway": "footway",
+            "source": "openstreetmap.org",
+            "sort_key": 443,
+            "is_bridge": "yes",
+            "kind": "path"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11232868,
+                19.42008562
+              ],
+              [
+                -99.11190327,
+                19.41997316
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 25154923,
+            "highway": "secondary",
+            "source": "openstreetmap.org",
+            "sort_key": 377,
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11178589,
+                19.4201091
+              ],
+              [
+                -99.11179472,
+                19.42011121
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 25154909,
+            "highway": "secondary",
+            "source": "openstreetmap.org",
+            "sort_key": 377,
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11181145,
+                19.41997316
+              ],
+              [
+                -99.11179472,
+                19.42011121
+              ],
+              [
+                -99.11178589,
+                19.42019733
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293794628,
+            "is_link": "yes",
+            "highway": "secondary_link",
+            "source": "openstreetmap.org",
+            "sort_key": 355,
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.112658,
+                19.42000149
+              ],
+              [
+                -99.11252343,
+                19.41999217
+              ],
+              [
+                -99.11245301,
+                19.42002183
+              ],
+              [
+                -99.11242022,
+                19.42008545
+              ],
+              [
+                -99.11241851,
+                19.42014823
+              ],
+              [
+                -99.11244528,
+                19.42023151
+              ],
+              [
+                -99.1125131,
+                19.42027955
+              ],
+              [
+                -99.1126527,
+                19.42032868
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293370876,
+            "ref": "1S",
+            "highway": "primary",
+            "source": "openstreetmap.org",
+            "sort_key": 443,
+            "name": "Fray Servando Teresa de Mier",
+            "oneway": "yes",
+            "is_bridge": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11214477,
+                19.41997316
+              ],
+              [
+                -99.11255047,
+                19.42007452
+              ],
+              [
+                -99.11315918,
+                19.42023225
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293370869,
+            "ref": "1S",
+            "highway": "primary",
+            "source": "openstreetmap.org",
+            "sort_key": 443,
+            "name": "Fray Servando Teresa de Mier",
+            "oneway": "yes",
+            "is_bridge": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11315918,
+                19.42036888
+              ],
+              [
+                -99.1125229,
+                19.42020957
+              ],
+              [
+                -99.11178589,
+                19.42002096
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293370877,
+            "is_link": "yes",
+            "highway": "primary_link",
+            "source": "openstreetmap.org",
+            "sort_key": 443,
+            "oneway": "yes",
+            "is_bridge": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.1122961,
+                19.41997316
+              ],
+              [
+                -99.11255047,
+                19.42007452
+              ]
+            ]
+          }
+        }
+      ],
+      "type": "FeatureCollection"
+    },
+    "landuse_labels": {
+      "features": [],
+      "type": "FeatureCollection"
+    }
+  },
+  null,
+  null,
+  null,
+  null,
+  null,
+  {
+    "water": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "boundaries": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "buildings": {
+      "features": [
+        {
+          "properties": {
+            "id": 376935450,
+            "addr_street": "Lic. Lázaro Pavia",
+            "area": 2756,
+            "source": "openstreetmap.org",
+            "landuse_kind": "commercial",
+            "sort_key": 475,
+            "name": "Cine Venustiano Carranza",
+            "min_zoom": 13,
+            "kind": "cinema"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11495868,
+                19.41920825
+              ],
+              [
+                -99.114894,
+                19.41963838
+              ],
+              [
+                -99.11441645,
+                19.4195745
+              ],
+              [
+                -99.11444412,
+                19.41937685
+              ],
+              [
+                -99.11448419,
+                19.41914437
+              ],
+              [
+                -99.11495868,
+                19.41920825
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 376935450,
+            "addr_street": "Lic. Lázaro Pavia",
+            "area": 2756,
+            "source": "openstreetmap.org",
+            "landuse_kind": "commercial",
+            "label_placement": "yes",
+            "sort_key": 475,
+            "name": "Cine Venustiano Carranza",
+            "min_zoom": 13,
+            "kind": "cinema"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              -99.11467438,
+              19.41947567
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 398416954,
+            "area": 1675,
+            "source": "openstreetmap.org",
+            "landuse_kind": "commercial",
+            "sort_key": 475,
+            "min_zoom": 13,
+            "kind": "building"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11492185,
+                19.41970048
+              ],
+              [
+                -99.11486067,
+                19.42003758
+              ],
+              [
+                -99.11450575,
+                19.4199915
+              ],
+              [
+                -99.1145424,
+                19.41964753
+              ],
+              [
+                -99.11492185,
+                19.41970048
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 376935451,
+            "addr_street": "Lic. Lázaro Pavia",
+            "area": 1234,
+            "source": "openstreetmap.org",
+            "landuse_kind": "commercial",
+            "sort_key": 475,
+            "name": "Centro Cultural Carranza",
+            "min_zoom": 14,
+            "kind": "cultural_center"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11497718,
+                19.4189468
+              ],
+              [
+                -99.11496479,
+                19.41904559
+              ],
+              [
+                -99.11493092,
+                19.41905719
+              ],
+              [
+                -99.11492176,
+                19.41913573
+              ],
+              [
+                -99.11461669,
+                19.41909498
+              ],
+              [
+                -99.11466601,
+                19.41880151
+              ],
+              [
+                -99.11495248,
+                19.41882768
+              ],
+              [
+                -99.11493712,
+                19.41893808
+              ],
+              [
+                -99.11497718,
+                19.4189468
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 376935451,
+            "addr_street": "Lic. Lázaro Pavia",
+            "area": 1234,
+            "source": "openstreetmap.org",
+            "landuse_kind": "commercial",
+            "label_placement": "yes",
+            "sort_key": 475,
+            "name": "Centro Cultural Carranza",
+            "min_zoom": 14,
+            "kind": "cultural_center"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              -99.11480214,
+              19.41899619
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 332450441,
+            "area": 799,
+            "source": "openstreetmap.org",
+            "sort_key": 475,
+            "min_zoom": 14,
+            "kind": "school"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11646911,
+                19.41960949
+              ],
+              [
+                -99.11646246,
+                19.41970692
+              ],
+              [
+                -99.11583615,
+                19.41970311
+              ],
+              [
+                -99.11583067,
+                19.41960822
+              ],
+              [
+                -99.11646911,
+                19.41960949
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 376933122,
+            "area": 639,
+            "source": "openstreetmap.org",
+            "sort_key": 475,
+            "min_zoom": 14,
+            "kind": "school"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11646919,
+                19.4193616
+              ],
+              [
+                -99.11646919,
+                19.41944259
+              ],
+              [
+                -99.11586696,
+                19.41943996
+              ],
+              [
+                -99.11586975,
+                19.41935906
+              ],
+              [
+                -99.11646919,
+                19.4193616
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 3802547156,
+            "addr_street": "Prolongación Lucas Alamán",
+            "source": "openstreetmap.org",
+            "label_placement": "yes",
+            "sort_key": 475,
+            "name": "Tacos \"De aqui soy Mexico\"",
+            "min_zoom": 17,
+            "addr_housenumber": "4505",
+            "kind": "address"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              -99.11552174,
+              19.41871661
+            ]
+          }
+        }
+      ],
+      "type": "FeatureCollection"
+    },
+    "pois": {
+      "features": [
+        {
+          "properties": {
+            "id": 398416954,
+            "area": 1674,
+            "name": "Sanborns Balbuena",
+            "min_zoom": 14.4011,
+            "kind": "restaurant"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              -99.11470835,
+              19.41984599
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 3802547156,
+            "cuisine": "mexican",
+            "name": "Tacos \"De aqui soy Mexico\"",
+            "min_zoom": 17,
+            "kind": "restaurant"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              -99.11552174,
+              19.41871661
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 3802813124,
+            "name": "Telefono Publico FONTASTICO",
+            "min_zoom": 17,
+            "kind": "telephone"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              -99.11541538,
+              19.41887276
+            ]
+          }
+        }
+      ],
+      "type": "FeatureCollection"
+    },
+    "landuse": {
+      "features": [
+        {
+          "properties": {
+            "id": 376935453,
+            "area": 58251,
+            "source": "openstreetmap.org",
+            "sort_key": 41,
+            "min_zoom": 9.341,
+            "kind": "commercial"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11509873,
+                19.4186912
+              ],
+              [
+                -99.11489093,
+                19.41997316
+              ],
+              [
+                -99.11453247,
+                19.41997316
+              ],
+              [
+                -99.11453247,
+                19.418678
+              ],
+              [
+                -99.11495591,
+                19.418678
+              ],
+              [
+                -99.11509873,
+                19.4186912
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 376939408,
+            "area": 45070,
+            "source": "openstreetmap.org",
+            "sort_key": 41,
+            "min_zoom": 9.52607,
+            "kind": "commercial"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11510028,
+                19.418678
+              ],
+              [
+                -99.11509881,
+                19.4186912
+              ],
+              [
+                -99.114956,
+                19.418678
+              ],
+              [
+                -99.11510028,
+                19.418678
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": -5817100,
+            "osm_relation": true,
+            "area": 29265,
+            "source": "openstreetmap.org",
+            "sort_key": 20,
+            "min_zoom": 9.83756,
+            "kind": "residential"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11590576,
+                19.41880549
+              ],
+              [
+                -99.11582205,
+                19.41880506
+              ],
+              [
+                -99.11583893,
+                19.418678
+              ],
+              [
+                -99.11590576,
+                19.418678
+              ],
+              [
+                -99.11590576,
+                19.41880549
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 376875606,
+            "area": 7442,
+            "source": "openstreetmap.org",
+            "sort_key": 20,
+            "min_zoom": 10.8253,
+            "kind": "residential"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11584085,
+                19.418678
+              ],
+              [
+                -99.11582196,
+                19.41880506
+              ],
+              [
+                -99.11530588,
+                19.41881167
+              ],
+              [
+                -99.11532528,
+                19.418678
+              ],
+              [
+                -99.11584085,
+                19.418678
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 376901893,
+            "area": 6416,
+            "source": "openstreetmap.org",
+            "sort_key": 20,
+            "min_zoom": 10.9322,
+            "kind": "residential"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11582196,
+                19.41880506
+              ],
+              [
+                -99.11569,
+                19.41932186
+              ],
+              [
+                -99.11567625,
+                19.4194564
+              ],
+              [
+                -99.11563915,
+                19.4198196
+              ],
+              [
+                -99.11515424,
+                19.4198146
+              ],
+              [
+                -99.11519718,
+                19.41948698
+              ],
+              [
+                -99.11530588,
+                19.41881167
+              ],
+              [
+                -99.11582196,
+                19.41880506
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 332450402,
+            "area": 6082,
+            "source": "openstreetmap.org",
+            "sort_key": 75,
+            "min_zoom": 10.9708,
+            "operator": "S.E.P.",
+            "kind": "school"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11590576,
+                19.41932186
+              ],
+              [
+                -99.11569,
+                19.41932186
+              ],
+              [
+                -99.11582196,
+                19.41880506
+              ],
+              [
+                -99.11590576,
+                19.41880549
+              ],
+              [
+                -99.11590576,
+                19.41932186
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 332450403,
+            "area": 6005,
+            "source": "openstreetmap.org",
+            "sort_key": 75,
+            "min_zoom": 10.98,
+            "operator": "S.E.P.",
+            "kind": "school"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11590576,
+                19.41982107
+              ],
+              [
+                -99.11563915,
+                19.4198196
+              ],
+              [
+                -99.11567625,
+                19.4194564
+              ],
+              [
+                -99.11569,
+                19.41932186
+              ],
+              [
+                -99.11590576,
+                19.41932186
+              ],
+              [
+                -99.11590576,
+                19.41982107
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 332450452,
+            "area": 2279,
+            "source": "openstreetmap.org",
+            "sort_key": 32,
+            "min_zoom": 11.6788,
+            "kind": "grass"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11524075,
+                19.4189823
+              ],
+              [
+                -99.11509247,
+                19.41997316
+              ],
+              [
+                -99.11499369,
+                19.41997316
+              ],
+              [
+                -99.11513439,
+                19.4189823
+              ],
+              [
+                -99.11516673,
+                19.41895688
+              ],
+              [
+                -99.11522188,
+                19.41895943
+              ],
+              [
+                -99.11524075,
+                19.4189823
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 332450466,
+            "area": 1743,
+            "source": "openstreetmap.org",
+            "sort_key": 32,
+            "min_zoom": 11.8722,
+            "kind": "grass"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.1152964,
+                19.418678
+              ],
+              [
+                -99.1152924,
+                19.4187067
+              ],
+              [
+                -99.11526572,
+                19.41872458
+              ],
+              [
+                -99.11518963,
+                19.4187139
+              ],
+              [
+                -99.11518119,
+                19.4186862
+              ],
+              [
+                -99.11518238,
+                19.418678
+              ],
+              [
+                -99.1152964,
+                19.418678
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 376935448,
+            "area": 836,
+            "source": "openstreetmap.org",
+            "sort_key": 104,
+            "min_zoom": 12.4021,
+            "kind": "parking"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11461705,
+                19.41875948
+              ],
+              [
+                -99.11456746,
+                19.41911235
+              ],
+              [
+                -99.11453247,
+                19.41910871
+              ],
+              [
+                -99.11453247,
+                19.41875327
+              ],
+              [
+                -99.11461705,
+                19.41875948
+              ]
+            ]]
+          }
+        }
+      ],
+      "type": "FeatureCollection"
+    },
+    "earth": {
+      "features": [{
+        "properties": {
+          "id": 261545,
+          "source": "openstreetmapdata.com",
+          "sort_key": 10,
+          "kind": "earth"
+        },
+        "type": "Feature",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [[
+            [
+              -99.11453247,
+              19.418678
+            ],
+            [
+              -99.11590576,
+              19.418678
+            ],
+            [
+              -99.11590576,
+              19.41997316
+            ],
+            [
+              -99.11453247,
+              19.41997316
+            ],
+            [
+              -99.11453247,
+              19.418678
+            ]
+          ]]
+        }
+      }],
+      "type": "FeatureCollection"
+    },
+    "places": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "transit": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "roads": {
+      "features": [
+        {
+          "properties": {
+            "id": 25164380,
+            "highway": "residential",
+            "source": "openstreetmap.org",
+            "landuse_kind": "school",
+            "sort_key": 360,
+            "name": "Sur 109",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11569,
+                19.41932186
+              ],
+              [
+                -99.11582196,
+                19.41880506
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 25164380,
+            "highway": "residential",
+            "source": "openstreetmap.org",
+            "landuse_kind": "school",
+            "sort_key": 360,
+            "name": "Sur 109",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11563915,
+                19.4198196
+              ],
+              [
+                -99.11567625,
+                19.4194564
+              ],
+              [
+                -99.11569,
+                19.41932186
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 25164380,
+            "highway": "residential",
+            "source": "openstreetmap.org",
+            "landuse_kind": "residential",
+            "sort_key": 360,
+            "name": "Sur 109",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.1158228,
+                19.41879938
+              ],
+              [
+                -99.11584085,
+                19.418678
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 25164380,
+            "highway": "residential",
+            "source": "openstreetmap.org",
+            "landuse_kind": "residential",
+            "sort_key": 360,
+            "name": "Sur 109",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11582196,
+                19.41880506
+              ],
+              [
+                -99.1158228,
+                19.41879938
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 25164380,
+            "highway": "residential",
+            "source": "openstreetmap.org",
+            "sort_key": 360,
+            "name": "Sur 109",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11560811,
+                19.41997316
+              ],
+              [
+                -99.11563915,
+                19.4198196
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 25155043,
+            "highway": "tertiary",
+            "source": "openstreetmap.org",
+            "landuse_kind": "residential",
+            "sort_key": 376,
+            "name": "Sur 111",
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11515424,
+                19.4198146
+              ],
+              [
+                -99.11519718,
+                19.41948698
+              ],
+              [
+                -99.11530588,
+                19.41881167
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 25155043,
+            "highway": "tertiary",
+            "source": "openstreetmap.org",
+            "sort_key": 376,
+            "name": "Sur 111",
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11512844,
+                19.41997316
+              ],
+              [
+                -99.11515424,
+                19.4198146
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 25154932,
+            "highway": "residential",
+            "source": "openstreetmap.org",
+            "landuse_kind": "school",
+            "sort_key": 360,
+            "name": "Prolongación Lucas Alamán",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11582202,
+                19.41880506
+              ],
+              [
+                -99.11582196,
+                19.41880506
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 25154932,
+            "highway": "residential",
+            "source": "openstreetmap.org",
+            "landuse_kind": "residential",
+            "sort_key": 360,
+            "name": "Prolongación Lucas Alamán",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11582196,
+                19.41880506
+              ],
+              [
+                -99.11530588,
+                19.41881167
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 25154932,
+            "highway": "residential",
+            "source": "openstreetmap.org",
+            "sort_key": 360,
+            "name": "Prolongación Lucas Alamán",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "MultiLineString",
+            "coordinates": [
+              [
+                [
+                  -99.11590576,
+                  19.41880549
+                ],
+                [
+                  -99.11582205,
+                  19.41880506
+                ],
+                [
+                  -99.11582202,
+                  19.41880506
+                ]
+              ],
+              [
+                [
+                  -99.11530588,
+                  19.41881167
+                ],
+                [
+                  -99.11521667,
+                  19.41880388
+                ],
+                [
+                  -99.11509873,
+                  19.4186912
+                ]
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 332450412,
+            "highway": "residential",
+            "source": "openstreetmap.org",
+            "landuse_kind": "school",
+            "sort_key": 360,
+            "name": "Oriente 30",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11590576,
+                19.41932186
+              ],
+              [
+                -99.11569,
+                19.41932186
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 25154965,
+            "highway": "tertiary",
+            "source": "openstreetmap.org",
+            "sort_key": 376,
+            "name": "Lic. Lazaro Pavia",
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11510028,
+                19.418678
+              ],
+              [
+                -99.11509881,
+                19.4186912
+              ],
+              [
+                -99.11510564,
+                19.41891673
+              ],
+              [
+                -99.11495165,
+                19.41997316
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293764376,
+            "highway": "footway",
+            "source": "openstreetmap.org",
+            "landuse_kind": "grass",
+            "sort_key": 354,
+            "name": "Lic. Lázaro Pavia",
+            "kind": "path"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11522943,
+                19.41871949
+              ],
+              [
+                -99.11523567,
+                19.418678
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293764376,
+            "highway": "footway",
+            "source": "openstreetmap.org",
+            "landuse_kind": "grass",
+            "sort_key": 354,
+            "name": "Lic. Lázaro Pavia",
+            "kind": "path"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11504025,
+                19.41997316
+              ],
+              [
+                -99.1151934,
+                19.41895811
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293764376,
+            "highway": "footway",
+            "source": "openstreetmap.org",
+            "sort_key": 354,
+            "name": "Lic. Lázaro Pavia",
+            "kind": "path"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.1151934,
+                19.41895811
+              ],
+              [
+                -99.11521667,
+                19.41880388
+              ],
+              [
+                -99.11522593,
+                19.41874279
+              ],
+              [
+                -99.11522943,
+                19.41871949
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 332450434,
+            "highway": "residential",
+            "source": "openstreetmap.org",
+            "sort_key": 360,
+            "name": "Sur 111",
+            "oneway": "yes",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11530588,
+                19.41881167
+              ],
+              [
+                -99.11531899,
+                19.41870687
+              ],
+              [
+                -99.11532325,
+                19.418678
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 25164354,
+            "highway": "residential",
+            "source": "openstreetmap.org",
+            "landuse_kind": "school",
+            "sort_key": 360,
+            "name": "Prol. Ferrocarril Industrial",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11590576,
+                19.4198196
+              ],
+              [
+                -99.11563915,
+                19.4198196
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 25164354,
+            "highway": "residential",
+            "source": "openstreetmap.org",
+            "landuse_kind": "residential",
+            "sort_key": 360,
+            "name": "Prol. Ferrocarril Industrial",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11563915,
+                19.4198196
+              ],
+              [
+                -99.11515424,
+                19.4198146
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 332450427,
+            "highway": "service",
+            "source": "openstreetmap.org",
+            "landuse_kind": "commercial",
+            "sort_key": 358,
+            "name": "Ret. 6",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11509847,
+                19.41869117
+              ],
+              [
+                -99.11499306,
+                19.418678
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 332450427,
+            "highway": "service",
+            "source": "openstreetmap.org",
+            "sort_key": 358,
+            "name": "Ret. 6",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11509873,
+                19.4186912
+              ],
+              [
+                -99.11509847,
+                19.41869117
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293764372,
+            "highway": "footway",
+            "source": "openstreetmap.org",
+            "sort_key": 354,
+            "name": "Lic. Lázaro Pavia",
+            "kind": "path"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11509873,
+                19.4186912
+              ],
+              [
+                -99.11489093,
+                19.41997316
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293764374,
+            "highway": "tertiary",
+            "source": "openstreetmap.org",
+            "landuse_kind": "grass",
+            "sort_key": 376,
+            "name": "Lic. Lázaro Pavia",
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11519292,
+                19.41871436
+              ],
+              [
+                -99.11518866,
+                19.41871069
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293764374,
+            "highway": "tertiary",
+            "source": "openstreetmap.org",
+            "sort_key": 376,
+            "name": "Lic. Lázaro Pavia",
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "MultiLineString",
+            "coordinates": [
+              [
+                [
+                  -99.11518866,
+                  19.41871069
+                ],
+                [
+                  -99.1151507,
+                  19.418678
+                ]
+              ],
+              [
+                [
+                  -99.11530588,
+                  19.41881167
+                ],
+                [
+                  -99.11522593,
+                  19.41874279
+                ],
+                [
+                  -99.11519292,
+                  19.41871436
+                ]
+              ]
+            ]
+          }
+        }
+      ],
+      "type": "FeatureCollection"
+    },
+    "landuse_labels": {
+      "features": [],
+      "type": "FeatureCollection"
+    }
+  },
+  {
+    "water": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "boundaries": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "buildings": {
+      "features": [
+        {
+          "properties": {
+            "id": 398416955,
+            "area": 3693,
+            "source": "openstreetmap.org",
+            "sort_key": 475,
+            "name": "Explanada delegacional",
+            "min_zoom": 13,
+            "kind": "terrace"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11326212,
+                19.41895756
+              ],
+              [
+                -99.11316492,
+                19.41954307
+              ],
+              [
+                -99.11269438,
+                19.41946597
+              ],
+              [
+                -99.11278278,
+                19.41889512
+              ],
+              [
+                -99.11326212,
+                19.41895756
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 376935452,
+            "addr_street": "Francisco del Paso y Troncoso",
+            "area": 3209,
+            "source": "openstreetmap.org",
+            "landuse_kind": "commercial",
+            "sort_key": 475,
+            "name": "Delegación Venustiano Carranza",
+            "min_zoom": 13,
+            "kind": "district_department"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11398068,
+                19.41916572
+              ],
+              [
+                -99.11394044,
+                19.41942378
+              ],
+              [
+                -99.11387342,
+                19.4194187
+              ],
+              [
+                -99.11386264,
+                19.41954273
+              ],
+              [
+                -99.11344421,
+                19.41948953
+              ],
+              [
+                -99.11346837,
+                19.4193605
+              ],
+              [
+                -99.11340405,
+                19.41934787
+              ],
+              [
+                -99.11344151,
+                19.41909235
+              ],
+              [
+                -99.11350862,
+                19.41909998
+              ],
+              [
+                -99.11353009,
+                19.41898865
+              ],
+              [
+                -99.11392705,
+                19.41902907
+              ],
+              [
+                -99.11390289,
+                19.41915818
+              ],
+              [
+                -99.11398068,
+                19.41916572
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 376935452,
+            "addr_street": "Francisco del Paso y Troncoso",
+            "area": 3209,
+            "source": "openstreetmap.org",
+            "landuse_kind": "commercial",
+            "label_placement": "yes",
+            "sort_key": 475,
+            "name": "Delegación Venustiano Carranza",
+            "min_zoom": 13,
+            "kind": "district_department"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              -99.11369194,
+              19.4192568
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 376935450,
+            "addr_street": "Lic. Lázaro Pavia",
+            "area": 2756,
+            "source": "openstreetmap.org",
+            "sort_key": 475,
+            "name": "Cine Venustiano Carranza",
+            "min_zoom": 13,
+            "kind": "cinema"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11495868,
+                19.41920825
+              ],
+              [
+                -99.114894,
+                19.41963838
+              ],
+              [
+                -99.11441645,
+                19.4195745
+              ],
+              [
+                -99.11444412,
+                19.41937685
+              ],
+              [
+                -99.11448419,
+                19.41914437
+              ],
+              [
+                -99.11495868,
+                19.41920825
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 376935449,
+            "addr_street": "Fray Servando Teresa de Mier",
+            "area": 2572,
+            "source": "openstreetmap.org",
+            "landuse_kind": "commercial",
+            "sort_key": 475,
+            "name": "Juzgado Civico VCA-03",
+            "min_zoom": 13,
+            "kind": "court"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11441142,
+                19.41871772
+              ],
+              [
+                -99.11429815,
+                19.41934847
+              ],
+              [
+                -99.11420248,
+                19.419936
+              ],
+              [
+                -99.11406099,
+                19.41992262
+              ],
+              [
+                -99.11423446,
+                19.41869103
+              ],
+              [
+                -99.11441142,
+                19.41871772
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 376935449,
+            "addr_street": "Fray Servando Teresa de Mier",
+            "area": 2572,
+            "source": "openstreetmap.org",
+            "landuse_kind": "commercial",
+            "label_placement": "yes",
+            "sort_key": 475,
+            "name": "Juzgado Civico VCA-03",
+            "min_zoom": 13,
+            "kind": "court"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              -99.11427053,
+              19.41903309
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 398416954,
+            "area": 1675,
+            "source": "openstreetmap.org",
+            "sort_key": 475,
+            "min_zoom": 13,
+            "kind": "building"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11492185,
+                19.41970048
+              ],
+              [
+                -99.11486067,
+                19.42003758
+              ],
+              [
+                -99.11450575,
+                19.4199915
+              ],
+              [
+                -99.1145424,
+                19.41964753
+              ],
+              [
+                -99.11492185,
+                19.41970048
+              ]
+            ]]
+          }
+        }
+      ],
+      "type": "FeatureCollection"
+    },
+    "pois": {
+      "features": [
+        {
+          "properties": {
+            "id": 376935447,
+            "area": 766,
+            "min_zoom": 17,
+            "kind": "parking"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              -99.11441697,
+              19.41978931
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 376935448,
+            "area": 836,
+            "min_zoom": 17,
+            "kind": "parking"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              -99.11450274,
+              19.41892723
+            ]
+          }
+        }
+      ],
+      "type": "FeatureCollection"
+    },
+    "landuse": {
+      "features": [
+        {
+          "properties": {
+            "id": 376935453,
+            "area": 58251,
+            "source": "openstreetmap.org",
+            "sort_key": 41,
+            "min_zoom": 9.341,
+            "kind": "commercial"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11315918,
+                19.418678
+              ],
+              [
+                -99.11453247,
+                19.418678
+              ],
+              [
+                -99.11453247,
+                19.41997316
+              ],
+              [
+                -99.11315918,
+                19.41997316
+              ],
+              [
+                -99.11315918,
+                19.418678
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 376935448,
+            "area": 836,
+            "source": "openstreetmap.org",
+            "sort_key": 104,
+            "min_zoom": 12.4021,
+            "kind": "parking"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11453247,
+                19.41910871
+              ],
+              [
+                -99.11451204,
+                19.41910659
+              ],
+              [
+                -99.11439193,
+                19.41909498
+              ],
+              [
+                -99.1144337,
+                19.41874601
+              ],
+              [
+                -99.11453247,
+                19.41875327
+              ],
+              [
+                -99.11453247,
+                19.41910871
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 376935447,
+            "area": 767,
+            "source": "openstreetmap.org",
+            "sort_key": 104,
+            "min_zoom": 12.4647,
+            "kind": "parking"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11452524,
+                19.41961805
+              ],
+              [
+                -99.11447017,
+                19.41997227
+              ],
+              [
+                -99.1143118,
+                19.41996057
+              ],
+              [
+                -99.1143613,
+                19.41960017
+              ],
+              [
+                -99.11452524,
+                19.41961805
+              ]
+            ]]
+          }
+        }
+      ],
+      "type": "FeatureCollection"
+    },
+    "earth": {
+      "features": [{
+        "properties": {
+          "id": 261545,
+          "source": "openstreetmapdata.com",
+          "sort_key": 10,
+          "kind": "earth"
+        },
+        "type": "Feature",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [[
+            [
+              -99.11315918,
+              19.418678
+            ],
+            [
+              -99.11453247,
+              19.418678
+            ],
+            [
+              -99.11453247,
+              19.41997316
+            ],
+            [
+              -99.11315918,
+              19.41997316
+            ],
+            [
+              -99.11315918,
+              19.418678
+            ]
+          ]]
+        }
+      }],
+      "type": "FeatureCollection"
+    },
+    "places": {
+      "features": [{
+        "properties": {
+          "id": 691563729,
+          "source": "openstreetmap.org",
+          "scalerank": 8,
+          "name": "Venustiano Carranza",
+          "kind": "town"
+        },
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -99.11364372,
+            19.41923579
+          ]
+        }
+      }],
+      "type": "FeatureCollection"
+    },
+    "transit": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "roads": {
+      "features": [
+        {
+          "properties": {
+            "id": 332450426,
+            "highway": "service",
+            "source": "openstreetmap.org",
+            "landuse_kind": "parking",
+            "sort_key": 358,
+            "name": "Ret. 1",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.1143613,
+                19.41960018
+              ],
+              [
+                -99.11452524,
+                19.41961805
+              ],
+              [
+                -99.11447017,
+                19.41997227
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 332450426,
+            "highway": "service",
+            "source": "openstreetmap.org",
+            "landuse_kind": "commercial",
+            "sort_key": 358,
+            "name": "Ret. 1",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "MultiLineString",
+            "coordinates": [
+              [
+                [
+                  -99.11447017,
+                  19.41997227
+                ],
+                [
+                  -99.11431171,
+                  19.41996057
+                ]
+              ],
+              [
+                [
+                  -99.11431171,
+                  19.41996057
+                ],
+                [
+                  -99.11436121,
+                  19.41960017
+                ],
+                [
+                  -99.1143613,
+                  19.41960018
+                ]
+              ],
+              [
+                [
+                  -99.11431007,
+                  19.41997316
+                ],
+                [
+                  -99.11431171,
+                  19.41996057
+                ]
+              ]
+            ]
+          }
+        }
+      ],
+      "type": "FeatureCollection"
+    },
+    "landuse_labels": {
+      "features": [],
+      "type": "FeatureCollection"
+    }
+  },
+  {
+    "water": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "boundaries": {
+      "features": [{
+        "properties": {
+          "id": 331779743,
+          "sort_key": 267,
+          "kind": "fence"
+        },
+        "type": "Feature",
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              -99.11178589,
+              19.41968074
+            ],
+            [
+              -99.11179283,
+              19.41967583
+            ],
+            [
+              -99.11185958,
+              19.41910447
+            ],
+            [
+              -99.11181323,
+              19.41906677
+            ],
+            [
+              -99.11185758,
+              19.418678
+            ]
+          ]
+        }
+      }],
+      "type": "FeatureCollection"
+    },
+    "buildings": {
+      "features": [
+        {
+          "properties": {
+            "id": 398416955,
+            "area": 3693,
+            "source": "openstreetmap.org",
+            "landuse_kind": "commercial",
+            "sort_key": 475,
+            "name": "Explanada delegacional",
+            "min_zoom": 13,
+            "kind": "terrace"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11326212,
+                19.41895756
+              ],
+              [
+                -99.11316492,
+                19.41954307
+              ],
+              [
+                -99.11269438,
+                19.41946597
+              ],
+              [
+                -99.11278278,
+                19.41889512
+              ],
+              [
+                -99.11326212,
+                19.41895756
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 398416955,
+            "area": 3693,
+            "source": "openstreetmap.org",
+            "landuse_kind": "commercial",
+            "label_placement": "yes",
+            "sort_key": 475,
+            "name": "Explanada delegacional",
+            "min_zoom": 13,
+            "kind": "terrace"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              -99.11297683,
+              19.41921177
+            ]
+          }
+        }
+      ],
+      "type": "FeatureCollection"
+    },
+    "pois": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "landuse": {
+      "features": [
+        {
+          "properties": {
+            "id": 331779743,
+            "area": 87312,
+            "source": "openstreetmap.org",
+            "sort_key": 32,
+            "min_zoom": 9.04906,
+            "kind": "grass"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11185758,
+                19.418678
+              ],
+              [
+                -99.11181323,
+                19.41906677
+              ],
+              [
+                -99.11185958,
+                19.41910447
+              ],
+              [
+                -99.11179283,
+                19.41967583
+              ],
+              [
+                -99.11178589,
+                19.41968074
+              ],
+              [
+                -99.11178589,
+                19.418678
+              ],
+              [
+                -99.11185758,
+                19.418678
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": -4656538,
+            "osm_relation": true,
+            "area": 77509,
+            "source": "openstreetmap.org",
+            "sort_key": 32,
+            "min_zoom": 9.13496,
+            "kind": "grass"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11185758,
+                19.418678
+              ],
+              [
+                -99.11181323,
+                19.41906677
+              ],
+              [
+                -99.11185958,
+                19.41910447
+              ],
+              [
+                -99.11179283,
+                19.41967583
+              ],
+              [
+                -99.11178589,
+                19.41968074
+              ],
+              [
+                -99.11178589,
+                19.418678
+              ],
+              [
+                -99.11185758,
+                19.418678
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 376935453,
+            "area": 58251,
+            "source": "openstreetmap.org",
+            "sort_key": 41,
+            "min_zoom": 9.341,
+            "kind": "commercial"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11255719,
+                19.41997316
+              ],
+              [
+                -99.11235033,
+                19.41991508
+              ],
+              [
+                -99.11228745,
+                19.4198839
+              ],
+              [
+                -99.11225017,
+                19.41983315
+              ],
+              [
+                -99.11237509,
+                19.418678
+              ],
+              [
+                -99.11315918,
+                19.418678
+              ],
+              [
+                -99.11315918,
+                19.41997316
+              ],
+              [
+                -99.11255719,
+                19.41997316
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 331779666,
+            "area": 600,
+            "source": "openstreetmap.org",
+            "sort_key": 104,
+            "min_zoom": 12.6414,
+            "kind": "parking"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11190829,
+                19.418678
+              ],
+              [
+                -99.11185958,
+                19.41910447
+              ],
+              [
+                -99.11181323,
+                19.41906677
+              ],
+              [
+                -99.11185758,
+                19.418678
+              ],
+              [
+                -99.11190829,
+                19.418678
+              ]
+            ]]
+          }
+        }
+      ],
+      "type": "FeatureCollection"
+    },
+    "earth": {
+      "features": [{
+        "properties": {
+          "id": 261545,
+          "source": "openstreetmapdata.com",
+          "sort_key": 10,
+          "kind": "earth"
+        },
+        "type": "Feature",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [[
+            [
+              -99.11178589,
+              19.418678
+            ],
+            [
+              -99.11315918,
+              19.418678
+            ],
+            [
+              -99.11315918,
+              19.41997316
+            ],
+            [
+              -99.11178589,
+              19.41997316
+            ],
+            [
+              -99.11178589,
+              19.418678
+            ]
+          ]]
+        }
+      }],
+      "type": "FeatureCollection"
+    },
+    "places": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "transit": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "roads": {
+      "features": [
+        {
+          "properties": {
+            "id": 293794629,
+            "is_link": "yes",
+            "highway": "primary_link",
+            "source": "openstreetmap.org",
+            "sort_key": 355,
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11185069,
+                19.41966295
+              ],
+              [
+                -99.11186623,
+                19.41989229
+              ],
+              [
+                -99.11187248,
+                19.41997316
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293370873,
+            "highway": "secondary",
+            "source": "openstreetmap.org",
+            "sort_key": 377,
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11183164,
+                19.41980647
+              ],
+              [
+                -99.11178589,
+                19.41979348
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293370879,
+            "ref": "3O",
+            "highway": "primary",
+            "source": "openstreetmap.org",
+            "sort_key": 378,
+            "name": "Francisco del Paso y Troncoso",
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11210165,
+                19.418678
+              ],
+              [
+                -99.11200493,
+                19.41962457
+              ],
+              [
+                -99.11196227,
+                19.41997316
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293794630,
+            "is_link": "yes",
+            "highway": "primary_link",
+            "source": "openstreetmap.org",
+            "sort_key": 355,
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11225196,
+                19.41883522
+              ],
+              [
+                -99.1122806,
+                19.418678
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 77583286,
+            "highway": "secondary",
+            "source": "openstreetmap.org",
+            "landuse_kind": "commercial",
+            "sort_key": 377,
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11255719,
+                19.41997316
+              ],
+              [
+                -99.11235033,
+                19.41991508
+              ],
+              [
+                -99.11228745,
+                19.4198839
+              ],
+              [
+                -99.11225017,
+                19.41983315
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293370866,
+            "highway": "secondary",
+            "source": "openstreetmap.org",
+            "sort_key": 377,
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11223449,
+                19.41997316
+              ],
+              [
+                -99.11225017,
+                19.41983315
+              ],
+              [
+                -99.11237509,
+                19.418678
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293370867,
+            "ref": "3 OTE",
+            "highway": "primary",
+            "source": "openstreetmap.org",
+            "sort_key": 378,
+            "name": "Francisco del Paso y Troncoso",
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11212923,
+                19.41997316
+              ],
+              [
+                -99.1121492,
+                19.4197802
+              ],
+              [
+                -99.11225196,
+                19.41883522
+              ],
+              [
+                -99.11226907,
+                19.418678
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293794632,
+            "highway": "footway",
+            "source": "openstreetmap.org",
+            "sort_key": 443,
+            "is_bridge": "yes",
+            "kind": "path"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11190327,
+                19.41997316
+              ],
+              [
+                -99.11178589,
+                19.41994213
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 331779668,
+            "highway": "footway",
+            "source": "openstreetmap.org",
+            "landuse_kind": "grass",
+            "sort_key": 354,
+            "name": "Ret. 8",
+            "footway": "sidewalk",
+            "kind": "path"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11185663,
+                19.41912969
+              ],
+              [
+                -99.11179014,
+                19.41907456
+              ],
+              [
+                -99.11183655,
+                19.418678
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 331779668,
+            "highway": "footway",
+            "source": "openstreetmap.org",
+            "sort_key": 354,
+            "name": "Ret. 8",
+            "footway": "sidewalk",
+            "kind": "path"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11190387,
+                19.41916886
+              ],
+              [
+                -99.11185663,
+                19.41912969
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 25154909,
+            "highway": "secondary",
+            "source": "openstreetmap.org",
+            "sort_key": 377,
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11195699,
+                19.418678
+              ],
+              [
+                -99.11190387,
+                19.41916886
+              ],
+              [
+                -99.11185069,
+                19.41966295
+              ],
+              [
+                -99.11183164,
+                19.41980647
+              ],
+              [
+                -99.11181145,
+                19.41997316
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293370876,
+            "ref": "1S",
+            "highway": "primary",
+            "source": "openstreetmap.org",
+            "sort_key": 443,
+            "name": "Fray Servando Teresa de Mier",
+            "oneway": "yes",
+            "is_bridge": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11178589,
+                19.4198835
+              ],
+              [
+                -99.11214477,
+                19.41997316
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 331779808,
+            "highway": "footway",
+            "source": "openstreetmap.org",
+            "landuse_kind": "grass",
+            "sort_key": 354,
+            "kind": "path"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11178589,
+                19.41907872
+              ],
+              [
+                -99.11179014,
+                19.41907456
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293370877,
+            "is_link": "yes",
+            "highway": "primary_link",
+            "source": "openstreetmap.org",
+            "sort_key": 443,
+            "oneway": "yes",
+            "is_bridge": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.1120243,
+                19.418678
+              ],
+              [
+                -99.11194582,
+                19.41946818
+              ],
+              [
+                -99.11195148,
+                19.41958856
+              ],
+              [
+                -99.11201274,
+                19.41972446
+              ],
+              [
+                -99.11211632,
+                19.41982943
+              ],
+              [
+                -99.1122728,
+                19.41996388
+              ],
+              [
+                -99.1122961,
+                19.41997316
+              ]
+            ]
+          }
+        }
+      ],
+      "type": "FeatureCollection"
+    },
+    "landuse_labels": {
+      "features": [],
+      "type": "FeatureCollection"
+    }
+  },
+  null,
+  null,
+  null,
+  null,
+  null,
+  {
+    "water": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "boundaries": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "buildings": {
+      "features": [
+        {
+          "properties": {
+            "id": 3802540608,
+            "addr_street": "Calz. Zoquipa",
+            "source": "openstreetmap.org",
+            "label_placement": "yes",
+            "sort_key": 475,
+            "name": "Super Flautas y Chelas \"La Terraza\"",
+            "min_zoom": 17,
+            "addr_housenumber": "456",
+            "kind": "address"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              -99.11576815,
+              19.41785779
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 3802666631,
+            "addr_street": "Calz. Zoquipa",
+            "source": "openstreetmap.org",
+            "label_placement": "yes",
+            "sort_key": 475,
+            "name": "Medina Soteno, Eleazar Arturo",
+            "min_zoom": 17,
+            "addr_housenumber": "457",
+            "kind": "address"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              -99.11582888,
+              19.41766801
+            ]
+          }
+        }
+      ],
+      "type": "FeatureCollection"
+    },
+    "pois": {
+      "features": [
+        {
+          "properties": {
+            "id": 3802540608,
+            "cuisine": "mexican",
+            "name": "Super Flautas y Chelas \"La Terraza\"",
+            "min_zoom": 17,
+            "kind": "restaurant"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              -99.11576815,
+              19.41785779
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 3802666631,
+            "name": "Medina Soteno, Eleazar Arturo",
+            "min_zoom": 17,
+            "kind": "restaurant"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              -99.11582888,
+              19.41766801
+            ]
+          }
+        }
+      ],
+      "type": "FeatureCollection"
+    },
+    "landuse": {
+      "features": [
+        {
+          "properties": {
+            "id": 376935453,
+            "area": 58251,
+            "source": "openstreetmap.org",
+            "sort_key": 41,
+            "min_zoom": 9.341,
+            "kind": "commercial"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11453247,
+                19.41863885
+              ],
+              [
+                -99.11495591,
+                19.418678
+              ],
+              [
+                -99.11453247,
+                19.418678
+              ],
+              [
+                -99.11453247,
+                19.41863885
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 376939408,
+            "area": 45070,
+            "source": "openstreetmap.org",
+            "sort_key": 41,
+            "min_zoom": 9.52607,
+            "kind": "commercial"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11524382,
+                19.41738282
+              ],
+              [
+                -99.11510028,
+                19.418678
+              ],
+              [
+                -99.114956,
+                19.418678
+              ],
+              [
+                -99.11453247,
+                19.41863885
+              ],
+              [
+                -99.11453247,
+                19.41738282
+              ],
+              [
+                -99.11524382,
+                19.41738282
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": -5817100,
+            "osm_relation": true,
+            "area": 29265,
+            "source": "openstreetmap.org",
+            "sort_key": 20,
+            "min_zoom": 9.83756,
+            "kind": "residential"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "MultiPolygon",
+            "coordinates": [
+              [[
+                [
+                  -99.11583893,
+                  19.418678
+                ],
+                [
+                  -99.11590576,
+                  19.41817511
+                ],
+                [
+                  -99.11590576,
+                  19.418678
+                ],
+                [
+                  -99.11583893,
+                  19.418678
+                ]
+              ]],
+              [[
+                [
+                  -99.11590576,
+                  19.41773697
+                ],
+                [
+                  -99.11547862,
+                  19.4177219
+                ],
+                [
+                  -99.11552363,
+                  19.41738945
+                ],
+                [
+                  -99.1155246,
+                  19.41738282
+                ],
+                [
+                  -99.11590576,
+                  19.41738282
+                ],
+                [
+                  -99.11590576,
+                  19.41773697
+                ]
+              ]]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 376875606,
+            "area": 7442,
+            "source": "openstreetmap.org",
+            "sort_key": 20,
+            "min_zoom": 10.8253,
+            "kind": "residential"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11590576,
+                19.41824146
+              ],
+              [
+                -99.11584085,
+                19.418678
+              ],
+              [
+                -99.11532528,
+                19.418678
+              ],
+              [
+                -99.1154665,
+                19.41770529
+              ],
+              [
+                -99.11590576,
+                19.41771833
+              ],
+              [
+                -99.11590576,
+                19.41824146
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 332450466,
+            "area": 1743,
+            "source": "openstreetmap.org",
+            "sort_key": 32,
+            "min_zoom": 11.8722,
+            "kind": "grass"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.1154541,
+                19.4175461
+              ],
+              [
+                -99.1152964,
+                19.418678
+              ],
+              [
+                -99.11518238,
+                19.418678
+              ],
+              [
+                -99.11535034,
+                19.41752331
+              ],
+              [
+                -99.11538062,
+                19.41750781
+              ],
+              [
+                -99.11543829,
+                19.41751628
+              ],
+              [
+                -99.1154541,
+                19.4175461
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 332450460,
+            "area": 631,
+            "source": "openstreetmap.org",
+            "sort_key": 32,
+            "min_zoom": 12.6052,
+            "kind": "grass"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11545845,
+                19.41738282
+              ],
+              [
+                -99.1154479,
+                19.4173936
+              ],
+              [
+                -99.11542832,
+                19.41739572
+              ],
+              [
+                -99.11540083,
+                19.41739868
+              ],
+              [
+                -99.11537657,
+                19.41738598
+              ],
+              [
+                -99.1153758,
+                19.41738282
+              ],
+              [
+                -99.11545845,
+                19.41738282
+              ]
+            ]]
+          }
+        }
+      ],
+      "type": "FeatureCollection"
+    },
+    "earth": {
+      "features": [{
+        "properties": {
+          "id": 261545,
+          "source": "openstreetmapdata.com",
+          "sort_key": 10,
+          "kind": "earth"
+        },
+        "type": "Feature",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [[
+            [
+              -99.11453247,
+              19.41738282
+            ],
+            [
+              -99.11590576,
+              19.41738282
+            ],
+            [
+              -99.11590576,
+              19.418678
+            ],
+            [
+              -99.11453247,
+              19.418678
+            ],
+            [
+              -99.11453247,
+              19.41738282
+            ]
+          ]]
+        }
+      }],
+      "type": "FeatureCollection"
+    },
+    "places": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "transit": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "roads": {
+      "features": [
+        {
+          "properties": {
+            "id": 25164380,
+            "highway": "residential",
+            "source": "openstreetmap.org",
+            "landuse_kind": "residential",
+            "sort_key": 360,
+            "name": "Sur 109",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11584085,
+                19.418678
+              ],
+              [
+                -99.11590576,
+                19.41824146
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 25154965,
+            "highway": "tertiary",
+            "source": "openstreetmap.org",
+            "landuse_kind": "commercial",
+            "sort_key": 376,
+            "name": "Lic. Lazaro Pavia",
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11524382,
+                19.41738282
+              ],
+              [
+                -99.11510028,
+                19.418678
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 25155046,
+            "highway": "residential",
+            "source": "openstreetmap.org",
+            "landuse_kind": "grass",
+            "sort_key": 360,
+            "name": "Luis Lara Pardo",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11542835,
+                19.41739572
+              ],
+              [
+                -99.11539172,
+                19.41739391
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 25155046,
+            "highway": "residential",
+            "source": "openstreetmap.org",
+            "sort_key": 360,
+            "name": "Luis Lara Pardo",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "MultiLineString",
+            "coordinates": [
+              [
+                [
+                  -99.11550692,
+                  19.41739648
+                ],
+                [
+                  -99.11542841,
+                  19.41739572
+                ],
+                [
+                  -99.11542835,
+                  19.41739572
+                ]
+              ],
+              [
+                [
+                  -99.11539172,
+                  19.41739391
+                ],
+                [
+                  -99.11534064,
+                  19.4173914
+                ],
+                [
+                  -99.11525841,
+                  19.41738282
+                ]
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293764376,
+            "highway": "footway",
+            "source": "openstreetmap.org",
+            "landuse_kind": "grass",
+            "sort_key": 354,
+            "name": "Lic. Lázaro Pavia",
+            "kind": "path"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11542841,
+                19.41739571
+              ],
+              [
+                -99.11543011,
+                19.41738282
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293764376,
+            "highway": "footway",
+            "source": "openstreetmap.org",
+            "landuse_kind": "grass",
+            "sort_key": 354,
+            "name": "Lic. Lázaro Pavia",
+            "kind": "path"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11523567,
+                19.418678
+              ],
+              [
+                -99.11541089,
+                19.41751225
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293764376,
+            "highway": "footway",
+            "source": "openstreetmap.org",
+            "sort_key": 354,
+            "name": "Lic. Lázaro Pavia",
+            "kind": "path"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11541089,
+                19.41751225
+              ],
+              [
+                -99.11542841,
+                19.41739572
+              ],
+              [
+                -99.11542841,
+                19.41739571
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 332450434,
+            "highway": "residential",
+            "source": "openstreetmap.org",
+            "landuse_kind": "residential",
+            "sort_key": 360,
+            "name": "Sur 111",
+            "oneway": "yes",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11546271,
+                19.41773139
+              ],
+              [
+                -99.11546353,
+                19.41772579
+              ],
+              [
+                -99.1154665,
+                19.41770529
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 332450434,
+            "highway": "residential",
+            "source": "openstreetmap.org",
+            "sort_key": 360,
+            "name": "Sur 111",
+            "oneway": "yes",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "MultiLineString",
+            "coordinates": [
+              [
+                [
+                  -99.1154665,
+                  19.41770529
+                ],
+                [
+                  -99.11550683,
+                  19.41739648
+                ],
+                [
+                  -99.11550893,
+                  19.41738282
+                ]
+              ],
+              [
+                [
+                  -99.11532325,
+                  19.418678
+                ],
+                [
+                  -99.11546271,
+                  19.41773139
+                ]
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 25154707,
+            "highway": "residential",
+            "source": "openstreetmap.org",
+            "landuse_kind": "residential",
+            "sort_key": 360,
+            "name": "Calz. Zoquipa",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11590576,
+                19.41771833
+              ],
+              [
+                -99.11548081,
+                19.41770572
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 25154707,
+            "highway": "residential",
+            "source": "openstreetmap.org",
+            "landuse_kind": "residential",
+            "sort_key": 360,
+            "name": "Calz. Zoquipa",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11548081,
+                19.41770572
+              ],
+              [
+                -99.1154665,
+                19.41770529
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 332450427,
+            "highway": "service",
+            "source": "openstreetmap.org",
+            "landuse_kind": "commercial",
+            "sort_key": 358,
+            "name": "Ret. 6",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11499306,
+                19.418678
+              ],
+              [
+                -99.11464103,
+                19.41863401
+              ],
+              [
+                -99.11453247,
+                19.41862307
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293764374,
+            "highway": "tertiary",
+            "source": "openstreetmap.org",
+            "sort_key": 376,
+            "name": "Lic. Lázaro Pavia",
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.1151507,
+                19.418678
+              ],
+              [
+                -99.11514822,
+                19.41867586
+              ],
+              [
+                -99.11534064,
+                19.4173914
+              ],
+              [
+                -99.11534181,
+                19.41738282
+              ]
+            ]
+          }
+        }
+      ],
+      "type": "FeatureCollection"
+    },
+    "landuse_labels": {
+      "features": [],
+      "type": "FeatureCollection"
+    }
+  },
+  {
+    "water": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "boundaries": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "buildings": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "pois": {
+      "features": [
+        {
+          "properties": {
+            "id": 398414658,
+            "area": 7547,
+            "name": "Clínica 21",
+            "min_zoom": 14,
+            "kind": "hospital"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              -99.11319099,
+              19.4176681
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 4011776355,
+            "name": "Clínica 21 IMSS",
+            "min_zoom": 14,
+            "kind": "hospital"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              -99.11317633,
+              19.41769707
+            ]
+          }
+        }
+      ],
+      "type": "FeatureCollection"
+    },
+    "landuse": {
+      "features": [
+        {
+          "properties": {
+            "id": 376935453,
+            "area": 58251,
+            "source": "openstreetmap.org",
+            "sort_key": 41,
+            "min_zoom": 9.341,
+            "kind": "commercial"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11315918,
+                19.4185119
+              ],
+              [
+                -99.11453247,
+                19.41863885
+              ],
+              [
+                -99.11453247,
+                19.418678
+              ],
+              [
+                -99.11315918,
+                19.418678
+              ],
+              [
+                -99.11315918,
+                19.4185119
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 376939408,
+            "area": 45070,
+            "source": "openstreetmap.org",
+            "sort_key": 41,
+            "min_zoom": 9.52607,
+            "kind": "commercial"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11453247,
+                19.41863885
+              ],
+              [
+                -99.11315918,
+                19.4185119
+              ],
+              [
+                -99.11315918,
+                19.41738282
+              ],
+              [
+                -99.11453247,
+                19.41738282
+              ],
+              [
+                -99.11453247,
+                19.41863885
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 398414658,
+            "area": 7547,
+            "source": "openstreetmap.org",
+            "sort_key": 52,
+            "min_zoom": 10.8151,
+            "operator": "Instituto Mexicano del Seguro Social",
+            "kind": "hospital"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11374299,
+                19.41744121
+              ],
+              [
+                -99.11369663,
+                19.41797098
+              ],
+              [
+                -99.11315918,
+                19.41793257
+              ],
+              [
+                -99.11315918,
+                19.41738773
+              ],
+              [
+                -99.11374299,
+                19.41744121
+              ]
+            ]]
+          }
+        }
+      ],
+      "type": "FeatureCollection"
+    },
+    "earth": {
+      "features": [{
+        "properties": {
+          "id": 261545,
+          "source": "openstreetmapdata.com",
+          "sort_key": 10,
+          "kind": "earth"
+        },
+        "type": "Feature",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [[
+            [
+              -99.11315918,
+              19.41738282
+            ],
+            [
+              -99.11453247,
+              19.41738282
+            ],
+            [
+              -99.11453247,
+              19.418678
+            ],
+            [
+              -99.11315918,
+              19.418678
+            ],
+            [
+              -99.11315918,
+              19.41738282
+            ]
+          ]]
+        }
+      }],
+      "type": "FeatureCollection"
+    },
+    "places": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "transit": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "roads": {
+      "features": [
+        {
+          "properties": {
+            "id": 332450411,
+            "highway": "footway",
+            "source": "openstreetmap.org",
+            "landuse_kind": "commercial",
+            "sort_key": 354,
+            "name": "Lucas Alamán",
+            "kind": "path"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11393954,
+                19.41856335
+              ],
+              [
+                -99.11332725,
+                19.41850998
+              ],
+              [
+                -99.11315918,
+                19.41849761
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 332450427,
+            "highway": "service",
+            "source": "openstreetmap.org",
+            "landuse_kind": "commercial",
+            "sort_key": 358,
+            "name": "Ret. 6",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11453247,
+                19.41862307
+              ],
+              [
+                -99.11393963,
+                19.41856335
+              ]
+            ]
+          }
+        }
+      ],
+      "type": "FeatureCollection"
+    },
+    "landuse_labels": {
+      "features": [],
+      "type": "FeatureCollection"
+    }
+  },
+  {
+    "water": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "boundaries": {
+      "features": [{
+        "properties": {
+          "id": 331779743,
+          "sort_key": 267,
+          "kind": "fence"
+        },
+        "type": "Feature",
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              -99.11185758,
+              19.418678
+            ],
+            [
+              -99.11191222,
+              19.41819905
+            ],
+            [
+              -99.11196621,
+              19.41817092
+            ],
+            [
+              -99.1120385,
+              19.41738282
+            ]
+          ]
+        }
+      }],
+      "type": "FeatureCollection"
+    },
+    "buildings": {
+      "features": [
+        {
+          "properties": {
+            "id": 331779692,
+            "height": 17,
+            "area": 1338,
+            "source": "openstreetmap.org",
+            "landuse_kind": "grass",
+            "sort_key": 475,
+            "volume": 22746,
+            "min_zoom": 14,
+            "kind": "apartments"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11197016,
+                19.4175694
+              ],
+              [
+                -99.11191608,
+                19.41809713
+              ],
+              [
+                -99.11172483,
+                19.41807968
+              ],
+              [
+                -99.11177891,
+                19.41755203
+              ],
+              [
+                -99.11197016,
+                19.4175694
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 331779706,
+            "height": 17,
+            "area": 421,
+            "source": "openstreetmap.org",
+            "sort_key": 475,
+            "volume": 7157,
+            "min_zoom": 14,
+            "kind": "apartments"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11181889,
+                19.41834952
+              ],
+              [
+                -99.11181224,
+                19.41841577
+              ],
+              [
+                -99.11133281,
+                19.4183729
+              ],
+              [
+                -99.11133937,
+                19.41830656
+              ],
+              [
+                -99.11181889,
+                19.41834952
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 331779721,
+            "height": 17,
+            "area": 421,
+            "source": "openstreetmap.org",
+            "sort_key": 475,
+            "volume": 7157,
+            "min_zoom": 14,
+            "kind": "apartments"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11190701,
+                19.41743079
+              ],
+              [
+                -99.11190036,
+                19.41749713
+              ],
+              [
+                -99.11142093,
+                19.41745418
+              ],
+              [
+                -99.11142758,
+                19.41738792
+              ],
+              [
+                -99.11190701,
+                19.41743079
+              ]
+            ]]
+          }
+        }
+      ],
+      "type": "FeatureCollection"
+    },
+    "pois": {
+      "features": [{
+        "properties": {
+          "id": 331779666,
+          "area": 600,
+          "name": "Ret. 8",
+          "min_zoom": 17,
+          "kind": "parking"
+        },
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -99.11188808,
+            19.41863291
+          ]
+        }
+      }],
+      "type": "FeatureCollection"
+    },
+    "landuse": {
+      "features": [
+        {
+          "properties": {
+            "id": 331779743,
+            "area": 87312,
+            "source": "openstreetmap.org",
+            "sort_key": 32,
+            "min_zoom": 9.04906,
+            "kind": "grass"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.1120385,
+                19.41738282
+              ],
+              [
+                -99.11196621,
+                19.41817092
+              ],
+              [
+                -99.11191222,
+                19.41819905
+              ],
+              [
+                -99.11185758,
+                19.418678
+              ],
+              [
+                -99.11178589,
+                19.418678
+              ],
+              [
+                -99.11178589,
+                19.41738282
+              ],
+              [
+                -99.1120385,
+                19.41738282
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": -4656538,
+            "osm_relation": true,
+            "area": 77509,
+            "source": "openstreetmap.org",
+            "sort_key": 32,
+            "min_zoom": 9.13496,
+            "kind": "grass"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.1120385,
+                19.41738282
+              ],
+              [
+                -99.11196621,
+                19.41817092
+              ],
+              [
+                -99.11191222,
+                19.41819905
+              ],
+              [
+                -99.11185758,
+                19.418678
+              ],
+              [
+                -99.11178589,
+                19.418678
+              ],
+              [
+                -99.11178589,
+                19.41738282
+              ],
+              [
+                -99.11184428,
+                19.41738282
+              ],
+              [
+                -99.11192192,
+                19.4173897
+              ],
+              [
+                -99.11191869,
+                19.4174097
+              ],
+              [
+                -99.11195705,
+                19.417413
+              ],
+              [
+                -99.11202209,
+                19.41741885
+              ],
+              [
+                -99.11202551,
+                19.41738282
+              ],
+              [
+                -99.1120385,
+                19.41738282
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 376935453,
+            "area": 58251,
+            "source": "openstreetmap.org",
+            "sort_key": 41,
+            "min_zoom": 9.341,
+            "kind": "commercial"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11237509,
+                19.418678
+              ],
+              [
+                -99.11240064,
+                19.41844178
+              ],
+              [
+                -99.11315918,
+                19.4185119
+              ],
+              [
+                -99.11315918,
+                19.418678
+              ],
+              [
+                -99.11237509,
+                19.418678
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 376939408,
+            "area": 45070,
+            "source": "openstreetmap.org",
+            "sort_key": 41,
+            "min_zoom": 9.52607,
+            "kind": "commercial"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11315918,
+                19.4185119
+              ],
+              [
+                -99.11240064,
+                19.41844178
+              ],
+              [
+                -99.11255269,
+                19.41738282
+              ],
+              [
+                -99.11315918,
+                19.41738282
+              ],
+              [
+                -99.11315918,
+                19.4185119
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 398414658,
+            "area": 7547,
+            "source": "openstreetmap.org",
+            "sort_key": 52,
+            "min_zoom": 10.8151,
+            "operator": "Instituto Mexicano del Seguro Social",
+            "kind": "hospital"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11315918,
+                19.41793257
+              ],
+              [
+                -99.1126333,
+                19.41789498
+              ],
+              [
+                -99.11269096,
+                19.41738282
+              ],
+              [
+                -99.11310558,
+                19.41738282
+              ],
+              [
+                -99.11315918,
+                19.41738773
+              ],
+              [
+                -99.11315918,
+                19.41793257
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": -5869235,
+            "osm_relation": true,
+            "area": 2577,
+            "source": "openstreetmap.org",
+            "sort_key": 75,
+            "min_zoom": 11.5902,
+            "operator": "S.E.P.",
+            "kind": "school"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.1119226,
+                19.41738282
+              ],
+              [
+                -99.11192192,
+                19.4173897
+              ],
+              [
+                -99.11184428,
+                19.41738282
+              ],
+              [
+                -99.1119226,
+                19.41738282
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 331779666,
+            "area": 600,
+            "source": "openstreetmap.org",
+            "sort_key": 104,
+            "min_zoom": 12.6414,
+            "kind": "parking"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11196621,
+                19.41817092
+              ],
+              [
+                -99.11190829,
+                19.418678
+              ],
+              [
+                -99.11185758,
+                19.418678
+              ],
+              [
+                -99.11191222,
+                19.41819905
+              ],
+              [
+                -99.11196621,
+                19.41817092
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": -5869236,
+            "osm_relation": true,
+            "area": 581,
+            "source": "openstreetmap.org",
+            "sort_key": 93,
+            "min_zoom": 12.6649,
+            "kind": "pedestrian"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -99.11202551,
+                19.41738282
+              ],
+              [
+                -99.11202209,
+                19.41741885
+              ],
+              [
+                -99.11195705,
+                19.417413
+              ],
+              [
+                -99.11191869,
+                19.4174097
+              ],
+              [
+                -99.11192192,
+                19.4173897
+              ],
+              [
+                -99.1119226,
+                19.41738282
+              ],
+              [
+                -99.11202551,
+                19.41738282
+              ]
+            ]]
+          }
+        }
+      ],
+      "type": "FeatureCollection"
+    },
+    "earth": {
+      "features": [{
+        "properties": {
+          "id": 261545,
+          "source": "openstreetmapdata.com",
+          "sort_key": 10,
+          "kind": "earth"
+        },
+        "type": "Feature",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [[
+            [
+              -99.11178589,
+              19.41738282
+            ],
+            [
+              -99.11315918,
+              19.41738282
+            ],
+            [
+              -99.11315918,
+              19.418678
+            ],
+            [
+              -99.11178589,
+              19.418678
+            ],
+            [
+              -99.11178589,
+              19.41738282
+            ]
+          ]]
+        }
+      }],
+      "type": "FeatureCollection"
+    },
+    "places": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "transit": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "roads": {
+      "features": [
+        {
+          "properties": {
+            "id": 331779862,
+            "highway": "footway",
+            "source": "openstreetmap.org",
+            "landuse_kind": "grass",
+            "sort_key": 354,
+            "kind": "path"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11202387,
+                19.41754227
+              ],
+              [
+                -99.11194348,
+                19.41753492
+              ],
+              [
+                -99.11178589,
+                19.4175206
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 331779862,
+            "highway": "footway",
+            "source": "openstreetmap.org",
+            "sort_key": 354,
+            "kind": "path"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11207688,
+                19.41754712
+              ],
+              [
+                -99.11202387,
+                19.41754227
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 331779833,
+            "highway": "footway",
+            "source": "openstreetmap.org",
+            "landuse_kind": "grass",
+            "sort_key": 354,
+            "kind": "path"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11186533,
+                19.41843949
+              ],
+              [
+                -99.11178589,
+                19.41843376
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293370879,
+            "ref": "3O",
+            "highway": "primary",
+            "source": "openstreetmap.org",
+            "sort_key": 378,
+            "name": "Francisco del Paso y Troncoso",
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11226481,
+                19.41738282
+              ],
+              [
+                -99.1121721,
+                19.41798852
+              ],
+              [
+                -99.11210165,
+                19.418678
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293794630,
+            "is_link": "yes",
+            "highway": "primary_link",
+            "source": "openstreetmap.org",
+            "sort_key": 355,
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.1122806,
+                19.418678
+              ],
+              [
+                -99.11237198,
+                19.41817626
+              ],
+              [
+                -99.11244843,
+                19.4176204
+              ],
+              [
+                -99.11249395,
+                19.41738282
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 331779818,
+            "highway": "footway",
+            "source": "openstreetmap.org",
+            "landuse_kind": "grass",
+            "sort_key": 354,
+            "kind": "path"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11185194,
+                19.41854641
+              ],
+              [
+                -99.11178589,
+                19.41854048
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 331779869,
+            "highway": "footway",
+            "source": "openstreetmap.org",
+            "landuse_kind": "grass",
+            "sort_key": 354,
+            "kind": "path"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11187737,
+                19.41833283
+              ],
+              [
+                -99.11178589,
+                19.41832524
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 331779873,
+            "highway": "footway",
+            "source": "openstreetmap.org",
+            "landuse_kind": "pedestrian",
+            "sort_key": 354,
+            "kind": "path"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11202209,
+                19.41741885
+              ],
+              [
+                -99.11195705,
+                19.417413
+              ],
+              [
+                -99.11191869,
+                19.4174097
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 331779873,
+            "highway": "footway",
+            "source": "openstreetmap.org",
+            "landuse_kind": "grass",
+            "sort_key": 354,
+            "kind": "path"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "MultiLineString",
+            "coordinates": [
+              [
+                [
+                  -99.1120351,
+                  19.41741993
+                ],
+                [
+                  -99.11202209,
+                  19.41741885
+                ]
+              ],
+              [
+                [
+                  -99.11191869,
+                  19.4174097
+                ],
+                [
+                  -99.11178589,
+                  19.41739823
+                ]
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 331779873,
+            "highway": "footway",
+            "source": "openstreetmap.org",
+            "sort_key": 354,
+            "kind": "path"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11209161,
+                19.41742461
+              ],
+              [
+                -99.1120351,
+                19.41741993
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 332450411,
+            "highway": "footway",
+            "source": "openstreetmap.org",
+            "landuse_kind": "commercial",
+            "sort_key": 354,
+            "name": "Lucas Alamán",
+            "kind": "path"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11315918,
+                19.41849761
+              ],
+              [
+                -99.11240064,
+                19.41844178
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293370866,
+            "highway": "secondary",
+            "source": "openstreetmap.org",
+            "sort_key": 377,
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11237509,
+                19.418678
+              ],
+              [
+                -99.11240064,
+                19.41844178
+              ],
+              [
+                -99.11251391,
+                19.41739318
+              ],
+              [
+                -99.11251518,
+                19.41738282
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293370867,
+            "ref": "3 OTE",
+            "highway": "primary",
+            "source": "openstreetmap.org",
+            "sort_key": 378,
+            "name": "Francisco del Paso y Troncoso",
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11226907,
+                19.418678
+              ],
+              [
+                -99.11241002,
+                19.41738282
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 331779668,
+            "highway": "footway",
+            "source": "openstreetmap.org",
+            "landuse_kind": "grass",
+            "sort_key": 354,
+            "name": "Ret. 8",
+            "footway": "sidewalk",
+            "kind": "path"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11183655,
+                19.418678
+              ],
+              [
+                -99.11185194,
+                19.41854641
+              ],
+              [
+                -99.11186533,
+                19.41843949
+              ],
+              [
+                -99.11187737,
+                19.41833283
+              ],
+              [
+                -99.1118983,
+                19.41817872
+              ],
+              [
+                -99.11196874,
+                19.41814332
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 331779668,
+            "highway": "footway",
+            "source": "openstreetmap.org",
+            "sort_key": 354,
+            "name": "Ret. 8",
+            "footway": "sidewalk",
+            "kind": "path"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11196874,
+                19.41814332
+              ],
+              [
+                -99.1120175,
+                19.41811882
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 25154909,
+            "highway": "secondary",
+            "source": "openstreetmap.org",
+            "sort_key": 377,
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11209656,
+                19.41738282
+              ],
+              [
+                -99.11209161,
+                19.41742461
+              ],
+              [
+                -99.11207688,
+                19.41754712
+              ],
+              [
+                -99.1120175,
+                19.41811882
+              ],
+              [
+                -99.11195699,
+                19.418678
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 229408000,
+            "highway": "footway",
+            "source": "openstreetmap.org",
+            "sort_key": 443,
+            "kind": "path"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11251382,
+                19.41739318
+              ],
+              [
+                -99.11224994,
+                19.41738282
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293370880,
+            "is_link": "yes",
+            "highway": "primary_link",
+            "source": "openstreetmap.org",
+            "sort_key": 355,
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.1122628,
+                19.41738282
+              ],
+              [
+                -99.11210239,
+                19.41796717
+              ],
+              [
+                -99.11203529,
+                19.41856649
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 331779641,
+            "highway": "footway",
+            "source": "openstreetmap.org",
+            "landuse_kind": "grass",
+            "sort_key": 354,
+            "name": "Lateral Sur F. Servando",
+            "kind": "path"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11178589,
+                19.4181691
+              ],
+              [
+                -99.1118983,
+                19.41817872
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 331779748,
+            "highway": "footway",
+            "source": "openstreetmap.org",
+            "landuse_kind": "grass",
+            "sort_key": 354,
+            "kind": "path"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11194348,
+                19.41753492
+              ],
+              [
+                -99.11195705,
+                19.417413
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 293370877,
+            "is_link": "yes",
+            "highway": "primary_link",
+            "source": "openstreetmap.org",
+            "sort_key": 443,
+            "oneway": "yes",
+            "is_bridge": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -99.11203538,
+                19.41856649
+              ],
+              [
+                -99.1120243,
+                19.418678
+              ]
+            ]
+          }
+        }
+      ],
+      "type": "FeatureCollection"
+    },
+    "landuse_labels": {
+      "features": [],
+      "type": "FeatureCollection"
+    }
+  }
+]

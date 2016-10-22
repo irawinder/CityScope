@@ -1,0 +1,577 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="CGImap 0.5.5 (13739 thorn-02.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <bounds minlat="49.3527000" minlon="-97.3661200" maxlat="49.3542440" maxlon="-97.3639760"/>
+ <node id="908625722" visible="true" version="2" changeset="19161489" timestamp="2013-11-28T14:46:12Z" user="mcwetboy" uid="223056" lat="49.3519351" lon="-97.3646444"/>
+ <node id="908700652" visible="true" version="2" changeset="19161489" timestamp="2013-11-28T14:46:13Z" user="mcwetboy" uid="223056" lat="49.3519353" lon="-97.3644110"/>
+ <node id="2555620790" visible="true" version="1" changeset="19161489" timestamp="2013-11-28T14:54:05Z" user="mcwetboy" uid="223056" lat="49.3537333" lon="-97.3562002"/>
+ <node id="908648229" visible="true" version="2" changeset="19161489" timestamp="2013-11-28T14:54:06Z" user="mcwetboy" uid="223056" lat="49.3537512" lon="-97.3643768"/>
+ <node id="908671081" visible="true" version="3" changeset="19161489" timestamp="2013-11-28T14:54:06Z" user="mcwetboy" uid="223056" lat="49.3537417" lon="-97.3616060"/>
+ <node id="908669743" visible="true" version="2" changeset="19161489" timestamp="2013-11-28T14:54:06Z" user="mcwetboy" uid="223056" lat="49.3528321" lon="-97.3646390"/>
+ <node id="908685596" visible="true" version="2" changeset="19161489" timestamp="2013-11-28T14:54:06Z" user="mcwetboy" uid="223056" lat="49.3528347" lon="-97.3643819"/>
+ <node id="908727383" visible="true" version="2" changeset="19161489" timestamp="2013-11-28T14:54:06Z" user="mcwetboy" uid="223056" lat="49.3537498" lon="-97.3646480"/>
+ <node id="908737138" visible="true" version="2" changeset="19161489" timestamp="2013-11-28T14:54:06Z" user="mcwetboy" uid="223056" lat="49.3537315" lon="-97.3553516"/>
+ <node id="908682672" visible="true" version="2" changeset="19161489" timestamp="2013-11-28T15:00:07Z" user="mcwetboy" uid="223056" lat="49.3510302" lon="-97.3646504"/>
+ <node id="908620575" visible="true" version="2" changeset="19161489" timestamp="2013-11-28T15:00:07Z" user="mcwetboy" uid="223056" lat="49.3510282" lon="-97.3644057"/>
+ <node id="908634489" visible="true" version="3" changeset="19161489" timestamp="2013-11-28T15:41:33Z" user="mcwetboy" uid="223056" lat="49.3528311" lon="-97.3585627"/>
+ <node id="908673786" visible="true" version="2" changeset="19161489" timestamp="2013-11-28T15:41:33Z" user="mcwetboy" uid="223056" lat="49.3528302" lon="-97.3572142"/>
+ <node id="908659650" visible="true" version="3" changeset="19165353" timestamp="2013-11-28T19:20:22Z" user="mcwetboy" uid="223056" lat="49.3546896" lon="-97.3643892">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="source" v="Bing"/>
+ </node>
+ <node id="908614005" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:05:32Z" user="Tygunn" uid="253748" lat="49.3539781" lon="-97.3657277"/>
+ <node id="908616049" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:06:22Z" user="Tygunn" uid="253748" lat="49.3539787" lon="-97.3654523"/>
+ <node id="908616816" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:06:41Z" user="Tygunn" uid="253748" lat="49.3531241" lon="-97.3651295"/>
+ <node id="908616974" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:06:46Z" user="Tygunn" uid="253748" lat="49.3534946" lon="-97.3649313"/>
+ <node id="908617087" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:06:49Z" user="Tygunn" uid="253748" lat="49.3530358" lon="-97.3639757"/>
+ <node id="908621351" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:08:32Z" user="Tygunn" uid="253748" lat="49.3531661" lon="-97.3661953"/>
+ <node id="908622183" visible="true" version="3" changeset="19161489" timestamp="2013-11-28T15:41:33Z" user="mcwetboy" uid="223056" lat="49.3537381" lon="-97.3585600"/>
+ <node id="908623850" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:09:26Z" user="Tygunn" uid="253748" lat="49.3531512" lon="-97.3651355"/>
+ <node id="908624776" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:09:41Z" user="Tygunn" uid="253748" lat="49.3531857" lon="-97.3637642"/>
+ <node id="908627006" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:10:13Z" user="Tygunn" uid="253748" lat="49.3522021" lon="-97.3662089"/>
+ <node id="908630150" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:11:10Z" user="Tygunn" uid="253748" lat="49.3529731" lon="-97.3665391"/>
+ <node id="908634161" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:12:30Z" user="Tygunn" uid="253748" lat="49.3535091" lon="-97.3637328"/>
+ <node id="908637362" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:13:50Z" user="Tygunn" uid="253748" lat="49.3540983" lon="-97.3640506"/>
+ <node id="908640636" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:15:13Z" user="Tygunn" uid="253748" lat="49.3539813" lon="-97.3656312"/>
+ <node id="908641051" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:15:22Z" user="Tygunn" uid="253748" lat="49.3536076" lon="-97.3665594"/>
+ <node id="908643087" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:16:01Z" user="Tygunn" uid="253748" lat="49.3539967" lon="-97.3654517"/>
+ <node id="908646255" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:17:26Z" user="Tygunn" uid="253748" lat="49.3531033" lon="-97.3639803"/>
+ <node id="908647316" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:18:15Z" user="Tygunn" uid="253748" lat="49.3528053" lon="-97.3662295"/>
+ <node id="908650313" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:19:57Z" user="Tygunn" uid="253748" lat="49.3538823" lon="-97.3659512"/>
+ <node id="908650315" visible="true" version="3" changeset="19165353" timestamp="2013-11-28T19:20:22Z" user="mcwetboy" uid="223056" lat="49.3546903" lon="-97.3646574">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="source" v="Bing"/>
+ </node>
+ <node id="908650582" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:20:02Z" user="Tygunn" uid="253748" lat="49.3539231" lon="-97.3656538"/>
+ <node id="908650979" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:20:12Z" user="Tygunn" uid="253748" lat="49.3534227" lon="-97.3662074"/>
+ <node id="908652408" visible="true" version="3" changeset="19161489" timestamp="2013-11-28T15:41:33Z" user="mcwetboy" uid="223056" lat="49.3528330" lon="-97.3616044"/>
+ <node id="908653097" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:20:55Z" user="Tygunn" uid="253748" lat="49.3540000" lon="-97.3653621"/>
+ <node id="908654140" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:21:16Z" user="Tygunn" uid="253748" lat="49.3531496" lon="-97.3650254"/>
+ <node id="908654800" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:21:26Z" user="Tygunn" uid="253748" lat="49.3534561" lon="-97.3638034"/>
+ <node id="908655107" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:21:31Z" user="Tygunn" uid="253748" lat="49.3537330" lon="-97.3658873"/>
+ <node id="908657782" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:22:12Z" user="Tygunn" uid="253748" lat="49.3543428" lon="-97.3647999"/>
+ <node id="908660554" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:22:56Z" user="Tygunn" uid="253748" lat="49.3530695" lon="-97.3666736"/>
+ <node id="908665834" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:24:36Z" user="Tygunn" uid="253748" lat="49.3532931" lon="-97.3637262"/>
+ <node id="908666821" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:24:55Z" user="Tygunn" uid="253748" lat="49.3541854" lon="-97.3647982"/>
+ <node id="908668552" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:25:35Z" user="Tygunn" uid="253748" lat="49.3534933" lon="-97.3651585"/>
+ <node id="908671613" visible="true" version="2" changeset="19161489" timestamp="2013-11-28T15:41:33Z" user="mcwetboy" uid="223056" lat="49.3528288" lon="-97.3549898"/>
+ <node id="908671580" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:27:05Z" user="Tygunn" uid="253748" lat="49.3535102" lon="-97.3666727"/>
+ <node id="908672228" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:27:25Z" user="Tygunn" uid="253748" lat="49.3530803" lon="-97.3652935">
+  <tag k="amenity" v="school"/>
+  <tag k="building" v="yes"/>
+  <tag k="source" v="CanVec 6.0 - NRCan"/>
+ </node>
+ <node id="908672921" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:27:43Z" user="Tygunn" uid="253748" lat="49.3528453" lon="-97.3699101"/>
+ <node id="908673966" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:28:15Z" user="Tygunn" uid="253748" lat="49.3529880" lon="-97.3653681"/>
+ <node id="908674261" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:28:26Z" user="Tygunn" uid="253748" lat="49.3531845" lon="-97.3639983"/>
+ <node id="908677377" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:29:45Z" user="Tygunn" uid="253748" lat="49.3538843" lon="-97.3660889"/>
+ <node id="908677571" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:29:50Z" user="Tygunn" uid="253748" lat="49.3539169" lon="-97.3658468"/>
+ <node id="908677879" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:29:59Z" user="Tygunn" uid="253748" lat="49.3534140" lon="-97.3659117"/>
+ <node id="908679014" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:30:32Z" user="Tygunn" uid="253748" lat="49.3539056" lon="-97.3653721"/>
+ <node id="908685510" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:33:23Z" user="Tygunn" uid="253748" lat="49.3521982" lon="-97.3652571"/>
+ <node id="908688905" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:34:33Z" user="Tygunn" uid="253748" lat="49.3541822" lon="-97.3652115"/>
+ <node id="908690317" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:35:04Z" user="Tygunn" uid="253748" lat="49.3537460" lon="-97.3674430"/>
+ <node id="908692010" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:35:49Z" user="Tygunn" uid="253748" lat="49.3535609" lon="-97.3651632"/>
+ <node id="908692181" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:35:53Z" user="Tygunn" uid="253748" lat="49.3531043" lon="-97.3637324"/>
+ <node id="908698030" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:37:38Z" user="Tygunn" uid="253748" lat="49.3540366" lon="-97.3657258"/>
+ <node id="908700076" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:38:28Z" user="Tygunn" uid="253748" lat="49.3539764" lon="-97.3656039"/>
+ <node id="908700973" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:38:48Z" user="Tygunn" uid="253748" lat="49.3529606" lon="-97.3650179"/>
+ <node id="908701422" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:38:59Z" user="Tygunn" uid="253748" lat="49.3532296" lon="-97.3640037"/>
+ <node id="908705103" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:39:50Z" user="Tygunn" uid="253748" lat="49.3537542" lon="-97.3699352"/>
+ <node id="908706996" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:40:34Z" user="Tygunn" uid="253748" lat="49.3539292" lon="-97.3660874"/>
+ <node id="908707863" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:40:58Z" user="Tygunn" uid="253748" lat="49.3532622" lon="-97.3663092"/>
+ <node id="908708306" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:41:08Z" user="Tygunn" uid="253748" lat="49.3541011" lon="-97.3639266"/>
+ <node id="908711365" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:42:26Z" user="Tygunn" uid="253748" lat="49.3532286" lon="-97.3639349"/>
+ <node id="908713283" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:43:35Z" user="Tygunn" uid="253748" lat="49.3528285" lon="-97.3674458"/>
+ <node id="908720948" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:45:52Z" user="Tygunn" uid="253748" lat="49.3535057" lon="-97.3638086"/>
+ <node id="908725408" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:47:40Z" user="Tygunn" uid="253748" lat="49.3531230" lon="-97.3653705"/>
+ <node id="908725662" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:47:49Z" user="Tygunn" uid="253748" lat="49.3535666" lon="-97.3649358"/>
+ <node id="908725871" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:47:55Z" user="Tygunn" uid="253748" lat="49.3529693" lon="-97.3637300"/>
+ <node id="908730070" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:51:34Z" user="Tygunn" uid="253748" lat="49.3540335" lon="-97.3658292"/>
+ <node id="908730536" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:51:48Z" user="Tygunn" uid="253748" lat="49.3531531" lon="-97.3659065"/>
+ <node id="908731166" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:52:03Z" user="Tygunn" uid="253748" lat="49.3537348" lon="-97.3685588"/>
+ <node id="908733160" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:53:06Z" user="Tygunn" uid="253748" lat="49.3539133" lon="-97.3655991"/>
+ <node id="908734915" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:53:47Z" user="Tygunn" uid="253748" lat="49.3529576" lon="-97.3651281"/>
+ <node id="908735180" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:54:00Z" user="Tygunn" uid="253748" lat="49.3529931" lon="-97.3638188"/>
+ <node id="908735428" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:54:11Z" user="Tygunn" uid="253748" lat="49.3532937" lon="-97.3637675"/>
+ <node id="908764057" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T17:12:04Z" user="Tygunn" uid="253748" lat="49.3530380" lon="-97.3638173"/>
+ <node id="908740235" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:56:38Z" user="Tygunn" uid="253748" lat="49.3539319" lon="-97.3659565"/>
+ <node id="908741479" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:57:03Z" user="Tygunn" uid="253748" lat="49.3533118" lon="-97.3663144"/>
+ <node id="908742120" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:57:17Z" user="Tygunn" uid="253748" lat="49.3539752" lon="-97.3639308"/>
+ <node id="908744842" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:58:42Z" user="Tygunn" uid="253748" lat="49.3529894" lon="-97.3651477"/>
+ <node id="908745633" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:59:01Z" user="Tygunn" uid="253748" lat="49.3534537" lon="-97.3639481"/>
+ <node id="908746308" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T16:59:18Z" user="Tygunn" uid="253748" lat="49.3528107" lon="-97.3652644"/>
+ <node id="908748850" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T17:00:32Z" user="Tygunn" uid="253748" lat="49.3543488" lon="-97.3652197"/>
+ <node id="908764466" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T17:12:24Z" user="Tygunn" uid="253748" lat="49.3539723" lon="-97.3640410"/>
+ <node id="909233128" visible="true" version="1" changeset="5763661" timestamp="2010-09-12T19:48:27Z" user="sammuell" uid="47247" lat="49.3540230" lon="-97.3642542">
+  <tag k="amenity" v="fuel"/>
+  <tag k="name" v="Co-op"/>
+  <tag k="operator" v="Sun Valley Co-op"/>
+ </node>
+ <node id="2608555641" visible="true" version="1" changeset="19795596" timestamp="2014-01-03T21:21:49Z" user="Sundance" uid="239998" lat="49.3538203" lon="-97.3633586"/>
+ <node id="2608555669" visible="true" version="1" changeset="19795596" timestamp="2014-01-03T21:21:50Z" user="Sundance" uid="239998" lat="49.3536700" lon="-97.3642604"/>
+ <node id="2608555676" visible="true" version="1" changeset="19795596" timestamp="2014-01-03T21:21:50Z" user="Sundance" uid="239998" lat="49.3529195" lon="-97.3637054"/>
+ <node id="2608555680" visible="true" version="1" changeset="19795596" timestamp="2014-01-03T21:21:50Z" user="Sundance" uid="239998" lat="49.3527584" lon="-97.3642295"/>
+ <node id="2608555693" visible="true" version="1" changeset="19795596" timestamp="2014-01-03T21:21:50Z" user="Sundance" uid="239998" lat="49.3545524" lon="-97.3642690"/>
+ <node id="2608555698" visible="true" version="1" changeset="19795596" timestamp="2014-01-03T21:21:50Z" user="Sundance" uid="239998" lat="49.3520220" lon="-97.3642367"/>
+ <node id="2608555707" visible="true" version="1" changeset="19795596" timestamp="2014-01-03T21:21:50Z" user="Sundance" uid="239998" lat="49.3538257" lon="-97.3642732"/>
+ <node id="2608555722" visible="true" version="1" changeset="19795596" timestamp="2014-01-03T21:21:51Z" user="Sundance" uid="239998" lat="49.3536681" lon="-97.3637058"/>
+ <node id="2608555736" visible="true" version="1" changeset="19795596" timestamp="2014-01-03T21:21:51Z" user="Sundance" uid="239998" lat="49.3545489" lon="-97.3633509"/>
+ <node id="2608555743" visible="true" version="1" changeset="19795596" timestamp="2014-01-03T21:21:51Z" user="Sundance" uid="239998" lat="49.3527563" lon="-97.3637138"/>
+ <node id="2608555749" visible="true" version="1" changeset="19795596" timestamp="2014-01-03T21:21:51Z" user="Sundance" uid="239998" lat="49.3520198" lon="-97.3637210"/>
+ <node id="2608555753" visible="true" version="1" changeset="19795596" timestamp="2014-01-03T21:21:51Z" user="Sundance" uid="239998" lat="49.3529173" lon="-97.3642622"/>
+ <way id="248833197" visible="true" version="1" changeset="19161489" timestamp="2013-11-28T14:54:06Z" user="mcwetboy" uid="223056">
+  <nd ref="908648229"/>
+  <nd ref="908727383"/>
+  <tag k="highway" v="trunk_link"/>
+  <tag k="source" v="Bing"/>
+ </way>
+ <way id="248833198" visible="true" version="1" changeset="19161489" timestamp="2013-11-28T14:54:06Z" user="mcwetboy" uid="223056">
+  <nd ref="908685596"/>
+  <nd ref="908669743"/>
+  <tag k="highway" v="trunk_link"/>
+  <tag k="source" v="Bing"/>
+ </way>
+ <way id="77198305" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T17:25:44Z" user="Tygunn" uid="253748">
+  <nd ref="908764057"/>
+  <nd ref="908617087"/>
+  <nd ref="908646255"/>
+  <nd ref="908692181"/>
+  <nd ref="908725871"/>
+  <nd ref="908735180"/>
+  <nd ref="908764057"/>
+  <tag k="attribution" v="2001 Her Majesty the Queen in Right of Manitoba, as represented by the Minister of Conservation. All rights reserved."/>
+  <tag k="building" v="yes"/>
+  <tag k="source" v="Manitoba Lands Initiative"/>
+ </way>
+ <way id="77198056" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T17:24:38Z" user="Tygunn" uid="253748">
+  <nd ref="908706996"/>
+  <nd ref="908740235"/>
+  <nd ref="908650313"/>
+  <nd ref="908677377"/>
+  <nd ref="908706996"/>
+  <tag k="attribution" v="2001 Her Majesty the Queen in Right of Manitoba, as represented by the Minister of Conservation. All rights reserved."/>
+  <tag k="building" v="yes"/>
+  <tag k="source" v="Manitoba Lands Initiative"/>
+ </way>
+ <way id="77198475" visible="true" version="3" changeset="19161489" timestamp="2013-11-28T14:54:07Z" user="mcwetboy" uid="223056">
+  <nd ref="908648229"/>
+  <nd ref="908671081"/>
+  <nd ref="908622183"/>
+  <nd ref="2555620790"/>
+  <nd ref="908737138"/>
+  <tag k="highway" v="residential"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="Ottawa Avenue East"/>
+  <tag k="source" v="Bing"/>
+  <tag k="surface" v="paved"/>
+ </way>
+ <way id="77199606" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T17:33:21Z" user="Tygunn" uid="253748">
+  <nd ref="908641051"/>
+  <nd ref="908650979"/>
+  <nd ref="908677879"/>
+  <nd ref="908730536"/>
+  <nd ref="908621351"/>
+  <nd ref="908630150"/>
+  <nd ref="908660554"/>
+  <nd ref="908707863"/>
+  <nd ref="908741479"/>
+  <nd ref="908671580"/>
+  <nd ref="908641051"/>
+  <tag k="attribution" v="2001 Her Majesty the Queen in Right of Manitoba, as represented by the Minister of Conservation. All rights reserved."/>
+  <tag k="building" v="yes"/>
+  <tag k="source" v="Manitoba Lands Initiative"/>
+ </way>
+ <way id="77201044" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T17:41:49Z" user="Tygunn" uid="253748">
+  <nd ref="908685510"/>
+  <nd ref="908627006"/>
+  <nd ref="908647316"/>
+  <nd ref="908746308"/>
+  <nd ref="908685510"/>
+ </way>
+ <way id="77202351" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T17:46:03Z" user="Tygunn" uid="253748">
+  <nd ref="908727383"/>
+  <nd ref="908655107"/>
+  <nd ref="908690317"/>
+  <nd ref="908731166"/>
+  <nd ref="908705103"/>
+  <tag k="highway" v="residential"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="Ottawa Avenue West"/>
+  <tag k="name:source" v="Geography Division, Statistics Canada, 2010 Road Network File, catalogue number 92-500-XWE, 92-500-XWF"/>
+  <tag k="name:statcan_rbuid" v="2126623"/>
+  <tag k="source" v="CanVec 6.0 - NRCan"/>
+  <tag k="surface" v="paved"/>
+ </way>
+ <way id="77203730" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T17:49:57Z" user="Tygunn" uid="253748">
+  <nd ref="908725662"/>
+  <nd ref="908616974"/>
+  <nd ref="908668552"/>
+  <nd ref="908692010"/>
+  <nd ref="908725662"/>
+  <tag k="attribution" v="2001 Her Majesty the Queen in Right of Manitoba, as represented by the Minister of Conservation. All rights reserved."/>
+  <tag k="building" v="yes"/>
+  <tag k="source" v="Manitoba Lands Initiative"/>
+ </way>
+ <way id="77204108" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T17:51:02Z" user="Tygunn" uid="253748">
+  <nd ref="908700076"/>
+  <nd ref="908616049"/>
+  <nd ref="908643087"/>
+  <nd ref="908653097"/>
+  <nd ref="908679014"/>
+  <nd ref="908733160"/>
+  <nd ref="908700076"/>
+  <tag k="attribution" v="2001 Her Majesty the Queen in Right of Manitoba, as represented by the Minister of Conservation. All rights reserved."/>
+  <tag k="building" v="yes"/>
+  <tag k="source" v="Manitoba Lands Initiative"/>
+ </way>
+ <way id="77208091" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T18:04:13Z" user="Tygunn" uid="253748">
+  <nd ref="908685510"/>
+  <nd ref="908746308"/>
+  <nd ref="908647316"/>
+  <nd ref="908627006"/>
+  <nd ref="908685510"/>
+  <tag k="leisure" v="park"/>
+  <tag k="source" v="CanVec 6.0 - NRCan"/>
+ </way>
+ <way id="77207843" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T18:02:40Z" user="Tygunn" uid="253748">
+  <nd ref="908673966"/>
+  <nd ref="908725408"/>
+  <nd ref="908616816"/>
+  <nd ref="908623850"/>
+  <nd ref="908654140"/>
+  <nd ref="908700973"/>
+  <nd ref="908734915"/>
+  <nd ref="908744842"/>
+  <nd ref="908673966"/>
+  <tag k="attribution" v="2001 Her Majesty the Queen in Right of Manitoba, as represented by the Minister of Conservation. All rights reserved."/>
+  <tag k="building" v="yes"/>
+  <tag k="source" v="Manitoba Lands Initiative"/>
+ </way>
+ <way id="77208255" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T18:04:38Z" user="Tygunn" uid="253748">
+  <nd ref="908720948"/>
+  <nd ref="908634161"/>
+  <nd ref="908665834"/>
+  <nd ref="908735428"/>
+  <nd ref="908624776"/>
+  <nd ref="908674261"/>
+  <nd ref="908701422"/>
+  <nd ref="908711365"/>
+  <nd ref="908745633"/>
+  <nd ref="908654800"/>
+  <nd ref="908720948"/>
+  <tag k="attribution" v="2001 Her Majesty the Queen in Right of Manitoba, as represented by the Minister of Conservation. All rights reserved."/>
+  <tag k="building" v="yes"/>
+  <tag k="source" v="Manitoba Lands Initiative"/>
+ </way>
+ <way id="77209312" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T18:08:33Z" user="Tygunn" uid="253748">
+  <nd ref="908657782"/>
+  <nd ref="908666821"/>
+  <nd ref="908688905"/>
+  <nd ref="908748850"/>
+  <nd ref="908657782"/>
+  <tag k="attribution" v="2001 Her Majesty the Queen in Right of Manitoba, as represented by the Minister of Conservation. All rights reserved."/>
+  <tag k="building" v="yes"/>
+  <tag k="source" v="Manitoba Lands Initiative"/>
+ </way>
+ <way id="77208220" visible="true" version="2" changeset="5762673" timestamp="2010-09-12T18:19:53Z" user="Tygunn" uid="253748">
+  <nd ref="908672921"/>
+  <nd ref="908713283"/>
+  <nd ref="908669743"/>
+  <tag k="highway" v="residential"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="Railroad Avenue West"/>
+  <tag k="name:source" v="Geography Division, Statistics Canada, 2010 Road Network File, catalogue number 92-500-XWE, 92-500-XWF"/>
+  <tag k="name:statcan_rbuid" v="2126643"/>
+  <tag k="source" v="CanVec 6.0 - NRCan"/>
+  <tag k="surface" v="paved"/>
+ </way>
+ <way id="77212145" visible="true" version="4" changeset="19161489" timestamp="2013-11-28T15:41:34Z" user="mcwetboy" uid="223056">
+  <nd ref="908685596"/>
+  <nd ref="908652408"/>
+  <nd ref="908634489"/>
+  <nd ref="908673786"/>
+  <nd ref="908671613"/>
+  <tag k="highway" v="residential"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="Railroad Avenue East"/>
+  <tag k="source" v="Bing"/>
+  <tag k="surface" v="paved"/>
+ </way>
+ <way id="77209964" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T18:11:56Z" user="Tygunn" uid="253748">
+  <nd ref="908708306"/>
+  <nd ref="908742120"/>
+  <nd ref="908764466"/>
+  <nd ref="908637362"/>
+  <nd ref="908708306"/>
+  <tag k="attribution" v="2001 Her Majesty the Queen in Right of Manitoba, as represented by the Minister of Conservation. All rights reserved."/>
+  <tag k="building" v="yes"/>
+  <tag k="source" v="Manitoba Lands Initiative"/>
+ </way>
+ <way id="77210249" visible="true" version="1" changeset="5761059" timestamp="2010-09-12T18:13:00Z" user="Tygunn" uid="253748">
+  <nd ref="908698030"/>
+  <nd ref="908614005"/>
+  <nd ref="908640636"/>
+  <nd ref="908650582"/>
+  <nd ref="908677571"/>
+  <nd ref="908730070"/>
+  <nd ref="908698030"/>
+  <tag k="attribution" v="2001 Her Majesty the Queen in Right of Manitoba, as represented by the Minister of Conservation. All rights reserved."/>
+  <tag k="building" v="yes"/>
+  <tag k="source" v="Manitoba Lands Initiative"/>
+ </way>
+ <way id="77209559" visible="true" version="3" changeset="29086667" timestamp="2015-02-25T09:14:49Z" user="OntarioEditor" uid="2392578">
+  <nd ref="908650315"/>
+  <nd ref="908727383"/>
+  <nd ref="908669743"/>
+  <nd ref="908625722"/>
+  <nd ref="908682672"/>
+  <tag k="alt_name" v="Lord Selkirk Highway"/>
+  <tag k="alt_name:en" v="Lord Selkirk Highway"/>
+  <tag k="alt_name:fr" v="Route Lord Selkirk"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="Main Street"/>
+  <tag k="NHS" v="yes"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="ref" v="PTH 23;PTH 75"/>
+  <tag k="source" v="CanVec 6.0 - NRCan"/>
+  <tag k="surface" v="paved"/>
+ </way>
+ <way id="77196078" visible="true" version="3" changeset="29086667" timestamp="2015-02-25T09:14:49Z" user="OntarioEditor" uid="2392578">
+  <nd ref="908620575"/>
+  <nd ref="908700652"/>
+  <nd ref="908685596"/>
+  <nd ref="908648229"/>
+  <nd ref="908659650"/>
+  <tag k="alt_name" v="Lord Selkirk Highway"/>
+  <tag k="alt_name:en" v="Lord Selkirk Highway"/>
+  <tag k="alt_name:fr" v="Route Lord Selkirk"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="Main Street"/>
+  <tag k="NHS" v="yes"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="ref" v="PTH 23;PTH 75"/>
+  <tag k="source" v="CanVec 6.0 - NRCan"/>
+  <tag k="surface" v="paved"/>
+ </way>
+ <way id="255113675" visible="true" version="1" changeset="19795596" timestamp="2014-01-03T21:21:52Z" user="Sundance" uid="239998">
+  <nd ref="2608555743"/>
+  <nd ref="2608555749"/>
+  <nd ref="2608555698"/>
+  <nd ref="2608555680"/>
+  <nd ref="2608555743"/>
+  <tag k="landuse" v="retail"/>
+  <tag k="source" v="Bing"/>
+ </way>
+ <way id="255113680" visible="true" version="1" changeset="19795596" timestamp="2014-01-03T21:21:53Z" user="Sundance" uid="239998">
+  <nd ref="2608555736"/>
+  <nd ref="2608555641"/>
+  <nd ref="2608555707"/>
+  <nd ref="2608555693"/>
+  <nd ref="2608555736"/>
+  <tag k="landuse" v="retail"/>
+  <tag k="source" v="Bing"/>
+ </way>
+ <way id="255113684" visible="true" version="1" changeset="19795596" timestamp="2014-01-03T21:21:53Z" user="Sundance" uid="239998">
+  <nd ref="2608555722"/>
+  <nd ref="2608555676"/>
+  <nd ref="2608555753"/>
+  <nd ref="2608555669"/>
+  <nd ref="2608555722"/>
+  <tag k="landuse" v="retail"/>
+  <tag k="source" v="Bing"/>
+ </way>
+ <relation id="4576016" visible="true" version="2" changeset="40000421" timestamp="2016-06-13T19:48:29Z" user="Sundance" uid="239998">
+  <member type="way" ref="157205898" role=""/>
+  <member type="way" ref="157205897" role=""/>
+  <member type="way" ref="157205899" role=""/>
+  <member type="way" ref="77209530" role=""/>
+  <member type="way" ref="77207368" role=""/>
+  <member type="way" ref="77206795" role=""/>
+  <member type="way" ref="77200954" role=""/>
+  <member type="way" ref="77196295" role=""/>
+  <member type="way" ref="77202744" role=""/>
+  <member type="way" ref="77203343" role=""/>
+  <member type="way" ref="77209730" role=""/>
+  <member type="way" ref="248893506" role=""/>
+  <member type="way" ref="77196078" role="west"/>
+  <member type="way" ref="77209559" role="east"/>
+  <member type="way" ref="248892952" role=""/>
+  <member type="way" ref="77200935" role=""/>
+  <member type="way" ref="77195555" role=""/>
+  <member type="way" ref="77199917" role=""/>
+  <member type="way" ref="77200119" role=""/>
+  <member type="way" ref="143449737" role=""/>
+  <member type="way" ref="143449730" role=""/>
+  <member type="way" ref="143449140" role=""/>
+  <member type="way" ref="143449738" role=""/>
+  <member type="way" ref="143449750" role=""/>
+  <member type="way" ref="143449764" role=""/>
+  <member type="way" ref="143449725" role=""/>
+  <member type="way" ref="143449767" role=""/>
+  <member type="way" ref="143449717" role=""/>
+  <member type="way" ref="143449744" role=""/>
+  <member type="way" ref="143449770" role=""/>
+  <member type="way" ref="143449777" role=""/>
+  <member type="way" ref="109966548" role=""/>
+  <member type="way" ref="109965918" role=""/>
+  <member type="way" ref="109966116" role=""/>
+  <member type="way" ref="109965369" role=""/>
+  <member type="way" ref="109967233" role=""/>
+  <member type="way" ref="109966012" role=""/>
+  <member type="way" ref="109967193" role=""/>
+  <member type="way" ref="109966397" role=""/>
+  <member type="way" ref="109967219" role=""/>
+  <member type="way" ref="109966900" role=""/>
+  <member type="way" ref="109965455" role=""/>
+  <member type="way" ref="109966800" role=""/>
+  <member type="way" ref="109965503" role=""/>
+  <member type="way" ref="109966524" role=""/>
+  <member type="way" ref="109966639" role=""/>
+  <member type="way" ref="109965620" role=""/>
+  <member type="way" ref="109966736" role=""/>
+  <member type="way" ref="109965122" role=""/>
+  <member type="way" ref="109965650" role=""/>
+  <member type="way" ref="109967186" role=""/>
+  <member type="way" ref="109967050" role=""/>
+  <member type="way" ref="109966553" role=""/>
+  <member type="way" ref="109965250" role=""/>
+  <member type="way" ref="103492956" role=""/>
+  <member type="way" ref="103491124" role=""/>
+  <member type="way" ref="103493162" role=""/>
+  <member type="way" ref="103491622" role=""/>
+  <member type="way" ref="103493087" role=""/>
+  <member type="way" ref="103490563" role=""/>
+  <member type="way" ref="103490326" role=""/>
+  <member type="way" ref="103491252" role=""/>
+  <member type="way" ref="103491446" role=""/>
+  <member type="way" ref="103492772" role=""/>
+  <member type="way" ref="103492164" role=""/>
+  <member type="way" ref="103491046" role=""/>
+  <member type="way" ref="103491696" role=""/>
+  <member type="way" ref="103492286" role=""/>
+  <member type="way" ref="103492532" role=""/>
+  <member type="way" ref="103490944" role=""/>
+  <member type="way" ref="103490753" role=""/>
+  <member type="way" ref="103490478" role=""/>
+  <member type="way" ref="103491186" role=""/>
+  <member type="way" ref="104939783" role=""/>
+  <member type="way" ref="104938718" role=""/>
+  <member type="way" ref="104937495" role=""/>
+  <member type="way" ref="104941614" role=""/>
+  <member type="way" ref="191476025" role=""/>
+  <member type="way" ref="104937909" role=""/>
+  <member type="way" ref="191481157" role=""/>
+  <member type="way" ref="104937803" role=""/>
+  <member type="way" ref="104941180" role=""/>
+  <member type="way" ref="104937464" role=""/>
+  <member type="way" ref="104943111" role=""/>
+  <member type="way" ref="104937654" role=""/>
+  <member type="way" ref="104937990" role=""/>
+  <member type="way" ref="104941854" role=""/>
+  <member type="way" ref="104938787" role=""/>
+  <member type="way" ref="104937388" role=""/>
+  <member type="way" ref="104940284" role=""/>
+  <member type="way" ref="104940763" role=""/>
+  <member type="way" ref="104937875" role=""/>
+  <member type="way" ref="104942087" role=""/>
+  <member type="way" ref="105687913" role=""/>
+  <member type="way" ref="105688576" role=""/>
+  <member type="way" ref="105686064" role=""/>
+  <member type="way" ref="105686416" role=""/>
+  <member type="way" ref="105685205" role=""/>
+  <member type="way" ref="105684847" role=""/>
+  <member type="way" ref="105687371" role=""/>
+  <member type="way" ref="105688004" role=""/>
+  <member type="way" ref="105688387" role=""/>
+  <member type="way" ref="105686279" role=""/>
+  <member type="way" ref="105684454" role=""/>
+  <member type="way" ref="105685590" role=""/>
+  <member type="way" ref="105686938" role=""/>
+  <member type="way" ref="105686943" role=""/>
+  <member type="way" ref="105689660" role=""/>
+  <member type="way" ref="424812786" role=""/>
+  <member type="way" ref="105685362" role=""/>
+  <member type="way" ref="424812781" role=""/>
+  <member type="way" ref="105687007" role=""/>
+  <member type="way" ref="186416578" role=""/>
+  <member type="way" ref="186416574" role=""/>
+  <member type="way" ref="186416577" role=""/>
+  <member type="way" ref="186416565" role=""/>
+  <member type="way" ref="186416576" role=""/>
+  <member type="way" ref="188765527" role=""/>
+  <tag k="name" v="PTH 23"/>
+  <tag k="network" v="CA:MB:PTH"/>
+  <tag k="ref" v="23"/>
+  <tag k="route" v="road"/>
+  <tag k="type" v="route"/>
+  <tag k="wikipedia" v="en:Manitoba Highway 23"/>
+ </relation>
+ <relation id="1726910" visible="true" version="13" changeset="40981697" timestamp="2016-07-24T00:34:35Z" user="Michael Zajac" uid="396642">
+  <member type="way" ref="104743773" role="forward"/>
+  <member type="way" ref="104743783" role="forward"/>
+  <member type="way" ref="104743852" role="forward"/>
+  <member type="way" ref="104743922" role="forward"/>
+  <member type="way" ref="104744067" role="forward"/>
+  <member type="way" ref="104743739" role="forward"/>
+  <member type="way" ref="77204765" role="forward"/>
+  <member type="way" ref="77207736" role="forward"/>
+  <member type="way" ref="77198629" role="forward"/>
+  <member type="way" ref="345417764" role="forward"/>
+  <member type="way" ref="77208466" role="forward"/>
+  <member type="way" ref="77196078" role="forward"/>
+  <member type="way" ref="77200400" role="forward"/>
+  <member type="way" ref="104744130" role="forward"/>
+  <member type="way" ref="104743718" role="forward"/>
+  <member type="way" ref="104744077" role="forward"/>
+  <member type="way" ref="104744064" role="forward"/>
+  <member type="way" ref="104743738" role="forward"/>
+  <member type="way" ref="104745610" role="forward"/>
+  <member type="way" ref="172601282" role="forward"/>
+  <member type="way" ref="104743816" role="forward"/>
+  <member type="way" ref="104744002" role="forward"/>
+  <member type="way" ref="77199970" role="forward"/>
+  <member type="way" ref="77209809" role="forward"/>
+  <member type="way" ref="77209870" role="forward"/>
+  <member type="way" ref="345417763" role="forward"/>
+  <member type="way" ref="77208799" role="forward"/>
+  <member type="way" ref="77209559" role="forward"/>
+  <member type="way" ref="77200127" role="forward"/>
+  <member type="way" ref="77200248" role=""/>
+  <member type="way" ref="77199602" role=""/>
+  <member type="way" ref="352669884" role="forward"/>
+  <member type="way" ref="77195241" role="forward"/>
+  <member type="way" ref="77201093" role="forward"/>
+  <member type="way" ref="352669863" role="forward"/>
+  <member type="way" ref="352669864" role="forward"/>
+  <member type="way" ref="352673878" role="forward"/>
+  <member type="way" ref="171145324" role="forward"/>
+  <member type="way" ref="33112790" role="forward"/>
+  <member type="way" ref="154525326" role="forward"/>
+  <member type="way" ref="243878874" role="forward"/>
+  <member type="way" ref="432819538" role="forward"/>
+  <member type="way" ref="243878877" role="forward"/>
+  <member type="way" ref="327910401" role="forward"/>
+  <member type="way" ref="352669879" role="forward"/>
+  <member type="way" ref="352669868" role="forward"/>
+  <member type="way" ref="352669883" role="forward"/>
+  <member type="way" ref="352669881" role="forward"/>
+  <member type="way" ref="352673875" role="forward"/>
+  <member type="way" ref="77200951" role="forward"/>
+  <member type="way" ref="33112789" role="south"/>
+  <member type="way" ref="33112788" role="south"/>
+  <member type="way" ref="243878873" role="south"/>
+  <member type="way" ref="432819539" role="south"/>
+  <member type="way" ref="243878878" role="south"/>
+  <member type="way" ref="327910402" role="south"/>
+  <member type="way" ref="154525336" role="south"/>
+  <tag k="name" v="PTH 75"/>
+  <tag k="network" v="CA:MB:PTH"/>
+  <tag k="ref" v="75"/>
+  <tag k="route" v="road"/>
+  <tag k="type" v="route"/>
+  <tag k="wikipedia" v="en:Manitoba Highway 75"/>
+ </relation>
+</osm>
+

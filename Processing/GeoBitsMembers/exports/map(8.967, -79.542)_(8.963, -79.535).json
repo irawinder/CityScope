@@ -1,0 +1,3279 @@
+[
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  {
+    "water": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "boundaries": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "buildings": {
+      "features": [
+        {
+          "properties": {
+            "id": 386987697,
+            "area": 872,
+            "source": "openstreetmap.org",
+            "sort_key": 475,
+            "min_zoom": 14,
+            "kind": "building"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -79.53545688,
+                8.96784201
+              ],
+              [
+                -79.53532663,
+                8.96806021
+              ],
+              [
+                -79.53509028,
+                8.9679224
+              ],
+              [
+                -79.53522071,
+                8.9677043
+              ],
+              [
+                -79.53545688,
+                8.96784201
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 352060994,
+            "addr_street": "Avenida Balboa",
+            "area": 627,
+            "source": "openstreetmap.org",
+            "sort_key": 475,
+            "name": "Element",
+            "min_zoom": 14,
+            "kind": "apartments"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -79.53424649,
+                8.96639193
+              ],
+              [
+                -79.53410824,
+                8.96658537
+              ],
+              [
+                -79.53392193,
+                8.96647303
+              ],
+              [
+                -79.53399119,
+                8.96636096
+              ],
+              [
+                -79.53402021,
+                8.96637862
+              ],
+              [
+                -79.53407626,
+                8.96628811
+              ],
+              [
+                -79.53424649,
+                8.96639193
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 179079736,
+            "area": 575,
+            "source": "openstreetmap.org",
+            "landuse_kind": "place_of_worship",
+            "sort_key": 475,
+            "min_zoom": 14,
+            "kind": "building"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -79.53553755,
+                8.966378
+              ],
+              [
+                -79.53543101,
+                8.96656948
+              ],
+              [
+                -79.5352473,
+                8.96646975
+              ],
+              [
+                -79.53535384,
+                8.96627826
+              ],
+              [
+                -79.53553755,
+                8.966378
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 179079689,
+            "area": 572,
+            "source": "openstreetmap.org",
+            "sort_key": 475,
+            "min_zoom": 14,
+            "kind": "building"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -79.53537217,
+                8.96667659
+              ],
+              [
+                -79.53529914,
+                8.96680809
+              ],
+              [
+                -79.5350821,
+                8.96669025
+              ],
+              [
+                -79.53520212,
+                8.96647436
+              ],
+              [
+                -79.5353171,
+                8.96653683
+              ],
+              [
+                -79.53528755,
+                8.96659016
+              ],
+              [
+                -79.53526913,
+                8.96658022
+              ],
+              [
+                -79.53523104,
+                8.96664872
+              ],
+              [
+                -79.53530102,
+                8.9666867
+              ],
+              [
+                -79.53532177,
+                8.96664917
+              ],
+              [
+                -79.53537217,
+                8.96667659
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 384060302,
+            "addr_street": "Avenida México",
+            "area": 544,
+            "source": "openstreetmap.org",
+            "sort_key": 475,
+            "name": "La Cantora Residencial",
+            "min_zoom": 14,
+            "kind": "apartments"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -79.53466142,
+                8.96690561
+              ],
+              [
+                -79.53453368,
+                8.96713197
+              ],
+              [
+                -79.53438753,
+                8.96705157
+              ],
+              [
+                -79.53451518,
+                8.96682521
+              ],
+              [
+                -79.53466142,
+                8.96690561
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 384060302,
+            "addr_street": "Avenida México",
+            "area": 544,
+            "source": "openstreetmap.org",
+            "label_placement": "yes",
+            "sort_key": 475,
+            "name": "La Cantora Residencial",
+            "min_zoom": 14,
+            "kind": "apartments"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              -79.53452446,
+              8.96697859
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 384060294,
+            "addr_street": "Avenida México",
+            "area": 517,
+            "source": "openstreetmap.org",
+            "sort_key": 475,
+            "min_zoom": 14,
+            "kind": "building"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -79.53486552,
+                8.96755567
+              ],
+              [
+                -79.53476491,
+                8.96772391
+              ],
+              [
+                -79.53457186,
+                8.96760855
+              ],
+              [
+                -79.53465891,
+                8.96748149
+              ],
+              [
+                -79.53470589,
+                8.96747093
+              ],
+              [
+                -79.53486552,
+                8.96755567
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 386987695,
+            "addr_street": "Avenida Justo Arosemena",
+            "area": 515,
+            "source": "openstreetmap.org",
+            "landuse_kind": "university",
+            "sort_key": 475,
+            "min_zoom": 14,
+            "kind": "university"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -79.53577704,
+                8.96723907
+              ],
+              [
+                -79.53565065,
+                8.96744103
+              ],
+              [
+                -79.53550368,
+                8.96735132
+              ],
+              [
+                -79.53563008,
+                8.96714936
+              ],
+              [
+                -79.53577704,
+                8.96723907
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 179079742,
+            "area": 293,
+            "source": "openstreetmap.org",
+            "sort_key": 475,
+            "min_zoom": 14,
+            "kind": "building"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -79.53559729,
+                8.96667747
+              ],
+              [
+                -79.53546802,
+                8.96690995
+              ],
+              [
+                -79.53539076,
+                8.96686807
+              ],
+              [
+                -79.53552012,
+                8.96663559
+              ],
+              [
+                -79.53559729,
+                8.96667747
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 179079686,
+            "area": 248,
+            "source": "openstreetmap.org",
+            "sort_key": 475,
+            "min_zoom": 14,
+            "kind": "building"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -79.5356511,
+                8.9668088
+              ],
+              [
+                -79.53557438,
+                8.9669466
+              ],
+              [
+                -79.53551886,
+                8.96691652
+              ],
+              [
+                -79.53552641,
+                8.96690312
+              ],
+              [
+                -79.53548805,
+                8.96688227
+              ],
+              [
+                -79.53554563,
+                8.96677863
+              ],
+              [
+                -79.53555318,
+                8.96678271
+              ],
+              [
+                -79.53559971,
+                8.96669895
+              ],
+              [
+                -79.53564634,
+                8.96672432
+              ],
+              [
+                -79.53561139,
+                8.96678715
+              ],
+              [
+                -79.5356511,
+                8.9668088
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 179079694,
+            "area": 135,
+            "source": "openstreetmap.org",
+            "sort_key": 475,
+            "min_zoom": 14,
+            "kind": "building"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -79.5354894,
+                8.96666993
+              ],
+              [
+                -79.53541448,
+                8.96680463
+              ],
+              [
+                -79.53535313,
+                8.96677126
+              ],
+              [
+                -79.53542805,
+                8.96663657
+              ],
+              [
+                -79.5354894,
+                8.96666993
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 384060309,
+            "addr_street": "Calle 31",
+            "area": 91,
+            "source": "openstreetmap.org",
+            "sort_key": 475,
+            "name": "Eurollantas",
+            "min_zoom": 16,
+            "kind": "building"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -79.53475548,
+                8.96666922
+              ],
+              [
+                -79.53472224,
+                8.96672353
+              ],
+              [
+                -79.53462432,
+                8.96666487
+              ],
+              [
+                -79.53465756,
+                8.96661066
+              ],
+              [
+                -79.53475548,
+                8.96666922
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 384060309,
+            "addr_street": "Calle 31",
+            "area": 91,
+            "source": "openstreetmap.org",
+            "label_placement": "yes",
+            "sort_key": 475,
+            "name": "Eurollantas",
+            "min_zoom": 16,
+            "kind": "building"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              -79.5346899,
+              8.96666705
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 384064323,
+            "addr_street": "Avenida México",
+            "area": 91,
+            "source": "openstreetmap.org",
+            "sort_key": 475,
+            "min_zoom": 16,
+            "kind": "building"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -79.53454159,
+                8.96780891
+              ],
+              [
+                -79.53450548,
+                8.96787138
+              ],
+              [
+                -79.53441762,
+                8.96782187
+              ],
+              [
+                -79.53445364,
+                8.9677594
+              ],
+              [
+                -79.53454159,
+                8.96780891
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 384060306,
+            "addr_street": "Avenida México",
+            "area": 26,
+            "source": "openstreetmap.org",
+            "sort_key": 475,
+            "min_zoom": 16,
+            "kind": "building"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -79.53490603,
+                8.96649796
+              ],
+              [
+                -79.53487908,
+                8.96654056
+              ],
+              [
+                -79.53484414,
+                8.96651899
+              ],
+              [
+                -79.534871,
+                8.9664764
+              ],
+              [
+                -79.53490603,
+                8.96649796
+              ]
+            ]]
+          }
+        }
+      ],
+      "type": "FeatureCollection"
+    },
+    "pois": {
+      "features": [
+        {
+          "properties": {
+            "id": 384060294,
+            "area": 517,
+            "name": "Banistmo",
+            "min_zoom": 15.4486,
+            "kind": "bank"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              -79.53471984,
+              8.96758211
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 384060306,
+            "area": 25,
+            "name": "Tecnor Ortopedia",
+            "min_zoom": 17,
+            "kind": "clinic"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              -79.53487508,
+              8.96650848
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 384064323,
+            "area": 91,
+            "name": "Ortopedia Nacimal",
+            "min_zoom": 17,
+            "kind": "clinic"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              -79.5344796,
+              8.96781539
+            ]
+          }
+        }
+      ],
+      "type": "FeatureCollection"
+    },
+    "landuse": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "earth": {
+      "features": [{
+        "properties": {
+          "id": 261814,
+          "source": "openstreetmapdata.com",
+          "sort_key": 10,
+          "kind": "earth"
+        },
+        "type": "Feature",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [[
+            [
+              -79.53414917,
+              8.9664713
+            ],
+            [
+              -79.53552246,
+              8.9664713
+            ],
+            [
+              -79.53552246,
+              8.96782781
+            ],
+            [
+              -79.53414917,
+              8.96782781
+            ],
+            [
+              -79.53414917,
+              8.9664713
+            ]
+          ]]
+        }
+      }],
+      "type": "FeatureCollection"
+    },
+    "places": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "transit": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "roads": {
+      "features": [
+        {
+          "properties": {
+            "id": 380231546,
+            "highway": "unclassified",
+            "source": "openstreetmap.org",
+            "sort_key": 360,
+            "name": "Avenida México",
+            "oneway": "yes",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -79.53432834,
+                8.96782781
+              ],
+              [
+                -79.53463888,
+                8.9672695
+              ],
+              [
+                -79.53498365,
+                8.96667073
+              ],
+              [
+                -79.53509538,
+                8.9664713
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 380227012,
+            "highway": "unclassified",
+            "source": "openstreetmap.org",
+            "sort_key": 360,
+            "name": "Calle 31",
+            "oneway": "yes",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -79.53463808,
+                8.9664713
+              ],
+              [
+                -79.53489642,
+                8.96662042
+              ],
+              [
+                -79.53498365,
+                8.96667073
+              ],
+              [
+                -79.53552246,
+                8.96699074
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 384052614,
+            "highway": "unclassified",
+            "source": "openstreetmap.org",
+            "sort_key": 360,
+            "name": "Avenida México",
+            "oneway": "yes",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -79.53498239,
+                8.9664713
+              ],
+              [
+                -79.53489642,
+                8.96662042
+              ],
+              [
+                -79.53456135,
+                8.9672215
+              ],
+              [
+                -79.53422592,
+                8.96781388
+              ],
+              [
+                -79.53421765,
+                8.96782781
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 28878221,
+            "highway": "unclassified",
+            "source": "openstreetmap.org",
+            "sort_key": 360,
+            "name": "Calle 32e",
+            "oneway": "yes",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -79.53552246,
+                8.96780627
+              ],
+              [
+                -79.53463888,
+                8.9672695
+              ],
+              [
+                -79.53456135,
+                8.9672215
+              ],
+              [
+                -79.53414917,
+                8.96697748
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 28878225,
+            "highway": "unclassified",
+            "source": "openstreetmap.org",
+            "sort_key": 360,
+            "name": "Calle 33",
+            "oneway": "yes",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -79.53414917,
+                8.96776883
+              ],
+              [
+                -79.53422592,
+                8.96781388
+              ],
+              [
+                -79.53425122,
+                8.96782781
+              ]
+            ]
+          }
+        }
+      ],
+      "type": "FeatureCollection"
+    },
+    "landuse_labels": {
+      "features": [],
+      "type": "FeatureCollection"
+    }
+  },
+  {
+    "water": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "boundaries": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "buildings": {
+      "features": [
+        {
+          "properties": {
+            "id": 146688650,
+            "area": 1949,
+            "source": "openstreetmap.org",
+            "sort_key": 475,
+            "name": "Destiny Tower",
+            "min_zoom": 13,
+            "kind": "residential"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -79.53339534,
+                8.9677295
+              ],
+              [
+                -79.53323678,
+                8.96799738
+              ],
+              [
+                -79.53280452,
+                8.96774787
+              ],
+              [
+                -79.5329628,
+                8.96747998
+              ],
+              [
+                -79.53313662,
+                8.96758025
+              ],
+              [
+                -79.53339534,
+                8.9677295
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 146688650,
+            "area": 1949,
+            "source": "openstreetmap.org",
+            "label_placement": "yes",
+            "sort_key": 475,
+            "name": "Destiny Tower",
+            "min_zoom": 13,
+            "kind": "residential"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              -79.53309992,
+              8.96773868
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 146800482,
+            "addr_street": "Calle 33",
+            "area": 1445,
+            "source": "openstreetmap.org",
+            "landuse_kind": "school",
+            "sort_key": 475,
+            "min_zoom": 14,
+            "kind": "school"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -79.53412216,
+                8.96786588
+              ],
+              [
+                -79.53400314,
+                8.96807769
+              ],
+              [
+                -79.53387513,
+                8.9680075
+              ],
+              [
+                -79.53390271,
+                8.96795843
+              ],
+              [
+                -79.5336978,
+                8.96784592
+              ],
+              [
+                -79.53366798,
+                8.96789898
+              ],
+              [
+                -79.53354015,
+                8.96782879
+              ],
+              [
+                -79.53366151,
+                8.96761299
+              ],
+              [
+                -79.53412216,
+                8.96786588
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 146809911,
+            "addr_street": "Avenida Balboa",
+            "area": 1160,
+            "source": "openstreetmap.org",
+            "sort_key": 475,
+            "name": "Rivage",
+            "min_zoom": 14,
+            "kind": "building"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -79.53372035,
+                8.96712398
+              ],
+              [
+                -79.53354976,
+                8.96737802
+              ],
+              [
+                -79.53329706,
+                8.96721236
+              ],
+              [
+                -79.53346765,
+                8.9669584
+              ],
+              [
+                -79.53372035,
+                8.96712398
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 146809911,
+            "addr_street": "Avenida Balboa",
+            "area": 1160,
+            "source": "openstreetmap.org",
+            "label_placement": "yes",
+            "sort_key": 475,
+            "name": "Rivage",
+            "min_zoom": 14,
+            "kind": "building"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              -79.53350871,
+              8.96716817
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 146800485,
+            "addr_street": "Avenida Ecuador",
+            "area": 699,
+            "source": "openstreetmap.org",
+            "sort_key": 475,
+            "name": "Memorial",
+            "min_zoom": 14,
+            "kind": "building"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -79.53359153,
+                8.9678736
+              ],
+              [
+                -79.5334708,
+                8.96808328
+              ],
+              [
+                -79.53327011,
+                8.96797068
+              ],
+              [
+                -79.53339085,
+                8.96776091
+              ],
+              [
+                -79.53359153,
+                8.9678736
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 352060994,
+            "addr_street": "Avenida Balboa",
+            "area": 627,
+            "source": "openstreetmap.org",
+            "sort_key": 475,
+            "name": "Element",
+            "min_zoom": 14,
+            "kind": "apartments"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -79.53424649,
+                8.96639193
+              ],
+              [
+                -79.53410824,
+                8.96658537
+              ],
+              [
+                -79.53392193,
+                8.96647303
+              ],
+              [
+                -79.53399119,
+                8.96636096
+              ],
+              [
+                -79.53402021,
+                8.96637862
+              ],
+              [
+                -79.53407626,
+                8.96628811
+              ],
+              [
+                -79.53424649,
+                8.96639193
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 384068185,
+            "addr_street": "Avenida Balboa",
+            "area": 494,
+            "source": "openstreetmap.org",
+            "sort_key": 475,
+            "min_zoom": 14,
+            "kind": "building"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -79.53324622,
+                8.96740003
+              ],
+              [
+                -79.53313662,
+                8.96758025
+              ],
+              [
+                -79.5329628,
+                8.96747998
+              ],
+              [
+                -79.53311075,
+                8.96730988
+              ],
+              [
+                -79.53324622,
+                8.96740003
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 352060993,
+            "addr_street": "Avenida Balboa",
+            "area": 263,
+            "source": "openstreetmap.org",
+            "sort_key": 475,
+            "name": "Atalaya",
+            "min_zoom": 14,
+            "kind": "apartments"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -79.53393271,
+                8.96661917
+              ],
+              [
+                -79.5338701,
+                8.96673613
+              ],
+              [
+                -79.53372978,
+                8.96666292
+              ],
+              [
+                -79.53379239,
+                8.96654588
+              ],
+              [
+                -79.53393271,
+                8.96661917
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 352060993,
+            "addr_street": "Avenida Balboa",
+            "area": 263,
+            "source": "openstreetmap.org",
+            "label_placement": "yes",
+            "sort_key": 475,
+            "name": "Atalaya",
+            "min_zoom": 14,
+            "kind": "apartments"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              -79.53383124,
+              8.96664105
+            ]
+          }
+        }
+      ],
+      "type": "FeatureCollection"
+    },
+    "pois": {
+      "features": [
+        {
+          "properties": {
+            "id": 352060995,
+            "area": 2341,
+            "min_zoom": 17,
+            "kind": "parking"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              -79.53325852,
+              8.96651993
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 384068185,
+            "area": 493,
+            "name": "Café Boulevard Balboa",
+            "min_zoom": 15.2823,
+            "kind": "restaurant"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              -79.53310974,
+              8.96744
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 4374993690,
+            "min_zoom": 17,
+            "kind": "computer"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              -79.53348095,
+              8.9671199
+            ]
+          }
+        }
+      ],
+      "type": "FeatureCollection"
+    },
+    "landuse": {
+      "features": [
+        {
+          "properties": {
+            "id": 352060996,
+            "area": 26354,
+            "source": "openstreetmap.org",
+            "sort_key": 32,
+            "min_zoom": 9.91313,
+            "kind": "grass"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -79.53277846,
+                8.9664713
+              ],
+              [
+                -79.53277588,
+                8.96647404
+              ],
+              [
+                -79.53277588,
+                8.9664713
+              ],
+              [
+                -79.53277846,
+                8.9664713
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 352060995,
+            "area": 2341,
+            "source": "openstreetmap.org",
+            "sort_key": 104,
+            "min_zoom": 11.6595,
+            "kind": "parking"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -79.53341522,
+                8.9664713
+              ],
+              [
+                -79.5329619,
+                8.96698502
+              ],
+              [
+                -79.53282509,
+                8.96688156
+              ],
+              [
+                -79.53318772,
+                8.9664713
+              ],
+              [
+                -79.53341522,
+                8.9664713
+              ]
+            ]]
+          }
+        }
+      ],
+      "type": "FeatureCollection"
+    },
+    "earth": {
+      "features": [{
+        "properties": {
+          "id": 261814,
+          "source": "openstreetmapdata.com",
+          "sort_key": 10,
+          "kind": "earth"
+        },
+        "type": "Feature",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [[
+            [
+              -79.53277588,
+              8.9664713
+            ],
+            [
+              -79.53414917,
+              8.9664713
+            ],
+            [
+              -79.53414917,
+              8.96782781
+            ],
+            [
+              -79.53277588,
+              8.96782781
+            ],
+            [
+              -79.53277588,
+              8.9664713
+            ]
+          ]]
+        }
+      }],
+      "type": "FeatureCollection"
+    },
+    "places": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "transit": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "roads": {
+      "features": [
+        {
+          "properties": {
+            "id": 146990186,
+            "highway": "trunk",
+            "source": "openstreetmap.org",
+            "sort_key": 379,
+            "name": "Cinta Costera",
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -79.53301737,
+                8.9664713
+              ],
+              [
+                -79.53277588,
+                8.96673859
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 146688651,
+            "highway": "trunk",
+            "source": "openstreetmap.org",
+            "sort_key": 379,
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -79.53277588,
+                8.96738338
+              ],
+              [
+                -79.53279688,
+                8.96736888
+              ],
+              [
+                -79.53343118,
+                8.96676878
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 265170931,
+            "is_bus_route": true,
+            "highway": "trunk",
+            "source": "openstreetmap.org",
+            "sort_key": 379,
+            "name": "Avenida Balboa",
+            "oneway": "yes",
+            "network": "Metrobus",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -79.53277588,
+                8.96755068
+              ],
+              [
+                -79.53310617,
+                8.96715646
+              ],
+              [
+                -79.53343127,
+                8.96676878
+              ],
+              [
+                -79.53357437,
+                8.96663719
+              ],
+              [
+                -79.53371394,
+                8.9664713
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 28878221,
+            "highway": "unclassified",
+            "source": "openstreetmap.org",
+            "sort_key": 360,
+            "name": "Calle 32e",
+            "oneway": "yes",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -79.53414917,
+                8.96697748
+              ],
+              [
+                -79.53357437,
+                8.96663719
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 384060298,
+            "highway": "unclassified",
+            "source": "openstreetmap.org",
+            "sort_key": 360,
+            "name": "Avenida Ecuador",
+            "oneway": "yes",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -79.53286428,
+                8.96782781
+              ],
+              [
+                -79.53277588,
+                8.96777738
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 300746757,
+            "highway": "footway",
+            "source": "openstreetmap.org",
+            "sort_key": 354,
+            "kind": "path"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -79.53286044,
+                8.9664713
+              ],
+              [
+                -79.53277588,
+                8.96656937
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 28878225,
+            "highway": "unclassified",
+            "source": "openstreetmap.org",
+            "sort_key": 360,
+            "name": "Calle 33",
+            "oneway": "yes",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -79.53310608,
+                8.96715646
+              ],
+              [
+                -79.53414917,
+                8.96776883
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 300746765,
+            "highway": "footway",
+            "source": "openstreetmap.org",
+            "sort_key": 354,
+            "kind": "path"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -79.53277588,
+                8.9669376
+              ],
+              [
+                -79.53281853,
+                8.9669411
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 82306606,
+            "highway": "trunk",
+            "source": "openstreetmap.org",
+            "sort_key": 379,
+            "name": "Avenida Balboa",
+            "oneway": "yes",
+            "motor_vehicle": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -79.53277588,
+                8.96735534
+              ],
+              [
+                -79.53307123,
+                8.96703755
+              ],
+              [
+                -79.53356241,
+                8.9664713
+              ]
+            ]
+          }
+        }
+      ],
+      "type": "FeatureCollection"
+    },
+    "landuse_labels": {
+      "features": [],
+      "type": "FeatureCollection"
+    }
+  },
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  {
+    "water": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "boundaries": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "buildings": {
+      "features": [
+        {
+          "properties": {
+            "id": 352060992,
+            "area": 2105,
+            "source": "openstreetmap.org",
+            "sort_key": 475,
+            "min_zoom": 13,
+            "kind": "apartments"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -79.5346387,
+                8.96578428
+              ],
+              [
+                -79.53437055,
+                8.96625856
+              ],
+              [
+                -79.53410087,
+                8.96610975
+              ],
+              [
+                -79.53436902,
+                8.96563547
+              ],
+              [
+                -79.5346387,
+                8.96578428
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 179079728,
+            "area": 1191,
+            "source": "openstreetmap.org",
+            "sort_key": 475,
+            "min_zoom": 14,
+            "kind": "building"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -79.53588062,
+                8.96608092
+              ],
+              [
+                -79.53575485,
+                8.96629485
+              ],
+              [
+                -79.53542301,
+                8.96610461
+              ],
+              [
+                -79.53554878,
+                8.96589058
+              ],
+              [
+                -79.53588062,
+                8.96608092
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 179079725,
+            "area": 967,
+            "source": "openstreetmap.org",
+            "sort_key": 475,
+            "min_zoom": 14,
+            "kind": "building"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -79.53544664,
+                8.96504086
+              ],
+              [
+                -79.53532573,
+                8.96524655
+              ],
+              [
+                -79.53504563,
+                8.96508585
+              ],
+              [
+                -79.53516655,
+                8.96488017
+              ],
+              [
+                -79.53544664,
+                8.96504086
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 179079711,
+            "area": 794,
+            "source": "openstreetmap.org",
+            "sort_key": 475,
+            "min_zoom": 14,
+            "kind": "building"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -79.53568721,
+                8.96516536
+              ],
+              [
+                -79.53556019,
+                8.96538125
+              ],
+              [
+                -79.53534109,
+                8.9652556
+              ],
+              [
+                -79.53546811,
+                8.96503971
+              ],
+              [
+                -79.53568721,
+                8.96516536
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 352060994,
+            "addr_street": "Avenida Balboa",
+            "area": 627,
+            "source": "openstreetmap.org",
+            "sort_key": 475,
+            "name": "Element",
+            "min_zoom": 14,
+            "kind": "apartments"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -79.53424649,
+                8.96639193
+              ],
+              [
+                -79.53410824,
+                8.96658537
+              ],
+              [
+                -79.53392193,
+                8.96647303
+              ],
+              [
+                -79.53399119,
+                8.96636096
+              ],
+              [
+                -79.53402021,
+                8.96637862
+              ],
+              [
+                -79.53407626,
+                8.96628811
+              ],
+              [
+                -79.53424649,
+                8.96639193
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 179079736,
+            "area": 575,
+            "source": "openstreetmap.org",
+            "landuse_kind": "place_of_worship",
+            "sort_key": 475,
+            "min_zoom": 14,
+            "kind": "building"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -79.53553755,
+                8.966378
+              ],
+              [
+                -79.53543101,
+                8.96656948
+              ],
+              [
+                -79.5352473,
+                8.96646975
+              ],
+              [
+                -79.53535384,
+                8.96627826
+              ],
+              [
+                -79.53553755,
+                8.966378
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 4215968989,
+            "addr_street": "Avenida Balboa",
+            "source": "openstreetmap.org",
+            "sort_key": 475,
+            "name": "Subaru del Canal",
+            "min_zoom": 17,
+            "addr_housenumber": "Edificio H2O",
+            "kind": "address"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              -79.53421218,
+              8.96606645
+            ]
+          }
+        }
+      ],
+      "type": "FeatureCollection"
+    },
+    "pois": {
+      "features": [
+        {
+          "properties": {
+            "id": 146812451,
+            "area": 1533,
+            "min_zoom": 17,
+            "kind": "parking"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              -79.53415216,
+              8.96526026
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 179079736,
+            "religion": "muslim",
+            "area": 574,
+            "name": "Jama Masjid",
+            "min_zoom": 15.7955,
+            "kind": "place_of_worship"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              -79.53539243,
+              8.96642387
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 317442463,
+            "min_zoom": 17,
+            "kind": "traffic_signals"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              -79.53530947,
+              8.96608917
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 3873491142,
+            "min_zoom": 17,
+            "kind": "traffic_signals"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              -79.53523033,
+              8.96604125
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 4173731691,
+            "name": "Hicon Motorsports",
+            "min_zoom": 17,
+            "kind": "sports"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              -79.53430641,
+              8.9658093
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 4215968989,
+            "name": "Subaru del Canal",
+            "min_zoom": 17,
+            "kind": "car"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              -79.53421218,
+              8.96606645
+            ]
+          }
+        }
+      ],
+      "type": "FeatureCollection"
+    },
+    "landuse": {
+      "features": [{
+        "properties": {
+          "id": 146812451,
+          "area": 1534,
+          "source": "openstreetmap.org",
+          "sort_key": 104,
+          "min_zoom": 11.9646,
+          "kind": "parking"
+        },
+        "type": "Feature",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [[
+            [
+              -79.53432584,
+              8.96511479
+            ],
+            [
+              -79.53414917,
+              8.96543904
+            ],
+            [
+              -79.53414917,
+              8.96511479
+            ],
+            [
+              -79.53432584,
+              8.96511479
+            ]
+          ]]
+        }
+      }],
+      "type": "FeatureCollection"
+    },
+    "earth": {
+      "features": [{
+        "properties": {
+          "id": 261813,
+          "source": "openstreetmapdata.com",
+          "sort_key": 10,
+          "kind": "earth"
+        },
+        "type": "Feature",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [[
+            [
+              -79.53414917,
+              8.96511479
+            ],
+            [
+              -79.53552246,
+              8.96511479
+            ],
+            [
+              -79.53552246,
+              8.9664713
+            ],
+            [
+              -79.53414917,
+              8.9664713
+            ],
+            [
+              -79.53414917,
+              8.96511479
+            ]
+          ]]
+        }
+      }],
+      "type": "FeatureCollection"
+    },
+    "places": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "transit": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "roads": {
+      "features": [
+        {
+          "properties": {
+            "id": 384052614,
+            "highway": "unclassified",
+            "source": "openstreetmap.org",
+            "sort_key": 360,
+            "name": "Avenida México",
+            "oneway": "yes",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -79.53552246,
+                8.96550785
+              ],
+              [
+                -79.53523033,
+                8.96604125
+              ],
+              [
+                -79.53498239,
+                8.9664713
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 265170931,
+            "is_bus_route": true,
+            "highway": "trunk",
+            "source": "openstreetmap.org",
+            "sort_key": 379,
+            "name": "Avenida Balboa",
+            "oneway": "yes",
+            "network": "Metrobus",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -79.53414917,
+                8.96588075
+              ],
+              [
+                -79.53435043,
+                8.96554257
+              ],
+              [
+                -79.53460494,
+                8.96511479
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 82306606,
+            "highway": "trunk",
+            "source": "openstreetmap.org",
+            "sort_key": 379,
+            "name": "Avenida Balboa",
+            "oneway": "yes",
+            "motor_vehicle": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -79.53414917,
+                8.96563384
+              ],
+              [
+                -79.53426104,
+                8.96542863
+              ],
+              [
+                -79.53443213,
+                8.96511479
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 176584225,
+            "highway": "unclassified",
+            "source": "openstreetmap.org",
+            "sort_key": 360,
+            "name": "Calle 29",
+            "oneway": "yes",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -79.53492385,
+                8.96511479
+              ],
+              [
+                -79.53552246,
+                8.96544425
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 28878254,
+            "highway": "unclassified",
+            "source": "openstreetmap.org",
+            "sort_key": 360,
+            "name": "Calle 30",
+            "oneway": "yes",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -79.53552246,
+                8.9662117
+              ],
+              [
+                -79.53530947,
+                8.96608917
+              ],
+              [
+                -79.53523033,
+                8.96604125
+              ],
+              [
+                -79.53435043,
+                8.96554257
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 380227012,
+            "highway": "unclassified",
+            "source": "openstreetmap.org",
+            "sort_key": 360,
+            "name": "Calle 31",
+            "oneway": "yes",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -79.53414917,
+                8.9661891
+              ],
+              [
+                -79.53463808,
+                8.9664713
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 380231546,
+            "highway": "unclassified",
+            "source": "openstreetmap.org",
+            "sort_key": 360,
+            "name": "Avenida México",
+            "oneway": "yes",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -79.53509538,
+                8.9664713
+              ],
+              [
+                -79.53530947,
+                8.96608917
+              ],
+              [
+                -79.53552246,
+                8.96570213
+              ]
+            ]
+          }
+        }
+      ],
+      "type": "FeatureCollection"
+    },
+    "landuse_labels": {
+      "features": [],
+      "type": "FeatureCollection"
+    }
+  },
+  {
+    "water": {
+      "features": [
+        {
+          "properties": {
+            "id": 7540,
+            "area": 2329164288,
+            "source": "openstreetmapdata.com",
+            "sort_key": 200,
+            "name": "",
+            "kind": "ocean"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -79.53324573,
+                8.96511479
+              ],
+              [
+                -79.5331852,
+                8.9651837
+              ],
+              [
+                -79.53277588,
+                8.96565014
+              ],
+              [
+                -79.53277588,
+                8.96511479
+              ],
+              [
+                -79.53324573,
+                8.96511479
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 7540,
+            "area": 2329164288,
+            "source": "openstreetmapdata.com",
+            "sort_key": 205,
+            "boundary": "yes",
+            "kind": "ocean"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -79.53324556,
+                8.96511479
+              ],
+              [
+                -79.53318473,
+                8.96518408
+              ],
+              [
+                -79.53277588,
+                8.96564996
+              ]
+            ]
+          }
+        }
+      ],
+      "type": "FeatureCollection"
+    },
+    "boundaries": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "buildings": {
+      "features": [
+        {
+          "properties": {
+            "id": 352060992,
+            "area": 2105,
+            "source": "openstreetmap.org",
+            "sort_key": 475,
+            "min_zoom": 13,
+            "kind": "apartments"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -79.5346387,
+                8.96578428
+              ],
+              [
+                -79.53437055,
+                8.96625856
+              ],
+              [
+                -79.53410087,
+                8.96610975
+              ],
+              [
+                -79.53436902,
+                8.96563547
+              ],
+              [
+                -79.5346387,
+                8.96578428
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 352060994,
+            "addr_street": "Avenida Balboa",
+            "area": 627,
+            "source": "openstreetmap.org",
+            "sort_key": 475,
+            "name": "Element",
+            "min_zoom": 14,
+            "kind": "apartments"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -79.53424649,
+                8.96639193
+              ],
+              [
+                -79.53410824,
+                8.96658537
+              ],
+              [
+                -79.53392193,
+                8.96647303
+              ],
+              [
+                -79.53399119,
+                8.96636096
+              ],
+              [
+                -79.53402021,
+                8.96637862
+              ],
+              [
+                -79.53407626,
+                8.96628811
+              ],
+              [
+                -79.53424649,
+                8.96639193
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 352060994,
+            "addr_street": "Avenida Balboa",
+            "area": 627,
+            "source": "openstreetmap.org",
+            "label_placement": "yes",
+            "sort_key": 475,
+            "name": "Element",
+            "min_zoom": 14,
+            "kind": "apartments"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              -79.53408225,
+              8.96643248
+            ]
+          }
+        }
+      ],
+      "type": "FeatureCollection"
+    },
+    "pois": {
+      "features": [
+        {
+          "properties": {
+            "id": 317440316,
+            "min_zoom": 17,
+            "kind": "traffic_signals"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              -79.53393073,
+              8.96605359
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 1902485290,
+            "min_zoom": 17,
+            "kind": "traffic_signals"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              -79.5340061,
+              8.96611215
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 3049758934,
+            "name": "Calle 32 Este",
+            "min_zoom": 17,
+            "kind": "bus_stop"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              -79.53282778,
+              8.96643692
+            ]
+          }
+        }
+      ],
+      "type": "FeatureCollection"
+    },
+    "landuse": {
+      "features": [
+        {
+          "properties": {
+            "id": 352060996,
+            "area": 26354,
+            "source": "openstreetmap.org",
+            "sort_key": 32,
+            "min_zoom": 9.91313,
+            "kind": "grass"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -79.53382194,
+                8.96511479
+              ],
+              [
+                -79.53346073,
+                8.96574497
+              ],
+              [
+                -79.53277846,
+                8.9664713
+              ],
+              [
+                -79.53277588,
+                8.9664713
+              ],
+              [
+                -79.53277588,
+                8.96584306
+              ],
+              [
+                -79.5330909,
+                8.96548746
+              ],
+              [
+                -79.53341893,
+                8.96511479
+              ],
+              [
+                -79.53382194,
+                8.96511479
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 352060995,
+            "area": 2341,
+            "source": "openstreetmap.org",
+            "sort_key": 104,
+            "min_zoom": 11.6595,
+            "kind": "parking"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -79.53369142,
+                8.96615829
+              ],
+              [
+                -79.53341522,
+                8.9664713
+              ],
+              [
+                -79.53318772,
+                8.9664713
+              ],
+              [
+                -79.53354392,
+                8.96606832
+              ],
+              [
+                -79.53369142,
+                8.96615829
+              ]
+            ]]
+          }
+        },
+        {
+          "properties": {
+            "id": 146812451,
+            "area": 1534,
+            "source": "openstreetmap.org",
+            "sort_key": 104,
+            "min_zoom": 11.9646,
+            "kind": "parking"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+              [
+                -79.53414917,
+                8.96543904
+              ],
+              [
+                -79.53405012,
+                8.96562083
+              ],
+              [
+                -79.53397789,
+                8.9655825
+              ],
+              [
+                -79.53390369,
+                8.96554301
+              ],
+              [
+                -79.53413698,
+                8.96511479
+              ],
+              [
+                -79.53414917,
+                8.96511479
+              ],
+              [
+                -79.53414917,
+                8.96543904
+              ]
+            ]]
+          }
+        }
+      ],
+      "type": "FeatureCollection"
+    },
+    "earth": {
+      "features": [{
+        "properties": {
+          "id": 261813,
+          "source": "openstreetmapdata.com",
+          "sort_key": 10,
+          "kind": "earth"
+        },
+        "type": "Feature",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [[
+            [
+              -79.53277588,
+              8.96565014
+            ],
+            [
+              -79.5331852,
+              8.9651837
+            ],
+            [
+              -79.53324573,
+              8.96511479
+            ],
+            [
+              -79.53414917,
+              8.96511479
+            ],
+            [
+              -79.53414917,
+              8.9664713
+            ],
+            [
+              -79.53277588,
+              8.9664713
+            ],
+            [
+              -79.53277588,
+              8.96565014
+            ]
+          ]]
+        }
+      }],
+      "type": "FeatureCollection"
+    },
+    "places": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "transit": {
+      "features": [],
+      "type": "FeatureCollection"
+    },
+    "roads": {
+      "features": [
+        {
+          "properties": {
+            "id": 264349666,
+            "highway": "footway",
+            "source": "openstreetmap.org",
+            "landuse_kind": "grass",
+            "sort_key": 354,
+            "kind": "path"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -79.53326068,
+                8.96571578
+              ],
+              [
+                -79.53319573,
+                8.96567931
+              ],
+              [
+                -79.5331792,
+                8.96563591
+              ],
+              [
+                -79.53318289,
+                8.96560166
+              ],
+              [
+                -79.53319852,
+                8.96557256
+              ],
+              [
+                -79.5332322,
+                8.965547
+              ],
+              [
+                -79.53327478,
+                8.96553973
+              ],
+              [
+                -79.533325,
+                8.96555951
+              ],
+              [
+                -79.5333559,
+                8.96561
+              ],
+              [
+                -79.53334719,
+                8.96566937
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 265170931,
+            "is_bus_route": true,
+            "highway": "trunk",
+            "source": "openstreetmap.org",
+            "sort_key": 379,
+            "name": "Avenida Balboa",
+            "oneway": "yes",
+            "network": "Metrobus",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -79.53371394,
+                8.9664713
+              ],
+              [
+                -79.5339301,
+                8.96621437
+              ],
+              [
+                -79.5340061,
+                8.96611215
+              ],
+              [
+                -79.53402551,
+                8.96608855
+              ],
+              [
+                -79.53414917,
+                8.96588075
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 82306606,
+            "highway": "trunk",
+            "source": "openstreetmap.org",
+            "sort_key": 379,
+            "name": "Avenida Balboa",
+            "oneway": "yes",
+            "motor_vehicle": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -79.53356241,
+                8.9664713
+              ],
+              [
+                -79.53384962,
+                8.96614019
+              ],
+              [
+                -79.53393064,
+                8.96605359
+              ],
+              [
+                -79.53407887,
+                8.9657628
+              ],
+              [
+                -79.53414917,
+                8.96563384
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 264349671,
+            "highway": "path",
+            "source": "openstreetmap.org",
+            "landuse_kind": "grass",
+            "sort_key": 354,
+            "kind": "path"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -79.53320471,
+                8.96594666
+              ],
+              [
+                -79.53316312,
+                8.96592545
+              ],
+              [
+                -79.5330909,
+                8.96548746
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 264349671,
+            "highway": "path",
+            "source": "openstreetmap.org",
+            "sort_key": 354,
+            "kind": "path"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -79.5330909,
+                8.96548746
+              ],
+              [
+                -79.53308659,
+                8.9654612
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 146812453,
+            "highway": "service",
+            "source": "openstreetmap.org",
+            "sort_key": 358,
+            "oneway": "yes",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -79.53397789,
+                8.9655825
+              ],
+              [
+                -79.53398293,
+                8.96567647
+              ],
+              [
+                -79.53401688,
+                8.96572145
+              ],
+              [
+                -79.53407887,
+                8.9657628
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 146990186,
+            "highway": "trunk",
+            "source": "openstreetmap.org",
+            "sort_key": 379,
+            "name": "Cinta Costera",
+            "oneway": "yes",
+            "kind": "major_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -79.53396185,
+                8.96511479
+              ],
+              [
+                -79.53358839,
+                8.96576831
+              ],
+              [
+                -79.53312162,
+                8.9663559
+              ],
+              [
+                -79.53301737,
+                8.9664713
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 300746761,
+            "highway": "footway",
+            "source": "openstreetmap.org",
+            "sort_key": 354,
+            "kind": "path"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -79.5337031,
+                8.96590008
+              ],
+              [
+                -79.53372601,
+                8.96584542
+              ],
+              [
+                -79.53377775,
+                8.96581436
+              ],
+              [
+                -79.53386004,
+                8.96583282
+              ],
+              [
+                -79.53389651,
+                8.96590655
+              ],
+              [
+                -79.53388672,
+                8.9659495
+              ],
+              [
+                -79.53382042,
+                8.96600097
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 264349670,
+            "highway": "footway",
+            "source": "openstreetmap.org",
+            "landuse_kind": "grass",
+            "sort_key": 443,
+            "is_bridge": "yes",
+            "kind": "path"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -79.53341332,
+                8.96579544
+              ],
+              [
+                -79.53326068,
+                8.96571578
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 264349670,
+            "highway": "footway",
+            "source": "openstreetmap.org",
+            "sort_key": 443,
+            "is_bridge": "yes",
+            "kind": "path"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -79.53382042,
+                8.96600097
+              ],
+              [
+                -79.53360447,
+                8.9658952
+              ],
+              [
+                -79.53341332,
+                8.96579544
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 380227012,
+            "highway": "unclassified",
+            "source": "openstreetmap.org",
+            "sort_key": 360,
+            "name": "Calle 31",
+            "oneway": "yes",
+            "kind": "minor_road"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -79.5340061,
+                8.96611215
+              ],
+              [
+                -79.53403,
+                8.96612031
+              ],
+              [
+                -79.53414917,
+                8.9661891
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 147097595,
+            "highway": "path",
+            "source": "openstreetmap.org",
+            "foot": "designated",
+            "segregated": "yes",
+            "sort_key": 354,
+            "kind": "path",
+            "bicycle": "designated"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -79.53339886,
+                8.96511479
+              ],
+              [
+                -79.53308659,
+                8.9654612
+              ],
+              [
+                -79.53277588,
+                8.96582759
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 264349667,
+            "highway": "footway",
+            "source": "openstreetmap.org",
+            "sort_key": 354,
+            "kind": "path"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -79.53398499,
+                8.96626335
+              ],
+              [
+                -79.53393001,
+                8.96621437
+              ],
+              [
+                -79.53384962,
+                8.96614019
+              ],
+              [
+                -79.53381602,
+                8.96611108
+              ],
+              [
+                -79.5337879,
+                8.96610443
+              ],
+              [
+                -79.53360348,
+                8.96607266
+              ],
+              [
+                -79.53363779,
+                8.96601321
+              ],
+              [
+                -79.5337031,
+                8.96590008
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 300746757,
+            "highway": "footway",
+            "source": "openstreetmap.org",
+            "landuse_kind": "grass",
+            "sort_key": 354,
+            "kind": "path"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -79.53334719,
+                8.96566937
+              ],
+              [
+                -79.53328305,
+                8.96578703
+              ],
+              [
+                -79.53320471,
+                8.96594666
+              ],
+              [
+                -79.53317336,
+                8.96601073
+              ],
+              [
+                -79.53311558,
+                8.96611241
+              ]
+            ]
+          }
+        },
+        {
+          "properties": {
+            "id": 300746757,
+            "highway": "footway",
+            "source": "openstreetmap.org",
+            "sort_key": 354,
+            "kind": "path"
+          },
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -79.53311558,
+                8.96611241
+              ],
+              [
+                -79.53301059,
+                8.96629716
+              ],
+              [
+                -79.53286044,
+                8.9664713
+              ]
+            ]
+          }
+        }
+      ],
+      "type": "FeatureCollection"
+    },
+    "landuse_labels": {
+      "features": [],
+      "type": "FeatureCollection"
+    }
+  }
+]
