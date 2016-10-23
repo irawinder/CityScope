@@ -32,7 +32,7 @@ void drawTableCanvas(PGraphics p) {
       // Instead of solid background draws a translucent overlay every frame.
       // Provides the effect of giving animated elements "tails"
       p.noStroke();
-      p.fill(background, 25);
+      p.fill(background, 35);
       p.rect(0,0,p.width,p.height);
       
       

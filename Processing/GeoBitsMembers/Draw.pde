@@ -1,13 +1,13 @@
 PGraphics direction, popup, loading, agents;
 //toggling booleans for displays
 boolean showFrameRate = false;
-boolean select = false;
+boolean select = true;
 boolean directions = false;
 boolean showoutput = true;
 
 
 //dimensions for box
-int boxw = 200;
+int boxw = 350;
 int boxh = int(boxw*(22.0/20.0));
 int numcols = 18;
 int numrows = 22;

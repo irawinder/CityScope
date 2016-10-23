@@ -56,6 +56,7 @@ switch(key){
       break;
   case 'p':
       pulling = true;
+      select = false;
       break;
  case 'S': //toggles display of swarms of Pedestrians
       showSwarm = toggle(showSwarm);
@@ -84,6 +85,7 @@ switch(key){
       handler = canvas;
       initialized = false;
       tableCanvas.clear();
+      
       Handler = Canvas;
       BresenhamMaster.clear();
       for(int i = 0; i<handler.Roads.size(); i++){
@@ -91,6 +93,11 @@ switch(key){
       }
       test_Bresen();
        agentstriggered = !agentstriggered;
+      handler = selection;
+      Handler = Selection;
+      c = #ff0000;
+      selection.drawRoads(Selection, c);
+      lines = true;
       break;
   case '`': 
         if (displayProjection2D) {

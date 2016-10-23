@@ -35,7 +35,7 @@ void setup() {
   renderTableCanvas();
   initGraphics();
   draw_directions(direction);       
-  draw_popup(popup);
+//  draw_popup(popup);
   draw_loading(loading);
 //  draw_agents(agents);
 
@@ -73,11 +73,17 @@ void draw() {
     selection.GenerateNetwork(MapTiles(width, height, 0, 0).size());
     println("Generate Network ran");
     canvas.GenerateNetwork(MapTiles(width, height, 0, 0).size());
-    draw_popup(popup);
+//    draw_popup(popup);
     println("Generate Network ran");
 //    places.generate_POIs();
 //    println("Generate POIs ran");
     println("DONE: Data Acquired");
+     zoom = map.getZoomLevel();
+      handler = selection;
+      Handler = Selection;
+      c = #ff0000;
+      selection.drawRoads(Selection, c);
+      lines = !lines;
     pulling = false;
     pull = false;
   }
@@ -107,9 +113,9 @@ void draw() {
     image(direction, 0, 0);
   }
 
-  if (map.getZoomLevel() >= 14) {
-    image(popup, 0, 0);
-  }
+//  if (map.getZoomLevel() >= 14) {
+//    image(popup, 0, 0);
+//  }
 
 
   if (select && !pulling) {

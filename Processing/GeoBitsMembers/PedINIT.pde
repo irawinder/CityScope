@@ -18,7 +18,6 @@ void initContent(PGraphics p) {
       showGrid = false;
       finderMode = 0;
       showSource = true;
-      showPaths = true;
  
   initPathfinder(p, p.width/100);
   initPedestrians(p);
