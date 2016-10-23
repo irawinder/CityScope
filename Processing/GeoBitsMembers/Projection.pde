@@ -8,6 +8,7 @@ int projectorOffset = 1500;
 int screenWidth = 1882;
 int screenHeight = 1058;
 
+
 // Visualization may show 2D projection visualization, or not
 boolean displayProjection2D = false;
 //int projectorOffset = screenWidth;
@@ -118,12 +119,13 @@ public class projApplet extends PApplet {
     p.fill(#ff0000);
 
    if(initialized){
-     p.image(things, 0, 0, 1200, 1200);
+     p.image(things, 0, 0, 1100, 1150);
 //     p.image(special_agents, 0, 0, 1200, 1200);
 //       if(lines){
 //       p.image(special_roads, 0, 0,1200,1200);
 //       }
    }
+   
 //   p.image(tableCanvas, 0, 0, 100, 100);
 
 //    p.image(margin, 0, 0);

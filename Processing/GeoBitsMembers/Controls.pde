@@ -85,7 +85,6 @@ switch(key){
       handler = canvas;
       initialized = false;
       tableCanvas.clear();
-      
       Handler = Canvas;
       BresenhamMaster.clear();
       for(int i = 0; i<handler.Roads.size(); i++){

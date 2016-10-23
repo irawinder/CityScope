@@ -1,4 +1,4 @@
-PGraphics direction, popup, loading, agents;
+PGraphics direction, popup, loading, agents, stable;
 //toggling booleans for displays
 boolean showFrameRate = false;
 boolean select = true;
@@ -17,6 +17,8 @@ void initGraphics(){
   Selection = createGraphics(width, height);
   Canvas = createGraphics(width, height);
   Handler = createGraphics(width, height);
+  
+  stable = createGraphics(width, height);
   
   direction = createGraphics(width, height);
   popup = createGraphics(width, height);
@@ -38,6 +40,7 @@ void draw_info() {
   fill(255);
   text("Nina Lutz. This demo is under development, please be patient. Press 'd' for instructions.", 20, 20);
 }
+
 
 //user directions
 void draw_directions(PGraphics p) {

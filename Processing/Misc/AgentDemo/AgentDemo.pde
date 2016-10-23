@@ -2,8 +2,8 @@
 // Ira Winder, MIT Media Lab, jiw@mit.edu, Fall 2015
 
 
-int canvasWidth = 1920;
-int canvasHeight = 1200;
+int canvasWidth = 1020;
+int canvasHeight = 700;
 String refresh; 
 String editor;
 boolean show_menu = false;

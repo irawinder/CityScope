@@ -86,6 +86,21 @@ void draw() {
       lines = !lines;
     pulling = false;
     pull = false;
+          handler = canvas;
+      initialized = false;
+      tableCanvas.clear();
+      Handler = Canvas;
+      BresenhamMaster.clear();
+      for(int i = 0; i<handler.Roads.size(); i++){
+        handler.Roads.get(i).bresenham();
+      }
+      test_Bresen();
+       agentstriggered = !agentstriggered;
+      handler = selection;
+      Handler = Selection;
+      c = #ff0000;
+      selection.drawRoads(Selection, c);
+      lines = true;
   }
 
 
@@ -149,8 +164,9 @@ void draw() {
   
     
   if(initialized && frameCount % 3 == 0){
-  things = get(int(mercatorMap.getScreenLocation(selection.bounds.boxcorners().get(1)).x), int(mercatorMap.getScreenLocation(selection.bounds.boxcorners().get(1)).y), boxw+100, boxh+100);
+  things = get(int(mercatorMap.getScreenLocation(selection.bounds.boxcorners().get(1)).x), int(mercatorMap.getScreenLocation(selection.bounds.boxcorners().get(1)).y), boxh, boxw+90);
   }
+
   
 }
 
