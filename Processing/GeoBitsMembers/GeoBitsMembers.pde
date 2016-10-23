@@ -142,7 +142,7 @@ void draw() {
   }
   
     
-  if(initialized && frameCount % 2 == 0){
+  if(initialized && frameCount % 3 == 0){
   things = get(int(mercatorMap.getScreenLocation(selection.bounds.boxcorners().get(1)).x), int(mercatorMap.getScreenLocation(selection.bounds.boxcorners().get(1)).y), boxw+100, boxh+100);
   }
   
@@ -150,11 +150,12 @@ void draw() {
 
 void mouseDragged() {
   if (lines) {
+    initialized = false;
+    agentstriggered = false;
     Handler.clear();
     handler.drawRoads(Handler, c);
     image(Handler, 0, 0);
     left = mercatorMap.getGeo(new PVector(0, 0)).x; 
-    initialized = false;
   }
 }
 
