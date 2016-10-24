@@ -47,6 +47,8 @@ void setup() {
 //  // Initial Projection-Mapping Canvas
 //  initializeProjection2D();
 
+initUDP();
+  setupPieces();
   
 }
 
@@ -95,7 +97,9 @@ void draw() {
         handler.Roads.get(i).bresenham();
       }
       test_Bresen();
+      if(places.POIs.size() > 2){
        agentstriggered = !agentstriggered;
+      }
       handler = selection;
       Handler = Selection;
       c = #ff0000;
