@@ -61,14 +61,14 @@ void draw_directions(PGraphics p) {
   p.fill(#ff0000);
   p.text("This is GeoBits. GeoBits is a developing geospatial sandbox.", 15, 50);
   p.text("Currently you can navigate the map, select a region,", 15, 70); 
-  p.text("and export a geojson of all the features in this region.", 15, 90); 
-  p.text("Zoom in until you are prompted to model.", 15, 110); 
+  p.text("and visualize a general flow model of that region.", 15, 90); 
+   p.text("Use your mouse to navigate the map.", 15, 110); 
   p.text("KEYS: ", 15, 140);
   p.text("d = toggle info", 15, 160);
   p.text("s = toggle selection box", 15, 180);
   p.text("p = export data", 15, 200);
   p.text("W = make box bigger, w = smaller", 15, 220);
-  p.text("+/- = zoom in and out", 15, 240);
+  p.text("` for projection", 15, 240);
   p.endDraw();
 }
 
