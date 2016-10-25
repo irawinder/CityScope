@@ -2,6 +2,8 @@ import deadpixel.keystone.*;
 
 PImage special_agents, special_roads, things;
 
+boolean notenoughdata;
+
 /* GeoBits 
  
  GeoBits is a system for exploring and rendering GeoSpatial data a global scale in a variety of coordinate systems
@@ -21,6 +23,7 @@ boolean bw = true;
 MercatorMap mercatorMap;
 BufferedReader reader;
 String line;
+int current;
 
 RoadNetwork canvas, selection, handler;
 ODPOIs places;
@@ -37,6 +40,7 @@ void setup() {
   draw_directions(direction);       
 //  draw_popup(popup);
   draw_loading(loading);
+  draw_notenough(notenough);
 //  draw_agents(agents);
 
   map = new UnfoldingMap(this, new OpenStreetMap.OpenStreetMapProvider());
@@ -80,15 +84,19 @@ void draw() {
 //    places.generate_POIs();
 //    println("Generate POIs ran");
     println("DONE: Data Acquired");
-     zoom = map.getZoomLevel();
-      handler = selection;
-      Handler = Selection;
-      c = #ff0000;
-      selection.drawRoads(Selection, c);
-      lines = !lines;
-    pulling = false;
-    pull = false;
-          handler = canvas;
+//     zoom = map.getZoomLevel();
+//      handler = selection;
+//      Handler = Selection;
+//      c = #ff0000;
+//      selection.drawRoads(Selection, c);
+//      lines = !lines;
+      pulling = false;
+      pull = false;
+      
+  if(places.POIs.size() > 2){
+      current = map.getZoomLevel();
+      notenoughdata = false;
+       handler = canvas;
       initialized = false;
       tableCanvas.clear();
       Handler = Canvas;
@@ -97,14 +105,16 @@ void draw() {
         handler.Roads.get(i).bresenham();
       }
       test_Bresen();
-      if(places.POIs.size() > 2){
        agentstriggered = !agentstriggered;
-      }
       handler = selection;
       Handler = Selection;
       c = #ff0000;
       selection.drawRoads(Selection, c);
       lines = true;
+          }
+   else{
+     notenoughdata = true;
+     }    
   }
 
 
@@ -143,6 +153,10 @@ void draw() {
 
 
   draw_info();
+  
+  if(notenoughdata){
+     image(notenough, 0, 0); 
+  }
 
   if (pulling) {
     image(loading, 0, 0);
@@ -183,7 +197,11 @@ void mouseDragged() {
     image(Handler, 0, 0);
     left = mercatorMap.getGeo(new PVector(0, 0)).x; 
   }
+  if(notenoughdata){
+    notenoughdata = false;
+  }
 }
+
 
 void renderTableCanvas() {
   // most likely, you'll want a black background

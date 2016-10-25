@@ -112,7 +112,9 @@ switch(key){
         // and moved
         ks.toggleCalibration();
         break;
+        
 }
+notenoughdata = false;
 }
 
 boolean toggle(boolean bool) {

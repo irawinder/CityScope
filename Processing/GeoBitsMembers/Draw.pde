@@ -1,4 +1,4 @@
-PGraphics direction, popup, loading, agents, stable;
+PGraphics direction, popup, loading, agents, notenough;
 //toggling booleans for displays
 boolean showFrameRate = false;
 boolean select = true;
@@ -18,7 +18,7 @@ void initGraphics(){
   Canvas = createGraphics(width, height);
   Handler = createGraphics(width, height);
   
-  stable = createGraphics(width, height);
+  notenough = createGraphics(width, height);
   
   direction = createGraphics(width, height);
   popup = createGraphics(width, height);
@@ -39,6 +39,15 @@ void draw_info() {
   rect(0, 0, width, 30);
   fill(255);
   text("Nina Lutz. This demo is under development, please be patient. Press 'd' for instructions.", 20, 20);
+}
+
+void draw_notenough(PGraphics p){
+    p.beginDraw();
+    p.fill(#ff0000);
+    p.textSize(20);
+    p.textAlign(CENTER);
+    p.text("Not Enough Data. Please try again.", width/2, height/2);
+    p.endDraw();
 }
 
 
