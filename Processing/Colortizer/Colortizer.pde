@@ -59,11 +59,17 @@ void setup() {
   }
 }
 
+int garbageCount = 0;
+
 void draw() {
   background(0);
   runScan(vizWidth, vizHeight); //Updates and runs all scan objects
   //runViz();
-  System.gc();
+  if (garbageCount > 300) {
+    System.gc();
+    garbageCount = 0;
+  }
+  garbageCount ++;
   
   //println(frameRate);
   
