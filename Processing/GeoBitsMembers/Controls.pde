@@ -1,4 +1,4 @@
-boolean pull, square, generated, showid, pulling, Yasushi;
+boolean pull, square, generated, showid, pulling, Yasushi, pullprojection;
 color c;
 
 float left;
@@ -99,6 +99,7 @@ switch(key){
       lines = true;
       break;
   case '`': 
+      pullprojection = !pullprojection;
         if (displayProjection2D) {
           displayProjection2D = false;
           closeProjection2D();

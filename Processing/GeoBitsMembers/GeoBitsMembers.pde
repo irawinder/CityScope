@@ -185,7 +185,7 @@ void draw() {
   }
   
     
-  if(initialized){
+  if(initialized && pullprojection){
   things = get(int(mercatorMap.getScreenLocation(selection.bounds.boxcorners().get(1)).x), int(mercatorMap.getScreenLocation(selection.bounds.boxcorners().get(1)).y), boxh, boxw+90);
   }
 
