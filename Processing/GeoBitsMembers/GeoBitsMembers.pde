@@ -185,7 +185,7 @@ void draw() {
   }
   
     
-  if(initialized && frameCount % 3 == 0){
+  if(initialized){
   things = get(int(mercatorMap.getScreenLocation(selection.bounds.boxcorners().get(1)).x), int(mercatorMap.getScreenLocation(selection.bounds.boxcorners().get(1)).y), boxh, boxw+90);
   }
 
