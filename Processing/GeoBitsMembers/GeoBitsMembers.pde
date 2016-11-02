@@ -16,7 +16,7 @@ boolean notenoughdata;
  Supervisor: Ira Winder, jiw@mit.edu
  
  Write datege: 8/13/16 
- Last Updated: 10/18/16
+ Last Updated: 11/2/16
  */
 boolean agentstriggered, initagents, initialized, lines;
 boolean bw = true;
@@ -42,17 +42,21 @@ void setup() {
   draw_loading(loading);
   draw_notenough(notenough);
 //  draw_agents(agents);
-
-  map = new UnfoldingMap(this, new OpenStreetMap.OpenStreetMapProvider());
-
+ map = new UnfoldingMap(this, new OpenStreetMap.OpenStreetMapProvider());
   MapUtils.createDefaultEventDispatcher(this, map);
+  Location Boston = new Location(42.359676, -71.060636);
   smooth();
   
+  map.zoomAndPanTo(Boston, 17);
+  
+    mouseX = width/2;
+  mouseY = height/2;
 //  // Initial Projection-Mapping Canvas
 //  initializeProjection2D();
 
-initUDP();
+  initUDP();
   setupPieces();
+  pulling = true;
   
 }
 
