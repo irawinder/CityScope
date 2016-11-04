@@ -7,7 +7,6 @@
 // Make a Horde Class for Swarms
 // Make Custom Editor for Swarm Attributes
 // Make Agent LifeSpan some sort of sense
-// Hi Yasushi
 
 // In general, migrate global "void drawFoo()" methods into class-specific "display()" methods
 // Consolidate Agents, Obstacles, and Pathfinder classes to libraries and/or standalone applets and/or libraries?
@@ -130,7 +129,7 @@ boolean use4k = false;
 // Draw Modes:
 // 0 = Render For Screen
 // 1 = Render for Projection-Mapping
-int drawMode = 1;
+int drawMode = 0;
 
 void setup() {
   //size(2*projectorWidth, 2*projectorHeight, P3D);

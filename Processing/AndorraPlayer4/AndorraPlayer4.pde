@@ -140,10 +140,12 @@ void setup() {
 
 //  if (use4k) {
    //size(1920, 1200, P3D);
-    fullScreen(P3D, 3);
+//    fullScreen(P3D, 3);
 //  } else {
 //    size(projectorWidth, projectorHeight, P3D);
 //  }
+
+size(1920, 1000, P3D);
    
    initCanvas();
 

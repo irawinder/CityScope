@@ -1,6 +1,7 @@
 // Graphics object in memory that holds visualization
 PGraphics tableCanvas;
 
+boolean voronoi;
 
 PImage demoMap;
 
@@ -152,25 +153,55 @@ void testNetwork_Random(PGraphics p, int _numNodes) {
   destination = new PVector[numSwarm];
   weight = new float[numSwarm];
   swarmHorde.clearHorde();
-  
 
-  
   for (int i=0; i<numNodes; i++) {
     nodes[i] = new PVector(random(10, p.width-10), random(10, p.height-10));
   }
   
+   ArrayList<PVector> vors = new ArrayList<PVector>();    
+
+       for(int i = 0; i<50; i++){
+         PVector coord = new PVector(random(width-50), random(height-50));
+         voronoi_origins.add(coord);
+         }
+
+float minDistance = 0;
+int minIndex = 0;
+    for(int i = 0; i<voronoi_origins.size(); i++){
+            //base case; away from the first tower 
+            minDistance = pow((voronoi_origins.get(i).x  - nodes[0].x), 2)  +  pow((voronoi_origins.get(i).y  - nodes[0].y), 2);
+            minIndex = 0;
+            //iterate for other towers and replace with appropriate fill 
+                   for (int nc = 1; nc < numNodes; nc++) {
+                             float dist = ((voronoi_origins.get(i).x  - nodes[nc].x) * (voronoi_origins.get(i).x  - nodes[nc].x)) +  ((voronoi_origins.get(i).y  - nodes[nc].y) * (voronoi_origins.get(i).y  - nodes[nc].y));
+                              
+                             if (dist <= minDistance)
+                             {
+                                 minDistance = dist;
+                                 minIndex = nc;
+                            }
+                        }  
+            PVector vor = new PVector(voronoi_origins.get(i).x, voronoi_origins.get(i).y, minIndex);          
+            vors.add(vor);          
+         }
+
+for(int k = 0; k<vors.size(); k++){
   for (int i=0; i<numNodes; i++) {
     for (int j=0; j<numNodes-1; j++) {
-      
-      origin[i*(numNodes-1)+j] = new PVector(nodes[i].x, nodes[i].y);
+      int d = random(k);
+      if(i == vors.get(d).z){
+      origin[i*(numNodes-1)+j] = new PVector(vors.get(d).x, vors.get(d).y);
+      }
+      else{
+         origin[i*(numNodes-1)+j] = new PVector(0, 0);
+      }
       
       destination[i*(numNodes-1)+j] = new PVector(nodes[(i+j+1)%(numNodes)].x, nodes[(i+j+1)%(numNodes)].y);
-      
       weight[i*(numNodes-1)+j] = random(0.1, 2.0);
-      
       //println("swarm:" + (i*(numNodes-1)+j) + "; (" + i + ", " + (i+j+1)%(numNodes) + ")");
     }
   }
+}
   
     // rate, life, origin, destination
   colorMode(HSB);
@@ -206,7 +237,7 @@ void initObstacles(PGraphics p) {
   
   // Obstacles for agents generates within Andorra le Vella
   boundaries = new ObstacleCourse();
-  boundaries.loadCourse("data/course.tsv");
+  boundaries.loadCourse("data/courseMIT.tsv");
   
   println("Obstacles initialized.");
 }

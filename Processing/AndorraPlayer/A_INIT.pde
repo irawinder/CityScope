@@ -209,6 +209,7 @@ void initAgents(PGraphics p) {
       break;
     case 3:
       CDRNetwork();
+      println("CDR RAN");
       break;
   }
   
@@ -368,9 +369,11 @@ void testNetwork_CDRWifi(boolean CDR, boolean Wifi) {
 }
 
 void CDRNetwork() {
+  println("CDR fkl;as");
   
   int numSwarm;
   color col;
+  
   
   numSwarm = network.getRowCount();
   
@@ -380,6 +383,7 @@ void CDRNetwork() {
   swarmHorde.clearHorde();
   
   for (int i=0; i<numSwarm; i++) {
+
     
     boolean external = false;
     
@@ -436,25 +440,34 @@ void CDRNetwork() {
     String country = network.getString(OD.getInt(i, "EDGE_ID"), "NATION");
     if ( country.equals("sp") ) {
       summary.setInt(OD.getInt(i, "HOUR"), "SPANISH", summary.getInt(OD.getInt(i, "HOUR"), "SPANISH") + OD.getInt(i, "AMOUNT"));
+      //println(OD.getInt(i, "HOUR"), "SPANISH", summary.getInt(OD.getInt(i, "HOUR"), "SPANISH") + OD.getInt(i, "AMOUNT"));
     } else if ( country.equals("fr") ) {
       summary.setInt(OD.getInt(i, "HOUR"), "FRENCH", summary.getInt(OD.getInt(i, "HOUR"), "FRENCH") + OD.getInt(i, "AMOUNT"));
+      //println(OD.getInt(i, "HOUR"), "FRENCH", summary.getInt(OD.getInt(i, "HOUR"), "FRENCH") + OD.getInt(i, "AMOUNT"));
     } else if ( country.equals("other") ) {
       summary.setInt(OD.getInt(i, "HOUR"), "OTHER", summary.getInt(OD.getInt(i, "HOUR"), "OTHER") + OD.getInt(i, "AMOUNT"));
+      //println(OD.getInt(i, "HOUR"), "OTHER", summary.getInt(OD.getInt(i, "HOUR"), "OTHER") + OD.getInt(i, "AMOUNT"));
     }
     summary.setInt(OD.getInt(i, "HOUR"), "TOTAL", summary.getInt(OD.getInt(i, "HOUR"), "TOTAL") + OD.getInt(i, "AMOUNT"));
+
+
   }
   
   for (int i=0; i<summary.getRowCount(); i++) {
     if ( summary.getInt(i, "TOTAL") > maxFlow ) {
       maxFlow = summary.getInt(i, "TOTAL");
+      println("hours", summary.getRowCount());
     }
   }
+  
+saveTable(summary, "data/summary.csv");
   
   // Sets to rates at specific hour ...
   setSwarmFlow(hourIndex);
 }
 
 void resetSummary() {
+  println("summary");
   summary = new Table();
   summary.addColumn("HOUR");
   summary.addColumn("TOTAL");
@@ -465,9 +478,7 @@ void resetSummary() {
 
 // Sets to rates at specific hour ...
 void setSwarmFlow(int hr) {
-  
-  checkValidHour(hourIndex);
-  
+  println("swarm flow set");
   swarmHorde.setFrequency(100000);
   
   for (int i=0; i<OD.getRowCount(); i++) {

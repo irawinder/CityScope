@@ -2,14 +2,19 @@
 // Ira Winder, MIT Media Lab, jiw@mit.edu, Fall 2015
 
 
+<<<<<<< Updated upstream
 int canvasWidth = 1020;
 int canvasHeight = 700;
+=======
+int canvasWidth = 1200;
+int canvasHeight = 800;
+>>>>>>> Stashed changes
 String refresh; 
 String editor;
 boolean show_menu = false;
 boolean bw = true;
 
-boolean enableProjectionMapping = true;
+boolean enableProjectionMapping = false;
 
 // Key Commands:
 //

@@ -107,7 +107,7 @@ void initData() {
   buildings = loadTable("data/buildings.csv", "header");
   
   // loads baseimage for topographic model
-  topo = loadImage("crop.png");
+  topo = loadImage("crop2.png");
   
   if (load_non_essential_data) {
     

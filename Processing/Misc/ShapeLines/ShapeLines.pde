@@ -63,6 +63,7 @@ boolean initialized = false;
  
 
 void draw(){
+     println(frameRate);
     //these only run once
     if (!initialized) {
         background(0);
