@@ -1,3 +1,10 @@
+/*
+Based off example from Ben Fry at Processing.org
+Simple drag logic
+
+Implemented by Nina Lutz June 2017
+*/
+
 float xpos;
 float ypos;
 int rectWidth = 20;
