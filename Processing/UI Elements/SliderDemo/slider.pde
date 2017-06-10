@@ -17,6 +17,7 @@ class Slider {
   Slider () {
   }
  
+ //detailed
   Slider (float _x, float _y, float _w, float _h, float _maxwidth) {
     x=_x;
     y=_y;
@@ -28,12 +29,8 @@ class Slider {
  
  
   void draw() {
- 
-    // bad practice have all stuff done in one method...
-    float left =initialX;
- 
     // map value to change color..
-    value = map(x, left, left + maxwidth, 120, 255);
+    value = map(x, initialX, initialX + maxwidth, 120, 255);
  
  
     //set color as it changes
@@ -52,7 +49,7 @@ class Slider {
     rect(x,y-h/2,w, w);
  
     //get mouseInput and map it
-    float my = constrain(mouseX, left, left + maxwidth - w);
+    float my = constrain(mouseX, initialX, initialX + maxwidth - w);
     if (lock) x = my;
   }
  
@@ -62,6 +59,3 @@ class Slider {
     return (x+w >= mouseX) && (mouseX >= x) && (y+h >= mouseY) && (mouseY >= y-h/2);
   }
 }
- 
- 
-//end of class

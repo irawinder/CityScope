@@ -1,51 +1,24 @@
-/*
-PhiLhoSoft's Processing sketches.
-http://processing.org/
-
-by Philippe Lhoste <PhiLho(a)GMX.net> http://Phi.Lho.free.fr & http://PhiLho.deviantART.com
-*/
-/* File/Project history:
- 2.00.000 -- 2012/11/13 (PL) -- Separate Drag and DragList, standard method names.
- 1.01.000 -- 2010/01/29 (PL) -- Update to better code, added DragList.
- 1.00.000 -- 2008/04/29 (PL) -- Creation.
-*/
-/* Copyright notice: For details, see the following file:
-http://Phi.Lho.free.fr/softwares/PhiLhoSoft/PhiLhoSoftLicense.txt
-This program is distributed under the zlib/libpng license.
-Copyright (c) 2008-2012 Philippe Lhoste / PhiLhoSoft
-*/
-
 /**
- * A circle that can be dragged with the mouse.
+ * A draggable shape; in this case a rectangle, but similar logic for a circle
+ * Based off Drag class by Philippe Lhoste's tutorial
  */
 class Drag
 {
-  // Lazy (Processing) class: leave direct access to parameters... Avoids having lot of accessors.
-  float m_x, m_y; // Position of Drag
-  int m_size; // Diameter of Drag
+
+  float m_x, m_y; 
+  int m_size; 
   int m_lineWidth;
   color m_colorLine;
   color m_colorFill;
   color m_colorHover;
   color m_colorDrag;
 
-  private boolean m_bIsHovered, m_bDragged;
-  private float m_clickDX, m_clickDY;
+  boolean m_bIsHovered, m_bDragged;
+  float m_clickDX, m_clickDY;
 
-  /**
-   * Simple constructor with hopefully sensible defaults.
-   */
-  Drag(float x, float y)
-  {
-    this(x, y, 5, 1, #000000, #FFFFFF, #FFFF00, #FF8800);
-  }
 
-  /**
-   * Full constructor.
-   */
-  Drag(float x, float y, int size, int lineWidth,
-      color colorLine, color colorFill, color colorHover, color colorDrag
-  )
+//Constructor
+  Drag(float x, float y, int size, int lineWidth, color colorLine, color colorFill, color colorHover, color colorDrag)
   {
     m_x = x; m_y = y;
     m_size = size;
@@ -56,41 +29,33 @@ class Drag
     m_colorDrag = colorDrag;
   }
 
-  /**
-   * Updates the state of the Drag depending on the mouse position.
-   *
-   * @param bAlreadyDragging  if true, a dragging is already in effect
-   */
+
+  //Updates object
   void update(boolean bAlreadyDragging)
   {
     // Check if mouse is over the Drag
     m_bIsHovered = dist(mouseX, mouseY, m_x, m_y) <= m_size / 2;
-    // If we are not already dragging and left mouse is pressed over the Drag
-    if (!bAlreadyDragging && mousePressed && mouseButton == LEFT && m_bIsHovered)
+    
+    // If mouse is pressed and it's over, trigger the dragging boolean
+    if (!bAlreadyDragging && mousePressed  && m_bIsHovered)
     {
-      // We record the state
       m_bDragged = true;
       // And memorize the offset of the mouse position from the center of the Drag
       m_clickDX = mouseX - m_x;
       m_clickDY = mouseY - m_y;
+      
     }
+
     // If mouse isn't pressed
     if (!mousePressed)
     {
-      // Any possible dragging is stopped
+      // Stop dragging
       m_bDragged = false;
     }
   }
 
-  boolean isDragged()
-  {
-    return m_bDragged;
-  }
 
-   /**
-    * If the Drag is dragged, the new position is computed with mouse position,
-    * taking in account the offset of mouse with center of Drag.
-    */
+  //update the x and y position
   void move()
   {
     if (m_bDragged)
@@ -100,11 +65,11 @@ class Drag
     }
   }
 
-   /**
-    * Just draw the Drag at current posiiton, with color depending if it is dragged or not.
-    */
+
+  //draw the drag each frame
   void display()
   {
+    move();
     strokeWeight(2);
     stroke(m_colorLine);
     if (m_bDragged)
