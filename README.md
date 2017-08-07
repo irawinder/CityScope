@@ -3,8 +3,6 @@ Solely Developed by Ira Winder [jiw@mit.edu] MIT Media Lab, C. 2014 - 2017
 
 (Note: Ownership of this repository was transferred from the discontinued "Changing Places" Repository on August 7, 2017.)
 
-Colortizer is open source software that translates a grid of color-tagged objects into a matrix of IDs and their rotation to serve projects like the open-source "CityScope" platform:
-
 CityScope is a collection of open source scripts developed with Processing 2 IDE v2.2.1, largely to serve the "CityScope" platform at  [http://cp.media.mit.edu/city-simulation](http://cp.media.mit.edu/city-simulation).
 * Colortizer has been moved to its [own repo](https://github.com/ChangingPlaces/Colortizer)!!
 * Arrange a Meeting with Ira Winder [jiw@mit.edu] before making any commits to this repository.
