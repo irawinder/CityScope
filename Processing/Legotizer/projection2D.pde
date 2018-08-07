@@ -216,6 +216,31 @@ public class projApplet extends PApplet {
   }
   
   void keyPressed() {
+    
+    if (key == CODED) { 
+      if (keyCode == LEFT) {
+        projU[canvasIndex]--;
+        saveProjectorLocation();
+      }  
+      if (keyCode == RIGHT) {
+        projU[canvasIndex]++;
+        saveProjectorLocation();
+      }  
+      if (keyCode == DOWN) {
+        projV[canvasIndex]++;
+        saveProjectorLocation();
+      }  
+      if (keyCode == UP) {
+        projV[canvasIndex]--;
+        saveProjectorLocation();
+      }
+      
+      //Renders Perspective and Plan Despite No forced Simulation Update
+      renderPerspective();
+      renderPlan();
+          
+    }
+    
     switch(key) {
     case 'c':
       // enter/leave calibration mode, where surfaces can be warped 
@@ -246,6 +271,21 @@ public class projApplet extends PApplet {
     case ' ':
       nextDataMode = true;
       break;
+      
+    case '-':
+      projH[canvasIndex]--;
+      saveProjectorLocation();
+      //Renders Perspective and Plan Despite No forced Simulation Update
+      renderPerspective();
+      renderPlan();
+    
+      break;
+    case '+':
+      projH[canvasIndex]++;
+      saveProjectorLocation();
+      //Renders Perspective and Plan Despite No forced Simulation Update
+      renderPerspective();
+      renderPlan();
     }
   }
 }

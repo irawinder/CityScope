@@ -59,8 +59,8 @@ void riyadhMode() {
   
   staticSpacer = 1;        // Plastic Spacer Needed for Static buildings
   dynamicSpacer = 1;       // Plastic Spacer Needed for Dynamic buildings
-  UMax = 9;
-  VMax = 9;
+  UMax = 11;
+  VMax = 11;
   updateBoard();
   
   structureMode = 1;

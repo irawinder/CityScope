@@ -89,6 +89,7 @@ int roadColor   = 0xCC333333; // gray
 //int openColor   = 0xCC3a4d14; // green
 //int openColor   = 0xCC7e7f3e; // green
 int openColor   = 0xCC7C7C7A; //gray
+//int openColor   = 0x000000; //gray
 int bldgColor   = 0xCCe5c46b; // beige
 
 int lightGray   = 0xCC999999; // light gray
